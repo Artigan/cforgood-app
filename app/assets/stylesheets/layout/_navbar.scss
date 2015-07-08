@@ -9,7 +9,7 @@ $navbar-text-transform: capitalize;
 $navbar-font-weight: 300;
 $navbar-letter-spacing: 1.5px;
 $navbar-font-family: $navbar-font;
-$navbar-bg: white;
+$navbar-bg: transparent;
 
 /* -------------------------------------
  * Box model
@@ -49,8 +49,10 @@ $navbar-profile-border-width: 2px;
   letter-spacing: $navbar-letter-spacing;
   padding-left: $navbar-horizontal-padding;
   padding-right: $navbar-horizontal-padding;
-  border-bottom: $navbar-border-bottom-width solid $navbar-border-bottom-color;
   min-height: 0;
+  position: fixed;
+  z-index: 1;
+  width: 100%;
   transition: background 0.4s ease;
 
   .navbar-nav > li > a,
