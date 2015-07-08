@@ -4,3 +4,20 @@
   background-size: cover;
   height: 650px;
 }
+
+.card{
+  padding: 10px;
+  font-weight: 300;
+  h2{
+    font-size: 22px;
+  }
+}
+
+#features {
+  img {
+    height: 80px;
+  }
+  text-align: center;
+  padding-top: 30px;
+  padding-bottom: 20px;
+}
