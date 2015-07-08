@@ -54,6 +54,10 @@ $navbar-profile-border-width: 2px;
   z-index: 1;
   width: 100%;
   transition: background 0.4s ease;
+    &.transparent {
+    background: transparent;
+    border: none;
+  }
 
 
      &.transparent {
