@@ -17,7 +17,51 @@
   img {
     height: 80px;
   }
+  h1 {
+    margin-bottom: 30px;
+    font-size: 35px;
+  }
   text-align: center;
-  padding-top: 30px;
-  padding-bottom: 20px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  border-bottom: 1px rgba(200,191,191,0.23) solid;
+}
+
+#presentation {
+  img {
+    height: 80px;
+    margin-top: 30px;
+  }
+  margin-top: 25px;
+  margin-bottom: 25px;
+  h3 {
+    font-size: 18px;
+  }
+  p {
+    font-size: 14px;
+  }
+}
+
+#blackbox-banner {
+  position: absolute;
+  height: 650px;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  color: rgb(240, 240, 240);
+  z-index: 1;
+}
+
+.scroll-btn{
+  position: absolute;
+  width: 100px;
+  margin-left: -50px;
+  bottom: 20px;
+  left: 50%;
+  text-align: center;
+  font-size: 60px;
+  color: white;
+  &:hover{
+    color: white;
+  }
+  z-index: 3;
 }
