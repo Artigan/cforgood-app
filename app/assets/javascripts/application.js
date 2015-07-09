@@ -2,6 +2,7 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require navbar
+//= require scrollReveal
 
 //= require_tree ./app
 
