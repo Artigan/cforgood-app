@@ -1,6 +1,6 @@
 #banner {
   position: relative;
-  background-image: image-url("background.jpg");
+  background-image: image-url("background13.jpg");
   background-size: cover;
   height: 650px;
 }
@@ -32,8 +32,8 @@
     height: 80px;
     margin-top: 30px;
   }
-  margin-top: 25px;
-  margin-bottom: 25px;
+  margin-top: 40px;
+  margin-bottom: 40px;
   h3 {
     font-size: 18px;
   }
@@ -46,7 +46,7 @@
   position: absolute;
   height: 650px;
   width: 100%;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.3);
   color: rgb(240, 240, 240);
   z-index: 1;
 }
