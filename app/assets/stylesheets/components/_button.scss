@@ -5,8 +5,27 @@
 
  .btn-blue {
   color: #fff !important;
-  background-color: #56c9fb !important;
-  border-color: #56c9fb !important;
+  background-color: #00CAFF !important;
+  border-color: #00CAFF !important;
   white-space: nowrap;
   border-bottom: 2px solid #1692c8 !important;
+  border-radius: 5px;
+}
+
+ .btn-green {
+  color: #fff !important;
+  background-color: #93F29C !important;
+  border-color: #93F29C !important;
+  white-space: nowrap;
+  border-bottom: 2px solid #7BDA8D !important;
+  border-radius: 5px;
+}
+
+ .btn-turquoise {
+  color: #fff !important;
+  background-color: #36D3DA !important;
+  border-color: #36D3DA !important;
+  white-space: nowrap;
+  border-bottom: 2px solid #36B9D8 !important;
+  border-radius: 5px;
 }

@@ -47,14 +47,17 @@
           </li>
         <% else %>
           <li>
-            <%= link_to t(".sign_up", default: "Sign up"), new_user_registration_path %>
+            <%= link_to t(".bons_plans", default: "Bons Plans"), new_user_registration_path %>
           </li>
           <li>
-            <%= link_to t(".sign_in", default: "Sign in"), new_user_session_path %>
+            <%= link_to t(".causes", default: "Causes"), new_user_registration_path %>
+          </li>
+          <li>
+            <%= link_to t(".se_connecter", default: "Se connecter"), new_user_session_path %>
           </li>
         <% end %>
         <li>
-          <%= link_to t(".top_call_to_action", default: "Rent your flat"), "#", class: "btn btn-blue" %>
+          <%= link_to t(".top_call_to_action", default: "S'inscrire"), new_user_registration_path, class: "btn btn-blue" %>
         </li>
       </ul>
     </div><!-- /.navbar-collapse -->
