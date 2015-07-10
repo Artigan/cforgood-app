@@ -1,9 +1,9 @@
  //$('.carrousel').slick();
 
  $('.carrousel').slick({
-  dots: true,
-  infinite: false,
-  speed: 300,
+  dots: false,
+  infinite: true,
+  speed: 1500,
   slidesToShow: 4,
   slidesToScroll: 4,
   responsive: [

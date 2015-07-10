@@ -1,21 +1,60 @@
 // Your footer style
 #footer {
-  background: $gray-darker;
-  padding: 30px 0;
-  color: $gray-lighter;
-  p {
-    margin-top: 17px;
+  background-color: #2b2d2e;
+  border-top: 1px solid #3a3a3a;
+  width: 100%;
+  padding-bottom: 10px;
+  h2 {
+    color: #fff;
+    font-size:18px;
   }
-  ul {
-    margin-top: 10px;
+  h3 {
+    color: #837E7C;
+    line-height: 3px;
+    font-size: 14px;
   }
-  a {
-    color: $gray-lighter;
-    font-size: 30px;
-    letter-spacing: 20px;
-    transition: color 0.5s ease;
-    &:hover{
-      color: $yellow;
-    }
+}
+
+.text-center {
+  text-align: center;
+}
+
+.link-contrast {
+
+  color: #fff;
+
+  &:hover {
+    color: #D1D0CE;
+    text-decoration: none;
+    outline: none;
   }
+}
+
+.footer-icon {
+  position: relative;
+  top: 7px;
+}
+
+.footer-icon-container {
+  display: block;
+  height: 36px;
+  width: 36px;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 50%;
+  text-align: center;
+  border-color: rgba(255,255,255,0.2);
+}
+
+
+.row-space-top-2 {
+  margin-top: 12.5px;
+}
+
+.text-muted {
+  color: #82888a;
+}
+
+.padding-bottom {
+  padding-bottom:10px;
 }
