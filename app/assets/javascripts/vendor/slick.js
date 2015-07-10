@@ -45,7 +45,7 @@
                 asNavFor: null,
                 prevArrow: '<button type="button" data-role="none" class="slick-prev" aria-label="previous"></button>',
                 nextArrow: '<button type="button" data-role="none" class="slick-next" aria-label="next"></button>',
-                autoplay: false,
+                autoplay: true,
                 autoplaySpeed: 5000,
                 centerMode: false,
                 centerPadding: '50px',
