@@ -1,9 +1,9 @@
 #banner {
   position: relative;
-  background-image: image-url("background13.jpg");
+  background-image: image-url("background6.jpg");
   background-size: cover;
   height: 650px;
-  border-bottom: 1px rgba(200,191,191,0.23) solid;
+  border-bottom: 1px rgba(124, 118, 118, 0.23) solid;
 }
 
 .card{
@@ -16,7 +16,6 @@
 
 #presentation {
   h1{
-    color: white;
     font-size: 30px;
     padding-top: 60px;
     padding-bottom: 10px;
@@ -131,18 +130,19 @@
   h2 {
     text-align: center;
     font-size: 26px;
-    margin-top: 45px;
-    margin-bottom: 15px;
+    margin-top: 15px;
+    margin-bottom: 10px;
     font-weight: 900;
   }
   img {
     padding-left: 20px;
     padding-right: 20px;
-    height: 80px;
+    height: 75px;
     padding-top: 15px;
+    margin-top: -10px;
   }
   border-top: 1px rgba(200,191,191,0.23) solid;
-  height: 300px;
+  height: 215px;
 }
 
 .perk-card-home {
@@ -172,11 +172,12 @@
 
 .image {
   position: absolute;
-  background-image: image-url("Perk1.png");
+  background-image: image-url("Perk2.png");
   width: 100%;
   height: 100%;
   border-radius: 5px;
 }
+
 
 #mediaplay {
   top: 70px;
@@ -187,4 +188,24 @@
 #iphone-card {
   padding-left: 75px;
   margin-top: -4px;
+}
+
+#betafamily {
+  background-image: image-url("background3.png");
+  background-size: cover;
+  background-position: center center;
+  height: 350px;
+  position: relative;
+  h2 {
+    margin-top: 85px;
+  }
+  p {
+    color: white;
+    font-weight: 300;
+  }
+  img {
+    height: 200px;
+    margin-top: 70px;
+    margin-left: 40px;
+  }
 }
