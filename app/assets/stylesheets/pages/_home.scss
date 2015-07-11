@@ -2,7 +2,7 @@
   position: relative;
   background-image: image-url("background6.jpg");
   background-size: cover;
-  height: 650px;
+  height: 620px;
   border-bottom: 1px rgba(124, 118, 118, 0.23) solid;
   h1 {
     font-size: 41px;
@@ -74,7 +74,7 @@
 
 #blackbox-banner {
   position: absolute;
-  height: 650px;
+  height: 100%;
   width: 100%;
   background: rgba(0, 0, 0, 0.3);
   color: rgb(240, 240, 240);
@@ -170,7 +170,7 @@
 
 .box-shadow {
   position: absolute;
-  background-color: rgba(0,0,0, 0.4);
+  background-color: rgba(0,0,0, 0.2);
   border-radius: 5px;
   height: 100%;
   width: 100%;
