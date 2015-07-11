@@ -194,18 +194,19 @@
   background-image: image-url("background3.png");
   background-size: cover;
   background-position: center center;
-  height: 350px;
+  height: 400px;
   position: relative;
   h2 {
-    margin-top: 85px;
+    margin-top: 90px;
   }
   p {
     color: white;
     font-weight: 300;
+    padding-top: 10px;
   }
   img {
     height: 200px;
-    margin-top: 70px;
+    margin-top: 100px;
     margin-left: 40px;
   }
 }
