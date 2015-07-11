@@ -63,3 +63,12 @@
     height: 140px;
   }
 }
+
+.absolute {
+  position: absolute;
+}
+
+.relative {
+  position: relative;
+  z-index: 2;
+}
