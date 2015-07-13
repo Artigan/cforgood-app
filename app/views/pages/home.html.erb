@@ -16,18 +16,13 @@
             <p>BIENVENUE DANS LA COMMUNAUTE DES CITOYENS ENGAGES</p>
           </div>
         </div>
-        <div class="col-xs-6 col-xs-offset-3 mt-50">
-          <!-- <div class="col-xs-5 col-xs-offset-1 ">
-            <input type="email" name="EMAIL" class="email form-control text-center r5" id="mce-EMAIL" placeholder="votrecontact@gmail.com" required=""> -->
-          <div class="col-xs-3 col-xs-offset-3">
+        <div class="col-xs-12 col-sm-6 col-sm-offset-3 mt-50">
+          <div class="col-xs-5 col-xs-offset-2 col-sm-3 col-sm-offset-3">
             <a href ="#benefits" class="btn btn-white">En savoir Plus</a>
           </div>
-          <div class="col-xs-4">
+          <div class="col-xs-5 col-sm-4 col-sm-offset-0">
             <input type="submit" value="S'inscrire" name="subscribe" class="btn btn-turquoise pr-25 pl-25">
           </div>
-          <!-- <div class="col-xs-3 pl-10">
-            <input type="submit" value="S'inscrire" name="subscribe" class="btn btn-turquoise">
-          </div> -->
         </div>
       </div>
     </div>
@@ -78,7 +73,7 @@
     <div class="container">
       <div class="row">
         <h2>AVANTAGES DE LA COMMUNAUTE</h2>
-        <div class="col-sm-4" >
+        <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-0" >
           <div class="col-xs-12 col-sm-3">
              <div data-sr="enter bottom and scale up 20% over 1s">
                <%=image_tag("don1.png") %>
@@ -94,7 +89,7 @@
             </div>
           </div>
         </div>
-        <div class="col-sm-4" >
+        <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-0" >
           <div class="col-xs-12 col-sm-3">
             <div data-sr="enter bottom and scale up 20% over 1s">
                  <%=image_tag("perk-icon2.png") %>
@@ -111,7 +106,7 @@
           </div>
           </div>
 
-          <div class="col-sm-4" >
+          <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-0" >
             <div class="col-xs-12 col-sm-3">
               <div data-sr="enter bottom and scale up 20% over 1s">
                 <%=image_tag("Soleil.png") %>
@@ -133,7 +128,7 @@
   </div>
 </div>
 
-<div class="container-fluid bg-turquoise opacity-7">
+<div class="container-fluid bg-turquoise">
   <div class="row">
     <div id="presentation">
       <div class="col-xs-12 col-sm-4 col-sm-offset-1">
@@ -281,16 +276,16 @@
 <div class="container-fluid bg-white">
   <div id="partner">
     <div class="col-xs-12 col-sm-6">
-      <div class="col-xs-8 col-xs-offset-3 text-center">
+      <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-3 text-center">
         <h4>Vous êtes une entreprise ?</h4>
-        <p>Découvrez comment <strong>CforGood</strong> peut vous offrir une forte visibilité tout en participant à cet éco-système positif</p>
+        <p>Découvrez comment <strong>CforGood</strong> peut vous offrir une forte visibilité tout en participant à cet éco-système positif.</p>
         <%= link_to t(".top_call_to_action", default: "GAGNEZ EN VISIBILITE"), new_user_registration_path, class: "btn btn-blue" %>
       </div>
     </div>
     <div class="col-xs-12 col-sm-6">
-      <div class="col-xs-8 col-xs-offset-1 text-center">
+      <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-1 text-center mb-20">
         <h4>Vous êtes une association ?</h4>
-        <p>Découvrez comment <strong>CforGood</strong> développe l'engagement des donateurs et facilite la récolte de fonds</p>
+        <p>Découvrez comment <strong>CforGood</strong> développe l'engagement des donateurs et facilite la communication et la récolte de fonds.</p>
         <%= link_to t(".top_call_to_action", default: "FAITES ENTENDRE VOTRE CAUSE"), new_user_registration_path, class: "btn btn-green" %>
       </div>
     </div>
@@ -298,12 +293,12 @@
 </div>
 <div class="container-fluid bg-blue">
   <div id="support">
-    <div class="col-xs-12 text-center">
-      <div class="col-xs-4 border-style"></div>
-      <div class="col-xs-4">
+    <div class="col-xs-12 text-center mb-5">
+      <div class="col-xs-12 col-sm-4 border-style"></div>
+      <div class="col-xs-12 col-sm-4">
         <h2>ILS NOUS SUPPORTENT</h2>
       </div>
-      <div class="col-xs-4 border-style"></div>
+      <div class="col-xs-hidden col-sm-4 border-style"></div>
       <div class="col-xs-12 col-sm-10 col-sm-offset-1">
           <%=link_to image_tag("banquepostale-white.png"), "https://www.labanquepostale.fr/", target: "_blank" %>
           <%=link_to image_tag("makesense-white.png"), "http://beta.makesense.org/", target: "_blank" %>
