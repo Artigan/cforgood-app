@@ -197,13 +197,6 @@
   margin-top: -4px;
 }
 
-@media screen and (max-width: 480px) {
-
-    #betafamily {
-            height: 900px;
-        }
-     }
-
 #betafamily {
   background-image: image-url("background3.png");
   background-size: cover;
@@ -223,4 +216,11 @@
     margin-top: 100px;
     margin-left: 40px;
   }
+}
+
+@media only screen and (max-width: 480px) and (orientation : portrait) {
+
+    #betafamily {
+            height: 900px;
+        }
 }
