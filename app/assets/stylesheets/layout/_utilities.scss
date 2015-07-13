@@ -83,6 +83,12 @@
   }
 }
 
+.img120 {
+  img {
+    height: 120px;
+  }
+}
+
 .absolute {
   position: absolute;
 }
@@ -92,9 +98,17 @@
   z-index: 2;
 }
 
-.border {
+.border-style {
     border-top: 2px rgba(255, 255, 255, 1) solid;
     margin-top: 28px;
+}
+
+.border-top {
+  border-top: 2px rgba(216,227,225,0.23) solid;
+}
+
+.border-bottom {
+  border-bottom: 1px rgba(216,227,225,0.23) solid;
 }
 
 .cforgood-background {
@@ -106,4 +120,8 @@
 .page-title {
   text-align: center;
   margin-top: 80px;
+}
+
+.f-left {
+  float: left;
 }
