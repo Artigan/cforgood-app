@@ -197,6 +197,13 @@
   margin-top: -4px;
 }
 
+@media screen and (max-width: 480px) {
+
+    #betafamily {
+            heigth: 900px;
+        }
+     }
+
 #betafamily {
   background-image: image-url("background3.png");
   background-size: cover;
