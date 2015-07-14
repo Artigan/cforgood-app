@@ -1,8 +1,15 @@
 #banner {
   position: relative;
-  background-image: image-url("background13.jpg");
+  background-image: image-url("background6.jpg");
   background-size: cover;
-  height: 650px;
+  height: 620px;
+  border-bottom: 1px rgba(124, 118, 118, 0.23) solid;
+  h1 {
+    font-size: 41px;
+  }
+  p {
+    font-size: 18px;
+  }
 }
 
 .card{
@@ -15,13 +22,14 @@
 
 #presentation {
   h1{
-    color: rgb(51,51,51);
-    font-size: 35px;
-    padding-top: 30px;
+    font-size: 30px;
+    padding-top: 60px;
+    padding-bottom: 10px;
   }
   img {
     width: 90%;
   }
+  padding-left: 10px;
   margin-top: 60px;
   height: 400px;
   border-bottom: 1px rgba(200,191,191,0.23) solid;
@@ -38,27 +46,36 @@
   text-align: center;
   padding-top: 50px;
   padding-bottom: 50px;
-  border-bottom: 1px rgba(200,191,191,0.23) solid;
+  border-bottom: 1px rgba(54,211,218,0.23) solid;
 }
 
 #benefits {
   img {
-    height: 80px;
-    margin-top: 30px;
+    height: 85px;
+    margin-left: -5px;
+    margin-top: 40px;
   }
-  padding-top: 90px;
-  margin-bottom: 40px;
+  padding-top: 75px;
+  margin-bottom: 75px;
   h3 {
     font-size: 18px;
   }
   p {
     font-size: 14px;
   }
+  h2 {
+    text-align: center;
+    font-size: 26px;
+    margin-top: 15px;
+    margin-bottom: 35px;
+    font-weight: 900;
+    color: rgb(51,51,51);
+  }
 }
 
 #blackbox-banner {
   position: absolute;
-  height: 650px;
+  height: 100%;
   width: 100%;
   background: rgba(0, 0, 0, 0.3);
   color: rgb(240, 240, 240);
@@ -97,7 +114,7 @@
     padding-top: 20px;
     font-weight: 700;
   }
-  border-top: 1px rgba(200,191,191,0.23) solid;
+  border-top: 1px rgba(216,227,225,0.23) solid;
   margin-bottom: 20px;
 }
 
@@ -120,18 +137,19 @@
   h2 {
     text-align: center;
     font-size: 26px;
-    margin-top: 45px;
-    margin-bottom: 15px;
+    margin-top: 15px;
+    margin-bottom: 10px;
     font-weight: 900;
   }
   img {
     padding-left: 20px;
     padding-right: 20px;
-    height: 80px;
+    height: 75px;
     padding-top: 15px;
+    margin-top: -10px;
   }
   border-top: 1px rgba(200,191,191,0.23) solid;
-  height: 300px;
+  height: 215px;
 }
 
 .perk-card-home {
@@ -153,7 +171,7 @@
 
 .box-shadow {
   position: absolute;
-  background-color: rgba(0,0,0, 0.4);
+  background-color: rgba(0,0,0, 0.2);
   border-radius: 5px;
   height: 100%;
   width: 100%;
@@ -161,8 +179,140 @@
 
 .image {
   position: absolute;
-  background-image: image-url("Perk1.png");
+  background-image: image-url("Perk2.png");
   width: 100%;
   height: 100%;
   border-radius: 5px;
+}
+
+
+#mediaplay {
+  top: 70px;
+  opacity: 0.7;
+  left: 10px;
+}
+
+#iphone-card {
+  padding-left: 75px;
+  margin-top: -4px;
+}
+
+#betafamily {
+  background-image: image-url("background3.png");
+  background-size: cover;
+  background-position: center center;
+  height: 400px;
+  position: relative;
+  h2 {
+    margin-top: 90px;
+  }
+  p {
+    color: white;
+    font-weight: 300;
+    padding-top: 10px;
+  }
+  img {
+    height: 200px;
+    margin-top: 100px;
+    margin-left: 40px;
+  }
+}
+
+@media only screen and (max-width: 480px) and (orientation : portrait) {
+
+  #banner {
+    background-position: center center;
+    #btn-home-banner {
+      margin-left: 40px;
+    }
+    #text-home-banner {
+      margin-top: 120px;
+      margin-bottom: 45px;
+    }
+    h1 {
+      font-size: 32px;
+    }
+    p {
+      font-size: 18px;
+    }
+  }
+
+  #benefits {
+    text-align: center;
+    padding-top: 30px;
+    h2 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+    #home-benefit {
+      margin-bottom: 20px;
+    }
+  }
+
+  #presentation {
+      height: 400px;
+      text-align: center;
+      h1 {
+        font-size: 20px;
+      }
+      #iphone-card {
+        width: 80%;
+        margin-bottom: 30px;
+      }
+      #btn-presentation {
+        margin-bottom: 20px;
+        }
+      }
+
+  #perks {
+      h2 {
+        font-size: 22px;
+      }
+    }
+
+  #betafamily {
+        height: 650px;
+        text-align: center;
+        #nopadding-betafamily {
+          padding-left: 0px;
+        }
+        img {
+          width: 90%;
+          margin-left: 15px;
+          margin-top: 40px;
+        }
+        h2 {
+          font-size: 19px;
+        }
+        p {
+          font-weight: 500;
+        }
+      }
+
+  #partner {
+    padding-top: 20px;
+    height: 550px;
+    #partner-business {
+      margin-bottom: 20px;
+    }
+    h4 {
+      font-size: 20px;
+    }
+  }
+
+  #support {
+    img {
+      padding: 10px;
+    }
+    #support-title {
+      padding-bottom: 20px;
+    }
+    #support-bottom {
+      margin-bottom: 30px;
+    }
+  }
+
+  #nomobile {
+      display: none;
+    }
 }

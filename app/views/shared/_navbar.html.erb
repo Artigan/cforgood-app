@@ -53,14 +53,15 @@
             <%= link_to t(".causes", default: "Causes"), new_user_registration_path %>
           </li>
           <li>
-            <%= link_to t(".se_connecter", default: "Se connecter"), new_user_session_path %>
+            <%= link_to t(".connexion", default: "Connexion"), new_user_session_path %>
           </li>
-          <li>
-            <%= link_to t(".top_call_to_action", default: "S'inscrire"), new_user_registration_path, class: "btn btn-bluenight" %>
-          </li>
-        <% end %>
 
-      </ul>
+          <li>
+            <%= link_to t(".inscription", default: "Inscription"), new_user_registration_path %>
+          </li>
+
+        <% end %>
+        </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>

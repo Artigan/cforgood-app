@@ -15,6 +15,10 @@
   background-color: #97E8EB;
   color: white;
 }
+.bg-turquoise {
+  background-color: rgba(54,211,218,0.7);
+  color: white;
+}
 .bg-yellow {
   background: $yellow;
   color: white;
@@ -31,27 +35,22 @@
   background: $purple;
   color: white;
 }
-
 .bg-white {
   background: white;
   color: black;
 }
-
 .bg-grey {
-  background: #F3F3F3;
+  background: #F9F9F9;
   color: black;
 }
-
 .blue {
   color: #00CAFF;
 }
-
 .turquoise {
   color: #36D3DA;
 }
-
 .green {
-  color: #93F29C;
+  color: #7DF088;
 }
 
 .r5 {
@@ -62,4 +61,48 @@
   img {
     height: 140px;
   }
+}
+
+.img120 {
+  img {
+    height: 120px;
+  }
+}
+
+.absolute {
+  position: absolute;
+}
+
+.relative {
+  position: relative;
+  z-index: 2;
+}
+
+.border-style {
+    border-top: 2px rgba(255, 255, 255, 1) solid;
+    margin-top: 28px;
+}
+
+.border-top {
+  border-top: 2px rgba(216,227,225,0.23) solid;
+}
+
+.border-bottom {
+  border-bottom: 1px rgba(216,227,225,0.23) solid;
+}
+
+.cforgood-background {
+  background-image: image-url("cforgoodcover.png");
+  background-size: cover;
+  height: 150px;
+  border-bottom: 1px rgba(216,227,225,0.23) solid;
+}
+
+.page-title {
+  text-align: center;
+  margin-top: 80px;
+}
+
+.f-left {
+  float: left;
 }
