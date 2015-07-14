@@ -1,10 +1,14 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
+
 //= require navbar
 //= require scrollReveal
+
 //= require vendor/slick.js
 //= require app/slick.js
+
+
 
 //= require_tree ./app
 

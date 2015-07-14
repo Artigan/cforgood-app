@@ -10,6 +10,9 @@ gem "country_select"
 gem "high_voltage"
 gem "devise"
 # gem "pundit"
+gem "toastr-rails"
+
+
 gem "paperclip"
 gem "aws-sdk", "< 2.0"
 
