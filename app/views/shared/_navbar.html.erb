@@ -34,9 +34,9 @@
                 <% end %>
               </li>
               <li>
-                <%= link_to "#" do %>
-                  <i class="fa fa-home"></i>  <%= t ".profile", default: "Flat" %>
-                <% end %>
+<!--                 <%= link_to "#" do %>
+ --><!--                   <i class="fa fa-home"></i>  <%= t ".profile", default: "Flat" %>
+ -->                <% end %>
               </li>
               <li>
                 <%= link_to destroy_user_session_path, method: :delete do %>
@@ -55,10 +55,11 @@
           <li>
             <%= link_to t(".se_connecter", default: "Se connecter"), new_user_session_path %>
           </li>
+          <li>
+            <%= link_to t(".top_call_to_action", default: "S'inscrire"), new_user_registration_path, class: "btn btn-bluenight" %>
+          </li>
         <% end %>
-        <li>
-          <%= link_to t(".top_call_to_action", default: "S'inscrire"), new_user_registration_path, class: "btn btn-bluenight" %>
-        </li>
+
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

@@ -5,12 +5,22 @@ class ApplicationController < ActionController::Base
 
   before_action :authenticate_user!, unless: :pages_controller?
 
+  before_filter :configure_permitted_parameters, if: :devise_controller?
+  # before_action :configure_permitted_parameters, if: :devise_controller
+
   # after_action :verify_authorized, except:  :index, unless: :devise_or_pages_controller?
   # after_action :verify_policy_scoped, only: :index, unless: :devise_or_pages_controller?
 
   # rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   private
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:name, :email, :password, :remember_me) }
+    devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:name, :email, :password, :remember_me) }
+    devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:name, :email, :password, :current_password) }
+
+  end
 
   def devise_or_pages_controller?
     devise_controller? || pages_controller?

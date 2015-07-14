@@ -22,6 +22,8 @@ default: &default
   pool: 5
 
 development:
+  adapter: postgresql
+  encoding: unicode
   <<: *default
   database: cforgoodwebsite_development
 
