@@ -151,7 +151,7 @@
           </p>
         </div>
         <div id="btn-presentation">
-          <%= link_to "En Savoir Plus", new_user_session_path,class: "btn btn-white" %>
+          <%= link_to "En Savoir Plus", pages_vision_path,class: "btn btn-white" %>
         </div>
       </div>
     </div>
@@ -285,14 +285,14 @@
       <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-3 text-center" id="partner-business">
         <h4>Vous êtes une Entreprise ?</h4>
         <p>Découvrez comment <strong>CforGood</strong> peut vous offrir une forte visibilité tout en participant à cet éco-système positif.</p>
-        <%= link_to t(".top_call_to_action", default: "GAGNEZ EN VISIBILITE"), new_user_registration_path, class: "btn btn-blue" %>
+        <%= link_to t(".top_call_to_action", default: "GAGNEZ EN VISIBILITE"), pages_business_path, class: "btn btn-blue" %>
       </div>
     </div>
     <div class="col-xs-12 col-sm-6">
       <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-1 text-center mb-20">
         <h4>Vous êtes une Association ?</h4>
         <p>Découvrez comment <strong>CforGood</strong> développe l'engagement des donateurs et facilite la communication et la récolte de fonds.</p>
-        <%= link_to t(".top_call_to_action", default: "FAITES ENTENDRE VOTRE CAUSE"), new_user_registration_path, class: "btn btn-green" %>
+        <%= link_to t(".top_call_to_action", default: "FAITES ENTENDRE VOTRE CAUSE"), pages_charity_path, class: "btn btn-green" %>
       </div>
     </div>
   </div>
