@@ -220,7 +220,93 @@
 
 @media only screen and (max-width: 480px) and (orientation : portrait) {
 
-    #betafamily {
-            height: 900px;
+  #banner {
+    background-position: center center;
+    #btn-home-banner {
+      margin-left: 30px;
+      padding-left: 20px;
+    }
+    h1 {
+      font-size: 32px;
+    }
+    p {
+      font-size: 18px;
+    }
+  }
+
+  #benefits {
+    text-align: center;
+    padding-top: 30px;
+    h2 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+    #home-benefit {
+      margin-bottom: 20px;
+    }
+  }
+
+  #presentation {
+      height: 400px;
+      text-align: center;
+      h1 {
+        font-size: 20px;
+      }
+      #iphone-card {
+        width: 80%;
+        margin-bottom: 30px;
+      }
+      #btn-presentation {
+        margin-bottom: 20px;
         }
+      }
+
+  #perks {
+      h2 {
+        font-size: 22px;
+      }
+    }
+
+  #betafamily {
+        height: 650px;
+        text-align: center;
+        #nopadding-betafamily {
+          padding-left: 0px;
+        }
+        img {
+          width: 90%;
+          margin-left: 15px;
+          margin-top: 40px;
+        }
+        h2 {
+          font-size: 20px;
+        }
+      }
+
+  #partner {
+    padding-top: 20px;
+    height: 550px;
+    #partner-business {
+      margin-bottom: 20px;
+    }
+    h4 {
+      font-size: 20px;
+    }
+  }
+
+  #support {
+    img {
+      padding: 10px;
+    }
+    #support-title {
+      padding-bottom: 20px;
+    }
+    #support-bottom {
+      margin-bottom: 30px;
+    }
+  }
+
+  #nomobile {
+      display: none;
+    }
 }
