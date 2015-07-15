@@ -26,6 +26,7 @@ gem "rails-i18n"
 gem "devise-i18n"
 gem "devise-i18n-views"
 
+
 group :development, :test do
   gem "spring"
   gem "annotate"
