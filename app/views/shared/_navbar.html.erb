@@ -24,8 +24,8 @@
           </li>
           <li class="dropdown">
             <%= link_to "#", {class: "dropdown-toggle", "data-toggle" => "dropdown", "role" => "button", "aria-expanded" => "false"} do %>
-              <%= image_tag "http://placehold.it/30x30", class: "img-avatar" %>
-              Profile <span class="caret"></span>
+              <%= image_tag avatar_url(current_user), class: "img-circle" %>&nbsp;
+              <%= current_user.name %> <span class="caret"></span>
             <% end %>
             <ul class="dropdown-menu" role="menu">
               <li>
@@ -34,9 +34,9 @@
                 <% end %>
               </li>
               <li>
-                <%= link_to "#" do %>
-                  <i class="fa fa-home"></i>  <%= t ".profile", default: "Flat" %>
-                <% end %>
+<!--                 <%= link_to "#" do %>
+ --><!--                   <i class="fa fa-home"></i>  <%= t ".profile", default: "Flat" %>
+ -->                <% end %>
               </li>
               <li>
                 <%= link_to destroy_user_session_path, method: :delete do %>
@@ -55,11 +55,13 @@
           <li>
             <%= link_to t(".connexion", default: "Connexion"), new_user_session_path %>
           </li>
+
+          <li>
+            <%= link_to t(".inscription", default: "Inscription"), new_user_registration_path %>
+          </li>
+
         <% end %>
-        <li>
-          <%= link_to t(".inscription", default: "Inscription"), new_user_registration_path %>
-        </li>
-      </ul>
+        </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>

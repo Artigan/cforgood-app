@@ -3,10 +3,10 @@
     <div class="col-sm-6 col-sm-offset-3">
       <h2><%= t('.sign_up', default: "Sign up") %></h2>
       <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-        <%= f.error_notification %>
-
-        <%= f.input :email, required: true, autofocus: true %>
-        <%= f.input :password, required: true %>
+      <%= f.error_notification %>
+        <%= f.input :name, autofocus: true, :class => "validate", :placeholder => "Nom" %>
+        <%= f.input :email, required: true, :class => "validate", :placeholder => "Email" %>
+        <%= f.input :password, required: true, :class => "validate", :placeholder => "Mot de passe" %>
         <%= f.button :submit, t('.sign_up', default: "Sign up"), class: "btn btn-primary" %>
       <% end %>
 
