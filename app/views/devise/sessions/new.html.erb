@@ -1,4 +1,4 @@
-<div class="container">
+<!--<div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
       <h2><%= t(".sign_in", default: "Sign in") %></h2>
@@ -12,6 +12,31 @@
       <% end %>
 
       <%= render "devise/shared/links" %>
+    </div>
+  </div>
+</div> -->
+<div class="container-fluid" id="bg-connexion">
+  <div id="blackbox-banner">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-4 col-sm-offset-4 mt-100 bg-light-white">
+          <div id="form-card">
+            <%= render "devise/shared/facebook" %>
+            <p> ou  </p>
+            <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            <%= f.error_notification %>
+              <%= f.input :email, placeholder: 'adresse@email.com', required: true, :class => "validate", label: false %>
+              <%= f.input :password, placeholder: 'mot de passe', required: true, :class => "validate", label: false %>
+              <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+              <%- if devise_mapping.recoverable? && controller_name != 'passwords' %>
+              <%= link_to t(".forgot_your_password", :default => "Mot de passe oublié ?"), new_password_path(resource_name) %><br />
+              <% end -%>
+              <%= f.button :submit, "Connexion", class: "btn btn-success", style: "width:100%;" %>
+              <p class="inline mt-20"> Vous n'avez pas de compte ? <%= link_to t(".inscription", :default => "Inscription"), new_registration_path(resource_name) %></p>
+            <% end %>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
