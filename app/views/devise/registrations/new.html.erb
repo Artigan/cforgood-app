@@ -2,7 +2,7 @@
   <div id="blackbox-banner">
     <div class="container">
       <div class="row">
-        <div class="col-sm-4 col-sm-offset-4 mt-70 bg-light-white">
+        <div class="col-sm-4 col-sm-offset-4 mt-80 bg-light-white">
           <h2><%= t('.devenir_membre', default: "Devenir Membre") %></h2>
           <div id="form-card">
             <%= render "devise/shared/facebook" %>
@@ -15,9 +15,7 @@
               <%= f.input :password, placeholder: 'mot de passe', required: true, label: false %>
               <%= f.button :submit, "S'inscrire", class: "btn btn-success", style: "width:100%;" %>
               <p class="inline mt-20"> Déjà Membre ? <%= link_to t(".se_connecter", :default => "Se Connecter"), new_session_path(resource_name) %></p>
-
             <% end %>
-
           </div>
         </div>
       </div>

@@ -11,11 +11,43 @@
   height: 100%;
   border-radius: 10px;
   padding: 20px;
-  margin-top: 100px;
+  margin-top: 10px;
   //box-shadow: 1px 1px 1px #ECEAEA;
 
   p   {
     text-align: center ;
   }
 
+ }
+
+ .btn-facebook   {
+
+   border-radius: 5px;
+   text-shadow: 1px 1px 3px #666666;
+   box-shadow: 0px 1px 3px #666666;
+   font-family: Arial;
+   color: #ffffff;
+   font-size: 21px;
+   background: #47639E;
+   padding: 10px 20px 10px 20px;
+   text-decoration: none;
+   margin-bottom: 10px;
+   text-align:center;
+
+   a   {
+     color:white;
+     text-decoration: none;
+   }
+
+   a:hover   {
+     color:white;
+     text-decoration: none;
+   }
+
+ }
+
+ .btn-facebook:hover {
+   background: #466AB0;
+   text-decoration: none;
+   color:white;
  }

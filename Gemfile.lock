@@ -247,7 +247,6 @@ DEPENDENCIES
   high_voltage
   jquery-rails
   letter_opener
-  omniauth
   omniauth-facebook
   paperclip
   pg
