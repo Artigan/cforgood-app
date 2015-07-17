@@ -1,0 +1,21 @@
+#bg-connexion {
+  background-image: image-url("background4.jpg");
+  background-size: cover;
+  position: relative;
+  height: 620px;
+  border-bottom: 1px rgba(124, 118, 118, 0.23) solid;
+  text-align: center;
+}
+
+#form-card   {
+  height: 100%;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 100px;
+  //box-shadow: 1px 1px 1px #ECEAEA;
+
+  p   {
+    text-align: center ;
+  }
+
+ }
