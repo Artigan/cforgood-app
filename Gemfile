@@ -10,7 +10,6 @@ gem "country_select"
 gem "high_voltage"
 gem "devise"
 # gem "pundit"
-gem 'omniauth'
 gem 'omniauth-facebook'
 
 

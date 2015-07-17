@@ -1,3 +1,17 @@
 /* -------------------------------------
  * You killer form SASS module
  * ------------------------------------- */
+ #mc_embed_signup {
+  background-color: transparent;
+  color: rgb(51,51,51);
+  input {
+    height: 36px;
+  }
+  #mce-EMAIL {
+    width: 300px;
+  }
+  #mc-embedded-subscribe {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+ }
