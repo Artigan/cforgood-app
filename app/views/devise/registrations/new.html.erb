@@ -1,16 +1,26 @@
-<div class="container">
-  <div class="row">
-    <div class="col-sm-6 col-sm-offset-3">
-      <h2><%= t('.sign_up', default: "Sign up") %></h2>
-      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-      <%= f.error_notification %>
-        <%= f.input :name, autofocus: true, :class => "validate", :placeholder => "Nom" %>
-        <%= f.input :email, required: true, :class => "validate", :placeholder => "Email" %>
-        <%= f.input :password, required: true, :class => "validate", :placeholder => "Mot de passe" %>
-        <%= f.button :submit, t('.sign_up', default: "Sign up"), class: "btn btn-primary" %>
-      <% end %>
+<div class="container-fluid" id="bg-connexion">
+  <div id="blackbox-banner">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-4 col-sm-offset-4 mt-70 bg-light-white">
+          <h2><%= t('.devenir_membre', default: "Devenir Membre") %></h2>
+          <div id="form-card">
+            <%= render "devise/shared/facebook" %>
+            <p> ou  </p>
+            <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+            <%= f.error_notification %>
+              <%= f.input :first_name, placeholder: 'Prénom', required: true, label: false %>
+                <%= f.input :last_name, placeholder: 'Nom', required: true, label: false %>
+              <%= f.input :email, placeholder: 'adresse@email.com', required: true, autofocus: true, label: false %>
+              <%= f.input :password, placeholder: 'mot de passe', required: true, label: false %>
+              <%= f.button :submit, "S'inscrire", class: "btn btn-success", style: "width:100%;" %>
+              <p class="inline mt-20"> Déjà Membre ? <%= link_to t(".se_connecter", :default => "Se Connecter"), new_session_path(resource_name) %></p>
 
-      <%= render "devise/shared/links" %>
+            <% end %>
+
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
