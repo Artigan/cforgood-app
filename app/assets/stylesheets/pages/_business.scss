@@ -12,10 +12,27 @@
   }
 }
 
+.bg-business-benefits {
+  position: relative;
+  background-image: image-url("background10.jpg");
+  background-size: cover;
+  background-position: center center;
+  height: 1300px;
+}
+
+#whitebox-business-benefits {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.9);
+  color: rgb(51,51,51);
+  z-index: 1;
+}
+
 #business-benefit {
-  height: 315px;
-  border-bottom: 2px rgba(216,227,225,0.23) solid;
-  padding-top: 80px;
+  height: 265px;
+  border-bottom: 2px rgba(181, 181, 181, 0.23) solid;
+  padding-top: 45px;
   img {
     height: 165px;
     float: left;
