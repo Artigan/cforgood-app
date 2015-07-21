@@ -14,6 +14,7 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  description :string
+#  perk        :string
 #
 
 class Business < ActiveRecord::Base
