@@ -13,6 +13,11 @@
   #mc_embed_signup {
     margin-top: 50px;
   }
+  #mce-EMAIL {
+    width: 50%;
+    margin-right: 10px;
+    margin-left: 14%;
+  }
 }
 
 .card{
@@ -240,12 +245,14 @@
     }
     #mc_embed_signup_scroll {
       #mc-embedded-subscribe {
-         margin-left: 0px;
-         margin-top: 10px;
+        margin-top: 10px;
+        position: absolute;
+        top: 5px;
+        padding-left: 30px;
+        padding-right: 30px;
        }
       #mce-EMAIL {
-         margin-left: 0px;
-         left: 7%;
+        width: 70%;
        }
      }
     h1 {

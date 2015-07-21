@@ -20,14 +20,14 @@
         </div>
 
         <!-- Begin MailChimp Signup Form -->
-        <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2">
           <div id="mc_embed_signup">
           <form action="//cforgood.us9.list-manage.com/subscribe/post?u=a43e05af521d3632c30f4c0c8&amp;id=b7fdec81e2" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
             <div id="mc_embed_signup_scroll" class="col-xs-12">
-              <input type="email" value="" name="EMAIL" class="br5 col-sm-6 col-sm-offset-1 ml-40" id="mce-EMAIL" placeholder="   Email" required>
+              <input type="email" value="" name="EMAIL" class="br5 col-sm-6" id="mce-EMAIL" placeholder="   Email" required>
               <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
               <div style="position: absolute; left: -5000px;"><input type="text" name="b_a43e05af521d3632c30f4c0c8_b7fdec81e2" tabindex="-1" value=""></div>
-              <div class="col-xs-4 ml-10" id="center-btn-subscribe"><input type="submit" value="S'INSCRIRE" name="subscribe" id="mc-embedded-subscribe" class="btn btn-turquoise"></div>
+              <div class="col-xs-4 col-sm-3" id="center-btn-subscribe"><input type="submit" value="S'INSCRIRE" name="subscribe" id="mc-embedded-subscribe" class="btn btn-turquoise"></div>
               </div>
             </form>
           </div>
@@ -96,7 +96,7 @@
             <div class="col-xs-12 col-sm-9">
               <div>
                 <h3 class="green"><strong>Rayonnez !</strong></h3>
-                <p>En faisant votre part, vous rendez visible ce monde plus sain et solidaire ! Rencontrez une Communauté Vivante lors de nos événements !</p>
+                <p>Vous faites votre part et rendez visible ce monde plus sain et solidaire ! <br>Rencontrez une Communauté Vivante lors de nos événements !</p>
               </div>
               <div>
                 <%= link_to "Rejoignez Le Mouvement !", new_user_registration_path, class: "btn btn-green" %>
@@ -130,7 +130,7 @@
           </p>
         </div>
         <div id="btn-presentation">
-          <%= link_to "En Savoir Plus", pages_how_it_works_path,class: "btn btn-white" %>
+          <%= link_to "En Savoir Plus", how_it_works_path,class: "btn btn-white" %>
         </div>
       </div>
     </div>
@@ -264,14 +264,14 @@
       <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-3 text-center" id="partner-business">
         <h4>Vous êtes une Entreprise ?</h4>
         <p>Découvrez comment <strong>CforGood</strong> peut vous offrir une forte visibilité tout en participant à cet éco-système positif.</p>
-        <%= link_to t(".top_call_to_action", default: "GAGNEZ EN VISIBILITE"), pages_business_path, class: "btn btn-blue" %>
+        <%= link_to t(".top_call_to_action", default: "GAGNEZ EN VISIBILITE"), business_path, class: "btn btn-blue" %>
       </div>
     </div>
     <div class="col-xs-12 col-sm-6">
       <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-1 text-center mb-20">
         <h4>Vous êtes une Association ?</h4>
         <p>Découvrez comment <strong>CforGood</strong> développe l'engagement des donateurs et facilite la communication et la récolte de fonds.</p>
-        <%= link_to t(".top_call_to_action", default: "FAITES ENTENDRE VOTRE CAUSE"), pages_charity_path, class: "btn btn-green" %>
+        <%= link_to t(".top_call_to_action", default: "FAITES ENTENDRE VOTRE CAUSE"), charity_path, class: "btn btn-green" %>
       </div>
     </div>
   </div>
