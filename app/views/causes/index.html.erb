@@ -1,0 +1,11 @@
+<h1>Les Asssociations</h1>
+<% @causes.each do |cause| %>
+  <li>
+    <%= link_to cause do %>
+      <%= cause.name %>
+      <%= cause.type %>
+      <%= cause.city %>
+      <%= cause.description %>
+      <% end %>
+  </li>
+<% end %>
