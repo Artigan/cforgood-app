@@ -54,7 +54,7 @@
     <div class="container">
       <div class="row">
         <h2>AVANTAGES DE LA COMMUNAUTE</h2>
-        <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-0" id="home-benefit" >
+        <!-- <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-0" id="home-benefit" >
           <div class="col-xs-12 col-sm-3">
              <div data-sr="enter bottom and scale up 20% over 1s">
                <%=image_tag("don1.png") %>
@@ -101,6 +101,46 @@
               <div>
                 <%= link_to "Rejoignez Le Mouvement !", new_user_registration_path, class: "btn btn-green" %>
               </div>
+            </div>
+          </div> -->
+          <div class="col-xs-12 text-center" id="home-benefit" >
+            <div class="col-xs-12 col-sm-4 pr-5 pl-5">
+               <div class="col-xs-12" data-sr="enter bottom and scale up 20% over 1s">
+                  <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+                    <%=image_tag("don1.png") %>
+                  </div>
+               </div>
+               <div class="col-xs-12">
+                 <h3 class="blue"><strong>Donnez ...</strong></h3>
+                 <p>Votre abonnement de 5€ pour devenir membre est reversé à la cause de votre choix. <br>Un Moyen Simple d’Avoir un Impact !</p>
+               </div>
+               <div>
+                 <%= link_to "Découvrez Les Causes", new_user_session_path,class: "btn btn-blue" %>
+               </div>
+            </div>
+            <div class="col-xs-12 col-sm-4 pr-5 pl-5">
+               <div class="col-xs-12" data-sr="enter bottom and scale up 20% over 1s">
+                 <%=image_tag("perk-icon2.png") %>
+               </div>
+               <div class="col-xs-12">
+                 <h3 class="turquoise"><strong>Recevez</strong></h3>
+                 <p>Les commerces locaux et responsables de votre ville vous récompensent de votre engagement par des réductions utiles au quotidien.</p>
+               </div>
+               <div>
+                 <%= link_to "Profitez Des Bons Plans", new_user_session_path, class: "btn btn-turquoise" %>
+               </div>
+            </div>
+            <div class="col-xs-12 col-sm-4 pr-5 pl-5">
+               <div class="col-xs-12" data-sr="enter bottom and scale up 20% over 1s">
+                 <%=image_tag("Soleil.png") %>
+               </div>
+               <div class="col-xs-12">
+                 <h3 class="green"><strong>Rayonnez !</strong></h3>
+                 <p>Vous faites votre part et rendez visible ce monde plus sain et solidaire ! Rencontrez une Communauté Vivante lors de nos événements !</p>
+               </div>
+               <div>
+                 <%= link_to "Rejoignez Le Mouvement !", new_user_registration_path, class: "btn btn-green" %>
+               </div>
             </div>
           </div>
         </div>
