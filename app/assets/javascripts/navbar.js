@@ -9,7 +9,7 @@ $(function(){
     else {
       $(".navbar-wagon").css({
         "background": "transparent",
-         "box-shadow": "0 0 0px transparent"
+        "box-shadow": "0 0 0px transparent"
       });
     }
   });
