@@ -2,6 +2,7 @@
   position: relative;
   background-image: image-url("background9.jpg");
   background-size: cover;
+  background-attachment: fixed;
   height: 620px;
   border-bottom: 1px rgba(124, 118, 118, 0.23) solid;
   h1 {
@@ -262,6 +263,7 @@
   background-image: image-url("background21.png");
   background-size: cover;
   background-position: center center;
+  background-attachment: fixed;
   position: relative;
   height: 600px;
   border-top: 1px rgba(161, 236, 233, 0.23) solid;
