@@ -85,8 +85,8 @@ slideUp
   animation-name: slideUp;
   -webkit-animation-name: slideUp;
 
-  animation-duration: 1s;
-  -webkit-animation-duration: 1s;
+  animation-duration: 1.2s;
+  -webkit-animation-duration: 1.2s;
 
   animation-timing-function: ease;
   -webkit-animation-timing-function: ease;
@@ -98,14 +98,8 @@ slideUp
   0% {
     transform: translateY(100%);
   }
-  50%{
-    transform: translateY(-8%);
-  }
-  65%{
-    transform: translateY(4%);
-  }
-  80%{
-    transform: translateY(-4%);
+  70% {
+    transform: translateY(-15%)
   }
   95%{
     transform: translateY(2%);

@@ -1,12 +1,18 @@
-.bg-vision {
+.bg-about {
   position: relative;
   background-image: image-url("background12.jpg");
   background-size: cover;
   background-position: center center;
-  height: 1300px;
+  height: 1600px;
+  h2 {
+    color: rgb(51,51,51)
+  }
+  p {
+    text-align: center
+  }
 }
 
-#whitebox-vision {
+#whitebox-about {
   position: absolute;
   height: 100%;
   width: 100%;

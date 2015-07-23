@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   get 'business', to: 'pages#business'
   get 'charity',  to: 'pages#charity'
-  get 'how_it_works',   to: 'pages#how_it_works'
+  get 'about',   to: 'pages#about'
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
