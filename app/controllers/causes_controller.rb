@@ -10,4 +10,9 @@ class CausesController < ApplicationController
   def new
     @cause  = Cause.new
   end
+
+  def create
+
+
+  end
 end
