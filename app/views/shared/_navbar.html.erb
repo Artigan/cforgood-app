@@ -9,7 +9,7 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="/">
-        <%= image_tag "logo.png" %>
+        <%= image_tag "logo-white.png" %>
       </a>
     </div>
 
@@ -34,9 +34,9 @@
                 <% end %>
               </li>
               <li>
-<!--                 <%= link_to "#" do %>
- --><!--                   <i class="fa fa-home"></i>  <%= t ".profile", default: "Flat" %>
- -->                <% end %>
+<!--            <%= link_to "#" do %>
+                    <i class="fa fa-home"></i>  <%= t ".profile", default: "Flat" %>
+                <% end %> -->
               </li>
               <li>
                 <%= link_to destroy_user_session_path, method: :delete do %>
@@ -47,6 +47,9 @@
           </li>
         <% else %>
           <li>
+            <%= link_to t(".how_it_works", default: "Comment Ca Marche"), about_path %>
+          </li>
+         <!-- <li>
             <%= link_to t(".bons_plans", default: "Bons Plans"), new_user_registration_path %>
           </li>
           <li>
@@ -54,10 +57,16 @@
           </li>
           <li>
             <%= link_to t(".connexion", default: "Connexion"), new_user_session_path %>
-          </li>
+          </li> -->
 
           <li>
             <%= link_to t(".inscription", default: "Inscription"), new_user_registration_path %>
+          </li>
+          <li>
+            <a class="typeform-share btn btn-white mr-10 ml-5" href="https://cforgood1.typeform.com/to/PdisGd" data-mode="1" target="_blank">Devenir Partenaire</a>
+          </li>
+          <li>
+            <a class="typeform-share btn btn-white" href="https://cforgood1.typeform.com/to/iZ5QFx" data-mode="1" target="_blank">Devenez Ambassadeur</a>
           </li>
 
         <% end %>

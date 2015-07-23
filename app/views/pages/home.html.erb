@@ -15,19 +15,19 @@
           </div>
           <div class="text-center">
             <h1>VOUS ETES LE CHANGEMENT</h1>
-            <p>BIENVENUE DANS LA COMMUNAUTE DES CITOYENS ENGAGES</p>
+            <p>BIENVENUE DANS LA COMMUNAUTE DES CITOYENS RESPONSABLES</p>
           </div>
         </div>
 
         <!-- Begin MailChimp Signup Form -->
-        <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2">
           <div id="mc_embed_signup">
           <form action="//cforgood.us9.list-manage.com/subscribe/post?u=a43e05af521d3632c30f4c0c8&amp;id=b7fdec81e2" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
             <div id="mc_embed_signup_scroll" class="col-xs-12">
-              <input type="email" value="" name="EMAIL" class="br5 col-sm-6 col-sm-offset-1 ml-40" id="mce-EMAIL" placeholder="   Email" required>
+              <input type="email" value="" name="EMAIL" class="br5 col-sm-6" id="mce-EMAIL" placeholder="   Email" required>
               <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
               <div style="position: absolute; left: -5000px;"><input type="text" name="b_a43e05af521d3632c30f4c0c8_b7fdec81e2" tabindex="-1" value=""></div>
-              <div class="col-xs-4 ml-10" id="center-btn-subscribe"><input type="submit" value="S'INSCRIRE" name="subscribe" id="mc-embedded-subscribe" class="btn btn-turquoise"></div>
+              <div class="col-xs-4 col-sm-3" id="center-btn-subscribe"><input type="submit" value="S'INSCRIRE" name="subscribe" id="mc-embedded-subscribe" class="btn btn-turquoise"></div>
               </div>
             </form>
           </div>
@@ -54,7 +54,8 @@
     <div class="container">
       <div class="row">
         <h2>AVANTAGES DE LA COMMUNAUTE</h2>
-        <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-0" id="home-benefit" >
+        <div class="col-xs10 col-xs-offset-1 col-sm-2 col-sm-offset-5 border-blue"></div>
+        <!-- <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-0" id="home-benefit" >
           <div class="col-xs-12 col-sm-3">
              <div data-sr="enter bottom and scale up 20% over 1s">
                <%=image_tag("don1.png") %>
@@ -96,11 +97,52 @@
             <div class="col-xs-12 col-sm-9">
               <div>
                 <h3 class="green"><strong>Rayonnez !</strong></h3>
-                <p>En faisant votre part, vous rendez visible ce monde plus sain et solidaire ! Rencontrez une Communauté Vivante lors de nos événements !</p>
+                <p>Vous faites votre part et rendez visible ce monde plus sain et solidaire ! <br>Rencontrez une Communauté Vivante lors de nos événements !</p>
               </div>
               <div>
                 <%= link_to "Rejoignez Le Mouvement !", new_user_registration_path, class: "btn btn-green" %>
               </div>
+            </div>
+          </div> -->
+          <div class="col-xs-12 text-center" id="home-benefit" >
+            <div class="col-xs-12 col-sm-4 pr-5 pl-5">
+               <div class="col-xs-12" data-sr="enter bottom and scale up 20% over 1s">
+                  <div class="col-xs-12">
+                    <%=image_tag("step1.png") %>
+                  </div>
+               </div>
+               <div class="col-xs-12">
+                 <h3 class="blue"><strong>Donnez</strong></h3>
+                 <p>Votre abonnement de 5€ pour devenir membre est reversé à la cause de votre choix. <br>Un Moyen Simple d’Avoir un Impact !</p>
+               </div>
+               <div>
+                <!-- <%= link_to "Découvrez Les Causes", new_user_session_path,class: "btn btn-blue" %> -->
+               </div>
+            </div>
+            <div class="col-xs-12 col-sm-4 pr-5 pl-5">
+               <div class="col-xs-12" data-sr="enter bottom and scale up 20% over 1s">
+                 <%=image_tag("step2.png") %>
+               </div>
+               <div class="col-xs-12">
+                 <h3 class="turquoise"><strong>Recevez</strong></h3>
+                 <p>Grâce à votre carte de membre, les commerces locaux et responsables de votre ville vous offrent<br>Des Réductions Exclusives Utiles Au Quotidien !</p>
+
+               </div>
+               <div>
+                 <!-- <%= link_to "Profitez Des Bons Plans", new_user_session_path, class: "btn btn-turquoise" %> -->
+               </div>
+            </div>
+            <div class="col-xs-12 col-sm-4 pr-5 pl-5">
+               <div class="col-xs-12" data-sr="enter bottom and scale up 20% over 1s">
+                 <%=image_tag("step3.png") %>
+               </div>
+               <div class="col-xs-12">
+                 <h3 class="green"><strong>Rayonnez !</strong></h3>
+                 <p>Vous faites votre part et rendez visible ce monde plus sain et solidaire ! Rencontrez des gens engagés comme vous lors de nos événements !</p>
+               </div>
+               <div>
+                <!-- <%= link_to "Rejoignez Le Mouvement !", new_user_registration_path, class: "btn btn-green" %> -->
+               </div>
             </div>
           </div>
         </div>
@@ -109,9 +151,12 @@
   </div>
 </div>
 
-<div class="container-fluid bg-turquoise">
+<div class="container-fluid bg-grey">
   <div class="row">
     <div id="presentation">
+      <h2 class="text-center black">LA REVOLUTION POSITIVE</h2>
+      <div class="col-xs10 col-xs-offset-1 col-sm-2 col-sm-offset-5 border-blue"></div>
+      <div class="row"></div>
       <div class="col-xs-12 col-sm-4 col-sm-offset-1">
         <div class="absolute" id="iphone-card">
           <%=image_tag("iphone-macartecut.png") %>
@@ -122,30 +167,48 @@
       </div>
       <div class="col-xs-12 col-sm-6">
         <h1>
-          VOUS VOUS RAPPELEZ LA DERNIERE FOIS OU 5€ ONT EU AUTANT D'IMPACT ?
+          Vous vous rappelez la dernière fois où 5€ ont eu autant d'impact ?
         </h1>
         <div id="nomobile">
           <p>
-            CforGood est une communauté de citoyens engagés qui cherchent à mettre en lumière ce qu’il se fait de mieux dans votre ville. Incarnez le changement, et donnez lui raison au quotidien.
+            CforGood réconcilie Business et Bon Sens. En devenant membre, vous permettez au quotidien, le maintient de commerces locaux, le développement d’actions citoyennes et l’avènement d’une société plus responsable qui profite à tous. <br><br>
+            <strong>C'est Simple, Ca fait du bien et C'est Déductible des Impôts.</strong>
           </p>
         </div>
-        <div id="btn-presentation">
-          <%= link_to "En Savoir Plus", pages_how_it_works_path,class: "btn btn-white" %>
+        <div class="mt-30" id="btn-presentation">
+          <%= link_to "En Savoir Plus", about_path,class: "btn btn-turquoise" %>
         </div>
       </div>
     </div>
   </div>
 </div>
-<div class="container-fluid bg-grey">
+<div class="container-fluid bg-white">
   <div id="perks">
-    <h2>NOS DERNIERS BONS PLANS</h2>
+      <h2>NOS DERNIERS BONS PLANS</h2>
+    <div class="col-xs-10 col-xs-offset-1 col-sm-2 col-sm-offset-5 border-blue"></div>
+    <div class="row"></div>
+    <p class="col-xs-12 col-sm-10 col-sm-offset-1 text-center">Les commerçants CforGood sont de plus en plus nombreux à vous récompenser pour votre comportement altruiste !</p>
+    <p class="col-xs-12 col-sm-10 col-sm-offset-1 text-center mt-10">Découvrez les derniers à nous avoir rejoint :</p>
+    <div class="row"></div>
     <div class="container carrousel text-center">
         <div class="col-xs-12 col-sm-3">
           <div class="perk-card-home">
-            <div class="image">
+            <div id="label-terre" >
               <div class="box-shadow pt-15">
                 <p>Restaurant</p>
                 <h3>Label Terre</h3>
+                <i class="fa fa-map-marker"> Bordeaux</i>
+                <h4>UN COOKIE OFFERT</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-3">
+          <div class="perk-card-home">
+            <div id="maritza">
+              <div class="box-shadow pt-15">
+                <p>Bien Être</p>
+                <h3>Maritza</h3>
                 <i class="fa fa-map-marker"> Bordeaux</i>
                 <h4>10% GRATUIT</h4>
               </div>
@@ -154,136 +217,98 @@
         </div>
         <div class="col-xs-12 col-sm-3">
           <div class="perk-card-home">
-            <div class="image">
+            <div id="someone">
               <div class="box-shadow pt-15">
-                <p>Restaurant</p>
-                <h3>Label Terre</h3>
+                <p>Vêtement</p>
+                <h3>Someone</h3>
                 <i class="fa fa-map-marker"> Bordeaux</i>
-                <h4>10% GRATUIT</h4>
+                <h4>15% GRATUIT</h4>
               </div>
             </div>
           </div>
         </div>
         <div class="col-xs-12 col-sm-3">
           <div class="perk-card-home">
-            <div class="image">
+            <div id="weecolab">
               <div class="box-shadow pt-15">
-                <p>Restaurant</p>
-                <h3>Label Terre</h3>
+                <p>Co-Working</p>
+                <h3>Weecolab</h3>
                 <i class="fa fa-map-marker"> Bordeaux</i>
-                <h4>10% GRATUIT</h4>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xs-12 col-sm-3">
-          <div class="perk-card-home">
-            <div class="image">
-              <div class="box-shadow pt-15">
-                <p>Restaurant</p>
-                <h3>Label Terre</h3>
-                <i class="fa fa-map-marker"> Bordeaux</i>
-                <h4>10% GRATUIT</h4>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xs-12 col-sm-3">
-          <div class="perk-card-home">
-            <div class="image">
-              <div class="box-shadow pt-15">
-                <p>Restaurant</p>
-                <h3>Label Terre</h3>
-                <i class="fa fa-map-marker"> Bordeaux</i>
-                <h4>10% GRATUIT</h4>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xs-12 col-sm-3">
-          <div class="perk-card-home">
-            <div class="image">
-              <div class="box-shadow pt-15">
-                <p>Restaurant</p>
-                <h3>Label Terre</h3>
-                <i class="fa fa-map-marker"> Bordeaux</i>
-                <h4>10% GRATUIT</h4>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xs-12 col-sm-3">
-          <div class="perk-card-home">
-            <div class="image">
-              <div class="box-shadow pt-15">
-                <p>Restaurant</p>
-                <h3>Label Terre</h3>
-                <i class="fa fa-map-marker"> Bordeaux</i>
-                <h4>10% GRATUIT</h4>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xs-12 col-sm-3">
-          <div class="perk-card-home">
-            <div class="image">
-              <div class="box-shadow pt-15">
-                <p>Restaurant</p>
-                <h3>Label Terre</h3>
-                <i class="fa fa-map-marker"> Bordeaux</i>
-                <h4>10% GRATUIT</h4>
+                <h4>50% GRATUIT</h4>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+  </div>
 </div>
 <div class="container-fluid">
   <div id="betafamily">
-    <div class="box-shadow">
+    <div id="blackbox-beta">
+      <h2 class="text-center">VOUS ETES DE BORDEAUX ?</h2>
+      <div class="col-xs-10 col-xs-offset-1 col-sm-2 col-sm-offset-5 border-blue"></div>
+      <div class="row"></div>
       <div class="col-xs-12 col-sm-5">
-        <div class="col-xs-12 col-xs-offset-0 col-sm-10 col-sm-offset-1">
-          <%= image_tag("macarte.png") %>
+        <div class="col-xs-12 col-xs-offset-0 col-sm-10 col-sm-offset-1 slideUp" id="home-mycard">
+          <%= image_tag("macarte1.png") %>
         </div>
       </div>
       <div class="col-xs-12 col-sm-7 pl-55" id="nopadding-betafamily">
         <div class="col-xs-10 col-xs-offset-1">
-          <h2>OBTENEZ VOTRE CARTE DE MEMBRE DES MAINTENANT !</h2>
+          <h3>OBTENEZ VOTRE CARTE DE MEMBRE DES MAINTENANT !</h3>
           <p>Rejoignez la communauté grandissante de CforGood et profitez de ses avantages gratuitement avant le lancement officiel.<br><br> <strong>Vous n'aurez jamais d'aussi bonnes raisons de passer à l'action ! </strong></p>
-          <%= link_to "Devenez Membre", new_user_session_path,class: "btn btn-turquoise mt-15" %>
+          <%= link_to "OBTENEZ VOTRE CARTE", new_user_session_path,class: "btn btn-turquoise mt-25" %>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<div class="container-fluid bg-white">
+<div class="container-fluid bg-white text-center">
   <div id="partner">
+    <h2>DEVENEZ PARTENAIRE</h2>
+    <div class="col-xs-10 col-xs-offset-1 col-sm-2 col-sm-offset-5 border-blue"></div>
     <div class="col-xs-12 col-sm-6">
-      <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-3 text-center" id="partner-business">
-        <h4>Vous êtes une Entreprise ?</h4>
-        <p>Découvrez comment <strong>CforGood</strong> peut vous offrir une forte visibilité tout en participant à cet éco-système positif.</p>
-        <%= link_to t(".top_call_to_action", default: "GAGNEZ EN VISIBILITE"), pages_business_path, class: "btn btn-blue" %>
+      <div class="col-xs-10 col-xs-offset-1 col-sm-9 col-sm-offset-3 text-center" id="partner-business">
+        <h4>VOUS ETES UNE ENTREPRISE ?</h4>
+        <p>Découvrez comment <strong>CforGood</strong> offre gratuitement une forte visibilité et un développement de l'activité aux commerces locaux.</p>
+        <%= link_to t(".top_call_to_action", default: "GAGNEZ EN VISIBILITE"), business_path, class: "btn btn-blue" %>
       </div>
     </div>
     <div class="col-xs-12 col-sm-6">
-      <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-1 text-center mb-20">
-        <h4>Vous êtes une Association ?</h4>
-        <p>Découvrez comment <strong>CforGood</strong> développe l'engagement des donateurs et facilite la communication et la récolte de fonds.</p>
-        <%= link_to t(".top_call_to_action", default: "FAITES ENTENDRE VOTRE CAUSE"), pages_charity_path, class: "btn btn-green" %>
+      <div class="col-xs-10 col-xs-offset-1 col-sm-9 col-sm-offset-1 text-center mb-20">
+        <h4>VOUS ETES UNE ASSOCIATION ?</h4>
+        <p>Découvrez comment <strong>CforGood</strong> développe l'engagement des citoyens en facilitant la communication, la mobilisation et la récolte de fonds.</p>
+        <%= link_to t(".top_call_to_action", default: "FAITES ENTENDRE VOTRE CAUSE"), charity_path, class: "btn btn-green" %>
       </div>
     </div>
   </div>
 </div>
-<div class="container-fluid bg-blue">
+<div class="container-fluid text-center">
+  <div id="ambassador">
+    <div id="blackbox-ambassador">
+      <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1">
+        <h2>PARTICIPEZ AU DEVELOPPEMENT DE CFORGOOD</h2>
+      </div>
+      <div class="col-xs-12 col-sm-2 col-sm-offset-5 border-blue"></div>
+      <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1">
+        <h1><strong> LANCEZ-VOUS !</strong></h1>
+      </div>
+      <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
+        <p>Notre projet est collectif et participatif : <strong>c’est aussi le vôtre !</strong><br>Faites partie des volontaires qui nous aident à construire CforGood et bénéficiez gratuitement de votre carte de membre !</p>
+        <a class="typeform-share btn btn-turquoise pl-30 pr-30 pt-10 pb-10 mt-50" href="https://cforgood1.typeform.com/to/iZ5QFx" data-mode="1" target="_blank">Devenez Ambassadeur</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid bg-turquoise">
   <div id="support">
     <div class="col-xs-12 text-center mb-5">
-      <div class="col-xs-12 col-sm-4 border-style"></div>
+      <div class="col-xs-12 col-sm-4 border-white"></div>
       <div class="col-xs-12 col-sm-4" id="support-title">
         <h2>ILS NOUS SUPPORTENT</h2>
       </div>
-      <div class="col-xs-hidden col-sm-4 border-style"></div>
+      <div class="col-xs-hidden col-sm-4 border-white"></div>
       <div class="col-xs-12 col-sm-10 col-sm-offset-1">
           <%=link_to image_tag("banquepostale-white.png"), "https://www.labanquepostale.fr/", target: "_blank" %>
           <%=link_to image_tag("makesense-white.png"), "http://beta.makesense.org/", target: "_blank" %>

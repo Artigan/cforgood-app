@@ -1,0 +1,22 @@
+.bg-about {
+  position: relative;
+  background-image: image-url("background12.jpg");
+  background-size: cover;
+  background-position: center center;
+  height: 1600px;
+  h2 {
+    color: rgb(51,51,51)
+  }
+  p {
+    text-align: center
+  }
+}
+
+#whitebox-about {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  color: rgb(51,51,51);
+  z-index: 1;
+}

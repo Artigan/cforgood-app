@@ -89,9 +89,19 @@
   z-index: 2;
 }
 
-.border-style {
+.border-white {
     border-top: 2px rgba(255, 255, 255, 1) solid;
-    margin-top: 28px;
+    margin-top: 25px;
+}
+
+.border-black {
+    border-top: 2px rgba(51, 51, 51, 1) solid;
+}
+
+.border-blue {
+    border-top: 3px rgba(54, 211, 218, 1) solid;
+    margin-top: 15px;
+    margin-bottom: 50px;
 }
 
 .border-top {
@@ -100,6 +110,10 @@
 
 .border-bottom {
   border-bottom: 1px rgba(216,227,225,0.23) solid;
+}
+
+.border {
+  border: 1px rgb(255,255,255) solid;
 }
 
 .cforgood-background {
