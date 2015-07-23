@@ -4,6 +4,7 @@
 .bg-charity-problem {
   position: relative;
   background-image: image-url("background5.jpg");
+  background-attachment: fixed;
   background-size: cover;
   background-position: center center;
   height: 500px;
@@ -33,6 +34,7 @@
 .bg-charity-benefits {
   position: relative;
   background-image: image-url("background10.jpg");
+  background-attachment: fixed;
   background-size: cover;
   background-position: center center;
   height: 1300px;
