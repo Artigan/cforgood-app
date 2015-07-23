@@ -16,7 +16,7 @@ $navbar-bg: white;
  * ------------------------------------- */
 $navbar-height: 50px;
 $navbar-vertical-padding: 2px;
-$navbar-horizontal-padding: 60px;
+$navbar-horizontal-padding: 20px;
 $navbar-border-bottom-width: 1px;
 $navbar-border-bottom-color: $gray-lighter;
 
@@ -51,7 +51,7 @@ $navbar-profile-border-width: 2px;
   padding-right: $navbar-horizontal-padding;
   min-height: 0;
   position: fixed;
-  z-index: 2;
+  z-index: 4;
   width: 100%;
   transition: background 0.4s ease;
     &.transparent {
