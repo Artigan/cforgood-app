@@ -6,6 +6,12 @@ $(function(){
         "box-shadow": "0 0 2px black"
       });
     }
+    else if ($(this).scrollTop() > 0) {
+      $(".navbar-wagon").css({
+        "background": "rgba(0, 0, 0, 0.4)",
+        "box-shadow": "0 0 0px transparent"
+      });
+    }
     else {
       $(".navbar-wagon").css({
         "background": "transparent",
