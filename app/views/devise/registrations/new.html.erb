@@ -5,7 +5,10 @@
         <div class="col-sm-4 col-sm-offset-4 mt-80 bg-light-white">
           <h2><%= t('.devenir_membre', default: "Devenir Membre") %></h2>
           <div id="form-card">
-            <%= render "devise/shared/facebook" %>
+
+            <%= link_to "Connect with Facebook", user_omniauth_authorize_path(:facebook), class: "btn-facebook" %>
+            <br>
+            <%= link_to "Sign up with Google", user_omniauth_authorize_path(:google_oauth2), class: "btn btn-danger" %>
             <p> ou  </p>
             <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
             <%= f.error_notification %>
