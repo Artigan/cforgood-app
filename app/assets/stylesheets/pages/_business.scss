@@ -48,8 +48,11 @@
     h1 {
       font-size: 30px;
     }
-    #business-banner {
-      height: 180px;
+    #cforgood-background {
+      height: 230px;
+      h3 {
+        font-size: 28px;
+      }
     }
     #business-problem {
       margin-top: 40px;
@@ -63,6 +66,33 @@
       #item-business-problem {
         margin-bottom: 30px;
       }
-    }
   }
+  #business-benefits {
+    height: 2450px;
+    h3 {
+        font-size: 24px;
+      }
+  }
+  #business-benefit {
+    border: transparent;
+  }
+  #item-business-benefit {
+      padding-bottom: 50px;
+      padding-right: 0px;
+      padding-left: 0px;
+      text-align: center;
+  }
+  }
+  #write-us-business {
+    padding-top: 0px;
+  }
+  #nomobile {
+      display: none;
+    }
+}
+
+@media only screen and (min-width: 480px) and (orientation : portrait) {
+  #nodesktop {
+      display: none;
+    }
 }
