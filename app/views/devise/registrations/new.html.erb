@@ -3,12 +3,13 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-4 col-sm-offset-4 mt-80 bg-light-white">
-          <h2><%= t('.devenir_membre', default: "Devenir Membre") %></h2>
           <div id="form-card">
-
-            <%= link_to "Connect with Facebook", user_omniauth_authorize_path(:facebook), class: "btn-facebook" %>
-            <br>
-            <%= link_to "Sign up with Google", user_omniauth_authorize_path(:google_oauth2), class: "btn btn-danger" %>
+            <div>
+              <%= link_to "Se Connecter Avec Facebook", user_omniauth_authorize_path(:facebook), class: "btn-facebook" %>
+            </div>
+            <div class="mt-20 mb-20">
+              <%= link_to "Se Connecter Avec Google", user_omniauth_authorize_path(:google_oauth2), class: "btn-google" %>
+            </div>
             <p> ou  </p>
             <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
             <%= f.error_notification %>

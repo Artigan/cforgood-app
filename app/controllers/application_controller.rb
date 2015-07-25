@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
 
-  before_action :authenticate_user!, unless: :pages_controller?
+  #before_action :authenticate_user!, unless: :pages_controller?
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
   # before_action :configure_permitted_parameters, if: :devise_controller
@@ -20,6 +20,10 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:email, :password, :remember_me) }
     devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:email, :password, :current_password) }
 
+  end
+
+  def businesses_controller?
+    controller_name == "businesses"
   end
 
   def devise_or_pages_controller?

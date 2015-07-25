@@ -12,7 +12,7 @@ class CausesController < ApplicationController
   end
 
   def create
-    @cause = Cause.find(params[:id])
+    @cause  = Cause.find(params[:id])
   end
 
   def business_params

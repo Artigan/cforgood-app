@@ -3,7 +3,7 @@
 
 .bg-charity-problem {
   position: relative;
-  background-image: image-url("background5.jpg");
+  background-image: image-url("background12.jpg");
   background-attachment: fixed;
   background-size: cover;
   background-position: center center;
@@ -14,7 +14,7 @@
   position: absolute;
   height: 100%;
   width: 100%;
-  background: rgba(40, 40, 40, 0.8);
+  background: rgba(134, 157, 155, 0.8);
   color: rgb(255,255,255);
   z-index: 1;
 }
@@ -37,16 +37,9 @@
   background-attachment: fixed;
   background-size: cover;
   background-position: center center;
-  height: 1300px;
+  height: 1500px;
 }
 
-.write-us {
-  background-color: #E8E8E8;
-  height: 200px;
-  h2 {
-    margin-top: 0px;
-  }
-}
 
 #whitebox-charity-benefits {
   position: absolute;
@@ -89,20 +82,29 @@
     h1 {
       font-size: 30px;
     }
+    #cforgood-background {
+      height: 230px;
+    }
     #charity-banner {
       height: 180px;
     }
     #charity-problem {
-      margin-top: 40px;
+      margin-top: 60px;
       margin-bottom: 20px;
       h2 {
         font-size: 22px;
       }
+      #icon-charity-problem {
+        margin-bottom: 10px;
+      }
       #title-charity-problem {
-        margin-bottom: 30px;
+        margin-bottom: 40px;
       }
       #item-charity-problem {
-        margin-bottom: 30px;
+        margin-bottom: 20px;
+        p strong {
+          font-size: 16px;
+        }
       }
     }
   }
