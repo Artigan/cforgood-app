@@ -1,0 +1,17 @@
+<div class="padded">
+  <div class="container">
+    <div class="col-sm-6">
+      <h1>Listes des Bon Plans</h1>
+      <% @businesses.each do |business| %>
+        <li>
+        <%= link_to business do %>
+        <div class="row relative">
+          <%= business.name %>
+          <%= business.category %>
+          <%= business.city %>
+          <%= business.description %>
+        <% end %>
+        </li>
+      </div>
+    <%end%>
+</div>

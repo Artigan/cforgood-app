@@ -10,5 +10,4 @@ Rails.application.routes.draw do
   resources :businesses, only: [:index, :show]
 
   resources :causes, only: [:index, :show]
-
 end

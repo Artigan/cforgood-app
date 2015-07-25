@@ -21,7 +21,14 @@
       <div class="row">
         <div class="col-sm-4 col-sm-offset-4 mt-100 bg-light-white">
           <div id="form-card">
-            <%= render "devise/shared/facebook" %>
+            <!-- <%= render "devise/shared/facebook" %> -->
+            <li>
+
+            </li>
+            <%= link_to "Connect with Facebook", user_omniauth_authorize_path(:facebook), class: "btn-facebook" %>
+            <br>
+
+            <%= link_to "Sign in with Google", user_omniauth_authorize_path(:google_oauth2), class: "btn btn-danger" %>
             <p> ou  </p>
             <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
             <%= f.error_notification %>

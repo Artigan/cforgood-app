@@ -1,9 +1,17 @@
-class BusinessesController < ApplicationController
+class CausesController < ApplicationController
   def index
     @causes = Cause.all
   end
 
   def show
+    @cause  = Cause.find(params[:id])
+  end
+
+  def new
+    @cause  = Cause.new
+  end
+
+  def create
     @cause = Cause.find(params[:id])
   end
 
