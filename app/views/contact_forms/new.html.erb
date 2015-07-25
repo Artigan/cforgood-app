@@ -1,0 +1,22 @@
+<div id="contact" class="contact-form">
+  <div class="container-fluid cforgood-background" id="cforgood-background">
+    <div class="row">
+      <div class="page-title">
+        <h1>Contact</h1>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid bg-white" id="form-contact">
+    <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 pt-50 pb-100">
+        <%= simple_form_for @contact_form do |f| %>
+        <%= f.input :name, :label => false, :placeholder => "Nom", :required => true %>
+        <%= f.input :email, :label => false, :placeholder => "Email", :as => :email, :required => true %>
+        <%= f.input :message, :label => false, :placeholder => "Message", :as => :text, :input_html => { :rows => 7 , :style => 'width: 100%'}, :required => true %>
+
+        <!-- <%= f.input :nickname, :hint => 'Leave this field blank!' %> -->
+        <%= f.button :submit, 'Envoyer', class: "btn-turquoise" %>
+        <% end %>
+    </div>
+  </div>
+
+

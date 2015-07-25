@@ -97,6 +97,8 @@ GEM
     devise-i18n-views (0.3.4)
     erubis (2.7.0)
     execjs (2.5.2)
+    faker (1.4.3)
+      i18n (~> 0.5)
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
     figaro (1.1.1)
@@ -129,6 +131,9 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    mail_form (1.5.1)
+      actionmailer (>= 3.2, < 5)
+      activemodel (>= 3.2, < 5)
     method_source (0.8.2)
     mime-types (2.6.1)
     mimemagic (0.3.0)
@@ -257,12 +262,14 @@ DEPENDENCIES
   devise
   devise-i18n
   devise-i18n-views
+  faker
   figaro
   font-awesome-sass
   gibbon
   high_voltage
   jquery-rails
   letter_opener
+  mail_form
   omniauth
   omniauth-facebook
   omniauth-google-oauth2!
