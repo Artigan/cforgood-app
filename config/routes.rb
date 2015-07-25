@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'contact_form/new'
+
+  get 'contact_form/create'
+
   root to: "pages#home"
 
   get 'business', to: 'pages#business'
@@ -10,4 +14,6 @@ Rails.application.routes.draw do
   resources :businesses, only: [:index, :show]
 
   resources :causes, only: [:index, :show]
+
+  resources :contact_forms
 end
