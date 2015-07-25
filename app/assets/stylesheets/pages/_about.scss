@@ -26,3 +26,26 @@
   color: rgb(51,51,51);
   z-index: 1;
 }
+
+@media only screen and (max-width: 480px) and (orientation : portrait) {
+  #cforgood-background {
+      height: 230px;
+    }
+  #bg-about {
+    height: 2900px;
+    h2 {
+      font-size: 23px;
+    }
+    }
+  #write-us-about {
+      h2 {
+        font-size: 24px;
+      }
+      #btn-write-us {
+        margin-left: 30%;
+      }
+  }
+  #nomobile {
+      display: none;
+    }
+}

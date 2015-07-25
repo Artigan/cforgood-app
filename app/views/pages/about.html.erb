@@ -3,7 +3,7 @@
 <% end %>
 
 <div id="about" class="">
-  <div class="container-fluid cforgood-background">
+  <div class="container-fluid cforgood-background" id="cforgood-background">
     <div class="row">
       <div class="page-title">
         <h1>A PROPOS</h1>
@@ -11,14 +11,14 @@
       </div>
     </div>
   </div>
-  <div class="container-fluid bg-about">
+  <div class="container-fluid bg-about" id="bg-about">
     <div id="whitebox-about">
     <div class="container">
       <div class="content mt-50 text-center">
-        <div class="col-xs-8 col-xs-offset-2 mb-30 text-left">
+        <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 mb-30 text-left">
           <div class="mb-60">
             <h2 class="text-center">NOTRE VISION</h2>
-            <div class="col-xs10 col-xs-offset-1 col-sm-2 col-sm-offset-5 border-blue mb-5"></div>
+            <div class="col-xs-10 col-xs-offset-1 col-sm-2 col-sm-offset-5 border-blue mb-5"></div>
             <div class="row"></div>
             <h2>Tout Le Monde Peut Avoir Un Impact</h2>
             <p>
@@ -30,7 +30,7 @@
           </div>
           <div class="mb-60">
             <h2 class="text-center">NOTRE MISSION</h2>
-            <div class="col-xs10 col-xs-offset-1 col-sm-2 col-sm-offset-5 border-blue mb-5"></div>
+            <div class="col-xs-10 col-xs-offset-1 col-sm-2 col-sm-offset-5 border-blue mb-5"></div>
             <div class="row"></div>
             <h2>Faire De Chaque Citoyen Un Acteur Du Changement</h2>
             <p>
@@ -44,7 +44,7 @@
           </div>
           <div class="mb-60">
             <h2 class="text-center">COMMENT CA MARCHE ?</h2>
-            <div class="col-xs10 col-xs-offset-1 col-sm-2 col-sm-offset-5 border-blue mb-5"></div>
+            <div class="col-xs-10 col-xs-offset-1 col-sm-2 col-sm-offset-5 border-blue mb-5"></div>
             <div class="row"></div>
             <h2>Rien De Plus Simple...</h2>
             <p><strong>DONNEZ...</strong> 5€/mois à l'association de votre choix et ayez un impact.<br>
@@ -57,15 +57,15 @@
             </p>
           </div>
           <div class="mt-70"></div>
+          <div id="write-us-about">
             <h2 class="black text-center mb-30">D'autres Questions ? Ecrivez-Nous !</h2>
-            <div class="col-xs10 col-xs-offset-1 col-sm-2 col-sm-offset-5 border-blue mb-30"></div>
+            <div class="col-xs-10 col-xs-offset-1 col-sm-2 col-sm-offset-5 border-blue mb-30"></div>
             <div class="row"></div>
-            <div class="col-sm-4 col-xs-offset-5" id="btn-write-us">
+            <div class="col-sm-4 col-sm-offset-5 col-xs-6" id="btn-write-us">
               <%= link_to "Nous Ecrire", about_path,class: "btn btn-turquoise pl-20 pr-20" %>
             </div>
-
+          </div>
         </div>
-      </div>
       </div>
     </div>
   </div>

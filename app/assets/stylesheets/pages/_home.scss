@@ -64,8 +64,7 @@
   }
   padding-left: 10px;
   margin-top: 60px;
-  height: 508px;
-  border-bottom: 1px #E1E1E1 solid;
+  height: 507px;
   color: rgb(51,51,51);
 }
 
@@ -328,12 +327,19 @@
   #benefits {
     text-align: center;
     padding-top: 30px;
+    padding-bottom: 20px;
     h2 {
       font-size: 20px;
       margin-bottom: 10px;
     }
     #home-benefit {
       margin-bottom: 20px;
+    }
+    #item-benefit {
+      margin-bottom: 50px;
+    }
+    #border-blue {
+      margin-bottom: 50px;
     }
   }
 
@@ -342,36 +348,40 @@
       text-align: center;
       h1 {
         font-size: 20px;
+        margin-top: 70px;
       }
       #iphone-card {
         width: 80%;
         margin-bottom: 30px;
       }
       #btn-presentation {
-        margin-bottom: 20px;
+        padding-bottom: 20px;
         margin-top: 0px;
+        border-bottom: 1px #E1E1E1 solid;
         }
       }
 
   #perks {
       h2 {
         font-size: 22px;
+        margin-top: 60px;
       }
     }
 
   #betafamily {
-        height: 650px;
+        height: 950px;
         text-align: center;
         #nopadding-betafamily {
           padding-left: 0px;
         }
         img {
-          width: 90%;
-          margin-left: 15px;
-          margin-top: 40px;
+            width: 90%;
+            margin-left: 1%;
+            margin-top: 30px;
         }
         h2 {
           font-size: 19px;
+          margin-top: 60px;
         }
         p {
           font-weight: 500;
@@ -379,13 +389,26 @@
       }
 
   #partner {
-    padding-top: 20px;
     height: 550px;
     #partner-business {
-      margin-bottom: 20px;
+      padding-bottom: 30px;
+    }
+    #partner-association {
+      padding-bottom: 30px;
     }
     h4 {
-      font-size: 20px;
+      font-size: 18px;
+    }
+  }
+
+  #ambassador {
+    height: 700px;
+    h1 {
+      font-size: 36px;
+    }
+    #border-blue {
+    margin-bottom: 30px;
+    margin-left: 16.66667%;
     }
   }
 
@@ -399,6 +422,10 @@
     #support-bottom {
       margin-bottom: 30px;
     }
+  }
+
+  #border-blue {
+    margin-bottom: 30px;
   }
 
   #nomobile {
