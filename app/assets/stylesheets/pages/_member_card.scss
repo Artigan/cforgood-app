@@ -1,0 +1,36 @@
+.card {
+  position: relative;
+}
+.card h2{
+  position: absolute;
+  z-index: 1;
+  text-align: center;
+  left: 46%;
+  width: 200px;
+  line-height: 50px;
+  margin-left: -160px;
+  line-height: 50px;
+  top: 40%;
+  margin-top: 51px;
+  -webkit-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+  color: rgb(51,51,51);
+}
+.card .img-circle {
+  width: 80px;
+  position: relative;
+  top: 125px;
+  left: 80px;
+  z-index: 1;
+  -webkit-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+.card .img-card {
+  margin-left: 8%;
+  margin-top: -5%;
+  margin-bottom: 10%;
+  width: 80%;
+}
