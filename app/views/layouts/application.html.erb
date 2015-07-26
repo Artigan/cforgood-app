@@ -3,6 +3,7 @@
 <head>
   <title><%= yield(:title) || "CforGood" %></title>
   <meta name="description" content="<%= (yield(:description) || "").squish %>">
+
   <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
   <link href="//cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
   <style type="text/css">
@@ -14,6 +15,8 @@
   <%= stylesheet_link_tag :application, media: "all" %>
   <%= csrf_meta_tags %>
 </head>
+
+
 <body>
   <%= render "shared/navbar" %>
   <%= render "shared/flashes" %>
