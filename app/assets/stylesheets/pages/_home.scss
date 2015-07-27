@@ -55,7 +55,6 @@
 #presentation {
   h1{
     font-size: 28px;
-    padding-top: 15px;
     padding-bottom: 10px;
     color: rgb(51,51,51);
   }
@@ -66,6 +65,27 @@
   margin-top: 60px;
   height: 507px;
   color: rgb(51,51,51);
+  .embed-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px;
+    height: 0;
+    overflow: hidden;
+    width: 100%;
+    height: auto;
+    margin-bottom: 12px;
+    margin-top: 11%;
+    margin-left: 7%;
+}
+
+  .embed-container iframe,
+  .embed-container object,
+  .embed-container embed {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+  }
 }
 
 #blackbox-banner {
@@ -348,14 +368,18 @@
       text-align: center;
       h1 {
         font-size: 20px;
-        margin-top: 70px;
+        margin-top: 40px;
       }
       #iphone-card {
         width: 80%;
         margin-bottom: 30px;
       }
+      #video-mobile {
+        width: 98%;
+        margin-left: 0%;
+      }
       #btn-presentation {
-        padding-bottom: 20px;
+        padding-bottom: 30px;
         margin-top: 0px;
         border-bottom: 1px #E1E1E1 solid;
         }
