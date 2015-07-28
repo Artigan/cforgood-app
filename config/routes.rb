@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  ActiveAdmin.routes(self)
   get 'contact_form/new'
 
   get 'contact_form/create'
@@ -10,6 +11,7 @@ Rails.application.routes.draw do
   get 'charity',  to: 'pages#charity'
   get 'about',   to: 'pages#about'
 
+
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   resources :businesses, only: [:index, :show]
@@ -17,4 +19,5 @@ Rails.application.routes.draw do
   resources :causes, only: [:index, :show]
 
   resources :contact_forms
+
 end

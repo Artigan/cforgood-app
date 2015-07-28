@@ -20,6 +20,7 @@ gem 'omniauth-google-oauth2', git: 'https://github.com/zquestz/omniauth-google-o
 gem "paperclip"
 gem "aws-sdk", "< 2.0"
 gem "gibbon"
+gem 'activeadmin', github: 'activeadmin'
 
 gem "jquery-rails"
 gem "sass-rails", "~> 5.0"
