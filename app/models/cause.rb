@@ -14,6 +14,7 @@
 #  telephone   :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  impact      :string
 #
 
 class Cause < ActiveRecord::Base

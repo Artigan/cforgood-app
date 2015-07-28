@@ -1,11 +1,19 @@
-<!-- < title #{@product.name} à seulement #{@product.price} €" %>
-< meta_description @product.description %>
-< meta_image @product.url %> -->
+<%= content_for(:title) do %>
+  Bons Plans
+<% end %>
 
-<div class="padded">
+<div id="perks" class="">
+  <div class="container-fluid cforgood-background" id="perks-header">
+    <div class="row">
+      <div class="page-title">
+        <%= image_tag("perk-white.png") %>
+        <h1>Nos Bons Plans</h1>
+      </div>
+    </div>
+  </div>
+
   <div class="container">
     <div class="col-sm-6">
-      <h1>Listes des Bon Plans</h1>
       <% @businesses.each do |business| %>
         <li>
         <%= link_to business do %>

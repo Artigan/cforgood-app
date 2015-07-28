@@ -23,6 +23,7 @@
 #  name                   :string
 #  token                  :string
 #  token_expiry           :datetime
+#  admin                  :boolean          default(FALSE), not null
 #
 # Indexes
 #
@@ -84,6 +85,14 @@ class User < ActiveRecord::Base
           password: Devise.friendly_token[0,20],
         )
       end
+    end
+  end
+
+  def self.process_uri(uri)
+    require 'open-uri'
+    require 'open_uri_redirections'
+    open(uri, :allow_redirections => :safe) do |r|
+      r.base_uri.to_s
     end
   end
 end
