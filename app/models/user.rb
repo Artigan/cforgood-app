@@ -24,6 +24,10 @@
 #  token                  :string
 #  token_expiry           :datetime
 #  admin                  :boolean          default(FALSE), not null
+#  picture_file_name      :string
+#  picture_content_type   :string
+#  picture_file_size      :integer
+#  picture_updated_at     :datetime
 #
 # Indexes
 #
@@ -40,7 +44,13 @@ class User < ActiveRecord::Base
 
   validates :name, presence: true, length: {maximum: 25}
 
+  has_attached_file :picture,
+      styles: { medium: "300x300>", thumb: "100x100>" }
+
   has_one :cause
+
+  validates_attachment_content_type :picture,
+      content_type: /\Aimage\/.*\z/
 
   def self.find_for_google_oauth2(access_token, signed_in_resourse=nil)
     data = access_token.info
