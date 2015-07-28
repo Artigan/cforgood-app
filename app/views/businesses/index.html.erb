@@ -22,6 +22,7 @@
           <%= business.category %>
           <%= business.city %>
           <%= business.description %>
+          <%= image_tag @business.picture.url(:medium) %>
         <% end %>
         </li>
       </div>

@@ -3,6 +3,8 @@ ActiveAdmin.register User do
     selectable_column
     column :id
     column :email
+    column :first_name
+    column :last_name
     column :name
     column :created_at
     column :admin
@@ -12,6 +14,7 @@ ActiveAdmin.register User do
     f.inputs "Identity" do
       f.input :first_name
       f.input :last_name
+      f.input :name
       f.input :email
     end
     f.inputs "Admin" do
@@ -19,7 +22,7 @@ ActiveAdmin.register User do
     end
     f.actions
   end
-  permit_params :first_name, :last_name, :email, :picture, :admin
+  permit_params :first_name, :last_name, :name, :email, :picture, :admin
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
