@@ -4,7 +4,6 @@
 #
 #  id                   :integer          not null, primary key
 #  name                 :string
-#  type                 :string
 #  description          :string
 #  street               :string
 #  zipcode              :string
@@ -19,6 +18,7 @@
 #  picture_content_type :string
 #  picture_file_size    :integer
 #  picture_updated_at   :datetime
+#  category             :string
 #
 
 class Cause < ActiveRecord::Base

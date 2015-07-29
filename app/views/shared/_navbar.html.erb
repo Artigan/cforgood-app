@@ -23,7 +23,9 @@
             <% end %>
           </li>
           <li>
-            <%= link_to t(".member_card", default: "Ma Carte", class: "visible-xs"), member_card_path %>
+            <%= link_to member_card_path do %>
+              <i class="fa fa-ticket"></i> <%=t(".member_card", default: "Ma Carte", class: "visible-xs") %>
+            <% end %>
           </li>
           <li class="dropdown">
             <%= link_to "#", {class: "dropdown-toggle", "data-toggle" => "dropdown", "role" => "button", "aria-expanded" => "false"} do %>

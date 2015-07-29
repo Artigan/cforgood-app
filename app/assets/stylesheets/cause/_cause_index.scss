@@ -1,4 +1,4 @@
-#business-header {
+#cause-header {
   h1 {
     margin-top: 10px !important;
   }
@@ -7,8 +7,8 @@
   }
 }
 
-#bg-business-index {
-  background-image: url("background14.png");
+#bg-cause-index {
+  background-image: url("background5.jpg");
   background-size: cover;
   background-attachment: fixed;
   position: relative;
@@ -18,7 +18,7 @@
   }
 }
 
-.whitebox-business {
+.whitebox-cause {
   position: absolute;
   height: 100%;
   width: 100%;
@@ -27,11 +27,11 @@
   z-index: 2;
 }
 
-#business-index {
+#cause-index {
   padding-left: 5%;
   padding-right: 5%;
 
-  .business-card {
+  .cause-card {
     position: relative;
     color: white;
     height: 251px;
@@ -45,11 +45,11 @@
       transform: scale(1.01);
       }
     h1 {
-      font-size: 32px;
+      font-size: 26px;
     }
   }
 
-  .bg-business-card {
+  .bg-cause-card {
     position: absolute;
     top: 0;
     left: 0;
@@ -60,9 +60,12 @@
     background-image: url("label-terre.png");
     background-size: cover;
     background-position: center center;
+    img {
+      vertical-align: text-top;
+    }
   }
 
-  #blackbox-business {
+  #blackbox-cause {
     position: absolute;
     height: 100%;
     width: 100%;
@@ -74,7 +77,7 @@
     padding-top: 10px;
   }
 
-  #info-business {
+  #info-cause {
     position: absolute;
     width: 100%;
     bottom: 0;
@@ -84,24 +87,24 @@
     p {
       margin: 0;
     }
-    #business-name {
-      bottom: 80px;
-    }
-    #business-city {
-      bottom: 80px;
+    #cause-name {
+      bottom: 60px;
     }
   }
 
   .blue-colorbar {
     position: absolute;
-    top: 190px;
+    top: 170px;
     left: 0;
-    height: 30px;
+    height: 55px;
     width: 100%;
     color: white;
     z-index: 2;
     font-size: 20px;
     padding-top: 2px;
     background-color: rgba(89, 211, 211, 0.9) ;
+    p {
+      font-weight: 400;
+    }
   }
 }

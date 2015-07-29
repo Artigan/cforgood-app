@@ -2,7 +2,7 @@ ActiveAdmin.register Cause do
   index do
     selectable_column
     column :name
-    column :type
+    column :category
     column :impact
     column :email
     column :telephone
@@ -12,7 +12,7 @@ ActiveAdmin.register Cause do
   form do |f|
     f.inputs "Identity" do
       f.input :name
-      f.input :type
+      f.input :category
       f.input :email
       f.input :description
       f.input :street
@@ -25,7 +25,7 @@ ActiveAdmin.register Cause do
     f.actions
   end
 
-  permit_params :name, :email, :type, :impact, :description, :street, :zipcode, :city, :telephone, :picture
+  permit_params :name, :email, :category, :impact, :description, :street, :zipcode, :city, :telephone, :picture
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #

@@ -1,6 +1,6 @@
 <div class="card relative">
-  <%= image_tag ("profile.png"), class: "img-circle", style: "margin:auto;"  %>
+  <%= image_tag (current_user.picture? ? current_user.picture : "profile.png"), class: "img-circle", style: "margin:auto;"  %>
 
   <%= image_tag "macarte.png", class: "img-card"%>
-  <h2>Allan Floury</h2>
+  <h2><%= current_user.first_name%> <%= current_user.last_name%> <%= current_user.name %></h2>
 </div>

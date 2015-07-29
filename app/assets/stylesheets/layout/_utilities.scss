@@ -82,6 +82,7 @@
 
 .absolute {
   position: absolute;
+  z-index: 2;
 }
 
 .relative {
@@ -166,6 +167,10 @@
   }
 }
 
+.clear {
+  clear: both;
+}
+
 // Media queries
 .visible-xs {
   .hidden-sm {};
@@ -173,11 +178,6 @@
   .hidden-lg {};
 }
 
-@media only screen and (max-width: 480px) and (orientation : portrait) {
-  .pl-25cent {
-    padding-left: 25% !important;
-  }
-  .ml-25cent {
-    margin-left: 25% !important;
-  }
+.pl-25cent {
+  padding-left: 25% !important;
 }
