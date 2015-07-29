@@ -7,8 +7,8 @@ Rails.application.routes.draw do
   root to: "pages#home"
 
   get 'member_card', to: 'pages#member_card'
-  get 'business', to: 'pages#business'
-  get 'charity',  to: 'pages#charity'
+  get 'info_business', to: 'pages#info_business'
+  get 'info_cause',  to: 'pages#info_cause'
   get 'about',   to: 'pages#about'
 
 

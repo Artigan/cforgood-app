@@ -16,6 +16,6 @@ class CausesController < ApplicationController
   end
 
   def business_params
-    params.require(:cause).permit(:name, :type, :description, :city, :zipcode, :street, :address, :email, :telephone)
+    params.require(:cause).permit(:name, :category, :description, :city, :zipcode, :street, :address, :email, :telephone)
   end
 end
