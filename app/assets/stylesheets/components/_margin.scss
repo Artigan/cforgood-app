@@ -143,9 +143,16 @@
 }
 
 .ml-25cent {
-  margin-left: 25% !important;
+  margin-left: 25%;
 }
 
 .ml-72cent {
     margin-left: 72%;
 }
+
+@media only screen and (min-width: 480px) and (orientation : portrait) {
+  .ml-25cent-mobile {
+    margin-left: 25% !important;
+  }
+}
+
