@@ -18,8 +18,13 @@
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
           <li>
-            <%= link_to "#" do %>
-              <i class="fa fa-envelope-o"></i> <%= t(".messages", default: "Messages") %>
+            <%= link_to causes_path do %>
+              <i class="fa fa-heart"></i> <%= t(".causes", default: "Causes") %>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to businesses_path do %>
+              <i class="fa fa-tag"></i> <%=t(".bons_plans", default: "Bons Plans", class: "visible-xs") %>
             <% end %>
           </li>
           <li>
@@ -55,7 +60,12 @@
           <li>
             <%= link_to t(".how_it_works", default: "Comment Ca Marche"), about_path %>
           </li>
-
+          <li>
+            <%= link_to t(".causes", default: "Causes"), causes_path %>
+          </li>
+          <li>
+            <%= link_to t(".bons_plans", default: "Bons Plans"), businesses_path %>
+          </li>
          <!-- <li>
             <%= link_to t(".bons_plans", default: "Bons Plans"), new_user_registration_path %>
           </li>

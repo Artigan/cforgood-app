@@ -1,8 +1,9 @@
-$(function(){
-  $(window).scroll(function(e){
+$(function() {
+  $(window).scroll(function(e) {
     if ($(this).scrollTop() > 200) {
-      $(".navbar-wagon").css({
-        "background": "rgba(54, 211, 218, 1)",
+      $(".navbar-wagon").css( {
+        "background": "rgb(54, 211, 218)",
+        //"background-image": 'url("../images/navbar1.png")',
         "box-shadow": "0 0 2px black"
       });
     }
