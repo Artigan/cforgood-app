@@ -48,6 +48,25 @@
   background: #F9F9F9;
   color: black;
 }
+.gradient-cforgood {
+  background: -webkit-linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* Chrome 10+, Saf5.1+ */
+  background:    -moz-linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* FF3.6+ */
+  background:     -ms-linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* IE10 */
+  background:      -o-linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* Opera 11.10+ */
+  background:         linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* W3C */
+}
+.gradientbox-cforgood {
+  background: -webkit-linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* Chrome 10+, Saf5.1+ */
+  background:    -moz-linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* FF3.6+ */
+  background:     -ms-linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* IE10 */
+  background:      -o-linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* Opera 11.10+ */
+  background:         linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* W3C */
+  opacity: 0.6;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 0;
+}
 .blue {
   color: #00CAFF;
 }
@@ -55,7 +74,7 @@
   color: #36D3DA;
 }
 .green {
-  color: #7DF088;
+  color: #80F2A4;
 }
 .black {
   color: rgb(51,51,51);
@@ -120,8 +139,11 @@
 }
 
 .cforgood-background {
-  background-image: image-url("cforgoodcover.png");
-  background-size: cover;
+  background: -webkit-linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* Chrome 10+, Saf5.1+ */
+  background:    -moz-linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* FF3.6+ */
+  background:     -ms-linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* IE10 */
+  background:      -o-linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* Opera 11.10+ */
+  background:         linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* W3C */
   height: 210px;
   border-bottom: 2px rgba(53, 60, 59, 0.23) solid;
   font-variant: small-caps;
@@ -146,6 +168,10 @@
 
 .br5 {
   border-radius: 5px;
+}
+
+.w-90cent {
+  width: 90% !important;
 }
 
 .display-inline {
