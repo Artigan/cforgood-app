@@ -23,7 +23,7 @@
 
  .btn-green {
   color: #fff !important;
-  background-color: #7DF088 !important;
+  background-color: #80F2A4 !important;
   border-color: #93F29C !important;
   white-space: nowrap;
   border-bottom: 2px solid #7BDA8D !important;
@@ -43,6 +43,15 @@
   color: #fff !important;
   background-color: transparent !important;
   border-color: white !important;
+  white-space: nowrap;
+  border-bottom: 2px solid rgb(230,230,230) !important;
+  border-radius: 4px;
+}
+
+.btn-grey {
+  color: lightgrey !important;
+  background-color: transparent !important;
+  border-color: lightgrey !important;
   white-space: nowrap;
   border-bottom: 2px solid rgb(230,230,230) !important;
   border-radius: 4px;
