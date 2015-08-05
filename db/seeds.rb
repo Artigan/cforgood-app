@@ -5,15 +5,26 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-require 'faker'
 
-10.times do
-  business = Business.new({
-    name: Faker::Company.name,
-    address: "#{Faker::Address.street_address}, #{Faker::Address.city}",
-  })
-  business.save
-end
+Business.create!({
+  name: "Label Terre",
+  category: "Bars & Restaurants"
+  description: "Resto Bio",
+  city: "Bordeaux",
+  perk: "Un cookie offert"
+})
 
-label_terre = Business.new(name: "Label Terre")
-label_terre.save
+Business.create!({
+  name: "Someone",
+  category: "Shopping"
+  description: "Resto Bio",
+  city: "Bordeaux",
+  perk: "15% gratuit"
+})
+Business.create!({
+  name: "Weecolab",
+  category: "Tiers Lieux"
+  description: "Resto Bio",
+  city: "Bordeaux",
+  perk: "50% gratuit"
+})
