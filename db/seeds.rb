@@ -29,6 +29,5 @@ Business.create!({
 User.create!({
   email: "allan.floury@gmail.com",
   admin: true,
-  name: "Allan Floury",
-  encrypted_password: "joreal85"
+  name: "Allan Floury"
   })
