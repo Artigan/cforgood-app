@@ -41,8 +41,8 @@
       <%= link_to business_path(business) do %>
         <div class="col-sm-4 mt-15">
           <div class="row relative business-card" >
-            <div class="bg-business-card">
-              <div class="row" id="blackbox-business">
+            <div class="bg-business-card" style="background-image: url(<%= image_url business.picture %>)">
+              <div id="blackbox-business">
                 <p><%= business.category %></p>
               </div>
               <div class="row" id="info-business">

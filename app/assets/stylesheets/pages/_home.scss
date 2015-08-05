@@ -1,6 +1,6 @@
 #banner {
   position: relative;
-  background-image: image-url("background9.jpg");
+  background-image: image-url("background9999.png");
   background-size: cover;
   background-attachment: fixed;
   height: 620px;
@@ -207,39 +207,13 @@
   width: 100%;
 }
 
-#label-terre {
+#bg-card-home {
   position: absolute;
-  background-image: image-url("label-terre.png");
   background-size: cover;
   width: 100%;
   height: 100%;
   border-radius: 5px;
 }
-#maritza {
-  position: absolute;
-  background-image: image-url("maritza.png");
-  background-size: cover;
-  width: 100%;
-  height: 100%;
-  border-radius: 5px;
-}
-#someone {
-  position: absolute;
-  background-image: image-url("someone.png");
-  background-size: cover;
-  width: 100%;
-  height: 100%;
-  border-radius: 5px;
-}
-#weecolab {
-  position: absolute;
-  background-image: image-url("weecolab.png");
-  background-size: cover;
-  width: 100%;
-  height: 100%;
-  border-radius: 5px;
-}
-
 
 #mediaplay {
   top: 70px;
@@ -253,9 +227,8 @@
 }
 
 #betafamily {
-  background-image: image-url("background3.png");
+  background-image: image-url("background333.png");
   background-size: cover;
-  background-position: center center;
   height: 600px;
   position: relative;
   h2 {
@@ -292,7 +265,7 @@
 }
 
 #ambassador {
-  background-image: image-url("background21.png");
+  background-image: image-url("background211.png");
   background-size: cover;
   background-position: center center;
   background-attachment: fixed;
