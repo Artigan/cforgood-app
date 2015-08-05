@@ -8,23 +8,27 @@
 
 Business.create!({
   name: "Label Terre",
-  category: "Bars & Restaurants"
-  description: "Resto Bio",
+  category: "Bars & Restaurants",
   city: "Bordeaux",
   perk: "Un cookie offert"
 })
 
 Business.create!({
   name: "Someone",
-  category: "Shopping"
-  description: "Resto Bio",
+  category: "Shopping",
   city: "Bordeaux",
   perk: "15% gratuit"
 })
 Business.create!({
   name: "Weecolab",
-  category: "Tiers Lieux"
-  description: "Resto Bio",
+  category: "Tiers Lieux",
   city: "Bordeaux",
   perk: "50% gratuit"
 })
+
+User.create!({
+  email: "allan.floury@gmail.com",
+  admin: true,
+  name: "Allan Floury",
+  encrypted_password: "joreal85"
+  })
