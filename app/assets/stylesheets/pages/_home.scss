@@ -1,6 +1,6 @@
 #banner {
   position: relative;
-  background-image: image-url("background9999.png");
+  background-image: image-url("bg-banner-small.png");
   background-size: cover;
   background-attachment: fixed;
   height: 620px;
@@ -208,7 +208,6 @@
 }
 
 #bg-card-home {
-  background-image: image-url("label-terre.jpg");
   position: absolute;
   background-size: cover;
   width: 100%;
@@ -228,7 +227,7 @@
 }
 
 #betafamily {
-  background-image: image-url("background333.png");
+  background-image: image-url("bg-betafamily.png");
   background-size: cover;
   height: 600px;
   position: relative;
@@ -266,7 +265,7 @@
 }
 
 #ambassador {
-  background-image: image-url("background211.png");
+  background-image: image-url("bg-ambassador.png");
   background-size: cover;
   background-position: center center;
   background-attachment: fixed;

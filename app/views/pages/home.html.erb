@@ -201,7 +201,7 @@
       <% @businesses.each do |business| %>
         <div class="col-xs-12 col-sm-3">
           <div class="perk-card-home">
-            <div id="bg-card-home">
+            <div id="bg-card-home" style="background-image: url(<%= image_url business.picture %>)">
               <div class="box-shadow pt-15">
                 <p><%= business.category%></p>
                 <h3><%= business.name%></h3>
