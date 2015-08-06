@@ -244,7 +244,7 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   require 'omniauth-facebook'
-  config.omniauth :facebook, ENV["FB_ID"], ENV["FB_SECRET"], scope: 'email'
+  config.omniauth :facebook, ENV["FB_ID"], ENV["FB_SECRET"], scope: 'email', info_fields: 'email, name'
 
   require 'omniauth-google-oauth2'
   config.omniauth :google_oauth2, ENV["GOOGLE_ID"], ENV["GOOGLE_SECRET"], {
