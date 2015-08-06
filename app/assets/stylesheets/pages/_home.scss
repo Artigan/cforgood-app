@@ -3,15 +3,14 @@
   background-image: image-url("bg-banner-small.png");
   background-size: cover;
   background-attachment: fixed;
-  height: 620px;
+  height: 580px;
   border-bottom: 1px rgba(124, 118, 118, 0.23) solid;
   h1 {
-    font-size: 41px;
+    font-size: 44px;
   }
   p {
     font-size: 18px;
     color: white;
-    font-weight: 400;
   }
   #mc_embed_signup {
     margin-top: 50px;
@@ -23,13 +22,26 @@
   }
 }
 
+.gradientbox-cforgood {
+  background: -webkit-linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* Chrome 10+, Saf5.1+ */
+  background:    -moz-linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* FF3.6+ */
+  background:     -ms-linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* IE10 */
+  background:      -o-linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* Opera 11.10+ */
+  background:         linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* W3C */
+  opacity: 0.65;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 0;
+}
+
 #blackbox-banner {
   position: absolute;
   height: 100%;
   width: 100%;
-  background: rgba(51, 51, 51, 0.3);
+  background: rgba(51, 51, 51, 0.15);
   color: rgb(240, 240, 240);
-  z-index: 1;
+  z-index: 0;
 }
 
 .border-video {
@@ -39,7 +51,6 @@
 
 .card{
   padding: 10px;
-  font-weight: 300;
   h2{
     font-size: 22px;
   }
@@ -53,17 +64,14 @@
   padding-bottom: 45px;
   border-bottom: 1px #E1E1E1 solid;
   h3 {
-    font-size: 18px;
+    font-size: 24px;
   }
   p {
     font-size: 14px;
   }
   h2 {
     text-align: center;
-    font-size: 26px;
     margin-top: 0px;
-    margin-bottom: 10px;
-    font-weight: 900;
     color: rgb(51,51,51);
   }
 }
@@ -126,15 +134,15 @@
     color: rgb(51,51,51);
     font-size: 26px;
     margin-top: 80px;
-    font-weight: 900;
   }
   h3 {
     margin-bottom: 0px;
+    font-weight: 500;
   }
   h4 {
     font-size: 22px;
     padding-top: 15px;
-    font-weight: 700;
+    font-weight: 600;
   }
   p {
     font-size: 18px;
@@ -165,9 +173,7 @@
   border-top: 1px rgba(200,191,191,0.23) solid;
   h2 {
     color: rgb(51,51,51);
-    font-size: 26px;
     margin-top: 80px;
-    font-weight: 900;
   }
   h4 {
     color: rgb(51,51,51);
@@ -183,10 +189,8 @@
 #support {
   h2 {
     text-align: center;
-    font-size: 26px;
     margin-top: 15px;
     margin-bottom: 10px;
-    font-weight: 900;
   }
   img {
     padding-left: 20px;
@@ -237,11 +241,9 @@
   h3 {
     margin-top: 35px;
     font-size: 34px;
-    font-weight: 500;
   }
   p {
     color: white;
-    font-weight: 300;
     padding-top: 20px;
   }
   img {
@@ -277,11 +279,9 @@
   }
   p {
     color: white;
-    font-weight: 300;
     line-height: 29px;
     padding-top: 60px;
     font-size: 18px;
-    font-weight: 400;
   }
   #blackbox-ambassador {
     position: absolute;
@@ -393,9 +393,6 @@
           font-size: 19px;
           margin-top: 60px;
         }
-        p {
-          font-weight: 500;
-        }
       }
 
   #partner {
@@ -442,3 +439,30 @@
       display: none;
     }
 }
+
+/* default styles here for older browsers.
+      I tend to go for a 600px - 960px width max but using percentages
+   */
+   @media only screen and (min-width:960px){
+       /* styles for browsers larger than 960px; */
+   }
+   @media only screen and (min-width:1440px){
+       /* styles for browsers larger than 1440px; */
+   }
+   @media only screen and (min-width:2000px){
+       /* for sumo sized (mac) screens */
+   }
+   @media only screen and (max-device-width:480px){
+      /* styles for mobile browsers smaller than 480px; (iPhone) */
+   }
+   @media only screen and (device-width:768px){
+      /* default iPad screens */
+   }
+   /* different techniques for iPad screening */
+   @media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait) {
+     /* For portrait layouts only */
+   }
+
+   @media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape) {
+     /* For landscape layouts only */
+   }

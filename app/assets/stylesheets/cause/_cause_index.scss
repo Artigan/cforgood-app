@@ -27,6 +27,14 @@
   z-index: 2;
 }
 
+#btn-cause-category {
+  padding-left: 14%;
+}
+
+#btn-cause-CTA {
+  padding-left: 47%;
+}
+
 #cause-index {
   padding-left: 5%;
   padding-right: 5%;
@@ -46,6 +54,7 @@
       }
     h1 {
       font-size: 26px;
+      font-weight: 500;
     }
   }
 
@@ -105,5 +114,24 @@
     p {
       font-weight: 400;
     }
+  }
+}
+
+@media only screen and (max-width: 768px) and (orientation : portrait) {
+  #btn-cause-category {
+    padding-left: 6% !important;
+  }
+  #btn-cause-CTA {
+    padding-left: 30% !important;
+  }
+  #padding12 {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+}
+
+@media only screen and (min-width: 769px) and (max-width: 992px) and (orientation : portrait) {
+  #btn-cause-CTA {
+    padding-left: 38% !important;
   }
 }
