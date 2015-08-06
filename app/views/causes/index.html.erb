@@ -1,5 +1,5 @@
 <%= content_for(:title) do %>
-  Bons Plans
+  Causes
 <% end %>
 
 <div class="container-fluid cforgood-background" id="cause-header">
@@ -24,7 +24,7 @@
       <%= link_to cause_path(cause) do %>
         <div class="col-sm-4 mt-15">
           <div class="row relative cause-card" >
-            <div class="bg-cause-card">
+            <div class="bg-cause-card" style="background-image: url(<%= image_url cause.picture %>)">
               <div class="row" id="blackbox-cause">
                 <p><%= cause.category %></p>
               </div>
