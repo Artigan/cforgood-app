@@ -26,6 +26,14 @@
   z-index: 2;
 }
 
+#btn-business-category {
+  margin-left: 14%;
+}
+
+#btn-business-CTA {
+  padding-left: 48%;
+}
+
 #business-index {
   padding-left: 5%;
   padding-right: 5%;
@@ -45,6 +53,7 @@
       }
     h1 {
       font-size: 32px;
+      font-weight: 500;
     }
   }
 
@@ -101,5 +110,24 @@
     font-size: 20px;
     padding-top: 2px;
     background-color: rgba(89, 211, 211, 0.9) ;
+  }
+}
+
+@media only screen and (max-width: 768px) and (orientation : portrait) {
+  #btn-business-category {
+    margin-left: 6% !important;
+  }
+  #btn-business-CTA {
+    padding-left: 33% !important;
+  }
+  #padding12 {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+}
+
+@media only screen and (min-width: 769px) and (max-width: 992px) and (orientation : portrait) {
+  #btn-business-CTA {
+    padding-left: 40% !important;
   }
 }

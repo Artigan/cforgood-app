@@ -1,6 +1,8 @@
-<div class="card relative">
-  <%= image_tag (current_user.picture? ? current_user.picture : "profile.png"), class: "img-circle", style: "margin:auto;"  %>
+<div class="container-fluid gradient-cforgood">
+  <div class="card relative">
+    <%= image_tag (current_user.picture? ? current_user.picture : "profile.png"), class: "img-circle", style: "margin:auto;"  %>
 
-  <%= image_tag "macarte.png", class: "img-card"%>
-  <h2><%= current_user.first_name%> <%= current_user.last_name%> <%= current_user.name %></h2>
+    <%= image_tag "macarte.png", class: "img-card"%>
+    <h2><%= current_user.first_name%> <%= current_user.last_name%> <%= current_user.name %></h2>
+  </div>
 </div>
