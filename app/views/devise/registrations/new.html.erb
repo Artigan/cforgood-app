@@ -18,9 +18,6 @@
               <%= f.input :email, placeholder: 'adresse@email.com', required: true, autofocus: true, label: false %>
               <%= f.input :password, placeholder: 'mot de passe', required: true, label: false %>
               <%= f.button :submit, "S'inscrire", class: "btn btn-success", style: "width:100%;" %>
-              <% if resource.errors.present? %>
-                <%= raise %>
-              <% end %>
               <p class="inline mt-20"> Déjà Membre ? <%= link_to t(".se_connecter", :default => "Se Connecter"), new_session_path(resource_name) %></p>
             <% end %>
           </div>
