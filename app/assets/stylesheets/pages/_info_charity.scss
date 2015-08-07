@@ -17,6 +17,9 @@
   background: rgba(134, 157, 155, 0.8);
   color: rgb(255,255,255);
   z-index: 1;
+  h2 {
+    font-weight: 400;
+  }
 }
 
 #charity-problem {
@@ -55,12 +58,14 @@
   border-bottom: 1px rgba(216,227,225,0.23) solid;
   h2 {
     color: white;
+    font-weight: 400;
   }
 }
 
 #charity-benefits {
   h2 {
     color: rgb(51,51,51);
+    font-weight: 400;
   }
 }
 
