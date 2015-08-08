@@ -57,13 +57,13 @@
 }
 
 .blue {
-  color: #00CAFF;
+  color: #00CAFF !important;
 }
 .turquoise {
-  color: #36D3DA;
+  color: #36D3DA !important;
 }
 .green {
-  color: #80F2A4;
+  color: #80F2A4 !important;
 }
 .black {
   color: rgb(51,51,51);
@@ -153,6 +153,10 @@
 
 .f-20 {
   font-size: 20px;
+}
+
+.w-400 {
+  font-weight: 400 !important;
 }
 
 .br5 {

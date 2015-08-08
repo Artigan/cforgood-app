@@ -13,29 +13,23 @@
 
 <div class="container-fluid cforgood-background" id="business-show-header">
     <div class="page-title">
-      <h3 class="pt-20">BIENVENUE CHEZ</h3>
+      <h3 class="pt-20">DECOUVREZ</h3>
       <h1><%= @business.name %></h1>
     </div>
   </div>
 </div>
 
-<div class="container-fluid text-center" id="bg-business-show">
-  <div class="whitebox-business"></div>
-    <h3>blablabla</h3>
-    <h3>blablabla</h3>
-    <h3>blablabla</h3>
-    <h3>blablabla</h3>
-    <h3>blablabla</h3>
-    <h3>blablabla</h3>
-    <h3>blablabla</h3>
-    <h3>blablabla</h3>
-    <h3>blablabla</h3>
-    <h3>blablabla</h3>
-    <h3>blablabla</h3>
-    <h3>blablabla</h3>
-    <h3>blablabla</h3>
-    <h3>blablabla</h3>
-    <h3>blablabla</h3>
-    <h3>blablabla</h3>
+<div class="container-fluid text-center black" id="bg-business-show">
+  <div class="whitebox-show-business"></div>
+    <p><%= @business.category %></p>
+    <h3><%= @business.perk %></h3>
+    <p><%= @business.description %></p>
+    <p><%= @business.street %></p>
+    <p><%= @business.zipcode %></p>
+    <p><%= @business.city %></p>
+    <p><%= @business.url %></p>
+    <p><%= @business.telephone %></p>
+    <p><%= @business.email %></p>
+
 
 </div>

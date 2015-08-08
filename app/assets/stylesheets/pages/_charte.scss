@@ -1,0 +1,34 @@
+.bg-charte {
+  position: relative;
+  background-image: image-url("background-pouce.png");
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+  z-index: 1;
+  h2 {
+    color: rgb(51,51,51);
+    text-align: left;
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+  p {
+    font-size: 16px;
+    text-align: left;
+    font-weight: 300;
+  }
+}
+
+#logo-signature {
+  width: 30% !important;
+  float: right;
+  padding-right: 20px;
+}
+
+#whitebox-charte {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.85);
+  color: rgb(51,51,51);
+  z-index: -1;
+}
