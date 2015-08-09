@@ -12,7 +12,7 @@
   position: absolute;
   height: 100%;
   width: 100%;
-  background: rgba(51, 51, 51, 0.55);
+  background: rgba(51, 51, 51, 0.3);
   color: rgb(240, 240, 240);
   z-index: 0;
 }
@@ -75,7 +75,7 @@
    border-color: transparent;
    color: #ffffff;
    font-size: 21px;
-   background: #1ECB5B;
+   background: #36D4DA;
    padding: 5px 10px 5px 10px;
    text-decoration: none;
    text-align:center;
@@ -90,7 +90,8 @@
  }
 
  .btn-connexion:hover {
-   background: #4CC376;
+   background: #36DBE4;
+   border-color: transparent;
    text-decoration: none;
    color:white;
  }
