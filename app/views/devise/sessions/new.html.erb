@@ -16,8 +16,8 @@
   </div>
 </div> -->
 <div class="container-fluid" id="bg-connexion">
-  <div id="blackbox-banner">
-    <div class="container">
+  <div id="blackbox-connexion"></div>
+    <div class="container mb-20">
       <div class="row">
         <div class="col-sm-4 col-sm-offset-4 mt-100 bg-light-white">
           <div id="form-card">
@@ -33,16 +33,19 @@
             <%= f.error_notification %>
               <%= f.input :email, placeholder: 'adresse@email.com', required: true, :class => "validate", label: false %>
               <%= f.input :password, placeholder: 'mot de passe', required: true, :class => "validate", label: false %>
+              <div class="f-left pl-4cent">
               <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
               <%- if devise_mapping.recoverable? && controller_name != 'passwords' %>
+              </div>
+              <div class="mt-7cent">
               <%= link_to t(".forgot_your_password", :default => "Mot de passe oublié ?"), new_password_path(resource_name) %><br />
               <% end -%>
-              <%= f.button :submit, "Connexion", class: "btn btn-success", style: "width:100%;" %>
-              <p class="inline mt-20"> Vous n'avez pas de compte ? <%= link_to t(".inscription", :default => "Inscription"), new_registration_path(resource_name) %></p>
+              </div>
+              <%= f.button :submit, "Connexion", class: "btn btn-connexion", style: "width:100%;" %>
+              <p class="inline mt-20"> Pas de compte ? <strong class="a-400"><%= link_to t(".inscription", :default => "Inscription"), new_registration_path(resource_name) %></strong></p>
             <% end %>
           </div>
         </div>
       </div>
     </div>
-  </div>
 </div>

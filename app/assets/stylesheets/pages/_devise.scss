@@ -2,11 +2,19 @@
   background-image: image-url("background-pouce.png");
   background-attachment: fixed;
   background-position: center center;
-  background-size: cover;
+  background-size: 70%;
   position: relative;
-  height: 700px;
   border-bottom: 1px rgba(124, 118, 118, 0.23) solid;
   text-align: center;
+}
+
+#blackbox-connexion {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: rgba(51, 51, 51, 0.55);
+  color: rgb(240, 240, 240);
+  z-index: 0;
 }
 
 #form-card   {
@@ -14,11 +22,21 @@
   border-radius: 10px;
   padding: 20px;
   margin-top: 10px;
-  p   {
-    text-align: center ;
-  }
-
  }
+
+.cgu {
+  text-align: left !important;
+  p {
+    font-weight: 100;
+    font-size: 15px;
+  }
+  h2 {
+    font-size: 22px;
+  }
+  h3 {
+    font-size: 20px;
+  }
+}
 
  .btn-facebook   {
 
@@ -48,6 +66,31 @@
 
  .btn-facebook:hover {
    background: #466AB0;
+   text-decoration: none;
+   color:white;
+ }
+
+ .btn-connexion   {
+   border-radius: 5px;
+   border-color: transparent;
+   color: #ffffff;
+   font-size: 21px;
+   background: #1ECB5B;
+   padding: 5px 10px 5px 10px;
+   text-decoration: none;
+   text-align:center;
+   a   {
+     color:white;
+     text-decoration: none;
+   }
+   a:hover   {
+     color:white;
+     text-decoration: none;
+   }
+ }
+
+ .btn-connexion:hover {
+   background: #4CC376;
    text-decoration: none;
    color:white;
  }
