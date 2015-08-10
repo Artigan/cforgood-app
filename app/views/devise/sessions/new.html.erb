@@ -31,8 +31,8 @@
             <p> ou  </p>
             <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
             <%= f.error_notification %>
-              <%= f.input :email, placeholder: 'adresse@email.com', required: true, :class => "validate", label: false %>
-              <%= f.input :password, placeholder: 'mot de passe', required: true, :class => "validate", label: false %>
+              <%= f.input :email, placeholder: 'Adresse email', required: true, :class => "validate", label: false %>
+              <%= f.input :password, placeholder: 'Mot de passe', required: true, :class => "validate", label: false %>
               <div class="f-left pl-4cent">
               <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
               <%- if devise_mapping.recoverable? && controller_name != 'passwords' %>
