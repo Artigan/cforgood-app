@@ -232,10 +232,11 @@
 #betafamily {
   background-image: image-url("bg-betafamily.png");
   background-size: cover;
-  height: 600px;
   position: relative;
   h2 {
     margin-top: 80px;
+    z-index: 1;
+    position: relative;
   }
   h3 {
     margin-top: 28px;
@@ -271,7 +272,6 @@
   background-position: center center;
   background-attachment: fixed;
   position: relative;
-  height: 600px;
   border-top: 1px rgba(161, 236, 233, 0.23) solid;
   h2 {
     margin-top: 80px;
@@ -288,7 +288,6 @@
     width: 100%;
     background: rgba(14, 49, 50, 0.43);
     color: rgb(51, 51, 51);
-    z-index: 1;
   }
 }
 
