@@ -4,7 +4,6 @@
   background-size: cover;
   background-position: center center;
   background-attachment: fixed;
-  height: 1700px;
 
   h2 {
     color: rgb(51,51,51);
@@ -25,7 +24,6 @@
   width: 100%;
   background: rgba(255, 255, 255, 0.85);
   color: rgb(51,51,51);
-  z-index: 1;
 }
 
 @media only screen and (max-width: 480px) and (orientation : portrait) {
@@ -33,7 +31,6 @@
       height: 230px;
     }
   #bg-about {
-    height: 2900px;
     h2 {
       font-size: 23px;
     }
