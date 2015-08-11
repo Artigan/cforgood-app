@@ -42,8 +42,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
 
-  validates :name, presence: true, length: {maximum: 25}
-
   has_one :cause
 
 
