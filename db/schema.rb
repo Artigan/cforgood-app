@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150729104602) do
+ActiveRecord::Schema.define(version: 20150812100243) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,9 +31,14 @@ ActiveRecord::Schema.define(version: 20150729104602) do
   add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
   add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
 
+  create_table "business_categories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "businesses", force: :cascade do |t|
     t.string   "name"
-    t.string   "category"
     t.string   "street"
     t.string   "zipcode"
     t.string   "city"
@@ -48,6 +53,16 @@ ActiveRecord::Schema.define(version: 20150729104602) do
     t.string   "picture_content_type"
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
+    t.integer  "business_category_id"
+    t.string   "detail"
+  end
+
+  add_index "businesses", ["business_category_id"], name: "index_businesses_on_business_category_id", using: :btree
+
+  create_table "cause_categories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "causes", force: :cascade do |t|
@@ -66,8 +81,10 @@ ActiveRecord::Schema.define(version: 20150729104602) do
     t.string   "picture_content_type"
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
-    t.string   "category"
+    t.integer  "cause_category_id"
   end
+
+  add_index "causes", ["cause_category_id"], name: "index_causes_on_cause_category_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false

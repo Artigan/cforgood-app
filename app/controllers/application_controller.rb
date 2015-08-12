@@ -35,7 +35,7 @@ class ApplicationController < ActionController::Base
   end
 
   def user_not_authorized
-    flash[:error] = I18n.t('controllers.application.user_not_authorized', default: "You can't access this page.")
+    flash[:error] = I18n.t('controllers.application.user_not_authorized', default: "Vous ne pouvez pas accéder à cette page.")
     redirect_to(root_path)
   end
 
