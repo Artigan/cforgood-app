@@ -6,7 +6,7 @@
   <div class="mt-65">
     <div class="col-sm-8 col-sm-offset-2" id="bg-show-business-header" style="background-image: url(<%= image_url @business.picture %>)">
       <div class="blackbox-show-business"></div>
-      <div class="col-sm-5">
+      <div class="col-sm-5 ml-5cent">
         <div class="absolute" id="name-show-header">
           <h1><%= @business.name %></h1>
         </div>
@@ -15,8 +15,8 @@
           <i class="fa fa-map-marker"><strong> <%= @business.street %>, <%= @business.city %></strong></i>
         </div>
       </div>
-      <div class="col-sm-7">
-        <div class="absolute border3 ml-10cent" id="business-perk-show-header">
+      <div class="col-sm-6">
+        <div class="absolute border3 ml-16cent" id="business-perk-show-header">
           <h3><%= @business.perk.upcase %></h3>
         </div>
       </div>
@@ -29,7 +29,7 @@
     <div class="col-sm-7 text-left mt-50 mb-30 pr-2cent">
       <div id="header-perk-body">
         <div class="col-sm-4 red text-center">
-          <p><%= @business.business_category.name.upcase %></p>
+          <p class="s-18 w-400"><%= @business.business_category.name.upcase %></p>
         </div>
         <div class="col-sm-4" id="border-show-body"></div>
         <div class="col-sm-3" id="links-business">
@@ -66,7 +66,7 @@
         <p><%= @business.description %></p>
       </div>
       <div id="details-perk-body">
-        <p class="col-sm-4 red text-center">DETAILS DU BON PLAN</p>
+        <p class="col-sm-4 red text-center s-18 w-400">DETAILS DU BON PLAN</p>
         <div class="clear"></div>
         <p class="mt-10"><%= @business.detail %></p>
       </div>

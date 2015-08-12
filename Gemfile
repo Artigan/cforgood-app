@@ -1,4 +1,7 @@
 source "https://rubygems.org"
+source 'https://rails-assets.org' do
+  gem "rails-assets-underscore"
+end
 
 ruby "2.2.2"
 
@@ -27,6 +30,11 @@ gem "sass-rails", "~> 5.0"
 gem "uglifier"
 gem "bootstrap-sass"
 gem "font-awesome-sass"
+gem "geocoder"
+gem "gmaps4rails"
+gem "underscore-rails"
+
+
 
 gem "rails-i18n"
 gem "devise-i18n"

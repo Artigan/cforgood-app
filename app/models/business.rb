@@ -28,10 +28,24 @@
 
 class Business < ActiveRecord::Base
   belongs_to   :business_category
+  geocoded_by :address
+  after_validation :geocode
 
   has_attached_file :picture,
       styles: { medium: "300x300>", thumb: "100x100>" }
 
   validates_attachment_content_type :picture,
       content_type: /\Aimage\/.*\z/
+
+  def address_changed?
+    :street_changed? || :zipcode_changed? || :city_changed?
+  end
+
+  def address
+    "#{street}, #{zipcode} #{city}"
+  end
+
+  def gmaps4rails_infowindow
+    "#{link_to 'Business', business_path}"
+  end
 end
