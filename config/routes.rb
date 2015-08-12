@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   get 'contact_form/new'
-
   get 'contact_form/create'
 
   root to: "pages#home"

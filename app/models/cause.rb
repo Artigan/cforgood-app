@@ -18,10 +18,16 @@
 #  picture_content_type :string
 #  picture_file_size    :integer
 #  picture_updated_at   :datetime
-#  category             :string
+#  cause_category_id    :integer
+#
+# Indexes
+#
+#  index_causes_on_cause_category_id  (cause_category_id)
 #
 
 class Cause < ActiveRecord::Base
+  belongs_to   :cause_category
+
   has_attached_file :picture,
       styles: { medium: "300x300>", thumb: "100x100>" }
 

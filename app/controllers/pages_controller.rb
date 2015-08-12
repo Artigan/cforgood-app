@@ -3,12 +3,18 @@ class PagesController < ApplicationController
     @businesses = Business.all
   end
 
-  def business
+  def info_business
   end
 
-  def charity
+  def info_cause
   end
 
-  def vision
+  def about
+  end
+
+  def charte
+  end
+
+  def member_card
   end
 end
