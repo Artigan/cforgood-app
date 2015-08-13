@@ -55,55 +55,6 @@
       <div class="row">
         <h2>AVANTAGES DE LA COMMUNAUTE</h2>
         <div class="col-xs-8 col-xs-offset-2 col-sm-2 col-sm-offset-5 border-blue mb-50 mt-15" id="border-blue"></div>
-        <!-- <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-0" id="home-benefit" >
-          <div class="col-xs-12 col-sm-3">
-             <div data-sr="enter bottom and scale up 20% over 1s">
-               <%=image_tag("don1.png") %>
-             </div>
-          </div>
-          <div class="col-xs-12 col-sm-8">
-            <div>
-              <h3 class="blue"><strong>Donnez ...</strong></h3>
-              <p>Votre abonnement de 5€ pour devenir membre est reversé à la cause de votre choix. <br>Un Moyen Simple d’Avoir un Impact !</p>
-            </div>
-            <div>
-              <%= link_to "Découvrez Les Causes", new_user_session_path,class: "btn btn-blue" %>
-            </div>
-          </div>
-        </div>
-        <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-0" id="home-benefit" >
-          <div class="col-xs-12 col-sm-3">
-            <div data-sr="enter bottom and scale up 20% over 1s">
-                 <%=image_tag("perk-icon2.png") %>
-            </div>
-          </div>
-            <div class="col-xs-12 col-sm-8">
-            <div>
-              <h3 class="turquoise"><strong>Recevez :</strong></h3>
-              <p>Les commerces locaux et responsables de votre ville vous récompensent de votre engagement par des réductions utiles au quotidien.</p>
-            </div>
-            <div>
-              <%= link_to "Profitez Des Bons Plans", new_user_session_path, class: "btn btn-turquoise" %>
-            </div>
-          </div>
-          </div>
-
-          <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-0" id="home-benefit" >
-            <div class="col-xs-12 col-sm-3">
-              <div data-sr="enter bottom and scale up 20% over 1s">
-                <%=image_tag("Soleil.png") %>
-              </div>
-            </div>
-            <div class="col-xs-12 col-sm-9">
-              <div>
-                <h3 class="green"><strong>Rayonnez !</strong></h3>
-                <p>Vous faites votre part et rendez visible ce monde plus sain et solidaire ! <br>Rencontrez une Communauté Vivante lors de nos événements !</p>
-              </div>
-              <div>
-                <%= link_to "Rejoignez Le Mouvement !", new_user_registration_path, class: "btn btn-green" %>
-              </div>
-            </div>
-          </div> -->
           <div class="col-xs-12 text-center" id="home-benefit" >
             <div class="col-xs-12 col-sm-4 pr-5 pl-5" id="item-benefit">
                <div class="col-xs-12" data-sr="enter bottom and scale up 20% over 1s">
@@ -115,9 +66,9 @@
                  <h3 class="blue">Donnez</h3>
                  <p class="m-15">Votre abonnement de 5€ pour devenir membre est reversé à la cause de votre choix. <br>Un Moyen Simple d’Avoir un Impact !</p>
                </div>
-               <div>
+              <!-- <div>
                 <%= link_to "Découvrez Les Causes", causes_path,class: "btn btn-blue" %>
-               </div>
+               </div> -->
             </div>
             <div class="col-xs-12 col-sm-4 pr-5 pl-5" id="item-benefit">
                <div class="col-xs-12" data-sr="enter bottom and scale up 20% over 1s">
@@ -128,9 +79,9 @@
                  <p class="m-15">Grâce à votre carte de membre, les commerces locaux et responsables de votre ville vous offrent<br>Des Réductions Exclusives Utiles Au Quotidien !</p>
 
                </div>
-               <div>
+              <!-- <div>
                  <%= link_to "Profitez Des Bons Plans", businesses_path, class: "btn btn-turquoise" %>
-               </div>
+               </div> -->
             </div>
             <div class="col-xs-12 col-sm-4 pr-5 pl-5" id="item-benefit">
                <div class="col-xs-12" data-sr="enter bottom and scale up 20% over 1s">
@@ -140,9 +91,9 @@
                  <h3 class="green">Rayonnez !</h3>
                  <p class="m-15">Vous faites votre part et rendez visible ce monde plus sain et solidaire ! Lors de nos événements,<br>Rencontrez Des Gens Engagés Comme Vous !</p>
                </div>
-               <div>
+               <!-- <div>
                 <%= link_to "Rejoignez Le Mouvement !", new_user_registration_path, class: "btn btn-green" %>
-               </div>
+               </div> -->
             </div>
           </div>
         </div>
@@ -257,8 +208,9 @@
   <div id="partner">
     <h2>DEVENEZ PARTENAIRE</h2>
     <div class="col-xs-8 col-xs-offset-2 col-sm-2 col-sm-offset-5 border-blue mb-50 mt-15" id="border-blue"></div>
+    <div class="clear"></div>
     <div class="col-xs-12 col-sm-6">
-      <div class="col-xs-10 col-xs-offset-1 col-sm-9 col-sm-offset-3 text-center" id="partner-business">
+      <div class="col-xs-10 col-xs-offset-1 col-sm-9 col-sm-offset-2 text-center" id="partner-business">
         <h4>VOUS ETES UNE ENTREPRISE ?</h4>
         <p><strong>CforGood</strong> permet de développer gratuitement l'activité et la visibilité des commerces locaux, tout en envoyant un message fort en faveur de l'engagement citoyen !</p>
         <%= link_to t(".top_call_to_action", default: "INSPIREZ VOS CLIENTS"), info_business_path, class: "btn btn-blue" %>

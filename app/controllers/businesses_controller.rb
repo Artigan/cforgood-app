@@ -7,6 +7,7 @@ class BusinessesController < ApplicationController
     @markers = Gmaps4rails.build_markers(@businesses) do |business, marker|
       marker.lat business.latitude
       marker.lng business.longitude
+      marker.infowindow render_to_string(partial: "/businesses/map_box", locals: { business: business })
     end
   end
 
