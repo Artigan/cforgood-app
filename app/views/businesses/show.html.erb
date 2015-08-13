@@ -24,15 +24,14 @@
   </div>
 </div>
 
-<div class="container-fluid text-center black bg-white" id="business-show-body">
+<div class="container-fluid black bg-white" id="business-show-body">
   <div class="col-sm-10 col-sm-offset-1">
     <div class="col-sm-7 text-left mt-50 mb-30 pr-2cent">
       <div id="header-perk-body">
-        <div class="col-sm-4 red text-center">
-          <p class="s-18 w-400"><%= @business.business_category.name.upcase %></p>
+        <div class="col-sm-5 red">
+          <p class="s-18 w-400 pl-15"><%= @business.business_category.name.upcase %></p>
         </div>
-        <div class="col-sm-4" id="border-show-body"></div>
-        <div class="col-sm-3" id="links-business">
+        <div class="col-sm-3 col-sm-offset-3" id="links-business">
           <ul class="list-inline">
               <li id="nopadding-business">
                 <a href="https://www.facebook.com/cforgood?fref=ts" class="link-facebook-business business-icon-container" target="_blank">
@@ -62,11 +61,15 @@
         </div>
       </div>
       <div class="clear"></div>
+      <div class="col-sm-8" id="border-show-body"></div>
+      <div class="clear"></div>
       <div id="description-perk-body">
         <p><%= @business.description %></p>
       </div>
       <div id="details-perk-body">
-        <p class="col-sm-4 red text-center s-18 w-400">DETAILS DU BON PLAN</p>
+        <p class="col-sm-5 red text-left s-18 w-400 mt-30 pl-15">DETAILS DU BON PLAN</p>
+        <div class="clear"></div>
+        <div class="col-sm-8" id="border-show-body"></div>
         <div class="clear"></div>
         <p class="mt-10"><%= @business.detail %></p>
       </div>

@@ -29,7 +29,7 @@
 class Business < ActiveRecord::Base
   belongs_to   :business_category
   geocoded_by :address
-  after_validation :geocode
+  after_validation :geocode, if: :address_changed?
 
   has_attached_file :picture,
       styles: { medium: "300x300>", thumb: "100x100>" }
