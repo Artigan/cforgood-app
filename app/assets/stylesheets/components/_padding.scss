@@ -141,3 +141,9 @@
 .pr-2cent {
   padding-right: 2%;
 }
+
+@media only screen and (max-width: 480px) and (orientation : portrait) {
+  #nopadding-left {
+    padding-left: 0% !important;
+  }
+}

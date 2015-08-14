@@ -28,13 +28,23 @@
 
 @media only screen and (max-width: 480px) and (orientation : portrait) {
   #cforgood-background {
-      height: 230px;
+      height: 160px;
     }
   #bg-about {
     h2 {
       font-size: 23px;
     }
     }
+  #page-title-mobile {
+    margin-top: 50px;
+    h3 {
+      font-size: 24px;
+      margin-top: 0px;
+    }
+    h1 {
+      font-size: 32px;
+    }
+  }
   #write-us-about {
       h2 {
         font-size: 24px;
@@ -42,6 +52,10 @@
       #btn-write-us {
         margin-left: 30%;
       }
+  }
+  #video-about {
+    width: 132%;
+    margin-left: -5%;
   }
   #nomobile {
       display: none;

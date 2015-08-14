@@ -18,6 +18,11 @@
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
           <li>
+            <%= link_to about_path do %>
+            <i class="fa fa-cogs"></i> <%= t(".how_it_works", default: "Comment Ca Marche") %>
+            <% end %>
+          </li>
+          <li>
             <%= link_to causes_path do %>
               <i class="fa fa-heart"></i> <%= t(".causes", default: "Causes") %>
             <% end %>
@@ -76,7 +81,7 @@
             <a class="typeform-share btn btn-white mr-10 ml-5" href="https://cforgood1.typeform.com/to/PdisGd" data-mode="1" target="_blank">Devenir Partenaire</a>
           </li>
           <li>
-            <a class="typeform-share btn btn-white" href="https://cforgood1.typeform.com/to/iZ5QFx" data-mode="1" target="_blank">Devenez Ambassadeur</a>
+            <a class="typeform-share btn btn-white" href="https://cforgood1.typeform.com/to/iZ5QFx" data-mode="1" target="_blank">Devenir Ambassadeur</a>
           </li>
 
         <% end %>
