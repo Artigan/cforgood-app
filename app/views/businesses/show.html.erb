@@ -83,14 +83,30 @@
         <p><%= @business.email %></p>
       </div>
     </div> -->
-    <div class="col-sm-6 col-sm-offset-3 mt-70">
-      <i class="fa fa-map-marker"><strong> <%= @business.telephone %></strong></i>
+      <div id="map" class="index-2 map-business" style="width: 110%; height: 310px;"></div>
+  <div class="text-center">
+    <div class="col-sm-4 mt-30">
+      <i class="fa fa-phone"><strong> <%= @business.telephone %></strong></i>
     </div>
-    <div class="col-sm-6 col-sm-offset-3 mt-30">
-      <i class="fa fa-map-marker"><strong> 9h - 18h</strong></i>
+    <div class="col-sm-3 mt-30">
+      <i class="fa fa-folder-open fa-rotate-90"></i><strong> 9h - 18h</strong>
     </div>
-    <div class="col-sm-6 col-sm-offset-3 mt-30">
-      <i class="fa fa-map-marker"><strong> Du Lundi au Samedi</strong></i>
+    <div class="col-sm-5 mt-30">
+      <i class="fa fa-check"><strong> Du Lundi au Samedi</strong></i>
+    </div>
     </div>
   </div>
 </div>
+<% content_for(:after_js) do %>
+  <%= javascript_tag do %>
+    $(document).on('ready', function() {
+      handler = Gmaps.build('Google');
+      handler.buildMap({ internal: { id: 'map' } }, function(){
+        markers = handler.addMarkers(<%= raw @markers.to_json %>);
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+
+      });
+    })
+  <% end %>
+<% end %>

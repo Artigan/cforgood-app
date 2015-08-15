@@ -12,7 +12,11 @@ class BusinessesController < ApplicationController
   end
 
   def show
-    @business   = Business.find(params[:id])
+    @business = Business.find(params[:id])
+    @markers = Gmaps4rails.build_markers(@business) do |business, marker|
+      marker.lat business.latitude
+      marker.lng business.longitude
+    end
   end
 
   def new
@@ -24,7 +28,7 @@ class BusinessesController < ApplicationController
   end
 
   def business_params
-    params.require(:business).permit(:name, :category, :perk, :description, :city, :zipcode, :street, :address, :email, :telephone)
+    params.require(:business).permit(:name, :category, :perk, :description, :city, :zipcode, :street, :address, :email, :telephone, :latitude, :longitude)
   end
 
 end

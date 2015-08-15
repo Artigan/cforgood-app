@@ -97,6 +97,11 @@
     }
     #business-city {
       bottom: 80px;
+      strong {
+        font-family: "Open Sans", "sans-serif" !important;
+        font-size: 18px;
+        font-weight: 400;
+      }
     }
   }
 
@@ -112,6 +117,10 @@
     padding-top: 2px;
     background-color: rgba(89, 211, 211, 0.9) ;
   }
+}
+
+.map-businesses {
+  border-top: 1px #eee solid;
 }
 
 @media only screen and (max-width: 768px) and (orientation : portrait) {

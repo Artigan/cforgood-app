@@ -21,13 +21,15 @@ ActiveAdmin.register Business do
       f.input :street
       f.input :zipcode
       f.input :city
+      f.input :latitude
+      f.input :longitude
       f.input :telephone
       f.input :picture, :as => :file
     end
     f.actions
   end
 
-  permit_params :name, :email, :business_category_id, :perk, :detail, :description, :url, :street, :zipcode, :city, :telephone, :picture
+  permit_params :name, :email, :business_category_id, :perk, :detail, :description, :url, :street, :zipcode, :city, :telephone, :picture, :latitude, :longitude
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
