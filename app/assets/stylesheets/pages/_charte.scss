@@ -19,9 +19,11 @@
 }
 
 #logo-signature {
-  width: 30% !important;
-  float: right;
-  padding-right: 20px;
+  img {
+    width: 30% !important;
+    float: right;
+    padding-right: 20px;
+  }
 }
 
 #whitebox-charte {
