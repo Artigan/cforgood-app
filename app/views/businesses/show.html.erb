@@ -1,6 +1,9 @@
 <%= content_for(:title) do %>
   <%= @business.name %>
 <% end %>
+<%= content_for(:description) do %>
+  Découvrez le Bon Plan offert par <%= @business.name %> !
+<% end %>
 
 <div class="container-fluid cforgood-background-business-show" id="business-show-header">
   <div class="mt-65">
