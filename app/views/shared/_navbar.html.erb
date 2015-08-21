@@ -19,7 +19,7 @@
         <% if user_signed_in? %>
           <li>
             <%= link_to about_path do %>
-            <i class="fa fa-cogs"></i> <%= t(".how_it_works", default: "Comment Ca Marche") %>
+            <i class="fa fa-cogs"></i> <%= t(".how_it_works", default: "A Propos") %>
             <% end %>
           </li>
           <li>
@@ -63,7 +63,10 @@
           </li>
         <% else %>
           <li>
-            <%= link_to t(".how_it_works", default: "Comment Ca Marche"), about_path %>
+            <a href="#benefits" id="nomobile">Comment Ca Marche ?</a>
+          </li>
+          <li>
+            <%= link_to t(".how_it_works", default: "A Propos"), about_path %>
           </li>
          <!-- <li>
             <%= link_to t(".causes", default: "Causes"), causes_path %>
@@ -78,7 +81,7 @@
             <%= link_to t(".inscription", default: "Inscription"), new_user_registration_path %>
           </li> -->
           <li>
-            <a class="typeform-share btn btn-white mr-10 ml-5" href="https://cforgood1.typeform.com/to/PdisGd" data-mode="1" target="_blank">Devenir Partenaire</a>
+            <a class="typeform-share btn btn-white mr-10 ml-10" href="https://cforgood1.typeform.com/to/PdisGd" data-mode="1" target="_blank">Devenir Partenaire</a>
           </li>
           <li>
             <a class="typeform-share btn btn-white" href="https://cforgood1.typeform.com/to/iZ5QFx" data-mode="1" target="_blank">Devenir Ambassadeur</a>
