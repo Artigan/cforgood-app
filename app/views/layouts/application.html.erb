@@ -3,6 +3,7 @@
 <head>
   <title><%= yield(:title) || "CforGood" %></title>
   <meta name="description" content="<%= (yield(:description) || "").squish %>">
+  <!-- Favicons -->
   <link rel="apple-touch-icon" sizes="57x57" href="<%= image_path 'favicons/apple-touch-icon-57x57.png' %>">
   <link rel="apple-touch-icon" sizes="60x60" href="<%= image_path 'favicons/apple-touch-icon-60x60.png' %>">
   <link rel="apple-touch-icon" sizes="72x72" href="<%= image_path 'favicons/apple-touch-icon-72x72.png' %>">
@@ -26,8 +27,25 @@
   <meta name="msapplication-config" content="<%= image_path 'favicons/browserconfig.xml' %>">
   <meta name="theme-color" content="#ffffff">
   <meta name="google-site-verification" content="5kHzXFyZ62hKohYkbHDbaa-h6FpPHHEONunGF6lP9a0" />
+  <!-- Schema.org markup for Google+ -->
+  <meta itemprop="name" content="CforGood - La Révolution Positive - Le Moyen Le Plus Simple Pour Changer Le Monde Au Quotidien">
+  <meta itemprop="description" content="CCforGood fait de chaque citoyen un acteur du changement en lui offrant l'accès à des dizaines de bons plans locaux et responsables en échange d'une donation de 5€/mois reversée pour soutenir la cause de son choix !">
+  <meta itemprop="image" content="http://www.cforgood.com/assets/banner-website-e38e2d05c602fdfa57b9286b8c5bb15c6caa88d0d9f74495619984d5860686e0.jpg">
+  <!-- Open Graph FB -->
+  <meta property="og:title" content="  CforGood - La Révolution Positive - Le Moyen Le Plus Simple Pour Changer Le Monde Au Quotidien">
+  <meta property="og:type" content="website">
+  <meta property="og:description" content="  CforGood fait de chaque citoyen un acteur du changement en lui offrant l'accès à des dizaines de bons plans locaux et responsables en échange d'une donation de 5€/mois reversée pour soutenir la cause de son choix !">
   <meta property="og:url" content="http://www.cforgood.com"/>
-  <meta property="og:image" content="http://www.cforgood.com/assets/banner-website-e38e2d05c602fdfa57b9286b8c5bb15c6caa88d0d9f74495619984d5860686e0.jpg "/>
+  <meta property="og:image" content="http://www.cforgood.com/assets/banner-website-e38e2d05c602fdfa57b9286b8c5bb15c6caa88d0d9f74495619984d5860686e0.jpg"/>
+  <meta property="og:site_name" content="CforGood">
+  <!-- Twitter card data -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@CforGood">
+  <meta name="twitter:title" content="  CforGood - La Révolution Positive - Le Moyen Le Plus Simple Pour Changer Le Monde Au Quotidien">
+  <meta name="twitter:description" content="  CforGood fait de chaque citoyen un acteur du changement en lui offrant l'accès à des dizaines de bons plans locaux et responsables en échange d'une donation de 5€/mois reversée pour soutenir la cause de son choix !">
+  <meta name="twitter:creator" content="@CforGood">
+  <meta name="twitter:image:src" content="http://www.cforgood.com/assets/banner-website-e38e2d05c602fdfa57b9286b8c5bb15c6caa88d0d9f74495619984d5860686e0.jpg">
+
   <link rel="stylesheet" type="text/css" <%= image_path 'vendor/slick.css' %>/>
   <link href="//cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
   <style type="text/css">
