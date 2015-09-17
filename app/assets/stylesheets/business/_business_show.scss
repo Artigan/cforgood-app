@@ -92,21 +92,6 @@
   }
 }
 
-#bg-business-show {
-  background-image: image-url("bg-business-show.png");
-  background-size: cover;
-  background-attachment: fixed;
-  position: relative;
-  h3{
-    color: rgb(51,51,51) !important;
-  }
-  z-index:1;
-  .fa {
-    padding-left: 20px;
-    font-size: 20px;
-  }
-}
-
 #border-show-body {
     border: 1px #000000 solid;
     opacity: 0.1;
@@ -219,7 +204,7 @@
     font-size: 16px;
     font-weight: 400;
   }
-  background-image: image-url("bg-business-show.png");
+  background-image: image-url("bg-business-show.jpg");
   background-size: cover;
   background-attachment: fixed;
   position: relative;
