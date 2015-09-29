@@ -20,6 +20,8 @@
 #  picture_updated_at   :datetime
 #  business_category_id :integer
 #  detail               :string
+#  latitude             :float
+#  longitude            :float
 #
 # Indexes
 #

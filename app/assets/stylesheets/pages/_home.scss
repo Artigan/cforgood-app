@@ -1,8 +1,9 @@
 #banner {
   position: relative;
-  background-image: image-url("bg-banner-small.png");
+  background-image: image-url("bg-banner-home.jpg");
   background-size: cover;
   background-attachment: fixed;
+  background-position: bottom;
   height: 600px;
   h1 {
     font-size: 44px;
@@ -57,11 +58,10 @@
 
 #benefits {
   img {
-    height: 160px;
+    height: 330px;
   }
   padding-top: 75px;
   padding-bottom: 45px;
-  border-top: 1px rgba(124, 118, 118, 0.7) solid;
   border-bottom: 1px #E1E1E1 solid;
   h3 {
     font-size: 24px;
@@ -86,7 +86,7 @@
     width: 90%;
   }
   padding-left: 10px;
-  margin-top: 60px;
+  padding-top: 75px;
   color: rgb(51,51,51);
   .embed-container {
     position: relative;
@@ -97,7 +97,7 @@
     width: 100%;
     height: auto;
     margin-bottom: 12px;
-    margin-top: 11%;
+    margin-top: 13%;
     margin-left: 7%;
 }
 
@@ -234,9 +234,10 @@
   margin-top: -4px;
 }
 
-#betafamily {
-  background-image: image-url("bg-betafamily.png");
+#sponsoring {
+  background-image: image-url("bg2.jpg");
   background-size: cover;
+  background-position: center;
   position: relative;
   h2 {
     margin-top: 80px;
@@ -252,9 +253,9 @@
     padding-top: 20px;
   }
   img {
-    height: 200px;
-    margin-top: 75px;
-    margin-left: 40px;
+    height: 350px;
+    margin-top: 35px;
+    margin-left: -44px;
   }
 }
 
@@ -265,10 +266,65 @@
 
 #blackbox-beta {
   position: absolute;
-  background-color: rgba(0,0,0, 0.2);
+  background-color: rgba(0,0,0, 0.25);
   border-radius: 5px;
   height: 100%;
   width: 100%;
+}
+
+#cause-category {
+  h2 {
+    margin-top: 60px;
+    color: rgb(51,51,51);
+  }
+  #cause-list {
+    margin-bottom: 50px;
+    img {
+      width: 164px;
+      border-radius: 50%;
+    }
+    h3 {
+      background-color: #36d3da;
+      padding: 10px 0px;
+      margin-left: 35px;
+      margin-right: 35px;
+      margin-top: -30px;
+      border-radius: 20px;
+      font-size: 16px;
+      transform: rotate(-5deg);
+    }
+  }
+}
+
+#eco-systeme {
+  border-top: 1px rgba(200,191,191,0.23) solid;
+  h2 {
+    margin-top: 80px;
+    color: rgb(51,51,51);
+  }
+  h4 {
+    color: rgb(51,51,51);
+  }
+
+  #eco-systeme-list {
+    h3 {
+      color: rgb(51,51,51);
+      padding-bottom: 20px;
+    }
+    img {
+      width: 164px;
+      border-radius: 50%;
+    }
+    p {
+      padding-left: 50px;
+      padding-right: 50px;
+    }
+
+    #citoyen {
+      border-left: 1px rgba(200,191,191,0.23) solid;
+      border-right: 1px rgba(200,191,191,0.23) solid;
+    }
+  }
 }
 
 #ambassador {
@@ -371,6 +427,9 @@
       #video-mobile {
         width: 98%;
         margin-left: 0%;
+        iframe {
+          height: 100% !important;
+        }
       }
       #btn-presentation {
         padding-bottom: 30px;
@@ -386,16 +445,21 @@
       }
     }
 
-  #betafamily {
-        height: 950px;
+  #sponsoring {
         text-align: center;
-        #nopadding-betafamily {
+        #text-sponsoring {
           padding-left: 0px;
         }
-        img {
-            width: 90%;
-            margin-left: 1%;
+        #home-mycard {
+          img {
+            width: 100%;
             margin-top: 30px;
+            height: 280px;
+          }
+        }
+        button {
+          margin-bottom: 15%;
+          margin-top: 6%;
         }
         h2 {
           font-size: 19px;
@@ -417,7 +481,6 @@
   }
 
   #ambassador {
-    height: 700px;
     h1 {
       font-size: 36px;
     }
@@ -451,8 +514,48 @@
 /* default styles here for older browsers.
       I tend to go for a 600px - 960px width max but using percentages
    */
-   @media only screen and (min-width:960px){
+   @media only screen and (max-width:960px){
        /* styles for browsers larger than 960px; */
+       #video-mobile {
+        width: 70% !important;
+        margin-left: 15% !important;
+        margin-top: 2% !important;
+        margin-bottom: -8%;
+        iframe {
+          height: 80% !important;
+        }
+      }
+      #text-presentation {
+        margin-top: -10% !important;
+        p {
+          margin-left: 25px;
+          margin-right: 25px;
+        }
+      }
+      #sponsoring {
+        background-attachment: fixed;
+        #home-mycard {
+        img {
+          height: 265px !important;
+          margin-top: 55px !important;
+          }
+        }
+        #text-sponsoring {
+          text-align: center;
+          margin-top: -6% !important;
+        p {
+          padding-left: 15px;
+          padding-right: 15px;
+          }
+        button {
+          margin-bottom: 10% !important;
+        }
+        }
+        #border-sponsoring {
+        margin-bottom: 30px !important;
+        }
+      }
+
    }
    @media only screen and (min-width:1440px){
        /* styles for browsers larger than 1440px; */
@@ -463,8 +566,14 @@
    @media only screen and (max-device-width:480px){
       /* styles for mobile browsers smaller than 480px; (iPhone) */
    }
-   @media only screen and (device-width:768px){
+   @media only screen and (max-width:768px){
       /* default iPad screens */
+      #video-mobile {
+        iframe {
+          width: 100%;
+          height: 310px;
+        }
+      }
    }
    /* different techniques for iPad screening */
    @media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait) {
