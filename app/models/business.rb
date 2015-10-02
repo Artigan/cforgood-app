@@ -19,9 +19,14 @@
 #  picture_file_size    :integer
 #  picture_updated_at   :datetime
 #  business_category_id :integer
-#  detail               :string
 #  latitude             :float
 #  longitude            :float
+#  description_perk     :string
+#  detail_perk          :string
+#  description2_perk    :string
+#  facebook             :string
+#  twitter              :string
+#  instagram            :string
 #
 # Indexes
 #

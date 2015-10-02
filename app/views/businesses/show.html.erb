@@ -31,32 +31,33 @@
   <div class="whitebox-show-business"></div>
   <div class="col-sm-10 col-sm-offset-1">
     <div class="col-sm-7 text-left mt-50 mb-30 pr-2cent">
+
       <div id="header-perk-body">
-        <div class="col-sm-5 red">
-          <p class="s-18 w-400 pl-15"><%= @business.business_category.name.upcase %></p>
+        <div class="col-sm-7 red">
+          <p class="s-18 w-400 pl-15">NOUS PENSONS QUE VOUS AIMEREZ</p>
         </div>
-        <div class="col-sm-3 col-sm-offset-3" id="links-business">
+        <div class="col-sm-3 col-sm-offset-1" id="links-business">
           <ul class="list-inline">
               <li id="nopadding-business">
-                <a href="https://www.facebook.com/cforgood?fref=ts" class="link-facebook-business business-icon-container" target="_blank">
+                <a href="<%= @business.facebook %>" class="link-facebook-business business-icon-container" target="_blank">
                   <i class="fa fa-facebook business-icon f-17"></i>
                 </a>
               </li>
 
               <li id="nopadding-business">
-                <a href="https://twitter.com/CforGood" class="link-instagram-business business-icon-container" target="_blank">
+                <a href="<%= @business.twitter %>" class="link-instagram-business business-icon-container" target="_blank">
                   <i class="fa fa-twitter business-icon f-17"></i>
                 </a>
               </li>
 
               <li id="nopadding-business">
-                <a href="https://instagram.com/cforgood/" class="link-mail-business business-icon-container" target="_blank">
+                <a href="mailto:<%= @business.email %>" class="link-mail-business business-icon-container" target="_blank">
                   <i class="fa fa-envelope business-icon f-17"></i>
                 </a>
               </li>
 
               <li id="nopadding-business">
-                <a href="https://fr.linkedin.com/company/cforgood" class="link-website-business business-icon-container" target="_blank">
+                <a href="<%= @business.url %>" class="link-website-business business-icon-container" target="_blank">
                   <i class="fa fa-globe business-icon f-20"></i>
                 </a>
               </li>
@@ -70,12 +71,21 @@
       <div id="description-perk-body">
         <p><%= @business.description %></p>
       </div>
+
       <div id="details-perk-body">
-        <p class="col-sm-5 red text-left s-18 w-400 mt-30 pl-15">DETAILS DU BON PLAN</p>
+        <p class="col-sm-7 red text-left s-18 w-400 mt-10 pl-15">BON PLAN OFFERT AUX MEMBRES</p>
         <div class="clear"></div>
         <div class="col-sm-8" id="border-show-body"></div>
         <div class="clear"></div>
-        <p class="mt-10"><%= @business.detail %></p>
+        <li class="mt-10 w-100"><%= @business.description_perk %></li>
+      </div>
+
+      <div id="details-perk-body">
+        <p class="col-sm-5 red text-left s-18 w-400 mt-10 pl-15">DETAILS DU BON PLAN</p>
+        <div class="clear"></div>
+        <div class="col-sm-8" id="border-show-body"></div>
+        <div class="clear"></div>
+        <p class="mt-10"><%= @business.detail_perk %></p>
       </div>
     </div>
 
