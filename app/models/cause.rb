@@ -19,6 +19,10 @@
 #  picture_file_size    :integer
 #  picture_updated_at   :datetime
 #  cause_category_id    :integer
+#  facebook             :string
+#  twitter              :string
+#  instagram            :string
+#  description_impact   :string
 #
 # Indexes
 #

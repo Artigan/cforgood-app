@@ -17,15 +17,19 @@ ActiveAdmin.register Cause do
       f.input :description
       f.input :street
       f.input :impact
+      f.input :description_impact
       f.input :zipcode
       f.input :city
       f.input :telephone
+      f.input :facebook
+      f.input :twitter
+      f.input :instagram
       f.input :picture, :as => :file
     end
     f.actions
   end
 
-  permit_params :name, :email, :cause_category_id, :impact, :description, :street, :zipcode, :city, :telephone, :picture
+  permit_params :name, :email, :cause_category_id, :impact, :description, :description_impact, :street, :zipcode, :city, :telephone, :facebook, :twitter, :instagram, :picture
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
