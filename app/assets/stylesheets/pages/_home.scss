@@ -365,8 +365,8 @@
       margin-left: 40px;
     }
     #text-home-banner {
-      margin-top: 120px;
-      margin-bottom: 45px;
+      margin-top: 100px !important;
+      margin-bottom: 20px;
     }
     #mc_embed_signup {
       margin-top: 10px;
@@ -425,8 +425,8 @@
         margin-bottom: 30px;
       }
       #video-mobile {
-        width: 98%;
-        margin-left: 0%;
+        width: 98% !important;
+        margin-left: 0% !important;
         iframe {
           height: 100% !important;
         }
