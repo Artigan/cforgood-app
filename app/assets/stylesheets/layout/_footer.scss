@@ -1,9 +1,14 @@
 // Your footer style
 #footer {
-  background-color: #2b2d2e;
-  border-top: 1px solid #3a3a3a;
+  display: block;
+  background-color: #24323f;
+  box-sizing: border-box;
   width: 100%;
-  padding-bottom: 10px;
+  min-height: 170px;
+  padding: 50px 60px 30px 60px;
+  font-size: 15px;
+  color: white;
+  font-weight: 100;
   h2 {
     color: #fff;
     font-size:18px;
@@ -13,6 +18,45 @@
     line-height: 3px;
     font-size: 14px;
   }
+  li {
+    list-style-type: none;
+  }
+  a {
+    color: rgb(108,150,189);
+    &:hover {
+    color: rgb(210,210,210);
+    }
+  }
+  p {
+    font-size: 15px;
+    margin-bottom: 5px;
+  }
+}
+
+#logo-footer {
+  img {
+    width: 150px;
+  }
+}
+
+
+.line-separator {
+    border-bottom: 1px solid white;
+    padding-top: 15px;
+}
+
+#sub-footer {
+  padding-top: 15px;
+  i {
+    color: red;
+  }
+}
+
+.footer-title {
+  font-size: 18px;
+  font-weight: 500;
+  padding-bottom: 20px;
+  color: white;
 }
 
 .text-center {
@@ -20,30 +64,57 @@
 }
 
 .link-contrast {
-
-  color: #fff;
-
+  color: rgb(220,220,220) !important;
   &:hover {
-    color: #D1D0CE;
-    text-decoration: none;
-    outline: none;
+    i {
+      color: white;
+      text-decoration: none;
+      outline: none;
+    }
+    opacity:0.8;
   }
 }
 
 .footer-icon {
   position: relative;
   top: 7px;
+
 }
 
-.footer-icon-container {
+.footer-icon-container-facebook {
   display: block;
   height: 36px;
   width: 36px;
-  border-width: 1px;
-  border-style: solid;
   border-radius: 50%;
   text-align: center;
-  border-color: rgba(255,255,255,0.2);
+  background-color: #445699;
+}
+
+.footer-icon-container-twitter {
+  display: block;
+  height: 36px;
+  width: 36px;
+  border-radius: 50%;
+  text-align: center;
+  background-color: #6fa7de;
+}
+
+.footer-icon-container-linkedin {
+  display: block;
+  height: 36px;
+  width: 36px;
+  border-radius: 50%;
+  text-align: center;
+  background-color: #3c6699;
+}
+
+.footer-icon-container-instagram {
+  display: block;
+  height: 36px;
+  width: 36px;
+  border-radius: 50%;
+  text-align: center;
+  background-color: #014777;
 }
 
 
@@ -55,6 +126,17 @@
   color: #82888a;
 }
 
-.padding-bottom {
-  padding-bottom:10px;
+.charte_confidentialite {
+  text-align: left !important;
+  p {
+    font-weight: 100 !important;
+    font-size: 15px !important;
+    color: rgb(51,51,51)!important;
+  }
+  h2 {
+    font-size: 22px !important;
+  }
+  h3 {
+    font-size: 20px !important;
+  }
 }
