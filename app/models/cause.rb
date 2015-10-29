@@ -23,6 +23,8 @@
 #  twitter              :string
 #  instagram            :string
 #  description_impact   :string
+#  latitude             :float
+#  longitude            :float
 #
 # Indexes
 #
