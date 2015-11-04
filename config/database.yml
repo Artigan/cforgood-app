@@ -17,7 +17,6 @@
 development:
   adapter: postgresql
   encoding: unicode
-  username: Allan
   host: localhost
   database: cforgoodwebsite_development
   password:
