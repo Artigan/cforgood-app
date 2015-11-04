@@ -96,6 +96,7 @@ GEM
     builder (3.2.2)
     byebug (5.0.0)
       columnize (= 0.9.0)
+    choice (0.2.0)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.7)
@@ -251,6 +252,11 @@ GEM
       activesupport (>= 4.2.0.beta, < 5.0)
       nokogiri (~> 1.6.0)
       rails-deprecated_sanitizer (>= 1.0.1)
+    rails-erd (1.4.4)
+      activerecord (>= 3.2)
+      activesupport (>= 3.2)
+      choice (~> 0.2.0)
+      ruby-graphviz (~> 1.2)
     rails-html-sanitizer (1.0.2)
       loofah (~> 2.0)
     rails-i18n (4.0.4)
@@ -275,6 +281,7 @@ GEM
       polyamorous (~> 1.2)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
+    ruby-graphviz (1.2.2)
     sass (3.4.16)
     sass-rails (5.0.3)
       railties (>= 4.0.0, < 5.0)
@@ -344,6 +351,7 @@ DEPENDENCIES
   rack-timeout
   rails (= 4.2.3)
   rails-assets-underscore!
+  rails-erd
   rails-i18n
   rails_12factor
   sass-rails (~> 5.0)

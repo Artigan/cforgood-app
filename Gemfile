@@ -33,6 +33,7 @@ gem "font-awesome-sass"
 gem "geocoder"
 gem "gmaps4rails"
 gem "underscore-rails"
+gem "rails-erd"
 
 
 
