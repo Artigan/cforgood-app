@@ -1,25 +1,36 @@
-<nav class="navbar navbar-default navbar-wagon" role="navigation">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="/">
-        <%= image_tag "logo-white.png" %>
-      </a>
+<nav id="navbar" class="nav" role="navigation">
+  <!-- ICON RESPONSIVE MENU -->
+  <a href="#" class="menu-toggle">
+    <div id="menu-icon">
+      <span id="icon-line"></span>
+      <span id="icon-line"></span>
+      <span id="icon-line"></span>
+      <span id="icon-line"></span>
     </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-right">
-        <% if user_signed_in? %>
+  </a>
+  <!-- BRAND LOGO -->
+  <a class="logo" href="/">
+    <%= image_tag "logo-white.png" %>
+  </a>
+  <!-- MENU ITEMS -->
+  <div class="link-container">
+      <!-- USER SIGN IN -->
+      <% if user_signed_in? %>
+        <div class="visible-xs menu-user-info">
+          <%= image_tag avatar_url(current_user), class: "user-pic" %>
+          <span class="user-name">
+            Bienvenue,<br> <%= current_user.first_name %> <%= current_user.last_name.chars.first + "." %>
+          </span>
+        </div>
+        <ul>
+          <li class="visible-xs">
+          <%= link_to "/" do %>
+            <i class="fa fa-home"></i> <%= t(".how_it_works", default: "Accueil") %>
+          <% end %>
+          </li>
           <li>
             <%= link_to about_path do %>
-            <i class="fa fa-cogs"></i> <%= t(".how_it_works", default: "A Propos") %>
+            <i class="fa fa-dot-circle-o"></i> <%= t(".how_it_works", default: "A Propos") %>
             <% end %>
           </li>
           <li>
@@ -32,60 +43,43 @@
               <i class="fa fa-tag"></i> <%=t(".bons_plans", default: "Bons Plans", class: "visible-xs") %>
             <% end %>
           </li>
+          <li class="hidden-xs">
+            <%= link_to "#" do %>
+              <span class="user-name"><%= current_user.first_name%> <%= current_user.last_name.chars.first + "." %></span>
+              <%= image_tag avatar_url(current_user), class: "img-circle" %>
+            <% end %>
+          </li>
           <li class="visible-xs">
-            <%= link_to member_card_path do %>
-              <i class="fa fa-ticket"></i> <%=t(".member_card", default: "Ma Carte", class: "visible-xs") %>
+            <%= link_to "#" do %>
+              <i class="fa fa-user"></i> <%= t ".profil", default: "Voir mon profil" %>
             <% end %>
           </li>
-          <li class="dropdown">
-            <%= link_to "#", {class: "dropdown-toggle", "data-toggle" => "dropdown", "role" => "button", "aria-expanded" => "false"} do %>
-              <%= image_tag avatar_url(current_user), class: "img-circle" %>&nbsp;
-              <%= current_user.name %> <%= current_user.first_name %> <%= current_user.last_name %> <span class="caret"></span>
+          <li>
+            <%= link_to destroy_user_session_path, method: :delete do %>
+              <i class="fa fa-times"></i>  <%= t ".se_déconnecter", default: "Se déconnecter" %>
             <% end %>
-            <ul class="dropdown-menu" role="menu">
-              <li>
-                <%= link_to "#" do %>
-                  <i class="fa fa-user"></i> <%= t ".profil", default: "Profil" %>
-                <% end %>
-              </li>
-
-              <li>
-<!--            <%= link_to "#" do %>
-                    <i class="fa fa-home"></i>  <%= t ".profile", default: "Flat" %>
-                <% end %> -->
-              </li>
-              <li>
-                <%= link_to destroy_user_session_path, method: :delete do %>
-                  <i class="fa fa-sign-out"></i>  <%= t ".se_déconnecter", default: "Se déconnecter" %>
-                <% end %>
-              </li>
-            </ul>
           </li>
-        <% else %>
+        </ul>
+      <!-- USER SIGN OUT -->
+      <% else %>
+        <ul>
           <li>
             <%= link_to t(".how_it_works", default: "La Révolution Positive"), about_path %>
           </li>
-         <!-- <li>
+          <li>
             <%= link_to t(".causes", default: "Causes"), causes_path %>
           </li>
           <li>
             <%= link_to t(".bons_plans", default: "Bons Plans"), businesses_path %>
           </li>
-          <li>
+          <!-- <li>
             <%= link_to t(".connexion", default: "Connexion"), new_user_session_path %>
           </li> -->
-          <!-- <li>
+          <!--<li>
             <%= link_to t(".inscription", default: "Inscription"), new_user_registration_path %>
           </li> -->
-          <li>
-            <a class="typeform-share btn btn-white mr-10 ml-10" href="https://cforgood1.typeform.com/to/PdisGd" data-mode="1" target="_blank">Devenir Partenaire</a>
-          </li>
-          <li>
-            <a class="typeform-share btn btn-white" href="https://cforgood1.typeform.com/to/iZ5QFx" data-mode="1" target="_blank">Devenir Ambassadeur</a>
-          </li>
-
-        <% end %>
         </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
+      <% end %>
+    </ul>
+  </div>
 </nav>

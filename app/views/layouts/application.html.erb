@@ -61,15 +61,11 @@
 
 <body>
   <%= render "shared/navbar" %>
-  <%= render "shared/flashes" %>
-
-
-  <div class="wrapper">
+  <div id="overlay">
     <%= yield %>
+    <%= render "shared/footer" %>
   </div>
-
-  <%= render "shared/footer" %>
-
+  <%= render "shared/flashes" %>
 
 
   <!--  Include Google Maps JS API -->

@@ -1,0 +1,33 @@
+<div class="container-fluid" id="sponsoring">
+  <div id="blackbox-beta"></div>
+  <h2 class="text-center">UNE CARTE SOLIDAIRE</h2>
+  <div class="col-xs-8 col-xs-offset-2 col-sm-2 col-sm-offset-5 border-blue mb-50 mt-15" id="border-blue border-sponsoring"></div>
+  <div class="row"></div>
+  <div class="col-xs-12 col-sm-4">
+    <div class="col-xs-12 col-xs-offset-0 col-sm-10 col-sm-offset-1" id="home-mycard">
+      <%= image_tag("member-card.png") %>
+    </div>
+  </div>
+  <div class="col-xs-12 col-sm-8 pl-55" id="text-sponsoring">
+    <div class="col-xs-10 col-xs-offset-1" >
+      <h3>SPONSORISEZ UNE ASSOCIATION</h3>
+      <p>Grâce à votre carte CforGood, découvrez les initiatives de votre ville et devenez ambassadeur de l'une d'entre elle en lui reversant chaque mois la moitié de votre abonnement !<br> Donnez les moyens à une association locale de continuer à agir pour avoir un impact positif sur la société.<br><br> <span class="w-500">JAMAIS VOUS NE VOUS SENTIREZ AUTANT ACTEUR DU CHANGEMENT ! </span></p>
+      <button type="button" class="btn btn-turquoise mt-3cent mb-7cent" data-toggle="modal" data-target="#myModal">
+      RÉSERVEZ VOTRE CARTE
+      </button>
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header gradient-cforgood">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title text-center" id="myModalLabel">Inscription à la bêta</h4>
+            </div>
+            <div class="modal-body text-center">
+              <%= render "shared/mailchimp_form" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
