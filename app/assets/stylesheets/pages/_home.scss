@@ -1,32 +1,3 @@
-#banner {
-  position: relative;
-  background-image: image-url("bg-banner-home.jpg");
-  background-size: cover;
-  background-attachment: fixed;
-  background-position: bottom;
-  height: 600px;
-  h1 {
-    font-size: 44px;
-  }
-  p {
-    font-size: 18px;
-    color: white;
-  }
-}
-
-.gradientbox-cforgood {
-  background: -webkit-linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* Chrome 10+, Saf5.1+ */
-  background:    -moz-linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* FF3.6+ */
-  background:     -ms-linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* IE10 */
-  background:      -o-linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* Opera 11.10+ */
-  background:         linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* W3C */
-  opacity: 0.65;
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  z-index: 0;
-}
-
 #blackbox-banner {
   position: absolute;
   height: 100%;
@@ -101,22 +72,6 @@
     width: 100%;
     height: 100%;
   }
-}
-
-
-.scroll-btn{
-  position: absolute;
-  width: 100px;
-  margin-left: -50px;
-  bottom: 20px;
-  left: 50%;
-  text-align: center;
-  font-size: 60px;
-  color: white;
-  &:hover{
-    color: white;
-  }
-  z-index: 3;
 }
 
 #perks {
@@ -351,15 +306,12 @@
 
 @media only screen and (max-width: 480px) and (orientation : portrait) {
 
-  #banner {
+  #header {
     background-position: center center;
     #btn-home-banner {
       margin-left: 40px;
     }
-    #text-home-banner {
-      margin-top: 100px !important;
-      margin-bottom: 20px;
-    }
+
     #mc_embed_signup {
       margin-top: 10px;
     }

@@ -1,29 +1,7 @@
 /* -------------------------------------
- * Fonts
- * ------------------------------------- */
-// Google fonts
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,300,700|Montserrat:200,300,400,600,700");
-$base-font: "Open Sans", "Helvetica", "sans-serif";
-$header-font: "Open Sans", "sans-serif";
-$navbar-font: 'Open Sans', "sans-serif";
-
-// Local fonts (uncomment following lines)
-// @font-face {
-//   font-family: "Font Name";
-//   src: font-url('FontFile.eot');
-//   src: font-url('FontFile.eot?#iefix') format('embedded-opentype'),
-//        font-url('FontFile.woff') format('woff'),
-//        font-url('FontFile.ttf') format('truetype')
-// }
-// $my-font: "Font Name";
-
-// Font-size and line-height
-$base-size: 16px;
-$base-height: 1.4;
-
-/* -------------------------------------
  * Colors
  * ------------------------------------- */
+
 // Scheme
 $red: #F74042;
 $blue: #00C9FF;
@@ -33,6 +11,8 @@ $green: #80F2A4;
 $purple: #6452BD;
 $turquoise: #27D5D9;
 $blue-night: #47639E;
+$white: #fff;
+$black: #000;
 
 // Gray scale
 $gray-darker:  lighten(#000, 13.5%); // #222
@@ -40,3 +20,29 @@ $gray-dark:    lighten(#000, 20%);   // #333
 $gray:         lighten(#000, 33.5%); // #555
 $gray-light:   lighten(#000, 46.7%); // #777
 $gray-lighter: lighten(#000, 93.5%); // #eee
+
+
+// IMPORT FONT
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,300,700");
+
+// FONT SIZE
+$extra-large-font: 44px;
+$large-font: 26px;
+$medium-font: 22px;
+$normal-font: 18px;
+$light-font: 14px;
+$small-font: 12px;
+
+$body-background: $black;
+$base-font: "Open Sans", "Helvetica", "sans-serif";
+$header-font: "Open Sans", "sans-serif";
+$navbar-font: 'Open Sans', "sans-serif";
+
+
+// HEADER
+$header-height: 600px;
+$header-fontcolor: $white;
+
+
+$base-size: 16px;
+$base-height: 1.4;
