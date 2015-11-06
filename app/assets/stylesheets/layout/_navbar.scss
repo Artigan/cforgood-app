@@ -5,11 +5,15 @@
   padding: 10px 20px;
   box-sizing: border-box;
   z-index: 15;
+  display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+  display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+  display: -ms-flexbox;      /* TWEENER - IE 10 */
+  display: -webkit-flex;
   display: flex;
   flex-wrap: nowrap;
-  flex-flow: row wrap;
   align-items: center;
   justify-content: space-between;
+  box-sizing: border-box;
 
   -webkit-transition: all 0.5s ease-in-out;
   -o-transition: all 0.5s ease-in-out;
