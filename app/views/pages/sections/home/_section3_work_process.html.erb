@@ -1,50 +1,27 @@
-<div class="container-fluid bg-white">
-  <div id="benefits">
-    <div class="container">
-      <div class="row">
-        <h2>COMMENT ÇA MARCHE ?</h2>
-        <div class="col-xs-8 col-xs-offset-2 col-sm-2 col-sm-offset-5 border-blue mb-50 mt-15" id="border-blue"></div>
-        <div class="col-xs-12 text-center" id="home-benefit" >
-          <div class="col-xs-12 col-sm-4 pr-5 pl-5" id="item-benefit">
-            <div class="col-xs-12" data-sr="enter bottom and scale up 20% over 1s">
-              <div class="col-xs-12">
-                <%=image_tag("IphoneHome.png") %>
-              </div>
-            </div>
-            <div class="col-xs-12">
-              <h3 class="blue">Découvrez</h3>
-              <p class="m-15">Inscrivez-vous et découvrez les commerces responsables à l'affiche dans votre ville.</p>
-            </div>
-            <!-- <div>
-              <%= link_to "Découvrez Les Causes", causes_path,class: "btn btn-blue" %>
-             </div> -->
-          </div>
-          <div class="col-xs-12 col-sm-4 pr-5 pl-5" id="item-benefit">
-            <div class="col-xs-12" data-sr="enter bottom and scale up 20% over 1s">
-              <%=image_tag("IphoneMap.png") %>
-            </div>
-            <div class="col-xs-12">
-              <h3 class="turquoise">Localisez</h3>
-              <p class="m-15">Trouvez à tout moment autour de vous les alternatives positives à vos besoins du quotidien.</p>
-            </div>
-            <!-- <div>
-               <%= link_to "Profitez Des Bons Plans", businesses_path, class: "btn btn-turquoise" %>
-            </div> -->
-          </div>
-          <div class="col-xs-12 col-sm-4 pr-5 pl-5" id="item-benefit">
-            <div class="col-xs-12" data-sr="enter bottom and scale up 20% over 1s">
-              <%=image_tag("IphoneCard.png") %>
-            </div>
-            <div class="col-xs-12">
-              <h3 class="green">Profitez !</h3>
-              <p class="m-15">Bénéficiez de réductions exclusives simplement en montrant votre carte de membre !</p>
-            </div>
-            <!-- <div>
-              <%= link_to "Rejoignez Le Mouvement !", new_user_registration_path, class: "btn btn-green" %>
-            </div> -->
-          </div>
+<section class="container-fluid process">
+  <div class="container">
+    <div class="row">
+      <h2 class="section-title">Comment ça marche ?</h2>
+      <div class="col-xs-12">
+        <!-- MOCKUP 1 -->
+        <div class="col-xs-12 col-sm-4 discover" data-sr="enter bottom and scale up 20% over 1s">
+          <%=image_tag("IphoneHome.png") %>
+          <h3>Découvrez</h3>
+          <p>Inscrivez-vous et découvrez les commerces responsables à l'affiche dans votre ville.</p>
+        </div>
+         <!-- MOCKUP 2 -->
+        <div class="col-xs-12 col-sm-4 localise" data-sr="enter bottom and scale up 20% over 1s">
+          <%=image_tag("IphoneMap.png") %>
+          <h3>Localisez</h3>
+          <p>Trouvez à tout moment autour de vous les alternatives positives à vos besoins du quotidien.</p>
+        </div>
+         <!-- MOCKUP 3 -->
+        <div class="col-xs-12 col-sm-4 enjoy" data-sr="enter bottom and scale up 20% over 1s">
+          <%=image_tag("IphoneCard.png") %>
+          <h3>Profitez !</h3>
+          <p>Bénéficiez de réductions exclusives simplement en montrant votre carte de membre !</p>
         </div>
       </div>
     </div>
   </div>
-</div>
+</section>

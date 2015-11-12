@@ -72,3 +72,38 @@
   border-radius: 4px;
   font-weight: 100;
 }
+
+/* BUTTON CLASSES *************************************/
+
+.button {
+  margin: 10px;
+  padding: 10px 20px;
+  border-radius: 2px;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 100;
+
+  -webkit-transition: all, 0.3s, ease-in-out;
+  -o-transition: all, 0.3s, ease-in-out;
+  transition: all, 0.3s, ease-in-out;
+}
+
+.button-turquoise {
+  color: #fff;
+  border: 1px solid #19A2C2;
+  background-color: #36D3DA;
+
+  &:hover {
+    background-color: #19A2C2;
+  }
+}
+
+.button-green {
+  color: #fff;
+  border: 1px solid #39D64B;
+  background-color: #80F2A4;
+
+  &:hover {
+    background-color: #39D64B;
+  }
+}

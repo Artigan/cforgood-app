@@ -1,84 +1,3 @@
-#blackbox-banner {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  background: rgba(51, 51, 51, 0.15);
-  color: rgb(240, 240, 240);
-  z-index: 0;
-}
-
-.border-video {
-  border: 5px rgb(54,211,218) solid;
-  border-radius: 5px;
-}
-
-.card{
-  padding: 10px;
-  h2{
-    font-size: 22px;
-  }
-}
-
-#benefits {
-  img {
-    height: 330px;
-  }
-  padding-top: 75px;
-  padding-bottom: 45px;
-  border-bottom: 1px #E1E1E1 solid;
-  h3 {
-    font-size: 24px;
-  }
-  p {
-    font-size: 14px;
-  }
-  h2 {
-    text-align: center;
-    margin-top: 0px;
-    color: rgb(51,51,51);
-  }
-}
-
-#perks {
-  h2 {
-    text-align: center;
-    color: rgb(51,51,51);
-    font-size: 26px;
-    margin-top: 80px;
-  }
-  h3 {
-    margin-bottom: 0px;
-    font-weight: 500;
-  }
-  h4 {
-    font-size: 22px;
-    padding-top: 15px;
-    font-weight: 600;
-  }
-  p {
-    font-size: 18px;
-  }
-  border-top: 1px rgba(216,227,225,0.23) solid;
-  height: 600px;
-  .perk-card-home {
-    width: 85%;
-    height: 220px;
-    margin-bottom: 50px;
-    margin-top: 30px;
-    color: white;
-    opacity: 0.9;
-    border-radius: 10px;
-    position: relative;
-    margin-left: 24px;
-    border: 4px rgba(89, 211, 211, 0.9) solid;
-    &:hover{
-      transition: all 0.2s ease;
-      opacity: 1;
-      transform: scale(1.1);
-      }
-  }
-}
-
 #partner {
   height: 500px;
   border-top: 1px rgba(200,191,191,0.23) solid;
@@ -114,27 +33,6 @@
   height: 215px;
 }
 
-.box-shadow {
-  position: absolute;
-  background-color: rgba(0,0,0, 0.4);
-  border-radius: 5px;
-  height: 100%;
-  width: 100%;
-}
-
-#bg-card-home {
-  position: absolute;
-  background-size: cover;
-  width: 100%;
-  height: 100%;
-  border-radius: 5px;
-  strong {
-    font-family: "Open Sans", "sans-serif" !important;
-    font-size: 15px;
-    font-weight: 400;
-  }
-}
-
 #mediaplay {
   top: 70px;
   opacity: 0.7;
@@ -146,127 +44,9 @@
   margin-top: -4px;
 }
 
-#sponsoring {
-  background-image: image-url("bg2.jpg");
-  background-size: cover;
-  background-position: center;
-  position: relative;
-  h2 {
-    margin-top: 80px;
-    z-index: 1;
-    position: relative;
-  }
-  h3 {
-    margin-top: 28px;
-    font-size: 34px;
-  }
-  p {
-    color: white;
-    padding-top: 20px;
-  }
-  img {
-    height: 350px;
-    margin-top: 35px;
-    margin-left: -44px;
-  }
-}
-
 .modal-header {
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
-}
-
-#blackbox-beta {
-  position: absolute;
-  background-color: rgba(0,0,0, 0.25);
-  border-radius: 5px;
-  height: 100%;
-  width: 100%;
-}
-
-#cause-category {
-  h2 {
-    margin-top: 60px;
-    color: rgb(51,51,51);
-  }
-  #cause-list {
-    margin-bottom: 50px;
-    img {
-      width: 164px;
-      border-radius: 50%;
-    }
-    h3 {
-      background-color: #36d3da;
-      padding: 10px 0px;
-      margin-left: 35px;
-      margin-right: 35px;
-      margin-top: -30px;
-      border-radius: 20px;
-      font-size: 16px;
-      transform: rotate(-5deg);
-    }
-  }
-}
-
-#eco-systeme {
-  border-top: 1px rgba(200,191,191,0.23) solid;
-  h2 {
-    margin-top: 80px;
-    color: rgb(51,51,51);
-  }
-  h4 {
-    color: rgb(51,51,51);
-  }
-
-  #eco-systeme-list {
-    h3 {
-      color: rgb(51,51,51);
-      padding-bottom: 20px;
-    }
-    img {
-      width: 164px;
-      border-radius: 50%;
-    }
-    p {
-      padding-left: 50px;
-      padding-right: 50px;
-    }
-
-    #citoyen {
-      border-left: 1px rgba(200,191,191,0.23) solid;
-      border-right: 1px rgba(200,191,191,0.23) solid;
-    }
-  }
-}
-
-#ambassador {
-  background-image: image-url("bg-ambassador.png");
-  background-size: cover;
-  background-position: center center;
-  background-attachment: fixed;
-  position: relative;
-  border-top: 1px rgba(161, 236, 233, 0.23) solid;
-  h2 {
-    margin-top: 80px;
-  }
-  p {
-    color: white;
-    line-height: 29px;
-    font-size: 18px;
-    strong {
-      text-decoration: underline;
-      font-variant: small-caps;
-      font-size: 19px;
-      color: rgb(167, 228, 230);
-    }
-  }
-  #blackbox-ambassador {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    background: rgba(30, 49, 50, 0.73);
-    color: rgb(51, 51, 51);
-  }
 }
 
 @media only screen and (max-width: 480px) and (orientation : portrait) {
@@ -355,37 +135,24 @@
     }
 
   #sponsoring {
-        text-align: center;
-        #text-sponsoring {
-          padding-left: 0px;
-        }
-        #home-mycard {
-          img {
-            width: 100%;
-            margin-top: 30px;
-            height: 280px;
-          }
-        }
-        button {
-          margin-bottom: 15%;
-          margin-top: 6%;
-        }
-        h2 {
-          font-size: 19px;
-          margin-top: 60px;
-        }
+    text-align: center;
+    #text-sponsoring {
+      padding-left: 0px;
+    }
+    #home-mycard {
+      img {
+        width: 100%;
+        margin-top: 30px;
+        height: 280px;
       }
-
-  #partner {
-    height: 550px;
-    #partner-business {
-      padding-bottom: 30px;
     }
-    #partner-association {
-      padding-bottom: 30px;
+    button {
+      margin-bottom: 15%;
+      margin-top: 6%;
     }
-    h4 {
-      font-size: 18px;
+    h2 {
+      font-size: 19px;
+      margin-top: 60px;
     }
   }
 
@@ -411,9 +178,7 @@
     }
   }
 
-  #border-blue {
-    margin-bottom: 30px;
-  }
+
 
   #nomobile {
       display: none;
@@ -465,30 +230,4 @@
         }
       }
 
-   }
-   @media only screen and (min-width:1440px){
-       /* styles for browsers larger than 1440px; */
-   }
-   @media only screen and (min-width:2000px){
-       /* for sumo sized (mac) screens */
-   }
-   @media only screen and (max-device-width:480px){
-      /* styles for mobile browsers smaller than 480px; (iPhone) */
-   }
-   @media only screen and (max-width:768px){
-      /* default iPad screens */
-      #video-mobile {
-        iframe {
-          width: 100%;
-          height: 310px;
-        }
-      }
-   }
-   /* different techniques for iPad screening */
-   @media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait) {
-     /* For portrait layouts only */
-   }
-
-   @media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape) {
-     /* For landscape layouts only */
    }
