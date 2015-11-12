@@ -1,0 +1,20 @@
+// SECTION GENERAL
+.section-title {
+  margin-bottom: 50px;
+
+  &:after {
+    content: '';
+    display: block;
+    margin: 0 auto;
+    padding-top: 30px;
+    width: 150px;
+    border-bottom: 3px solid $turquoise;
+  }
+}
+
+// SECTION - PRÉSENTATION
+.presentation {
+  background-color: $section-medium;
+  text-align: center;
+  border-bottom: 1px #E1E1E1 solid;
+}

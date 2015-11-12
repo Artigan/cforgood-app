@@ -14,8 +14,13 @@ h1, h2, h3, h4, h5, h6 { font-weight: 100; }
 
 
 h1 { font-size: $extra-large-font; }
-h2 { font-size: $large-font; }
+
+h2 {
+  font-size: $large-font;
+}
+
 h3, h4, h4 { font-size: $medium-font; }
+
 p { font-size: $normal-font; }
 
 ul {
@@ -25,3 +30,35 @@ ul {
   -webkit-margin-end: 0px;
   -webkit-padding-start: 0px;
 }
+
+section {
+  padding-top: 75px;
+  color: $section-font-color;
+
+  h2, h3 {
+    color: $section-font-color;
+    text-transform: uppercase;
+  }
+}
+
+// VIDEO RESPONSIVE
+.embed-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px;
+    height: 0;
+    overflow: hidden;
+    height: auto;
+    margin-bottom: 12px;
+    margin-top: 13%;
+    margin-left: 7%;
+  }
+
+  .embed-container iframe,
+  .embed-container object,
+  .embed-container embed {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+  }
