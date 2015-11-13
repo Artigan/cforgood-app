@@ -14,7 +14,7 @@ $(document).ready(function(){
   $('.menu-toggle').click(function(event) {
     $('#navbar').toggleClass('menu-toggled');
     $('#menu-icon').toggleClass('open');
-    $('#overlay').toggleClass('hide-overlay');
+    $('#menu-overlay').toggleClass('hide-overlay');
     $('body').toggleClass('stop-scrolling');
     event.preventDefault();
     //$('body').bind('touchmove', function(e){e.preventDefault()})
