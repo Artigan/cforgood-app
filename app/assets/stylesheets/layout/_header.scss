@@ -6,6 +6,8 @@
   background-attachment: fixed;
   background-position: bottom;
 
+  @media only screen and (max-width: 480px) and (orientation : portrait) { background-position: center center; }
+
   h1, p {
     color: $header-fontcolor;
     text-transform: uppercase;

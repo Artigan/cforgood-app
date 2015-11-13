@@ -27,12 +27,16 @@ $gray-lighter: lighten(#000, 93.5%); // #eee
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,300,700");
 
 // FONT SIZE
+$normal-font: 18px;
+$normal-line-height: 24px;
+
+
 $extra-large-font: 44px;
 $large-font: 26px;
 $medium-font: 22px;
-$normal-font: 18px;
 $light-font: 14px;
 $small-font: 12px;
+
 
 $body-background: $black;
 $base-font: "Open Sans", "Helvetica", "sans-serif";

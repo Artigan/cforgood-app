@@ -7,20 +7,35 @@
 
 body {
   background: $body-background;
-  font-family: $base-font;
+  font-family: $normal-font;
+  line-height: $normal-line-height;
 }
 
-h1, h2, h3, h4, h5, h6 { font-weight: 100; }
-
-
-h1 { font-size: $extra-large-font; }
-h2 {
-  margin-top: 0;
-  font-size: $large-font;
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-weight: 100;
+  text-transform: uppercase;
 }
-h3, h4, h4 { font-size: $medium-font; }
 
-p { font-size: $normal-font; }
+/* FONT SIZE ******************************************************************/
+
+h1 { font-size: 4.5rem; }
+h2 { font-size: 2.75rem;}
+h3 { font-size: 2.5rem; }
+h4, h5, h6 {}
+p { font-size: 1.6rem; }
+
+@media only screen and (max-width:768px){
+  h1 { font-size: 3.5rem; }
+}
+
+@media only screen and (max-width:460px){
+  h1 { font-size: 3rem; }
+  h2 { font-size: 2.25rem; padding: 0 20px; }
+  h3 { font-size: 2rem; }
+}
+
+h2 { margin-top: 0; }
 
 ul {
   -webkit-margin-before: 0em;
@@ -37,12 +52,14 @@ section {
 
   h2, h3 {
     color: $section-font-color;
-    text-transform: uppercase;
   }
 }
 
 @media only screen and (max-width:768px){
-  .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {
+  .col-md-1, .col-md-2, .col-md-3,
+  .col-md-4, .col-md-5, .col-md-6,
+  .col-md-7, .col-md-8, .col-md-9,
+  .col-md-10, .col-md-11, .col-md-12 {
       padding: 0 20px;
   }
 }

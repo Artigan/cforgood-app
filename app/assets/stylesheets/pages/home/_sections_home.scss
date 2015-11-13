@@ -13,18 +13,23 @@
   }
 }
 
-.presentation, .process, .card-1, .sponsoring, .categories, .ecosysteme, .ambassador {
+.presentation,
+.process,
+.card-1,
+.sponsoring,
+.categories,
+.ecosysteme,
+.ambassadors,
+.supporters {
+  position: relative;
   text-align: center;
   border-top: 1px #f1f1f1 solid;
-  border-bottom: 1px #E1E1E1 solid;
 }
 
 // SECTION - PRÉSENTATION
 //***************************************************************************//
 
-.presentation {
-  background-color: $section-medium;
-}
+.presentation { background-color: $section-medium; }
 
 // SECTION - WORK PROCESS ***************************************************//
 //***************************************************************************//
@@ -37,6 +42,10 @@
   .enjoy h3 { color: $green;}
   p { margin: 15px; }
   img { height: 330px; }
+
+  @media only screen and (max-width:768px){
+    .discover, .localise, .enjoy { margin-bottom: 20px; }
+  }
 }
 
 // SECTION - CARD 1
@@ -52,7 +61,7 @@
 //****************************************************************************//
 
 .sponsoring {
-  background-image: image-url("bg2.jpg");
+  background-image: image-url("bg-sponsoring.jpg");
   background-size: cover;
   background-position: center;
   position: relative;
@@ -106,11 +115,11 @@
   }
 }
 
-// SECTION - CATEGORIES //****************************************************//
+// SECTION - ASSOCIATIONS //****************************************************//
 //****************************************************************************//
 
 .categories {
-  background-color: $section-light;
+  background-color: $section-medium;
 
   ul {
     position: relative;
@@ -164,6 +173,8 @@
 
   @media only screen and (max-width:520px){
     span { font-size: 12px; }
+    p { padding: 0 20px; }
+    ul { padding-bottom : 0; }
   }
 }
 
@@ -174,39 +185,76 @@
   background-color: $section-light;
 
   h3, p { margin-bottom: 30px; }
+  p { padding: 0 20px; }
   .button { margin-top: 30px; }
   .business, .association { padding: 0 20px; }
+
+  @media only screen and (max-width:768px){
+    p { margin-bottom: 0; }
+  }
 }
 
 // SECTION - AMBASSADOR //****************************************************//
 //****************************************************************************//
 
-.ambassador {
-  background-image: image-url("bg-ambassador.png");
-  background-color: #fff;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-attachment: fixed;
+.ambassadors {
   position: relative;
-  border-top: 1px rgba(161, 236, 233, 0.23) solid;
+  background:image-url('bg-ambassador.jpg') no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 
-  p {
-    color: white;
-    line-height: 29px;
-    font-size: 18px;
-    strong {
-      text-decoration: underline;
-      font-variant: small-caps;
-      font-size: 19px;
-      color: rgb(167, 228, 230);
+  .overlay-ambassador {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(30,49,50,0.73);
+  }
+
+  h2, h3, p, li { color: $white; }
+  p { padding: 0 20px; }
+
+  ul {
+    margin-top: 30px;
+    list-style: none;
+    li { padding: 0 20px; }
+  }
+}
+
+// SECTION - SUPPORTERS //****************************************************//
+//****************************************************************************//
+
+.supporters {
+  background-color: $turquoise;
+
+  h2 {
+    display: flex;
+    align-items: center;
+    -webkit-margin-before: 0px !important;
+    -webkit-margin-after: 0px !important;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    color: $white;
+
+    &::before,
+    &::after {
+      padding-top: 0;
+      margin: 0 20px;
+      content: "";
+      border-bottom: solid #fff 1px;
+      flex: 1;
     }
   }
-  #blackbox-ambassador {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    background: rgba(30, 49, 50, 0.73);
-    color: rgb(51, 51, 51);
+
+  .row-logo { margin: 20px 0; }
+
+  img {
+    padding: 0 20px;
+    margin: 5px;
+    height: 75px;
+    height: 50px;
   }
 }
