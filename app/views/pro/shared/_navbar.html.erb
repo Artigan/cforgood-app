@@ -1,0 +1,85 @@
+<nav id="navbar" class="nav" role="navigation">
+  <!-- ICON RESPONSIVE MENU -->
+  <a href="#" class="menu-toggle">
+    <div id="menu-icon">
+      <span id="icon-line"></span>
+      <span id="icon-line"></span>
+      <span id="icon-line"></span>
+      <span id="icon-line"></span>
+    </div>
+  </a>
+  <!-- BRAND LOGO -->
+  <a class="logo" href="/">
+    <%= image_tag "logo-white.png" %>
+  </a>
+  <!-- MENU ITEMS -->
+  <div class="link-container">
+      <!-- USER SIGN IN -->
+      <% if user_signed_in? %>
+        <div class="visible-xs menu-user-info">
+          <%= image_tag avatar_url(current_user), class: "user-pic" %>
+          <span class="user-name">
+            Bienvenue,<br> <%= current_user.first_name %> <%= current_user.last_name.chars.first + "." %>
+          </span>
+        </div>
+        <ul>
+          <li class="visible-xs">
+          <%= link_to "/" do %>
+            <i class="fa fa-home"></i> <%= t(".how_it_works", default: "Accueil") %>
+          <% end %>
+          </li>
+          <li>
+            <%= link_to about_path do %>
+            <i class="fa fa-dot-circle-o"></i> <%= t(".how_it_works", default: "A Propos") %>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to causes_path do %>
+              <i class="fa fa-heart"></i> <%= t(".causes", default: "Causes") %>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to businesses_path do %>
+              <i class="fa fa-tag"></i> <%=t(".bons_plans", default: "Bons Plans", class: "visible-xs") %>
+            <% end %>
+          </li>
+          <li class="hidden-xs">
+            <%= link_to "#" do %>
+              <span class="user-name"><%= current_user.first_name%> <%= current_user.last_name.chars.first + "." %></span>
+              <%= image_tag avatar_url(current_user), class: "img-circle" %>
+            <% end %>
+          </li>
+          <li class="visible-xs">
+            <%= link_to "#" do %>
+              <i class="fa fa-user"></i> <%= t ".profil", default: "Voir mon profil" %>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to destroy_user_session_path, method: :delete do %>
+              <i class="fa fa-times"></i>  <%= t ".se_déconnecter", default: "Se déconnecter" %>
+            <% end %>
+          </li>
+        </ul>
+      <!-- USER SIGN OUT -->
+      <% else %>
+        <ul>
+          <li>
+            <%= link_to t(".how_it_works", default: "La Révolution Positive"), about_path %>
+          </li>
+          <!-- <li>
+            <%= link_to t(".causes", default: "Causes"), causes_path %>
+          </li> -->
+          <!-- <li>
+            <%= link_to t(".bons_plans", default: "Bons Plans"), businesses_path %>
+          </li> -->
+          <!-- <li>
+            <%= link_to t(".connexion", default: "Connexion"), new_user_session_path %>
+          </li> -->
+          <!--<li>
+            <%= link_to t(".inscription", default: "Inscription"), new_user_registration_path %>
+          </li> -->
+        </ul>
+      <% end %>
+    </ul>
+  </div>
+</nav>
