@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151124130924) do
+ActiveRecord::Schema.define(version: 20151124132853) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -109,6 +109,26 @@ ActiveRecord::Schema.define(version: 20151124130924) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "perks", force: :cascade do |t|
+    t.string   "perk"
+    t.integer  "business_id"
+    t.text     "description"
+    t.string   "detail"
+    t.integer  "periodicity_id"
+    t.integer  "times"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.boolean  "permanent"
+    t.boolean  "flash"
+    t.boolean  "active"
+    t.string   "perk_code"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "perks", ["business_id"], name: "index_perks_on_business_id", using: :btree
+  add_index "perks", ["periodicity_id"], name: "index_perks_on_periodicity_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false
     t.string   "encrypted_password",     default: "",    null: false
@@ -140,4 +160,6 @@ ActiveRecord::Schema.define(version: 20151124130924) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "perks", "businesses"
+  add_foreign_key "perks", "periodicities"
 end
