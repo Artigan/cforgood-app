@@ -2,27 +2,31 @@
 #
 # Table name: businesses
 #
-#  id                   :integer          not null, primary key
-#  name                 :string
-#  street               :string
-#  zipcode              :string
-#  city                 :string
-#  url                  :string
-#  telephone            :string
-#  email                :string
-#  created_at           :datetime         not null
-#  updated_at           :datetime         not null
-#  description          :string
-#  picture_file_name    :string
-#  picture_content_type :string
-#  picture_file_size    :integer
-#  picture_updated_at   :datetime
-#  business_category_id :integer
-#  latitude             :float
-#  longitude            :float
-#  facebook             :string
-#  twitter              :string
-#  instagram            :string
+#  id                        :integer          not null, primary key
+#  name                      :string
+#  street                    :string
+#  zipcode                   :string
+#  city                      :string
+#  url                       :string
+#  telephone                 :string
+#  email                     :string
+#  created_at                :datetime         not null
+#  updated_at                :datetime         not null
+#  description               :string
+#  picture_file_name         :string
+#  picture_content_type      :string
+#  picture_file_size         :integer
+#  picture_updated_at        :datetime
+#  business_category_id      :integer
+#  latitude                  :float
+#  longitude                 :float
+#  facebook                  :string
+#  twitter                   :string
+#  instagram                 :string
+#  user_picture_file_name    :string
+#  user_picture_content_type :string
+#  user_picture_file_size    :string
+#  user_picture_updated_at   :datetime
 #
 # Indexes
 #
