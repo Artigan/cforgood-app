@@ -25,7 +25,7 @@
 #  instagram                 :string
 #  user_picture_file_name    :string
 #  user_picture_content_type :string
-#  user_picture_file_size    :string
+#  user_picture_file_size    :integer
 #  user_picture_updated_at   :datetime
 #
 # Indexes
@@ -34,7 +34,7 @@
 #
 
 class Business < ActiveRecord::Base
-  belongs_to   :business_category
+  belongs_to  :business_category
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
 
