@@ -9,4 +9,5 @@
 #
 
 class Periodicity < ActiveRecord::Base
+  has_many :perks
 end

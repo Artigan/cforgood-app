@@ -35,6 +35,10 @@
 
 class Business < ActiveRecord::Base
   belongs_to  :business_category
+  has_many :perks
+
+  validates :email, presence: true, uniqueness: true
+
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
 
