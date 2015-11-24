@@ -13,7 +13,6 @@
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
 #  description          :string
-#  perk                 :string
 #  picture_file_name    :string
 #  picture_content_type :string
 #  picture_file_size    :integer
@@ -21,9 +20,6 @@
 #  business_category_id :integer
 #  latitude             :float
 #  longitude            :float
-#  description_perk     :string
-#  detail_perk          :string
-#  description2_perk    :string
 #  facebook             :string
 #  twitter              :string
 #  instagram            :string
