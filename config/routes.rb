@@ -20,4 +20,8 @@ Rails.application.routes.draw do
 
   resources :contact_forms
 
+  namespace :pro do
+    resources :businesses, only: :index
+  end
+
 end
