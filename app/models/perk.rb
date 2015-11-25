@@ -27,4 +27,8 @@
 class Perk < ActiveRecord::Base
   belongs_to :business
   belongs_to :periodicity
+
+  scope :permanent, -> { where(permanent: true) }
+
 end
+

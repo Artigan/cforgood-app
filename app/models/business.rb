@@ -25,15 +25,30 @@
 #  instagram                 :string
 #  user_picture_file_name    :string
 #  user_picture_content_type :string
-#  user_picture_file_size    :integer
+#  user_picture_file_size    :string
 #  user_picture_updated_at   :datetime
+#  encrypted_password        :string           default(""), not null
+#  reset_password_token      :string
+#  reset_password_sent_at    :datetime
+#  remember_created_at       :datetime
+#  sign_in_count             :integer          default(0), not null
+#  current_sign_in_at        :datetime
+#  last_sign_in_at           :datetime
+#  current_sign_in_ip        :inet
+#  last_sign_in_ip           :inet
 #
 # Indexes
 #
 #  index_businesses_on_business_category_id  (business_category_id)
+#  index_businesses_on_email                 (email) UNIQUE
+#  index_businesses_on_reset_password_token  (reset_password_token) UNIQUE
 #
 
 class Business < ActiveRecord::Base
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
   belongs_to  :business_category
   has_many :perks
 

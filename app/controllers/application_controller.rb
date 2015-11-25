@@ -13,10 +13,22 @@ class ApplicationController < ActionController::Base
 
   # rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
+  layout :layout_by_resource
+
+  protected
+
+  def layout_by_resource
+    if devise_controller? && resource_name == :business
+      "pro"
+    else
+      "application"
+    end
+  end
+
   private
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:first_name, :last_name, :email, :password, :remember_me) }
+    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:first_name, :last_name, :email, :password, :remember_me, :password_confirmation) }
     devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:email, :password, :remember_me) }
     devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:email, :password, :current_password) }
 

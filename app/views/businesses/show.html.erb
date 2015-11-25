@@ -20,7 +20,7 @@
       </div>
       <div class="col-sm-6">
         <div class="absolute border3 ml-16cent" id="business-perk-show-header">
-          <h3><%= @business.perk.upcase %></h3>
+          <h3><%= @business.perks.permanent.first.perk.upcase %></h3>
         </div>
       </div>
     </div>
@@ -77,7 +77,7 @@
         <div class="clear"></div>
         <div class="col-sm-8" id="border-show-body"></div>
         <div class="clear"></div>
-        <li class="mt-10 w-100"><%= @business.description_perk %></li>
+        <li class="mt-10 w-100"><%= @business.perks.permanent.first.description %></li>
       </div>
 
       <div id="details-perk-body">
@@ -85,7 +85,7 @@
         <div class="clear"></div>
         <div class="col-sm-8" id="border-show-body"></div>
         <div class="clear"></div>
-        <p class="mt-10"><%= @business.detail_perk %></p>
+        <p class="mt-10"><%= @business.perks.permanent.first.detail %></p>
       </div>
     </div>
 

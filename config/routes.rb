@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   ActiveAdmin.routes(self)
   get 'contact_form/new'
   get 'contact_form/create'
@@ -20,8 +21,8 @@ Rails.application.routes.draw do
 
   resources :contact_forms
 
+  devise_for :businesses, path: :pro
   namespace :pro do
     resources :businesses, only: :show
   end
-
 end

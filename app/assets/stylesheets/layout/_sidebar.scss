@@ -1,0 +1,15 @@
+.left-sidebar {
+  display: inline-block;
+  position: fixed;
+  top: 50px;
+  bottom: 0px;
+  left: 0px;
+  padding: 10px;
+  background-color: $turquoise;
+  width: 110px;
+
+  & li {
+    margin-top: 20px;
+  }
+}
+
