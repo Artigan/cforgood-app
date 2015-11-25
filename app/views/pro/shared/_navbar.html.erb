@@ -19,7 +19,7 @@
         <div class="visible-xs menu-user-info">
           <%= image_tag avatar_url(current_business), class: "user-pic" %>
           <span class="user-name">
-            Bienvenue,<br> <%= current_business.name + "." if current_business.name != nil %>
+            Bienvenue,<br> <%= current_business.name + "." %>
           </span>
         </div>
         <ul>
@@ -30,7 +30,7 @@
           </li>
           <li class="hidden-xs">
             <%= link_to "#" do %>
-              <span class="user-name"><%= current_business.name + "." if current_business.name != nil %></span>
+              <span class="user-name"><%= current_business.name + "." %></span>
               <%= image_tag avatar_url(current_business), class: "img-circle" %>
             <% end %>
           </li>
