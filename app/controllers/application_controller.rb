@@ -25,6 +25,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def after_sign_in_path_for(resource)
+    if resource_name == :business
+      pro_business_path(resource)
+    end
+  end
+
   private
 
   def configure_permitted_parameters
