@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     if resource_name == :business
-      pro_business_path(resource)
+      pro_business_metrics_path(resource)
     end
   end
 
