@@ -5,7 +5,22 @@
 Créez un nouveau Bon Plan
 <% end %>
 
-<div class="container-fluid" id="bg-business-index">
-  <div class="whitebox-business"></div>
-  <h1>Business: <%= @business.name %></h1>
+<div class="container-fluid" id="dashboard-business">
+  <h1>Créez un nouveau Bon Plan</h1>
+   <div class="container-fluid bg-white">
+    <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 pt-50 pb-100">
+        <%= simple_form_for(@perk, url: new_pro_business_perk_path(@business), html: { method: :post }) do |f| %>
+        <%= f.input :perk, label: false, placeholder: "Nom de votre Bon Plan", required: true %>
+        <%= f.input :description, label: false, placeholder: "Décrivez votre Bon Plan", required: true %>
+        <%= f.input :periodicity_id, label: "Périodicité", collection: Periodicity.all %>
+        <%= f.input :times, label: "Nombre de fois possible", input_html: { min: 0 } %>
+        <%= f.input :start_date, as: :date, start_year: Date.today.year, end_year: Date.today.year, discard_day: true, order: [:month, :year] %>
+        <%= f.input :end_date, as: :date, start_year: Date.today.year, end_year: Date.today.year, discard_day: true, order: [:month, :year] %>
+        <%= f.input :permanent, as: :boolean, checked_value: true, unchecked_value: false %>
+        <%= f.input :flash, as: :boolean, checked_value: true, unchecked_value: false %>
+        <%= f.input :active, as: :boolean, checked_value: true, unchecked_value: false %>
+        <%= f.button :submit, 'Créer', class: "btn-turquoise" %>
+        <% end %>
+    </div>
+  </div>
 </div>

@@ -3,10 +3,10 @@ class Pro::PerksController < ApplicationController
 layout 'pro'
 
 before_action :find_perk, only: [:edit, :update]
-before_action :find_business, only: [:new, :create]
+before_action :find_business, only: [:index, :new, :create]
 
   def index
-    @perks = current_business.perks
+    @perks = @business.perks
   end
 
   def new

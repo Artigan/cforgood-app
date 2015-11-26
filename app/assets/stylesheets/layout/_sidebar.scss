@@ -8,6 +8,10 @@
   background-color: $turquoise;
   width: 110px;
 
+  & ul {
+    margin-top: 60px;
+  }
+
   & li {
     margin-top: 20px;
   }
