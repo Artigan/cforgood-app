@@ -1,24 +1,27 @@
 <div class="left-sidebar">
-  <ul>
-    <li>
-      <%= link_to pro_business_metrics_path(current_business) do %>
-        <i class="fa fa-dot-circle-o"></i> <%= t(".how_it_works", default: "Mes chiffres") %>
-      <% end %>
-    </li>
-    <li>
-      <%= link_to pro_perks_path do %>
-        <i class="fa fa-dot-circle-o"></i> <%= t(".how_it_works", default: "Mes Bons Plans") %>
-      <% end %>
-    </li>
-    <li>
-      <%= link_to new_pro_business_perk_path(current_business) do %>
-        <i class="fa fa-dot-circle-o"></i> <%= t(".how_it_works", default: "Créer un nouveau Bon Plan") %>
-      <% end %>
-    </li>
-    <li>
-      <%= link_to edit_pro_business_path(current_business) do %>
-        <i class="fa fa-dot-circle-o"></i> <%= t(".how_it_works", default: "Mon profil") %>
-      <% end %>
-    </li>
-  </ul>
+  <!-- BUSINESS SIGN IN -->
+  <% if business_signed_in? %>
+    <ul>
+      <li>
+        <%= link_to pro_business_metrics_path(current_business) do %>
+          <i class="fa fa-dot-circle-o"></i> <%= t(".how_it_works", default: "Mes chiffres") %>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to pro_perks_path do %>
+          <i class="fa fa-dot-circle-o"></i> <%= t(".how_it_works", default: "Mes Bons Plans") %>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to new_pro_business_perk_path(current_business) do %>
+          <i class="fa fa-dot-circle-o"></i> <%= t(".how_it_works", default: "Créer un nouveau Bon Plan") %>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to edit_pro_business_path(current_business) do %>
+          <i class="fa fa-dot-circle-o"></i> <%= t(".how_it_works", default: "Mon profil") %>
+        <% end %>
+      </li>
+    </ul>
+  <% end %>
 </div>

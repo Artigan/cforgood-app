@@ -1,1 +1,11 @@
-<h1>pro/pages/home</h1>
+<%= content_for(:title) do %>
+<%= @business.name %>
+<% end %>
+<%= content_for(:description) do %>
+Consultez vos chiffres
+<% end %>
+
+<div class="container-fluid" id="bg-business-index">
+  <div class="whitebox-business"></div>
+  <h1>Business: <%= @business.name %></h1>
+</div>
