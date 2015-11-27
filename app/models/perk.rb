@@ -12,7 +12,6 @@
 #  start_date     :datetime
 #  end_date       :datetime
 #  permanent      :boolean
-#  flash          :boolean
 #  active         :boolean
 #  perk_code      :string
 #  created_at     :datetime         not null

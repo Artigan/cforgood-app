@@ -13,27 +13,27 @@ Consultez vos Bons Plans
         <div class="pro-card-perk">
           <div class="pro-card-perk-title">
             <%= perk.perk.upcase %>
-            <% if perk.flash %>
+            <% if !perk.permanent %>
               <i class="fa fa-bolt pro-card-perk-flash"></i>
             <% end %>
           </div>
           <div class="pro-card-perk-content">
-              <%= perk.description %>
-              <div class="pro-card-perk-date">
-                <% if perk.permanent %>
-                  Bon Plan permanent
-                <% else %>
-                  Valable <%= "#{perk.times} fois" if perk.times != nil %>
-                  du <%= perk.start_date.strftime("%d %B %Y") if perk.start_date != nil %>
-                  au <%= perk.end_date.strftime("%d %B %Y") if perk.end_date != nil %>
-                <% end %>
-              </div>
-              <%= perk.active %>
-              <%= perk.perk_code %>
+            <%= perk.description %>
+            <div class="pro-card-perk-date">
+              <% if perk.permanent %>
+                Bon Plan permanent
+              <% else %>
+                Valable <%= "#{perk.times} fois" if perk.times != nil %>
+                du <%= perk.start_date.strftime("%d %B %Y") if perk.start_date != nil %>
+                au <%= perk.end_date.strftime("%d %B %Y") if perk.end_date != nil %>
+              <% end %>
             </div>
+            <%= "Offre active" if perk.active %>
+            <%= "Offre inactive" unless perk.active %>
+            <%= perk.perk_code %>
           </div>
         </div>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
   </div>
 </div>

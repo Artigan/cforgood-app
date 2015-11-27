@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151124171254) do
+ActiveRecord::Schema.define(version: 20151127164914) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -130,7 +130,6 @@ ActiveRecord::Schema.define(version: 20151124171254) do
     t.datetime "start_date"
     t.datetime "end_date"
     t.boolean  "permanent"
-    t.boolean  "flash"
     t.boolean  "active"
     t.string   "perk_code"
     t.datetime "created_at",     null: false
