@@ -4,6 +4,7 @@ class Pro::BusinessesController < Pro::ProController
 
   def show
     @perks = @business.perks
+    authorize @business
   end
 
   def edit

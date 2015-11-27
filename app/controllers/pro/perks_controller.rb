@@ -4,7 +4,7 @@ class Pro::PerksController < Pro::ProController
   before_action :find_business, only: [:index, :new, :create]
 
   def index
-    @perks = @business.perks
+    @perks = policy_scope(Perk)
   end
 
   def new
@@ -39,6 +39,7 @@ class Pro::PerksController < Pro::ProController
 
   def find_business
     @business = Business.find(params[:business_id])
+    authorize @business
   end
 
   def perk_params
