@@ -6,23 +6,34 @@ Consultez vos Bons Plans
 <% end %>
 
 <div class="container-fluid bg-white" id="dashboard-business">
-  <%= image_url current_business.picture if current_business.picture_file_name != nil%>
-  <% @perks.each do |perk| %>
-    <div class="row">
-      <div class="card">
-        <%= perk.perk %>
-        <%= perk.perk %>
-        <%= perk.description %>
-        <%= perk.detail %>
-        <%= perk.Periodicity.type if perk.periodicity_id != nil %>
-        <%= perk.times %>
-        <%= perk.start_date %>
-        <%= perk.end_date %>
-        <%= perk.permanent %>
-        <%= perk.flash %>
-        <%= perk.active %>
-        <%= perk.perk_code %>
-      </div>
+  <%= image_url current_business.picture if current_business.picture_file_name != nil %>
+  <div class="row">
+    <% @perks.each do |perk| %>
+      <div class="col-md-9 col-md-offset-1 col-sm-8 col-sm-offset-2">
+        <div class="pro-card-perk">
+          <div class="pro-card-perk-title">
+            <%= perk.perk.upcase %>
+            <% if perk.flash %>
+              <i class="fa fa-bolt pro-card-perk-flash"></i>
+            <% end %>
+          </div>
+          <div class="pro-card-perk-content">
+              <%= perk.description %>
+              <div class="pro-card-perk-date">
+                <% if perk.permanent %>
+                  Bon Plan permanent
+                <% else %>
+                  Valable <%= "#{perk.times} fois" if perk.times != nil %>
+                  du <%= perk.start_date.strftime("%d %B %Y") if perk.start_date != nil %>
+                  au <%= perk.end_date.strftime("%d %B %Y") if perk.end_date != nil %>
+                <% end %>
+              </div>
+              <%= perk.active %>
+              <%= perk.perk_code %>
+            </div>
+          </div>
+        </div>
+      <% end %>
     </div>
-  <% end %>
+  </div>
 </div>
