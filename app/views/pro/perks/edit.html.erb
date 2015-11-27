@@ -2,9 +2,11 @@
 <%= @business.name %>
 <% end %>
 <%= content_for(:description) do %>
-Modifiez de votre Bon Plan
+Modifiez votre Bon Plan
 <% end %>
 
-<div class="container-fluid" id="dashboard-business">
-  <h1>Modifiez votre Bon Plan></h1>
+<div class="container-fluid bg-white" id="dashboard-business">
+  <% @perks.each do |perk| %>
+    <%= render 'form_perk' %>
+  <% end %>
 </div>

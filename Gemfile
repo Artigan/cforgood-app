@@ -14,7 +14,7 @@ gem "country_select"
 gem "high_voltage"
 gem "faker"
 gem "devise"
-# gem "pundit"
+gem "pundit"
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2', git: 'https://github.com/zquestz/omniauth-google-oauth2.git'

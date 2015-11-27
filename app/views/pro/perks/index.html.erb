@@ -5,20 +5,24 @@
 Consultez vos Bons Plans
 <% end %>
 
-<div class="container-fluid" id="dashboard-business">
+<div class="container-fluid bg-white" id="dashboard-business">
   <%= image_url current_business.picture if current_business.picture_file_name != nil%>
   <% @perks.each do |perk| %>
-    <%= perk.perk %>
-    <%= perk.perk %>
-    <%= perk.description %>
-    <%= perk.detail %>
-    <%= perk.Periodicity.type if perk.periodicity_id != nil %>
-    <%= perk.times %>
-    <%= perk.start_date %>
-    <%= perk.end_date %>
-    <%= perk.permanent %>
-    <%= perk.flash %>
-    <%= perk.active %>
-    <%= perk.perk_code %>
+    <div class="row">
+      <div class="card">
+        <%= perk.perk %>
+        <%= perk.perk %>
+        <%= perk.description %>
+        <%= perk.detail %>
+        <%= perk.Periodicity.type if perk.periodicity_id != nil %>
+        <%= perk.times %>
+        <%= perk.start_date %>
+        <%= perk.end_date %>
+        <%= perk.permanent %>
+        <%= perk.flash %>
+        <%= perk.active %>
+        <%= perk.perk_code %>
+      </div>
+    </div>
   <% end %>
 </div>

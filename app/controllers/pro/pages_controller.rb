@@ -1,8 +1,4 @@
-class Pro::PagesController < ApplicationController
-
-  layout 'pro'
-
-  before_action :authenticate_business!
+class Pro::PagesController < Pro::ProController
 
   def home
     @business = Business.find(params[:business_id])

@@ -1,9 +1,7 @@
-class Pro::PerksController < ApplicationController
+class Pro::PerksController < Pro::ProController
 
-layout 'pro'
-
-before_action :find_perk, only: [:edit, :update]
-before_action :find_business, only: [:index, :new, :create]
+  before_action :find_perk, only: [:edit, :update]
+  before_action :find_business, only: [:index, :new, :create]
 
   def index
     @perks = @business.perks
@@ -44,6 +42,6 @@ before_action :find_business, only: [:index, :new, :create]
   end
 
   def perk_params
-    params.require(:perk).permit()
+    params.require(:perk).permit(:perk, :description, :times, :start_date, :end_date, :permanent, :flash, :active)
   end
 end

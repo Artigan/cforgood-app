@@ -1,8 +1,5 @@
-class Pro::BusinessesController < ApplicationController
+class Pro::BusinessesController < Pro::ProController
 
-  layout 'pro'
-
-  before_action :authenticate_business!
   before_action :find_business, only: [:show, :edit, :update]
 
   def show
