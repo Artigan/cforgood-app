@@ -1,7 +1,8 @@
 class BusinessesController < ApplicationController
 
   def index
-    @businesses = Business.all
+    # @businesses = Business.all
+    @businesses = Business.joins(:perks).where("perks.permanent = ?", true)
 
     # Let's DYNAMICALLY build the markers for the view.
     @markers = Gmaps4rails.build_markers(@businesses) do |business, marker|
