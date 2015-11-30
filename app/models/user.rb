@@ -135,4 +135,22 @@ class User < ActiveRecord::Base
 
     self.update(wallet_id: mangopay_wallet["Id"])
   end
+
+  def create_mangopay_payin!
+    payin_info = {
+      AuthorId: self.mangopay_id,
+      DebitedWalletId: self.wallet_id,
+      CreditedUserId: "9697271",
+      CreditedWalletId: "9697447",
+      DebitedFunds: { Currency: 'EUR', Amount: 250 },
+      Fees: { Currency: 'EUR', Amount: 250 },
+      CreditedWalletId: wallet_id,
+      ReturnURL: 'https://your.company.com',
+      CardType: 'CB_VISA_MASTERCARD',
+      Culture: 'FR',
+      Tag: 'Test Card'
+    }
+
+    mangopay_payin=MangoPay::PayIn::Card::Web.create(payin_info)
+  end
 end
