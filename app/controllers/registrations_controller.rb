@@ -5,4 +5,12 @@ class RegistrationsController < Devise::RegistrationsController
   def update_resource(resource, params)
     resource.update_without_password(params)
   end
+
+  def after_update_path_for(resource)
+    if resource_name == :business
+      pro_business_metrics_path(resource)
+    else
+      businesses_path
+    end
+  end
 end

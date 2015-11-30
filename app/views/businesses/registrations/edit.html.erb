@@ -19,7 +19,7 @@
                   <% end %>
 
                   <br>
-                  <%= f.input :current_password, placeholder: 'Mot de passe actuel', label: false, required: false %>
+                  <%#= f.input :current_password, placeholder: 'Mot de passe actuel', label: false, required: false %>
                   <%= f.input :password, autocomplete: "off", placeholder: 'Nouveau mot de passe actuel', label: false, required: false, hint: (t('.leave_blank_if_you_don_t_want_to_change_it', :default => "leave blank if you don't want to change it")) %>
                   <%= f.input :password_confirmation, placeholder: 'Confirmation mot de passe', label: false, required: false %>
                   <%= f.input :picture, as: :file, hint: 'Photo de votre commerce', required: true, label: false %>
