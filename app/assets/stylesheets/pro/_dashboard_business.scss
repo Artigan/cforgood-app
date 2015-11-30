@@ -1,9 +1,20 @@
-#dashboard-business {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  top:50px;
-  left:110px;
+.dashboard {
+  position: relative;
+  margin-top: 50px;
+  left: 260px;
+  background-color: #fff;
+
+  h1 {
+    margin: 0;
+  }
+
+  .admin-stats {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #fff;
+  }
 }
 
 .pro-card-perk {

@@ -14,7 +14,39 @@
   </a>
   <!-- MENU ITEMS -->
   <div class="link-container">
-      <!-- USER SIGN IN -->
+    <!-- PRO SIGN IN -->
+    <% if business_signed_in? %>
+      <div class="visible-xs menu-user-info">
+        <%= image_tag avatar_url(current_business), class: "user-pic" %>
+        <span class="user-name">
+          Bienvenue,<br> <%= current_business.name %>
+        </span>
+      </div>
+      <ul>
+        <li class="visible-xs">
+        <%= link_to "/" do %>
+          <i class="fa fa-home"></i> <%= t(".how_it_works", default: "Accueil") %>
+        <% end %>
+        </li>
+        <li>
+          <%= link_to about_path do %>
+          <i class="fa fa-dot-circle-o"></i> <%= t(".how_it_works", default: "Aide et conseils") %>
+          <% end %>
+        </li>
+        <li class="hidden-xs">
+          <%= link_to "#" do %>
+            <span class="user-name"><%= current_business.name %></span>
+            <%= image_tag avatar_url(current_business), class: "img-circle" %>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to destroy_user_session_path, method: :delete do %>
+            <i class="fa fa-times"></i>  <%= t ".se_déconnecter", default: "Se déconnecter" %>
+          <% end %>
+        </li>
+      </ul>
+    <!-- USER SIGN IN -->
+    <% else %>
       <% if user_signed_in? %>
         <div class="visible-xs menu-user-info">
           <%= image_tag avatar_url(current_user), class: "user-pic" %>
@@ -80,6 +112,6 @@
           </li> -->
         </ul>
       <% end %>
-    </ul>
+    <% end %>
   </div>
 </nav>

@@ -7,5 +7,4 @@ module ApplicationHelper
       "https://www.gravatar.com/avatar/#{gravatar_id}.jpg?d=identicon&s=30"
     end
   end
-
 end

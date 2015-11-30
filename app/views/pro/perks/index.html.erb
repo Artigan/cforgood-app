@@ -6,7 +6,7 @@ Consultez vos Bons Plans
 <% end %>
 
 <div class="container-fluid bg-white" id="dashboard-business">
-  <%= image_url current_business.picture if current_business.picture_file_name != nil %>
+  <!-- <= image_url current_business.picture if current_business.picture_file_name != nil > -->
   <div class="row">
     <% @perks.each do |perk| %>
       <div class="col-md-9 col-md-offset-1 col-sm-8 col-sm-offset-2">
