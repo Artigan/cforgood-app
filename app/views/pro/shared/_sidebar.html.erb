@@ -1,25 +1,29 @@
 <div class="left-sidebar">
   <!-- BUSINESS SIGN IN -->
   <% if business_signed_in? %>
-    <ul>
-      <li>
+    <ul id="sidebar">
+      <li class="active">
         <%= link_to pro_business_metrics_path(current_business) do %>
-          <i class="fa fa-dot-circle-o"></i> <%= t(".how_it_works", default: "Mes chiffres") %>
+          <%= image_tag('icons/suivi.png', :class => 'admin-icon') %>
+          <span class="admin-label">Mon suivi</span>
         <% end %>
       </li>
       <li>
         <%= link_to pro_business_perks_path(current_business) do %>
-          <i class="fa fa-dot-circle-o"></i> <%= t(".how_it_works", default: "Mes Bons Plans") %>
+          <%= image_tag('icons/myperks.png', :class => 'admin-icon') %>
+          <span class="admin-label">Mes Bons Plans</span>
         <% end %>
       </li>
       <li>
         <%= link_to new_pro_business_perk_path(current_business) do %>
-          <i class="fa fa-dot-circle-o"></i> <%= t(".how_it_works", default: "Créer un Bon Plan") %>
+          <%= image_tag('icons/createperks.png', :class => 'admin-icon') %>
+          <span class="admin-label">Créer un Bon Plan</span>
         <% end %>
       </li>
       <li>
         <%= link_to edit_business_registration_path do %>
-          <i class="fa fa-dot-circle-o"></i> <%= t(".how_it_works", default: "Mon profil") %>
+          <%= image_tag('icons/profil.png', :class => 'admin-icon') %>
+          <span class="admin-label">Mon profil</span>
         <% end %>
       </li>
     </ul>

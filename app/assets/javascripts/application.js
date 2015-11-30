@@ -5,7 +5,7 @@
 //= require gmaps/google
 
 //= require navbar
-//= require bases
+//= require app/bases
 //= require scrollReveal
 
 //= require vendor/slick.js
