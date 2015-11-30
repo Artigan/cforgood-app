@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get 'info_cause',  to: 'pages#info_cause'
   get 'about',   to: 'pages#about'
 
+  get 'accounts', to: 'accounts#new'
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 

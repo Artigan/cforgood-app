@@ -18,7 +18,7 @@ gem "pundit"
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2', git: 'https://github.com/zquestz/omniauth-google-oauth2.git'
-
+gem 'mangopay'
 
 gem "paperclip"
 gem "aws-sdk", "< 2.0"
