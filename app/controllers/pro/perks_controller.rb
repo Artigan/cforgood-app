@@ -2,18 +2,18 @@ class Pro::PerksController < Pro::ProController
 
   before_action :find_perk, only: [:edit, :update]
   before_action :find_business, only: [:index, :new, :create]
-
   def index
     @perks = policy_scope(Perk)
   end
 
   def new
     @perk = Perk.new
+    authorize @perk
   end
 
   def create
-    raise
     @perk = @business.perks.build(perk_params)
+    authorize @perk
     if @perk.save
       redirect_to pro_business_perks_path(@business)
     else
@@ -27,7 +27,8 @@ class Pro::PerksController < Pro::ProController
 
   def update
     if @perk.update(perk_params)
-      redirect_to pro_business_perks_path(@business)
+      authorize @perk
+      redirect_to pro_business_perks_path(current_business)
     else
      render :edit
     end
@@ -41,7 +42,6 @@ class Pro::PerksController < Pro::ProController
 
   def find_business
     @business = Business.find(params[:business_id])
-    authorize @business
   end
 
   def perk_params

@@ -7,12 +7,9 @@ class Pro::BusinessesController < Pro::ProController
     authorize @business
   end
 
-  def edit
-  end
-
   def update
     if @business.update(business_params)
-      redirect_to pro_business_path(@business)
+      redirect_to pro_business_metrics_path(@business)
     else
      render :edit
     end

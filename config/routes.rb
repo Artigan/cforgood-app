@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
   resources :contact_forms
 
-  devise_for :businesses, path: :pro
+  devise_for :businesses, path: :pro, controllers: {registrations: :registrations}
   namespace :pro do
     resources :businesses, only: [:show, :update] do
       resources :perks, only: [:index, :new, :create]
