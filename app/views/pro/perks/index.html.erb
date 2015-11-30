@@ -32,6 +32,11 @@ Consultez vos Bons Plans
             <%= "Offre inactive" unless perk.active %>
             <%= perk.perk_code %>
           </div>
+          <div>
+            <%= link_to edit_pro_perk_path(perk) do %>
+              <i class="fa fa-pencil"></i>
+            <% end %>
+          </div>
         </div>
       </div>
     <% end %>

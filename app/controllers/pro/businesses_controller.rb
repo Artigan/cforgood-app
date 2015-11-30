@@ -22,6 +22,7 @@ class Pro::BusinessesController < Pro::ProController
 
   def find_business
     @business = Business.find(params[:id])
+    authorize @business
   end
 
 end

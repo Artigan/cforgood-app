@@ -1,12 +1,13 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
     <%= simple_form_for [:pro, @business, @perk] do |f| %>
+    <%= f.error_notification %>
       <%= f.input :perk, label: false, placeholder: "Nom de votre Bon Plan", required: true %>
       <%= f.input :description, label: false, placeholder: "Décrivez votre Bon Plan", required: true %>
       <%#= f.input :periodicity_id, label: "Périodicité", collection: Periodicity.all %>
       <%= f.input :times, label: "Nombre de fois possible", input_html: { min: 0 } %>
       <%= f.input :start_date, as: :date, label: 'Début de validité' %>
-      <%= f.input :end_date, as: :date, label: 'Fin de validité', %>
+      <%= f.input :end_date, as: :date, label: 'Fin de validité' %>
       <%= f.input :permanent, as: :radio_buttons, label: false, collection: [['Permanent', true], ['Flash', true ]] %>
       <%= f.input :active, as: :boolean, checked_value: true, unchecked_value: true %>
       <%= f.button :submit, 'Créer', class: "btn-turquoise" %>

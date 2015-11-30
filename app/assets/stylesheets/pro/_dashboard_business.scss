@@ -1,5 +1,5 @@
 #dashboard-business {
-  position: fixed;
+  position: absolute;
   height: 100%;
   width: 100%;
   top:50px;
@@ -31,3 +31,8 @@
   }
 }
 
+.pro-map-businesses {
+  position: absolute;
+  top:50px;
+  left:110px;
+}

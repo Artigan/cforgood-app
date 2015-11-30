@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   def home
-    @businesses = Business.all
+    @businesses = Business.joins(:perks).where("perks.permanent = ?", true)
   end
 
   def info_business
