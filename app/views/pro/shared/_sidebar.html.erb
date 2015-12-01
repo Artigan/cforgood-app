@@ -2,25 +2,25 @@
   <!-- BUSINESS SIGN IN -->
   <% if business_signed_in? %>
     <ul id="sidebar">
-      <li class="active">
+      <li class="<%= active_class(pro_business_metrics_path(current_business))%>">
         <%= link_to pro_business_metrics_path(current_business) do %>
           <%= image_tag('icons/suivi.png', :class => 'admin-icon') %>
           <span class="admin-label">Mon suivi</span>
         <% end %>
       </li>
-      <li>
+      <li class="<%= active_class(pro_business_perks_path(current_business))%> light">
         <%= link_to pro_business_perks_path(current_business) do %>
           <%= image_tag('icons/myperks.png', :class => 'admin-icon') %>
           <span class="admin-label">Mes Bons Plans</span>
         <% end %>
       </li>
-      <li>
+      <li class="<%= active_class(new_pro_business_perk_path(current_business))%> light">
         <%= link_to new_pro_business_perk_path(current_business) do %>
           <%= image_tag('icons/createperks.png', :class => 'admin-icon') %>
           <span class="admin-label">Créer un Bon Plan</span>
         <% end %>
       </li>
-      <li>
+      <li class="<%= active_class(edit_business_registration_path)%>">
         <%= link_to edit_business_registration_path do %>
           <%= image_tag('icons/profil.png', :class => 'admin-icon') %>
           <span class="admin-label">Mon profil</span>

@@ -35,7 +35,7 @@ gem "gmaps4rails"
 gem "underscore-rails"
 gem "rails-erd"
 
-
+gem 'bootstrap-datepicker-rails'
 
 gem "rails-i18n"
 gem "devise-i18n"

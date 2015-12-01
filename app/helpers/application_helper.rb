@@ -7,4 +7,8 @@ module ApplicationHelper
       "https://www.gravatar.com/avatar/#{gravatar_id}.jpg?d=identicon&s=30"
     end
   end
+
+  def active_class(link_path)
+    current_page?(link_path) ? "active" : ""
+  end
 end

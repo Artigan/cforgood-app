@@ -5,6 +5,7 @@
 //= require gmaps/google
 
 //= require navbar
+//= require bootstrap-datepicker
 //= require app/bases
 //= require scrollReveal
 
