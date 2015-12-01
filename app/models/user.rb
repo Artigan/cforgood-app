@@ -32,10 +32,12 @@
 #  nationality            :string
 #  country_of_residence   :string
 #  mangopay_id            :string
-#  wallet_id              :string
+#  card_id                :string
+#  cause_id               :integer
 #
 # Indexes
 #
+#  index_users_on_cause_id              (cause_id)
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
@@ -124,33 +126,33 @@ class User < ActiveRecord::Base
     # end
   end
 
-  def create_mangopay_wallet!
-    wallet_info = {
-      Owners: [self.mangopay_id],
-      Description: "Portefeuille de #{self.first_name} #{self.last_name}",
-      Currency: 'EUR'
+  def create_mangopay_card_pre_registration
+    card_registration_info = {
+      UserId: self.mangopay_id,
+      Currency: "EUR",
+      CardType: "CB_VISA_MASTERCARD"
     }
 
-    mangopay_wallet = MangoPay::Wallet.create(wallet_info)
+    mangopay_card = MangoPay::CardRegistration.create(card_registration_info)
+  end
 
-    self.update(wallet_id: mangopay_wallet["Id"])
+  def update_mangopay_card_id(card_id)
+    self.update(card_id: card_id)
   end
 
   def create_mangopay_payin!
     payin_info = {
       AuthorId: self.mangopay_id,
-      DebitedWalletId: self.wallet_id,
-      CreditedUserId: "9697271",
-      CreditedWalletId: "9697447",
-      DebitedFunds: { Currency: 'EUR', Amount: 250 },
+      DebitedFunds: { Currency: 'EUR', Amount: 500 },
+      CreditedFunds: { Currency: 'EUR', Amount: 500 },
       Fees: { Currency: 'EUR', Amount: 250 },
-      CreditedWalletId: wallet_id,
-      ReturnURL: 'https://your.company.com',
-      CardType: 'CB_VISA_MASTERCARD',
-      Culture: 'FR',
-      Tag: 'Test Card'
+      # CreditedWalletId: Cause.find_by_id(self.cause_id).wallet_id,
+      CreditedWalletId: "9714401",
+      CardId: self.card_id,
+      SecureMode:"DEFAULT",
+      SecureModeReturnURL:"https://www.mysite.com"
     }
-
-    mangopay_payin=MangoPay::PayIn::Card::Web.create(payin_info)
+    mangopay_payin=MangoPay::PayIn::Card::Direct.create(payin_info)
   end
+
 end
