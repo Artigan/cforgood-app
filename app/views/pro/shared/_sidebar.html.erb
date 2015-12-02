@@ -1,0 +1,27 @@
+<div class="left-sidebar">
+  <!-- BUSINESS SIGN IN -->
+  <% if business_signed_in? %>
+    <ul>
+      <li>
+        <%= link_to pro_business_metrics_path(current_business) do %>
+          <i class="fa fa-dot-circle-o"></i> <%= t(".how_it_works", default: "Mes chiffres") %>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to pro_business_perks_path(current_business) do %>
+          <i class="fa fa-dot-circle-o"></i> <%= t(".how_it_works", default: "Mes Bons Plans") %>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to new_pro_business_perk_path(current_business) do %>
+          <i class="fa fa-dot-circle-o"></i> <%= t(".how_it_works", default: "Créer un Bon Plan") %>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to edit_business_registration_path do %>
+          <i class="fa fa-dot-circle-o"></i> <%= t(".how_it_works", default: "Mon profil") %>
+        <% end %>
+      </li>
+    </ul>
+  <% end %>
+</div>

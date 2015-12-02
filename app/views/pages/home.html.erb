@@ -101,17 +101,19 @@
       <!-- SLICK SLIDER -->
       <div class="container carrousel">
         <% @businesses.each do |business| %>
-        <div class="col-xs-12 col-sm-3">
-          <div class="perk-card">
-            <%= image_tag image_url business.picture %>
-            <div class="box-shadow">
-              <span><%= business.business_category.name%></span>
-              <h3 class="business-name"><%= business.name%></h3>
-              <i class="fa fa-map-marker"><strong><%=business.city%></strong></i>
-              <h4 class="business-perk"><%= business.perk.upcase%></h4>
+          <% if business.perks.permanent.first != nil %>
+            <div class="col-xs-12 col-sm-3">
+              <div class="perk-card">
+                <%= image_tag image_url business.picture %>
+                <div class="box-shadow">
+                  <span><%= business.business_category.name%></span>
+                  <h3 class="business-name"><%= business.name%></h3>
+                  <i class="fa fa-map-marker"><strong><%=business.city%></strong></i>
+                  <h4 class="business-perk"><%= business.perks.permanent.first.perk.upcase%></h4>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
+          <% end %>
         <%end%>
       </div>
     </div>

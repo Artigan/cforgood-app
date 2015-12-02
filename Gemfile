@@ -3,7 +3,7 @@ source 'https://rails-assets.org' do
   gem "rails-assets-underscore"
 end
 
-ruby "2.2.2"
+ruby "2.2.3"
 
 gem "rails", "4.2.3"
 gem "pg"
@@ -14,7 +14,7 @@ gem "country_select"
 gem "high_voltage"
 gem "faker"
 gem "devise"
-# gem "pundit"
+gem "pundit"
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2', git: 'https://github.com/zquestz/omniauth-google-oauth2.git'

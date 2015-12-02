@@ -1,0 +1,19 @@
+.left-sidebar {
+  display: inline-block;
+  position: fixed;
+  top: 50px;
+  bottom: 0px;
+  left: 0px;
+  padding: 0 10px;
+  background-color: $blue;
+  width: 110px;
+
+  & ul {
+    margin-top: 10px;
+  }
+
+  & li {
+    margin-top: 20px;
+  }
+}
+

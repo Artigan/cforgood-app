@@ -6,28 +6,44 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+
+# BusinessCategory.destroy_all
+Business.destroy_all
+
+# bar = BusinessCategory.create!({
+#   name: "Bars & Restaurants"
+#   })
+
+# shop = BusinessCategory.create!({
+#   name: "Shopping"
+#   })
+
+# tiers = BusinessCategory.create!({
+#   name: "Tiers Lieux"
+#   })
+
 Business.create!({
   name: "Label Terre",
-  category: "Bars & Restaurants",
-  city: "Bordeaux",
-  perk: "Un cookie offert"
+  email: "label@terre.com",
+  business_category_id: 20,
+  city: "Bordeaux"
+  # perk: "Un cookie offert"
 })
 
 Business.create!({
   name: "Someone",
-  category: "Shopping",
-  city: "Bordeaux",
-  perk: "15% gratuit"
+  email: "someone@gmail.com",
+  business_category_id: 21,
+  city: "Bordeaux"
+  # perk: "15% gratuit"
 })
 Business.create!({
   name: "Weecolab",
-  category: "Tiers Lieux",
-  city: "Bordeaux",
-  perk: "50% gratuit"
+  email: "weecolab@gmail.fr",
+  business_category_id: 22,
+  city: "Bordeaux"
+  # perk: "50% gratuit"
 })
 
-User.create!({
-  email: "allan.floury@gmail.com",
-  admin: true,
-  name: "Allan Floury"
-  })
+
+

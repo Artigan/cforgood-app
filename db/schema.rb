@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151029105029) do
+ActiveRecord::Schema.define(version: 20151129162924) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,10 +45,9 @@ ActiveRecord::Schema.define(version: 20151029105029) do
     t.string   "url"
     t.string   "telephone"
     t.string   "email"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
     t.string   "description"
-    t.string   "perk"
     t.string   "picture_file_name"
     t.string   "picture_content_type"
     t.integer  "picture_file_size"
@@ -56,15 +55,27 @@ ActiveRecord::Schema.define(version: 20151029105029) do
     t.integer  "business_category_id"
     t.float    "latitude"
     t.float    "longitude"
-    t.string   "description_perk"
-    t.string   "detail_perk"
-    t.string   "description2_perk"
     t.string   "facebook"
     t.string   "twitter"
     t.string   "instagram"
+    t.string   "encrypted_password",          default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",               default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet     "current_sign_in_ip"
+    t.inet     "last_sign_in_ip"
+    t.string   "leader_picture_file_name"
+    t.string   "leader_picture_content_type"
+    t.integer  "leader_picture_file_size"
+    t.datetime "leader_picture_updated_at"
   end
 
   add_index "businesses", ["business_category_id"], name: "index_businesses_on_business_category_id", using: :btree
+  add_index "businesses", ["email"], name: "index_businesses_on_email", unique: true, using: :btree
+  add_index "businesses", ["reset_password_token"], name: "index_businesses_on_reset_password_token", unique: true, using: :btree
 
   create_table "cause_categories", force: :cascade do |t|
     t.string   "name"
@@ -103,6 +114,31 @@ ActiveRecord::Schema.define(version: 20151029105029) do
 
   add_index "causes", ["cause_category_id"], name: "index_causes_on_cause_category_id", using: :btree
 
+  create_table "periodicities", force: :cascade do |t|
+    t.string   "type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "perks", force: :cascade do |t|
+    t.string   "perk"
+    t.integer  "business_id"
+    t.text     "description"
+    t.string   "detail"
+    t.integer  "periodicity_id"
+    t.integer  "times"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.boolean  "permanent"
+    t.boolean  "active"
+    t.string   "perk_code"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "perks", ["business_id"], name: "index_perks_on_business_id", using: :btree
+  add_index "perks", ["periodicity_id"], name: "index_perks_on_periodicity_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false
     t.string   "encrypted_password",     default: "",    null: false
@@ -134,4 +170,18 @@ ActiveRecord::Schema.define(version: 20151029105029) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  create_table "uses", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "perk_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "uses", ["perk_id"], name: "index_uses_on_perk_id", using: :btree
+  add_index "uses", ["user_id"], name: "index_uses_on_user_id", using: :btree
+
+  add_foreign_key "perks", "businesses"
+  add_foreign_key "perks", "periodicities"
+  add_foreign_key "uses", "perks"
+  add_foreign_key "uses", "users"
 end

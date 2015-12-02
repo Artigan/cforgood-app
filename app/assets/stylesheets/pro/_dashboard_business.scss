@@ -1,0 +1,38 @@
+#dashboard-business {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top:50px;
+  left:110px;
+}
+
+.pro-card-perk {
+  background-color: $turquoise;
+  padding: 10px;
+  margin: 10px;
+
+  &-title {
+    font-size: 16px;
+
+  }
+
+  &-content {
+    font-size: 14px;
+  }
+
+  &-date {
+    font-size: 12px;
+    color: $gray-lighter;
+  }
+
+  &-flash {
+    font-size: 26px;
+    color: $orange  ;
+  }
+}
+
+.pro-map-businesses {
+  position: absolute;
+  top:50px;
+  left:110px;
+}

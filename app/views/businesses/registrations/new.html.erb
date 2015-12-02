@@ -1,0 +1,33 @@
+<div class="container-fluid" id="bg-connexion">
+  <div id="blackbox-connexion"></div>
+    <div class="container mb-20">
+      <div class="row">
+        <div class="col-sm-4 col-sm-offset-4 mt-80 bg-light-white">
+          <div id="form-card">
+            <div>
+
+              <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+                <%= f.error_notification %>
+
+                <div class="form-inputs">
+                  <%= f.input :name, placeholder: 'Nom', required: true, autofocus: true, label: false %>
+                  <%= f.input :email, placeholder: 'Adresse email', required: true, label: false %>
+                  <%= f.input :password, placeholder: 'Mot de passe', required: true, label: false, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
+                  <%= f.input :password_confirmation, placeholder: 'Confirmation mot de passe', required: true, label: false %>
+                  <%= f.input :business_category_id, required: true, label: false, collection: BusinessCategory.all, hint: ("Choisissez la catégorie de votre commerce") %>
+                  <%= f.input :city, placeholder: 'Ville', required: true, label: false %>
+                </div>
+
+                <div class="form-actions">
+                  <%= f.button :submit, "Sign up" %>
+                </div>
+              <% end %>
+
+              <%= render "businesses/shared/links" %>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

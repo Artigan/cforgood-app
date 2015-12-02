@@ -1,0 +1,65 @@
+<nav id="navbar" class="nav" role="navigation">
+  <!-- ICON RESPONSIVE MENU -->
+  <a href="#" class="menu-toggle">
+    <div id="menu-icon">
+      <span id="icon-line"></span>
+      <span id="icon-line"></span>
+      <span id="icon-line"></span>
+      <span id="icon-line"></span>
+    </div>
+  </a>
+  <!-- BRAND LOGO -->
+  <a class="logo" href="/">
+    <%= image_tag "logo-white.png" %>
+  </a>
+  <!-- MENU ITEMS -->
+  <div class="link-container">
+      <!-- BUSINESS SIGN IN -->
+      <% if business_signed_in? %>
+        <div class="visible-xs menu-user-info">
+          <%= image_tag avatar_url(current_business), class: "user-pic" %>
+          <span class="user-name">
+            Bienvenue,<br> <%= current_business.name %>
+          </span>
+        </div>
+        <ul>
+          <li>
+            <%= link_to about_path do %>
+            <i class="fa fa-dot-circle-o"></i> <%= t(".how_it_works", default: "A Propos") %>
+            <% end %>
+          </li>
+          <li class="hidden-xs">
+            <%= link_to "#" do %>
+              <span class="user-name"><%= current_business.name %></span>
+              <%= image_tag avatar_url(current_business), class: "img-circle" %>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to destroy_business_session_path, method: :delete do %>
+              <i class="fa fa-times"></i>  <%= t ".se_déconnecter", default: "Se déconnecter" %>
+            <% end %>
+          </li>
+        </ul>
+      <!-- BUSINESS SIGN OUT -->
+      <% else %>
+        <ul>
+          <li>
+            <%= link_to t(".how_it_works", default: "La Révolution Positive"), about_path %>
+          </li>
+          <!-- <li>
+            <%= link_to t(".causes", default: "Causes"), causes_path %>
+          </li> -->
+          <!-- <li>
+            <%= link_to t(".bons_plans", default: "Bons Plans"), businesses_path %>
+          </li> -->
+          <!-- <li>
+            <%= link_to t(".connexion", default: "Connexion"), new_user_session_path %>
+          </li> -->
+          <!--<li>
+            <%= link_to t(".inscription", default: "Inscription"), new_user_registration_path %>
+          </li> -->
+        </ul>
+      <% end %>
+    </ul>
+  </div>
+</nav>

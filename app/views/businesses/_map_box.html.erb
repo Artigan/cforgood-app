@@ -1,7 +1,7 @@
 <div class="map_box br-5 text-center">
   <h3 class="black"><%= business.name %></h3>
   <%= business.business_category.name %>
-  <p><%= business.perk %></p>
+  <p><%= business.perks.permanent.first.perk %></p>
   <p><%= business.address %></p>
   <%= link_to "Voir", business, class: "btn btn-green" %>
 </div>
