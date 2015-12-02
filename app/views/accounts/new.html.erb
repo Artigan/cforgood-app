@@ -23,23 +23,24 @@
 
   <script>
     $(document).ready(function() {
-      $("#form-card-creation").validate({
-        rules: {
-          card_number: {
-            required: true,
-          },
-          card_expiration_date: {
-            required: true,
-          },
-          cvx: {
-            required: true,
-          }
-        }
-      });
+      // $("#form-card-creation").validate({
+      //   rules: {
+      //     card_number: {
+      //       required: true,
+      //     },
+      //     card_expiration_date: {
+      //       required: true,
+      //     },
+      //     cvx: {
+      //       required: true,
+      //     }
+      //   }
+      // });
 
-      $("#form-card-creation").on("submit", function() {
+      $("#form-card-creation").on("submit", function(e) {
+        e.preventDefault();
         if ($("#form-card-creation").valid()) {
-          var cardPreRegistration = <%= raw current_user.create_mangopay_card_pre_registration.to_json %>;
+          var cardPreRegistration = <%= current_user.mangopay_id ? raw(current_user.create_mangopay_card_pre_registration.to_json) : "null"  %>;
 
           // Initialize with card register data prepared on the server
           mangoPay.cardRegistration.init({
