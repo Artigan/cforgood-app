@@ -1,32 +1,28 @@
-<div class="container-fluid" id="bg-connexion">
-  <div id="blackbox-connexion"></div>
-    <div class="container mb-20">
-      <div class="row">
-        <div class="col-sm-4 col-sm-offset-4 mt-80 bg-light-white">
-          <div id="form-card">
-            <div>
-
-              <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-                <%= f.error_notification %>
-
-                <div class="form-inputs">
-                  <%= f.input :name, placeholder: 'Nom', required: true, autofocus: true, label: false %>
-                  <%= f.input :email, placeholder: 'Adresse email', required: true, label: false %>
-                  <%= f.input :password, placeholder: 'Mot de passe', required: true, label: false, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
-                  <%= f.input :password_confirmation, placeholder: 'Confirmation mot de passe', required: true, label: false %>
-                  <%= f.input :business_category_id, required: true, label: false, collection: BusinessCategory.all, hint: ("Choisissez la catégorie de votre commerce") %>
-                  <%= f.input :city, placeholder: 'Ville', required: true, label: false %>
-                </div>
-
-                <div class="form-actions">
-                  <%= f.button :submit, "Sign up" %>
-                </div>
-              <% end %>
-
-              <%= render "businesses/shared/links" %>
-
+<div class="container-fluid connexion connexion-pro">
+  <div class="connexion-overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-8 col-sm-offset-2 form-card">
+        <span>Créer mon compte Professionnel</span>
+        <!-- SUBSCRIPTION FORM -->
+          <div class="subscription-form signup-pro">
+            <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+            <%= f.error_notification %>
+              <%= f.input :name, placeholder: 'Nom', required: true, autofocus: true, label: "Nom de l'entreprise" %>
+              <%= f.input :email, placeholder: 'Adresse email', required: true, label: 'Votre email' %>
+              <%= f.input :password, placeholder: '8 cars. minimum', required: true, label: 'Mot de passe' %>
+              <%= f.input :password_confirmation, placeholder: 'Confirmation mot de passe', required: true, label: 'Confirmation du mot de passe' %>
+              <%= f.input :business_category_id, required: true, label: "Activité de l'entreprise", collection: BusinessCategory.all, prompt: 'Choisissez votre catégorie' %>
+              <%= f.input :city, placeholder: 'Ville', required: true, label: 'Votre ville' %>
+              <p>En cliquant sur <strong>S'inscrire</strong>, vous acceptez les <a type="href" class="" data-toggle="modal" data-target="#modal-cgu"><strong>CGU</strong></a> et certifiez avoir de plus de 18 ans.</p>
+              <%= f.button :submit, "Sign up" %>
+              <%= render "modals/signup_cgu" %>
+            <% end %>
           </div>
         </div>
+      </div>
+      <div class="col-xs-12 already-subscribed">
+        <span class=""> Déjà membre ? <strong><%= link_to t(".connexion", :default => "Connexion"), new_session_path(resource_name) %></strong></span>
       </div>
     </div>
   </div>

@@ -1,3 +1,6 @@
+.connexion.connexion-pro { background-image: image-url("cover-business.jpg"); }
+.connexion.connexion-user { background-image: image-url("bg-banner-home.jpg"); }
+
 .connexion {
   //position: relative;
   height: 100vh;
@@ -5,7 +8,8 @@
   text-align: center;
 
   position: relative;
-  background-image: image-url("bg-banner-home.jpg");
+  //background-image: image-url("bg-banner-home.jpg");
+  //background-image: image-url("cover-business.jpg");
   background-size: cover;
   background-attachment: fixed;
   background-position: bottom;
@@ -184,9 +188,9 @@
     input[type="password"]:focus {
       background-color: #fff;
       border-color: #f1F1F1;
-      -webkit-box-shadow: 0px 16px 40px -15px rgba(0, 0, 0, 0.6);
-      -moz-box-shadow: 0px 16px 40px -15px rgba(0, 0, 0, 0.6);
-      box-shadow: 0px 16px 40px -15px rgba(0, 0, 0, 0.6);
+      -webkit-box-shadow: 0px 20px 18px -19px rgba(0, 0, 0, 0.6);
+      -moz-box-shadow: 0px 20px 18px -19px rgba(0, 0, 0, 0.6);
+      box-shadow: 0px 20px 18px -19px rgba(0, 0, 0, 0.6);
       outline: 0 none;
     }
 
@@ -216,6 +220,10 @@
 // SIGNIN PAGE - USER & PRO
 
 .signin {
+  .form-card {
+    padding-bottom: 40px;
+  }
+
   .subscription-form {
     form {
       width: inherit;
