@@ -136,11 +136,11 @@ class User < ActiveRecord::Base
     mangopay_card = MangoPay::CardRegistration.create(card_registration_info)
   end
 
-  def update_mangopay_card_id(card_id)
+  def update_mangopay_card_id!(card_id)
     self.update(card_id: card_id)
   end
 
-  def create_mangopay_payin!
+  def create_mangopay_payin!(wallet_id)
     payin_info = {
       AuthorId: self.mangopay_id,
       DebitedFunds: { Currency: 'EUR', Amount: 500 },

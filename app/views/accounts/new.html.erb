@@ -15,27 +15,32 @@
         </br>
         <input type="submit" id="create-card">
       </form>
+      <%= simple_form_for :card, url: accounts_path, html: { id: :create_account } do |f| %>
+        <%= f.input :id, as: :hidden %>
+        <%= f.submit %>
+      <% end %>
     </div>
   </div>
 </div>
+
 
 <% content_for :after_js do %>
 
   <script>
     $(document).ready(function() {
-      // $("#form-card-creation").validate({
-      //   rules: {
-      //     card_number: {
-      //       required: true,
-      //     },
-      //     card_expiration_date: {
-      //       required: true,
-      //     },
-      //     cvx: {
-      //       required: true,
-      //     }
-      //   }
-      // });
+      $("#form-card-creation").validate({
+        rules: {
+          card_number: {
+            required: true,
+          },
+          card_expiration_date: {
+            required: true,
+          },
+          cvx: {
+            required: true,
+          }
+        }
+      });
 
       $("#form-card-creation").on("submit", function(e) {
         e.preventDefault();
@@ -71,8 +76,9 @@
             mangoPay.cardRegistration.registerCard(
               cardData,
               function(res) {
-                alert("Votre carte a bien été enregistrée sous le numéro " + res.CardId)
-                current_user.update_mangopay_card_id(res.CarId)
+                $("#card_id").val(res.CardId);
+                $("#create_account").submit();
+                // alert("Votre carte a bien été enregistrée sous le numéro " + res.CardId)
                 // Success, you can use res.CardId now that points to registered card
               },
               function(res) {
@@ -85,4 +91,5 @@
       });
     });
   </script>
+
 <% end %>

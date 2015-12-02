@@ -156,7 +156,7 @@ var mangoPay = {
                 error: function(xmlhttp) {
                     errorCallback({
                         "ResultCode": "001599",
-                        "ResultMessage": "Token processing error"
+                        "ResultMessage": "Token processing error - SERVER"
                     });
                     return;
                 }
