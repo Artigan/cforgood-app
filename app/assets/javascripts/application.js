@@ -5,6 +5,8 @@
 //= require gmaps/google
 
 //= require navbar
+//= require bootstrap-datepicker
+//= require app/bases
 //= require scrollReveal
 
 //= require vendor/slick.js

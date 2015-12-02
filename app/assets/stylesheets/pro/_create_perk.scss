@@ -1,0 +1,127 @@
+.form-perk-container {
+  padding: 40px;
+
+  .form-perk {
+    position: relative;
+    padding: 20px 20px 40px;
+    margin-bottom: 40px;
+    width: 65%;
+    background-color: #fff;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07);
+  }
+
+  .btn-create {
+    padding: 0px;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 2px;
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: 400;
+    background-color: $turquoise;
+    border: 1px solid #19A2C2;
+
+    -webkit-transition: all, 0.3s, ease-in-out;
+    -o-transition: all, 0.3s, ease-in-out;
+    transition: all, 0.3s, ease-in-out;
+
+    &:hover {
+      background-color: #19A2C2;
+    }
+  }
+
+  .form-group {
+    width: 100%;
+  }
+
+  form {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    text-align: left;
+
+    label {
+      margin: 0 0 5px 20px;
+      text-transform: uppercase;
+      font-size: small;
+      font-weight: 100;
+      color: #A5A5A5;
+      abbr { display: none; }
+    }
+
+    input,
+    textarea,
+    select {
+      width: 295px;
+      padding: 20px 20px;
+      border-radius: 20px;
+      background: #f1f1f1;
+      border: 1px solid #f9f9F9;
+      font-size: small;
+      font-weight: 100;
+
+      @include transition(all, 0.2s, ease-in-out);
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="password"]:focus,
+    input[type="number"]:focus,
+    textarea:focus,
+    select:focus {
+      background-color: #fff;
+      border-color: #f1F1F1;
+      -webkit-box-shadow: 0px 16px 40px -15px rgba(0, 0, 0, 0.6);
+      -moz-box-shadow: 0px 16px 40px -15px rgba(0, 0, 0, 0.6);
+      box-shadow: 0px 16px 40px -15px rgba(0, 0, 0, 0.6);
+      outline: 0 none;
+    }
+
+    textarea {
+      width: 100%;
+      resize: none;
+    }
+
+    .perk_times {
+      width: 45%;
+      margin-right: 5%;
+    }
+
+    .perk_periodicity_id {
+      width: 45%;
+      margin-left: 5%;
+    }
+
+    .perk_start_date,
+    .perk_end_date {
+      width: 45%;
+      margin: 0 2.5% 20px;
+    }
+
+    #perk_periodicity_id,
+    #perk_times,
+    #perk_start_date,
+    #perk_end_date {
+      width: 100%;
+    }
+  }
+
+  .date_hidden { display: none; }
+
+  .perk_permanent {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 0;
+
+    label {
+      flex: 1 100%;
+    }
+
+    .radio + .radio, .checkbox + .checkbox {
+      margin-top: 10px;
+    }
+  }
+}

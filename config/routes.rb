@@ -14,6 +14,11 @@ Rails.application.routes.draw do
 
   get 'accounts', to: 'accounts#new'
 
+  devise_scope :user do
+    get "/signup" => "devise/registrations#new"
+    get "/signin" => "devise/sessions#new"
+  end
+
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   resources :businesses, only: [:index, :show]

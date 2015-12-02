@@ -1,16 +1,13 @@
-<div class="row">
-  <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-    <%= simple_form_for [:pro, @business, @perk] do |f| %>
-    <%= f.error_notification %>
-      <%= f.input :perk, label: false, placeholder: "Nom de votre Bon Plan", required: true %>
-      <%= f.input :description, label: false, placeholder: "Décrivez votre Bon Plan", required: true %>
-      <%#= f.input :periodicity_id, label: "Périodicité", collection: Periodicity.all %>
-      <%= f.input :times, label: "Nombre de fois possible", input_html: { min: 0 } %>
-      <%= f.input :start_date, as: :date, label: 'Début de validité' %>
-      <%= f.input :end_date, as: :date, label: 'Fin de validité' %>
-      <%= f.input :permanent, as: :radio_buttons, label: false, collection: [['Permanent', true], ['Flash', true ]] %>
-      <%= f.input :active, as: :boolean, checked_value: true, unchecked_value: true %>
-      <%= f.button :submit, 'Créer', class: "btn-turquoise" %>
-    <% end %>
-  </div>
-</div>
+<%= simple_form_for [:pro, @business, @perk], html: { id: :test } do |f| %>
+<%= f.error_notification %>
+  <%= f.input :perk, label: "Nom du bon plan", placeholder: "I feel good", required: true %>
+  <%= f.input :description, label: "Description", placeholder: "Dites-nous tout...", required: true, :input_html => { :rows => 6 } %>
+  <%= f.input :times, label: "Récurence", input_html: { min: 0 } %>
+  <%#= f.input :periodicity_id, label: "Période", collection: Periodicity.all %>
+  <%= f.input :permanent, label: "Type du plan", as: :radio_buttons, collection: [['Permanent', true ], ['Flash', false ]] %>
+  <%= f.input :start_date, as: :string, label: false, placeholder: "Début", :input_html => {"data-provide" => "datepicker", class: "date_hidden" } %>
+  <%= f.input :end_date, as: :string, label: false, placeholder: "Fin", :input_html => {"data-provide" => "datepicker", class: "date_hidden" } %>
+  <%= f.button :submit, 'Créer', class: "btn-create" %>
+<% end %>
+
+
