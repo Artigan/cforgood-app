@@ -8,8 +8,9 @@
     position: relative;
     left: 20%;
     width: 80%;
-    height: 100%;
+    height: 100vh;
     background-color: #f1f1f1;
+    overflow-y: scroll;
 
     .admin-stats {
       position: absolute;

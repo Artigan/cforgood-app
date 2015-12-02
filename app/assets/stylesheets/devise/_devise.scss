@@ -192,7 +192,7 @@
 
     input[type="submit"] {
       display: block;
-      width: 50% !important;
+      max-width: 50%;
       margin: 0 auto;
       padding: 15px 20px;
       border-radius: 30px;
@@ -209,6 +209,45 @@
 
     input[type="submit"]:focus {
 
+    }
+  }
+}
+
+// SIGNIN PAGE - USER & PRO
+
+.signin {
+  .subscription-form {
+    form {
+      width: inherit;
+      input[type="submit"] { min-width: 100%; }
+    }
+    .form-group { width: 100%; }
+    .form-group:nth-child(odd) { input { margin-right: 0; } }
+    .form-group:nth-child(even) { input { margin-left: 0; } }
+    .checkbox, .checkbox label { margin: 0; }
+    .checkbox input { top: 3px; }
+    .checkbox { text-align: center; }
+    .new-password {
+      margin: 10px auto 0;
+      font-size: 0.7em;
+      color: #A5A5A5;
+      text-decoration: underline;
+      &:hover { color: #333; }
+    }
+  }
+
+  .subscription-network {
+    padding: 0;
+
+    .btn-google,
+    .btn-facebook   {
+      width: 40px;
+      height: 40px;
+      padding: 2px 15px;
+      border-radius: 50%;
+      line-height: 40px;
+
+      i:before { margin: 0;}
     }
   }
 }

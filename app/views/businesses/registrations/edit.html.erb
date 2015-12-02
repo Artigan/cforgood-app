@@ -1,54 +1,40 @@
-<div class="container-fluid" id="bg-connexion">
-  <div id="blackbox-connexion"></div>
-    <div class="container mb-20">
-      <div class="row">
-        <div class="col-sm-4 col-sm-offset-4 mt-80 bg-light-white">
-          <div id="form-card">
-            <div>
-              <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-                <%= f.error_notification %>
-                <%= devise_error_messages! %>
+<div class="container-fluid admin">
+  <!-- Sub Menu Sidebar -->
+  <%= render "pro/shared/sidebar" %>
+  <!-- Content - Statistics -->
+  <div class="dashboard">
+    <div class="form-edit-container">
+      <div class="form-edit">
+        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+          <%= f.error_notification %>
+          <%= devise_error_messages! %>
+          <%= f.input :business_category_id, required: true, label: false, collection: BusinessCategory.all, hint: ("Choisissez la catégorie de votre commerce") %>
+          <%= f.input :name, placeholder: 'Nom', required: true, autofocus: true, label: false %>
+          <%= f.input :email, placeholder: 'Adresse email', required: true, label: false %>
 
-                <div class="form-inputs">
-                  <%= f.input :business_category_id, required: true, label: false, collection: BusinessCategory.all, hint: ("Choisissez la catégorie de votre commerce") %>
-                  <%= f.input :name, placeholder: 'Nom', required: true, autofocus: true, label: false %>
-                  <%= f.input :email, placeholder: 'Adresse email', required: true, label: false %>
+          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+          <% end %>
 
-                  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-                    <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
-                  <% end %>
+          <br>
+          <%#= f.input :current_password, placeholder: 'Mot de passe actuel', label: false, required: false %>
+          <%= f.input :password, autocomplete: "off", placeholder: 'Nouveau mot de passe actuel', label: false, required: false, hint: (t('.leave_blank_if_you_don_t_want_to_change_it', :default => "leave blank if you don't want to change it")) %>
+          <%= f.input :password_confirmation, placeholder: 'Confirmation mot de passe', label: false, required: false %>
+          <%= f.input :picture, as: :file, hint: 'Photo de votre commerce', required: true, label: false %>
+          <%= f.input :leader_picture, as: :file, hint: 'Votre photo', required: true, label: false %>
+          <br>
+          <%= f.input :street, placeholder: 'Rue', required: true, label: false %>
+          <%= f.input :zipcode, placeholder: 'Code postal', required: true, label: false %>
+          <%= f.input :city, placeholder: 'Ville', required: true, label: false %>
+          <%= f.input :url, placeholder: 'Adresse site', label: false %>
+          <%= f.input :telephone, placeholder: 'Téléphone', required: true, label: false %>
+          <%= f.input :description, as: :text, placeholder: 'Description de votre commerce', required: true, label: false %>
+          <%= f.input :facebook, placeholder: 'Facebook', label: false %>
+          <%= f.input :twitter, placeholder: 'Twitter', label: false %>
+          <%= f.input :instagram, placeholder: 'Instagram', label: false %>
 
-                  <br>
-                  <%#= f.input :current_password, placeholder: 'Mot de passe actuel', label: false, required: false %>
-                  <%= f.input :password, autocomplete: "off", placeholder: 'Nouveau mot de passe actuel', label: false, required: false, hint: (t('.leave_blank_if_you_don_t_want_to_change_it', :default => "leave blank if you don't want to change it")) %>
-                  <%= f.input :password_confirmation, placeholder: 'Confirmation mot de passe', label: false, required: false %>
-                  <%= f.input :picture, as: :file, hint: 'Photo de votre commerce', required: true, label: false %>
-                  <%= f.input :leader_picture, as: :file, hint: 'Votre photo', required: true, label: false %>
-                  <br>
-                  <%= f.input :street, placeholder: 'Rue', required: true, label: false %>
-                  <%= f.input :zipcode, placeholder: 'Code postal', required: true, label: false %>
-                  <%= f.input :city, placeholder: 'Ville', required: true, label: false %>
-                  <%= f.input :url, placeholder: 'Adresse site', label: false %>
-                  <%= f.input :telephone, placeholder: 'Téléphone', required: true, label: false %>
-                  <%= f.input :description, as: :text, placeholder: 'Description de votre commerce', required: true, label: false %>
-                  <%= f.input :facebook, placeholder: 'Facebook', label: false %>
-                  <%= f.input :twitter, placeholder: 'Twitter', label: false %>
-                  <%= f.input :instagram, placeholder: 'Instagram', label: false %>
-                 <!--  <p>Mot de passe oublié? <%#= link_to "Changez mon mot de passe", edit_business_password_path, method: :get %></p> -->
-                </div>
-
-                <div class="form-actions">
-                  <%= f.button :submit, "Update" %>
-                </div>
-              <% end %>
-
-              <!--  <h3>Cancel my account</h3> -->
-
-         <!--      <p>Unhappy? <%#= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p> -->
-
-              <%= link_to "Back", :back %>
-          </div>
-        </div>
+          <%= f.button :submit, "Update" %>
+        <% end %>
       </div>
     </div>
   </div>
