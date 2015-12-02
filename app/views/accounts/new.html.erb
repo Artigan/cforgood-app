@@ -65,18 +65,17 @@
           mangoPay.cardRegistration.clientId  = "cforgood";
           var validateCard = mangoPay.cardRegistration._validateCardData(cardData);
 
-          alert(validateCard);
           if (validateCard) {
             // Register card
             mangoPay.cardRegistration.registerCard(
               cardData,
               function(res) {
-                alert("Votre carte a bien été enregistrée sous le numéro #{res.CardId}")
+                alert("Votre carte a bien été enregistrée sous le numéro " + res.CardId)
                 current_user.update_mangopay_card_id(res.CarId)
                 // Success, you can use res.CardId now that points to registered card
               },
               function(res) {
-                alert("Une erreur s'est produite lors de l'enregistrement de votre carte #{res.ResultCod}")
+                alert("Une erreur s'est produite lors de l'enregistrement de votre carte : " + res.ResultMessage)
                 // Handle error, see res.ResultCode and res.ResultMessage
               }
             );
