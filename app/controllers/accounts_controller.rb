@@ -1,10 +1,8 @@
 class AccountsController < ApplicationController
 
-def new
-end
+  before_action :authenticate_user!
 
-def card_registration
-  # raise
-end
+  def new
+  end
 
 end
