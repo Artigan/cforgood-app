@@ -22,7 +22,8 @@ class ApplicationController < ActionController::Base
     if resource_name == :business
       pro_business_metrics_path(resource)
     else
-      businesses_path
+      dashboard_path
+      # businesses_path
     end
   end
 

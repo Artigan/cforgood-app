@@ -26,6 +26,7 @@
 class Perk < ActiveRecord::Base
   belongs_to :business
   belongs_to :periodicity
+  has_many :uses
 
   scope :permanent, -> { where(permanent: true) }
   validate :start_date_cannot_be_greater_than_end_date

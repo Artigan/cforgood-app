@@ -80,12 +80,16 @@
         <li class="mt-10 w-100"><%= @business.perks.permanent.first.description %></li>
       </div>
 
-      <div id="details-perk-body">
+      <div id="F">
         <p class="col-sm-5 red text-left s-18 w-400 mt-10 pl-15">DETAILS DU BON PLAN</p>
         <div class="clear"></div>
         <div class="col-sm-8" id="border-show-body"></div>
         <div class="clear"></div>
         <p class="mt-10"><%= @business.perks.permanent.first.detail %></p>
+      </div>
+
+      <div class="details-perk-btn-profit">
+        <%= link_to "J'en profite", perk_uses_path(@business.perks.first.id), method: :post, class: "btn btn-danger" %>
       </div>
     </div>
 
@@ -124,3 +128,5 @@
     })
   <% end %>
 <% end %>
+
+

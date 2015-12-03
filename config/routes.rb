@@ -20,12 +20,17 @@ Rails.application.routes.draw do
   end
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+  get 'dashboard', to: 'dashboard'
 
   resources :businesses, only: [:index, :show]
 
   resources :causes, only: [:index, :show]
 
   resources :contact_forms
+
+  resources :perks do
+    resources :uses, only: [:create]
+  end
 
   devise_for :businesses, path: :pro, controllers: {registrations: :registrations}
   namespace :pro do

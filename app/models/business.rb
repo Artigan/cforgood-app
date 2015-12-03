@@ -84,4 +84,8 @@ class Business < ActiveRecord::Base
   def activated
     self.joins(:perks).where("perks.permanent = ?", true)
   end
+
+  def perks_uses_count
+    perks.reduce(0) { |sum, perk| sum + perk.uses.count }
+  end
 end

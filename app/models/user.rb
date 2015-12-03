@@ -50,6 +50,7 @@ class User < ActiveRecord::Base
          :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
 
   has_one :cause
+  has_many :uses
 
 
   def self.find_for_google_oauth2(access_token, signed_in_resourse=nil)
