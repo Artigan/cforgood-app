@@ -28,6 +28,11 @@ class Perk < ActiveRecord::Base
   belongs_to :periodicity
 
   scope :permanent, -> { where(permanent: true) }
+  validate :start_date_cannot_be_greater_than_end_date
 
+  def start_date_cannot_be_greater_than_end_date
+    if start_date.present? && end_date.present? && start_date > end_date
+      errors.add(:end_date, "ne doit pas être antérieure à la date de début")
+    end
+  end
 end
-
