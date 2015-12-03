@@ -30,7 +30,7 @@ Rails.application.routes.draw do
   devise_for :businesses, path: :pro, controllers: {registrations: :registrations}
   namespace :pro do
     resources :businesses, only: [:show, :update] do
-      resources :perks, only: [:index, :new, :create]
+      resources :perks, only: [:index, :new, :create, :update]
       get 'metrics', to: 'pages#home'
     end
     resources :perks, only: [:show, :edit, :update]

@@ -3,7 +3,7 @@
   <%= f.input :perk, label: "Nom du bon plan", placeholder: "I feel good", required: true %>
   <%= f.input :description, label: "Description", placeholder: "Dites-nous tout...", required: true, :input_html => { :rows => 6 } %>
   <%= f.input :times, label: "Récurence", input_html: { min: 0 } %>
-  <%#= f.input :periodicity_id, label: "Période", collection: Periodicity.all %>
+  <%= f.input :periodicity_id, label: "Période", collection: Periodicity.all, prompt: 'Choisissez une périodicité' %>
   <%= f.input :permanent, label: "Type du plan", as: :radio_buttons, collection: [['Permanent', true ], ['Flash', false ]] %>
   <%= f.input :start_date, as: :string, label: false, placeholder: "Début", :input_html => {"data-provide" => "datepicker", class: "date_hidden" } %>
   <%= f.input :end_date, as: :string, label: false, placeholder: "Fin", :input_html => {"data-provide" => "datepicker", class: "date_hidden" } %>

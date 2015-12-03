@@ -1,23 +1,21 @@
-<h1> Card registration </h1>
-
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-4 col-sm-offset-4 mt-80 bg-light-white text-center">
       <form id="form-card-creation">
         <label for="card_number">Numéro de carte</label>
-        <input type="text" name="card_number" id="card_number">
+        <input type="text" name="card_number" id="card_number" size="18">
         </br>
         <label for="card_exp_date">Date d'expiration</label>
-        <input type="text" name="card_exp_date" id="card_exp_date">
+        <input type="text" name="card_exp_date" id="card_exp_date" size="6" placeholder='mmaa' >
         </br>
         <label for="card_cvx">Numéro CVX</label>
-        <input type="text" name="card_cvx" id="card_cvx">
+        <input type="text" name="card_cvx" id="card_cvx" size="4" >
         </br>
-        <input type="submit" id="create-card">
+        <input type="submit" value="Enregistrer votre carte"  id="create-card">
       </form>
       <%= simple_form_for :card, url: accounts_path, html: { id: :create_account } do |f| %>
         <%= f.input :id, as: :hidden %>
-        <%= f.submit %>
+        <%= f.submit "", :style => "display: none;" %>
       <% end %>
     </div>
   </div>
@@ -32,18 +30,29 @@
         rules: {
           card_number: {
             required: true,
+            digits: true,
+            minlength: 16,
+            maxlength: 16
+
           },
           card_expiration_date: {
             required: true,
+            digits: true,
+            minlength: 4,
+            maxlength: 4
           },
           cvx: {
             required: true,
+            digits: true,
+            minlength: 3,
+            maxlength: 3
           }
         }
       });
 
       $("#form-card-creation").on("submit", function(e) {
         e.preventDefault();
+        console.log($("#form-card-creation").valid());
         if ($("#form-card-creation").valid()) {
           var cardPreRegistration = <%= current_user.mangopay_id ? raw(current_user.create_mangopay_card_pre_registration.to_json) : "null"  %>;
 
@@ -78,7 +87,6 @@
               function(res) {
                 $("#card_id").val(res.CardId);
                 $("#create_account").submit();
-                // alert("Votre carte a bien été enregistrée sous le numéro " + res.CardId)
                 // Success, you can use res.CardId now that points to registered card
               },
               function(res) {

@@ -17,6 +17,10 @@ Consultez vos Bons Plans
           <div class="perk-activation">
             <input class="tgl tgl-light" id="<%= perk.id %>" type="checkbox">
             <label class="tgl-btn" for="<%= perk.id %>"></label>
+            <%= simple_form_for :perk, url: pro_business_perk_path(current_business, perk.id), method: :patch, html: { id: :update_perk } do |f| %>
+              <%= f.input :active, value: !perk.active, as: :hidden %>
+              <%= f.submit "", :style => "display: none;" %>
+            <% end %>
           </div>
           <!-- PERK MAIN INFOS -->
           <div class="perk-details">
@@ -49,4 +53,14 @@ Consultez vos Bons Plans
     </div>
   </div>
 </div>
+
+<% content_for :after_js do %>
+  <script>
+    $(document).ready(function() {
+      $(':checkbox').change(function() {
+        $("#update_perk").submit();
+      });
+    });
+  </script>
+<% end %>
 
