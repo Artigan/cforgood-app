@@ -4,12 +4,13 @@
     <%= render "shared/head" %>
   </head>
   <body>
+    <%= render "shared/flashes" %>
     <%= render "shared/navbar" %>
     <div id="menu-overlay">
       <%= yield %>
       <%= render "shared/footer" %>
     </div>
-    <%= render "shared/flashes" %>
+
     <%= render "shared/js" %>
     <%= yield(:after_js) %>
   </body>

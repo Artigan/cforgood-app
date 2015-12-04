@@ -112,7 +112,8 @@ class User < ActiveRecord::Base
       "FirstName": self.first_name,
       "LastName": self.last_name,
       "Birthday": self.birthday.to_i,
-      "Nationality": self.nationality,
+      "Nationality": "FR",
+      # "Nationality": self.nationality,
       "CountryOfResidence": "FR",
       "PersonType": "NATURAL",
       "Email": self.email

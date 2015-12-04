@@ -6,10 +6,10 @@
 
   <body>
     <%= render "shared/navbar" %>
+    <%= render "shared/flashes" %>
     <div id="menu-overlay">
       <%= yield %>
     </div>
-    <%= render "shared/flashes" %>
     <%= render "shared/js" %>
     <%= yield(:after_js) %>
   </body>

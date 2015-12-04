@@ -107,3 +107,14 @@
     background-color: #39D64B;
   }
 }
+
+.button-rouge {
+  color: #fff;
+  border: 1px solid #BF2F2F;
+  background-color: #F74042;
+
+  &:hover {
+    color: #fff;
+    background-color: #BF2F2F;
+  }
+}
