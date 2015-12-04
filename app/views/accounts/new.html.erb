@@ -1,25 +1,50 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-sm-4 col-sm-offset-4 mt-80 bg-light-white text-center">
-      <form id="form-card-creation">
-        <label for="card_number">Numéro de carte</label>
-        <input type="text" name="card_number" id="card_number" size="18">
-        </br>
-        <label for="card_exp_date">Date d'expiration</label>
-        <input type="text" name="card_exp_date" id="card_exp_date" size="6" placeholder='mmaa' >
-        </br>
-        <label for="card_cvx">Numéro CVX</label>
-        <input type="text" name="card_cvx" id="card_cvx" size="4" >
-        </br>
-        <input type="submit" value="Enregistrer votre carte"  id="create-card">
-      </form>
-      <%= simple_form_for :card, url: accounts_path, html: { id: :create_account } do |f| %>
-        <%= f.input :id, as: :hidden %>
-        <%= f.submit "", :style => "display: none;" %>
-      <% end %>
+<style>
+  .subscription-form form {
+    display: block;
+  }
+</style>
+
+<div class="container-fluid connexion connexion-user">
+  <div class="connexion-overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-sm-offset-3 form-card">
+        <span>S'abonner à CForGood</span>
+        <div>
+          Pour 5 € par mois
+        </div>
+        <div class="subscription-form">
+          <form id="form-card-creation">
+            <div class="form-group">
+              <label for="card_number" class="control-label">Numéro de carte</label>
+              <input type="text" name="card_number" id="card_number" size="18" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="card_exp_date" class="control-label">Date d'expiration</label>
+              <input type="text" name="card_exp_date" id="card_exp_date" size="6" placeholder='mmaa' class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="card_cvx" class="control-label">Cryptogramme visuel</label>
+              <input type="text" name="card_cvx" id="card_cvx" size="4" class="form-control">
+            </div>
+            <input type="submit" value="Enregistrer votre carte"  id="create-card" class="btn btn-default">
+          </form>
+
+          <div class="hidden">
+            <%= simple_form_for :card, url: accounts_path, html: { id: :create_account } do |f| %>
+              <%= f.input :id, as: :hidden %>
+              <%= f.submit "", :style => "display: none;" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
+
+
+
+
 
 
 <% content_for :after_js do %>

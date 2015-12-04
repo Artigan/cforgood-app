@@ -53,6 +53,7 @@ class Business < ActiveRecord::Base
   has_many :perks
 
   validates :email, presence: true, uniqueness: true
+  validates :business_category_id, presence: true
 
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
@@ -68,6 +69,14 @@ class Business < ActiveRecord::Base
 
   validates_attachment_content_type :leader_picture,
       content_type: /\Aimage\/.*\z/
+
+  before_validation :default_values
+
+  def default_values
+   self.street = "87 Quai des Queyries"
+   self.zipcode = "33100"
+   self.url = "http://www.someoneshoes.com"
+  end
 
   def address_changed?
     :street_changed? || :zipcode_changed? || :city_changed?

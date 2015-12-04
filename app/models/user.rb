@@ -108,6 +108,9 @@ class User < ActiveRecord::Base
   end
 
   def create_mangopay_user!
+
+    self.update(birthday: "1980-12-04 13:29:37")
+
     user_info = {
       "FirstName": self.first_name,
       "LastName": self.last_name,

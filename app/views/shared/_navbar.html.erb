@@ -96,6 +96,12 @@
       <% else %>
         <ul>
           <li>
+            <%= link_to t(".inscription", default: "Inscription"), signup_path %>
+          </li>
+          <li>
+            <%= link_to t(".connexion", default: "Connexion"), signin_path %>
+          </li>
+          <li>
             <%= link_to t(".how_it_works", default: "La Révolution Positive"), about_path %>
           </li>
           <!-- <li>
