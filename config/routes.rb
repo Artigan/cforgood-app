@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   get 'info_cause',  to: 'pages#info_cause'
   get 'about',   to: 'pages#about'
 
+  get 'landing_business', to: 'pages#landing_business'
+
   resources :accounts, only: [:new, :create]
 
   devise_scope :user do

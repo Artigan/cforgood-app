@@ -1,0 +1,173 @@
+<%= content_for(:title) do %>
+  Commerces Partenaires
+<% end %>
+<%= content_for(:description) do %>
+  Une incroyable opportunité de vous faire entendre
+<% end %>
+<!-- HEADER -->
+<div id="header-landing-business">
+  <!-- HEADER GRADIENT OVERLAY -->
+  <div class="header-blackbox"></div>
+  <div class="header-overlay"></div>
+  <div class="container-fluid header-content">
+    <div class="row">
+      <div class="mt-50 col-xs-12 text-center">
+        <!-- HEADER CONTENT -->
+        <%= image_tag('logopouce-white.png', :class => 'header-logo') %>
+        <h1>Développez votre activité</h1>
+        <p>en inspirant la solidarité</p></br>
+        <!-- DEVENIR PARTENAIRE -->
+        <!-- <h2 class="black text-center" id="become-business">La Révolution Positive N'attend Que Vous !</h2> -->
+        <div id="btn-become-business text-center">
+          <%= link_to "Devenir partenaire", new_business_session_path, class: "btn btn-turquoise" %>
+        <!-- <a class="typeform-share btn btn-turquoise" href="https://cforgood1.typeform.com/to/PdisGd" data-mode="1" target="_blank">Devenir Partenaire</a> -->
+        </div>
+        <!-- BOUCING ARROW -->
+        <a href="#problem" rel="Go to the problem section">
+          <i class="fa fa-angle-down pulse hidden-xs"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- LE CONSTAT -->
+<section class="container-fluid problem" id="problem">
+  <div class="container">
+    <div class="row">
+      <h2 class="section-title">Ne perdez plus de clients</h2>
+      <div class="col-xs-12">
+        <p>Nous sommes de plus en plus nombreux à chercher une économie plus locale, plus responsable et pourtant, l'urgence du quotidien montent de nombreux obstacles sur notre chemin :</p>
+        <!-- MOCKUP 1 -->
+        <div class="col-xs-12 col-sm-4">
+            <h4>Manque D'informations</h4>
+            <h5>91%</h5>
+            <p>seraient prêts à changer de commerçant pour un plus engagé s'ils en avaient connaissance.</p>
+          </div>
+         <!-- MOCKUP 2 -->
+         <div class="col-xs-12 col-sm-4">
+            <h4>Manque De Temps</h4>
+            <h5>64%</h5>
+            <p>des français estiment qu'ils manquent de temps pour s'engager pour les causes qui leur sont chères.</p>
+          </div>
+         <!-- MOCKUP 3 -->
+         <div class="col-xs-12 col-sm-4">
+            <h4>Manque De Budget</h4>
+            <h5>60%</h5>
+            <p>des français jugent globalement les prix des produits bio et locaux trop élevés.</p>
+          </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- PRESENTATION - LA REVOLUTION POSITIVE -->
+<section class="container-fluid presentation" id="presentation-business">
+  <div class="container">
+    <div class="row">
+      <h2 class="section-title">La solution CforGood</h2>
+      <!-- BLOCK VIDEO -->
+      <div class="col-md-5">
+        <div class="embed-container video-mobile">
+          <iframe class="border-video" width="500" height="285" src="https://www.youtube.com/embed/4tYrdTm6lwQ?controls=0&rel=0&showinfo=0" frameborder="0"></iframe>
+        </div>
+      </div>
+      <!-- BLOCK DESCRIPTION -->
+      <div class="col-md-6 col-md-offset-1">
+        <h3>Une simple carte qui change tout.</h3>
+        <p>CforGood est une entreprise qui vous propose de développer gratuitement votre activité en inspirant la solidarité de vos clients, en toute simplicité.</p>
+        <p>Il s'agit d'un site web et d'une application mobile géolocalisés qui référencent les commerçants qui s'engagent pour une économie plus locale, positive et solidaire en offrant des bons plans aux titulaires de la carte CforGood qui soutiennent des associations et initiatives locales.</p>
+        <p><strong>C'est une Révolution Positive ! <br>Où vous incitez à l'altruisme... Tout en développant votre activité !</strong></p>
+        <!-- CTA - EN SAVOIR PLUS -->
+        <%= button_to "En Savoir Plus", about_path, class: "button button-turquoise" %>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- COMMENT ÇA MARCHE -->
+<section class="container-fluid process">
+  <div class="container">
+    <div class="row">
+      <h2 class="section-title">Comment ça marche ?</h2>
+      <div class="col-xs-12">
+        <!-- MOCKUP 1 -->
+        <div class="col-xs-12 col-sm-4 discover" data-sr="enter bottom and scale up 20% over 1s">
+          <%=image_tag("IphoneHome.png") %>
+          <h3>Créez</h3>
+          <p>Saisissez votre bon plan sous la forme que vous souhaitez (Flash ou Permanent).</p>
+        </div>
+         <!-- MOCKUP 2 -->
+        <div class="col-xs-12 col-sm-4 localise" data-sr="enter bottom and scale up 20% over 1s">
+          <%=image_tag("IphoneMap.png") %>
+          <h3>Publiez</h3>
+          <p>Rendez le visible instantanément auprès de notre communauté CforGood.</p>
+        </div>
+         <!-- MOCKUP 3 -->
+        <div class="col-xs-12 col-sm-4 enjoy" data-sr="enter bottom and scale up 20% over 1s">
+          <%=image_tag("IphoneCard.png") %>
+          <h3>Souriez !</h3>
+          <p>Les clients affluent pour bénéficier de votre offre exclusive !</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- BENEFICES -->
+<section class="container-fluid benefits">
+  <div class="blackbox"></div>
+  <div class="container">
+    <div class="row">
+      <h2 class="section-title">L'offre qu'il vous faut !</h2>
+      <div class="col-xs-10 col-xs-offset-1">
+        <!-- MOCKUP 1 -->
+        <div class="col-xs-4 item-benefit">
+          <div class="col-xs-12">
+            <%=image_tag("megaphone.png") %>
+            <p><strong>Une participation gratuite</strong></p>
+            <p>Une visibilité instantanée auprès des consommateurs engagés.</p>
+          </div>
+        </div>
+         <!-- MOCKUP 2 -->
+        <div class="col-xs-4 item-benefit">
+          <div class="col-xs-12">
+            <%=image_tag("megaphone.png") %>
+            <p><strong>Une participation gratuite</strong></p>
+            <p >Rendez le visible instantanément auprès de notre communauté CforGood.</p>
+          </div>
+        </div>
+         <!-- MOCKUP 3 -->
+        <div class="col-xs-4 item-benefit">
+          <div class="col-xs-12">
+            <%=image_tag("megaphone.png") %>
+            <p><strong>Une participation gratuite</strong></p>
+            <p>Les clients affluent pour bénéficier de votre offre exclusive !</p>
+          </div>
+        </div>
+        <!-- MOCKUP 4 -->
+        <div class="col-xs-4 item-benefit">
+          <div class="col-xs-12">
+            <%=image_tag("megaphone.png") %>
+            <p><strong>Une participation gratuite</strong></p>
+            <p>Les clients affluent pour bénéficier de votre offre exclusive !</p>
+          </div>
+        </div>
+        <!-- MOCKUP 5 -->
+        <div class="col-xs-4 item-benefit">
+          <div class="col-xs-12">
+            <%=image_tag("megaphone.png") %>
+            <p><strong>Une participation gratuite</strong></p>
+            <p>Les clients affluent pour bénéficier de votre offre exclusive !</p>
+          </div>
+        </div>
+        <!-- MOCKUP 6 -->
+        <div class="col-xs-4 item-benefit">
+          <div class="col-xs-12">
+            <%=image_tag("megaphone.png") %>
+            <p><strong>Une participation gratuite</strong></p>
+            <p>Identifier en un seul clic les commerces engagés dans sa ville !</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+

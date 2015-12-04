@@ -88,4 +88,8 @@ class Business < ActiveRecord::Base
   def perks_uses_count
     perks.reduce(0) { |sum, perk| sum + perk.uses.count }
   end
+
+   def perks_views_count
+    perks.reduce(0) { |sum, perk| sum + perk.nb_views.to_i }
+  end
 end
