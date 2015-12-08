@@ -3,7 +3,7 @@
   <% if user_signed_in? %>
     <ul id="sidebar">
       <li class="<%= active_class(dashboard_path)%>">
-        <%= link_to dashboard_path(current_user) do %>
+        <%= link_to dashboard_path do %>
           <%= image_tag('icons/suivi.png', :class => 'admin-icon') %>
           <span class="admin-label">Autour de vous</span>
         <% end %>

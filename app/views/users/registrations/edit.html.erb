@@ -1,31 +1,28 @@
-<h2><%= t('.title', :resource => resource_class.model_name.human , :default => "Edit #{resource_name.to_s.humanize}") %></h2>
+<div class="container-fluid admin">
+  <!-- Sub Menu Sidebar -->
+  <%= render "dashboard/shared/sidebar" %>
+  <!-- Content - Statistics -->
+  <div class="dashboard">
+    <div class="form-edit-container">
+      <div class="form-edit">
+        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+          <%= f.error_notification %>
+          <%= devise_error_messages! %>
+          <%= f.input :cause_id, required: true, label: false, collection: Cause.all, hint: ("Choisissez la cause qui bénéficiera de votre don ") %>
+          <%= f.input :last_name, placeholder: 'Nom', required: true, autofocus: true, label: false %>
+          <%= f.input :first_name, placeholder: 'Prénom', required: true, label: false %>
+          <%= f.input :email, placeholder: 'Adresse email', required: true, label: false %>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
-
-  <%- if devise_mapping.confirmable? && resource.pending_reconfirmation? -%>
-    <p>
-      <%= t('.currently_waiting_confirmation_for_email', :email => resource.unconfirmed_email, :default => "Currently waiting confirmation for: %{email}") %>
-    </p>
-  <%- end -%>
-
-  <div><%= f.label :password %> <i>(<%= t('.leave_blank_if_you_don_t_want_to_change_it', :default => "leave blank if you don't want to change it") %>)</i><br />
-  <%= f.password_field :password, :autocomplete => "off" %></div>
-
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
-
-  <div><%= f.label :current_password %> <i>(<%= t('.we_need_your_current_password_to_confirm_your_changes', :default => 'we need your current password to confirm your changes') %>)</i><br />
-  <%= f.password_field :current_password %></div>
-
-  <div><%= f.submit t('.update', :default => "Update") %></div>
-<% end %>
-
-<h3><%= t('.cancel_my_account', :default => 'Cancel my account') %></h3>
-
-<p><%= t('.unhappy', :default => 'Unhappy') %>? <%= link_to t('.cancel_my_account', :default => "Cancel my account"), registration_path(resource_name), :data => { :confirm => t('.are_you_sure', :default => "Are you sure?") }, :method => :delete %>.</p>
-
-<%= link_to t('devise.shared.links.back', :default => "Back"), :back %>
+          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+          <% end %>
+          <%#= f.input :current_password, placeholder: 'Mot de passe actuel', label: false, required: false %>
+          <%= f.input :password, autocomplete: "off", placeholder: 'Nouveau mot de passe actuel', label: false, required: false, hint: (t('.leave_blank_if_you_don_t_want_to_change_it', :default => "leave blank if you don't want to change it")) %>
+          <%= f.input :password_confirmation, placeholder: 'Confirmation mot de passe', label: false, required: false %>
+          <%= f.input :picture, as: :file, hint: 'Votre photo', required: true, label: false %>
+          <%= f.button :submit, "Update" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
