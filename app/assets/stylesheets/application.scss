@@ -1,3 +1,8 @@
+/*
+*= require bootstrap-datepicker
+*= require bootstrap-datepicker3
+*/
+
 // Graphical variables
 @import "config/variables";
 @import "config/bootstrap_variables";
@@ -11,6 +16,11 @@
 // Your CSS
 @import "layout/index";
 @import "components/index";
+@import "components/payment_card";
+@import "devise/devise";
+@import "user/dashboard_user";
+@import "devise/edit_pro";
+@import "devise/signup_pro";
 @import "pages/index";
 @import "vendor/index";
 @import "business/index";

@@ -13,4 +13,5 @@ class RegistrationsController < Devise::RegistrationsController
       businesses_path
     end
   end
+
 end

@@ -25,6 +25,8 @@
 #  description_impact   :string
 #  latitude             :float
 #  longitude            :float
+#  mangopay_id          :string
+#  wallet_id            :string
 #
 # Indexes
 #
@@ -33,10 +35,49 @@
 
 class Cause < ActiveRecord::Base
   belongs_to   :cause_category
+  belongs_to   :user
 
   has_attached_file :picture,
       styles: { medium: "300x300>", thumb: "100x100>" }
 
     validates_attachment_content_type :picture,
       content_type: /\Aimage\/.*\z/
+
+  def create_mangopay_legal_user!
+    legal_user_info = {
+      Name: self.name,
+      Email: self.email,
+      LegalPersonType: "BUSINESS",
+      # HeadquartersAddress: {
+      #   AddressLine1: self.street,
+      #   AddressLine2: "",
+      #   City: self.city,
+      #   Region: "",
+      #   PostalCode: self.zipcode,
+      #   Country: "FR"
+      # },
+      LegalRepresentativeFirstName: 'Allan',
+      LegalRepresentativeLastName: 'Floury',
+      LegalRepresentativeBirthday: Date.strptime("01/01/2000", "%m/%d/%Y").to_time.to_i,
+      LegalRepresentativeNationality: 'FR',
+      LegalRepresentativeCountryOfResidence: 'FR'
+      }
+
+    mangopay_legal_user = MangoPay::LegalUser.create(legal_user_info)
+
+    self.update(mangopay_id: mangopay_legal_user["Id"])
+  end
+
+  def create_mangopay_wallet!
+    wallet_info = {
+      Owners: [self.mangopay_id],
+      Description: "Portefeuille de #{self.name}",
+      Currency: 'EUR'
+    }
+
+    mangopay_wallet = MangoPay::Wallet.create(wallet_info)
+
+    self.update(wallet_id: mangopay_wallet["Id"])
+  end
 end
+

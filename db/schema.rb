@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151129162924) do
+ActiveRecord::Schema.define(version: 20151204005605) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -110,12 +110,14 @@ ActiveRecord::Schema.define(version: 20151129162924) do
     t.string   "description_impact"
     t.float    "latitude"
     t.float    "longitude"
+    t.string   "mangopay_id"
+    t.string   "wallet_id"
   end
 
   add_index "causes", ["cause_category_id"], name: "index_causes_on_cause_category_id", using: :btree
 
   create_table "periodicities", force: :cascade do |t|
-    t.string   "type"
+    t.string   "period"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -134,6 +136,7 @@ ActiveRecord::Schema.define(version: 20151129162924) do
     t.string   "perk_code"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.integer  "nb_views"
   end
 
   add_index "perks", ["business_id"], name: "index_perks_on_business_id", using: :btree
@@ -165,8 +168,15 @@ ActiveRecord::Schema.define(version: 20151129162924) do
     t.string   "picture_content_type"
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
+    t.datetime "birthday"
+    t.string   "nationality"
+    t.string   "country_of_residence"
+    t.string   "mangopay_id"
+    t.string   "card_id"
+    t.integer  "cause_id"
   end
 
+  add_index "users", ["cause_id"], name: "index_users_on_cause_id", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
@@ -182,6 +192,7 @@ ActiveRecord::Schema.define(version: 20151129162924) do
 
   add_foreign_key "perks", "businesses"
   add_foreign_key "perks", "periodicities"
+  add_foreign_key "users", "causes"
   add_foreign_key "uses", "perks"
   add_foreign_key "uses", "users"
 end

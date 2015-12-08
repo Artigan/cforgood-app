@@ -20,3 +20,20 @@ $(document).ready(function(){
     //$('body').bind('touchmove', function(e){e.preventDefault()})
   });
 });
+
+// HIDE/SHOW DATE PICKER IF BON PLAN FLASH
+
+$(document).ready(function(){
+  $('#perk_permanent_false').click(function(){
+    if ($('#perk_permanent_false').prop('checked') === true ) {
+      $('#perk_start_date').removeClass('date_hidden');
+      $('#perk_end_date').removeClass('date_hidden');
+    };
+  });
+  $('#perk_permanent_true').click(function(){
+    if ($('#perk_permanent_true').prop('checked') === true ) {
+      $('#perk_start_date').addClass('date_hidden');
+      $('#perk_end_date').addClass('date_hidden');
+    };
+  });
+});

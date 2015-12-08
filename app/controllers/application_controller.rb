@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
 
+  before_action :set_layout
+
   #before_action :authenticate_user!, unless: :pages_controller?
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
@@ -13,18 +15,28 @@ class ApplicationController < ActionController::Base
 
   # rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
-
   protected
 
   def after_sign_in_path_for(resource)
-    if resource_name == :business
+    if resource.sign_in_count == 1 && resource_name != :business
+      current_user.create_mangopay_user!
+      new_account_path
+    elsif resource_name == :business
       pro_business_metrics_path(resource)
     else
-      businesses_path
+      dashboard_path
     end
   end
 
   private
+
+  def set_layout
+    if devise_controller?
+      self.class.layout "sign"
+    else
+      self.class.layout "application"
+    end
+  end
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:first_name, :last_name, :email, :password, :remember_me, :password_confirmation, :name, :business_category_id, :city) }

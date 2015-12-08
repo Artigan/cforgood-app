@@ -22,12 +22,10 @@ class Pro::PerksController < Pro::ProController
   end
 
   def edit
-    authorize @perk
   end
 
   def update
     if @perk.update(perk_params)
-      authorize @perk
       redirect_to pro_business_perks_path(current_business)
     else
      render :edit
@@ -38,6 +36,7 @@ class Pro::PerksController < Pro::ProController
 
   def find_perk
      @perk = Perk.find(params[:id])
+     authorize @perk
   end
 
   def find_business
@@ -45,6 +44,6 @@ class Pro::PerksController < Pro::ProController
   end
 
   def perk_params
-    params.require(:perk).permit(:perk, :description, :times, :start_date, :end_date, :permanent, :active)
+    params.require(:perk).permit(:perk, :description, :times, :start_date, :end_date, :permanent, :periodicity_id, :active)
   end
 end

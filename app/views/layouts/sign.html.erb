@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%= render "shared/head" %>
+  </head>
+
+  <body>
+    <%= render "shared/navbar" %>
+    <div id="menu-overlay">
+      <%= yield %>
+    </div>
+    <%= render "shared/flashes" %>
+    <%= render "shared/js" %>
+    <%= yield(:after_js) %>
+  </body>
+</html>

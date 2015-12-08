@@ -54,7 +54,7 @@
         <p>Il s'agit d'une carte de membre à présenter pour bénéficier de réductions chez les commerces locaux et responsables, en échange d'un abonnement de 5€/mois destiné à soutenir l'association de votre choix.</p>
         <p><strong>C'est une Révolution Positive ! Où chacun fait sa part au quotidien...<br>Sans avoir à prendre les armes !</strong></p>
         <!-- CTA - EN SAVOIR PLUS -->
-        <%= button_to "En Savoir Plus", about_path, class: "button button-turquoise" %>
+        <%= button_to "En Savoir Plus", about_path, method: :get, class: "button button-turquoise" %>
       </div>
     </div>
   </div>
@@ -211,13 +211,13 @@
         <h3>Vous êtes une entreprise ?</h3>
         <p><strong>CforGood</strong> permet de développer gratuitement l'activité et la visibilité des commerces locaux, tout en envoyant un message fort en faveur de l'engagement citoyen !</p>
         <!-- BUTTON BUSINESS -->
-        <%= button_to "Inspirez vos clients", info_business_path, class: "button button-turquoise" %>
+        <%= button_to "Inspirez vos clients", landing_business_path, method: :get, class: "button button-turquoise" %>
       </div>
       <div class="col-xs-12 col-sm-6 association">
         <h3>Vous êtes une association ?</h3>
         <p><strong>CforGood</strong> développe l'engagement des citoyens en facilitant la communication, la mobilisation et la récolte de fonds pour les causes partenaires.</p>
         <!-- BUTTON ASSOCIATION -->
-        <%= button_to "Développez votre impact", info_cause_path, class: "button button-green" %>
+        <%= button_to "Développez votre impact", info_cause_path, method: :get, class: "button button-green" %>
       </div>
     </div>
   </div>

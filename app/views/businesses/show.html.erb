@@ -5,6 +5,9 @@
   Découvrez le Bon Plan offert par <%= @business.name %> !
 <% end %>
 
+
+<% @business.perks.find(params[:perk_id]).update_nb_view! %>
+
 <div class="container-fluid cforgood-background-business-show" id="business-show-header">
   <div class="mt-65">
     <div class="col-sm-8 col-sm-offset-2" id="bg-show-business-header" style="background-image: url(<%= image_url @business.picture %>)">
@@ -20,7 +23,7 @@
       </div>
       <div class="col-sm-6">
         <div class="absolute border3 ml-16cent" id="business-perk-show-header">
-          <h3><%= @business.perks.permanent.first.perk.upcase %></h3>
+          <h3><%= @business.perks.find(params[:perk_id]).perk.upcase %></h3>
         </div>
       </div>
     </div>
@@ -77,15 +80,22 @@
         <div class="clear"></div>
         <div class="col-sm-8" id="border-show-body"></div>
         <div class="clear"></div>
-        <li class="mt-10 w-100"><%= @business.perks.permanent.first.description %></li>
+        <p class="mt-10"><%= @business.perks.find(params[:perk_id]).description %></p>
       </div>
 
-      <div id="details-perk-body">
+      <div id="F">
         <p class="col-sm-5 red text-left s-18 w-400 mt-10 pl-15">DETAILS DU BON PLAN</p>
         <div class="clear"></div>
         <div class="col-sm-8" id="border-show-body"></div>
         <div class="clear"></div>
-        <p class="mt-10"><%= @business.perks.permanent.first.detail %></p>
+        <p class="mt-10"><%= @business.perks.find(params[:perk_id]).detail %></p>
+      </div>
+
+      <div class="details-perk-btn-profit">
+        <% if @business.url %>
+          <%= link_to "J'en profite", perk_uses_path(params[:perk_id]), method: :post, target: "_blank", class: "button button-rouge link-business" %>
+        <% end %>
+        <%= link_to "Retour", :back, class: "button button-turquoise" %>
       </div>
     </div>
 
@@ -124,3 +134,5 @@
     })
   <% end %>
 <% end %>
+
+

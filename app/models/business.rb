@@ -50,9 +50,10 @@ class Business < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   belongs_to  :business_category
-  has_many :perks
+  has_many :perks, dependent: :destroy
 
   validates :email, presence: true, uniqueness: true
+  validates :business_category_id, presence: true
 
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
@@ -69,6 +70,14 @@ class Business < ActiveRecord::Base
   validates_attachment_content_type :leader_picture,
       content_type: /\Aimage\/.*\z/
 
+  before_validation :default_values
+
+  def default_values
+   self.street = "87 Quai des Queyries"
+   self.zipcode = "33100"
+   self.url = "http://www.someoneshoes.com"
+  end
+
   def address_changed?
     :street_changed? || :zipcode_changed? || :city_changed?
   end
@@ -83,5 +92,13 @@ class Business < ActiveRecord::Base
 
   def activated
     self.joins(:perks).where("perks.permanent = ?", true)
+  end
+
+  def perks_uses_count
+    perks.reduce(0) { |sum, perk| sum + perk.uses.count }
+  end
+
+   def perks_views_count
+    perks.reduce(0) { |sum, perk| sum + perk.nb_views.to_i }
   end
 end

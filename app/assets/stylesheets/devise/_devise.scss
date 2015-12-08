@@ -1,0 +1,261 @@
+.connexion.connexion-pro { background-image: image-url("cover-business.jpg"); }
+.connexion.connexion-user { background-image: image-url("bg-banner-home.jpg"); }
+
+.connexion {
+  //position: relative;
+  height: 100vh;
+  //background-color: #292c31;
+  text-align: center;
+
+  position: relative;
+  //background-image: image-url("bg-banner-home.jpg");
+  //background-image: image-url("cover-business.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: bottom;
+
+  @media only screen and (max-width: 480px) and (orientation : portrait) { background-position: center center; }
+
+  .connexion-overlay {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+
+    z-index: 0;
+    opacity: 0.65;
+
+    background: -webkit-linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* Chrome 10+, Saf5.1+ */
+    background: -moz-linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* FF3.6+ */
+    background: -ms-linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* IE10 */
+    background: -o-linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* Opera 11.10+ */
+    background: linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* W3C */
+  }
+
+  .form-card   {
+    height: 100%;
+    padding: 50px 60px 20px 60px;
+    margin-top: 60px;
+    background: #fff;
+    border-radius: 10px;
+
+    -webkit-box-shadow: 0px 20px 33px -7px rgba(0,0,0,0.48);
+    -moz-box-shadow: 0px 20px 33px -7px rgba(0,0,0,0.48);
+    box-shadow: 0px 20px 33px -7px rgba(0,0,0,0.48);
+  }
+
+  span {
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  p {
+    margin: 10px auto 20px 0;
+    font-size: 0.7em;
+  }
+
+  .subscription-form {
+    margin-top: 30px;
+  }
+  .subscription-network {
+    padding: 0 20px;
+    margin: 15px 0 30px 0;
+
+    a:nth-child(even) { margin-right: 1%; }
+    a:nth-child(odd) { margin-left: 1%; }
+
+    span {
+      padding-bottom: 30px;
+      font-size: 0.7em;
+      font-weight: 100;
+      color: #A5A5A5;
+      display: flex;
+      align-items: center;
+      -webkit-margin-before: 0px !important;
+      -webkit-margin-after: 0px !important;
+      -webkit-margin-start: 0px;
+      -webkit-margin-end: 0px;
+
+      &::before,
+      &::after {
+        padding-top: 0;
+        content: "";
+        border-bottom: solid #DCDCDC 1px;
+        flex: 1;
+      }
+
+      &::before { margin: 0 20px 0 0; }
+      &::after { margin: 0 0 0 20px; }
+
+    }
+  }
+
+  .already-subscribed {
+    margin-top: 15px;
+
+    span {
+      color: $white;
+      font-size: small;
+      font-weight: 100;
+      text-transform: none;
+
+      a {
+        color: $white;
+        font-weight: 600;
+        text-decoration: underline;
+
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
+  }
+
+  .btn-google,
+  .btn-facebook   {
+    display: inline-block;
+    width: 48.5%;
+    border-radius: 20px;
+    height: 42px;
+    color: #fff;
+    padding: 10px 70px;
+    text-decoration: none;
+    font-size: 16px;
+    margin-bottom: 10px;
+    text-align:center;
+    @include transition(all, 0.2s, ease-in-out);
+
+    a {
+      color:white;
+      text-decoration: none;
+    }
+
+    i:before { margin-right: 10px;}
+  }
+
+  .btn-google {
+    background: #DD4C39;
+    &:hover { background-color: #C53825; }
+  }
+
+  .btn-facebook {
+    background: #47639E;
+    &:hover { background-color: #354F86; }
+  }
+}
+
+/* SIGNUP /  SIGNIN FORM */
+
+.subscription-form {
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+  padding: 0 20px;
+
+  form {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    text-align: left;
+
+    label {
+      margin: 0 0 5px 20px;
+      text-transform: uppercase;
+      font-size: small;
+      font-weight: 100;
+      color: #A5A5A5;
+      abbr { display: none; }
+    }
+
+    input {
+      width: 295px;
+      padding: 20px 20px;
+      border-radius: 20px;
+      background: #f1f1f1;
+      border: 1px solid #f9f9F9;
+      font-size: small;
+      font-weight: 100;
+
+      @include transition(all, 0.2s, ease-in-out);
+    }
+
+    .form-group:nth-child(odd) { input { margin-right: 5px; } }
+    .form-group:nth-child(even) { input { margin-left: 5px; } }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="password"]:focus {
+      background-color: #fff;
+      border-color: #f1F1F1;
+      -webkit-box-shadow: 0px 20px 18px -19px rgba(0, 0, 0, 0.6);
+      -moz-box-shadow: 0px 20px 18px -19px rgba(0, 0, 0, 0.6);
+      box-shadow: 0px 20px 18px -19px rgba(0, 0, 0, 0.6);
+      outline: 0 none;
+    }
+
+    input[type="submit"] {
+      display: block;
+      max-width: 50%;
+      margin: 0 auto;
+      padding: 15px 20px;
+      border-radius: 30px;
+      color: $white;
+      text-transform: uppercase;
+      background: $turquoise;
+      border: 1px solid #19A2C2;
+      font-size: small;
+      font-weight: 100;
+
+      &:hover { background-color: #19A2C2; }
+    }
+
+
+    input[type="submit"]:focus {
+
+    }
+  }
+}
+
+// SIGNIN PAGE - USER & PRO
+
+.signin {
+  .form-card {
+    padding-bottom: 40px;
+  }
+
+  .subscription-form {
+    form {
+      width: inherit;
+      input[type="submit"] { min-width: 100%; }
+    }
+    .form-group { width: 100%; }
+    .form-group:nth-child(odd) { input { margin-right: 0; } }
+    .form-group:nth-child(even) { input { margin-left: 0; } }
+    .checkbox, .checkbox label { margin: 0; }
+    .checkbox input { top: 3px; }
+    .checkbox { text-align: center; }
+    .new-password {
+      margin: 10px auto 0;
+      font-size: 0.7em;
+      color: #A5A5A5;
+      text-decoration: underline;
+      &:hover { color: #333; }
+    }
+  }
+
+  .subscription-network {
+    padding: 0;
+
+    .btn-google,
+    .btn-facebook   {
+      width: 40px;
+      height: 40px;
+      padding: 2px 15px;
+      border-radius: 50%;
+      line-height: 40px;
+
+      i:before { margin: 0;}
+    }
+  }
+}

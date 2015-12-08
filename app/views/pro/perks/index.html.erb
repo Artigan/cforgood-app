@@ -5,40 +5,64 @@
 Consultez vos Bons Plans
 <% end %>
 
-<div class="container-fluid bg-white" id="dashboard-business">
-  <%= image_url current_business.picture if current_business.picture_file_name != nil %>
-  <div class="row">
-    <% @perks.each do |perk| %>
-      <div class="col-md-9 col-md-offset-1 col-sm-8 col-sm-offset-2">
-        <div class="pro-card-perk">
-          <div class="pro-card-perk-title">
-            <%= perk.perk.upcase %>
-            <% if !perk.permanent %>
-              <i class="fa fa-bolt pro-card-perk-flash"></i>
+<div class="container-fluid admin">
+  <!-- Sub Menu Sidebar -->
+  <%= render "pro/shared/sidebar" %>
+  <!-- Content - Statistics -->
+  <div class="dashboard">
+    <div class="admin-perks">
+      <% @perks.reverse.each do |perk| %>
+        <div class="admin-perk-card">
+          <!-- PERK ACTIVATION -->
+          <div class="perk-activation">
+            <input class="tgl tgl-light" id="<%= perk.id %>" type="checkbox" <%= 'checked="checked"' if perk.active %>>
+            <label class="tgl-btn" for="<%= perk.id %>"></label>
+            <%= simple_form_for :perk, url: pro_business_perk_path(current_business, perk.id), method: :patch, html: { id: "update_perk_#{perk.id}" } do |f| %>
+              <%= f.input :active, as: :hidden, input_html: { value: !perk.active } %>
+              <%= f.submit "", :style => "display: none;" %>
             <% end %>
           </div>
-          <div class="pro-card-perk-content">
-            <%= perk.description %>
-            <div class="pro-card-perk-date">
-              <% if perk.permanent %>
-                Bon Plan permanent
-              <% else %>
-                Valable <%= "#{perk.times} fois" if perk.times != nil %>
-                du <%= perk.start_date.strftime("%d %B %Y") if perk.start_date != nil %>
-                au <%= perk.end_date.strftime("%d %B %Y") if perk.end_date != nil %>
+          <!-- PERK MAIN INFOS -->
+          <div class="perk-details">
+            <div class="perk-title">
+              <%= perk.perk.upcase %>
+              <% if !perk.permanent %>
+                <i class="fa fa-bolt pro-card-perk-flash"></i>
               <% end %>
             </div>
-            <%= "Offre active" if perk.active %>
-            <%= "Offre inactive" unless perk.active %>
-            <%= perk.perk_code %>
+            <div class="perk-content">
+              <%= perk.description %>
+              <div class="perk-date">
+                <% if perk.permanent %>
+                  <span>Bon Plan permanent</span>
+                <% else %>
+                  <span><i class="fa fa-barcode"></i><%= "#{perk.times}" if perk.times != nil %> restants</span>
+                  <span><i class="fa fa-calendar-check-o"></i> du <%= perk.start_date.strftime("%d %b") if perk.start_date != nil %> au <%= perk.end_date.strftime("%d %b %Y") if perk.end_date != nil %></span>
+                <% end %>
+              </div>
+            </div>
           </div>
-          <div>
+          <div class="perk-status">
+            <%= perk.perk_code %>
             <%= link_to edit_pro_perk_path(perk) do %>
-              <i class="fa fa-pencil"></i>
+              Mettre à jour
             <% end %>
           </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
 </div>
+
+<% content_for :after_js do %>
+  <script>
+    $(document).ready(function() {
+      $(':checkbox').change(function() {
+        var updatePerk = "update_perk_" + ($(this).val("form").attr('id'))
+        console.log(updatePerk)
+        $('#' + updatePerk).submit();
+      });
+    });
+  </script>
+<% end %>
+

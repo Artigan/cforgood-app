@@ -16,4 +16,8 @@ class BusinessPolicy < ApplicationPolicy
   def home?
      user == record
   end
+
+  def dashboard?
+    user == record
+  end
 end

@@ -109,6 +109,12 @@
   }
 }
 
+.details-perk-btn-profit {
+  margin-top: 10%;
+  margin-left: 40%;
+  color: #fff;
+}
+
 .whitebox-show-business {
   position: absolute;
   height: 100%;
@@ -187,6 +193,17 @@
     border-radius: 50%;
     text-align: center;
     border-color: rgba(51,51,51,0.1);
+  }
+
+  .link-business {
+    background-color: #3E78A3;
+    color: white;
+    & a:link, a:visited, a:active {
+      opacity: 0.9;
+      text-decoration: none;
+      outline: none;
+      color: white;
+    }
   }
 }
 

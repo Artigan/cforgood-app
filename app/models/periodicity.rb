@@ -3,7 +3,7 @@
 # Table name: periodicities
 #
 #  id         :integer          not null, primary key
-#  type       :string
+#  period     :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

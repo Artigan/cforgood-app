@@ -28,9 +28,16 @@
 #  picture_content_type   :string
 #  picture_file_size      :integer
 #  picture_updated_at     :datetime
+#  birthday               :datetime
+#  nationality            :string
+#  country_of_residence   :string
+#  mangopay_id            :string
+#  card_id                :string
+#  cause_id               :integer
 #
 # Indexes
 #
+#  index_users_on_cause_id              (cause_id)
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
@@ -43,6 +50,7 @@ class User < ActiveRecord::Base
          :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
 
   has_one :cause
+  has_many :uses, dependent: :destroy
 
 
   def self.find_for_google_oauth2(access_token, signed_in_resourse=nil)
@@ -98,4 +106,53 @@ class User < ActiveRecord::Base
       r.base_uri.to_s
     end
   end
+
+  def create_mangopay_user!
+
+    #self.update(birthday: "1980-12-04 13:29:37")
+
+    user_info = {
+      "FirstName": self.first_name,
+      "LastName": self.last_name,
+      "Birthday": self.birthday.to_i,
+      "Nationality": "FR",
+      # "Nationality": self.nationality,
+      "CountryOfResidence": "FR",
+      "PersonType": "NATURAL",
+      "Email": self.email
+    }
+
+    mangopay_user = MangoPay::NaturalUser.create(user_info)
+
+    self.update(mangopay_id: mangopay_user["Id"])
+  end
+
+  def create_mangopay_card_pre_registration
+    card_registration_info = {
+      UserId: self.mangopay_id,
+      Currency: "EUR",
+      CardType: "CB_VISA_MASTERCARD"
+    }
+
+    mangopay_card = MangoPay::CardRegistration.create(card_registration_info)
+  end
+
+  def update_mangopay_card_id!(card_id)
+    self.update(card_id: card_id)
+  end
+
+  def create_mangopay_payin!(wallet_id)
+    payin_info = {
+      AuthorId: self.mangopay_id,
+      DebitedFunds: { Currency: 'EUR', Amount: 500 },
+      CreditedFunds: { Currency: 'EUR', Amount: 500 },
+      Fees: { Currency: 'EUR', Amount: 250 },
+      CreditedWalletId: Cause.find_by_id(self.cause_id).wallet_id,
+      CardId: self.card_id,
+      SecureMode:"DEFAULT",
+      SecureModeReturnURL:"https://www.mysite.com"
+    }
+    mangopay_payin=MangoPay::PayIn::Card::Direct.create(payin_info)
+  end
+
 end

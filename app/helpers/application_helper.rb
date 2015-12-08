@@ -8,4 +8,15 @@ module ApplicationHelper
     end
   end
 
+  def active_class(link_path)
+    current_page?(link_path) ? "active" : ""
+  end
+
+  def pro_space?
+    request.env['PATH_INFO'].include? "/pro/"
+  end
+
+  def user_space?
+    !pro_space?
+  end
 end

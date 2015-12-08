@@ -88,6 +88,8 @@ GEM
       rack (>= 0.9.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bootstrap-datepicker-rails (1.5.0)
+      railties (>= 3.0)
     bootstrap-sass (3.3.6)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
@@ -180,6 +182,8 @@ GEM
     mail_form (1.5.1)
       actionmailer (>= 3.2, < 5)
       activemodel (>= 3.2, < 5)
+    mangopay (3.0.19)
+      multi_json (>= 1.7.7)
     method_source (0.8.2)
     mime-types (2.99)
     mimemagic (0.3.0)
@@ -322,6 +326,7 @@ DEPENDENCIES
   aws-sdk (< 2.0)
   better_errors
   binding_of_caller
+  bootstrap-datepicker-rails
   bootstrap-sass
   country_select
   devise
@@ -337,6 +342,7 @@ DEPENDENCIES
   jquery-rails
   letter_opener
   mail_form
+  mangopay
   omniauth
   omniauth-facebook
   omniauth-google-oauth2!
