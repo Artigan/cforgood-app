@@ -25,7 +25,6 @@ class ApplicationController < ActionController::Base
       pro_business_metrics_path(resource)
     else
       dashboard_path
-      # businesses_path
     end
   end
 

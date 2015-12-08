@@ -50,7 +50,7 @@ class Business < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   belongs_to  :business_category
-  has_many :perks
+  has_many :perks, dependent: :destroy
 
   validates :email, presence: true, uniqueness: true
   validates :business_category_id, presence: true

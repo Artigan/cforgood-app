@@ -15,7 +15,7 @@
   <!-- MENU ITEMS -->
   <div class="link-container">
     <!-- PRO SIGN IN -->
-    <% if business_signed_in? %>
+    <% if business_signed_in? && pro_space? %>
       <div class="visible-xs menu-user-info">
         <%= image_tag avatar_url(current_business), class: "user-pic" %>
         <span class="user-name">
@@ -24,7 +24,7 @@
       </div>
       <ul>
         <li class="visible-xs">
-        <%= link_to "/" do %>
+        <%= link_to landing_business_path do %>
           <i class="fa fa-home"></i> <%= t(".how_it_works", default: "Accueil") %>
         <% end %>
         </li>
@@ -47,7 +47,7 @@
       </ul>
     <!-- USER SIGN IN -->
     <% else %>
-      <% if user_signed_in? %>
+      <% if user_signed_in? && user_space? %>
         <div class="visible-xs menu-user-info">
           <%= image_tag avatar_url(current_user), class: "user-pic" %>
           <span class="user-name">
@@ -56,7 +56,7 @@
         </div>
         <ul>
           <li class="visible-xs">
-          <%= link_to "/" do %>
+          <%= link_to root_path do %>
             <i class="fa fa-home"></i> <%= t(".how_it_works", default: "Accueil") %>
           <% end %>
           </li>
@@ -95,12 +95,21 @@
       <!-- USER SIGN OUT -->
       <% else %>
         <ul>
-          <li>
-            <%= link_to t(".inscription", default: "Inscription"), signup_path %>
-          </li>
-          <li>
-            <%= link_to t(".connexion", default: "Connexion"), signin_path %>
-          </li>
+          <% if user_space? %>
+            <li>
+              <%= link_to t(".inscription", default: "Inscription"), signup_path %>
+            </li>
+            <li>
+              <%= link_to t(".connexion", default: "Connexion"), signin_path %>
+            </li>
+          <% else %>
+            <li>
+              <%= link_to t(".inscription", default: "Inscription"), new_business_registration_path %>
+            </li>
+            <li>
+              <%= link_to t(".connexion", default: "Connexion"), new_business_session_path %>
+            </li>
+          <% end %>
           <li>
             <%= link_to t(".how_it_works", default: "La Révolution Positive"), about_path %>
           </li>

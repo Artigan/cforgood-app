@@ -26,9 +26,6 @@ class BusinessesController < ApplicationController
 
   def create
     @business   = Business.find(params[:id])
-    @business.street = "87 Quai des Queyries"
-    @business.zipcode = "33100"
-    @business.url = "http://www.someoneshoes.com"
   end
 
   def business_params

@@ -50,7 +50,7 @@ class User < ActiveRecord::Base
          :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
 
   has_one :cause
-  has_many :uses
+  has_many :uses, dependent: :destroy
 
 
   def self.find_for_google_oauth2(access_token, signed_in_resourse=nil)
@@ -109,7 +109,7 @@ class User < ActiveRecord::Base
 
   def create_mangopay_user!
 
-    self.update(birthday: "1980-12-04 13:29:37")
+    #self.update(birthday: "1980-12-04 13:29:37")
 
     user_info = {
       "FirstName": self.first_name,
@@ -124,11 +124,7 @@ class User < ActiveRecord::Base
 
     mangopay_user = MangoPay::NaturalUser.create(user_info)
 
-    # begin
-      self.update(mangopay_id: mangopay_user["Id"])
-    # rescue => e
-    #   Rails.logger.info(e)
-    # end
+    self.update(mangopay_id: mangopay_user["Id"])
   end
 
   def create_mangopay_card_pre_registration
@@ -151,8 +147,7 @@ class User < ActiveRecord::Base
       DebitedFunds: { Currency: 'EUR', Amount: 500 },
       CreditedFunds: { Currency: 'EUR', Amount: 500 },
       Fees: { Currency: 'EUR', Amount: 250 },
-      # CreditedWalletId: Cause.find_by_id(self.cause_id).wallet_id,
-      CreditedWalletId: "9714401",
+      CreditedWalletId: Cause.find_by_id(self.cause_id).wallet_id,
       CardId: self.card_id,
       SecureMode:"DEFAULT",
       SecureModeReturnURL:"https://www.mysite.com"
