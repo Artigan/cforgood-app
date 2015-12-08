@@ -28,6 +28,8 @@ class BusinessesController < ApplicationController
     @business   = Business.find(params[:id])
   end
 
+  private
+
   def business_params
     params.require(:business).permit(:name, :category, :perk, :description, :city, :zipcode, :street, :address, :email, :telephone, :latitude, :longitude)
   end

@@ -24,7 +24,7 @@
   </div>
   <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 text-center mt-70 mb-50" id="business-index">
     <% @businesses.each do |business| %>
-      <%= link_to business_path(business) do %>
+      <%= link_to business_path(business, perk_id: business.perks.permanent.first.id) do %>
         <div class="col-xs-12 col-sm-6 col-md-4 mt-15">
           <div class="row relative business-card" >
             <div class="bg-business-card" style="background-image: url(<%= image_url business.picture %>)">

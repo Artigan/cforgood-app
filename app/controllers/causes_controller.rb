@@ -15,6 +15,8 @@ class CausesController < ApplicationController
     @cause  = Cause.find(params[:id])
   end
 
+  private
+
   def business_params
     params.require(:cause).permit(:name, :category, :description, :city, :zipcode, :street, :address, :email, :telephone)
   end
