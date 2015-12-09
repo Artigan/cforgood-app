@@ -13,7 +13,7 @@ module ApplicationHelper
   end
 
   def pro_space?
-    request.env['PATH_INFO'].include? "/pro/"
+    request.env['PATH_INFO'].include?("/pro/") || request.env['PATH_INFO'].include?("/landing_business")
   end
 
   def user_space?
