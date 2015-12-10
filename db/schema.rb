@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151204005605) do
+ActiveRecord::Schema.define(version: 20151210140903) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +71,9 @@ ActiveRecord::Schema.define(version: 20151204005605) do
     t.string   "leader_picture_content_type"
     t.integer  "leader_picture_file_size"
     t.datetime "leader_picture_updated_at"
+    t.string   "leader_first_name"
+    t.string   "leader_last_name"
+    t.string   "leader_description"
   end
 
   add_index "businesses", ["business_category_id"], name: "index_businesses_on_business_category_id", using: :btree

@@ -36,6 +36,9 @@
 #  leader_picture_content_type :string
 #  leader_picture_file_size    :integer
 #  leader_picture_updated_at   :datetime
+#  leader_first_name           :string
+#  leader_last_name            :string
+#  leader_description          :string
 #
 # Indexes
 #
