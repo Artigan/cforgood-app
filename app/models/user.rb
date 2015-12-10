@@ -52,6 +52,11 @@ class User < ActiveRecord::Base
   has_one :cause
   has_many :uses, dependent: :destroy
 
+  has_attached_file :picture,
+    styles: { medium: "300x300>", thumb: "100x100>" }
+
+  validates_attachment_content_type :picture,
+    content_type: /\Aimage\/.*\z/
 
   def self.find_for_google_oauth2(access_token, signed_in_resourse=nil)
     data = access_token.info
