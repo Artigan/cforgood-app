@@ -45,7 +45,7 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable, :timeoutable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
 
@@ -108,8 +108,6 @@ class User < ActiveRecord::Base
   end
 
   def create_mangopay_user!
-
-    #self.update(birthday: "1980-12-04 13:29:37")
 
     user_info = {
       "FirstName": self.first_name,
