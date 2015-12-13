@@ -14,7 +14,10 @@
           <%= link_to users_path(cause_id: cause.id), method: :put, remote: true do %>
             <div class="col-xs-12 col-sm-6 col-md-4">
               <div class="row relative cause-card" >
-                <div class="bg-business-card" style="background-image: url(<%= cause.picture.url(:medium) %>)">
+                <div class="bg-cause-card" style="background-image: url(<%= cause.picture.url(:medium) %>)" id="<%= cause.id %>">
+
+                  <div class= "modal-cause modal-cause-<%= cause.id %>"<%= render "modals/signup_cause", cause: cause %></div>
+
                   <div class="row" id="blackbox-cause">
                     <p><%= cause.cause_category.name %></p>
                   </div>
@@ -66,13 +69,19 @@
   </div>
 </div>
 
-
 <% content_for :after_js do %>
 
   <script>
     $(document).ready(function() {
       $(".bg-cause-card").bind('ajax:complete', function() {
-        $('#cause-name').hide();
+        // add a border for selection
+      });
+
+      $(".bg-cause-card").hover(function() {
+        var causeId = ".modal-cause-" + ($(this).attr("id"));
+        $(causeId).show();
+      }, function() {
+        $(causeId).hide();
       });
 
       $("#form-card-creation").validate({
