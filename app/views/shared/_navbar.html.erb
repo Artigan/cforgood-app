@@ -69,7 +69,7 @@
           </li>
           <li class="hidden-xs">
             <%= link_to dashboard_path do %>
-              <span class="user-name"><%= current_user.first_name%> <%= current_user.last_name.chars.first + "." %></span>
+              <span class="user-name"><%= current_user.first_name %> <%= current_user.last_name.chars.first + "." %></span>
               <%= image_tag avatar_url(current_user), class: "img-circle" %>
             <% end %>
           </li>

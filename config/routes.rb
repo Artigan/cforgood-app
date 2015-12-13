@@ -6,11 +6,11 @@ Rails.application.routes.draw do
 
   root to: "pages#home"
 
-  get 'notre_charte', to: 'pages#charte'
-  get 'member_card', to: 'pages#member_card'
+  get 'notre_charte',  to: 'pages#charte'
+  get 'member_card',   to: 'pages#member_card'
   get 'info_business', to: 'pages#info_business'
-  get 'info_cause',  to: 'pages#info_cause'
-  get 'about',   to: 'pages#about'
+  get 'info_cause',    to: 'pages#info_cause'
+  get 'about',         to: 'pages#about'
 
   get 'landing_business', to: 'pages#landing_business'
 
@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   devise_scope :user do
     get "/signup" => "devise/registrations#new"
     get "/signin" => "devise/sessions#new"
-    put '/users' => "registrations#update"
+    put "/users"  => "registrations#update"
   end
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }

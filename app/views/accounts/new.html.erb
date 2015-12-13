@@ -6,9 +6,34 @@
 
 <div class="container-fluid connexion connexion-user">
   <div class="connexion-overlay"></div>
-  <div class="container">
     <div class="row">
-      <div class="col-xs-12 col-sm-6 col-sm-offset-3 form-card form-payment">
+      <!-- FORM SELECT CAUSE -->
+      <div class="col-xs-12 col-sm-6 form-card form-causes">
+        <span>Choississez votre cause</span>
+        <% Cause.all.sample(3).each do |cause| %>
+          <%= link_to users_path(cause_id: cause.id), method: :put, remote: true do %>
+            <div class="col-xs-12 col-sm-6 col-md-4">
+              <div class="row relative cause-card" >
+                <div class="bg-business-card" style="background-image: url(<%= cause.picture.url(:medium) %>)">
+                  <div class="row" id="blackbox-cause">
+                    <p><%= cause.cause_category.name %></p>
+                  </div>
+                  <div class="row" id="info-cause">
+                    <div class="col-xs-12" id="cause-name">
+                      <h1><%= cause.name.upcase %></h1>
+                    </div>
+                  </div>
+                  <div class="row blue-colorbar">
+                    <p><%= cause.impact.upcase %></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+      <!-- FORM CARD REGISTRATION -->
+      <div class="col-xs-12 col-sm-6 form-card form-payment">
         <span>S'abonner à CForGood</span>
         <div>
           Pour 5 € par mois
@@ -29,7 +54,6 @@
             </div>
             <input type="submit" value="Enregistrer votre carte"  id="create-card" class="btn btn-default">
           </form>
-
           <div class="hidden">
             <%= simple_form_for :card, url: accounts_path, html: { id: :create_account } do |f| %>
               <%= f.input :id, as: :hidden %>
@@ -43,14 +67,14 @@
 </div>
 
 
-
-
-
-
 <% content_for :after_js do %>
 
   <script>
     $(document).ready(function() {
+      $(".bg-cause-card").bind('ajax:complete', function() {
+        $('#cause-name').hide();
+      });
+
       $("#form-card-creation").validate({
         rules: {
           card_number: {
@@ -77,7 +101,6 @@
 
       $("#form-card-creation").on("submit", function(e) {
         e.preventDefault();
-        console.log($("#form-card-creation").valid());
         if ($("#form-card-creation").valid()) {
           var cardPreRegistration = <%= current_user.mangopay_id ? raw(current_user.create_mangopay_card_pre_registration.to_json) : "null"  %>;
 
@@ -99,10 +122,8 @@
           };
 
           // Set MangoPay API base URL and Client ID
-          // mangoPay.cardRegistration.baseURL   = "<%= ENV['MANGOPAY_API_URL'] %>";
-          // mangoPay.cardRegistration.clientId  = "<%= ENV['MANGOPAY_CLIENT_ID'] %>";
-          mangoPay.cardRegistration.baseURL   = "https://api.sandbox.mangopay.com";
-          mangoPay.cardRegistration.clientId  = "cforgood";
+          mangoPay.cardRegistration.baseURL   = "<%= ENV['MANGOPAY_API_URL'] %>";
+          mangoPay.cardRegistration.clientId  = "<%= ENV['MANGOPAY_CLIENT_ID'] %>";
           var validateCard = mangoPay.cardRegistration._validateCardData(cardData);
 
           if (validateCard) {

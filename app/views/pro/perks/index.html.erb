@@ -59,7 +59,6 @@ Consultez vos Bons Plans
     $(document).ready(function() {
       $(':checkbox').change(function() {
         var updatePerk = "update_perk_" + ($(this).val("form").attr('id'))
-        console.log(updatePerk)
         $('#' + updatePerk).submit();
       });
     });

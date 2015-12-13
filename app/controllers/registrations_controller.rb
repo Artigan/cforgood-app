@@ -1,5 +1,9 @@
 class RegistrationsController < Devise::RegistrationsController
 
+  def update
+    current_user.update_cause_id!(params[:cause_id])
+  end
+
   protected
 
   def update_resource(resource, params)

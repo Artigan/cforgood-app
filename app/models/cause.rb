@@ -38,7 +38,7 @@ class Cause < ActiveRecord::Base
   belongs_to   :user
 
   has_attached_file :picture,
-      styles: { medium: "300x300>", thumb: "100x100>" }
+      styles: { medium: "300x300>", small: "200x200", thumb: "100x100>" }
 
     validates_attachment_content_type :picture,
       content_type: /\Aimage\/.*\z/
@@ -48,17 +48,9 @@ class Cause < ActiveRecord::Base
       Name: self.name,
       Email: self.email,
       LegalPersonType: "BUSINESS",
-      # HeadquartersAddress: {
-      #   AddressLine1: self.street,
-      #   AddressLine2: "",
-      #   City: self.city,
-      #   Region: "",
-      #   PostalCode: self.zipcode,
-      #   Country: "FR"
-      # },
-      LegalRepresentativeFirstName: 'Allan',
-      LegalRepresentativeLastName: 'Floury',
-      LegalRepresentativeBirthday: Date.strptime("01/01/2000", "%m/%d/%Y").to_time.to_i,
+      LegalRepresentativeFirstName: self.first_name,
+      LegalRepresentativeLastName: self.last_name,
+      LegalRepresentativeBirthday: 0,
       LegalRepresentativeNationality: 'FR',
       LegalRepresentativeCountryOfResidence: 'FR'
       }

@@ -3,9 +3,9 @@ class AccountsController < ApplicationController
   before_action :authenticate_user!
 
   def new
-    if no_wallet_id?
-      redirect_to edit_user_registration_path, alert: "Vous devez tout d'abord choisir un bénéficiaire pour vos dons"
-    end
+    # if no_wallet_id?
+    #   redirect_to edit_user_registration_path, alert: "Vous devez tout d'abord choisir un bénéficiaire pour vos dons"
+    # end
   end
 
   def create

@@ -158,4 +158,8 @@ class User < ActiveRecord::Base
     mangopay_payin=MangoPay::PayIn::Card::Direct.create(payin_info)
   end
 
+  def update_cause_id!(cause_id)
+    self.update(cause_id: cause_id)
+  end
+
 end
