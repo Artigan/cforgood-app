@@ -39,6 +39,8 @@
 #  leader_first_name           :string
 #  leader_last_name            :string
 #  leader_description          :string
+#  active                      :boolean
+#  online                      :boolean
 #
 # Indexes
 #

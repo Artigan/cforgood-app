@@ -27,6 +27,8 @@
 #  longitude            :float
 #  mangopay_id          :string
 #  wallet_id            :string
+#  legal_first_name     :string
+#  legal_last_name      :string
 #
 # Indexes
 #

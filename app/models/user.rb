@@ -34,6 +34,7 @@
 #  mangopay_id            :string
 #  card_id                :string
 #  cause_id               :integer
+#  member                 :boolean
 #
 # Indexes
 #
