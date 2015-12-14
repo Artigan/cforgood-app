@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151214073634) do
+ActiveRecord::Schema.define(version: 20151214083638) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -101,8 +101,8 @@ ActiveRecord::Schema.define(version: 20151214073634) do
     t.string   "url"
     t.string   "email"
     t.string   "telephone"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.string   "impact"
     t.string   "picture_file_name"
     t.string   "picture_content_type"
@@ -117,8 +117,8 @@ ActiveRecord::Schema.define(version: 20151214073634) do
     t.float    "longitude"
     t.string   "mangopay_id"
     t.string   "wallet_id"
-    t.string   "legal_first_name"
-    t.string   "legal_last_name"
+    t.string   "representative_first_name"
+    t.string   "representative_last_name"
   end
 
   add_index "causes", ["cause_category_id"], name: "index_causes_on_cause_category_id", using: :btree

@@ -2,33 +2,33 @@
 #
 # Table name: causes
 #
-#  id                   :integer          not null, primary key
-#  name                 :string
-#  description          :string
-#  street               :string
-#  zipcode              :string
-#  city                 :string
-#  url                  :string
-#  email                :string
-#  telephone            :string
-#  created_at           :datetime         not null
-#  updated_at           :datetime         not null
-#  impact               :string
-#  picture_file_name    :string
-#  picture_content_type :string
-#  picture_file_size    :integer
-#  picture_updated_at   :datetime
-#  cause_category_id    :integer
-#  facebook             :string
-#  twitter              :string
-#  instagram            :string
-#  description_impact   :string
-#  latitude             :float
-#  longitude            :float
-#  mangopay_id          :string
-#  wallet_id            :string
-#  legal_first_name     :string
-#  legal_last_name      :string
+#  id                        :integer          not null, primary key
+#  name                      :string
+#  description               :string
+#  street                    :string
+#  zipcode                   :string
+#  city                      :string
+#  url                       :string
+#  email                     :string
+#  telephone                 :string
+#  created_at                :datetime         not null
+#  updated_at                :datetime         not null
+#  impact                    :string
+#  picture_file_name         :string
+#  picture_content_type      :string
+#  picture_file_size         :integer
+#  picture_updated_at        :datetime
+#  cause_category_id         :integer
+#  facebook                  :string
+#  twitter                   :string
+#  instagram                 :string
+#  description_impact        :string
+#  latitude                  :float
+#  longitude                 :float
+#  mangopay_id               :string
+#  wallet_id                 :string
+#  representative_first_name :string
+#  representative_last_name  :string
 #
 # Indexes
 #
@@ -50,8 +50,8 @@ class Cause < ActiveRecord::Base
       Name: self.name,
       Email: self.email,
       LegalPersonType: "BUSINESS",
-      LegalRepresentativeFirstName: self.first_name,
-      LegalRepresentativeLastName: self.last_name,
+      LegalRepresentativeFirstName: self.representative_first_name,
+      LegalRepresentativeLastName: self.representative_last_name,
       LegalRepresentativeBirthday: 0,
       LegalRepresentativeNationality: 'FR',
       LegalRepresentativeCountryOfResidence: 'FR'

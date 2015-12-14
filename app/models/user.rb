@@ -151,7 +151,7 @@ class User < ActiveRecord::Base
       DebitedFunds: { Currency: 'EUR', Amount: 500 },
       CreditedFunds: { Currency: 'EUR', Amount: 500 },
       Fees: { Currency: 'EUR', Amount: 250 },
-      CreditedWalletId: Cause.find_by_id(self.cause_id).wallet_id,
+      CreditedWalletId: wallet_id,
       CardId: self.card_id,
       SecureMode:"DEFAULT",
       SecureModeReturnURL:"https://www.mysite.com"
