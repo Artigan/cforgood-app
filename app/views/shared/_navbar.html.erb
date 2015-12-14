@@ -10,9 +10,17 @@
   </a>
   <!-- BRAND LOGO -->
   <% if user_space? %>
-    <%= link_to(image_tag("logo-white.png"), root_path, class: "logo") %>
+    <% if user_signed_in? %>
+      <%= link_to(image_tag("logo-white.png"), dashboard_path, class: "logo") %>
+    <% else %>
+      <%= link_to(image_tag("logo-white.png"), root_path, class: "logo") %>
+    <% end %>
   <% else %>
-    <%= link_to(image_tag("logo-white.png"), landing_business_path, class: "logo") %>
+  <% if business_signed_in? %>
+      <%= link_to(image_tag("logo-white.png"), pro_business_metrics_path(current_business), class: "logo") %>
+    <% else %>
+      <%= link_to(image_tag("logo-white.png"), landing_business_path, class: "logo") %>
+    <% end %>
   <% end %>
   <!-- MENU ITEMS -->
   <div class="link-container">
