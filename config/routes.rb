@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     get "/signup" => "devise/registrations#new"
     get "/signin" => "devise/sessions#new"
     put "/users"  => "registrations#update"
+    put "/update_cause"  => "registrations#update_cause"
   end
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }

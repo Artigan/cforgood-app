@@ -8,7 +8,7 @@
         <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
           <%= f.error_notification %>
           <%= devise_error_messages! %>
-          <%= f.input :cause_id, required: true, label: false, collection: Cause.all, hint: ("Choisissez la cause qui bénéficiera de votre don ") %>
+          <%= f.input :cause_id, required: true, label: false, collection: Cause.all, prompt: ("Choisissez la cause qui bénéficiera de votre don "), selected: current_user.cause_id %>
           <%= f.input :last_name, placeholder: 'Nom', required: true, autofocus: true, label: false %>
           <%= f.input :first_name, placeholder: 'Prénom', required: true, label: false %>
           <%= f.input :email, placeholder: 'Adresse email', required: true, label: false %>
@@ -20,6 +20,7 @@
           <%#= f.input :current_password, placeholder: 'Mot de passe actuel', label: false, required: false %>
           <%= f.input :password, autocomplete: "off", placeholder: 'Nouveau mot de passe actuel', label: false, required: false, hint: (t('.leave_blank_if_you_don_t_want_to_change_it', :default => "leave blank if you don't want to change it")) %>
           <%= f.input :password_confirmation, placeholder: 'Confirmation mot de passe', label: false, required: false %>
+          <%= image_tag current_user.picture.url(:thumb) if current_user.picture %>
           <%= f.input :picture, as: :file, hint: 'Votre photo', required: true, label: false %>
           <%= f.button :submit, "Update" %>
         <% end %>

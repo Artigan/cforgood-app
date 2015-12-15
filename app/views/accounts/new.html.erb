@@ -11,7 +11,7 @@
       <div class="col-xs-12 col-sm-6 form-card form-select-cause">
         <div class="cause-selection">Choississez votre cause</div>
         <% Cause.all.sample(3).each do |cause| %>
-          <%= link_to users_path(cause_id: cause.id), method: :put, remote: true do %>
+          <%= link_to update_cause_path(cause_id: cause.id), method: :put, remote: true do %>
             <div class="col-xs-12 col-sm-6 col-md-4">
               <div class="row relative cause-card" >
                 <div class="bg-cause-card" style="background-image: url(<%= cause.picture.url(:medium) %>)">
@@ -34,12 +34,12 @@
           <% end %>
         <% end %>
         <div class="form-list-causes">
-          <%= simple_form_for :cause_id, url: users_path, html: { id: :update_cause_id, method: :put, remote: true } do |f| %>
-            <%= f.input :cause_id, id: "id", collection: Cause.all, label: false, prompt: ("Ou sélectionnez parmi les autres associations") %>
+          <%= simple_form_for :cause_id, url: update_cause_path, html: { id: :update_cause_id, method: :put, action: :update_cause, remote: true } do |f| %>
+            <%= f.input :cause_id, id: "id", collection: Cause.all, label: false, prompt: ("Ou sélectionnez parmi les autres associations"), selected: current_user.cause_id %>
              <%= f.submit "", :style => "display: none;" %>
           <% end %>
         </div>
-        <p>Sans choix de votre part, l'abonnement sera entièrement reversé à CforGood</p>
+        <p>Sans choix de votre part, votre abonnement sera reversé à CforGood !</p>
       </div>
       <!-- FORM CARD REGISTRATION -->
       <div class="col-xs-12 col-sm-6 form-card form-payment">
@@ -80,7 +80,6 @@
   <script>
     $(document).ready(function() {
       $(".bg-cause-card").bind('ajax:complete', function() {
-        // add a border for selection
       });
 
       $("#update_cause_id").change(function() {
