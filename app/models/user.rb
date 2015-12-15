@@ -149,13 +149,14 @@ class User < ActiveRecord::Base
     payin_info = {
       AuthorId: self.mangopay_id,
       DebitedFunds: { Currency: 'EUR', Amount: 500 },
-      CreditedFunds: { Currency: 'EUR', Amount: 500 },
+      CreditedFunds: { Currency: 'EUR', Amount: 250 },
       Fees: { Currency: 'EUR', Amount: 250 },
       CreditedWalletId: wallet_id,
       CardId: self.card_id,
       SecureMode:"DEFAULT",
       SecureModeReturnURL:"https://www.mysite.com"
     }
+
     mangopay_payin=MangoPay::PayIn::Card::Direct.create(payin_info)
   end
 
