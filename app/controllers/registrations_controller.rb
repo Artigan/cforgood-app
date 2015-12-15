@@ -1,7 +1,11 @@
 class RegistrationsController < Devise::RegistrationsController
 
+  skip_before_filter :verify_authenticity_token, only: :update
+
   def update
+    raise
     current_user.update_cause_id!(params[:cause_id])
+    redirect_to :back
   end
 
   protected

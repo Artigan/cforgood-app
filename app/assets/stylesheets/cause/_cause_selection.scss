@@ -1,0 +1,50 @@
+.form-select-cause {
+  position: relative;
+
+  .cause-card {
+    margin: 10px;
+  }
+
+  .bg-cause-card {
+    height: 200px;
+    background: no-repeat center;
+    background-size: cover;
+    color: white;
+    border-radius: 6px;
+  }
+
+  .cause-popover {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    color: rgb(240, 240, 240);
+    border-radius: 6px;
+    text-align: center;
+    font-size: 15px;
+  }
+
+  #cause-info {
+    position: absolute;
+    width: 100%;
+    bottom: 40%;
+    h1 {
+      font-size: 22px;
+      font-weight: 500;
+    }
+  }
+
+  #cause-impact {
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+    font-size: 15px;
+  }
+}
+
+.cause-selection {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+

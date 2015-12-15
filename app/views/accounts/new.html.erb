@@ -8,32 +8,38 @@
   <div class="connexion-overlay"></div>
     <div class="row">
       <!-- FORM SELECT CAUSE -->
-      <div class="col-xs-12 col-sm-6 form-card form-causes">
-        <span>Choississez votre cause</span>
+      <div class="col-xs-12 col-sm-6 form-card form-select-cause">
+        <div class="cause-selection">Choississez votre cause</div>
         <% Cause.all.sample(3).each do |cause| %>
           <%= link_to users_path(cause_id: cause.id), method: :put, remote: true do %>
             <div class="col-xs-12 col-sm-6 col-md-4">
               <div class="row relative cause-card" >
-                <div class="bg-cause-card" style="background-image: url(<%= cause.picture.url(:medium) %>)" id="<%= cause.id %>">
-
-                  <div class= "modal-cause modal-cause-<%= cause.id %>"<%= render "modals/signup_cause", cause: cause %></div>
-
-                  <div class="row" id="blackbox-cause">
-                    <p><%= cause.cause_category.name %></p>
-                  </div>
-                  <div class="row" id="info-cause">
-                    <div class="col-xs-12" id="cause-name">
-                      <h1><%= cause.name.upcase %></h1>
+                <div class="bg-cause-card" style="background-image: url(<%= cause.picture.url(:medium) %>)">
+                  <div class="cause-popover" id="<%= cause.id %>", data-content="<%= cause.description %>" data-placement="bottom" data-original-title="<%= cause.name %>" data-trigger="hover">
+                    <div class="row" id="cause-category">
+                      <p><%= cause.cause_category.name %></p>
                     </div>
-                  </div>
-                  <div class="row blue-colorbar">
-                    <p><%= cause.impact.upcase %></p>
+                    <div class="row" id="cause-info">
+                      <div class="col-xs-12" id="cause-name">
+                        <h1><%= cause.name.upcase %></h1>
+                      </div>
+                    </div>
+                    <div class="row" id="cause-impact">
+                      <p><%= cause.impact.upcase %></p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           <% end %>
         <% end %>
+        <div class="form-list-causes">
+          <%= simple_form_for :cause_id, url: users_path, html: { id: :update_cause_id, method: :put, remote: true } do |f| %>
+            <%= f.input :cause_id, id: "id", collection: Cause.all, label: false, prompt: ("Ou sélectionnez parmi les autres associations") %>
+             <%= f.submit "", :style => "display: none;" %>
+          <% end %>
+        </div>
+        <p>Sans choix de votre part, l'abonnement sera entièrement reversé à CforGood</p>
       </div>
       <!-- FORM CARD REGISTRATION -->
       <div class="col-xs-12 col-sm-6 form-card form-payment">
@@ -77,11 +83,14 @@
         // add a border for selection
       });
 
-      $(".bg-cause-card").hover(function() {
-        var causeId = ".modal-cause-" + ($(this).attr("id"));
-        $(causeId).show();
-      }, function() {
-        $(causeId).hide();
+      $("#update_cause_id").change(function() {
+        $("#update_cause_id").submit();
+      });
+
+      $(".cause-popover").popover({
+        html: true,
+        container: "body",
+        trigger: "hover"
       });
 
       $("#form-card-creation").validate({
