@@ -1,4 +1,16 @@
-<nav id="navbar" class="nav" role="navigation">
+<% if user_space? %>
+  <% if user_signed_in? %>
+    <nav id="navbar" class="nav nav-user" role="navigation">
+  <% else %>
+    <nav id="navbar" class="nav" role="navigation">
+  <% end %>
+<% else %>
+  <% if business_signed_in? %>
+    <nav id="navbar" class="nav nav-business" role="navigation">
+  <% else %>
+    <nav id="navbar" class="nav" role="navigation">
+  <% end %>
+<% end %>
   <!-- ICON RESPONSIVE MENU -->
   <a href="#" class="menu-toggle">
     <div id="menu-icon">

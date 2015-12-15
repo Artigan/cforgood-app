@@ -1,12 +1,21 @@
-<div class="map_box br-5 text-center">
-  <h3 class="black"><%= business.name %></h3>
-  <%= business.business_category.name %>
-  <p><%= business.address %></p>
-  <% business.perks.each do |perk| %>
-    <hr>
-    <p><%= perk.perk %>
-    <%= link_to "Voir", business_path(perk.business_id, perk_id: perk.id), class: "btn btn-green" %>
-    </p>
-  <% end %>
-  <hr>
+<div class="map-box">
+  <div class="box-header">
+    <img src='<%= business.picture %>'>
+    <div class="business-details">
+      <h3><%= business.name %></h3>
+      <span><%= business.business_category.name %></span>
+      <span><i class="fa fa-map-marker"></i><%= business.street %></span>
+    </div>
+  </div>
+  <div class="map-perks">
+    <ul>
+    <% business.perks.each do |perk| %>
+      <li>
+        <%= link_to business_path(perk.business_id, perk_id: perk.id), class: "see-perk" do %>
+          <%= perk.perk %><i class="fa fa-angle-right"></i>
+        <% end %>
+      </li>
+    <% end %>
+    </ul>
+  </div>
 </div>
