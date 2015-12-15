@@ -36,6 +36,11 @@
 #  leader_picture_content_type :string
 #  leader_picture_file_size    :integer
 #  leader_picture_updated_at   :datetime
+#  leader_first_name           :string
+#  leader_last_name            :string
+#  leader_description          :string
+#  active                      :boolean
+#  online                      :boolean
 #
 # Indexes
 #
@@ -47,7 +52,7 @@
 class Business < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable, :timeoutable,
          :recoverable, :rememberable, :trackable, :validatable
   belongs_to  :business_category
   has_many :perks, dependent: :destroy
@@ -69,14 +74,6 @@ class Business < ActiveRecord::Base
 
   validates_attachment_content_type :leader_picture,
       content_type: /\Aimage\/.*\z/
-
-  before_validation :default_values
-
-  def default_values
-   self.street = "87 Quai des Queyries"
-   self.zipcode = "33100"
-   self.url = "http://www.someoneshoes.com"
-  end
 
   def address_changed?
     :street_changed? || :zipcode_changed? || :city_changed?

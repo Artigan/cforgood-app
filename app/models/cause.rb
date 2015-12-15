@@ -2,31 +2,33 @@
 #
 # Table name: causes
 #
-#  id                   :integer          not null, primary key
-#  name                 :string
-#  description          :string
-#  street               :string
-#  zipcode              :string
-#  city                 :string
-#  url                  :string
-#  email                :string
-#  telephone            :string
-#  created_at           :datetime         not null
-#  updated_at           :datetime         not null
-#  impact               :string
-#  picture_file_name    :string
-#  picture_content_type :string
-#  picture_file_size    :integer
-#  picture_updated_at   :datetime
-#  cause_category_id    :integer
-#  facebook             :string
-#  twitter              :string
-#  instagram            :string
-#  description_impact   :string
-#  latitude             :float
-#  longitude            :float
-#  mangopay_id          :string
-#  wallet_id            :string
+#  id                        :integer          not null, primary key
+#  name                      :string
+#  description               :string
+#  street                    :string
+#  zipcode                   :string
+#  city                      :string
+#  url                       :string
+#  email                     :string
+#  telephone                 :string
+#  created_at                :datetime         not null
+#  updated_at                :datetime         not null
+#  impact                    :string
+#  picture_file_name         :string
+#  picture_content_type      :string
+#  picture_file_size         :integer
+#  picture_updated_at        :datetime
+#  cause_category_id         :integer
+#  facebook                  :string
+#  twitter                   :string
+#  instagram                 :string
+#  description_impact        :string
+#  latitude                  :float
+#  longitude                 :float
+#  mangopay_id               :string
+#  wallet_id                 :string
+#  representative_first_name :string
+#  representative_last_name  :string
 #
 # Indexes
 #
@@ -38,7 +40,7 @@ class Cause < ActiveRecord::Base
   belongs_to   :user
 
   has_attached_file :picture,
-      styles: { medium: "300x300>", thumb: "100x100>" }
+      styles: { medium: "300x300>", small: "200x200", thumb: "100x100>" }
 
     validates_attachment_content_type :picture,
       content_type: /\Aimage\/.*\z/
@@ -48,17 +50,9 @@ class Cause < ActiveRecord::Base
       Name: self.name,
       Email: self.email,
       LegalPersonType: "BUSINESS",
-      # HeadquartersAddress: {
-      #   AddressLine1: self.street,
-      #   AddressLine2: "",
-      #   City: self.city,
-      #   Region: "",
-      #   PostalCode: self.zipcode,
-      #   Country: "FR"
-      # },
-      LegalRepresentativeFirstName: 'Allan',
-      LegalRepresentativeLastName: 'Floury',
-      LegalRepresentativeBirthday: Date.strptime("01/01/2000", "%m/%d/%Y").to_time.to_i,
+      LegalRepresentativeFirstName: self.representative_first_name,
+      LegalRepresentativeLastName: self.representative_last_name,
+      LegalRepresentativeBirthday: 0,
       LegalRepresentativeNationality: 'FR',
       LegalRepresentativeCountryOfResidence: 'FR'
       }

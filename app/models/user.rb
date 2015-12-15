@@ -34,6 +34,7 @@
 #  mangopay_id            :string
 #  card_id                :string
 #  cause_id               :integer
+#  member                 :boolean
 #
 # Indexes
 #
@@ -45,13 +46,18 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable, :timeoutable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
 
   has_one :cause
   has_many :uses, dependent: :destroy
 
+  has_attached_file :picture,
+    styles: { medium: "300x300>", thumb: "100x100>" }
+
+  validates_attachment_content_type :picture,
+    content_type: /\Aimage\/.*\z/
 
   def self.find_for_google_oauth2(access_token, signed_in_resourse=nil)
     data = access_token.info
@@ -109,8 +115,6 @@ class User < ActiveRecord::Base
 
   def create_mangopay_user!
 
-    #self.update(birthday: "1980-12-04 13:29:37")
-
     user_info = {
       "FirstName": self.first_name,
       "LastName": self.last_name,
@@ -147,12 +151,16 @@ class User < ActiveRecord::Base
       DebitedFunds: { Currency: 'EUR', Amount: 500 },
       CreditedFunds: { Currency: 'EUR', Amount: 500 },
       Fees: { Currency: 'EUR', Amount: 250 },
-      CreditedWalletId: Cause.find_by_id(self.cause_id).wallet_id,
+      CreditedWalletId: wallet_id,
       CardId: self.card_id,
       SecureMode:"DEFAULT",
       SecureModeReturnURL:"https://www.mysite.com"
     }
     mangopay_payin=MangoPay::PayIn::Card::Direct.create(payin_info)
+  end
+
+  def update_cause_id!(cause_id)
+    self.update(cause_id: cause_id)
   end
 
 end

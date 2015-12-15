@@ -9,9 +9,19 @@
     </div>
   </a>
   <!-- BRAND LOGO -->
-  <a class="logo" href="/">
-    <%= image_tag "logo-white.png" %>
-  </a>
+  <% if user_space? %>
+    <% if user_signed_in? %>
+      <%= link_to(image_tag("logo-white.png"), dashboard_path, class: "logo") %>
+    <% else %>
+      <%= link_to(image_tag("logo-white.png"), root_path, class: "logo") %>
+    <% end %>
+  <% else %>
+  <% if business_signed_in? %>
+      <%= link_to(image_tag("logo-white.png"), pro_business_metrics_path(current_business), class: "logo") %>
+    <% else %>
+      <%= link_to(image_tag("logo-white.png"), landing_business_path, class: "logo") %>
+    <% end %>
+  <% end %>
   <!-- MENU ITEMS -->
   <div class="link-container">
     <!-- PRO SIGN IN -->
@@ -34,7 +44,7 @@
           <% end %>
         </li>
         <li class="hidden-xs">
-          <%= link_to "#" do %>
+          <%= link_to pro_business_metrics_path(current_business) do %>
             <span class="user-name"><%= current_business.name %></span>
             <%= image_tag avatar_url(current_business), class: "img-circle" %>
           <% end %>
@@ -65,24 +75,14 @@
             <i class="fa fa-dot-circle-o"></i> <%= t(".how_it_works", default: "A Propos") %>
             <% end %>
           </li>
-          <!-- <li>
-            <%= link_to causes_path do %>
-              <i class="fa fa-heart"></i> <%= t(".causes", default: "Causes") %>
-            <% end %>
-          </li>
-          <li>
-            <%= link_to businesses_path do %>
-              <i class="fa fa-tag"></i> <%=t(".bons_plans", default: "Bons Plans", class: "visible-xs") %>
-            <% end %>
-          </li> -->
           <li class="hidden-xs">
-            <%= link_to "#" do %>
-              <span class="user-name"><%= current_user.first_name%> <%= current_user.last_name.chars.first + "." %></span>
+            <%= link_to dashboard_path do %>
+              <span class="user-name"><%= current_user.first_name %> <%= current_user.last_name.chars.first + "." %></span>
               <%= image_tag avatar_url(current_user), class: "img-circle" %>
             <% end %>
           </li>
           <li class="visible-xs">
-            <%= link_to "#" do %>
+            <%= link_to dashboard_path do %>
               <i class="fa fa-user"></i> <%= t ".profil", default: "Voir mon profil" %>
             <% end %>
           </li>
@@ -102,6 +102,9 @@
             <li>
               <%= link_to t(".connexion", default: "Connexion"), signin_path %>
             </li>
+            <li>
+              <%= link_to t(".espace_pro", default: "Espace Pro"), landing_business_path %>
+            </li>
           <% else %>
             <li>
               <%= link_to t(".inscription", default: "Inscription"), new_business_registration_path %>
@@ -110,21 +113,6 @@
               <%= link_to t(".connexion", default: "Connexion"), new_business_session_path %>
             </li>
           <% end %>
-          <li>
-            <%= link_to t(".how_it_works", default: "La Révolution Positive"), about_path %>
-          </li>
-          <!-- <li>
-            <%= link_to t(".causes", default: "Causes"), causes_path %>
-          </li> -->
-          <!-- <li>
-            <%= link_to t(".bons_plans", default: "Bons Plans"), businesses_path %>
-          </li> -->
-          <!-- <li>
-            <%= link_to t(".connexion", default: "Connexion"), new_user_session_path %>
-          </li> -->
-          <!--<li>
-            <%= link_to t(".inscription", default: "Inscription"), new_user_registration_path %>
-          </li> -->
         </ul>
       <% end %>
     <% end %>

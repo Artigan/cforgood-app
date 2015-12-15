@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151204005605) do
+ActiveRecord::Schema.define(version: 20151214083638) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +71,11 @@ ActiveRecord::Schema.define(version: 20151204005605) do
     t.string   "leader_picture_content_type"
     t.integer  "leader_picture_file_size"
     t.datetime "leader_picture_updated_at"
+    t.string   "leader_first_name"
+    t.string   "leader_last_name"
+    t.string   "leader_description"
+    t.boolean  "active"
+    t.boolean  "online"
   end
 
   add_index "businesses", ["business_category_id"], name: "index_businesses_on_business_category_id", using: :btree
@@ -96,8 +101,8 @@ ActiveRecord::Schema.define(version: 20151204005605) do
     t.string   "url"
     t.string   "email"
     t.string   "telephone"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.string   "impact"
     t.string   "picture_file_name"
     t.string   "picture_content_type"
@@ -112,6 +117,8 @@ ActiveRecord::Schema.define(version: 20151204005605) do
     t.float    "longitude"
     t.string   "mangopay_id"
     t.string   "wallet_id"
+    t.string   "representative_first_name"
+    t.string   "representative_last_name"
   end
 
   add_index "causes", ["cause_category_id"], name: "index_causes_on_cause_category_id", using: :btree
@@ -174,6 +181,7 @@ ActiveRecord::Schema.define(version: 20151204005605) do
     t.string   "mangopay_id"
     t.string   "card_id"
     t.integer  "cause_id"
+    t.boolean  "member"
   end
 
   add_index "users", ["cause_id"], name: "index_users_on_cause_id", using: :btree

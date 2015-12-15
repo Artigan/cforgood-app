@@ -1,5 +1,12 @@
 class RegistrationsController < Devise::RegistrationsController
 
+  skip_before_filter :verify_authenticity_token, only: :update
+
+  def update
+    current_user.update_cause_id!(params[:cause_id])
+    redirect_to :back
+  end
+
   protected
 
   def update_resource(resource, params)
@@ -10,7 +17,7 @@ class RegistrationsController < Devise::RegistrationsController
     if resource_name == :business
       pro_business_metrics_path(resource)
     else
-      businesses_path
+      dashboard_path
     end
   end
 
