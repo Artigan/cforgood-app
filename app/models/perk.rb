@@ -30,6 +30,7 @@ class Perk < ActiveRecord::Base
   has_many :uses, dependent: :destroy
 
   scope :permanent, -> { where(permanent: true) }
+  scope :active, -> { where(active: true) }
   validate :start_date_cannot_be_greater_than_end_date
 
   def start_date_cannot_be_greater_than_end_date
