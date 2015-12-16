@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
       current_user.create_mangopay_user!
       new_account_path
     elsif resource_name == :business
-      pro_business_metrics_path(resource)
+      pro_business_dashboard_path(resource)
     else
       dashboard_path
     end

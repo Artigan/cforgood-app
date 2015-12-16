@@ -41,7 +41,7 @@ Rails.application.routes.draw do
   namespace :pro do
     resources :businesses, only: [:show, :update] do
       resources :perks, only: [:index, :new, :create, :update]
-      get 'metrics', to: 'pages#home'
+      get 'dashboard', to: 'dashboard#dashboard'
     end
     resources :perks, only: [:show, :edit, :update]
   end

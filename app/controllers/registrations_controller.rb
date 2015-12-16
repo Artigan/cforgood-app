@@ -21,7 +21,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   def after_update_path_for(resource)
     if resource_name == :business
-      pro_business_metrics_path(resource)
+      pro_business_dashboard_path(resource)
     else
       dashboard_path
     end

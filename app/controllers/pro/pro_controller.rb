@@ -12,7 +12,7 @@ class Pro::ProController < ActionController::Base
 
   def user_not_authorized
     flash[:alert] = "You are not authorized to perform this action."
-    redirect_to(pro_business_metrics_path(current_business))
+    redirect_to(pro_business_dashboard_path(current_business))
   end
 
   def pundit_user
