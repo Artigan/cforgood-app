@@ -8,6 +8,7 @@
       },
       internal: { id: '<%= map_id %>' }
     },
+
     function(){
       markers = handler.addMarkers(<%= raw markers.to_json %>);
       handler.bounds.extendWith(markers);

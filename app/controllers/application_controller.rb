@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
   private
 
   def set_layout
-    if devise_controller?
+    if devise_controller? || user_signed_in?
       self.class.layout "sign"
     else
       self.class.layout "application"

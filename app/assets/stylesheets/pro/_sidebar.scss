@@ -1,12 +1,9 @@
 .left-sidebar {
   position: absolute;
-  width: 20%;
+  width: 15%;
   top: 50px;
   bottom: 0px;
   left: 0px;
-  background-color: #4d5158;
-  box-shadow: inset -1px 0px #565a60;
-
 
   ul {
     list-style: none;
@@ -19,32 +16,34 @@
     position: relative;
     width: 100%;
     height: 139px;
-    border-bottom: 1px solid #565a60;
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 0.7;
 
-    -webkit-transition: all 0.3s;
-    -moz-transition: all 0.3s;
-    transition: all 0.3s;
+    @include transition(all 0.3s ease-in-out);
 
-
-    &:hover {
-      opacity: 1;
-      border-left: 10px solid #41444a;
-      background-color: #5C5F65;
+    .icon-container {
+      display: flex;
+      align-items: center;
+      height: 60px;
+      width: 60px;
+      margin: 0 auto;
+      padding: 5px;
+      border-radius: 50%;
     }
 
+    img {
+      width: 40px;
+      height: 40px;
+    }
 
     a {
       width: 100%;
       color: #fff;
+      letter-spacing: 1px;
 
       .admin-icon {
-        padding-bottom: 10px;
         margin: 0 auto;
-        width: 60px;
         display: block;
       }
     }
@@ -58,6 +57,25 @@
     }
   }
 
+  .signout {
+    position: absolute;
+    padding: 5px;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 12px;
+    @include transition(all 0.3s ease-in-out);
+
+    a { color: #dcdcdc; }
+
+    .signout-icon {
+      height: 20px;
+      margin-right: 10px;
+    }
+  }
+
   li.active {
     opacity: 1;
 
@@ -66,15 +84,55 @@
     position: absolute;
     display:inline-block;
     border: 20px solid white;
-    border-color: transparent #41444a transparent transparent;
+    border-color: transparent #f1f1f1 transparent transparent;
     top: 50px;
     right: 0px;
+    }
+
+    .icon-container {
+      background-color: #fff;
     }
   }
 
   li.active.light {
     &:after {
       border-color: transparent #f1f1f1 transparent transparent;
+    }
+  }
+}
+
+.user-sidebar {
+  background-color: #71bbc6;
+
+  li {
+    &:hover {
+      border-left: 10px solid #386971;
+      background-color: #61A6B1;
+    }
+  }
+
+  .signout {
+    background-color: #61A6B1;
+    &:hover {
+      background-color: #386971;
+    }
+  }
+}
+
+.business-sidebar {
+  background-color: #9FD6AE;
+
+  li {
+    &:hover {
+      border-left: 10px solid #5D8A69;
+      background-color: #8BBD99;
+    }
+  }
+
+  .signout {
+    background-color: #8BBD99;
+    &:hover {
+      background-color: #5D8A69;
     }
   }
 }

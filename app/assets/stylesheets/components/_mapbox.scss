@@ -1,0 +1,93 @@
+.gm-style-iw {
+   width: 320px !important;
+   height: 300px;
+   top: 0 !important;
+   left: 0 !important;
+   box-shadow: 0 1px 6px rgba(178, 178, 178, 0.6);
+   background-color: #fff;
+
+  .map-box {
+    width: 320px;
+    height: 300px;
+
+    .box-header {
+      padding: 20px;
+      display: flex;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+
+      img {
+        margin-right: 10px;
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        border: 3px solid $turquoise;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+      }
+
+      .business-details {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        h3 {
+          font-family: 'Open sans';
+          font-weight: 600;
+          font-size: 16px;
+          margin: 0;
+        }
+
+        span {
+          color: rgba(0,0,0,0.7);
+          i {
+            color: $turquoise;
+            margin-right: 5px;
+          }
+        }
+      }
+    }
+
+    .map-perks {
+      height: 190px;
+      overflow-y: scroll;
+
+      ul {
+        list-style: none;
+
+        li {
+          position: relative;
+          height: 65px;
+          font-size: 14px;
+          text-transform: uppercase;
+          border-bottom: 1px solid #fff;
+          @include transition(all 0.3s ease-in-out);
+          background-color: #9FD6AE;
+
+          &:hover {
+            background-color: #5C5F65;
+          }
+
+          a {
+            position: absolute;
+            padding: 20px;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            color: #fff;
+          }
+
+          .fa {
+            position: absolute;
+            top: 25px;
+            right: 20px;
+          }
+        }
+      }
+
+      .see-perk {
+
+      }
+    }
+  }
+}
