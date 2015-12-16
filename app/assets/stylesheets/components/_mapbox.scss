@@ -50,7 +50,6 @@
     .map-perks {
       height: 190px;
       overflow-y: scroll;
-      background-color: #FBFBFB;
 
       ul {
         list-style: none;
@@ -62,7 +61,7 @@
           text-transform: uppercase;
           border-bottom: 1px solid #fff;
           @include transition(all 0.3s ease-in-out);
-          background-color: #4d5158;
+          background-color: #9FD6AE;
 
           &:hover {
             background-color: #5C5F65;
