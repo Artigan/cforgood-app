@@ -1,9 +1,15 @@
 class RegistrationsController < Devise::RegistrationsController
 
-  skip_before_filter :verify_authenticity_token, only: :update
+  skip_before_filter :verify_authenticity_token, only: :update_cause
 
-  def update
-    current_user.update_cause_id!(params[:cause_id])
+  def update_cause
+    if params[:_method] != nil
+      # Select from dropdown
+      current_user.update_cause_id!(params[:cause_id][:cause_id])
+    else
+      # Select from onclick
+      current_user.update_cause_id!(params[:cause_id])
+    end
     redirect_to :back
   end
 

@@ -6,7 +6,7 @@ class AccountsController < ApplicationController
     if current_user.cause_id
       wallet_id = Cause.find_by_id(current_user.cause_id).wallet_id
     else
-      wallet_id = Cause.find_by_name("CforGood").wallet_id
+      wallet_id = ENV['MANGOPAY_CLIENT_WALLET_ID']
     end
     current_user.update_mangopay_card_id!(params[:card][:id])
     current_user.create_mangopay_payin!(wallet_id)
