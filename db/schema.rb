@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151214083638) do
+ActiveRecord::Schema.define(version: 20151216104433) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -182,6 +182,10 @@ ActiveRecord::Schema.define(version: 20151214083638) do
     t.string   "card_id"
     t.integer  "cause_id"
     t.boolean  "member"
+    t.string   "subscription"
+    t.boolean  "trial_done"
+    t.date     "date_subscription"
+    t.date     "date_last_payment"
   end
 
   add_index "users", ["cause_id"], name: "index_users_on_cause_id", using: :btree

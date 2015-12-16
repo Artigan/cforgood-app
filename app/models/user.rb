@@ -35,6 +35,10 @@
 #  card_id                :string
 #  cause_id               :integer
 #  member                 :boolean
+#  subscription           :string
+#  trial_done             :boolean
+#  date_subscription      :date
+#  date_last_payment      :date
 #
 # Indexes
 #
