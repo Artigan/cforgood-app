@@ -9,7 +9,7 @@
   </div>
   <div class="map-perks">
     <ul>
-    <% business.perks.each do |perk| %>
+    <% business.perks.active.each do |perk| %>
       <li>
         <%= link_to business_path(perk.business_id, perk_id: perk.id), class: "see-perk" do %>
           <%= perk.perk %><i class="fa fa-angle-right"></i>

@@ -1,0 +1,35 @@
+.index-cards {
+  width: 85%;
+  margin: 0 auto;
+
+  .card-business {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #fff;
+    height: 430px;
+    border-radius: 4px;
+    margin: 2.75%;
+    cursor: pointer;
+
+    .card-header {
+      background-size: cover;
+      background-repeat: none;
+      background-position: center;
+      height: 230px;
+      width: 100%;
+      border-radius: 4px 4px 0 0;
+    }
+
+    img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 3px solid #fff;
+      top: -50px;
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+}
