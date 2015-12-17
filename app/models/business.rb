@@ -98,4 +98,10 @@ class Business < ActiveRecord::Base
    def perks_views_count
     perks.reduce(0) { |sum, perk| sum + perk.nb_views.to_i }
   end
+
+  def perks_new_users
+    # raise
+    # perks.reduces(0) { |sum, perk| sum + perk.uses.select(:user_id).distinct.count }
+    perks.reduce(0) { |sum, perk| sum + perk.uses.select(:user_id).distinct.count }
+  end
 end
