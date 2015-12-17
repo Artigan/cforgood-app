@@ -12,20 +12,19 @@ Rails.application.routes.draw do
   get 'info_cause',    to: 'pages#info_cause'
   get 'about',         to: 'pages#about'
 
-  get 'landing_business', to: 'pages#landing_business'
-
-  resources :accounts, only: [:new, :create]
-
   devise_scope :user do
     get "/signup" => "devise/registrations#new"
     get "/signin" => "devise/sessions#new"
     put "/users"  => "registrations#update"
     put "/user_update_cause"  => "registrations#update_cause"
+    get "/user_profile" => "users#profile"
   end
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   get 'dashboard', to: "dashboard#dashboard"
+
+  resources :accounts, only: [:new, :create]
 
   resources :businesses, only: [:index, :show]
 
@@ -36,6 +35,8 @@ Rails.application.routes.draw do
   resources :perks do
     resources :uses, only: [:create]
   end
+
+  get 'landing_business', to: 'pages#landing_business'
 
   devise_for :businesses, path: :pro, controllers: {registrations: :registrations}
   namespace :pro do

@@ -25,6 +25,7 @@
     <% end %>
   <% end %>
   <div class="form-list-causes">
+    <p>Vous pouvez aussi sélectionner une association parmi la liste ci-dessous :</p>
     <%= simple_form_for :cause_id, url: user_update_cause_path, html: { id: :update_cause_id, method: :put, remote: true } do |f| %>
       <%= f.input :cause_id, id: "id", collection: Cause.all, label: false, prompt: ("Ou sélectionnez parmi les autres associations"), selected: current_user.cause_id %>
        <%= f.submit "", :style => "display: none;" %>

@@ -1,0 +1,44 @@
+<div class="container-fluid admin">
+  <!-- Sub Menu Sidebar -->
+  <%= render "dashboard/shared/sidebar" %>
+  <!-- Content - Statistics -->
+  <div class="dashboard">
+    <!-- Nav tabs -->
+    <ul id="my_menu" class="nav nav-tabs">
+      <li role="profile" class="active"><%= link_to "Mes informations", "#profile", role: "tab", data_toggle: "tab" %></li>
+      <li role="profile"><%= link_to "Mon association", "#cause", role: "tab", data_toggle: "tab" %></li>
+      <li role="profile"><%= link_to "Mon abonnement", "#subscription", role: "tab", data_toggle: "tab" %></li>
+      <li role="profile"><%= link_to "Mes données bancaires", "#account", role: "tab", data_toggle: "tab" %></li>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="profile">
+        <%= render "shared/form_user_profile", resource: current_user, resource_name: :user  %>
+      </div>
+      <div role="tabpanel" class="tab-pane" id="cause">
+        <%= render "shared/form_cause" %>
+      </div>
+      <div role="tabpanel" class="tab-pane" id="subscription">
+        <%= render "shared/form_subscription" %>
+      </div>
+      <div role="tabpanel" class="tab-pane" id="account">
+        <%= render "shared/form_account" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% content_for :after_js do %>
+
+  <script>
+
+    $(document).ready(function() {
+      $("#my_menu a").click(function (e) {
+        e.preventDefault()
+        $(this).tab('show');
+      });
+    });
+
+  </script>
+
+<% end %>

@@ -1,9 +1,6 @@
 <!-- FORM CARD REGISTRATION -->
 <div class="col-xs-12 col-sm-6 col-sm-offset-3 form-card form-payment">
-  <span>S'abonner à CForGood</span>
-  <div>
-    Pour 5 € par mois
-  </div>
+  <span>Renseignez vos données bancaires</span>
   <div class="subscription-form">
     <form id="form-card-creation">
       <div class="form-group">
@@ -33,22 +30,30 @@
 
   <script>
     $(document).ready(function() {
+
+      $.validator.addMethod("datePostToday",function(value, element) {
+        var today = new Date();
+        var dateRef = today.getMonth() + today.getFullYear().toString().substr(2,2);
+        return value > dateRef;
+      }, "La date d'expiration ne doit pas être révolue");
+
       $("#form-card-creation").validate({
+        lang: 'fr',
         rules: {
           card_number: {
             required: true,
             digits: true,
             minlength: 16,
-            maxlength: 16
-
+            maxlength: 16,
           },
-          card_expiration_date: {
+          card_exp_date: {
             required: true,
             digits: true,
             minlength: 4,
-            maxlength: 4
+            maxlength: 4,
+            datePostToday: true,
           },
-          cvx: {
+          card_cvx: {
             required: true,
             digits: true,
             minlength: 3,

@@ -1,0 +1,16 @@
+<div class="form-edit-container">
+  <div class="form-edit">
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), method: :put) do |f| %>
+      <%= f.error_notification %>
+      <%#= devise_error_messages! %>
+      <%= f.input :last_name, placeholder: 'Nom', required: true, autofocus: true, label: false %>
+      <%= f.input :first_name, placeholder: 'Prénom', required: true, label: false %>
+      <%= f.input :email, placeholder: 'Adresse email', required: true, label: false %>
+
+      <%= image_tag current_user.picture.url(:thumb) if current_user.picture %>
+      <%= f.input :picture, as: :file, hint: 'Votre photo', required: true, label: false %>
+      <%= f.input :cause_id, required: true, collection: Cause.all, prompt: ("Choisissez la cause qui bénéficiera de votre don "), selected: current_user.cause_id, hint: "Choisissez votre association bénéficiaire", label: false%>
+      <%= f.button :submit, "Enregistrer" %>
+    <% end %>
+  </div>
+</div>
