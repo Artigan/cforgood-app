@@ -5,9 +5,10 @@ class ApplicationController < ActionController::Base
 
   before_action :set_layout
 
-  #before_action :authenticate_user!, unless: :pages_controller?
+  before_action :authenticate_user!, unless: :pages_controller?
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
+
   # before_action :configure_permitted_parameters, if: :devise_controller
 
   # after_action :verify_authorized, except:  :index, unless: :devise_or_pages_controller?
