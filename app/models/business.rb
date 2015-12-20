@@ -83,9 +83,9 @@ class Business < ActiveRecord::Base
     "#{street}, #{zipcode} #{city}"
   end
 
-  def gmaps4rails_infowindow
-    "#{link_to 'Business', business_path}"
-  end
+  # def gmaps4rails_infowindow
+  #   "#{link_to 'Business', business_path}"
+  # end
 
   def activated
     self.joins(:perks).where("perks.permanent = ?", true)
@@ -100,8 +100,6 @@ class Business < ActiveRecord::Base
   end
 
   def perks_new_users
-    # raise
-    # perks.reduces(0) { |sum, perk| sum + perk.uses.select(:user_id).distinct.count }
     perks.reduce(0) { |sum, perk| sum + perk.uses.select(:user_id).distinct.count }
   end
 end
