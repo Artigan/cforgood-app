@@ -19,7 +19,7 @@
         <%= render "shared/form_cause" %>
       </div>
       <div role="tabpanel" class="tab-pane" id="subscription">
-        <%= render "shared/form_subscription" %>
+        <%= render "shared/form_subscription", resource: current_user, resource_name: :user %>
       </div>
       <div role="tabpanel" class="tab-pane" id="account">
         <%= render "shared/form_account" %>

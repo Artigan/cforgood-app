@@ -36,7 +36,7 @@
 #  cause_id               :integer
 #  member                 :boolean
 #  subscription           :string
-#  trial_done             :boolean
+#  trial_done             :boolean          default(FALSE)
 #  date_subscription      :date
 #  date_last_payment      :date
 #
@@ -62,6 +62,9 @@ class User < ActiveRecord::Base
 
   validates_attachment_content_type :picture,
     content_type: /\Aimage\/.*\z/
+
+  validate :trial_done?
+  after_save :trial_done!, if: :subscription_changed?
 
   def self.find_for_google_oauth2(access_token, signed_in_resourse=nil)
     data = access_token.info
@@ -146,21 +149,41 @@ class User < ActiveRecord::Base
   end
 
   def create_mangopay_payin!(wallet_id)
+
+    amount = 500 if self.subscription = "M"
+    amount = 5000 if self.subscription = "A"
+
     payin_info = {
       AuthorId: self.mangopay_id,
-      DebitedFunds: { Currency: 'EUR', Amount: 500 },
-      CreditedFunds: { Currency: 'EUR', Amount: 250 },
-      Fees: { Currency: 'EUR', Amount: 250 },
+      DebitedFunds: { Currency: 'EUR', Amount: amount },
+      CreditedFunds: { Currency: 'EUR', Amount: amount/2 },
+      Fees: { Currency: 'EUR', Amount: amount/2 },
       CreditedWalletId: wallet_id,
       CardId: self.card_id,
       SecureMode:"DEFAULT",
-      SecureModeReturnURL:"https://www.mysite.com"
+      SecureModeReturnURL:"https://www.cforgood.com"
     }
 
     mangopay_payin=MangoPay::PayIn::Card::Direct.create(payin_info)
+
+    self.update(member: true)
+    self.update(date_last_payment: Date.now)
   end
 
   def update_user!(attribut, value)
      self.update("#{attribut}": value)
   end
+
+  def trial_done?
+    if subscription.present? && subscription_changed? && subscription == "T" && trial_done
+      errors.add(:subscription, "Vous avez déjà profité de votre essai !")
+    end
+  end
+
+  def trial_done!
+    if subscription_changed? && subscription_was == "T" && trial_done == false
+      self.update(trial_done: true)
+    end
+  end
+
 end

@@ -10,7 +10,7 @@
       <!-- FORM SELECT CAUSE -->
       <%= render "shared/form_cause" %>
       <!-- FORM SUBCRIPTION -->
-      <%= render "shared/form_subscription" %>
+      <%= render "shared/form_subscription", resource: current_user, resource_name: :user %>
       <!-- FORM CARD REGISTRATION -->
       <%= render "shared/form_account" %>
     </div>

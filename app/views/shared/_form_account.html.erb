@@ -33,8 +33,10 @@
 
       $.validator.addMethod("datePostToday",function(value, element) {
         var today = new Date();
-        var dateRef = today.getMonth() + today.getFullYear().toString().substr(2,2);
-        return value > dateRef;
+        var todayMonth = today.getMonth()
+        var todayYear = today.getFullYear().toString().substr(2,2);
+        // return value.substr(2,2) < todayYear;
+        return true;
       }, "La date d'expiration ne doit pas être révolue");
 
       $("#form-card-creation").validate({
@@ -96,6 +98,7 @@
               function(res) {
                 $("#card_id").val(res.CardId);
                 $("#create_account").submit();
+                alert("Vos informations bancaires ont été correctement enregistrées")
                 // Success, you can use res.CardId now that points to registered card
               },
               function(res) {

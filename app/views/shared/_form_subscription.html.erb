@@ -1,10 +1,11 @@
 <!-- FORM SUBSCRIPTION -->
 <div class="col-xs-12 col-sm-6 col-sm-offset-3 form-card form-select-cause">
   <div class="SUBSCRIPTION">Choisissez votre abonnement</div>
-  <%= simple_form_for :user, url: user_registration_path, method: :put do |f| %>
-  <%= f.error_notification %>
+  <%#= simple_form_for :user, url: user_registration_path, method: :put do |f| %>
+  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), method: :put) do |f| %>
+    <%= f.error_notification %>
     <%= f.input :subscription, label: false, as: :radio_buttons, collection:
-    [["5 € par mois", "M" ], ["50 € pour un an", "A" ], ["1 mois gratuit pour découvrir !", "T"]], checked: current_user.subscription %>
+    [["5 € par mois", "M" ], ["50 € pour un an", "A" ], ["1 mois gratuit pour découvrir CFORGOOD !", "T"]], checked: current_user.subscription %>
     <%= f.button :submit, 'Souscrivez' %>
   <% end %>
 </div>

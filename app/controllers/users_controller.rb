@@ -10,10 +10,9 @@ class UsersController < ApplicationController
   # end
 
   # def update
-  #   raise
-  #   @user = User.find(params[:id])
-  #   @user.update(user_params)
-  #   redirect_to root_path
+    # @user = User.find(params[:id])
+    # @user.update(user_params)
+    # redirect_to root_path
   # end
 
   def profile
