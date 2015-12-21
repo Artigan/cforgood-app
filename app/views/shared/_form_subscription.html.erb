@@ -4,7 +4,7 @@
   <%= simple_form_for :user, url: user_registration_path, method: :put do |f| %>
   <%= f.error_notification %>
     <%= f.input :subscription, label: false, as: :radio_buttons, collection:
-    [["5 € par mois", "M" ], ["50 € pour un an", "A" ], ["1 mois gratuit pour découvrir !", "T"] ]  %>
+    [["5 € par mois", "M" ], ["50 € pour un an", "A" ], ["1 mois gratuit pour découvrir !", "T"]], checked: current_user.subscription %>
     <%= f.button :submit, 'Souscrivez' %>
   <% end %>
 </div>

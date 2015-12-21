@@ -31,6 +31,9 @@ class Perk < ActiveRecord::Base
 
   scope :permanent, -> { where(permanent: true) }
   scope :active, -> { where(active: true) }
+
+  validates :times, numericality: { only_integer: true, greater_than_or_equal_to: 0 }, allow_nil: true
+
   validate :start_date_cannot_be_greater_than_end_date
 
   def start_date_cannot_be_greater_than_end_date

@@ -24,14 +24,41 @@ $(document).ready(function(){
 // HIDE/SHOW DATE PICKER IF BON PLAN FLASH
 
 $(document).ready(function(){
+  if ($('#perk_permanent_false').prop('checked') === true ) {
+    $('.perk_times').addClass('recurrence_hidden');
+    $('#perk_times').addClass('recurrence_hidden');
+    $('.perk_periodicity_id').addClass('recurrence_hidden');
+    $('#perk_periodicity_id').addClass('recurrence_hidden');
+    $('#perk_start_date').removeClass('date_hidden');
+    $('#perk_end_date').removeClass('date_hidden');
+  };
+
+  if ($('#perk_permanent_true').prop('checked') === true ) {
+    $('.perk_times').removeClass('recurrence_hidden');
+    $('#perk_times').removeClass('recurrence_hidden');
+    $('.perk_periodicity_id').removeClass('recurrence_hidden');
+    $('#perk_periodicity_id').removeClass('recurrence_hidden');
+    $('#perk_start_date').addClass('date_hidden');
+    $('#perk_end_date').addClass('date_hidden');
+  };
+
   $('#perk_permanent_false').click(function(){
     if ($('#perk_permanent_false').prop('checked') === true ) {
+      $('.perk_times').addClass('recurrence_hidden');
+      $('#perk_times').addClass('recurrence_hidden');
+      $('.perk_periodicity_id').addClass('recurrence_hidden');
+      $('#perk_periodicity_id').addClass('recurrence_hidden');
       $('#perk_start_date').removeClass('date_hidden');
       $('#perk_end_date').removeClass('date_hidden');
     };
   });
+
   $('#perk_permanent_true').click(function(){
     if ($('#perk_permanent_true').prop('checked') === true ) {
+      $('.perk_times').removeClass('recurrence_hidden');
+      $('#perk_times').removeClass('recurrence_hidden');
+      $('.perk_periodicity_id').removeClass('recurrence_hidden');
+      $('#perk_periodicity_id').removeClass('recurrence_hidden');
       $('#perk_start_date').addClass('date_hidden');
       $('#perk_end_date').addClass('date_hidden');
     };

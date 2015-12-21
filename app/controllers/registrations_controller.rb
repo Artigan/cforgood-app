@@ -5,10 +5,11 @@ class RegistrationsController < Devise::RegistrationsController
   def update_cause
     if params[:_method] != nil
       # Select from dropdown
-      current_user.update_cause_id!(params[:cause_id][:cause_id])
+      current_user.update_user!("cause_id", params[:cause_id][:cause_id])
+      # current_user.update_cause_id!(params[:cause_id][:cause_id])
     else
       # Select from onclick
-      current_user.update_cause_id!(params[:cause_id])
+      current_user.update_user!("cause_id", params[:cause_id])
     end
     redirect_to :back
   end
