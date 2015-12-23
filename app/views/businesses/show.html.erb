@@ -92,8 +92,12 @@
       </div>
 
       <div class="details-perk-btn-profit">
-        <% if @business.url %>
-          <%= link_to "J'en profite", perk_uses_path(params[:perk_id]), method: :post, target: "_blank", class: "button button-rouge link-business" %>
+        <% if @business.perks.find(params[:perk_id]).perk_usable?(current_user) %>
+          <%# if @business.online %>
+            <%= link_to "J'en profite", perk_uses_path(params[:perk_id]), method: :post, target: "_blank", class: "button button-rouge link-business" %>
+          <%# end %>
+        <% else %>
+          <button class="btn btn-default">J'en profite</button>
         <% end %>
         <%= link_to "Retour", :back, class: "button button-turquoise" %>
       </div>

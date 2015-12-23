@@ -24,11 +24,10 @@ class RegistrationsController < Devise::RegistrationsController
 
   # def update
   #   current_user.update(user_params)
-  #   if current_user.save
-  #     respond_to do |format|
-  #       format.html {redirect_to :back}
-  #       format.js {}
-  #     end
+  #   current_user.save
+  #   respond_to do |format|
+  #     format.html {redirect_to :back}
+  #     format.js {}
   #   end
   # end
 
