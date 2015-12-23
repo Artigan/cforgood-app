@@ -4,7 +4,7 @@
   <!-- Content - Statistics -->
   <div class="dashboard">
     <!-- Nav tabs -->
-    <ul id="my_menu" class="nav nav-tabs">
+    <ul id="menu" class="nav nav-tabs">
       <li role="profile" class="active"><%= link_to "Mes informations", "#profile", role: "tab", data_toggle: "tab" %></li>
       <li role="profile"><%= link_to "Mon association", "#cause", role: "tab", data_toggle: "tab" %></li>
       <li role="profile"><%= link_to "Mon abonnement", "#subscription", role: "tab", data_toggle: "tab" %></li>
@@ -33,7 +33,7 @@
   <script>
 
     $(document).ready(function() {
-      $("#my_menu a").click(function (e) {
+      $("#menu a").click(function (e) {
         e.preventDefault()
         $(this).tab('show');
       });

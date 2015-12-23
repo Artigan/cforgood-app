@@ -36,9 +36,9 @@
 #  cause_id               :integer
 #  member                 :boolean
 #  subscription           :string
-#  trial_done             :boolean          default(FALSE)
-#  date_subscription      :date
-#  date_last_payment      :date
+#  trial_done             :boolean          default(FALSE), not null
+#  date_subscription      :datetime
+#  date_last_payment      :datetime
 #
 # Indexes
 #
@@ -120,58 +120,9 @@ class User < ActiveRecord::Base
     end
   end
 
-  def create_mangopay_user!
-
-    user_info = {
-      "FirstName": self.first_name,
-      "LastName": self.last_name,
-      "Birthday": self.birthday.to_i,
-      "Nationality": "FR",
-      # "Nationality": self.nationality,
-      "CountryOfResidence": "FR",
-      "PersonType": "NATURAL",
-      "Email": self.email
-    }
-
-    mangopay_user = MangoPay::NaturalUser.create(user_info)
-
-    self.update(mangopay_id: mangopay_user["Id"])
-  end
-
-  def create_mangopay_card_pre_registration
-    card_registration_info = {
-      UserId: self.mangopay_id,
-      Currency: "EUR",
-      CardType: "CB_VISA_MASTERCARD"
-    }
-
-    mangopay_card = MangoPay::CardRegistration.create(card_registration_info)
-  end
-
-  def create_mangopay_payin!(wallet_id)
-
-    amount = 500 if self.subscription = "M"
-    amount = 5000 if self.subscription = "A"
-
-    payin_info = {
-      AuthorId: self.mangopay_id,
-      DebitedFunds: { Currency: 'EUR', Amount: amount },
-      CreditedFunds: { Currency: 'EUR', Amount: amount/2 },
-      Fees: { Currency: 'EUR', Amount: amount/2 },
-      CreditedWalletId: wallet_id,
-      CardId: self.card_id,
-      SecureMode:"DEFAULT",
-      SecureModeReturnURL:"https://www.cforgood.com"
-    }
-
-    mangopay_payin=MangoPay::PayIn::Card::Direct.create(payin_info)
-
-    self.update(member: true)
-    self.update(date_last_payment: Date.now)
-  end
-
-  def update_user!(attribut, value)
-     self.update("#{attribut}": value)
+  def should_payin?
+    self.subscription != "T" &&
+    (self.date_last_payment == nil || self.date_last_payment < Time.now.prev_month)
   end
 
   def trial_done?

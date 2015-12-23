@@ -45,33 +45,33 @@ class Cause < ActiveRecord::Base
     validates_attachment_content_type :picture,
       content_type: /\Aimage\/.*\z/
 
-  def create_mangopay_legal_user!
-    legal_user_info = {
-      Name: self.name,
-      Email: self.email,
-      LegalPersonType: "BUSINESS",
-      LegalRepresentativeFirstName: self.representative_first_name,
-      LegalRepresentativeLastName: self.representative_last_name,
-      LegalRepresentativeBirthday: 0,
-      LegalRepresentativeNationality: 'FR',
-      LegalRepresentativeCountryOfResidence: 'FR'
-      }
+  # def create_mangopay_legal_user!
+  #   legal_user_info = {
+  #     Name: self.name,
+  #     Email: self.email,
+  #     LegalPersonType: "BUSINESS",
+  #     LegalRepresentativeFirstName: self.representative_first_name,
+  #     LegalRepresentativeLastName: self.representative_last_name,
+  #     LegalRepresentativeBirthday: 0,
+  #     LegalRepresentativeNationality: 'FR',
+  #     LegalRepresentativeCountryOfResidence: 'FR'
+  #     }
 
-    mangopay_legal_user = MangoPay::LegalUser.create(legal_user_info)
+  #   mangopay_legal_user = MangoPay::LegalUser.create(legal_user_info)
 
-    self.update(mangopay_id: mangopay_legal_user["Id"])
-  end
+  #   self.update(mangopay_id: mangopay_legal_user["Id"])
+  # end
 
-  def create_mangopay_wallet!
-    wallet_info = {
-      Owners: [self.mangopay_id],
-      Description: "Portefeuille de #{self.name}",
-      Currency: 'EUR'
-    }
+  # def create_mangopay_wallet!
+  #   wallet_info = {
+  #     Owners: [self.mangopay_id],
+  #     Description: "Portefeuille de #{self.name}",
+  #     Currency: 'EUR'
+  #   }
 
-    mangopay_wallet = MangoPay::Wallet.create(wallet_info)
+  #   mangopay_wallet = MangoPay::Wallet.create(wallet_info)
 
-    self.update(wallet_id: mangopay_wallet["Id"])
-  end
+  #   self.update(wallet_id: mangopay_wallet["Id"])
+  # end
 end
 
