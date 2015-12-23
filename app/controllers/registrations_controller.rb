@@ -9,7 +9,10 @@ class RegistrationsController < Devise::RegistrationsController
       # Select from onclick
       current_user.update_attribute("cause_id", params[:cause_id])
     end
-    redirect_to :back
+    respond_to do |format|
+      format.html {redirect_to :back}
+      format.js {}
+    end
   end
 
   def update_subscription
@@ -18,6 +21,16 @@ class RegistrationsController < Devise::RegistrationsController
     @user.update_attribute("date_subscription", Time.now)
     redirect_to :back
   end
+
+  # def update
+  #   current_user.update(user_params)
+  #   if current_user.save
+  #     respond_to do |format|
+  #       format.html {redirect_to :back}
+  #       format.js {}
+  #     end
+  #   end
+  # end
 
   protected
 
@@ -32,4 +45,10 @@ class RegistrationsController < Devise::RegistrationsController
       dashboard_path
     end
   end
+
+  private
+
+  # def user_params
+  #   params.require(:user).permit(:first_name, :last_name, :email, :picture)
+  # end
 end

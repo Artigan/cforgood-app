@@ -8,7 +8,7 @@
       <%= f.input :email, placeholder: 'Adresse email', required: true, label: false %>
       <%= image_tag current_user.picture.url(:thumb) if current_user.picture %>
       <%= f.input :picture, as: :file, hint: 'Votre photo', required: true, label: false %>
-      <%= f.button :submit, "Enregistrer" %>
+      <%= f.button :submit, "Sauvegarder", class: "btn btn-turquoise" %>
     <% end %>
   </div>
   <div>

@@ -5,24 +5,24 @@
   <div class="dashboard">
     <!-- Nav tabs -->
     <ul id="menu" class="nav nav-tabs">
-      <li role="profile" class="active"><%= link_to "Mes informations", "#profile", role: "tab", data_toggle: "tab" %></li>
-      <li role="profile"><%= link_to "Mon association", "#cause", role: "tab", data_toggle: "tab" %></li>
-      <li role="profile"><%= link_to "Mon abonnement", "#subscription", role: "tab", data_toggle: "tab" %></li>
-      <li role="profile"><%= link_to "Mes données bancaires", "#account", role: "tab", data_toggle: "tab" %></li>
+      <li role="profile" class="active"><%= link_to "Vos informations", "#profile", role: "tab", data_toggle: "tab" %></li>
+      <li role="profile"><%= link_to "Votre association", "#cause", role: "tab", data_toggle: "tab" %></li>
+      <li role="profile"><%= link_to "Votre abonnement", "#subscription", role: "tab", data_toggle: "tab" %></li>
+      <li role="profile"><%= link_to "Vos données bancaires", "#account", role: "tab", data_toggle: "tab" %></li>
     </ul>
     <!-- Tab panes -->
     <div class="tab-content">
       <div role="tabpanel" class="tab-pane active" id="profile">
-        <%= render "shared/form_user_profile", resource: current_user, resource_name: :user  %>
+        <%= render "form_profile_user", resource: current_user, resource_name: :user  %>
       </div>
       <div role="tabpanel" class="tab-pane" id="cause">
-        <%= render "shared/form_cause" %>
+        <%= render "form_profile_cause" %>
       </div>
       <div role="tabpanel" class="tab-pane" id="subscription">
-        <%= render "shared/form_subscription", resource: current_user, resource_name: :user %>
+        <%= render "form_profile_subscription", resource: current_user, resource_name: :user %>
       </div>
       <div role="tabpanel" class="tab-pane" id="account">
-        <%= render "shared/form_account" %>
+        <%= render "form_profile_account" %>
       </div>
     </div>
   </div>
