@@ -22,14 +22,20 @@ class RegistrationsController < Devise::RegistrationsController
     redirect_to :back
   end
 
-  # def update
-  #   current_user.update(user_params)
-  #   current_user.save
-  #   respond_to do |format|
-  #     format.html {redirect_to :back}
-  #     format.js {}
-  #   end
-  # end
+  def update
+    current_user.update(user_params)
+    if current_user.save
+      respond_to do |format|
+        format.html {redirect_to :back}
+        format.js {}
+      end
+    else
+      respond_to do |format|
+        format.html {redirect_to :back}
+        format.js {}
+      end
+    end
+  end
 
   protected
 
@@ -47,7 +53,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   private
 
-  # def user_params
-  #   params.require(:user).permit(:first_name, :last_name, :email, :picture)
-  # end
+  def user_params
+    params.require(:user).permit(:first_name, :last_name, :email, :picture)
+  end
 end

@@ -5,7 +5,7 @@
   <div class="dashboard">
     <div class="form-edit-container">
       <div class="form-edit">
-        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), remote: true, authenticity_token: true, html: { method: :put }) do |f| %>
           <%= f.error_notification %>
           <%= devise_error_messages! %>
           <%= f.input :business_category_id, required: true, label: false, collection: BusinessCategory.all, hint: ("Choisissez la catégorie de votre commerce") %>
@@ -15,7 +15,9 @@
             <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
           <% end %>
           <br>
+          <%= image_tag resource.picture.url(:thumb) %>
           <%= f.input :picture, as: :file, hint: 'Photo de votre commerce', required: true, label: false %>
+          <%= image_tag resource.leader_picture.url(:thumb) %>
           <%= f.input :leader_picture, as: :file, hint: 'Votre photo', required: true, label: false %>
           <br>
           <%= f.input :street, placeholder: 'Rue', required: true, label: false %>
@@ -27,7 +29,7 @@
           <%= f.input :facebook, placeholder: 'Facebook', label: false %>
           <%= f.input :twitter, placeholder: 'Twitter', label: false %>
           <%= f.input :instagram, placeholder: 'Instagram', label: false %>
-          <%= f.input :online, label: "Commerce online", as: :radio_buttons, collection: [['Oui', true ], ['Non', false ]], checked: false  %>
+          <%= f.input :online, label: "Commerce online", as: :radio_buttons, collection: [['Oui', true ], ['Non', false ]], checked: resource.online || false  %>
           <%= f.button :submit, "Sauvegarder" %>
         <% end %>
       </div>

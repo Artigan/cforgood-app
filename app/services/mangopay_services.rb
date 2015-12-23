@@ -29,8 +29,8 @@ class MangopayServices
   end
 
   def create_mangopay_payin(wallet_id)
-    amount = 500 if @user.subscription = "M"
-    amount = 5000 if @user.subscription = "A"
+    amount = 500 if @user.subscription == "M"
+    amount = 5000 if @user.subscription == "A"
 
     payin_info = {
       AuthorId: @user.mangopay_id,

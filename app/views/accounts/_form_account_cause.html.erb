@@ -26,15 +26,15 @@
   <% end %>
   <div class="form-list-causes">
     <p>Vous pouvez aussi sélectionner une association parmi la liste ci-dessous :</p>
-    <%= simple_form_for(:cause_id, url: user_update_cause_path(resource: current_user), method: :put, remote: true, authenticity_token: true, html: { id: :update_cause_id }) do |f| %>
+    <%= simple_form_for(:cause_id, url: user_update_cause_path(resource: current_user), remote: true, authenticity_token: true, html: { method: :put, id: :update_cause_id }) do |f| %>
       <%= f.input :cause_id, collection: Cause.all, label: false, prompt: ("Ou sélectionnez parmi les autres associations"), selected: current_user.cause_id %>
-       <%= f.submit "", :style => "display: none;" %>
+       <%= f.submit "Next", class: "btn btn-turquoise" %>
     <% end %>
   </div>
   <p>Sans choix de votre part, votre abonnement sera reversé à CforGood !</p>
-  <div>
-    <button type="button" class="btn btn-turquoise" remote="true">Next</button>
-  </div>
+ <!--  <div>
+    <button type="button" class="btn btn-turquoise">Next</button>
+  </div> -->
 </div>
 
 <% content_for :after_js do %>
@@ -49,10 +49,10 @@
         $("select").val(causeId);
       });
 
-      $("#update_cause_id").change(function(e) {
-        e.preventDefault;
-        $("#update_cause_id").submit();
-      });
+      // $("#update_cause_id").change(function(e) {
+      //   e.preventDefault;
+      //   $("#update_cause_id").submit();
+      // });
 
       $(".cause-popover").popover({
         html: true,
