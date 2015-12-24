@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     get "/signin" => "devise/sessions#new"
     put "/user_update_subscription"  => "registrations#update_subscription"
     put "/user_update_cause"  => "registrations#update_cause"
-    put "/user_update" => "registrations#update"
+    put "/user_update_profile" => "registrations#update_profile"
     get "/user_profile" => "users#profile"
   end
 

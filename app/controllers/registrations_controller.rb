@@ -19,10 +19,13 @@ class RegistrationsController < Devise::RegistrationsController
     @user = User.find_by_id(params[:resource])
     @user.update_attribute("subscription", params[:user][:subscription])
     @user.update_attribute("date_subscription", Time.now)
-    redirect_to :back
+    respond_to do |format|
+      format.html {redirect_to :back}
+      format.js {}
+    end
   end
 
-  def update
+  def update_profile
     current_user.update(user_params)
     if current_user.save
       respond_to do |format|
