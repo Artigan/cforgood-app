@@ -1,9 +1,6 @@
 <!-- FORM CARD REGISTRATION -->
 <div class="col-xs-12 col-sm-6 col-sm-offset-3 form-card form-payment">
-  <span>S'abonner à CForGood</span>
-  <div>
-    Pour 5 € par mois
-  </div>
+  <span>Renseignez vos données bancaires</span>
   <div class="subscription-form">
     <form id="form-card-creation">
       <div class="form-group">
@@ -33,22 +30,33 @@
 
   <script>
     $(document).ready(function() {
+
+      $.validator.addMethod("datePostToday",function(value, element) {
+        var today = new Date();
+        var todayMonth = today.getMonth()+1;
+        var todayYear = today.getFullYear().toString().substr(2,2);
+        var valueMonth = value.substr(0,2);
+        var valueYear = value.substr(2,2);
+        return (valueYear > todayYear || (valueYear == todayYear && valueMonth >= todayMonth));
+      }, "La date d'expiration ne doit pas être révolue");
+
       $("#form-card-creation").validate({
+        lang: 'fr',
         rules: {
           card_number: {
             required: true,
             digits: true,
             minlength: 16,
-            maxlength: 16
-
+            maxlength: 16,
           },
-          card_expiration_date: {
+          card_exp_date: {
             required: true,
             digits: true,
             minlength: 4,
-            maxlength: 4
+            maxlength: 4,
+            datePostToday: true,
           },
-          cvx: {
+          card_cvx: {
             required: true,
             digits: true,
             minlength: 3,
@@ -60,7 +68,7 @@
       $("#form-card-creation").on("submit", function(e) {
         e.preventDefault();
         if ($("#form-card-creation").valid()) {
-          var cardPreRegistration = <%= current_user.mangopay_id ? raw(current_user.create_mangopay_card_pre_registration.to_json) : "null"  %>;
+          var cardPreRegistration = <%= current_user.mangopay_id ? raw(MangopayServices.new(current_user).create_mangopay_card_pre_registration.to_json) : "null"  %>;
 
           // Initialize with card register data prepared on the server
           mangoPay.cardRegistration.init({
@@ -91,6 +99,7 @@
               function(res) {
                 $("#card_id").val(res.CardId);
                 $("#create_account").submit();
+                alert("Vos informations bancaires ont été correctement enregistrées")
                 // Success, you can use res.CardId now that points to registered card
               },
               function(res) {

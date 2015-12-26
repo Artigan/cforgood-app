@@ -9,7 +9,7 @@ class Pro::BusinessesController < Pro::ProController
 
   def update
     if @business.update(business_params)
-      redirect_to pro_business_metrics_path(@business)
+      redirect_to pro_business_dashboard_path(@business)
     else
      render :edit
     end

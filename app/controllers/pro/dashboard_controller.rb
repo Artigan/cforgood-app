@@ -1,6 +1,6 @@
-class Pro::PagesController < Pro::ProController
+class Pro::DashboardController < Pro::ProController
 
-  def home
+  def dashboard
     @business = Business.find(params[:business_id])
     @perks = @business.perks
     authorize @business

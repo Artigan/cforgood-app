@@ -10,7 +10,6 @@ class DashboardController < ApplicationController
 
   def dashboard
     @businesses = Business.joins(:perks).where("perks.permanent = ?", true)
-    # authorize @businesses
     # Let's DYNAMICALLY build the markers for the view.
     @markers = Gmaps4rails.build_markers(@businesses) do |business, marker|
       marker.lat business.latitude

@@ -59,6 +59,7 @@ class Business < ActiveRecord::Base
 
   validates :email, presence: true, uniqueness: true
   validates :business_category_id, presence: true
+  validates :name, presence: true
 
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
@@ -83,9 +84,9 @@ class Business < ActiveRecord::Base
     "#{street}, #{zipcode} #{city}"
   end
 
-  def gmaps4rails_infowindow
-    "#{link_to 'Business', business_path}"
-  end
+  # def gmaps4rails_infowindow
+  #   "#{link_to 'Business', business_path}"
+  # end
 
   def activated
     self.joins(:perks).where("perks.permanent = ?", true)
@@ -97,5 +98,9 @@ class Business < ActiveRecord::Base
 
    def perks_views_count
     perks.reduce(0) { |sum, perk| sum + perk.nb_views.to_i }
+  end
+
+  def perks_new_users
+    perks.reduce(0) { |sum, perk| sum + perk.uses.select(:user_id).distinct.count }
   end
 end

@@ -36,9 +36,9 @@
 #  cause_id               :integer
 #  member                 :boolean
 #  subscription           :string
-#  trial_done             :boolean
-#  date_subscription      :date
-#  date_last_payment      :date
+#  trial_done             :boolean          default(FALSE), not null
+#  date_subscription      :datetime
+#  date_last_payment      :datetime
 #
 # Indexes
 #
@@ -57,11 +57,18 @@ class User < ActiveRecord::Base
   has_one :cause
   has_many :uses, dependent: :destroy
 
+  validates :email, presence: true, uniqueness: true
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+
   has_attached_file :picture,
     styles: { medium: "300x300>", thumb: "100x100>" }
 
   validates_attachment_content_type :picture,
     content_type: /\Aimage\/.*\z/
+
+  validate :trial_done?
+  after_save :trial_done!, if: :subscription_changed?
 
   def self.find_for_google_oauth2(access_token, signed_in_resourse=nil)
     data = access_token.info
@@ -117,55 +124,21 @@ class User < ActiveRecord::Base
     end
   end
 
-  def create_mangopay_user!
-
-    user_info = {
-      "FirstName": self.first_name,
-      "LastName": self.last_name,
-      "Birthday": self.birthday.to_i,
-      "Nationality": "FR",
-      # "Nationality": self.nationality,
-      "CountryOfResidence": "FR",
-      "PersonType": "NATURAL",
-      "Email": self.email
-    }
-
-    mangopay_user = MangoPay::NaturalUser.create(user_info)
-
-    self.update(mangopay_id: mangopay_user["Id"])
+  def should_payin?
+    self.subscription != "T" &&
+    (self.date_last_payment == nil || self.date_last_payment < Time.now.prev_month)
   end
 
-  def create_mangopay_card_pre_registration
-    card_registration_info = {
-      UserId: self.mangopay_id,
-      Currency: "EUR",
-      CardType: "CB_VISA_MASTERCARD"
-    }
-
-    mangopay_card = MangoPay::CardRegistration.create(card_registration_info)
+  def trial_done?
+    if subscription.present? && subscription_changed? && subscription == "T" && trial_done
+      errors.add(:subscription, "Vous avez déjà profité de votre essai !")
+    end
   end
 
-  def update_mangopay_card_id!(card_id)
-    self.update(card_id: card_id)
-  end
-
-  def create_mangopay_payin!(wallet_id)
-    payin_info = {
-      AuthorId: self.mangopay_id,
-      DebitedFunds: { Currency: 'EUR', Amount: 500 },
-      CreditedFunds: { Currency: 'EUR', Amount: 250 },
-      Fees: { Currency: 'EUR', Amount: 250 },
-      CreditedWalletId: wallet_id,
-      CardId: self.card_id,
-      SecureMode:"DEFAULT",
-      SecureModeReturnURL:"https://www.mysite.com"
-    }
-
-    mangopay_payin=MangoPay::PayIn::Card::Direct.create(payin_info)
-  end
-
-  def update_cause_id!(cause_id)
-    self.update(cause_id: cause_id)
+  def trial_done!
+    if subscription_changed? && subscription_was == "T" && trial_done == false
+      self.update(trial_done: true)
+    end
   end
 
 end

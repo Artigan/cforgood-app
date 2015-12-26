@@ -1,0 +1,25 @@
+<%= simple_form_for :code, url: perk_uses_path(params[:perk_id]), remote: true, authenticity_token: true, html: { id: :create_use } do |f| %>
+        <%= f.input :perk_code, input_html: { :size => 5, :maxlength => 5, id: :perk_code }  %>
+        <%= f.submit "Validez", class: "button button-turquoise" %>
+<% end %>
+<p id="error-modal"></p>
+
+
+<%#= link_to "Validez", perk_uses_path(params[:perk_id]), method: :post, target: "_blank", class: "button button-turquoise perk-code" %>
+
+<% content_for :after_js do %>
+
+  <script>
+    $(document).ready(function() {
+      $(".button-turquoise").on('click', function(e) {
+        e.preventDefault();
+        if ("<%= Perk.find(params[:perk_id]).perk_code %>" == $("#perk_code").val().toUpperCase()) {
+          $("#create_use").submit();
+        } else {
+          $("#error-modal").append("Le code est erroné");
+        };
+      });
+    });
+  </script>
+
+<% end %>
