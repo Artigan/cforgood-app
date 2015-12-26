@@ -29,6 +29,7 @@ Consultez vos Bons Plans
               <% if !perk.permanent %>
                 <i class="fa fa-bolt pro-card-perk-flash"></i>
               <% end %>
+              <span class="perk-code"><%= perk.perk_code %></span>
             </div>
             <div class="perk-content">
               <%= perk.description %>
@@ -43,7 +44,6 @@ Consultez vos Bons Plans
             </div>
           </div>
           <div class="perk-status">
-            <%= perk.perk_code %>
             <%= link_to edit_pro_perk_path(perk) do %>
               Mettre à jour
             <% end %>

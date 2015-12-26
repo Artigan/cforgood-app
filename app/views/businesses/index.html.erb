@@ -9,32 +9,45 @@
   <!-- Sub Menu Sidebar -->
   <%= render "dashboard/shared/sidebar" %>
   <!-- Content - Statistics -->
-  <div class="dashboard">
+  <div class="dashboard dashboard-perks">
+    <div class="header-cards">
+      <div class="business-filter">
+        <a href="#" data-filter="*" class="current">Tous</a>
+        <a href="#" data-filter=".1">Bars & Restaurant</a>
+        <a href="#" data-filter=".2">Produits</a>
+        <a href="#" data-filter=".3">Shopping</a>
+        <a href="#" data-filter=".4">Maison & jardin</a>
+        <a href="#" data-filter=".5">Loisirs & Sorties</a>
+        <a href="#" data-filter=".6">Tiers Lieux</a>
+        <a href="#" data-filter=".7">Beauté & Bien-être</a>
+      </div>
+    </div>
 
     <div class="index-cards">
     <!-- COMPONENT | CARD BON PLAN -->
     <% @businesses.each do |business| %>
       <% business.perks.active.each do |perk| %>
-        <div class="col-xs-6 col-sm-4">
-          <div class="card-business">
-            <div class="card-header" style="background-image: url('<%= image_url business.picture %>');">
-              <!-- BUSINESS BACKGROUND IMAGE -->
+        <div class="col-xs-6 col-sm-4 <%= business.business_category_id %>">
+          <%= link_to business_path(business, perk_id: perk.id) do %>
+            <div class="card-business">
+              <div class="card-header" style="background-image: url('<%= image_url business.picture %>');">
+                <!-- BUSINESS BACKGROUND IMAGE -->
+                <div class="card-owner" style="background-image: url('<%= image_url business.leader_picture %>');"></div>
+                <h3><%= business.name %></h3>
+                <div class="business-details">
+                  <span><%= business.business_category.name %></span>
+                  <span><i class="fa fa-map-marker"></i><%= business.street %></span>
+                </div>
+              </div>
+              <div class="card-body">
+                <span class="perk-description"><%= perk.perk %></span>
+                <span class="goto-perk">Voir le bon plan
+              </div>
             </div>
-            <img src="<%= image_url business.leader_picture %>">
-            <div class="business-details">
-              <%= business.business_category.name %>
-              <%= business.name.upcase %>
-              <i class="fa fa-map-marker"> <strong><%= business.city.capitalize %></strong></i>
-              <p><%= perk.perk.upcase %></p>
-              <%= link_to business_path(business, perk_id: perk.id) do %>
-                J'en profite
-              <% end %>
-            </div>
-          </div>
+          <% end %>
         </div>
       <% end %>
     <% end %>
     </div>
   </div>
 </div>
-

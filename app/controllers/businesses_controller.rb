@@ -1,5 +1,7 @@
 class BusinessesController < ApplicationController
 
+  before_action :authenticate_user!
+
   def index
     # @businesses = Business.all
     @businesses = Business.joins(:perks).where("perks.permanent = ?", true).distinct

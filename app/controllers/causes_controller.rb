@@ -1,4 +1,7 @@
 class CausesController < ApplicationController
+
+  before_action :authenticate_user!
+
   def index
     @causes = Cause.all
   end

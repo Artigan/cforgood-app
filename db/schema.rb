@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151216104433) do
+ActiveRecord::Schema.define(version: 20151223144037) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -138,11 +138,11 @@ ActiveRecord::Schema.define(version: 20151216104433) do
     t.integer  "times"
     t.datetime "start_date"
     t.datetime "end_date"
-    t.boolean  "permanent"
-    t.boolean  "active"
+    t.boolean  "permanent",      default: true,  null: false
+    t.boolean  "active",         default: false, null: false
     t.string   "perk_code"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.integer  "nb_views"
   end
 
@@ -183,9 +183,9 @@ ActiveRecord::Schema.define(version: 20151216104433) do
     t.integer  "cause_id"
     t.boolean  "member"
     t.string   "subscription"
-    t.boolean  "trial_done"
-    t.date     "date_subscription"
-    t.date     "date_last_payment"
+    t.boolean  "trial_done",             default: false, null: false
+    t.datetime "date_subscription"
+    t.datetime "date_last_payment"
   end
 
   add_index "users", ["cause_id"], name: "index_users_on_cause_id", using: :btree
