@@ -1,0 +1,5 @@
+<% if current_user.errors.any? %>
+  $(document).find("form").prepend('<%= escape_javascript(render("shared/error_messages", :formats => [:html])) %>');
+<% else %>
+  $(document).find("form").prepend('Vos données ont été mises à jour');
+<% end %>
