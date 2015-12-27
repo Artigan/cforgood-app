@@ -93,40 +93,35 @@
 
       <div class="details-perk-btn-profit">
         <% if @business.perks.find(params[:perk_id]).perk_usable?(current_user) %>
-          <%# if @business.online %>
-          <button type="button" class="button button-rouge" data-toggle="modal" data-target="#myModal">J'en profite</button>
+          <button type="button" class="button button-rouge" data-toggle="modal" data-target="#codeModal">J'en profite</button>
           <!-- MODAL CODE -->
-          <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal fade" id="codeModal" tabindex="-1" role="dialog" aria-labelledby="codeModalLabel">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header gradient-cforgood">
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  <h4 class="modal-title text-center" id="myModalLabel">Saisissez votre code</h4>
+                  <h4 class="modal-title text-center" id="codeModalLabel">Code d'accès au bon plan</h4>
                 </div>
                 <div class="modal-body text-center">
-                  <%= render "modal_code_perk" %>
+                  <% if @business.online %>
+                    <%= render "modal_code_perk_online" %>
+                  <% else %>
+                    <%= render "modal_code_perk_desktop" %>
+                  <% end %>
                 </div>
               </div>
             </div>
           </div>
-            <%#= link_to "J'en profite", perk_uses_path(params[:perk_id]), method: :post, target: "_blank", class: "button button-rouge link-business" %>
-          <%# end %>
         <% else %>
           <div class="button-use-popover" id="button-used", data-content="Ce Bon Plan n'est plus accessible, mais il y en a bien d'autres à découvrir !" data-placement="bottom" data-original-title="Oups !" data-trigger="hover">
             <button class="button button-inactive">J'en profite</button>
           </div>
         <% end %>
-        <%= link_to "Retour", :back, class: "button button-turquoise" %>
+        <%= link_to "Retour", dashboard_path, class: "button button-turquoise" %>
       </div>
     </div>
 
   <div class="col-sm-5 mt-50 mb-30" id="info-business-show-body">
-      <!-- <div class="col-sm-12" id="bg-show-business-body" style="background-image: url(<%= image_url @business.picture %>)">
-        <div class="blackbox-show-business"></div>
-        <p><%= @business.telephone %></p>
-        <p><%= @business.email %></p>
-      </div>
-    </div> -->
     <div id="map" class="index-2 map-business" style="width: 110%; height: 310px;"></div>
     <div class="text-center">
       <div class="col-sm-4 mt-30">

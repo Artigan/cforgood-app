@@ -2,6 +2,7 @@ class Pro::PerksController < Pro::ProController
 
   before_action :find_perk, only: [:edit, :update]
   before_action :find_business, only: [:index, :new, :create]
+
   def index
     @perks = policy_scope(Perk)
   end
