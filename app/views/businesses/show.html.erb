@@ -92,30 +92,32 @@
       </div>
 
       <div class="details-perk-btn-profit">
-        <% if @business.perks.find(params[:perk_id]).perk_usable?(current_user) %>
-          <button type="button" class="button button-rouge" data-toggle="modal" data-target="#codeModal">J'en profite</button>
-          <!-- MODAL CODE -->
-          <div class="modal fade" id="codeModal" tabindex="-1" role="dialog" aria-labelledby="codeModalLabel">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header gradient-cforgood">
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  <h4 class="modal-title text-center" id="codeModalLabel">Code d'accès au bon plan</h4>
-                </div>
-                <div class="modal-body text-center">
-                  <% if @business.online %>
-                    <%= render "modal_code_perk_online" %>
-                  <% else %>
-                    <%= render "modal_code_perk_desktop" %>
-                  <% end %>
+        <% if current_user.member %>
+          <% if @business.perks.find(params[:perk_id]).perk_usable?(current_user) %>
+            <button type="button" class="button button-rouge" data-toggle="modal" data-target="#codeModal">J'en profite</button>
+            <!-- MODAL CODE -->
+            <div class="modal fade" id="codeModal" tabindex="-1" role="dialog" aria-labelledby="codeModalLabel">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header gradient-cforgood">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title text-center" id="codeModalLabel">Code d'accès au bon plan</h4>
+                  </div>
+                  <div class="modal-body text-center">
+                    <% if @business.online %>
+                      <%= render "modal_code_perk_online" %>
+                    <% else %>
+                      <%= render "modal_code_perk_desktop" %>
+                    <% end %>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        <% else %>
-          <div class="button-use-popover" id="button-used", data-content="Ce Bon Plan n'est plus accessible, mais il y en a bien d'autres à découvrir !" data-placement="bottom" data-original-title="Oups !" data-trigger="hover">
-            <button class="button button-inactive">J'en profite</button>
-          </div>
+          <% else %>
+            <div class="button-use-popover" id="button-used", data-content="Ce Bon Plan n'est plus accessible, mais il y en a bien d'autres à découvrir !" data-placement="bottom" data-original-title="Oups !" data-trigger="hover">
+              <button class="button button-inactive">J'en profite</button>
+            </div>
+          <% end %>
         <% end %>
         <%= link_to "Retour", dashboard_path, class: "button button-turquoise" %>
       </div>
