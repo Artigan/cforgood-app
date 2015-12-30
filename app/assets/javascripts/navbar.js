@@ -29,6 +29,8 @@ $(document).ready(function(){
     var $container = $('.index-cards');
     var selector = $(this).attr('data-filter');
     $container.isotope({
+      percentPosition: true,
+      containerStyle: null,
       filter: selector,
       animationOptions: {
           duration: 750,
