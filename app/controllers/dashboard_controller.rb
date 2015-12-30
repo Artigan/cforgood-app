@@ -9,7 +9,8 @@ class DashboardController < ApplicationController
   # rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   def dashboard
-    @businesses = Business.joins(:perks).where("perks.permanent = ?", true)
+    @businesses = Business.joins(:perks).where("perks.permanent = ?", true).distinct
+    # authorize @businesses
     # Let's DYNAMICALLY build the markers for the view.
     @markers = Gmaps4rails.build_markers(@businesses) do |business, marker|
       marker.lat business.latitude

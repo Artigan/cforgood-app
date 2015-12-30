@@ -5,80 +5,33 @@
   Découvrez notre liste de causes partenaires
 <% end %>
 
-<div class="container-fluid cforgood-background" id="cause-header">
-  <div class="row">
-    <div class="page-title">
-      <%= image_tag("heart-white.png") %>
-      <h1>Causes</h1>
+<div class="container-fluid admin">
+  <!-- Sub Menu Sidebar -->
+  <%= render "dashboard/shared/sidebar" %>
+  <!-- Content - Statistics -->
+  <div class="dashboard">
+    <div class="container">
+      <% @causes.each do |cause| %>
+        <%= link_to cause_path(cause) do %>
+          <div class="col-xs-6 col-md-4 card-pokemon">
+            <div class="">
+              <div class="bg-cause-card" style="background-image: url(<%= image_url cause.picture %>)">
+                <div class="row" id="blackbox-cause">
+                  <p><%= cause.cause_category.name %></p>
+                </div>
+                <div class="row" id="info-cause">
+                  <div class="col-xs-12" id="cause-name">
+                    <h1><%= cause.name.upcase %></h1>
+                  </div>
+                </div>
+                <div class="row blue-colorbar">
+                  <p><%= cause.impact.upcase %></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <%end%>
     </div>
   </div>
 </div>
-
-<div class="container-fluid" id="bg-cause-index">
-  <div class="whitebox-cause"></div>
-  <div class="col-xs-10 col-sm-1 absolute mt-30" id="btn-cause-category">
-    <div class="btn btn-filter pl-30 pr-30" id="padding12">CATEGORIES <i class="fa fa-angle-down"></i></div>
-  </div>
-  <div class="col-xs-2 col-xs-offset-3 col-sm-1 absolute mt-30" id="btn-cause-CTA">
-    <div class="btn btn-danger pl-30 pr-30" id="padding12">LES SOUTENIR !</div>
-  </div>
-  <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 text-center mt-70 mb-50" id="cause-index">
-    <% @causes.each do |cause| %>
-      <%= link_to cause_path(cause) do %>
-        <div class="col-sm-6 col-md-4 mt-15">
-          <div class="row relative cause-card" >
-            <div class="bg-cause-card" style="background-image: url(<%= image_url cause.picture %>)">
-              <div class="row" id="blackbox-cause">
-                <p><%= cause.cause_category.name %></p>
-              </div>
-              <div class="row" id="info-cause">
-                <div class="col-xs-12" id="cause-name">
-                  <h1><%= cause.name.upcase %></h1>
-                </div>
-              </div>
-              <div class="row blue-colorbar">
-                <p><%= cause.impact.upcase %></p>
-              </div>
-            </div>
-          </div>
-        </div>
-      <% end %>
-    <%end%>
-          <!-- <div class="col-xs-12 col-sm-4">
-            <div class="perk-card-home">
-              <div id="label-terre" >
-                <div class="box-shadow pt-15">
-                  <p>Restaurant</p>
-                  <h3>Label Terre</h3>
-                  <i class="fa fa-map-marker"> Bordeaux</i>
-                  <h4>UN COOKIE OFFERT</h4>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-xs-12 col-sm-4">
-            <div class="perk-card-home">
-              <div id="label-terre" >
-                <div class="box-shadow pt-15">
-                  <p>Restaurant</p>
-                  <h3>Label Terre</h3>
-                  <i class="fa fa-map-marker"> Bordeaux</i>
-                  <h4>UN COOKIE OFFERT</h4>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-xs-12 col-sm-4">
-            <div class="perk-card-home">
-              <div id="label-terre" >
-                <div class="box-shadow pt-15">
-                  <p>Restaurant</p>
-                  <h3>Label Terre</h3>
-                  <i class="fa fa-map-marker"> Bordeaux</i>
-                  <h4>UN COOKIE OFFERT</h4>
-                </div>
-              </div>
-            </div>
-          </div> -->
-    </div>
-<div class="clear"></div>
