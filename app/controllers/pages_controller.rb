@@ -18,4 +18,7 @@ class PagesController < ApplicationController
 
   def member_card
   end
+
+  def faq
+  end
 end

@@ -1,37 +1,43 @@
 <!-- FORM SELECT CAUSE -->
-<div class="col-xs-12 col-sm-6 col-sm-offset-3 form-card form-select-cause">
-  <div class="cause-selection">Choississez votre cause</div>
-  <% Cause.all.sample(3).each do |cause| %>
-    <%= link_to user_update_cause_path(cause_id: cause.id), method: :put, remote: true, authenticity_token: true do %>
-      <div class="col-xs-12 col-sm-6 col-md-4">
-        <div class="row relative cause-card" >
-          <div class="bg-cause-card" style="background-image: url(<%= cause.picture.url(:medium) %>)">
-            <div class="cause-popover" id="<%= cause.id %>", data-content="<%= cause.description %>" data-placement="bottom" data-original-title="<%= cause.name %>" data-trigger="hover">
-              <div class="row" id="cause-category">
-                <p><%= cause.cause_category.name %></p>
-              </div>
-              <div class="row" id="cause-info">
-                <div class="col-xs-12" id="cause-name">
-                  <h1><%= cause.name.upcase %></h1>
+<div class="form-edit-container">
+  <div class="form-edit">
+    <div class="row">
+      <div class="form-card form-select-cause">
+        <div class="dashboard-title">Choississez votre cause</div>
+        <% Cause.all.sample(3).each do |cause| %>
+          <%= link_to user_update_cause_path(cause_id: cause.id), method: :put, remote: true, authenticity_token: true do %>
+            <div class="col-xs-12 col-sm-6 col-md-4">
+              <div class="row relative cause-card" >
+                <div class="bg-cause-card" style="background-image: url(<%= cause.picture.url(:medium) %>)">
+                  <div class="cause-popover" id="<%= cause.id %>", data-content="<%= cause.description %>" data-placement="bottom" data-original-title="<%= cause.name %>" data-trigger="hover">
+                    <div class="row" id="cause-category">
+                      <p><%= cause.cause_category.name %></p>
+                    </div>
+                    <div class="row" id="cause-info">
+                      <div class="col-xs-12" id="cause-name">
+                        <h1><%= cause.name.upcase %></h1>
+                      </div>
+                    </div>
+                    <div class="row" id="cause-impact">
+                      <p><%= cause.impact.upcase %></p>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div class="row" id="cause-impact">
-                <p><%= cause.impact.upcase %></p>
-              </div>
             </div>
-          </div>
+          <% end %>
+        <% end %>
+        <div class="form-list-causes">
+          <p>Vous pouvez aussi sélectionner une association parmi la liste ci-dessous :</p>
+          <%= simple_form_for(current_user, url: user_update_profile_path, remote: true, authenticity_token: true, html: { method: :put, id: :update_cause_id }) do |f| %>
+            <%= f.input :cause_id, collection: Cause.all, label: false, prompt: ("Ou sélectionnez parmi les autres associations"), selected: current_user.cause_id %>
+             <%= f.submit "Validez", class: "btn btn-turquoise" %>
+          <% end %>
         </div>
+        <p class="cause-alinea">Sans choix de votre part, votre abonnement sera reversé à CforGood !</p>
       </div>
-    <% end %>
-  <% end %>
-  <div class="form-list-causes">
-    <p>Vous pouvez aussi sélectionner une association parmi la liste ci-dessous :</p>
-    <%= simple_form_for(:cause_id, url: user_update_cause_path(resource: current_user), remote: true, authenticity_token: true, html: { method: :put, id: :update_cause_id }) do |f| %>
-      <%= f.input :cause_id, collection: Cause.all, label: false, prompt: ("Ou sélectionnez parmi les autres associations"), selected: current_user.cause_id %>
-       <%= f.submit "Validez", class: "btn btn-turquoise" %>
-    <% end %>
+    </div>
   </div>
-  <p>Sans choix de votre part, votre abonnement sera reversé à CforGood !</p>
 </div>
 
 <% content_for :after_js do %>

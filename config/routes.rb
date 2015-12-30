@@ -11,11 +11,11 @@ Rails.application.routes.draw do
   get 'info_business', to: 'pages#info_business'
   get 'info_cause',    to: 'pages#info_cause'
   get 'about',         to: 'pages#about'
+  get 'faq',           to: 'pages#faq'
 
   devise_scope :user do
     get "/signup" => "devise/registrations#new"
     get "/signin" => "devise/sessions#new"
-    put "/user_update_subscription"  => "registrations#update_subscription"
     put "/user_update_cause"  => "registrations#update_cause"
     put "/user_update_profile" => "registrations#update_profile"
     get "/user_profile" => "users#profile"

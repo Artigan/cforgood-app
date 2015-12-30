@@ -1,6 +1,6 @@
 <div class="form-edit-container">
   <div class="form-edit">
-    <%= simple_form_for(resource, as: resource_name, url: user_update_profile_path(resource_name), remote: true,  authenticity_token: true, html: { method: :put, id: :form_profile_user }) do |f| %>
+    <%= simple_form_for(current_user, url: user_update_profile_path, remote: true, authenticity_token: true, html: { method: :put, id: :form_profile_user }) do |f| %>
       <%= f.error_notification %>
       <%= f.input :last_name, placeholder: 'Nom', required: true, autofocus: true, label: false %>
       <%= f.input :first_name, placeholder: 'Prénom', required: true, label: false %>
@@ -11,6 +11,6 @@
     <% end %>
   </div>
   <div>
-    <%= link_to t(".change_your_password", :default => "Changez votre mot de passe ?"), new_user_password_path(resource_name), class: "new-password" %>
+    <%= link_to t(".change_your_password", :default => "Changez votre mot de passe ?"), new_user_password_path(current_user), class: "new-password" %>
   </div>
 </div>

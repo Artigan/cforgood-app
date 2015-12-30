@@ -1,0 +1,10 @@
+<div id="error_explanation">
+  <div class="alert alert-danger alert-dismissible" role="alert">
+    Le formulaire contient <%= pluralize(current_user.errors.count, "erreur") %>.
+    <ul>
+      <% current_user.errors.full_messages.each do |msg| %>
+          <li class="alert-message"><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>

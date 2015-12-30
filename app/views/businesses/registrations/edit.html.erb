@@ -5,7 +5,7 @@
   <div class="dashboard">
     <div class="form-edit-container">
       <div class="form-edit">
-        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), remote: true, authenticity_token: true, html: { method: :put }) do |f| %>
+        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), remote: true, authenticity_token: true ) do |f| %>
           <%= f.error_notification %>
           <%= devise_error_messages! %>
           <%= f.input :business_category_id, required: true, label: false, collection: BusinessCategory.all, hint: ("Choisissez la catégorie de votre commerce") %>

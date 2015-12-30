@@ -13,13 +13,13 @@
     <!-- Tab panes -->
     <div class="tab-content">
       <div role="tabpanel" class="tab-pane active" id="profile">
-        <%= render "form_profile_user", resource: current_user, resource_name: :user  %>
+        <%= render "form_profile_user" %>
       </div>
       <div role="tabpanel" class="tab-pane" id="cause">
         <%= render "form_profile_cause" %>
       </div>
       <div role="tabpanel" class="tab-pane" id="subscription">
-        <%= render "form_profile_subscription", resource: current_user, resource_name: :user %>
+        <%= render "form_profile_subscription" %>
       </div>
       <div role="tabpanel" class="tab-pane" id="account">
         <%= render "form_profile_account" %>
@@ -35,6 +35,7 @@
     $(document).ready(function() {
       $("#menu a").click(function (e) {
         e.preventDefault()
+        $(".alert").remove();
         $(this).tab('show');
       });
     });
