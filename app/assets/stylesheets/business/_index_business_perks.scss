@@ -2,34 +2,69 @@
   padding: 30px 30px 90px;
 
   .header-cards{
+    display: flex;
+    align-items: center;
     position: relative;
-    background-image: image-url("bg-perks-index.jpg");
     background-size: cover;
     background-repeat: none;
     background-position: center;
-    height: 260px;
+    background-color: #71bbc6;
+    height: 200px;
     width: 100%;
     border-radius: 4px;
     margin-bottom: 30px;
 
-    &:after {
-      content: "";
-      position: absolute;
-      width : 100%;
-      height: 100%;
-      background-color: rgba(255, 255, 255, 0.5);
-      z-index: 1;
-    }
-
     .business-filter {
       margin: 0 auto;
-      width: 90%;
+      width: 80%;
       z-index: 2;
+
+      .filter-category.current {
+        .icone-category {
+          background-color: #fff;
+        }
+      }
+
+      .slick-prev,
+      .slick-next {
+        width: 35px;
+        height: 35px;
+        background-color: #fff;
+        border-radius: 50%;
+
+        &:before {
+          font-family: 'FontAwesome';
+          color: #61A6B1;
+        }
+      }
+
+      .slick-prev {
+        left: -50px;
+
+        &:before {
+          content:"\f104";
+        }
+      }
+
+      .slick-next {
+        right: -50px;
+
+        &:before {
+          content:"\f105";
+        }
+      }
 
       .filter-category {
         display: flex;
         flex-direction: column;
         align-items: center;
+        padding: 10px;
+        @include transition(all 0.3s ease-in-out);
+
+        &:hover {
+          background-color: #61A6B1;
+          border-radius: 4px;
+        }
 
         .icone-category {
           display: flex;
@@ -37,7 +72,7 @@
           align-items: center;
           width: 80px;
           height: 80px;
-          background-color: #fff;
+          //background-color: #fff;
           border-radius: 50%;
 
           img {
@@ -47,6 +82,7 @@
 
         span {
           display: block;
+          margin-top: 10px;
           bottom: -30px;
           color: #fff;
           font-weight: 100;
@@ -59,8 +95,10 @@
     position: relative;
     display: flex;
     flex-wrap: wrap;
+    align-content: space-between;
     padding: 30px;
-    width: 100%;
+    //width: 100%;
+    width: 1028px;
     background-color: #fff;
     border-radius: 4px;
 
@@ -68,8 +106,11 @@
       display: flex;
       flex-direction: column;
       box-sizing: border-box;
-      width: 31.33333%;
+      //width: 31.33333%;
+      width: 302px;
+      position: relative;
       margin: 1%;
+
       background-color: #fff;
       border-radius: 4px;
       box-shadow: 0 1px 2px rgba(0,0,0,0.07);

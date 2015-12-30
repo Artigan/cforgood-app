@@ -40,7 +40,7 @@ $('.filter-carrousel').slick({
   dots: false,
   arrows:true,
   infinite: false,
-  speed: 1500,
+  autoplay: false,
   slidesToShow: 5,
   slidesToScroll: 1,
   responsive: [
