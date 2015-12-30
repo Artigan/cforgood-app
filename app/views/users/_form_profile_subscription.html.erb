@@ -1,17 +1,19 @@
 <!-- FORM SUBSCRIPTION -->
-<div class="col-xs-12 col-sm-6 col-sm-offset-3 form-card form-select-cause">
-  <div class="SUBSCRIPTION">Choisissez votre abonnement</div>
-  <%= simple_form_for :user, url: user_update_subscription_path(resource: current_user, resource_name: :user), remote: true, authenticity_token: true, html: { method: :put, id: :form_update_subscription } do |f| %>
-    <%= f.error_notification %>
-    <% if current_user.trial_done %>
-      <%= f.input :subscription, label: false, as: :radio_buttons, collection:
-      [["5 € par mois", "M" ], ["50 € pour un an", "A" ]], checked: current_user.subscription %>
-    <% else %>
-      <%= f.input :subscription, label: false, as: :radio_buttons, collection:
-      [["5 € par mois", "M" ], ["50 € pour un an", "A" ], ["1 mois gratuit pour découvrir CFORGOOD !", "T"]], checked: current_user.subscription %>
+<div class="form-edit-container">
+  <div class="form-edit">
+    <div class="dashboard-title">Choisissez votre abonnement</div>
+    <%= simple_form_for(current_user, url: user_update_profile_path, remote: true, authenticity_token: true, html: { method: :put, id: :form_update_subscription }) do |f| %>
+      <%= f.error_notification %>
+      <% if current_user.trial_done %>
+        <%= f.input :subscription, label: false, as: :radio_buttons, collection:
+        [["5 € par mois", "M" ], ["50 € pour un an", "A" ]], checked: current_user.subscription %>
+      <% else %>
+        <%= f.input :subscription, label: false, as: :radio_buttons, collection:
+        [["5 € par mois", "M" ], ["50 € pour un an", "A" ], ["1 mois gratuit pour découvrir CFORGOOD !", "T"]], checked: current_user.subscription %>
+      <% end %>
+      <div>
+        <%= f.button :submit, "Souscrivez", class: "btn btn-turquoise" %>
+      </div>
     <% end %>
-    <div>
-      <%= f.button :submit, "Souscrivez", class: "btn btn-turquoise" %>
-    </div>
-  <% end %>
+  </div>
 </div>

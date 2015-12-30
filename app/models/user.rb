@@ -67,8 +67,8 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :picture,
     content_type: /\Aimage\/.*\z/
 
-  validate :trial_done?
   after_save :trial_done!, if: :subscription_changed?
+  validate :member!, if: :subscription_changed?
 
   def self.find_for_google_oauth2(access_token, signed_in_resourse=nil)
     data = access_token.info
@@ -129,16 +129,16 @@ class User < ActiveRecord::Base
     (self.date_last_payment == nil || self.date_last_payment < Time.now.prev_month)
   end
 
-  def trial_done?
-    if subscription.present? && subscription_changed? && subscription == "T" && trial_done
-      errors.add(:subscription, "Vous avez déjà profité de votre essai !")
+  def member!
+    if subscription_was == nil
+      self.member = true
+      self.date_subscription = Time.now
     end
   end
 
   def trial_done!
-    if subscription_changed? && subscription_was == "T" && trial_done == false
+    if subscription_was == "T" && trial_done == false
       self.update(trial_done: true)
     end
   end
-
 end

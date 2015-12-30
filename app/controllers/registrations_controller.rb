@@ -1,24 +1,7 @@
 class RegistrationsController < Devise::RegistrationsController
 
   def update_cause
-    if params[:_method] != nil
-      # Select from dropdown
-      @user = User.find_by_id(params[:resource])
-      @user.update_attribute("cause_id", params[:cause_id][:cause_id])
-    else
-      # Select from onclick
-      current_user.update_attribute("cause_id", params[:cause_id])
-    end
-    respond_to do |format|
-      format.html {redirect_to :back}
-      format.js {}
-    end
-  end
-
-  def update_subscription
-    @user = User.find_by_id(params[:resource])
-    @user.update_attribute("subscription", params[:user][:subscription])
-    @user.update_attribute("date_subscription", Time.now)
+    current_user.update_attribute("cause_id", params[:cause_id])
     respond_to do |format|
       format.html {redirect_to :back}
       format.js {}
@@ -27,16 +10,10 @@ class RegistrationsController < Devise::RegistrationsController
 
   def update_profile
     current_user.update(user_params)
-    if current_user.save
-      respond_to do |format|
+    flash[:notice] = "Vos données ont été mises à jour." if current_user.save
+    respond_to do |format|
         format.html {redirect_to :back}
         format.js {}
-      end
-    else
-      respond_to do |format|
-        format.html {redirect_to :back}
-        format.js {}
-      end
     end
   end
 
@@ -57,6 +34,6 @@ class RegistrationsController < Devise::RegistrationsController
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :picture)
+    params.require(:user).permit(:first_name, :last_name, :email, :picture, :cause_id, :subscription)
   end
 end

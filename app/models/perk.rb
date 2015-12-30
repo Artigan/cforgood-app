@@ -68,7 +68,7 @@ class Perk < ActiveRecord::Base
             when "Année"
               date = date.prev_year
           end
-          user.uses.where("perk_id = :id and created_at >= :date", {id: self.id, date: date} ).count >= self.times
+          user.uses.where("perk_id = :id and created_at >= :date", {id: self.id, date: date} ).count < self.times
         else
           user.uses.where(perk_id: self.id).count >= self.times
         end
