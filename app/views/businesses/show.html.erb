@@ -13,7 +13,7 @@
     <% @business.perks.find(params[:perk_id]).update_nb_view! %>
     <div class="perk-board">
       <div class="perk-header" style="background-image: url('<%= image_url @business.picture %>');">
-        <h1><%= @business.name %></h1>
+        <h1><%= @business.name %><br><small><%=  @business.business_category.name %></small></h1>
         <div class="perk-owner" style="background-image: url('<%= image_url @business.leader_picture %>');"></div>
         <span><i class="fa fa-map-marker"></i><%= @business.street %>, <%= @business.city %></span>
       </div>
@@ -55,54 +55,74 @@
       </div>
       <div class="section-business">
         <div class="business-details">
+          <!-- BUSINESS | DESCRIPTION -->
           <h3>En savoir plus sur <%= @business.name %></h3>
           <p><%= @business.description %></p>
+           <!-- OWNER | DESCRIPTION -->
+          <% if @business.leader_description.present? %>
+            <h3>Qui se cache derrière ?</h3>
+            <p><%= @business.leader_description %></p>
+          <%end %>
+          <!-- LINKS | WEB -->
           <h3>Sur le web </h3>
           <ul>
-            <li>
-              <a href="mailto:<%= @business.email %>" class="link-mail-business business-icon-container" target="_blank">
-                <i class="fa fa-envelope business-icon"></i><span><%= @business.email %></span>
-              </a>
-            </li>
-            <li>
-              <a href="<%= @business.url %>" class="link-website-business business-icon-container" target="_blank">
-                <i class="fa fa-globe business-icon"></i><span><%= @business.url %></span>
-              </a>
-            </li>
-          </ul>
-          <h3>Sur les réseaux</h3>
-          <ul>
-            <li>
-              <a href="<%= @business.facebook %>" class="link-facebook-business business-icon-container" target="_blank">
-                <i class="fa fa-facebook business-icon"></i>
-              </a>
-            </li>
-            <li>
-              <a href="<%= @business.twitter %>" class="link-instagram-business business-icon-container" target="_blank">
-                <i class="fa fa-twitter business-icon"></i>
-              </a>
-            </li>
-            <li>
-              <a href="<%= @business.instagram %>" class="link-instagram-business business-icon-container" target="_blank">
-                <i class="fa fa-instagram business-icon"></i>
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div class="business-network">
-          <h3>Profitez de leurs autres bon plans</h3>
-          <div class="map-perks">
-            <ul>
-            <% @business.perks.active.each do |perk| %>
+            <% if @business.email.present? %>
               <li>
-                <%= link_to business_path(perk.business_id, perk_id: perk.id), class: "see-perk" do %>
-                  <%= perk.perk %><i class="fa fa-angle-right"></i>
-                <% end %>
+                <a href="mailto:<%= @business.email %>" class="link-mail-business business-icon-container" target="_blank">
+                  <i class="fa fa-envelope business-icon"></i><span><%= @business.email %></span>
+                </a>
               </li>
             <% end %>
+            <% if @business.url.present? %>
+              <li>
+                <a href="<%= @business.url %>" class="link-website-business business-icon-container" target="_blank">
+                  <i class="fa fa-globe business-icon"></i><span><%= @business.url %></span>
+                </a>
+              </li>
+            <% end %>
+          </ul>
+          <!-- LINKS | SOCIAL NETWORKS -->
+          <h3>Sur les réseaux</h3>
+          <ul class="network">
+            <% if @business.facebook.present? %>
+              <li>
+                <a href="<%= @business.facebook %>" class="link-facebook-business business-icon-container" target="_blank">
+                  <i class="fa fa-facebook business-icon"></i>
+                </a>
+              </li>
+            <% end %>
+            <% if @business.twitter.present? %>
+              <li>
+                <a href="<%= @business.twitter %>" class="link-instagram-business business-icon-container" target="_blank">
+                  <i class="fa fa-twitter business-icon"></i>
+                </a>
+              </li>
+            <% end %>
+            <% if @business.instagram.present? %>
+              <li>
+                <a href="<%= @business.instagram %>" class="link-instagram-business business-icon-container" target="_blank">
+                  <i class="fa fa-instagram business-icon"></i>
+                </a>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+        <!-- PERKS | OTHERS -->
+        <div class="business-network">
+          <h3>Profitez de leurs autres bon plans</h3>
+          <div class="listing-perks">
+            <ul>
+              <% @business.perks.active.each do |perk| %>
+                <li>
+                  <%= link_to business_path(perk.business_id, perk_id: perk.id), class: "see-perk" do %>
+                    <%= perk.perk %><i class="fa fa-angle-right"></i>
+                  <% end %>
+                </li>
+              <% end %>
             </ul>
           </div>
         </div>
+
       </div>
     </div>
   </div>

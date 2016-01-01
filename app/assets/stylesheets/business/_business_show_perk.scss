@@ -1,4 +1,6 @@
 .perk-board {
+  position: relative;
+  max-width: 1028px;
   border-radius: 4px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07);
 
@@ -23,17 +25,22 @@
 
     h1 {
       position: absolute;
-      width: 83%;
+      width: 81%;
       margin: 0;
       padding: 0;
       bottom: 12px;
-      left: 17%;
+      left: 19%;
       font-size: 28px;
       font-weight: 600;
       text-transform: none;
       text-shadow: 1px 1px rgba(0, 0, 0, 0.3);
       color: #fff;
       z-index: 2;
+
+      small {
+        color: #fff;
+        font-size: 16px;
+      }
     }
 
     .perk-owner {
@@ -42,8 +49,8 @@
       background-repeat: no-repeat;
       background-position: center;
       border-radius: 50%;
-      width: 130px;
-      height: 130px;
+      width: 150px;
+      height: 150px;
       bottom: 0;
       left: 30px;
       bottom: -65px;
@@ -58,7 +65,7 @@
       position: absolute;
       bottom: -45px;
       z-index: 1;
-      left: 135px;
+      left: 155px;
       box-shadow: 0 3px 5px rgba(0, 0, 0, 0.07);
 
       font-size: 13px;
@@ -135,6 +142,12 @@
         }
       }
     }
+
+    /* MODAL - USE CODE *******************************************************/
+    .modal-dialog {
+      width: 460px;
+      margin: 130px auto;
+    }
   }
 
   .section-business {
@@ -164,7 +177,7 @@
 
         li {
           float: left;
-          margin-right: 10px;
+          margin-right: 20px;
 
           a {
             color: #71bbc6;
@@ -182,13 +195,24 @@
         }
       }
 
+      ul.network {
+        li {
+          margin-right: 5px;
+        }
+      }
+
       i {
         background-color: #71bbc6;
         border-radius: 50%;
         height: 20px;
         width: 20px;
-        margin-right: 10px;
+        margin-right: 5px;
         text-align: center;
+        @include transition(all 0.3s ease-in-out);
+
+        &:hover {
+          background-color: #61A6B1;
+        }
 
         &:before {
           font-size: 11px;
@@ -199,6 +223,53 @@
 
     .business-network {
       width: 40%;
+
+      .listing-perks {
+        position: relative;
+        height: 290px;
+        top: 5px;
+        overflow-y: scroll;
+        opacity: 0.6;
+        @include transition(all 0.3s ease-in-out);
+
+        &:hover {
+          opacity: 1;
+        }
+
+        ul {
+          list-style: none;
+
+          li {
+            position: relative;
+            height: 65px;
+            font-size: 14px;
+            text-transform: uppercase;
+            border-bottom: 1px solid #fff;
+            @include transition(all 0.3s ease-in-out);
+            background-color: #71bbc6;
+
+            &:hover {
+              background-color: #61A6B1;
+            }
+
+            a {
+              position: absolute;
+              padding: 20px;
+              top: 0;
+              bottom: 0;
+              left: 0;
+              right: 0;
+              color: #fff;
+            }
+
+            .fa {
+              position: absolute;
+              top: 25px;
+              right: 20px;
+            }
+          }
+        }
+      }
     }
   }
 }
