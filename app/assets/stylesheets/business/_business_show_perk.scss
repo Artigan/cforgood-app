@@ -4,6 +4,7 @@
   border-radius: 4px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07);
 
+  /* BUSINESS PIC + NAME & CATEGORY *******************************************/
   .perk-header {
     position: relative;
     background-size: cover;
@@ -43,6 +44,7 @@
       }
     }
 
+    /* OWNER PIC + ADRESSE ****************************************************/
     .perk-owner {
       position: absolute;
       background-size: cover;
@@ -79,12 +81,14 @@
     }
   }
 
+  /* MAP **********************************************************************/
   #map-perk {
     height: 220px;
     border-top: 3px solid #fff;
     opacity: 0.4;
   }
 
+  /* CTA ON MAP - BON PLAN ****************************************************/
   .section-perk {
     display: flex;
     margin-top: -140px;
@@ -117,6 +121,7 @@
       }
     }
 
+    /* USE - BON PLAN *********************************************************/
     .use-perk {
       display: flex;
       justify-content: center;
@@ -150,6 +155,7 @@
     }
   }
 
+  /* BUSINESS - DESCRIPTION ***************************************************/
   .section-business {
     display: flex;
     padding: 30px;
@@ -221,7 +227,8 @@
       }
     }
 
-    .business-network {
+    /* BUSINESS - MORE PERKS **************************************************/
+    .business-more-perks {
       width: 40%;
 
       .listing-perks {
@@ -272,239 +279,4 @@
       }
     }
   }
-}
-
-/******************************************************************************/
-
-#bg-show-business-header {
-  background-position: center center;
-  background-size: cover;
-  height: 130px;
-  position: relative;
-  border-radius: 5px;
-  z-index: 1;
-}
-
-#bg-show-business-body {
-  background-position: center center;
-  background-size: cover;
-  border-radius: 5px;
-  height: 330px;
-}
-
-.cforgood-background-business-show {
-  background: -webkit-linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* Chrome 10+, Saf5.1+ */
-  background:    -moz-linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* FF3.6+ */
-  background:     -ms-linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* IE10 */
-  background:      -o-linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* Opera 11.10+ */
-  background:         linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* W3C */
-  height: 120px;
-  border-bottom: 2px rgba(53, 60, 59, 0.23) solid;
-  font-variant: small-caps;
-  h3 {
-    color: white;
-    font-size: 32px;
-  }
-}
-
-#info-business-show-body {
-  strong {
-    font-family: "Open Sans", "sans-serif" !important;
-    font-weight: 400;
-  }
-}
-
-#name-show-header {
-  left: 29%;
-  top: 28%;
-  h1 {
-    font-size: 32px;
-  }
-}
-
-#address-show-header {
-  top: 112%;
-  left: 15%;
-  color: white;
-  strong {
-    font-family: "Open Sans", "sans-serif" !important;
-    font-size: 15px;
-    font-weight: 400;
-  }
-  p {
-    font-size: 15px;
-  }
-}
-
-#business-perk-show-header {
-  top: 45px;
-  h3 {
-    margin: 5px;
-    font-size: 30px;
-  }
-}
-
-#border-show-header {
-  border-top: 1px rgba(255, 255, 255, 1) solid;
-  margin-top: 75px;
-}
-
-#title-business-show {
-  position: relative;
-  z-index: 2;
-  h1 {
-    margin-top: 10px !important;
-  }
-  img {
-    height: 65px;
-  }
-}
-
-#business-show-header {
-  position: relative;
-  h1 {
-    margin-top: 10px !important;
-  }
-  img {
-    height: 65px;
-  }
-}
-
-#border-show-body {
-    border: 1px #000000 solid;
-    opacity: 0.1;
-    width: 64%;
-}
-
-#description-perk-body {
-  margin-top: 10px;
-}
-
-#details-perk-body {
-  margin-top: 20px;
-  h3 {
-    color: rgb(51,51,51);
-  }
-}
-
-.details-perk-btn-profit {
-  margin-top: 10%;
-  margin-left: 40%;
-  color: #fff;
-}
-
-.whitebox-show-business {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  background: rgba(255, 255, 255, 0.9);
-  color: rgb(51,51,51);
-  z-index: 0;
-}
-
-.blackbox-show-business {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  background: rgba(51,51,51, 0.65);
-  color: rgb(255, 255, 255);
-  border-radius: 5px;
-  z-index: 0;
-}
-
-#links-business {
-    margin-top: -3px;
-
-  #nopadding-business {
-    padding-left: 0px;
-    padding-right: 0px;
-  }
-  .link-facebook-business {
-    background-color: #4E689C;
-    color: white;
-    &:hover {
-      opacity: 0.9;
-      text-decoration: none;
-      outline: none;
-    }
-  }
-
-  .link-instagram-business {
-    background-color: #3E78A3;
-    color: white;
-    &:hover {
-      opacity: 0.9;
-      text-decoration: none;
-      outline: none;
-    }
-  }
-  .link-mail-business {
-    background-color: #36D3DA;
-    color: white;
-    &:hover {
-      opacity: 0.9;
-      text-decoration: none;
-      outline: none;
-    }
-  }
-  .link-website-business {
-    background-color: #64EEC2;
-    color: white;
-    &:hover {
-      opacity: 0.9;
-      text-decoration: none;
-      outline: none;
-    }
-  }
-
-  .business-icon {
-    position: relative;
-    top: 6px;
-  }
-
-  .business-icon-container {
-    display: block;
-    height: 34px;
-    width: 34px;
-    border-width: 1px;
-    border-style: solid;
-    border-radius: 50%;
-    text-align: center;
-    border-color: rgba(51,51,51,0.1);
-  }
-
-  .link-business {
-    background-color: #3E78A3;
-    color: white;
-    & a:link, a:visited, a:active {
-      opacity: 0.9;
-      text-decoration: none;
-      outline: none;
-      color: white;
-    }
-  }
-}
-
-.map-business {
-    border-radius: 5px;
-    border: 4px #36D3DA solid;
-}
-
-#business-show-body {
-  p {
-    font-size: 16px;
-  }
-  strong {
-    font-family: "Open Sans", "sans-serif" !important;
-    font-size: 16px;
-    font-weight: 400;
-  }
-  background-image: image-url("bg-business-show.jpg");
-  background-size: cover;
-  background-attachment: fixed;
-  position: relative;
-}
-
-.perk_code {
-  color: rgb(51,51,51);
 }
