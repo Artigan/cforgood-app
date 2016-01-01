@@ -5,142 +5,131 @@
   Découvrez le Bon Plan offert par <%= @business.name %> !
 <% end %>
 
-
-<% @business.perks.find(params[:perk_id]).update_nb_view! %>
-
-<div class="container-fluid cforgood-background-business-show" id="business-show-header">
-  <div class="mt-65">
-    <div class="col-sm-8 col-sm-offset-2" id="bg-show-business-header" style="background-image: url(<%= image_url @business.picture %>)">
-      <div class="blackbox-show-business"></div>
-      <div class="col-sm-5 ml-5cent">
-        <div class="absolute" id="name-show-header">
-          <h1><%= @business.name %></h1>
+<div class="container-fluid admin">
+  <!-- Sub Menu Sidebar -->
+  <%= render "dashboard/shared/sidebar" %>
+  <!-- Content - Statistics -->
+  <div class="dashboard dashboard-perks">
+    <% @business.perks.find(params[:perk_id]).update_nb_view! %>
+    <div class="perk-board">
+      <div class="perk-header" style="background-image: url('<%= image_url @business.picture %>');">
+        <h1><%= @business.name %><br><small><%=  @business.business_category.name %></small></h1>
+        <div class="perk-owner" style="background-image: url('<%= image_url @business.leader_picture %>');"></div>
+        <span><i class="fa fa-map-marker"></i><%= @business.street %>, <%= @business.city %></span>
+      </div>
+      <div id="map-perk" style="width: 100%;"></div>
+      <div class="section-perk">
+        <div class="description-perk">
+          <h2><%= @business.perks.find(params[:perk_id]).perk.upcase %></h2>
+          <span><%= @business.perks.find(params[:perk_id]).description %></span>
         </div>
-        <div class="col-sm-10 col-sm-offset-1" id="border-show-header"></div>
-        <div class="absolute" id="address-show-header">
-          <i class="fa fa-map-marker"><strong> <%= @business.street %>, <%= @business.city %></strong></i>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="absolute border3 ml-16cent" id="business-perk-show-header">
-          <h3><%= @business.perks.find(params[:perk_id]).perk.upcase %></h3>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="container-fluid black" id="business-show-body">
-  <div class="whitebox-show-business"></div>
-  <div class="col-sm-10 col-sm-offset-1">
-    <div class="col-sm-7 text-left mt-50 mb-30 pr-2cent">
-
-      <div id="header-perk-body">
-        <div class="col-sm-7 red">
-          <p class="s-18 w-400 pl-15">NOUS PENSONS QUE VOUS AIMEREZ</p>
-        </div>
-        <div class="col-sm-3 col-sm-offset-1" id="links-business">
-          <ul class="list-inline">
-              <li id="nopadding-business">
-                <a href="<%= @business.facebook %>" class="link-facebook-business business-icon-container" target="_blank">
-                  <i class="fa fa-facebook business-icon f-17"></i>
-                </a>
-              </li>
-
-              <li id="nopadding-business">
-                <a href="<%= @business.twitter %>" class="link-instagram-business business-icon-container" target="_blank">
-                  <i class="fa fa-twitter business-icon f-17"></i>
-                </a>
-              </li>
-
-              <li id="nopadding-business">
-                <a href="mailto:<%= @business.email %>" class="link-mail-business business-icon-container" target="_blank">
-                  <i class="fa fa-envelope business-icon f-17"></i>
-                </a>
-              </li>
-
-              <li id="nopadding-business">
-                <a href="<%= @business.url %>" class="link-website-business business-icon-container" target="_blank">
-                  <i class="fa fa-globe business-icon f-20"></i>
-                </a>
-              </li>
-
-          </ul>
-        </div>
-      </div>
-      <div class="clear"></div>
-      <div class="col-sm-8" id="border-show-body"></div>
-      <div class="clear"></div>
-      <div id="description-perk-body">
-        <p><%= @business.description %></p>
-      </div>
-
-      <div id="details-perk-body">
-        <p class="col-sm-7 red text-left s-18 w-400 mt-10 pl-15">BON PLAN OFFERT AUX MEMBRES</p>
-        <div class="clear"></div>
-        <div class="col-sm-8" id="border-show-body"></div>
-        <div class="clear"></div>
-        <p class="mt-10"><%= @business.perks.find(params[:perk_id]).description %></p>
-      </div>
-
-      <div id="F">
-        <p class="col-sm-5 red text-left s-18 w-400 mt-10 pl-15">DETAILS DU BON PLAN</p>
-        <div class="clear"></div>
-        <div class="col-sm-8" id="border-show-body"></div>
-        <div class="clear"></div>
-        <p class="mt-10"><%= @business.perks.find(params[:perk_id]).detail %></p>
-      </div>
-
-      <div class="details-perk-btn-profit">
-        <% if current_user.member %>
-          <% if @business.perks.find(params[:perk_id]).perk_usable?(current_user) %>
-            <button type="button" class="button button-rouge" data-toggle="modal" data-target="#codeModal">J'en profite</button>
-            <!-- MODAL CODE -->
-            <div class="modal fade" id="codeModal" tabindex="-1" role="dialog" aria-labelledby="codeModalLabel">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header gradient-cforgood">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title text-center" id="codeModalLabel">Code d'accès au bon plan</h4>
-                  </div>
-                  <div class="modal-body text-center">
-                    <% if @business.online %>
-                      <%= render "modal_code_perk_online" %>
-                    <% else %>
-                      <%= render "modal_code_perk_desktop" %>
-                    <% end %>
+        <div class="use-perk">
+          <% if current_user.member %>
+            <% if @business.perks.find(params[:perk_id]).perk_usable?(current_user) %>
+              <button type="button" class="use-button" data-toggle="modal" data-target="#codeModal">J'en profite</button>
+              <!-- MODAL CODE -->
+              <div class="modal fade" id="codeModal" tabindex="-1" role="dialog" aria-labelledby="codeModalLabel">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header gradient-cforgood">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title text-center" id="codeModalLabel">Code d'accès au bon plan</h4>
+                    </div>
+                    <div class="modal-body text-center">
+                      <% if @business.online %>
+                        <%= render "modal_code_perk_online" %>
+                      <% else %>
+                        <%= render "modal_code_perk_desktop" %>
+                      <% end %>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          <% else %>
-            <div class="button-use-popover" id="button-used", data-content="Ce Bon Plan n'est plus accessible, mais il y en a bien d'autres à découvrir !" data-placement="bottom" data-original-title="Oups !" data-trigger="hover">
-              <button class="button button-inactive">J'en profite</button>
-            </div>
+            <% else %>
+              <div class="button-use-popover" id="button-used", data-content="Ce Bon Plan n'est plus accessible, mais il y en a bien d'autres à découvrir !" data-placement="bottom" data-original-title="Oups !" data-trigger="hover">
+                <button class="button button-inactive">J'en profite</button>
+              </div>
+            <% end %>
           <% end %>
-        <% end %>
-        <%= link_to "Retour", dashboard_path, class: "button button-turquoise" %>
+        </div>
       </div>
-    </div>
+      <div class="section-business">
+        <div class="business-details">
+          <!-- BUSINESS | DESCRIPTION -->
+          <h3>En savoir plus sur <%= @business.name %></h3>
+          <p><%= @business.description %></p>
+           <!-- OWNER | DESCRIPTION -->
+          <% if @business.leader_description.present? %>
+            <h3>Qui se cache derrière ?</h3>
+            <p><%= @business.leader_description %></p>
+          <%end %>
+          <!-- LINKS | WEB -->
+          <h3>Sur le web </h3>
+          <ul>
+            <% if @business.email.present? %>
+              <li>
+                <a href="mailto:<%= @business.email %>" class="link-mail-business business-icon-container" target="_blank">
+                  <i class="fa fa-envelope business-icon"></i><span><%= @business.email %></span>
+                </a>
+              </li>
+            <% end %>
+            <% if @business.url.present? %>
+              <li>
+                <a href="<%= @business.url %>" class="link-website-business business-icon-container" target="_blank">
+                  <i class="fa fa-globe business-icon"></i><span><%= @business.url %></span>
+                </a>
+              </li>
+            <% end %>
+          </ul>
+          <!-- LINKS | SOCIAL NETWORKS -->
+          <h3>Sur les réseaux</h3>
+          <ul class="network">
+            <% if @business.facebook.present? %>
+              <li>
+                <a href="<%= @business.facebook %>" class="link-facebook-business business-icon-container" target="_blank">
+                  <i class="fa fa-facebook business-icon"></i>
+                </a>
+              </li>
+            <% end %>
+            <% if @business.twitter.present? %>
+              <li>
+                <a href="<%= @business.twitter %>" class="link-instagram-business business-icon-container" target="_blank">
+                  <i class="fa fa-twitter business-icon"></i>
+                </a>
+              </li>
+            <% end %>
+            <% if @business.instagram.present? %>
+              <li>
+                <a href="<%= @business.instagram %>" class="link-instagram-business business-icon-container" target="_blank">
+                  <i class="fa fa-instagram business-icon"></i>
+                </a>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+        <!-- PERKS | OTHERS -->
+        <div class="business-more-perks">
+          <h3>Profitez de leurs autres bon plans</h3>
+          <div class="listing-perks">
+            <ul>
+              <% @business.perks.active.each do |perk| %>
+                <li>
+                  <%= link_to business_path(perk.business_id, perk_id: perk.id), class: "see-perk" do %>
+                    <%= perk.perk %><i class="fa fa-angle-right"></i>
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
 
-  <div class="col-sm-5 mt-50 mb-30" id="info-business-show-body">
-    <div id="map" class="index-2 map-business" style="width: 110%; height: 310px;"></div>
-    <div class="text-center">
-      <div class="col-sm-4 mt-30">
-        <i class="fa fa-phone"><strong> <%= @business.telephone %></strong></i>
-      </div>
-      <div class="col-sm-3 mt-30">
-        <i class="fa fa-folder-open fa-rotate-90"></i><strong> 9h - 18h</strong>
-      </div>
-      <div class="col-sm-5 mt-30">
-        <i class="fa fa-check"><strong> Du Lundi au Samedi</strong></i>
       </div>
     </div>
   </div>
 </div>
 
-<% content_for :after_js do %>
-
+<% content_for(:after_js) do %>
+  <%= render 'shared/map_perk_show', markers: @markers, map_id: "map-perk" %>
   <script>
     $(document).ready(function() {
       $("#button-used").popover({
@@ -150,5 +139,4 @@
       });
     });
   </script>
-
 <% end %>
