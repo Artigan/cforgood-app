@@ -3,7 +3,7 @@
   <div class="form-edit">
     <div class="row">
       <div class="dashboard-title">Renseignez vos données bancaires</div>
-      <div class="col-xs-12 col-sm-6 col-sm-offset-2 form-card form-payment">
+      <div class="col-xs-12 col-sm-8 col-sm-offset-2 form-card form-payment">
         <div class="subscription-form">
           <form id="form-card-creation">
             <div class="form-group">
@@ -18,7 +18,7 @@
               <label for="card_cvx" class="control-label">Cryptogramme visuel</label>
               <input type="text" name="card_cvx" id="card_cvx" size="4" class="form-control">
             </div>
-            <input type="submit" value="Enregistrer votre carte"  id="create-card" class="btn btn-default btn-account">
+            <input type="submit" value="Validez"  id="create-card" class="btn btn-default btn-account">
           </form>
           <div class="hidden">
             <%= simple_form_for :card, url: accounts_path, html: { id: :create_account } do |f| %>
@@ -26,6 +26,15 @@
               <%= f.submit "", :style => "display: none;" %>
             <% end %>
           </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-8 col-sm-offset-2 form-card form-payment">
+        <div class="card-authorized">
+          <ul>
+            <li><img src="<%= image_path 'cb.jpg' %>" alt="CB"></li>
+            <li><img src="<%= image_path 'visa.jpg' %>" alt="VISA"></li>
+            <li><img src="<%= image_path 'mastercard2.jpg' %>" alt="MASTERCARD"></li>
+          </ul>
         </div>
       </div>
     </div>
