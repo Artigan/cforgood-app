@@ -6,33 +6,38 @@ Consultez vos chiffres
 <% end %>
 
 <div class="container-fluid admin">
-  <!-- Sub Menu Sidebar -->
-  <%= render "pro/shared/sidebar" %>
-  <!-- Content - Statistics -->
-  <div class="dashboard">
-    <div class="data-container">
-      <ul>
-        <li>
-          <span class="number"><%= @business.perks.count %></span>
-          <span class="label">Bons plans créés</span>
-        </li>
-        <li>
-          <span class="number"><%= @business.perks_uses_count %></span>
-          <span class="label">Bons plans utlisés</span>
-        </li>
-        <li>
-          <span class="number"><%= @business.perks_views_count %></span>
-          <span class="label">Nombre total de vues</span>
-        </li>
-        <li>
-          <span class="number"><%= @business.perks_new_users %></span>
-          <span class="label">Nombre nouveaux clients</span>
-        </li>
-      </ul>
+   <% if !current_business.active %>
+       <%= image_tag('dashboard_business_inactive.png', class: 'whitebox-business-blur') %>
+       <div class='whitebox-business-msg'>Votre espace sera bientôt actif !</div>
+  <% else %>
+    <!-- Sub Menu Sidebar -->
+    <%= render "pro/shared/sidebar" %>
+    <!-- Content - Statistics -->
+    <div class="dashboard">
+      <div class="data-container">
+        <ul>
+          <li>
+            <span class="number"><%= @business.perks.count %></span>
+            <span class="label">Bons plans créés</span>
+          </li>
+          <li>
+            <span class="number"><%= @business.perks_uses_count %></span>
+            <span class="label">Bons plans utlisés</span>
+          </li>
+          <li>
+            <span class="number"><%= @business.perks_views_count %></span>
+            <span class="label">Nombre total de vues</span>
+          </li>
+          <li>
+            <span class="number"><%= @business.perks_new_users %></span>
+            <span class="label">Nombre nouveaux clients</span>
+          </li>
+        </ul>
+      </div>
+      <div id="map" class="pro-map-businesses" style="width: 82%;"></div>
+      <% content_for(:after_js) do %>
+        <%= render 'shared/map', markers: @markers, map_id: "map" %>
+      <% end %>
     </div>
-    <div id="map" class="pro-map-businesses" style="width: 82%;"></div>
-    <% content_for(:after_js) do %>
-      <%= render 'shared/map', markers: @markers, map_id: "map" %>
-    <% end %>
-  </div>
+  <% end %>
 </div>
