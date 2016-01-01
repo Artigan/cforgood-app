@@ -1,10 +1,22 @@
-.gm-style-iw {
-   width: 320px !important;
-   height: 300px;
-   top: 0 !important;
-   left: 0 !important;
-   box-shadow: 0 1px 6px rgba(178, 178, 178, 0.6);
-   background-color: #fff;
+.infoBox {
+// .gm-s  tyle-iw {
+  width: 320px !important;
+  height: 300px;
+  // top: 0 !important;
+  // left: 0 !important;
+  box-shadow: 0 1px 6px rgba(178, 178, 178, 0.6);
+  background-color: #fff;
+
+  &:after {
+    border-color: #fff transparent transparent transparent;
+    border-width: 13px;
+    border-style: solid;
+    content: '';
+    display: inline-block;
+    position: absolute;
+    bottom: -24px;
+    margin: 0 0 0 142px;
+    }
 
   .map-box {
     width: 320px;
@@ -48,7 +60,7 @@
     }
 
     .map-perks {
-      height: 190px;
+      height: 187px;
       overflow-y: scroll;
 
       ul {
