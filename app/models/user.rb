@@ -19,7 +19,6 @@
 #  last_name              :string
 #  provider               :string
 #  uid                    :string
-#  picture                :string
 #  name                   :string
 #  token                  :string
 #  token_expiry           :datetime
@@ -34,11 +33,12 @@
 #  mangopay_id            :string
 #  card_id                :string
 #  cause_id               :integer
-#  member                 :boolean
+#  member                 :boolean          default(FALSE), not null
 #  subscription           :string
 #  trial_done             :boolean          default(FALSE), not null
 #  date_subscription      :datetime
 #  date_last_payment      :datetime
+#  active                 :boolean          default(FALSE), not null
 #
 # Indexes
 #

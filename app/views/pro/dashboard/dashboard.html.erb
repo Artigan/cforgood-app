@@ -6,9 +6,9 @@ Consultez vos chiffres
 <% end %>
 
 <div class="container-fluid admin">
-   <% if !current_business.active %>
-       <%= image_tag('dashboard_business_inactive.png', class: 'whitebox-business-blur') %>
-       <div class='whitebox-business-msg'>Votre espace sera bientôt actif !</div>
+  <% if !current_business.active %>
+    <%= image_tag('dashboard_business_inactive.png', class: 'whitebox-business-blur') %>
+    <div class='whitebox-business-msg'>Votre espace sera bientôt actif !</div>
   <% else %>
     <!-- Sub Menu Sidebar -->
     <%= render "pro/shared/sidebar" %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151223144037) do
+ActiveRecord::Schema.define(version: 20160102113901) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,8 +45,8 @@ ActiveRecord::Schema.define(version: 20151223144037) do
     t.string   "url"
     t.string   "telephone"
     t.string   "email"
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
     t.string   "description"
     t.string   "picture_file_name"
     t.string   "picture_content_type"
@@ -58,11 +58,11 @@ ActiveRecord::Schema.define(version: 20151223144037) do
     t.string   "facebook"
     t.string   "twitter"
     t.string   "instagram"
-    t.string   "encrypted_password",          default: "", null: false
+    t.string   "encrypted_password",          default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",               default: 0,  null: false
+    t.integer  "sign_in_count",               default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
@@ -74,8 +74,8 @@ ActiveRecord::Schema.define(version: 20151223144037) do
     t.string   "leader_first_name"
     t.string   "leader_last_name"
     t.string   "leader_description"
-    t.boolean  "active"
-    t.boolean  "online"
+    t.boolean  "active",                      default: false, null: false
+    t.boolean  "online",                      default: false, null: false
   end
 
   add_index "businesses", ["business_category_id"], name: "index_businesses_on_business_category_id", using: :btree
@@ -166,7 +166,6 @@ ActiveRecord::Schema.define(version: 20151223144037) do
     t.string   "last_name"
     t.string   "provider"
     t.string   "uid"
-    t.string   "picture"
     t.string   "name"
     t.string   "token"
     t.datetime "token_expiry"
@@ -181,11 +180,12 @@ ActiveRecord::Schema.define(version: 20151223144037) do
     t.string   "mangopay_id"
     t.string   "card_id"
     t.integer  "cause_id"
-    t.boolean  "member"
+    t.boolean  "member",                 default: false, null: false
     t.string   "subscription"
     t.boolean  "trial_done",             default: false, null: false
     t.datetime "date_subscription"
     t.datetime "date_last_payment"
+    t.boolean  "active",                 default: false, null: false
   end
 
   add_index "users", ["cause_id"], name: "index_users_on_cause_id", using: :btree
