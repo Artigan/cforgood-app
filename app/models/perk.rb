@@ -12,7 +12,7 @@
 #  start_date     :datetime
 #  end_date       :datetime
 #  permanent      :boolean          default(TRUE), not null
-#  active         :boolean          default(FALSE), not null
+#  active         :boolean          default(TRUE), not null
 #  perk_code      :string
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
