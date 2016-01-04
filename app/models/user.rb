@@ -125,7 +125,7 @@ class User < ActiveRecord::Base
   end
 
   def should_payin?
-    self.subscription != "T" &&
+    self.subscription.substr(1,1) != "T" &&
     (self.date_last_payment == nil || self.date_last_payment < Time.now.prev_month)
   end
 
@@ -137,7 +137,7 @@ class User < ActiveRecord::Base
   end
 
   def trial_done!
-    if subscription_was == "T" && trial_done == false
+    if subscription_was != nil && subscription_was.substr(1,1) == "T" && trial_done == false
       self.update(trial_done: true)
     end
   end

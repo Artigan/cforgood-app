@@ -10,7 +10,9 @@ class RegistrationsController < Devise::RegistrationsController
 
   def update_profile
     current_user.update(user_params)
-    flash[:notice] = "Vos données ont été mises à jour." if current_user.save
+    if current_user.save && request.referer.include?("user_profile")
+      flash[:notice] = "Vos données ont été mises à jour."
+    end
     respond_to do |format|
         format.html {redirect_to :back}
         format.js {}
