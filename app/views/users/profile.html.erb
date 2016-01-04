@@ -2,13 +2,21 @@
   <!-- Sub Menu Sidebar -->
   <%= render "dashboard/shared/sidebar" %>
   <!-- Content - Statistics -->
-  <div class="dashboard">
+  <div class="dashboard dashboard-profile">
     <!-- Nav tabs -->
     <ul id="menu" class="nav nav-tabs">
-      <li role="profile" class="active"><%= link_to "Vos informations", "#profile", role: "tab", data_toggle: "tab" %></li>
-      <li role="profile"><%= link_to "Votre association", "#cause", role: "tab", data_toggle: "tab" %></li>
-      <li role="profile"><%= link_to "Votre abonnement", "#subscription", role: "tab", data_toggle: "tab" %></li>
-      <li role="profile"><%= link_to "Vos données bancaires", "#account", role: "tab", data_toggle: "tab" %></li>
+      <li role="profile" class="active">
+        <%= link_to "Vos informations", "#profile", role: "tab", data_toggle: "tab" %>
+      </li>
+      <li role="profile">
+        <%= link_to "Votre association", "#cause", role: "tab", data_toggle: "tab" %>
+      </li>
+      <li role="profile">
+        <%= link_to "Votre abonnement", "#subscription", role: "tab", data_toggle: "tab" %>
+      </li>
+      <li role="profile">
+        <%= link_to "Vos données bancaires", "#account", role: "tab", data_toggle: "tab" %>
+      </li>
     </ul>
     <!-- Tab panes -->
     <div class="tab-content">
