@@ -1,4 +1,4 @@
-class DashboardController < ApplicationController
+class Member::DashboardController < ApplicationController
 
   before_action :authenticate_user!
   # include Pundit

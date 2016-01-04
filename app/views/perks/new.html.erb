@@ -1,8 +1,8 @@
 <%= content_for(:title) do %>
-<%= @perk.perk %>
+<%= @business.name %>
 <% end %>
 <%= content_for(:description) do %>
-Modifiez votre Bon Plan
+Créez un nouveau Bon Plan
 <% end %>
 
 <div class="container-fluid admin">
@@ -12,9 +12,8 @@ Modifiez votre Bon Plan
   <div class="dashboard">
     <div class="form-perk-container">
       <div class="form-perk">
-        <%= render 'form_perk' %>
+        <%= render 'form/create' %>
       </div>
     </div>
   </div>
 </div>
-

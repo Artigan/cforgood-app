@@ -1,4 +1,4 @@
-class RegistrationsController < Devise::RegistrationsController
+class Member::RegistrationsController < Devise::RegistrationsController
 
   def update_cause
     current_user.update_attribute("cause_id", params[:cause_id])

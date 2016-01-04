@@ -8,6 +8,7 @@
     <%= render "layouts/shared/navbar" %>
     <div id="menu-overlay">
       <%= yield %>
+      <%= render "layouts/shared/footer" %>
     </div>
     <%= render "layouts/shared/js" %>
     <%= yield(:after_js) %>

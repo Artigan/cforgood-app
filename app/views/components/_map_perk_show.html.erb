@@ -1,6 +1,7 @@
 <script>
   $(document).ready(function() {
-    handler = Gmaps.build('Google');
+    handler = Gmaps.build('Google', { builders: { Marker: InfoBoxBuilder} });
+    //handler = Gmaps.build('Google');
     handler.buildMap({
       provider: {
       disableDefaultUI: true,

@@ -23,7 +23,7 @@
   <!-- BRAND LOGO -->
   <% if user_space? %>
     <% if user_signed_in? %>
-      <%= link_to(image_tag("cforgood_logo.png"), dashboard_path, class: "logo") %>
+      <%= link_to(image_tag("cforgood_logo.png"), member_dashboard_path, class: "logo") %>
     <% else %>
       <%= link_to(image_tag("logo-white.png"), root_path, class: "logo") %>
     <% end %>
@@ -108,10 +108,10 @@
         <ul>
           <% if user_space? %>
             <li>
-              <%= link_to t(".inscription", default: "Inscription"), signup_path %>
+              <%= link_to t(".inscription", default: "Inscription"), member_signup_path %>
             </li>
             <li>
-              <%= link_to t(".connexion", default: "Connexion"), signin_path %>
+              <%= link_to t(".connexion", default: "Connexion"), member_signin_path %>
             </li>
             <li>
               <%= link_to t(".espace_pro", default: "Espace Partenaire"), landing_business_path %>

@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class Member::UsersController < ApplicationController
 
   before_action :authenticate_user!
 

@@ -1,4 +1,4 @@
-class AccountsController < ApplicationController
+class Member::SignupController < ApplicationController
 
   before_action :authenticate_user!
 
