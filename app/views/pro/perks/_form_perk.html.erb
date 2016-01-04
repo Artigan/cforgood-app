@@ -6,9 +6,9 @@
   <%= f.input :permanent, label: "Type du plan", as: :radio_buttons, collection: [['Permanent', true ], ['Flash', false ]], checked: @perk.permanent %>
   <%= f.input :times, as: :string, label: false, placeholder: "Récurrence", input_html: { min: 0, class: "recurrence_hidden"} %>
   <%= f.input :periodicity_id, label: false, collection: Periodicity.all, label_method: :period, value_method: :id, include_blank: 'Choisissez une périodicité', input_html: {class: "recurrence_hidden"} %>
-  <%= f.input :start_date, as: :string, label: false, placeholder: "Début", input_html: {"data-provide" => "datepicker", "data-date-language" => "fr", value: f.object.start_date.strftime("%d/%m/%Y"),  class: "date_hidden"} %>
-  <%= f.input :end_date, as: :string, label: false, placeholder: "Fin", :input_html => {"data-provide" => "datepicker", "data-date-language" => "fr", "data-date-format" => "fr", value: f.object.end_date.strftime("%d/%m/%Y"), class: "date_hidden", } %>
-  <%= f.button :submit, 'Enregistrer', class: "btn-create" %>
+  <%= f.input :start_date, as: :string, label: false, placeholder: "Début", input_html: {"data-provide" => "datepicker", "data-date-language" => "fr", value: f.object.start_date.try(:strftime, '%d/%m/%Y'),  class: "date_hidden"} %>
+  <%= f.input :end_date, as: :string, label: false, placeholder: "Fin", :input_html => {"data-provide" => "datepicker", "data-date-language" => "fr", value: f.object.end_date.try(:strftime, '%d/%m/%Y'), class: "date_hidden", } %>
+  <%= f.button :submit, "Enregistrer", class: "btn-create" %>
 <% end %>
 
 
