@@ -14,8 +14,8 @@ class Member::RegistrationsController < Devise::RegistrationsController
       flash[:notice] = "Vos données ont été mises à jour."
     end
     respond_to do |format|
-        format.html {redirect_to :back}
-        format.js {}
+      format.html {redirect_to :back}
+      format.js {}
     end
   end
 
@@ -26,11 +26,7 @@ class Member::RegistrationsController < Devise::RegistrationsController
   end
 
   def after_update_path_for(resource)
-    if resource_name == :business
-      pro_business_dashboard_path(resource)
-    else
-      dashboard_path
-    end
+    member_user_dashboard_path()
   end
 
   private

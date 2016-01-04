@@ -17,28 +17,28 @@ Rails.application.routes.draw do
   # ROOT TO APP CFORGOOD
   resources :businesses, only: [:index, :show]
 
-  devise_for :users, path: :member, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+  devise_for :users, path: :member, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', registrations: :registrations, sessions: :sessions }
+  devise_scope :user do
+    get "member/signup", to: "member/registrations#new"
+    get "member/signin", to: "member/sessions#new"
+    put "member/update_cause", to: "member/registrations#update_cause"
+    put "member/update_profile", to: "member/registrations#update_profile"
+  end
   namespace :member do
-    devise_scope :user do
-      get "/signup" => "devise/registrations#new"
-      get "/signin" => "devise/sessions#new"
-    end
     resources :users, only: [:show, :update] do
-      get 'dashboard', to: 'dashboard#dashboard'
-      get "/user_profile" => "users#profile"
-      put "/user_update_cause"  => "registrations#update_cause"
-      put "/user_update_profile" => "registrations#update_profile"
+      get "dashboard", to: "dashboard#dashboard"
+      get "profile", to: "dashboard#profile"
     end
     resources :signup, only: [:new, :create]
     resources :perks, only: [:show]
   end
 
   devise_for :businesses, path: :pro, controllers: {registrations: :registrations}
+  devise_scope :business do
+    get "pro/signup", to: "devise/registrations#new"
+    get "pro/signin", to: "devise/sessions#new"
+  end
   namespace :pro do
-    devise_scope :business do
-      get "/signup" => "devise/registrations#new"
-      get "/signin" => "devise/sessions#new"
-    end
     resources :businesses, only: [:show, :update] do
       resources :perks, only: [:index, :new, :create, :update]
       get 'dashboard', to: 'dashboard#dashboard'
@@ -46,7 +46,7 @@ Rails.application.routes.draw do
     resources :perks, only: [:show, :edit, :update]
   end
 
-  namespace :cause do
+  namespace :asso do
     resources :causes, only: [:index, :show]
     get 'dashboard', to: 'dashboard#dashboard'
   end

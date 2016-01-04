@@ -3,14 +3,13 @@ class BusinessesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    # @businesses = Business.all
     @businesses = Business.joins(:perks).where("perks.permanent = ?", true).distinct
 
     # Let's DYNAMICALLY build the markers for the view.
     @markers = Gmaps4rails.build_markers(@businesses) do |business, marker|
       marker.lat business.latitude
       marker.lng business.longitude
-      marker.infowindow render_to_string(partial: "/businesses/map_box", locals: { business: business })
+      marker.infowindow render_to_string(partial: "components/map_box", locals: { business: business })
     end
   end
 

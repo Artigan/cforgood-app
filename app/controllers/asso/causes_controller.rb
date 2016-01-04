@@ -1,4 +1,4 @@
-class CausesController < ApplicationController
+class Asso::CausesController < ApplicationController
 
   before_action :authenticate_user!
 

@@ -19,7 +19,7 @@ class Pro::DashboardController < Pro::ProController
                   width: 32,
                   height: 32
                  })
-      marker.infowindow render_to_string(partial: "/businesses/map_box", locals: { business: business })
+      marker.infowindow render_to_string(partial: "components/map_box", locals: { business: business })
     end
   end
 

@@ -11,7 +11,7 @@ Consultez vos chiffres
     <div class='whitebox-business-msg'>Votre espace sera bientôt actif !</div>
   <% else %>
     <!-- Sub Menu Sidebar -->
-    <%= render "pro/shared/sidebar" %>
+    <%= render "pro/dashboard/sidebar" %>
     <!-- Content - Statistics -->
     <div class="dashboard">
       <div class="data-container">
@@ -36,7 +36,7 @@ Consultez vos chiffres
       </div>
       <div id="map" class="pro-map-businesses" style="width: 82%;"></div>
       <% content_for(:after_js) do %>
-        <%= render 'shared/map', markers: @markers, map_id: "map" %>
+        <%= render 'components/map', markers: @markers, map_id: "map" %>
       <% end %>
     </div>
   <% end %>

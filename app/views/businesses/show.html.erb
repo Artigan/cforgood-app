@@ -7,7 +7,7 @@
 
 <div class="container-fluid admin">
   <!-- Sub Menu Sidebar -->
-  <%= render "dashboard/shared/sidebar" %>
+  <%= render "member/dashboard/shared/sidebar" %>
   <!-- Content - Statistics -->
   <div class="dashboard dashboard-perks">
     <% @business.perks.find(params[:perk_id]).update_nb_view! %>
@@ -37,9 +37,9 @@
                     </div>
                     <div class="modal-body text-center">
                       <% if @business.online %>
-                        <%= render "modal_code_perk_online" %>
+                        <%= render "perks/modals/code_perk_online" %>
                       <% else %>
-                        <%= render "modal_code_perk_desktop" %>
+                        <%= render "perks/modals/code_perk_desktop" %>
                       <% end %>
                     </div>
                   </div>
@@ -129,7 +129,7 @@
 </div>
 
 <% content_for(:after_js) do %>
-  <%= render 'shared/map_perk_show', markers: @markers, map_id: "map-perk" %>
+  <%= render 'components/map_perk_show', markers: @markers, map_id: "map-perk" %>
   <script>
     $(document).ready(function() {
       $("#button-used").popover({

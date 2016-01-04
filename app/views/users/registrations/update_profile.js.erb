@@ -1,6 +1,0 @@
-$(".alert").remove();
-<% if current_user.errors.any? %>
-  $(document).find("form").prepend('<%= j render("shared/error_messages", formats: [:html]) %>');
-<% else %>
-  $(document).find("form").prepend('<%= j render("shared/info_messages", formats: [:html]) %>');
-<% end %>

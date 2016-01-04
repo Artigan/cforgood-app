@@ -2,7 +2,7 @@
 <div class="form-edit-container">
   <div class="form-edit">
     <div class="dashboard-title">Choisissez votre abonnement</div>
-    <%= simple_form_for(current_user, url: user_update_profile_path, remote: true, authenticity_token: true, html: { method: :put, id: :form_update_subscription }) do |f| %>
+    <%= simple_form_for(current_user, url: member_update_profile_path, remote: true, authenticity_token: true, html: { method: :put, id: :form_update_subscription }) do |f| %>
       <%= f.error_notification %>
       <% if current_user.trial_done %>
         <%= f.input :subscription, label: false, as: :radio_buttons, collection:

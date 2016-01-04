@@ -2,8 +2,8 @@
   <div class="left-sidebar user-sidebar">
   <!-- USER SIGN IN -->
     <ul id="sidebar">
-      <li class="<%= active_class(dashboard_path)%>">
-        <%= link_to dashboard_path do %>
+      <li class="<%= active_class(member_user_dashboard_path(current_user))%>">
+        <%= link_to member_user_dashboard_path(current_user) do %>
           <div class="icon-container">
             <%= image_tag('icons/suivi.png', :class => 'admin-icon') %>
           </div>
@@ -18,17 +18,16 @@
           <span class="admin-label">Les Bons Plans</span>
         <% end %>
       </li>
-      <li class="<%= active_class(causes_path)%> light">
-        <%= link_to causes_path do %>
+      <li class="<%= active_class(asso_causes_path)%> light">
+        <%= link_to asso_causes_path do %>
           <div class="icon-container">
             <%= image_tag('icons/createperks.png', :class => 'admin-icon') %>
           </div>
           <span class="admin-label">Les associations</span>
         <% end %>
       </li>
-      <li class="<%= active_class(edit_user_registration_path)%> light">
-        <%#= link_to edit_user_registration_path do %>
-        <%= link_to user_profile_path do %>
+      <li class="<%= active_class(member_user_profile_path(current_user))%> light">
+        <%= link_to member_user_profile_path(current_user) do %>
           <div class="icon-container">
             <%= image_tag('icons/profil.png', :class => 'admin-icon') %>
           </div>

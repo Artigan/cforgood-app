@@ -7,12 +7,12 @@
 
 <div class="container-fluid admin">
   <!-- Sub Menu Sidebar -->
-  <%= render "dashboard/shared/sidebar" %>
+  <%= render "member/dashboard/shared/sidebar" %>
   <!-- Content - Statistics -->
   <div class="dashboard">
     <div class="container">
       <% @causes.each do |cause| %>
-        <%= link_to cause_path(cause) do %>
+        <%= link_to asso_cause_path(cause) do %>
           <div class="col-xs-6 col-md-4 card-pokemon">
             <div class="">
               <div class="bg-cause-card" style="background-image: url(<%= image_url cause.picture %>)">

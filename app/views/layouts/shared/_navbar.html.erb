@@ -23,7 +23,7 @@
   <!-- BRAND LOGO -->
   <% if user_space? %>
     <% if user_signed_in? %>
-      <%= link_to(image_tag("cforgood_logo.png"), member_dashboard_path, class: "logo") %>
+      <%= link_to(image_tag("cforgood_logo.png"), member_user_dashboard_path(current_user), class: "logo") %>
     <% else %>
       <%= link_to(image_tag("logo-white.png"), root_path, class: "logo") %>
     <% end %>
@@ -91,12 +91,12 @@
           </li>
           <li>
             <% if current_user.active %>
-              <%= link_to user_profile_path do %>
+              <%= link_to member_user_profile_path(current_user) do %>
                 <%= image_tag avatar_url(current_user), class: "img-circle" %>
                 <span class="user-name"><%= current_user.first_name %> <%= current_user.last_name.chars.first + "." %></span>
               <% end %>
             <% else %>
-              <%= link_to dashboard_path do %>
+              <%= link_to member_user_dashboard_path(current_user) do %>
                 <%= image_tag avatar_url(current_user), class: "img-circle" %>
                 <span class="user-name"><%= current_user.first_name %> <%= current_user.last_name.chars.first + "." %></span>
               <% end %>
@@ -118,10 +118,10 @@
             </li>
           <% else %>
             <li>
-              <%= link_to t(".inscription", default: "Inscription"), new_business_registration_path %>
+              <%= link_to t(".inscription", default: "Inscription"), pro_signup_path %>
             </li>
             <li>
-              <%= link_to t(".connexion", default: "Connexion"), new_business_session_path %>
+              <%= link_to t(".connexion", default: "Connexion"), pro_signin_path %>
             </li>
           <% end %>
         </ul>

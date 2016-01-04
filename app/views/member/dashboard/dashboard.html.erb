@@ -11,7 +11,7 @@ Autour de vous
     <div class='whitebox-user-msg'>Votre espace sera bientôt actif !</div>
   <% else %>
     <!-- Sub Menu Sidebar -->
-    <%= render "dashboard/shared/sidebar" %>
+    <%= render "member/dashboard/shared/sidebar" %>
     <!-- Content - Statistics -->
     <div class="dashboard">
       <div id="map-dashboard" class="user-map-businesses" style="width: 100%;"></div>
@@ -20,5 +20,5 @@ Autour de vous
 </div>
 
 <% content_for(:after_js) do %>
-  <%= render 'shared/map', markers: @markers, map_id: "map-dashboard" %>
+  <%= render 'components/map', markers: @markers, map_id: "map-dashboard" %>
 <% end %>

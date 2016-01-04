@@ -6,7 +6,7 @@
         <span>Me connecter</span>
         <!-- SIGNIN FORM -->
         <div class="subscription-form">
-          <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <%= simple_form_for(resource, as: resource_name, url: member_signin_path(resource_name)) do |f| %>
             <%= f.error_notification %>
             <%= f.input :email, placeholder: 'Adresse email', required: true, :class => "validate", label: false %>
             <%= f.input :password, placeholder: 'Mot de passe', required: true, :class => "validate", label: false %>

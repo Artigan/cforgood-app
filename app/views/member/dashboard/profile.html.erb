@@ -1,6 +1,6 @@
 <div class="container-fluid admin">
   <!-- Sub Menu Sidebar -->
-  <%= render "dashboard/shared/sidebar" %>
+  <%= render "member/dashboard/shared/sidebar" %>
   <!-- Content - Statistics -->
   <div class="dashboard dashboard-profile">
     <!-- Nav tabs -->
@@ -15,22 +15,22 @@
         <%= link_to "Votre abonnement", "#subscription", role: "tab", data_toggle: "tab" %>
       </li>
       <li role="profile">
-        <%= link_to "Vos données bancaires", "#account", role: "tab", data_toggle: "tab" %>
+        <%= link_to "Vos données bancaires", "#payment", role: "tab", data_toggle: "tab" %>
       </li>
     </ul>
     <!-- Tab panes -->
     <div class="tab-content">
       <div role="tabpanel" class="tab-pane active" id="profile">
-        <%= render "form_profile_user" %>
+        <%= render "member/dashboard/shared/form_user" %>
       </div>
       <div role="tabpanel" class="tab-pane" id="cause">
-        <%= render "form_profile_cause" %>
+        <%= render "member/dashboard/shared/form_cause" %>
       </div>
       <div role="tabpanel" class="tab-pane" id="subscription">
-        <%= render "form_profile_subscription" %>
+        <%= render "member/dashboard/shared/form_subscription" %>
       </div>
-      <div role="tabpanel" class="tab-pane" id="account">
-        <%= render "form_profile_account" %>
+      <div role="tabpanel" class="tab-pane" id="payment">
+        <%= render "member/dashboard/shared/form_payment" %>
       </div>
     </div>
   </div>
