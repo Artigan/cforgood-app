@@ -17,7 +17,7 @@
   # ROOT TO APP CFORGOOD
   resources :businesses, only: [:index, :show]
 
-  devise_for :users, path: :member, controllers: { omniauth_callbacks: 'member/omniauth_callbacks' }
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   devise_scope :user do
     get "member/signup", to: "devise/registrations#new"
     get "member/signin", to: "devise/sessions#new"
