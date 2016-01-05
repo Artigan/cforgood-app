@@ -19,16 +19,6 @@ class Member::RegistrationsController < Devise::RegistrationsController
     end
   end
 
-  protected
-
-  def update_resource(resource, params)
-    resource.update_without_password(params)
-  end
-
-  def after_update_path_for(resource)
-    member_user_dashboard_path()
-  end
-
   private
 
   def user_params

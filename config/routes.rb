@@ -34,10 +34,10 @@
   end
 
   devise_for :businesses, path: :pro, controllers: {registrations: :registrations}
-  devise_scope :business do
-    get "pro/signup", to: "devise/registrations#new"
-    get "pro/signin", to: "devise/sessions#new"
-  end
+    # devise_scope :business do
+    #   get "pro/signup", to: "devise/registrations#new"
+    #   get "pro/signin", to: "devise/sessions#new"
+    # end
   namespace :pro do
     resources :businesses, only: [:show, :update] do
       resources :perks, only: [:index, :new, :create, :update]

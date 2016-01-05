@@ -5,6 +5,5 @@ class UsesController < ApplicationController
     @use.save
     redirect_to member_card_path
   end
-
 end
 
