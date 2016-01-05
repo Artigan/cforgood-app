@@ -4,12 +4,12 @@ Rails.application.routes.draw do
 
   # ROOT TO LANDING WEBSITE
   root to: "pages#home"
-  get 'notre_charte',  to: 'pages#charte'
-  get 'member_card',   to: 'pages#member_card'
-  get 'info_business', to: 'pages#info_business'
-  get 'info_cause',    to: 'pages#info_cause'
-  get 'about',         to: 'pages#about'
-  get 'faq',           to: 'pages#faq'
+  get 'notre_charte',     to: 'pages#charte'
+  get 'member_card',      to: 'pages#member_card'
+  get 'info_business',    to: 'pages#info_business'
+  get 'info_cause',       to: 'pages#info_cause'
+  get 'about',            to: 'pages#about'
+  get 'faq',              to: 'pages#faq'
   get 'landing_business', to: 'pages#landing_business'
 
   resources :contact_forms, only: [:new, :create]
@@ -34,10 +34,10 @@ Rails.application.routes.draw do
   end
 
   devise_for :businesses, path: :pro, controllers: {registrations: :registrations}
-  devise_scope :business do
-    get "pro/signup", to: "devise/registrations#new"
-    get "pro/signin", to: "devise/sessions#new"
-  end
+  # devise_scope :business do
+  #   get "pro/signup", to: "pro/registrations#new"
+  #   get "pro/signin", to: "pro/sessions#new"
+  # end
   namespace :pro do
     resources :businesses, only: [:show, :update] do
       resources :perks, only: [:index, :new, :create, :update]
