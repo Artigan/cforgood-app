@@ -18,7 +18,4 @@ class Member::DashboardController < ApplicationController
       marker.infowindow render_to_string(partial: "components/map_box", locals: { business: business })
     end
   end
-
-  def profile
-  end
 end

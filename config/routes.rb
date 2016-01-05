@@ -19,8 +19,8 @@
 
   devise_for :users, path: :member, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   devise_scope :user do
-    get "member/signup", to: "member/registrations#new"
-    get "member/signin", to: "member/sessions#new"
+    get "member/signup", to: "devise/registrations#new"
+    get "member/signin", to: "devise/sessions#new"
     put "member/update_cause", to: "member/registrations#update_cause"
     put "member/update_profile", to: "member/registrations#update_profile"
   end
@@ -33,10 +33,10 @@
     resources :perks, only: [:show]
   end
 
-  # devise_for :businesses, path: :pro, controllers: {registrations: :registrations, sessions: :sessions}
+  devise_for :businesses, path: :pro, controllers: {registrations: :registrations}
   devise_scope :business do
-    get "pro/signup", to: "pro/registrations#new"
-    get "pro/signin", to: "pro/sessions#new"
+    get "pro/signup", to: "devise/registrations#new"
+    get "pro/signin", to: "devise/sessions#new"
   end
   namespace :pro do
     resources :businesses, only: [:show, :update] do
