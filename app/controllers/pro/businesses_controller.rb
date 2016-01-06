@@ -2,7 +2,6 @@ class Pro::BusinessesController < Pro::ProController
 
   before_action :find_business, only: [:show, :edit, :update]
 
-  raise
   def show
     @perks = @business.perks
     authorize @business
