@@ -5,7 +5,7 @@
 //= require gmaps/google
 
 //= require navbar
-//= require bootstrap-datepicker
+//= require bootstrap-datepicker/core
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.fr.js
 //= require app/bases
 //= require scrollReveal

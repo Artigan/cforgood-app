@@ -19,7 +19,6 @@
 #  last_name              :string
 #  provider               :string
 #  uid                    :string
-#  picture                :string
 #  name                   :string
 #  token                  :string
 #  token_expiry           :datetime
@@ -34,11 +33,12 @@
 #  mangopay_id            :string
 #  card_id                :string
 #  cause_id               :integer
-#  member                 :boolean
+#  member                 :boolean          default(FALSE), not null
 #  subscription           :string
 #  trial_done             :boolean          default(FALSE), not null
 #  date_subscription      :datetime
 #  date_last_payment      :datetime
+#  active                 :boolean          default(FALSE), not null
 #
 # Indexes
 #
@@ -68,7 +68,8 @@ class User < ActiveRecord::Base
     content_type: /\Aimage\/.*\z/
 
   after_save :trial_done!, if: :subscription_changed?
-  validate :member!, if: :subscription_changed?
+  validate :date_subscription!, if: :subscription_changed?
+  validate :member!, if: :date_last_payment_changed?
 
   def self.find_for_google_oauth2(access_token, signed_in_resourse=nil)
     data = access_token.info
@@ -125,19 +126,20 @@ class User < ActiveRecord::Base
   end
 
   def should_payin?
-    self.subscription != "T" &&
+    self.subscription != nil && self.subscription[0] != "T" &&
     (self.date_last_payment == nil || self.date_last_payment < Time.now.prev_month)
   end
 
+  def date_subscription!
+    self.date_subscription = Time.now if subscription_was == nil
+  end
+
   def member!
-    if subscription_was == nil
-      self.member = true
-      self.date_subscription = Time.now
-    end
+    self.member = true
   end
 
   def trial_done!
-    if subscription_was == "T" && trial_done == false
+    if subscription_was != nil && subscription_was[0] == "T" && trial_done == false
       self.update(trial_done: true)
     end
   end

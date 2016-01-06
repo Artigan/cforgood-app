@@ -12,7 +12,7 @@
 #  start_date     :datetime
 #  end_date       :datetime
 #  permanent      :boolean          default(TRUE), not null
-#  active         :boolean          default(FALSE), not null
+#  active         :boolean          default(TRUE), not null
 #  perk_code      :string
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
@@ -34,12 +34,22 @@ class Perk < ActiveRecord::Base
 
   validates :times, numericality: { only_integer: true, greater_than_or_equal_to: 0 }, allow_nil: true
 
+  validate :dates_required_if_flash
   validate :start_date_cannot_be_greater_than_end_date
   validate :generate_code
 
+  def dates_required_if_flash
+    if !permanent && !start_date.present?
+      errors.add(:start_date, "La date de début est obligatoire pour un bon plan flash.")
+    end
+    if !permanent && !end_date.present?
+      errors.add(:end_date, "La date de fin est obligatoire pour un bon plan flash.")
+    end
+  end
+
   def start_date_cannot_be_greater_than_end_date
     if start_date.present? && end_date.present? && start_date > end_date
-      errors.add(:end_date, "ne doit pas être antérieure à la date de début")
+      errors.add(:end_date, "La date de fin ne doit pas être antérieure à la date de début.")
     end
   end
 

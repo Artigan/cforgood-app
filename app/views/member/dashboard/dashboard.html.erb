@@ -1,0 +1,24 @@
+<%= content_for(:title) do %>
+<%#= @user.first_name %>
+<% end %>
+<%= content_for(:description) do %>
+Autour de vous
+<% end %>
+
+<div class="container-fluid admin">
+  <% if !current_user.active %>
+    <%= image_tag('dashboard_user_inactive.png', class: 'whitebox-user-blur') %>
+    <div class='whitebox-user-msg'>Votre espace sera bientôt actif !</div>
+  <% else %>
+    <!-- Sub Menu Sidebar -->
+    <%= render "member/dashboard/shared/sidebar" %>
+    <!-- Content - Statistics -->
+    <div class="dashboard">
+      <div id="map-dashboard" class="user-map-businesses" style="width: 100%;"></div>
+    </div>
+  <% end %>
+</div>
+
+<% content_for(:after_js) do %>
+  <%= render 'components/map', markers: @markers, map_id: "map-dashboard" %>
+<% end %>

@@ -16,7 +16,7 @@
               <%= f.input :city, placeholder: 'Ville', required: true, label: 'Votre ville' %>
               <p>En cliquant sur <strong>S'inscrire</strong>, vous acceptez les <a type="href" class="" data-toggle="modal" data-target="#modal-cgu"><strong>CGU</strong></a> et certifiez avoir de plus de 18 ans.</p>
               <%= f.button :submit, "Sign up" %>
-              <%= render "modals/signup_cgu" %>
+              <%= render "components/modals/signup_cgu" %>
             <% end %>
           </div>
         </div>

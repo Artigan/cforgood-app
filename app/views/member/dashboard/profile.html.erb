@@ -1,0 +1,53 @@
+<div class="container-fluid admin">
+  <!-- Sub Menu Sidebar -->
+  <%= render "member/dashboard/shared/sidebar" %>
+  <!-- Content - Statistics -->
+  <div class="dashboard dashboard-profile">
+    <!-- Nav tabs -->
+    <ul id="menu" class="nav nav-tabs">
+      <li role="profile" class="active">
+        <%= link_to "Vos informations", "#profile", role: "tab", data_toggle: "tab" %>
+      </li>
+      <li role="profile">
+        <%= link_to "Votre association", "#cause", role: "tab", data_toggle: "tab" %>
+      </li>
+      <li role="profile">
+        <%= link_to "Votre abonnement", "#subscription", role: "tab", data_toggle: "tab" %>
+      </li>
+      <li role="profile">
+        <%= link_to "Vos données bancaires", "#payment", role: "tab", data_toggle: "tab" %>
+      </li>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="profile">
+        <%= render "member/dashboard/shared/form_user" %>
+      </div>
+      <div role="tabpanel" class="tab-pane" id="cause">
+        <%= render "member/dashboard/shared/form_cause" %>
+      </div>
+      <div role="tabpanel" class="tab-pane" id="subscription">
+        <%= render "member/dashboard/shared/form_subscription" %>
+      </div>
+      <div role="tabpanel" class="tab-pane" id="payment">
+        <%= render "member/dashboard/shared/form_payment" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% content_for :after_js do %>
+
+  <script>
+
+    $(document).ready(function() {
+      $("#menu a").click(function (e) {
+        e.preventDefault()
+        $(".alert").remove();
+        $(this).tab('show');
+      });
+    });
+
+  </script>
+
+<% end %>

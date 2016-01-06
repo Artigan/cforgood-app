@@ -1,6 +1,6 @@
 class Pro::ProController < ActionController::Base
 
-  layout 'pro'
+  layout 'application'
 
   before_action :authenticate_business!
   include Pundit

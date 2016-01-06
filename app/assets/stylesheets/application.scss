@@ -16,9 +16,8 @@
 // Your CSS
 @import "layout/index";
 @import "components/index";
-@import "components/payment_card";
 @import "devise/devise";
-@import "user/dashboard_user";
+@import "user/index";
 @import "devise/edit_pro";
 @import "devise/signup_pro";
 @import "pages/index";
@@ -26,3 +25,4 @@
 @import "business/index";
 @import "cause/index";
 @import "pro/index";
+@import "account/index";

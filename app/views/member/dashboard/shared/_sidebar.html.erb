@@ -1,0 +1,44 @@
+<% if user_signed_in? %>
+  <div class="left-sidebar user-sidebar">
+  <!-- USER SIGN IN -->
+    <ul id="sidebar">
+      <li class="<%= active_class(member_user_dashboard_path(current_user))%>">
+        <%= link_to member_user_dashboard_path(current_user) do %>
+          <div class="icon-container">
+            <%= image_tag('icons/suivi.png', :class => 'admin-icon') %>
+          </div>
+          <span class="admin-label">Autour de vous</span>
+        <% end %>
+      </li>
+      <li class="<%= active_class(businesses_path)%> light">
+        <%= link_to businesses_path do %>
+          <div class="icon-container">
+            <%= image_tag('icons/myperks.png', :class => 'admin-icon') %>
+          </div>
+          <span class="admin-label">Les Bons Plans</span>
+        <% end %>
+      </li>
+      <li class="<%= active_class(asso_causes_path)%> light">
+        <%= link_to asso_causes_path do %>
+          <div class="icon-container">
+            <%= image_tag('icons/createperks.png', :class => 'admin-icon') %>
+          </div>
+          <span class="admin-label">Les associations</span>
+        <% end %>
+      </li>
+      <li class="<%= active_class(member_user_profile_path(current_user))%> light">
+        <%= link_to member_user_profile_path(current_user) do %>
+          <div class="icon-container">
+            <%= image_tag('icons/profil.png', :class => 'admin-icon') %>
+          </div>
+          <span class="admin-label">Mon profil</span>
+        <% end %>
+      </li>
+    </ul>
+    <div class="signout">
+      <%= link_to destroy_user_session_path, method: :delete do %>
+        <%= image_tag('icons/signout.png', :class => 'signout-icon') %><%= t ".se_déconnecter", default: "À bientôt" %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

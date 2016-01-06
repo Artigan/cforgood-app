@@ -23,11 +23,11 @@ class ApplicationController < ActionController::Base
     if resource.sign_in_count == 1 && resource_name != :business
       @mangopay_user = MangopayServices.new(current_user).create_mangopay_natural_user
       resource.update_attribute("mangopay_id", @mangopay_user["Id"]) if @mangopay_user
-      new_account_path
+      new_member_signup_path
     elsif resource_name == :business
       pro_business_dashboard_path(resource)
     else
-      dashboard_path
+      member_user_dashboard_path(resource)
     end
   end
 
@@ -35,9 +35,9 @@ class ApplicationController < ActionController::Base
 
   def set_layout
     if devise_controller? || user_signed_in?
-      self.class.layout "sign"
-    else
       self.class.layout "application"
+    else
+      self.class.layout "website"
     end
   end
 

@@ -1,0 +1,131 @@
+<% if user_space? %>
+  <% if user_signed_in? %>
+    <nav id="navbar" class="navbar nav nav-user" role="navigation">
+  <% else %>
+    <nav id="navbar" class="navbar nav" role="navigation">
+  <% end %>
+<% else %>
+  <% if business_signed_in? %>
+    <nav id="navbar" class="navbar nav nav-business" role="navigation">
+  <% else %>
+    <nav id="navbar" class="navbar nav" role="navigation">
+  <% end %>
+<% end %>
+  <!-- ICON RESPONSIVE MENU -->
+  <a href="#" class="menu-toggle">
+    <div id="menu-icon">
+      <span id="icon-line"></span>
+      <span id="icon-line"></span>
+      <span id="icon-line"></span>
+      <span id="icon-line"></span>
+    </div>
+  </a>
+  <!-- BRAND LOGO -->
+  <% if user_space? %>
+    <% if user_signed_in? %>
+      <%= link_to(image_tag("cforgood_logo.png"), member_user_dashboard_path(current_user), class: "logo") %>
+    <% else %>
+      <%= link_to(image_tag("logo-white.png"), root_path, class: "logo") %>
+    <% end %>
+  <% else %>
+  <% if business_signed_in? %>
+      <%= link_to(image_tag("cforgood_logo.png"), pro_business_dashboard_path(current_business), class: "logo") %>
+    <% else %>
+      <%= link_to(image_tag("logo-white.png"), root_path, class: "logo") %>
+    <% end %>
+  <% end %>
+  <!-- MENU ITEMS -->
+  <div class="link-container">
+    <!-- PRO SIGN IN -->
+    <% if business_signed_in? && pro_space? %>
+      <div class="visible-xs menu-user-info">
+        <%= image_tag avatar_url(current_business), class: "user-pic" %>
+        <span class="user-name">
+          Bienvenue,<br> <%= current_business.name %>
+        </span>
+      </div>
+      <ul>
+        <li class="visible-xs">
+        <%= link_to landing_business_path do %>
+          <i class="fa fa-home"></i> <%= t(".how_it_works", default: "Accueil") %>
+        <% end %>
+        </li>
+        <li>
+          <%= link_to about_path do %>
+          <i class="fa fa-dot-circle-o"></i> <%= t(".how_it_works", default: "Aide et conseils") %>
+          <% end %>
+        </li>
+        <li class="hidden-xs">
+          <% if current_business.active %>
+            <%= link_to edit_business_registration_path(current_business) do %>
+              <%= image_tag avatar_url(current_business), class: "img-circle", type: "button" %>
+              <span class="user-name"><%= current_business.name %></span>
+            <% end %>
+          <% else %>
+            <%= link_to pro_business_dashboard_path(current_business) do %>
+              <%= image_tag avatar_url(current_business), class: "img-circle", type: "button" %>
+              <span class="user-name"><%= current_business.name %></span>
+            <% end %>
+          <% end%>
+        </li>
+      </ul>
+    <!-- USER SIGN IN -->
+    <% else %>
+      <% if user_signed_in? && user_space? %>
+        <div class="visible-xs menu-user-info">
+          <%= image_tag avatar_url(current_user), class: "user-pic" %>
+          <span class="user-name">
+            Bienvenue,<br> <%= current_user.first_name %> <%= current_user.last_name.chars.first + "." %>
+          </span>
+        </div>
+        <ul>
+          <li class="visible-xs">
+            <%= link_to root_path do %>
+              <i class="fa fa-home"></i> <%= t(".how_it_works", default: "Accueil") %>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to faq_path do %>
+              <i class="fa fa-dot-circle-o"></i> <%= t(".how_it_works", default: "Aide et conseils") %>
+            <% end %>
+          </li>
+          <li>
+            <% if current_user.active %>
+              <%= link_to member_user_profile_path(current_user) do %>
+                <%= image_tag avatar_url(current_user), class: "img-circle" %>
+                <span class="user-name"><%= current_user.first_name %> <%= current_user.last_name.chars.first + "." %></span>
+              <% end %>
+            <% else %>
+              <%= link_to member_user_dashboard_path(current_user) do %>
+                <%= image_tag avatar_url(current_user), class: "img-circle" %>
+                <span class="user-name"><%= current_user.first_name %> <%= current_user.last_name.chars.first + "." %></span>
+              <% end %>
+            <% end %>
+          </li>
+        </ul>
+      <!-- USER SIGN OUT -->
+      <% else %>
+        <ul>
+          <% if user_space? %>
+            <li>
+              <%= link_to t(".inscription", default: "Inscription"), member_signup_path %>
+            </li>
+            <li>
+              <%= link_to t(".connexion", default: "Connexion"), member_signin_path %>
+            </li>
+            <li>
+              <%= link_to t(".espace_pro", default: "Espace Partenaire"), landing_business_path %>
+            </li>
+          <% else %>
+            <li>
+              <%= link_to t(".inscription", default: "Inscription"), new_business_registration_path %>
+            </li>
+            <li>
+              <%= link_to t(".connexion", default: "Connexion"), new_business_session_path %>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+    <% end %>
+  </div>
+</nav>

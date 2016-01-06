@@ -1,0 +1,135 @@
+<!-- FORM CARD REGISTRATION -->
+<div class="form-edit-container">
+  <div class="form-edit">
+    <div class="row">
+      <div class="dashboard-title">Renseignez vos données bancaires</div>
+      <div class="col-xs-12 col-sm-8 col-sm-offset-2 form-card form-payment">
+        <div class="subscription-form">
+          <form id="form-card-creation">
+            <div class="form-group">
+              <label for="card_number" class="control-label">Numéro de carte</label>
+              <input type="text" name="card_number" id="card_number" size="18" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="card_exp_date" class="control-label">Date d'expiration</label>
+              <input type="text" name="card_exp_date" id="card_exp_date" size="6" placeholder='mmaa' class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="card_cvx" class="control-label">Cryptogramme visuel</label>
+              <input type="text" name="card_cvx" id="card_cvx" size="4" class="form-control">
+            </div>
+            <input type="submit" value="Validez"  id="create-card" class="btn btn-default btn-account">
+          </form>
+          <div class="hidden">
+            <%= simple_form_for :card, url:  member_signup_index_path, html: { id: :create_account } do |f| %>
+              <%= f.input :id, as: :hidden %>
+              <%= f.submit "", :style => "display: none;" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-8 col-sm-offset-2 form-card form-payment">
+        <div class="card-authorized">
+          <ul>
+            <li><img src="<%= image_path 'cb.jpg' %>" alt="CB"></li>
+            <li><img src="<%= image_path 'visa.jpg' %>" alt="VISA"></li>
+            <li><img src="<%= image_path 'mastercard2.jpg' %>" alt="MASTERCARD"></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% content_for :after_js do %>
+
+  <script>
+    $(document).ready(function() {
+
+      $.validator.addMethod("datePostToday",function(value, element) {
+        var today = new Date();
+        var todayMonth = today.getMonth()+1;
+        var todayYear = today.getFullYear().toString().substr(2,2);
+        var valueMonth = value.substr(0,2);
+        var valueYear = value.substr(2,2);
+        return (valueYear > todayYear || (valueYear == todayYear && valueMonth >= todayMonth));
+      }, "La date d'expiration ne doit pas être révolue");
+
+      $("#form-card-creation").validate({
+        lang: 'fr',
+        rules: {
+          card_number: {
+            required: true,
+            digits: true,
+            minlength: 16,
+            maxlength: 16,
+          },
+          card_exp_date: {
+            required: true,
+            digits: true,
+            minlength: 4,
+            maxlength: 4,
+            datePostToday: true,
+          },
+          card_cvx: {
+            required: true,
+            digits: true,
+            minlength: 3,
+            maxlength: 3
+          }
+        }
+      });
+
+      $("#form-card-creation").on("submit", function(e) {
+        e.preventDefault();
+        if ($("#form-card-creation").valid()) {
+          // Initialize MangoPay
+          // var mangoPayInit = <%= current_user.mangopay_id ? current_user.mangopay_id : raw(MangopayServices.new(current_user).create_mangopay_natural_user.to_json) %>;
+
+          var cardPreRegistration = <%= current_user.mangopay_id ? raw(MangopayServices.new(current_user).create_mangopay_card_pre_registration.to_json) : 'null' %>;
+
+          if (userMangopayId && cardPreRegistration) {
+            // Initialize with card register data prepared on the server
+            mangoPay.cardRegistration.init({
+              cardRegistrationURL: cardPreRegistration.CardRegistrationURL,
+              preregistrationData: cardPreRegistration.PreregistrationData,
+              accessKey: cardPreRegistration.AccessKey,
+              Id: cardPreRegistration.Id
+            });
+
+            // Card data collected from the user
+            var cardData = {
+              cardNumber: $("#card_number").val(),
+              cardExpirationDate: $("#card_exp_date").val(),
+              cardCvx: $("#card_cvx").val(),
+              cardType: "CB_VISA_MASTERCARD"
+          };
+
+          // Set MangoPay API base URL and Client ID
+          mangoPay.cardRegistration.baseURL   = "<%= ENV['MANGOPAY_API_URL'] %>";
+          mangoPay.cardRegistration.clientId  = "<%= ENV['MANGOPAY_CLIENT_ID'] %>";
+          var validateCard = mangoPay.cardRegistration._validateCardData(cardData);
+          };
+
+          if (validateCard) {
+            // Register card
+            mangoPay.cardRegistration.registerCard(
+              cardData,
+              function(res) {
+                $("#card_id").val(res.CardId);
+                $("#create_account").submit();
+                alert("Vos informations bancaires ont été correctement enregistrées")
+                // Success, you can use res.CardId now that points to registered card
+              },
+              function(res) {
+                alert("Une erreur s'est produite lors de l'enregistrement de votre carte : " + res.ResultMessage)
+                // Handle error, see res.ResultCode and res.ResultMessage
+              }
+            );
+          };
+        };
+      });
+    });
+  </script>
+
+<% end %>

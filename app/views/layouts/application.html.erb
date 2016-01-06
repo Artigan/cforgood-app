@@ -1,17 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <%= render "shared/head" %>
+    <%= render "layouts/shared/head" %>
   </head>
+
   <body>
-    <!-- <#%= render "shared/flashes" %> -->
-    <%= render "shared/navbar" %>
+    <%= render "layouts/shared/navbar" %>
     <div id="menu-overlay">
       <%= yield %>
-      <%= render "shared/footer" %>
     </div>
-
-    <%= render "shared/js" %>
+    <%= render "layouts/shared/js" %>
     <%= yield(:after_js) %>
   </body>
 </html>

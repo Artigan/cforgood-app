@@ -39,8 +39,8 @@
 #  leader_first_name           :string
 #  leader_last_name            :string
 #  leader_description          :string
-#  active                      :boolean
-#  online                      :boolean
+#  active                      :boolean          default(FALSE), not null
+#  online                      :boolean          default(FALSE), not null
 #
 # Indexes
 #

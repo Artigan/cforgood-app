@@ -7,8 +7,8 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-# BusinessCategory.destroy_all
-# Business.destroy_all
+BusinessCategory.destroy_all
+Business.destroy_all
 
 path = "/Users/Allan/Desktop/CforGood/images/Business/"
 
