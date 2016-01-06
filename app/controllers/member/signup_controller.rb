@@ -3,11 +3,7 @@ class Member::SignupController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    if !current_user.mangopay_id
-      @mangopay_user = MangopayServices.new(current_user).create_mangopay_natural_user
-      resource.update_attribute("mangopay_id", @mangopay_user["Id"]) if @mangopay_user
-    end
-    if !current_user.mangopay_id
+    if current_user.mangopay_id
       current_user.update_attribute("card_id", params[:card][:id])
       if current_user.should_payin?
         wallet_id = Cause.find_by_id(current_user.cause_id).wallet_id if current_user.cause_id
