@@ -12,7 +12,7 @@
       </div>
     </div>
     <div class="offer-card most-popular">
-      <div class="offer-most-popular">Notre préférée</div>
+      <div class="offer-most-popular">Le plus populaire</div>
       <div class="offer-title">Annuel</div>
       <div class="offer-extra"><span>12 Mois </span>de validité</div>
       <div class="offer-price">50€/an</div>
@@ -26,8 +26,7 @@
       <div class="offer-extra">Pour vos clients ou salariés</div>
       <div class="offer-price">Nous consulter</div>
       <div class="offer-btn">
-        <%= link_to "Essayez", member_update_profile_path("user" => {subscription: "TE"}), method: :put, remote: true, authenticity_token: true, class: "btn btn-green", html: { id: :update_subscription_trial } %>
-        <%= link_to "Souscrivez", member_update_profile_path("user" => {subscription: "E"}), method: :put, remote: true, authenticity_token: true, class: "btn btn-turquoise subscription", html: { id: :update_subscription } %>
+        <%= link_to "Contactez-nous", new_contact_form_path, class: "btn btn-bluenight" %>
       </div>
     </div>
   </div>

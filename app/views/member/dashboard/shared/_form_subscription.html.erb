@@ -2,18 +2,53 @@
 <div class="form-edit-container">
   <div class="form-edit">
     <div class="dashboard-title">Choisissez votre abonnement</div>
-    <%= simple_form_for(current_user, url: member_update_profile_path, remote: true, authenticity_token: true, html: { method: :put, id: :form_update_subscription }) do |f| %>
-      <%= f.error_notification %>
-      <% if current_user.trial_done %>
-        <%= f.input :subscription, label: false, as: :radio_buttons, collection:
-        [["5 € par mois", "M" ], ["50 € pour un an", "A" ]], checked: current_user.subscription %>
-      <% else %>
-        <%= f.input :subscription, label: false, as: :radio_buttons, collection:
-        [["5 € par mois", "M" ], ["50 € pour un an", "A" ], ["1 mois gratuit pour découvrir CFORGOOD !", "T"]], checked: current_user.subscription %>
-      <% end %>
-      <div>
-        <%= f.button :submit, "Souscrivez", class: "btn btn-turquoise" %>
+      <div class="container-fluid offer-index">
+        <div class="offer-card">
+          <div class="offer-title">Mensuel</div>
+          <div class="offer-extra">Sans engagement de durée</div>
+          <div class="offer-price">5€/mois</div>
+          <div class="offer-btn">
+            <% if !current_user.trial_done? %>
+              <%= link_to "Essayez", member_update_profile_path("user" => {subscription: "TM"}), method: :put, remote: true, authenticity_token: true, class: "btn btn-green", html: { id: :update_subscription_trial } %>
+            <% end %>
+            <%= link_to "Souscrivez", member_update_profile_path("user" => {subscription: "M"}), method: :put, remote: true, authenticity_token: true, class: "btn btn-turquoise subscription", html: { id: :update_subscription } %>
+          </div>
+        </div>
+        <div class="offer-card most-popular">
+          <div class="offer-most-popular">Le plus populaire</div>
+          <div class="offer-title">Annuel</div>
+          <div class="offer-extra"><span>12 Mois </span>de validité</div>
+          <div class="offer-price">50€/an</div>
+          <div class="offer-btn">
+            <% if !current_user.trial_done? %>
+              <%= link_to "Essayez", member_update_profile_path("user" => {subscription: "TA"}), method: :put, remote: true, authenticity_token: true, class: "btn btn-green", html: { id: :update_subscription_trial } %>
+            <% end %>
+            <%= link_to "Souscrivez", member_update_profile_path("user" => {subscription: "A"}), method: :put, remote: true, authenticity_token: true, class: "btn btn-turquoise subscription", html: { id: :update_subscription } %>
+          </div>
+        </div>
+        <div class="offer-card">
+          <div class="offer-title">Entreprise</div>
+          <div class="offer-extra">Pour vos clients ou salariés</div>
+          <div class="offer-price">Nous consulter</div>
+          <div class="offer-btn">
+            <%= link_to "Contactez-nous", new_contact_form_path, class: "btn btn-bluenight" %>
+          </div>
+        </div>
       </div>
-    <% end %>
+    </div>
   </div>
 </div>
+
+<% content_for :after_js do %>
+
+  <script>
+    $(document).ready(function() {
+       $(".btn.subscription").on("click", function(e) {
+        e.preventDefault();
+        $(".form-payment").removeClass('hidden');
+        $("#update_subscription").submit();
+      });
+    });
+  </script>
+
+<% end %>
