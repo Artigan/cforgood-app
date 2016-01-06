@@ -1,4 +1,4 @@
-  Rails.application.routes.draw do
+Rails.application.routes.draw do
 
   ActiveAdmin.routes(self)
 
@@ -17,13 +17,14 @@
   # ROOT TO APP CFORGOOD
   resources :businesses, only: [:index, :show]
 
-  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   devise_scope :user do
     get "member/signup", to: "devise/registrations#new"
     get "member/signin", to: "devise/sessions#new"
     put "member/update_cause", to: "member/registrations#update_cause"
     put "member/update_profile", to: "member/registrations#update_profile"
   end
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+
   namespace :member do
     resources :users, only: [:show, :update] do
       get "dashboard", to: "dashboard#dashboard"

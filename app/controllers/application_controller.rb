@@ -34,7 +34,10 @@ class ApplicationController < ActionController::Base
   private
 
   def set_layout
-    if devise_controller? || user_signed_in?
+    if pages_admin?
+      @_action_has_layout=false
+      return
+    elsif devise_controller? || user_signed_in?
       self.class.layout "application"
     else
       self.class.layout "website"
@@ -59,9 +62,12 @@ class ApplicationController < ActionController::Base
     controller_name == "pages" || "application"  # Brought by the `high_voltage` gem
   end
 
+  def pages_admin?
+    controller_path.start_with?("admin/")
+  end
+
   def user_not_authorized
     flash[:error] = I18n.t('controllers.application.user_not_authorized', default: "Vous ne pouvez pas accéder à cette page.")
     redirect_to(root_path)
   end
-
 end

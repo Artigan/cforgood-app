@@ -84,8 +84,6 @@
         e.preventDefault();
         if ($("#form-card-creation").valid()) {
           // Initialize MangoPay
-          // var mangoPayInit = <%= current_user.mangopay_id ? current_user.mangopay_id : raw(MangopayServices.new(current_user).create_mangopay_natural_user.to_json) %>;
-
           var cardPreRegistration = <%= current_user.mangopay_id ? raw(MangopayServices.new(current_user).create_mangopay_card_pre_registration.to_json) : 'null' %>;
 
           if (userMangopayId && cardPreRegistration) {
