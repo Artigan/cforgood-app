@@ -10,7 +10,7 @@
 # BusinessCategory.destroy_all
 # Business.destroy_all
 
-path = "/Users/Didi/Desktop/CforGood/images/Business/"
+path = "/Users/Allan/Desktop/CforGood/images/Business/"
 
 puts "--------CREATE BUSINESS CATEGORIES--------"
 bar = BusinessCategory.create!({
@@ -36,15 +36,15 @@ puts "--------END BUSINESS CATEGORIES-----------"
 
 puts "--------CREATE PERIODICITIES--------------"
 semaine = Periodicity.create!({
-  name: "Semaine"
+  period: "Semaine"
   })
 
-mois = BusinessCategory.create!({
-  name: "Mois"
+mois = Periodicity.create!({
+  period: "Mois"
   })
 
-annee = BusinessCategory.create!({
-  name: "Année"
+annee = Periodicity.create!({
+  period: "Année"
   })
 puts "--------END PERIODICITIES-----------------"
 
