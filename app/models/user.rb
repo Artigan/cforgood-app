@@ -39,6 +39,11 @@
 #  date_subscription      :datetime
 #  date_last_payment      :datetime
 #  active                 :boolean          default(FALSE), not null
+#  street                 :string
+#  zipcode                :string
+#  city                   :string
+#  latitude               :float
+#  longitude              :float
 #
 # Indexes
 #
@@ -50,11 +55,11 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable, :timeoutable,
-         :recoverable, :rememberable, :trackable, :validatable,
+  devise :database_authenticatable, :registerable, :recoverable,
+         :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
 
-  has_one :cause
+  # has_one :cause
   has_many :uses, dependent: :destroy
 
   validates :email, presence: true, uniqueness: true
@@ -138,8 +143,12 @@ class User < ActiveRecord::Base
     self.member = true
   end
 
+  def trial_done?
+    self.subscription[0] == "T" || self.trial_done == true
+  end
+
   def trial_done!
-    if subscription_was != nil && subscription_was[0] == "T" && trial_done == false
+    if subscription_was != nil && subscription_was[0] == "T" && self.trial_done == false
       self.update(trial_done: true)
     end
   end
