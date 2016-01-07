@@ -38,27 +38,23 @@
     </div>
     <div>
       <% if current_user.card_id %>
-         <a href="#" class="change-payment">Changez vos coordonnées bancaires</a>
+        <%= link_to "Changez vos données bancaires ?", "#payment", role: "tab", data_toggle: "tab", class: "show-payment" %>
       <% end %>
     </div>
-  </div>
 </div>
 
 <% content_for :after_js do %>
 
   <script>
     $(document).ready(function() {
-       $(".btn.subscription").on("click", function(e) {
+      $(".btn.subscription").on("click", function(e) {
         e.preventDefault();
-        if (<%= !current_user.card_id %>) {
-          $(".form-edit-container.payment").removeClass('hidden');
-        }
         $("#update_subscription").submit();
       });
-      $(".change-payment").on("click", function(e) {
+      $(".show-payment").on("click", function(e) {
         e.preventDefault();
-        $(".form-edit-container.payment").removeClass('hidden');
-        $(".change-payment").addClass('hidden');
+        $(".show-payment").removeClass('hidden');
+        $("#menu a.show-payment").tab('show');
       });
     });
   </script>
