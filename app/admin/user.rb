@@ -8,6 +8,7 @@ ActiveAdmin.register User do
     column :name
     column :created_at
     column :admin
+    column :active
     actions
   end
   form do |f|
@@ -19,10 +20,11 @@ ActiveAdmin.register User do
     end
     f.inputs "Admin" do
       f.input :admin
+      f.input :active
     end
     f.actions
   end
-  permit_params :first_name, :last_name, :name, :email, :picture, :admin
+  permit_params :first_name, :last_name, :name, :email, :picture, :admin, :active
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #

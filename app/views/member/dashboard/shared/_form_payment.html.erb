@@ -1,5 +1,5 @@
 <!-- FORM CARD REGISTRATION -->
-<div class="form-edit-container hidden">
+<div class="form-edit-container payment hidden">
   <div class="form-edit">
     <div class="row">
       <div class="dashboard-title">Renseignez vos données bancaires</div>
@@ -83,24 +83,24 @@
       $("#form-card-creation").on("submit", function(e) {
         e.preventDefault();
         if ($("#form-card-creation").valid()) {
+          console.log("debut");
           // Initialize MangoPay
           var cardPreRegistration = <%= current_user.mangopay_id ? raw(MangopayServices.new(current_user).create_mangopay_card_pre_registration.to_json) : 'null' %>;
 
-          if (userMangopayId && cardPreRegistration) {
-            // Initialize with card register data prepared on the server
-            mangoPay.cardRegistration.init({
-              cardRegistrationURL: cardPreRegistration.CardRegistrationURL,
-              preregistrationData: cardPreRegistration.PreregistrationData,
-              accessKey: cardPreRegistration.AccessKey,
-              Id: cardPreRegistration.Id
-            });
+          // Initialize with card register data prepared on the server
+          mangoPay.cardRegistration.init({
+            cardRegistrationURL: cardPreRegistration.CardRegistrationURL,
+            preregistrationData: cardPreRegistration.PreregistrationData,
+            accessKey: cardPreRegistration.AccessKey,
+            Id: cardPreRegistration.Id
+          });
 
-            // Card data collected from the user
-            var cardData = {
-              cardNumber: $("#card_number").val(),
-              cardExpirationDate: $("#card_exp_date").val(),
-              cardCvx: $("#card_cvx").val(),
-              cardType: "CB_VISA_MASTERCARD"
+          // Card data collected from the user
+          var cardData = {
+            cardNumber: $("#card_number").val(),
+            cardExpirationDate: $("#card_exp_date").val(),
+            cardCvx: $("#card_cvx").val(),
+            cardType: "CB_VISA_MASTERCARD"
           };
 
           // Set MangoPay API base URL and Client ID
