@@ -40,6 +40,9 @@
     </div>
   </div>
 </div>
+<div>
+  <%= image_tag('icons/loading.gif', id: "loading-indicator", style: "display:none") %>
+</div>
 
 <% content_for :after_js do %>
 
@@ -82,8 +85,8 @@
 
       $("#form-card-creation").on("submit", function(e) {
         e.preventDefault();
+        $("#loading-indicator").show();
         if ($("#form-card-creation").valid()) {
-          console.log("debut");
           var cardPreRegistration = <%= current_user.mangopay_id ? raw(MangopayServices.new(current_user).create_mangopay_card_pre_registration.to_json) : "null" %>;
 
           // Initialize with card register data prepared on the server
@@ -114,10 +117,12 @@
               function(res) {
                 $("#card_id").val(res.CardId);
                 $("#create_account").submit();
+                $("#loading-indicator").hide();
                 alert("Vos informations bancaires ont été correctement enregistrées")
                 // Success, you can use res.CardId now that points to registered card
               },
               function(res) {
+                $("#loading-indicator").hide();
                 alert("Une erreur s'est produite lors de l'enregistrement de votre carte : " + res.ResultMessage)
                 // Handle error, see res.ResultCode and res.ResultMessage
               }

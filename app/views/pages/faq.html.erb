@@ -159,8 +159,8 @@ $(document).ready(function() {
   $("ul li div.faq-question").on("click", function() {
     $(this).next("div.faq-answer").slideToggle();
     $("div.faq-question").not(this).next("div.faq-answer").slideUp();
-    $("div.faq-question i.fa-angle-down").addClass("fa-angle-right").removeClass("fa-angle-down");
-    $("i", this).toggleClass("fa-angle-down").toggleClass("fa-angle-right");
+    $("div.faq-question i.fa-angle-down").not(this).addClass("fa-angle-right").removeClass("fa-angle-down");
+    $("i", this).toggleClass("fa-angle-right").toggleClass("fa-angle-down");
   });
 });
 </script>

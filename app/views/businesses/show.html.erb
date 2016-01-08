@@ -27,24 +27,6 @@
           <% if current_user.member %>
             <% if @business.perks.find(params[:perk_id]).perk_usable?(current_user) %>
               <button type="button" class="use-button" data-toggle="modal" data-target="#codeModal">J'en profite</button>
-              <!-- MODAL CODE -->
-              <div class="modal fade" id="codeModal" tabindex="-1" role="dialog" aria-labelledby="codeModalLabel">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header gradient-cforgood">
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                      <h4 class="modal-title text-center" id="codeModalLabel">Code d'accès au bon plan</h4>
-                    </div>
-                    <div class="modal-body text-center">
-                      <% if @business.online %>
-                        <%= render "pro/perks/modals/code_perk_online" %>
-                      <% else %>
-                        <%= render "pro/perks/modals/code_perk_desktop" %>
-                      <% end %>
-                    </div>
-                  </div>
-                </div>
-              </div>
             <% else %>
               <div class="button-use-popover" id="button-used", data-content="Ce Bon Plan n'est plus accessible, mais il y en a bien d'autres à découvrir !" data-placement="bottom" data-original-title="Oups !" data-trigger="hover">
                 <button class="button button-inactive">J'en profite</button>
@@ -128,8 +110,27 @@
   </div>
 </div>
 
+<!-- MODAL CODE PERK -->
+<div class="modal fade" id="codeModal" tabindex="-1" role="dialog" aria-labelledby="codeModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-turquoise">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title text-center" id="codeModalLabel">Code d'accès au bon plan</h4>
+      </div>
+      <div class="modal-body text-center">
+        <% if @business.online %>
+          <%= render "pro/perks/modals/code_perk_online" %>
+        <% else %>
+          <%= render "pro/perks/modals/code_perk_desktop" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
 <% content_for(:after_js) do %>
-  <%= render 'components/map_perk_show', markers: @markers, map_id: "map-perk" %>
+  <%#= render 'components/map_perk_show', markers: @markers, map_id: "map-perk" %>
   <script>
     $(document).ready(function() {
       $("#button-used").popover({

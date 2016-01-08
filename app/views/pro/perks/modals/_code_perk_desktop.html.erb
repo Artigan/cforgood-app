@@ -1,8 +1,10 @@
-<%= simple_form_for :code, url: perk_uses_path(params[:perk_id]), remote: true, authenticity_token: true, html: { id: :create_use } do |f| %>
-  <%= f.input :perk_code, placeholder: "Saisissez le code", input_html: { :size => 5, :maxlength => 5, id: :perk_code }  %>
-  <%= f.submit "Validez", class: "button button-turquoise" %>
-<% end %>
-<p id="error-modal"></p>
+<div class="code-perk-desktop">
+  <%= simple_form_for :code, url: perk_uses_path(params[:perk_id]), remote: true, authenticity_token: true, html: { id: :create_use } do |f| %>
+    <%= f.input :perk_code, placeholder: "Saisissez le code", label: false, input_html: { :size => 5, :maxlength => 5, id: :perk_code }  %>
+    <%= f.submit "Validez", class: "button button-turquoise" %>
+  <% end %>
+  <p id="error-modal"></p>
+</div>
 
 <% content_for :after_js do %>
 
