@@ -18,48 +18,14 @@
           </div>
           <span>Tous</span>
         </a>
-        <a href="#" data-filter=".1" class="filter-category col-xs-12 col-sm-3">
-          <div class="icone-category">
-            <%= image_tag('icons/myperks.png') %>
-          </div>
-          <span>Bars & Restaurant</span>
-        </a>
-        <a href="#" data-filter=".2" class="filter-category col-xs-12 col-sm-3">
-          <div class="icone-category">
-            <%= image_tag('icons/myperks.png') %>
-          </div>
-          <span>Shopping</span>
-        </a>
-        <a href="#" data-filter=".3" class="filter-category col-xs-12 col-sm-3">
-          <div class="icone-category">
-            <%= image_tag('icons/myperks.png') %>
-          </div>
-          <span>Online</span>
-        </a>
-        <a href="#" data-filter=".4" class="filter-category col-xs-12 col-sm-3">
-          <div class="icone-category">
-            <%= image_tag('icons/myperks.png') %>
-          </div>
-          <span>Café & Lieu de Vie</span>
-        </a>
-        <a href="#" data-filter=".5" class="filter-category col-xs-12 col-sm-3">
-          <div class="icone-category">
-            <%= image_tag('icons/myperks.png') %>
-          </div>
-          <span>Maison & jardin</span>
-        </a>
-        <a href="#" data-filter=".6" class="filter-category col-xs-12 col-sm-3">
-          <div class="icone-category">
-            <%= image_tag('icons/myperks.png') %>
-          </div>
-          <span>Loisirs & Sorties</span>
-        </a>
-        <a href="#" data-filter=".7" class="filter-category col-xs-12 col-sm-3">
-          <div class="icone-category">
-            <%= image_tag('icons/myperks.png') %>
-          </div>
-          <span>Beauté & Bien-être</span>
-        </a>
+        <% BusinessCategory.all.each do |category| %>
+          <a href="#" data-filter="<%= "."+category.id.to_s %>" class="filter-category current col-xs-12 col-sm-3">
+            <div class="icone-category">
+              <%= image_tag image_url category.picture %>
+            </div>
+            <span><%= category.name %></span>
+          </a>
+        <% end %>
       </div>
     </div>
 

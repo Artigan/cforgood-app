@@ -15,6 +15,11 @@ class Member::DashboardController < ApplicationController
     @markers = Gmaps4rails.build_markers(@businesses) do |business, marker|
       marker.lat business.latitude
       marker.lng business.longitude
+      marker.picture({
+        url: BusinessCategory.find(business.business_category_id).picture.url(:marker),
+        width: 32,
+        height: 32
+      })
       marker.infowindow render_to_string(partial: "components/map_box", locals: { business: business })
     end
   end
