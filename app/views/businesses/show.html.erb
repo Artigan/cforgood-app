@@ -130,7 +130,7 @@
 </div>
 
 <% content_for(:after_js) do %>
-  <%#= render 'components/map_perk_show', markers: @markers, map_id: "map-perk" %>
+  <%= render 'components/map_perk_show', markers: @markers, map_id: "map-perk" %>
   <script>
     $(document).ready(function() {
       $("#button-used").popover({
