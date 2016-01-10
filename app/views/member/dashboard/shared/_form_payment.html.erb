@@ -44,6 +44,9 @@
   <%= image_tag('icons/loading.gif', id: "loading-indicator", style: "display:none") %>
 </div>
 
+<!-- MODAL MESSAGE INFORMATION -->
+<%= render "components/modals/payment" %>
+
 <% content_for :after_js do %>
 
   <script>
@@ -118,12 +121,16 @@
                 $("#card_id").val(res.CardId);
                 $("#create_account").submit();
                 $("#loading-indicator").hide();
-                alert("Vos informations bancaires ont été correctement enregistrées")
+                $(".modal-title").html("INFORMATION");
+                $("#detail-modal-body").html("Vos informations bancaires ont été correctement enregistrées");
+                $("#modal-payment").modal('show');
                 // Success, you can use res.CardId now that points to registered card
               },
               function(res) {
                 $("#loading-indicator").hide();
-                alert("Une erreur s'est produite lors de l'enregistrement de votre carte : " + res.ResultMessage)
+                $(".modal-title").html("ERREUR");
+                $("#detail-modal-body").html("Une erreur s'est produite lors de l'enregistrement de votre carte : " + res.ResultMessage);
+                $("#modal-payment").modal('show');
                 // Handle error, see res.ResultCode and res.ResultMessage
               }
             );

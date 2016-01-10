@@ -10,7 +10,7 @@
   <%= render "member/dashboard/shared/sidebar" %>
   <!-- Content - Statistics -->
   <div class="dashboard dashboard-perks">
-    <% @business.perks.find(params[:perk_id]).update_nb_view! %>
+    <% @business.perks.find(params[:perk_id]).update_nb_view! if user_space? %>
     <div class="perk-board">
       <div class="perk-header" style="background-image: url('<%= image_url @business.picture %>');">
         <h1><%= @business.name %><br><small><%=  @business.business_category.name %></small></h1>
