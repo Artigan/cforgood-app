@@ -1,6 +1,6 @@
 <div class="form-edit-container">
   <div class="form-edit">
-    <%= simple_form_for(current_user, url: member_update_profile_path, remote: true, authenticity_token: true, html: { method: :put, id: :form_profile_user }) do |f| %>
+    <%= simple_form_for(current_user, url: member_update_profile_path, method: :put, remote: true, authenticity_token: true, html: { method: :put, id: :form_profile_user }) do |f| %>
       <%= f.error_notification %>
       <%= f.input :last_name, placeholder: 'Nom', required: true, autofocus: true, label: false %>
       <%= f.input :first_name, placeholder: 'Prénom', required: true, label: false %>
