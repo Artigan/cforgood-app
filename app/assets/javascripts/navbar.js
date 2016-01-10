@@ -61,6 +61,8 @@ $(document).ready(function(){
   };
 
   $('#perk_permanent_false').click(function(){
+    $(".has-error").toggleClass("has-error");
+    $(".help-block").remove();
     if ($('#perk_permanent_false').prop('checked') === true ) {
       $('#perk_times').attr('placeholder', 'Quantité');
       $('.perk_periodicity_id').addClass('recurrence_hidden');
@@ -71,6 +73,8 @@ $(document).ready(function(){
   });
 
   $('#perk_permanent_true').click(function(){
+    $(".has-error").toggleClass("has-error");
+    $(".help-block").remove();
     if ($('#perk_permanent_true').prop('checked') === true ) {
       $('#perk_times').attr('placeholder', 'Récurrence');
       $('.perk_periodicity_id').removeClass('recurrence_hidden');

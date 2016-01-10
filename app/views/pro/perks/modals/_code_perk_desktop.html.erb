@@ -12,10 +12,10 @@
     $(document).ready(function() {
       $(".button-turquoise").on('click', function(e) {
         e.preventDefault();
-        $("#error-modal").remove();
         if ("<%= Perk.find(params[:perk_id]).perk_code %>" == $("#perk_code").val().toUpperCase()) {
           $("#create_use").submit();
         } else {
+          $("#error-modal").html("");
           $("#error-modal").append("Le code est erroné");
         };
       });
