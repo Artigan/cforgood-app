@@ -145,24 +145,24 @@ Foire aux questions
 
 <% content_for :after_js do %>
 
-<script>
-$(document).ready(function() {
-  $("ul li div.faq-subject").on("click", function() {
-    var subject = $(this).attr("id");
-    $("#"+subject+".faq-question").slideToggle();
-    $("div.faq-question").not("#"+subject).slideUp();
-    $("div.faq-answer").slideUp();
-    $(".faq-subject:not(#"+subject+") i.fa-angle-down").addClass("fa-angle-right").removeClass("fa-angle-down");
-    $("div.faq-question i.fa-angle-down").addClass("fa-angle-right").removeClass("fa-angle-down");
-    $("#"+subject+".faq-subject i").toggleClass("fa-angle-right").toggleClass("fa-angle-down");
+  <script>
+  $(document).ready(function() {
+    $("ul li div.faq-subject").on("click", function() {
+      var subject = $(this).attr("id");
+      $("#"+subject+".faq-question").slideToggle();
+      $("div.faq-question").not("#"+subject).slideUp();
+      $("div.faq-answer").slideUp();
+      $(".faq-subject:not(#"+subject+") i.fa-angle-down").addClass("fa-angle-right").removeClass("fa-angle-down");
+      $("div.faq-question i.fa-angle-down").addClass("fa-angle-right").removeClass("fa-angle-down");
+      $("#"+subject+".faq-subject i").toggleClass("fa-angle-right").toggleClass("fa-angle-down");
+    });
+    $("ul li div.faq-question").on("click", function() {
+      $(this).next("div.faq-answer").slideToggle();
+      $("div.faq-question").not(this).next("div.faq-answer").slideUp();
+      $("div.faq-question i.fa-angle-down").not(this).addClass("fa-angle-right").removeClass("fa-angle-down");
+      $("i", this).toggleClass("fa-angle-right").toggleClass("fa-angle-down");
+    });
   });
-  $("ul li div.faq-question").on("click", function() {
-    $(this).next("div.faq-answer").slideToggle();
-    $("div.faq-question").not(this).next("div.faq-answer").slideUp();
-    $("div.faq-question i.fa-angle-down").not(this).addClass("fa-angle-right").removeClass("fa-angle-down");
-    $("i", this).toggleClass("fa-angle-right").toggleClass("fa-angle-down");
-  });
-});
-</script>
+  </script>
 
 <% end %>
