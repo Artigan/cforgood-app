@@ -1,4 +1,4 @@
-<div class="perk_code">
+<div class="code-perk-online">
   <p>Ce code vous permet de bénéficier de réductions directement sur le site du commerçant :</p>
   <p><%= @business.perks.find(params[:perk_id]).perk_code.upcase %></p>
   <%= link_to "J'accède au site", "#{@business.url}", target: "_blank", class: "button button-rouge link-business" %>

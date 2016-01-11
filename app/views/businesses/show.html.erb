@@ -10,7 +10,7 @@
   <%= render "member/dashboard/shared/sidebar" %>
   <!-- Content - Statistics -->
   <div class="dashboard dashboard-perks">
-    <% @business.perks.find(params[:perk_id]).update_nb_view! %>
+    <% @business.perks.find(params[:perk_id]).update_nb_view! if user_space? %>
     <div class="perk-board">
       <div class="perk-header" style="background-image: url('<%= image_url @business.picture %>');">
         <h1><%= @business.name %><br><small><%=  @business.business_category.name %></small></h1>
@@ -27,24 +27,6 @@
           <% if current_user.member %>
             <% if @business.perks.find(params[:perk_id]).perk_usable?(current_user) %>
               <button type="button" class="use-button" data-toggle="modal" data-target="#codeModal">J'en profite</button>
-              <!-- MODAL CODE -->
-              <div class="modal fade" id="codeModal" tabindex="-1" role="dialog" aria-labelledby="codeModalLabel">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header gradient-cforgood">
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                      <h4 class="modal-title text-center" id="codeModalLabel">Code d'accès au bon plan</h4>
-                    </div>
-                    <div class="modal-body text-center">
-                      <% if @business.online %>
-                        <%= render "pro/perks/modals/code_perk_online" %>
-                      <% else %>
-                        <%= render "pro/perks/modals/code_perk_desktop" %>
-                      <% end %>
-                    </div>
-                  </div>
-                </div>
-              </div>
             <% else %>
               <div class="button-use-popover" id="button-used", data-content="Ce Bon Plan n'est plus accessible, mais il y en a bien d'autres à découvrir !" data-placement="bottom" data-original-title="Oups !" data-trigger="hover">
                 <button class="button button-inactive">J'en profite</button>
@@ -123,6 +105,25 @@
           </div>
         </div>
 
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL CODE PERK -->
+<div class="modal fade" id="codeModal" tabindex="-1" role="dialog" aria-labelledby="codeModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-turquoise">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title text-center" id="codeModalLabel">Code d'accès au bon plan</h4>
+      </div>
+      <div class="modal-body text-center">
+        <% if @business.online %>
+          <%= render "pro/perks/modals/code_perk_online" %>
+        <% else %>
+          <%= render "pro/perks/modals/code_perk_desktop" %>
+        <% end %>
       </div>
     </div>
   </div>

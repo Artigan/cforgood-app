@@ -32,6 +32,12 @@
     </ul>
   </div>
 </div>
+<div>
+  <%= image_tag('icons/loading.gif', id: "loading-indicator", style: "display:none") %>
+</div>
+
+<!-- MODAL MESSAGE INFORMATION -->
+<%= render "components/modals/payment" %>
 
 <% content_for :after_js do %>
 
@@ -74,8 +80,9 @@
 
       $("#form-card-creation").on("submit", function(e) {
         e.preventDefault();
+        $("#loading-indicator").show();
         if ($("#form-card-creation").valid()) {
-          var cardPreRegistration = <%= current_user.mangopay_id ? raw(MangopayServices.new(current_user).create_mangopay_card_pre_registration.to_json) : "null"  %>;
+          var cardPreRegistration = <%= current_user.mangopay_id ? raw(MangopayServices.new(current_user).create_mangopay_card_pre_registration.to_json) : "null" %>;
 
           // Initialize with card register data prepared on the server
           mangoPay.cardRegistration.init({
@@ -87,11 +94,10 @@
 
           // Card data collected from the user
           var cardData = {
-           cardNumber: $("#card_number").val(),
-           cardExpirationDate: $("#card_exp_date").val(),
-           cardCvx: $("#card_cvx").val(),
-           cardType: "CB_VISA_MASTERCARD"
-           // cardType: $("#card_type").val()
+            cardNumber: $("#card_number").val(),
+            cardExpirationDate: $("#card_exp_date").val(),
+            cardCvx: $("#card_cvx").val(),
+            cardType: "CB_VISA_MASTERCARD"
           };
 
           // Set MangoPay API base URL and Client ID
@@ -106,11 +112,17 @@
               function(res) {
                 $("#card_id").val(res.CardId);
                 $("#create_account").submit();
-                alert("Vos informations bancaires ont été correctement enregistrées")
+                $("#loading-indicator").hide();
+                $(".modal-title").html("INFORMATION");
+                $("#detail-modal-body").html("Vos informations bancaires ont été correctement enregistrées");
+                $("#modal-payment").modal('show');
                 // Success, you can use res.CardId now that points to registered card
               },
               function(res) {
-                alert("Une erreur s'est produite lors de l'enregistrement de votre carte : " + res.ResultMessage)
+                $("#loading-indicator").hide();
+                $(".modal-title").html("ERREUR");
+                $("#detail-modal-body").html("Une erreur s'est produite lors de l'enregistrement de votre carte : " + res.ResultMessage);
+                $("#modal-payment").modal('show');
                 // Handle error, see res.ResultCode and res.ResultMessage
               }
             );

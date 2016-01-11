@@ -15,10 +15,10 @@ class Pro::DashboardController < Pro::ProController
         marker.title "C'est vous !"
       end
       marker.picture({
-                  # url: business.picture.url(:thumb),
-                  width: 32,
-                  height: 32
-                 })
+        url: BusinessCategory.find(business.business_category_id).picture.url(:marker),
+        width: 32,
+        height: 32
+      })
       marker.infowindow render_to_string(partial: "components/map_box", locals: { business: business })
     end
   end

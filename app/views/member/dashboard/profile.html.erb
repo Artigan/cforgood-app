@@ -14,6 +14,9 @@
       <li role="profile">
         <%= link_to "Votre abonnement", "#subscription", role: "tab", data_toggle: "tab" %>
       </li>
+      <li role="profile">
+        <%= link_to "Vos données bancaires", "#payment", role: "tab", data_toggle: "tab", class: "show-payment hidden" %>
+      </li>
     </ul>
     <!-- Tab panes -->
     <div class="tab-content">
@@ -25,6 +28,8 @@
       </div>
       <div role="tabpanel" class="tab-pane" id="subscription">
         <%= render "member/dashboard/shared/form_subscription" %>
+      </div>
+      <div role="tabpanel" class="tab-pane" id="payment">
         <%= render "member/dashboard/shared/form_payment" %>
       </div>
     </div>
