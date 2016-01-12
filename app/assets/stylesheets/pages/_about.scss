@@ -1,30 +1,32 @@
 .bg-about {
   position: relative;
   background-color: #fff;
-  background-image: image-url("background-pouce.png");
-  background-size: cover;
-  background-position: center center;
-  background-attachment: fixed;
+  padding-top: 30px;
 
   h2 {
     color: rgb(51,51,51);
-    text-align: center;
     margin-bottom: 20px;
     font-weight: 500;
   }
   p {
     font-size: 16px;
-    text-align: center;
     font-weight: 300;
   }
 }
 
 #whitebox-about {
   position: absolute;
-  height: 100%;
-  width: 100%;
   background: rgba(255, 255, 255, 0.85);
   color: rgb(51,51,51);
+}
+
+.section-subtitle {
+  margin-top: -20px;
+  margin-bottom: 50px;
+}
+
+#btn-write-us {
+  margin-bottom: 5%;
 }
 
 @media only screen and (max-width: 480px) and (orientation : portrait) {
@@ -46,16 +48,13 @@
       font-size: 32px;
     }
   }
-  #write-us-about {
-      h2 {
+  #write-us-about h2 {
         font-size: 24px;
-      }
-      #btn-write-us {
-        margin-left: 30%;
-      }
   }
+
   #video-about {
     margin-left: -1%;
+    margin-bottom: 5%;
     iframe {
       width: 110%;
       margin-left: -5%;

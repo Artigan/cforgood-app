@@ -7,16 +7,19 @@
 <% end %>
 
 <div id="contact" class="contact-form">
-  <div class="container-fluid cforgood-background" id="cforgood-background">
+  <div class="container-fluid" id="header-cforgood-legal">
     <div class="row">
-      <div class="page-title">
+      <div class="page-title" id="page-title-legal">
         <h1>Nous Ecrire</h1>
         <h3>Nous Sommes Impatients De Vous Entendre</h3>
       </div>
     </div>
   </div>
-  <div class="container-fluid bg-white" id="form-contact">
-    <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 pt-50 pb-100">
+  <div class="container-fluid bg-white bg-contact pt-30 pb-30" id="form-contact">
+    <!-- Sub Menu NavBar  -->
+    <%= render "pages/shared/navbar_static" %>
+    <!-- FORMULAIRE -->
+    <div class="col-xs-12 col-sm-6">
         <%= simple_form_for @contact_form do |f| %>
         <%= f.input :name, :label => false, :placeholder => "Nom", :required => true %>
         <%= f.input :email, :label => false, :placeholder => "Email", :as => :email, :required => true %>
