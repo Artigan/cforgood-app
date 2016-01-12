@@ -66,10 +66,10 @@
 
   input[type="submit"] {
     display: block;
+    margin: 10px auto 0;
+    padding: 15px 20px;
     width: 200px;
     max-width: 50%;
-    margin: 0 auto;
-    padding: 15px 20px;
     border-radius: 30px;
     color: #fff;
     text-transform: uppercase;
@@ -88,26 +88,57 @@
     outline-style: none;
   }
 
-  .cause-card {
+  .card-container {
     position: relative;
+    min-height: 210px;
     margin: 5px;
     border-radius: 6px;
 
-    .bg-cause-card {
+    .cause-card {
       height: 200px;
       background: no-repeat center;
       background-size: cover;
       color: white;
       border-radius: 6px;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+
       cursor: pointer;
+      overflow: hidden;
+      @include transition(all, 0.3s, ease-in-out);
 
-      -webkit-transition: all 0.3s;
-      -moz-transition: all 0.3s;
-      transition: all 0.3s;
+      /* POPOVER - CAUSE DESCRIPTION ***********************************************/
+      .cause-popover {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        height: 100%;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 4px;
 
-      &:hover { box-shadow: 0px 7px 16px rgba(0, 0, 0, 0.2); }
+        h1 {
+          min-height: 45px;
+          margin: 0;
+          font-size: 14px;
+          font-weight: 600;
+          z-index: 1;
+        }
+        span {
+          margin: 0;
+          font-size: 10px;
+          font-weight: normal;
+          z-index: 1;
+        }
+        img {
+          width: 40px;
+          border: 2px solid #fff;
+          border-radius: 50%;
+          @include transition(all, 0.3s, ease-in-out);
+        }
+      }
     }
+
 
     .cause-logo {
       height: 50px;
@@ -116,17 +147,30 @@
     }
   }
 
-  .select-causes {
-    span {
-      font-size: 10px;
-      font-weight: normal;
-      margin: 20px 0 10px;
+  .cause-card.cause-border-select {
+    .cause-popover {
+      img {
+        box-shadow: 0 0 0 125px $turquoise, 0 1px 2px rgba(0,0,0,0.1);
+      }
     }
   }
 
+  .select-causes {
+    position: relative;
 
-  .cause-border-select {
-    border: 4px $turquoise solid;
+    span {
+      margin-bottom: 5px;
+      font-size: 10px;
+      font-weight: normal;
+    }
+
+    .selector {
+      min-height: 180px;
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+    }
   }
 
   #cause-info {
@@ -151,18 +195,6 @@
    font-weight: 200;
    margin-top: 15px;
  }
-
- /* POPOVER - CAUSE DESCRIPTION ***********************************************/
-  .cause-popover {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    color: rgb(240, 240, 240);
-    border-radius: 6px;
-    text-align: center;
-    font-size: 15px;
-  }
 }
 
 /* FORM - PRICING PLAN ********************************************************/
