@@ -1,10 +1,7 @@
 .bg-charte {
   position: relative;
-  background-image: image-url("background-pouce.png");
-  background-size: cover;
-  background-position: center center;
-  background-attachment: fixed;
   background-color: white;
+  padding-top: 30px;
   z-index: 1;
   h2 {
     color: rgb(51,51,51);
@@ -23,13 +20,12 @@
     width: 30% !important;
     float: right;
     padding-right: 20px;
+    margin-bottom: 5%;
   }
 }
 
 #whitebox-charte {
   position: absolute;
-  height: 100%;
-  width: 100%;
   background: rgba(255, 255, 255, 0.85);
   color: rgb(51,51,51);
   z-index: -1;

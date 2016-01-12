@@ -1,13 +1,12 @@
 <%= content_for(:title) do %>
-  Commerces Partenaires
+Commerces Partenaires
 <% end %>
 <%= content_for(:description) do %>
-  Une incroyable opportunité de vous faire entendre
+Une incroyable opportunité de vous faire entendre
 <% end %>
 <!-- HEADER -->
 <div id="header-landing-business">
   <!-- HEADER GRADIENT OVERLAY -->
-  <div class="header-blackbox"></div>
   <div class="header-overlay"></div>
   <div class="container-fluid header-content">
     <div class="row">
@@ -32,18 +31,8 @@
   <div class="container">
     <div class="row">
       <h2 class="section-title">La solution CforGood</h2>
-      <!-- BLOCK VIDEO -->
-<!--       <div class="col-md-5">
-        <div class="embed-container video-mobile">
-          <iframe class="border-video" width="500" height="285" src="https://www.youtube.com/embed/4tYrdTm6lwQ?controls=0&rel=0&showinfo=0" frameborder="0"></iframe>
-        </div>
-      </div> -->
       <!-- BLOCK DESCRIPTION -->
       <div class="col-md-8 col-md-offset-2">
-    <!--     <h3>Une simple carte qui change tout.</h3>
-        <p>CforGood est une entreprise qui vous propose de développer gratuitement votre activité en inspirant la solidarité de vos clients, en toute simplicité.</p>
-        <p>Il s'agit d'un site web et d'une application mobile géolocalisés qui référencent les commerçants qui s'engagent pour une économie plus locale, positive et solidaire en offrant des bons plans aux titulaires de la carte CforGood qui soutiennent des associations et initiatives locales.</p>
-        <p><strong>C'est une Révolution Positive ! <br>Où vous incitez à l'altruisme... Tout en développant votre activité !</strong></p> -->
         <h3>L'évidence d'aller dans le bon sens !</h3>
         <p>Notre mission est de redonner le pouvoir aux citoyens en les connectant à des commerces responsables autour d’eux qui les récompensent pour leur soutien associatif.</p>
         <p>CforGood est une plateforme qui vous propose de développer votre activité, tout en inspirant la solidarité.</p>
@@ -59,22 +48,32 @@
   <div class="container">
     <div class="row">
       <h2 class="section-title">Comment ça marche ?</h2>
-      <div class="col-xs-12">
-        <!-- MOCKUP 1 -->
-        <div class="col-xs-12 col-sm-4 discover" data-sr="enter bottom and scale up 20% over 1s">
-          <%=image_tag("IphoneHome.png") %>
+      <!-- MOCKUP 1 -->
+      <div class="row" id="first_asset">
+        <div class="col-xs-8 col-sm-8 col-md-5" id="screenshot" data-sr="enter bottom and scale up 20% over 1s">
+          <%= image_tag("ProIndexPerk.png")%>
+        </div>
+        <div class="col-xs-8 col-sm-8 col-md-5 screenshot-legend text-justify">
           <h3>Créez</h3>
           <p>Saisissez votre bon plan sous la forme que vous souhaitez (Flash ou Permanent).</p>
         </div>
-         <!-- MOCKUP 2 -->
-        <div class="col-xs-12 col-sm-4 localise" data-sr="enter bottom and scale up 20% over 1s">
-          <%=image_tag("IphoneMap.png") %>
+      </div>
+      <!-- MOCKUP 2 -->
+      <div class="row hidden-xs hidden-sm" id="second_asset">
+        <div class="col-xs-8 col-sm-8 col-md-5 screenshot-legend text-justify" >
           <h3>Publiez</h3>
           <p>Rendez le visible instantanément auprès de notre communauté CforGood.</p>
         </div>
-         <!-- MOCKUP 3 -->
-        <div class="col-xs-12 col-sm-4 enjoy" data-sr="enter bottom and scale up 20% over 1s">
-          <%=image_tag("IphoneCard.png") %>
+        <div class="col-xs-8 col-sm-8 col-md-5" id="screenshot" data-sr="enter bottom and scale up 20% over 1s">
+          <%= image_tag("ProMapPerk.png") %>
+        </div>
+      </div>
+      <!-- MOCKUP 3 -->
+      <div class="row" id="third_asset">
+        <div class="col-xs-8 col-sm-8 col-md-5" id="screenshot" data-sr="enter bottom and scale up 20% over 1s">
+          <%= image_tag("ProDetailPerk.png") %>
+        </div>
+        <div class="col-xs-8 col-sm-8 col-md-5 screenshot-legend text-justify">
           <h3>Souriez !</h3>
           <p>Les clients affluent pour bénéficier de votre offre exclusive !</p>
         </div>
@@ -144,6 +143,114 @@
     </div>
   </div>
 </section>
+<!-- TESTIMONIALS -->
+<section class="container-fluid testimonials">
+  <div class="container">
+    <div class="row">
+      <h2 class="section-title">Ce qu'ils en disent !</h2>
+      <!-- TESTIMONIAL 1 -->
+      <div class="testimonial-item">
+        <div class="testimonial-text">
+          <p>Bénéficiez d'une visibilité en ligne et hors ligne instantanée auprès des citoyens engagés de votre territoire.</p>
+        </div>
+        <div class="testimonial-user">
+          <%= image_tag "label-terre.png", class: "img-circle" %>
+          <div class="testimonial-name">
+            <p><strong>Chris</strong></p>
+            <span>Label Terre</span>
+          </div>
+        </div>
+      </div>
+      <!-- TESTIMONIAL 2 -->
+      <div class="testimonial-item">
+        <div class="testimonial-text">
+          <p>Bénéficiez d'une visibilité en ligne et hors ligne instantanée auprès des citoyens engagés de votre territoire.</p>
+        </div>
+        <div class="testimonial-user">
+          <%= image_tag "label-terre.png", class: "img-circle" %>
+          <div class="testimonial-name">
+            <p><strong>Chris</strong></p>
+            <span>Label Terre</span>
+          </div>
+        </div>
+      </div>
+      <!-- TESTIMONIAL 3 -->
+      <div class="testimonial-item">
+        <div class="testimonial-text">
+          <p>Bénéficiez d'une visibilité en ligne et hors ligne instantanée auprès des citoyens engagés de votre territoire.</p>
+        </div>
+        <div class="testimonial-user">
+          <%= image_tag "label-terre.png", class: "img-circle" %>
+          <div class="testimonial-name">
+            <p><strong>Chris</strong></p>
+            <span>Label Terre</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- FAQ -->
+<section class="container-fluid" id="faq">
+  <div class="container">
+    <div class="row">
+      <h2 class="section-title">Quelques réponses à vos questions !</h2>
+      <!-- CONTENT FAP -->
+      <div class="faq-content">
+        <ul class="faq-list">
+          <li>
+            <div class="faq-question-landing"><i class="fa fa-angle-right"></i> Qui est derrière CforGood ?</div>
+            <div class="faq-answer-landing">
+              Une équipe de personnes super motivées que vous pouvez découvrir ici. Mais aussi des dizaines d’ambassadeurs, de commerces et d’associations partenaires qui croient en notre vision. De nombreux ambassadeurs donnent bénévolement de leurs temps pour nous aider dans notre mission, si vous voulez en devenir un, cliquez ici.
+            </div>
+          </li>
+          <li>
+            <div class="faq-question-landing"><i class="fa fa-angle-right"></i>Comment CforGood se rémunère ?</div>
+            <div class="faq-answer-landing">
+              Est-ce que la moitié de mon abonnement sera toujours reversé à une association ?  Oui.  Nous nous engageons à toujours reverser au minimum 50% du montant des adhésions aux associations partenaires.
+            </div>
+          </li>
+          <li>
+            <div class="faq-question-landing"><i class="fa fa-angle-right"></i>À quoi sert le reste ?</div>
+            <div class="faq-answer-landing">
+              6% vont directement à notre solution de paiement MangoPay, qui permet un reversement automatique de votre adhésion à l’association de votre choix. 20% servent à la communication pour mettre en lumière les projets associatifs et les commerces locaux et responsables qui les soutiennent. Les 24% restant permettent à notre équipe de garder la lumière allumée et de vous fournir un service de qualité.
+            </div>
+          </li>
+          <li>
+            <div class="faq-question-landing"><i class="fa fa-angle-right"></i>Puis-je me désabonner facilement ?</div>
+            <div class="faq-answer-landing">
+              Bien sûr. Il vous suffit de vous rendre dans votre compte et de cliquer sur stopper mon abonnement. Vous pourrez le réactiver à tout moment.
+            </div>
+          </li>
+          <li>
+            <div class="faq-question-landing"><i class="fa fa-angle-right"></i>Comment marche le site ?</div>
+            <div class="faq-answer-landing">
+              C’est très simple. Une fois inscrit, vous arrivez sur la carte de votre ville qui référence l’ensemble des commerces partenaires et les bons plans qu’ils proposent pour vous récompenser. Vous pouvez consulter tous les bons plans et associations par thématique et en voir les détails simplement en cliquant dessus. Pour profiter des bons plans, il suffit de présenter votre carte de membre physique ou de cliquer sur « j’en profite » pour accéder à votre carte de membre numérique. Pas d’impression, ni de téléchargement, inscrivez vous, donner et présenter votre carte pour bénéficier des bons plans. Nous voulons rendre ça aussi simple que possible, pour que vous puissiez trouver ce que vous cherchez et en profitez. Alors baladez vous dans CforGood, nous sommes sûrs que vous allez adorer ! Comment puis-je accéder à ma carte ? Nous vous expliquons tout ça très simplement ici.
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<% content_for :after_js do %>
+
+  <script>
+
+    $(document).ready(function() {
+      $("ul li div.faq-question-landing").on("click", function() {
+        $(this).next("div.faq-answer-landing").slideToggle();
+        $("div.faq-question-landing").not(this).next("div.faq-answer-landing").slideUp();
+        $("div.faq-question-landing i.fa-angle-down").addClass("fa-angle-right").removeClass("fa-angle-down");
+        $("i", this).toggleClass("fa-angle-right").toggleClass("fa-angle-down");
+      });
+    });
+
+  </script>
+
+<% end %>
+
 
 
 
