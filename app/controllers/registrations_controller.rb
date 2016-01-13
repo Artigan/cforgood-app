@@ -5,7 +5,7 @@ class RegistrationsController < Devise::RegistrationsController
   def update_resource(resource, params)
     resource.update_without_password(params)
     respond_to do |format|
-      format.html {redirect_to :back}
+      format.html {}
       format.js {}
     end
   end
@@ -13,10 +13,10 @@ class RegistrationsController < Devise::RegistrationsController
   def after_update_path_for(resource)
     if resource_name == :business
       respond_to do |format|
-        format.html {redirect_to :back}
+        format.html {}
         format.js {}
       end
-      # pro_business_dashboard_path(resource)
+      pro_business_dashboard_path(resource)
     else
       member_user_dashboard_path(resource)
     end

@@ -144,7 +144,7 @@ class User < ActiveRecord::Base
   end
 
   def trial_done?
-    self.subscription[0] == "T" || self.trial_done == true
+    self.subscription != nil && (self.subscription[0] == "T" || self.trial_done == true)
   end
 
   def trial_done!

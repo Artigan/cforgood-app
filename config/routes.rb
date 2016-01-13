@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get 'about',            to: 'pages#about'
   get 'faq',              to: 'pages#faq'
   get 'landing_business', to: 'pages#landing_business'
+  get 'landing_cause',    to: 'pages#landing_cause'
 
   resources :contact_forms, only: [:new, :create]
 
