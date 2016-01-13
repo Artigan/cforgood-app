@@ -42,8 +42,8 @@
       $(".cause-card").on("click", function(e) {
         e.preventDefault;
         var causeId = $(this).val('div').attr('id');
-        $(".cause-border-select").toggleClass("cause-border-select");
-        $($(this).toggleClass("cause-border-select"));
+        $(".cause-overlay").toggleClass("cause-overlay");
+        $($(this).toggleClass("cause-overlay"));
         $("select").val(causeId);
       });
 
@@ -51,6 +51,13 @@
         html: true,
         container: "body",
         trigger: "hover"
+      });
+
+      $(".btn-next").on("click", function(e) {
+        e.preventDefault;
+        $(".signup-cause").addClass("ishidden");
+        $(".signup-plan").addClass("slideup");
+        $("#signup-breadcrumb").addClass("slide-2");
       });
     });
   </script>

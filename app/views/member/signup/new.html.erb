@@ -1,19 +1,18 @@
 <div class="container-fluid connexion connexion-user">
   <div class="connexion-overlay"></div>
-    <div class="row">
-      <div class="col-xs-12 col-sm-6 form-card signup-container">
-        <ul>
-          <li class="active">1</li>
-          <li>2</li>
-          <li>3</li>
-        </ul>
-        <!-- FORM SELECT CAUSE -->
-        <%= render "member/signup/form_cause" %>
-        <!-- FORM SUBCRIPTION -->
-        <%= render "member/signup/form_subscription" %>
-        <!-- FORM CARD REGISTRATION -->
-        <%= render "member/signup/form_payment" %>
-      </div>
+  <div class="signup-container">
+    <div class="signup-card">
+      <ul id="signup-breadcrumb">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+      </ul>
+      <!-- FORM SELECT CAUSE -->
+      <%= render "member/signup/form_cause" %>
+      <!-- FORM SUBCRIPTION -->
+      <%= render "member/signup/form_subscription" %>
+      <!-- FORM CARD REGISTRATION -->
+      <%= render "member/signup/form_payment" %>
     </div>
   </div>
 </div>

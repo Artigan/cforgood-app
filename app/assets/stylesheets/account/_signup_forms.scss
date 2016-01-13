@@ -1,4 +1,110 @@
 .signup-container {
+  position: relative;
+  margin: 60px auto 0;
+  padding: 50px 60px 20px 60px;
+  width: 640px;
+  background-color: #fff;
+  border-radius: 10px;
+
+  -webkit-box-shadow: 0px 20px 33px -7px rgba(0,0,0,0.48);
+  -moz-box-shadow: 0px 20px 33px -7px rgba(0,0,0,0.48);
+  box-shadow: 0px 20px 33px -7px rgba(0,0,0,0.48);
+
+  /* JS ANIMATIONS *************************************************************/
+
+  /* SLIDES */
+  .slideup {
+    transform:translateY(0%) !important;
+  }
+
+  .ishidden {
+    transform:translateY(-100%);
+    opacity: 0;
+  }
+
+  /* BREADCRUMB */
+  .slide-2 {
+    li:nth-child(2) {
+      color: $turquoise;
+      border: 2px solid $turquoise;
+    }
+
+    &:before {
+      border-bottom: 2px solid $turquoise;
+    }
+  }
+
+  .slide-3 {
+    li:nth-child(3) {
+      color: $turquoise;
+      border: 2px solid $turquoise;
+    }
+
+    &:after {
+      border-bottom: 2px solid $turquoise;
+    }
+  }
+
+  /* CAUSES CARDS OVERLAY */
+  .signup-cause {
+    .cause-card.cause-overlay {
+      .cause-popover {
+        img {
+          box-shadow: 0 0 0 125px $turquoise, 0 1px 2px rgba(0,0,0,0.1);
+        }
+      }
+    }
+  }
+
+  /* SHARED STYLES ************************************************************/
+
+  .signup-card   {
+    position: relative;
+    height: 520px;
+    overflow: hidden;
+  }
+
+  .signup-cause,
+  .signup-plan,
+  .signup-payment {
+    position: absolute;
+    min-width: 520px;
+    min-height: 475px;
+    @include transition(all, 0.4s, ease-in-out);
+  }
+
+  .signup-plan,
+  .signup-payment {
+    transform:translateY(100%);
+  }
+
+  button,
+  input[type="submit"] {
+    display: block;
+    margin: 10px auto 0;
+    padding: 15px 20px;
+    width: 200px;
+    max-width: 50%;
+    border-radius: 30px;
+    color: #fff;
+    text-transform: uppercase;
+    background: #36d3da;
+    border: 1px solid #19A2C2;
+    font-size: small;
+    font-weight: 100;
+    @include transition(all, 0.3s, ease-in-out);
+  }
+
+  button:hover,
+  button:focus,
+  button:active,
+  input[type="submit"]:hover,
+  input[type="submit"]:focus,
+  input[type="submit"]:active {
+    background-color: #19A2C2;
+    outline-color: transparent;
+    outline-style: none;
+  }
 
   /* BREAD CRUMB **************************************************************/
   ul {
@@ -19,7 +125,7 @@
       top: 13px;
       left: 25%;
       transform: translateX(-50%);
-      z-index: -1;
+      z-index: 1;
     }
 
     &:after {
@@ -30,7 +136,7 @@
       top: 13px;
       left: 75%;
       transform: translateX(-50%);
-      z-index: -1;
+      z-index: 1;
     }
 
     li {
@@ -42,18 +148,17 @@
       border-radius: 50%;
       padding: 0px 10px;
       z-index: 2;
-    }
-  }
 
-  .active {
-    color: $turquoise;
-    border: 2px solid $turquoise;
+      &:nth-child(1) {
+        color: $turquoise;
+        border: 2px solid $turquoise;
+      }
+    }
   }
 }
 
 /* FORM - CAUSES **************************************************************/
 .signup-cause {
-  position: relative;
 
   span {
     margin-bottom: 20px;
@@ -64,30 +169,7 @@
     width: 60%;
   }
 
-  input[type="submit"] {
-    display: block;
-    margin: 10px auto 0;
-    padding: 15px 20px;
-    width: 200px;
-    max-width: 50%;
-    border-radius: 30px;
-    color: #fff;
-    text-transform: uppercase;
-    background: #36d3da;
-    border: 1px solid #19A2C2;
-    font-size: small;
-    font-weight: 100;
-    @include transition(all, 0.3s, ease-in-out);
-  }
-
-  input[type="submit"]:hover,
-  input[type="submit"]:focus,
-  input[type="submit"]:active {
-    background-color: #19A2C2;
-    outline-color: transparent;
-    outline-style: none;
-  }
-
+  /* CHOOSE A CARD */
   .card-container {
     position: relative;
     min-height: 210px;
@@ -103,7 +185,6 @@
 
       cursor: pointer;
       overflow: hidden;
-      @include transition(all, 0.3s, ease-in-out);
 
       /* POPOVER - CAUSE DESCRIPTION ***********************************************/
       .cause-popover {
@@ -138,23 +219,9 @@
         }
       }
     }
-
-
-    .cause-logo {
-      height: 50px;
-      border-radius: 50%;
-      border: 2px solid #fff;
-    }
   }
 
-  .cause-card.cause-border-select {
-    .cause-popover {
-      img {
-        box-shadow: 0 0 0 125px $turquoise, 0 1px 2px rgba(0,0,0,0.1);
-      }
-    }
-  }
-
+  /* DROPDOWN LIST */
   .select-causes {
     position: relative;
 
@@ -172,38 +239,10 @@
       margin-bottom: 25px;
     }
   }
-
-  #cause-info {
-    position: absolute;
-    width: 100%;
-    bottom: 40%;
-    h1 {
-      font-size: 17px;
-      font-weight: 500;
-    }
-  }
-
-  #cause-impact {
-    position: absolute;
-    width: 100%;
-    bottom: 0px;
-    font-size: 15px;
-  }
-
-  .cause-alinea {
-   font-size: 14px;
-   font-weight: 200;
-   margin-top: 15px;
- }
 }
 
 /* FORM - PRICING PLAN ********************************************************/
-.offer-form {
-  position: absolute;
-  height: 100%;
-  padding-top: 50px;
-  background: #fff;
-  border-radius: 10px;
+.signup-plan {
 
   .subscription-title {
     text-transform: uppercase;
@@ -214,11 +253,10 @@
   .offer-index {
     position: relative;
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
     text-align: center;
     align-content: space-between;
-    padding: 60px 20px 20px;
+    padding: 64px 20px 20px;
     width: 100%;
     background-color: #fff;
     border-radius: 10px;
@@ -275,12 +313,6 @@
       left: 8px;
     }
 
-    .most-popular {
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-      -webkit-transform: scale(1.2);
-      z-index: 2;
-    }
-
     .offer-btn {
       position: absolute;
       left: 4px;
@@ -293,7 +325,8 @@
   }
 }
 
-.form-payment {
+.signup-payment {
+
   .subscription-form form input {
     width: 100%;
   }
