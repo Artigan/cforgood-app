@@ -31,6 +31,16 @@
 
 .presentation { background-color: $section-medium; }
 
+.subtitle {
+  padding-bottom: 10px;
+}
+
+.video-mobile {
+  top: -20px;
+  @media only screen and (max-width:768px){ top: 0; }
+}
+
+
 // SECTION - WORK PROCESS ***************************************************//
 //***************************************************************************//
 
