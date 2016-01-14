@@ -106,7 +106,11 @@
       <!-- USER SIGN OUT -->
       <% else %>
         <ul>
-          <% if user_space? %>
+          <% if asso_space? %>
+            <li>
+              <a href="https://cforgood1.typeform.com/to/PdisGd" data-mode="1" target="_blank">Devenir Partenaire</a>
+            </li>
+          <% elsif user_space? %>
             <li>
               <%= link_to t(".inscription", default: "Inscription"), member_signup_path %>
             </li>
@@ -114,11 +118,7 @@
               <%= link_to t(".connexion", default: "Connexion"), member_signin_path %>
             </li>
             <li>
-              <% if asso_space? %>
-                <a href="https://cforgood1.typeform.com/to/PdisGd" data-mode="1" target="_blank">Devenir Partenaire</a>
-              <% else %>
-                <%= link_to t(".espace_pro", default: "Espace Partenaire"), landing_business_path %>
-              <% end %>
+              <%= link_to t(".espace_pro", default: "Espace Partenaire"), landing_business_path %>
             </li>
           <% else %>
             <li>
