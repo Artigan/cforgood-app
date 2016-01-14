@@ -8,7 +8,12 @@ Autour de vous
 <div class="container-fluid admin">
   <% if !current_user.active %>
     <%= image_tag('dashboard_user_inactive.png', class: 'whitebox-user-blur') %>
-    <div class='whitebox-user-msg'>Votre espace sera bientôt actif !</div>
+    <%= link_to destroy_user_session_path, method: :delete do %>
+      <div class='whitebox-user-msg'>
+        <p>Nous sommes actuellement en BETA,<br> votre espace sera très prochainement actif !</p>
+        <%= image_tag('icons/signout.png', :class => 'signout-icon') %><%= t ".se_déconnecter", default: "À bientôt" %>
+      </div>
+    <% end %>
   <% else %>
     <!-- Sub Menu Sidebar -->
     <%= render "member/dashboard/shared/sidebar" %>

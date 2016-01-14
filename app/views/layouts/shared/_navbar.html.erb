@@ -114,7 +114,11 @@
               <%= link_to t(".connexion", default: "Connexion"), member_signin_path %>
             </li>
             <li>
-              <%= link_to t(".espace_pro", default: "Espace Partenaire"), landing_business_path %>
+              <% if asso_space? %>
+                <a href="https://cforgood1.typeform.com/to/PdisGd" data-mode="1" target="_blank">Devenir Partenaire</a>
+              <% else %>
+                <%= link_to t(".espace_pro", default: "Espace Partenaire"), landing_business_path %>
+              <% end %>
             </li>
           <% else %>
             <li>
