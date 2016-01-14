@@ -12,7 +12,7 @@
               <div class="cause-popover" data-content="<%=  truncate(cause.description, length: 190) %>" data-placement="bottom" data-original-title="<%= cause.name %>" data-trigger="hover">
                   <!-- Card content -->
                   <span><%= cause.cause_category.name %></span>
-                  <%= image_tag('cause_logo.jpg') %>
+                  <img src="<%= image_url cause.logo %>">
                   <h1><%= cause.name.upcase %></h1>
               </div>
             </div>

@@ -159,9 +159,13 @@
 
 /* FORM - CAUSES **************************************************************/
 .signup-cause {
+  text-align: center;
 
   span {
+    display: block;
     margin-bottom: 20px;
+    text-transform: uppercase;
+    font-weight: 600;
   }
 
   .form-control {
