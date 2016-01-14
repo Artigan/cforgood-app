@@ -16,6 +16,10 @@ module ApplicationHelper
     request.env['PATH_INFO'].include?("/pro/") || request.env['PATH_INFO'].include?("/landing_business")
   end
 
+  def asso_space?
+    request.env['PATH_INFO'].include?("/landing_cause")
+  end
+
   def user_space?
     !pro_space?
   end
