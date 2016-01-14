@@ -5,100 +5,73 @@
   Découvrez l'engagement de <%= @cause.name %> !
 <% end %>
 
-<div class="container-fluid cforgood-background-cause-show" id="cause-show-header">
-  <div class="mt-65">
-    <div class="col-sm-8 col-sm-offset-2" id="bg-show-cause-header" style="background-image: url(<%= image_url @cause.picture %>)">
-      <div class="blackbox-show-cause"></div>
-      <div class="col-sm-10 col-sm-offset-1 text-center">
-          <h1><%= @cause.name %></h1>
-        <div class="clear"></div>
-        <div class="col-sm-10 col-sm-offset-1" id="border-show-cause-header"></div>
-        <div class="clear"></div>
-          <h3><%= @cause.impact.upcase %></h3>
+<div class="container-fluid admin">
+  <!-- Sub Menu Sidebar -->
+  <%= render "member/dashboard/shared/sidebar" %>
+  <!-- Content - Statistics -->
+  <div class="dashboard dashboard-cards">
+    <div class="organisation-board">
+      <div class="organisation-header" style="background-image: url('<%= image_url @cause.picture %>');">
+        <h1><%= @cause.name %><br><small><%=  @cause.cause_category.name %></small></h1>
+        <div class="cause-logo" style="background-image: url('<%= image_url @cause.logo %>');"></div>
       </div>
-    </div>
-  </div>
-</div>
-
-<div class="container-fluid black" id="cause-show-body">
-  <div class="whitebox-show-cause"></div>
-  <div class="col-sm-10 col-sm-offset-1">
-    <div class="col-sm-7 text-left mt-50 mb-30 pr-2cent">
-
-      <div id="header-perk-body">
-        <div class="col-sm-7 red">
-          <p class="s-18 w-400 pl-15">QUI SOMMES NOUS ?</p>
+      <div class="section-cause">
+        <div class="cause-details">
+          <!-- BUSINESS | DESCRIPTION -->
+          <h3>En savoir plus sur <%= @cause.name %></h3>
+          <p><%= @cause.description %></p>
         </div>
-        <div class="col-sm-3 col-sm-offset-1" id="links-cause">
-          <ul class="list-inline">
-              <li id="nopadding-cause">
-                <a href="<%= @cause.facebook %>" class="link-facebook-cause cause-icon-container" target="_blank">
-                  <i class="fa fa-facebook cause-icon f-17"></i>
+        <div class="cause-info">
+          <!-- IMPACT | DESCRIPTION -->
+          <% if @cause.impact.present? %>
+            <h3>Leur engagement</h3>
+            <p><%= @cause.impact %></p>
+          <%end %>
+          <!-- LINKS | WEB -->
+          <h3>Sur le web </h3>
+          <ul>
+            <% if @cause.email.present? %>
+              <li>
+                <a href="mailto:<%= @cause.email %>" class="link-mail-business business-icon-container" target="_blank">
+                  <i class="fa fa-envelope business-icon"></i><span><%= @cause.email %></span>
                 </a>
               </li>
-
-              <li id="nopadding-cause">
-                <a href="<%= @cause.twitter %>" class="link-instagram-cause cause-icon-container" target="_blank">
-                  <i class="fa fa-twitter cause-icon f-17"></i>
+            <% end %>
+            <% if @cause.url.present? %>
+              <li>
+                <a href="<%= @cause.url %>" class="link-website-business business-icon-container" target="_blank">
+                  <i class="fa fa-globe business-icon"></i><span><%= @cause.url %></span>
                 </a>
               </li>
-
-              <li id="nopadding-cause">
-                <a href="mailto:<%= @cause.email %>" class="link-mail-cause cause-icon-container" target="_blank">
-                  <i class="fa fa-envelope cause-icon f-17"></i>
+            <% end %>
+          </ul>
+          <!-- LINKS | SOCIAL NETWORKS -->
+          <h3>Sur les réseaux</h3>
+          <ul class="network">
+            <% if @cause.facebook.present? %>
+              <li>
+                <a href="<%= @cause.facebook %>" class="link-facebook-business business-icon-container" target="_blank">
+                  <i class="fa fa-facebook business-icon"></i>
                 </a>
               </li>
-
-              <li id="nopadding-cause">
-                <a href="<%= @cause.url %>" class="link-website-cause cause-icon-container" target="_blank">
-                  <i class="fa fa-globe cause-icon f-20"></i>
+            <% end %>
+            <% if @cause.twitter.present? %>
+              <li>
+                <a href="<%= @cause.twitter %>" class="link-instagram-business business-icon-container" target="_blank">
+                  <i class="fa fa-twitter business-icon"></i>
                 </a>
               </li>
-
+            <% end %>
+            <% if @cause.instagram.present? %>
+              <li>
+                <a href="<%= @cause.instagram %>" class="link-instagram-business business-icon-container" target="_blank">
+                  <i class="fa fa-instagram business-icon"></i>
+                </a>
+              </li>
+            <% end %>
           </ul>
         </div>
       </div>
-      <div class="clear"></div>
-      <div class="col-sm-8" id="border-show-body"></div>
-      <div class="clear"></div>
-      <div id="description-impact-body">
-        <p><%= @cause.description %></p>
-      </div>
-
-      <div id="details-impact-body">
-        <p class="col-sm-7 red text-left s-18 w-400 mt-10 pl-15">NOTRE MISSION AVEC CFORGOOD ?</p>
-        <div class="clear"></div>
-        <div class="col-sm-8" id="border-show-body"></div>
-        <div class="clear"></div>
-        <p class="mt-10 w-100"><%= @cause.description_impact %></p>
-      </div>
-    </div>
-
-  <div class="col-sm-5 mt-50 mb-30" id="info-cause-show-body">
-    <div id="map" class="index-2 map-cause" style="width: 110%; height: 310px;"></div>
-    <div class="text-center">
-      <div class="col-sm-4 mt-30">
-        <i class="fa fa-phone"><strong> <%= @cause.telephone %></strong></i>
-      </div>
-      <div class="col-sm-3 mt-30">
-        <i class="fa fa-folder-open fa-rotate-90"></i><strong> 9h - 18h</strong>
-      </div>
-      <div class="col-sm-5 mt-30">
-        <i class="fa fa-check"><strong> Du Lundi au Samedi</strong></i>
-      </div>
     </div>
   </div>
 </div>
-<% content_for(:after_js) do %>
-  <%= javascript_tag do %>
-    $(document).on('ready', function() {
-      handler = Gmaps.build('Google');
-      handler.buildMap({ internal: { id: 'map' } }, function(){
-        markers = handler.addMarkers(<%= raw @markers.to_json %>);
-        handler.bounds.extendWith(markers);
-        handler.fitMapToBounds();
-        handler.getMap().setZoom(15);
-      });
-    })
-  <% end %>
-<% end %>

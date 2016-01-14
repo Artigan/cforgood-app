@@ -9,26 +9,41 @@
   <!-- Sub Menu Sidebar -->
   <%= render "member/dashboard/shared/sidebar" %>
   <!-- Content - Statistics -->
-  <div class="dashboard">
-    <div class="container">
-      <% @causes.each do |cause| %>
-        <%= link_to asso_cause_path(cause) do %>
-          <div class="col-xs-6 col-md-4 card-pokemon">
-            <div class="">
-              <div class="bg-cause-card" style="background-image: url(<%= image_url cause.picture %>)">
-                <div class="row" id="blackbox-cause">
-                  <p><%= cause.cause_category.name %></p>
-                </div>
-                <div class="row" id="info-cause">
-                  <div class="col-xs-12" id="cause-name">
-                    <h1><%= cause.name.upcase %></h1>
-                  </div>
-                </div>
-                <div class="row blue-colorbar">
-                  <p><%= cause.impact.upcase %></p>
-                </div>
-              </div>
+  <div class="dashboard dashboard-cards">
+    <!-- SLICK - CAUSES CATEGORIES -->
+    <div class="header-cards slick-filters">
+      <div class="business-filter filter-carrousel">
+        <a href="#" data-filter="*" class="filter-category current col-xs-12 col-sm-3">
+          <div class="icone-category">
+            <%= image_tag('icons/myperks.png') %>
+          </div>
+          <span>Tous</span>
+        </a>
+        <% CauseCategory.all.each do |category| %>
+          <a href="#" data-filter="<%= "."+category.id.to_s %>" class="filter-category current col-xs-12 col-sm-3">
+            <div class="icone-category">
+              <%= image_tag image_url category.picture %>
             </div>
+            <span><%= category.name %></span>
+          </a>
+        <% end %>
+      </div>
+    </div>
+    <!-- INDEX CARDS -->
+    <div class="index-cards">
+      <% @causes.each do |cause| %>
+        <%= link_to asso_cause_path(cause), class: "card-frame #{cause.cause_category_id}" do %>
+          <div class="card-header" style="background-image: url('<%= image_url cause.picture %>');">
+            <!-- CAUSE BACKGROUND IMAGE -->
+            <div class="card-logo" style="background-image: url('<%= image_url cause.logo %>');"></div>
+            <h3><%= cause.name %></h3>
+          </div>
+          <div class="card-body">
+            <div class="business-details">
+              <span><%= cause.cause_category.name %></span>
+            </div>
+            <span class="cause-description"><%= truncate(cause.description, length: 220) %></span>
+            <span class="goto-perk">En détails</span>
           </div>
         <% end %>
       <%end%>
