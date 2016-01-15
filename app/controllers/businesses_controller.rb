@@ -10,7 +10,7 @@ class BusinessesController < ApplicationController
       marker.lat business.latitude
       marker.lng business.longitude
       marker.picture({
-        url: BusinessCategory.find(business.business_category_id).picture.url(:marker),
+        url: BusinessCategory.find(business.business_category_id).marker.url(:marker),
         width: 32,
         height: 32
       })
@@ -24,7 +24,7 @@ class BusinessesController < ApplicationController
       marker.lat business.latitude
       marker.lng business.longitude
       marker.picture({
-        url: BusinessCategory.find(business.business_category_id).picture.url(:marker),
+        url: BusinessCategory.find(business.business_category_id).marker.url(:marker),
         width: 32,
         height: 32
       })
