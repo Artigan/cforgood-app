@@ -100,6 +100,10 @@
     padding-right: 100px;
     @media only screen and (max-width:1024px) { padding-right: 40px; }
     @media only screen and (max-width:768px){ padding-right: 0; text-align: center; }
+
+    a {
+      margin-left: 0;
+    }
   }
 
   h2, h3, p { color: $white; }
