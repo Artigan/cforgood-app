@@ -6,7 +6,6 @@
   CforGood fait de chaque citoyen un acteur du changement grâce à une plateforme communautaire lui offrant l'accès à des dizaines de bons plans locaux et responsables en échange d'une donation de 5€/mois pour soutenir la cause de son choix.
 <% end %>
 
-
 <!-- HEADER -->
 <div id="header" class="landing-home">
   <!-- HEADER GRADIENT OVERLAY -->
@@ -16,10 +15,10 @@
       <div class="col-xs-12 text-center">
         <!-- HEADER CONTENT -->
         <%= image_tag('logopouce.png', :class => 'header-logo') %>
-        <h1>La révolution Positive</h1>
-        <p>La plateforme qui redonne le pouvoir d'agir dans le bon sens !</p>
+        <h1 class="header-title">La révolution Positive</h1>
+        <p class="header-subtitle">La plateforme qui redonne le pouvoir d'agir dans le bon sens !</p>
         <!-- SIGNUP -->
-        <div id="btn-become">
+        <div id="btn-become-home">
           <%= link_to "S'inscrire", new_user_registration_path, class: "button button-turquoise" %>
         </div>
         <!-- BOUCING ARROW -->
@@ -128,18 +127,20 @@
     <p>Donnez les moyens à une association locale de continuer à agir pour avoir un impact positif sur la société.</p>
     <span class="highlight">Jamais vous ne vous sentirez autant acteur du changement !</span>
     <!-- BUTTON MODAL -->
-    <button type="button" class="button button-turquoise" data-toggle="modal" data-target="#myModal">Réservez votre carte</button>
+ <!--    <button type="button" class="button button-turquoise" data-toggle="modal" data-target="#myModal">Réservez votre carte</button> -->
+
+    <%= link_to "Réservez votre carte", new_user_registration_path, class: "button button-turquoise" %>
     <!-- MODAL SUBSCRIPTION -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<!--    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header gradient-cforgood">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title text-center" id="myModalLabel">Inscription à la bêta</h4>
           </div>
-          <div class="modal-body text-center">
-            <%= render "components/mailchimp_form" %>
-          </div>
+           <div class="modal-body text-center">
+            <%#= render "components/mailchimp_form" %>
+          </div> -->
         </div>
       </div>
     </div>

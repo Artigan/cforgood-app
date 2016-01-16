@@ -46,28 +46,39 @@
 
   .header-logo {
     height: 140px;
-    margin-top: 50px;
+    // margin-top: 50px;
   }
 
   .header-content {
     padding-top: 10%;
   }
 
-  #btn-become {
-    margin-top: 45px;
+  .header-title {
+    font-size: 5.5rem;
+    @media only screen and (max-width:768px){ font-size: 4.5rem; }
+    @media only screen and (max-width:460px){ font-size: 4rem; }
   }
 
-  #btn-become-bis {
-    margin-top: 45px;
-    margin-bottom: 30px;
+  .header-subtitle {
+    font-size: 2rem;
+    font-weight: 100;
+  }
+
+  #btn-become-home {
+    margin-top: 90px;
+  }
+
+  #btn-become-business {
+    margin-top: 100px;
+  }
+
+  #btn-become-cause {
+    margin-top: 140px;
   }
 
   a {
-    bottom: 10px;
-    left: 50%;
-
     .fa-angle-down {
-      margin-top: 50px;
+      margin-top: 35px;
       font-size: 60px;
       color: white;
     }

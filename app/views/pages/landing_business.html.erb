@@ -14,8 +14,8 @@ Une incroyable opportunité de vous faire entendre
         <!-- HEADER CONTENT -->
         <%= image_tag('logopouce-white.png', :class => 'header-logo') %>
         <h1>Développez votre activité</h1>
-        <p>en inspirant la solidarité</p>
-        <div id="btn-become">
+        <p class="header-subtitle">en inspirant la solidarité</p>
+        <div id="btn-become-business">
           <%= link_to "Devenir partenaire", new_business_registration_path, class: "button button-turquoise" %>
         </div>
         <!-- BOUCING ARROW -->
@@ -194,22 +194,22 @@ Une incroyable opportunité de vous faire entendre
     <div class="row">
       <h2 class="section-title">Quelques réponses à vos questions !</h2>
       <!-- CONTENT FAP -->
-      <div class="faq-content">
+      <div class="col-xs-12 col-sm-8 col-sm-offset-2 text-justify faq-content">
         <ul class="faq-list">
           <li>
-            <div class="faq-question-landing"><i class="fa fa-angle-right"></i>Quelle est la procédure pour inscrire mon commerce ?</div>
+            <div class="faq-question-landing"><i class="fa fa-chevron-circle-right"></i>Quelle est la procédure pour inscrire mon commerce ?</div>
             <div class="faq-answer-landing">
               <span>Pour devenir partenaire, il vous suffit de créer un compte commerçant en remplissant le formulaire d'inscription sur le site www.cforgood.com/pro/sign_up. Notre équipe vous contactera dans les plus bref délais pour activer votre compte (s’il est en accord avec notre charte) puis s’occupera de la prise de photo et vous formera à l’utilisation de notre plateforme mise gratuitement à votre disposition.</span>
             </div>
           </li>
           <li>
-            <div class="faq-question-landing"><i class="fa fa-angle-right"></i>Comment ça marche ?</div>
+            <div class="faq-question-landing"><i class="fa fa-chevron-circle-right"></i>Comment ça marche ?</div>
             <div class="faq-answer-landing">
               </span>Vous disposez d’une interface web et mobile qui vous permettent de créer un bon plan en moins de 30 secondes. Une fois votre bon plan activé, votre commerce apparaît aux yeux de toute notre communauté qui est automatiquement informé de l’offre que vous proposez. Notre plateforme vous fournit ensuite de nombreuses informations concernant l’utilisation de chacune de vos offres (Nombre de vues, nombre d’utilisations, nombre de nouveaux clients) et vous permet de modifier ou désactiver l’une d’entre elle à tout moment.
             </div>
           </li>
           <li>
-            <div class="faq-question-landing"><i class="fa fa-angle-right"></i>Existe t’il différents types de bons plans ?</div>
+            <div class="faq-question-landing"><i class="fa fa-chevron-circle-right"></i>Existe t’il différents types de bons plans ?</div>
             <div class="faq-answer-landing">
               <span>Oui, il en existe 2.</span></br>
               <span>- Le bon plan Permanent qui propose une offre valable à tout moment pour attirer de nouveaux clients et récompenser les citoyens engagés. Un bon plan Permanent doit être actif pour rendre visible votre commerce sur notre plateforme.</span></br>
@@ -217,25 +217,25 @@ Une incroyable opportunité de vous faire entendre
             </div>
           </li>
           <li>
-            <div class="faq-question-landing"><i class="fa fa-angle-right"></i>Est-ce gratuit ?</div>
+            <div class="faq-question-landing"><i class="fa fa-chevron-circle-right"></i>Est-ce gratuit ?</div>
             <div class="faq-answer-landing">
              <span>Oui, l’accès à la plateforme CforGood est totalement gratuit pour nos partenaires.</span>
            </div>
           </li>
           <li>
-            <div class="faq-question-landing"><i class="fa fa-angle-right"></i>Puis-je réaliser le bon plan / la réduction que je souhaite ?</div>
+            <div class="faq-question-landing"><i class="fa fa-chevron-circle-right"></i>Puis-je réaliser le bon plan / la réduction que je souhaite ?</div>
             <div class="faq-answer-landing">
               <span>Oui totalement, cela peut être une promotion de 20% sur votre magasin, un produit / service offert, une offre spéciale. Soyez créatif ! Notre équipe a de l’expérience dans ce domaine et peut vous aider à choisir les bons plans en accord avec vos objectifs, nous sommes là pour vous aiguiller à hello@cforgood.com.</span>
             </div>
           </li>
           <li>
-            <div class="faq-question-landing"><i class="fa fa-angle-right"></i>Quel investissement en temps l’utilisation de CforGood me demande ?</div>
+            <div class="faq-question-landing"><i class="fa fa-chevron-circle-right"></i>Quel investissement en temps l’utilisation de CforGood me demande ?</div>
             <div class="faq-answer-landing">
               <span>Il ne vous faudra pas plus de 30 secondes pour créer un bon plan et 5 secondes pour le réactiver en modifiant si besoin les informations précédemment enregistrées.</span>
             </div>
           </li>
           <li>
-            <div class="faq-question-landing"><i class="fa fa-angle-right"></i>Quelles sont les conditions pour devenir partenaire sur CforGood ?</div>
+            <div class="faq-question-landing"><i class="fa fa-chevron-circle-right"></i>Quelles sont les conditions pour devenir partenaire sur CforGood ?</div>
             <div class="faq-answer-landing">
               <span>Les entreprises partenaires sur CforGood doivent répondre à au moins un critère d’engagement social, économique ou environnemental de la Charte CforGood.
               Les entreprises devront donc être validées avant de pouvoir poster sur CforGood.</span>
@@ -255,8 +255,8 @@ Une incroyable opportunité de vous faire entendre
       $("ul li div.faq-question-landing").on("click", function() {
         $(this).next("div.faq-answer-landing").slideToggle();
         $("div.faq-question-landing").not(this).next("div.faq-answer-landing").slideUp();
-        $("div.faq-question-landing i.fa-angle-down").addClass("fa-angle-right").removeClass("fa-angle-down");
-        $("i", this).toggleClass("fa-angle-right").toggleClass("fa-angle-down");
+        $("div.faq-question-landing i.fa-chevron-circle-down").addClass("fa-chevron-circle-right").removeClass("fa-chevron-circle-down");
+        $("i", this).toggleClass("fa-chevron-circle-right").toggleClass("fa-chevron-circle-down");
       });
     });
 
