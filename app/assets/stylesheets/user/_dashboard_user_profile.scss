@@ -53,13 +53,16 @@
     }
   }
 
-  .tab-content {
+  .tab-content{
     width: 60%;
     background-color: #fff;
-  }
-  .tab-content{
+
     .tab-profile {
       padding: 30px 48px 0;
+
+      .user-profil {
+        display: flex;
+      }
     }
   }
 }
