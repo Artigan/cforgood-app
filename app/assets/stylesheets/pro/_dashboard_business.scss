@@ -245,6 +245,7 @@
   top: 30%;
   left: 40%;
   text-transform: uppercase;
+  text-align: center;
   color: #fff;
   background-color: #9FD6AE;
   border: 1px solid #8BBD99;
@@ -253,4 +254,14 @@
   border-radius: 3px;
   font-size: 14px;
   font-weight: 600px;
+
+  img {
+    height: 10%;
+    width: 10%;
+    margin-right: 10px;
+  }
+
+  &:hover {
+    background-color: #8BBD99;
+  }
 }
