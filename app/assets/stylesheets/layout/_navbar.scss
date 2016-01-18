@@ -10,6 +10,10 @@
 
 #navbar { border-radius: 0; } /* REMOVE BOOTSTRAP DEFAULT */
 
+.flash {
+  top: 35px;
+}
+
 .navbar {
   position: fixed;
   width: 100%;
@@ -317,11 +321,6 @@
 
 /* BANNER-PROMO */
 /* REMOVE WHEN NO BANNER */
-.navbar {
-  top: 35px;
-  @media only screen and (max-width:480px){ top: 0; }
-}
-
 #banner-promo {
   position: fixed;
   width: 100%;
