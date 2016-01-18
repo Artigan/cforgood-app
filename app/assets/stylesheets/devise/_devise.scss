@@ -31,9 +31,10 @@
     background: linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* W3C */
   }
 
-  .form-card   {
+  .form-card {
     height: 100%;
     padding: 40px 60px 20px 60px;
+    @media only screen and (max-width:480px){ padding-left: 0; padding-right: 0 };
     margin-top: 50px;
     background: #fff;
     border-radius: 10px;
@@ -114,6 +115,7 @@
   .btn-facebook   {
     display: inline-block;
     width: 48.5%;
+    @media only screen and (max-width:480px){ width: 100% };
     border-radius: 20px;
     height: 42px;
     color: #fff;
@@ -197,6 +199,7 @@
     input[type="submit"] {
       display: block;
       max-width: 50%;
+      @media only screen and (max-width:480px){ max-width: 100% };
       margin: 0 auto;
       padding: 15px 20px;
       border-radius: 30px;

@@ -1,0 +1,28 @@
+<%= content_for(:title) do %>
+  FAQ
+<% end %>
+<%= content_for(:description) do %>
+  Des réponses à vos questions
+<% end %>
+
+<div class="container-fluid">
+  <div class="container-fluid" id="header-cforgood-legal">
+    <div class="row">
+      <div class="page-title" id="page-title-legal">
+        <h1>FAQ</h1>
+        <h2>Des réponses à vos questions</h2>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid bg-legal">
+    <div id="whitebox-legal"></div>
+    <div class="row">
+      <!-- Sub Menu NavBar  -->
+      <%= render "pages/shared/tabs_footer_cforgood" %>
+      <!-- Content -->
+      <div class="col-xs-12 col-sm-6 content-legal">
+        <%= render "pages/shared/faq_content" %>
+      </div>
+    </div>
+  </div>
+</div>
