@@ -1,16 +1,16 @@
 <div class="form-edit-container">
   <div class="form-edit">
-    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), remote: true, authenticity_token: true ) do |f| %>
+    <%= simple_form_for(current_business, url: pro_update_business_path, method: :put, remote: true, authenticity_token: true) do |f| %>
       <%= f.error_notification %>
       <%= f.input :business_category_id, required: true, label: false, collection: BusinessCategory.all, hint: ("Choisissez la catégorie de votre commerce") %>
-      <%= image_tag resource.picture.url(:thumb) %>
+      <%= image_tag current_business.picture.url(:thumb) %>
       <%= f.input :picture, as: :file, hint: 'Photo de votre commerce', required: true, label: false %>
       <br>
       <%= f.input :street, placeholder: 'Rue', required: true, label: false %>
       <%= f.input :zipcode, placeholder: 'Code postal', required: true, label: false %>
       <%= f.input :city, placeholder: 'Ville', required: true, label: false %>
       <%= f.input :description, as: :text, placeholder: 'Description de votre commerce', required: true, label: false %>
-      <%= f.input :online, label: "Commerce online", as: :radio_buttons, collection: [['Oui', true ], ['Non', false ]], checked: resource.online || false  %>
+      <%= f.input :online, label: "Commerce online", as: :radio_buttons, collection: [['Oui', true ], ['Non', false ]], checked: current_business.online || false  %>
       <%= f.input :url, placeholder: 'Adresse site', label: false %>
       <%= f.button :submit, "Sauvegarder", class: "btn btn-turquoise" %>
     <% end %>

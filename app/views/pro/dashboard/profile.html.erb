@@ -1,6 +1,6 @@
 <div class="container-fluid admin">
   <!-- Sub Menu Sidebar -->
-  <%= render "pro/dashboard/sidebar" %>
+  <%= render "pro/dashboard/shared/sidebar" %>
   <!-- Content - Statistics -->
   <div class="dashboard dashboard-business">
     <!-- Nav tabs -->
@@ -15,10 +15,10 @@
     <!-- Tab panes -->
     <div class="tab-content">
       <div role="tabpanel" class="tab-pane active" id="business">
-        <%= render "businesses/registrations/shared/form_business" %>
+        <%= render "pro/dashboard/shared/form_business" %>
       </div>
       <div role="tabpanel" class="tab-pane" id="shop">
-        <%= render "businesses/registrations/shared/form_shop" %>
+        <%= render "pro/dashboard/shared/form_shop" %>
       </div>
     </div>
   </div>

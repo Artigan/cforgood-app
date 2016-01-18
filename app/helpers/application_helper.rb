@@ -23,4 +23,10 @@ module ApplicationHelper
   def user_space?
     !pro_space?
   end
+
+  def landing_page?
+    request.path == "/" ||
+    request.path == "/landing_business" ||
+    request.path == "/landing_cause"
+  end
 end

@@ -1,26 +1,45 @@
 <!-- BANNER PROMO -->
-<div class="hidden-xs">
-  <div class="container-fluid" id="banner-promo">
-    <%=link_to "http://www.kisskissbankbank.com/fr/projects/cforgood-la-revolution-positive", target: "_blank" do %>
-      <div class="row text-center">
-        <span>Financez la 1ère <strong>plateforme d'économie responsable et solidaire</strong> qui redonne le pouvoir d'agir et consommer dans le Bon Sens !</span>
-        <i class="fa fa-chevron-circle-right"></i>
-      </div>
-    <% end %>
+<!-- remove class flash on #navbar if no banner %> -->
+<% if landing_page? %>
+  <div class="hidden-xs">
+    <div class="container-fluid" id="banner-promo">
+      <%=link_to "http://www.kisskissbankbank.com/fr/projects/cforgood-la-revolution-positive", target: "_blank" do %>
+        <div class="row text-center">
+          <span>Financez la 1ère <strong>plateforme d'économie responsable et solidaire</strong> qui redonne le pouvoir d'agir et consommer dans le Bon Sens !</span>
+          <i class="fa fa-chevron-circle-right"></i>
+        </div>
+      <% end %>
+    </div>
   </div>
-</div>
+<% end %>
 
 <% if user_space? %>
   <% if user_signed_in? %>
-    <nav id="navbar" class="navbar nav nav-user" role="navigation">
+    <% if landing_page? %>
+      <nav id="navbar" class="navbar nav nav-user flash" role="navigation">
+    <% else %>
+      <nav id="navbar" class="navbar nav nav-user" role="navigation">
+    <% end %>
   <% else %>
-    <nav id="navbar" class="navbar nav" role="navigation">
+    <% if landing_page? %>
+      <nav id="navbar" class="navbar nav flash" role="navigation">
+    <% else %>
+     <nav id="navbar" class="navbar nav" role="navigation">
+    <% end %>
   <% end %>
 <% else %>
   <% if business_signed_in? %>
-    <nav id="navbar" class="navbar nav nav-business" role="navigation">
+    <% if landing_page? %>
+      <nav id="navbar" class="navbar nav nav-business flash" role="navigation">
+    <% else %>
+      <nav id="navbar" class="navbar nav nav-business" role="navigation">
+    <% end %>
   <% else %>
-    <nav id="navbar" class="navbar nav" role="navigation">
+    <% if landing_page? %>
+      <nav id="navbar" class="navbar nav flash" role="navigation">
+    <% else %>
+      <nav id="navbar" class="navbar nav" role="navigation">
+    <% end %>
   <% end %>
 <% end %>
   <!-- ICON RESPONSIVE MENU -->
@@ -63,13 +82,13 @@
         <% end %>
         </li>
         <li>
-          <%= link_to about_path do %>
+          <%= link_to faq_connect_path do %>
           <i class="fa fa-dot-circle-o"></i> <%= t(".how_it_works", default: "Aide et conseils") %>
           <% end %>
         </li>
         <li class="hidden-xs">
           <% if current_business.active %>
-            <%= link_to edit_business_registration_path(current_business) do %>
+            <%= link_to pro_business_profile_path(current_business) do %>
               <%= image_tag avatar_url(current_business), class: "img-circle", type: "button" %>
               <span class="user-name"><%= current_business.name %></span>
             <% end %>
@@ -97,7 +116,7 @@
             <% end %>
           </li>
           <li>
-            <%= link_to faq_path do %>
+            <%= link_to faq_connect_path do %>
               <i class="fa fa-dot-circle-o"></i> <%= t(".how_it_works", default: "Aide et conseils") %>
             <% end %>
           </li>

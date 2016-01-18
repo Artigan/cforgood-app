@@ -10,6 +10,10 @@
 
 #navbar { border-radius: 0; } /* REMOVE BOOTSTRAP DEFAULT */
 
+.flash {
+  top: 35px;
+}
+
 .navbar {
   position: fixed;
   width: 100%;
@@ -317,11 +321,6 @@
 
 /* BANNER-PROMO */
 /* REMOVE WHEN NO BANNER */
-.navbar {
-  top: 35px;
-  @media only screen and (max-width:460px){ top: 0; }
-}
-
 #banner-promo {
   position: fixed;
   width: 100%;
@@ -329,7 +328,6 @@
   padding: 4px;
   z-index: 999999;
   margin: 0;
-  // background-color: #eeab05; /* jaune doré */
   background-color: #f45a5a; /* rouge */
   box-shadow: 0 1px 3px rgba(0,0,0,0.08),0 1px 2px rgba(0,0,0,0.2);
 

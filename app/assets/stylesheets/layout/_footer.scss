@@ -20,6 +20,7 @@
   }
   li {
     list-style-type: none;
+    margin-bottom: 5px;
   }
   a {
     color: rgb(108,150,189);
@@ -52,11 +53,17 @@
   }
 }
 
+#footer-menu {
+  padding-left: 20px;
+  @media only screen and (max-width:480px){ padding-left: 0; }
+}
+
 .footer-title {
   font-size: 18px;
   font-weight: 500;
   padding-bottom: 20px;
   color: white;
+  @media only screen and (max-width:480px){ padding-top: 15px; padding-bottom: 10px; }
 }
 
 .text-center {

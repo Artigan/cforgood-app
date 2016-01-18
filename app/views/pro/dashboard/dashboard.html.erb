@@ -8,10 +8,15 @@ Consultez vos chiffres
 <div class="container-fluid admin">
   <% if !current_business.active %>
     <%= image_tag('dashboard_business_inactive.png', class: 'whitebox-business-blur') %>
-    <div class='whitebox-business-msg'>Votre espace sera bientôt actif !</div>
+    <%= link_to destroy_user_session_path, method: :delete do %>
+      <div class='whitebox-business-msg'>
+        <p>Nous sommes actuellement en BETA,<br> votre espace sera très prochainement actif !</p>
+        <%= image_tag('icons/signout.png', :class => 'signout-icon') %><%= t ".se_déconnecter", default: "À bientôt" %>
+      </div>
+    <% end %>
   <% else %>
     <!-- Sub Menu Sidebar -->
-    <%= render "pro/dashboard/sidebar" %>
+    <%= render "pro/dashboard/shared/sidebar" %>
     <!-- Content - Statistics -->
     <div class="dashboard">
       <div class="data-container">

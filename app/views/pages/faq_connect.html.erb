@@ -1,0 +1,26 @@
+<%= content_for(:title) do %>
+  F.A.Q.
+<% end %>
+<%= content_for(:description) do %>
+  Foire aux questions
+<% end %>
+
+<div class="container-fluid admin">
+  <% if user_space? %>
+    <!-- Sub Menu Sidebar MEMBER -->
+    <%= render "member/dashboard/shared/sidebar" %>
+  <% else %>
+    <!-- Sub Menu Sidebar PRO -->
+    <%= render "pro/dashboard/shared/sidebar" %>
+  <% end %>
+
+  <!-- Content - FAQ -->
+    <div class="dashboard">
+      <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+        <h1>F.A.Q.</h1>
+        <h3>Des réponses à vos questions...</h3>
+        <%= render "pages/shared/faq_content" %>
+      </div>
+    </div>
+  </div>
+</div>
