@@ -4,21 +4,21 @@ class PagesController < ApplicationController
     @businesses = Business.joins(:perks).where("perks.permanent = ?", true).distinct
   end
 
-  def info_business
-  end
+  # def info_business
+  # end
 
-  def info_cause
-  end
+  # def info_cause
+  # end
 
-  def about
-  end
+  # def about
+  # end
 
-  def charte
-  end
+  # def charte
+  # end
 
-  def member_card
-  end
+  # def member_card
+  # end
 
-  def faq
-  end
+  # def faq
+  # end
 end

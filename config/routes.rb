@@ -4,11 +4,14 @@ Rails.application.routes.draw do
 
   # ROOT TO LANDING WEBSITE
   root to: "pages#home"
+  get 'about',            to: 'pages#about'
   get 'notre_charte',     to: 'pages#charte'
+  get 'cgu',              to: 'pages#cgu'
+  get 'charte_confidentialite',  to: 'pages#charte_confidentialite'
+  get 'mentions_legales', to: 'pages#mentions_legales'
   get 'member_card',      to: 'pages#member_card'
   get 'info_business',    to: 'pages#info_business'
   get 'info_cause',       to: 'pages#info_cause'
-  get 'about',            to: 'pages#about'
   get 'faq',              to: 'pages#faq'
   get 'landing_business', to: 'pages#landing_business'
   get 'landing_cause',    to: 'pages#landing_cause'
