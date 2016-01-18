@@ -20,4 +20,8 @@ class BusinessPolicy < ApplicationPolicy
   def dashboard?
     user == record
   end
+
+  def profile?
+    user == record
+  end
 end

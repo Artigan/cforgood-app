@@ -1,7 +1,5 @@
 class Pro::RegistrationsController < Devise::RegistrationsController
 
-  protected
-
   # def update_resource(resource, params)
   #   resource.update_without_password(params)
   #   respond_to do |format|
@@ -33,6 +31,6 @@ class Pro::RegistrationsController < Devise::RegistrationsController
   private
 
   def business_params
-    params.require(:business).permit(:name, :street, :zipcode, :city, :url, :telephone, :email, :description, :picture, :business_category_id, :facebook, :twitter, :instagram, :leader_picture,:leader_first_name, :leader_last_name, :leader_description, :active)
+    params.require(:business).permit(:name, :street, :zipcode, :city, :url, :telephone, :email, :description, :picture, :business_category_id, :facebook, :twitter, :instagram, :leader_picture,:leader_first_name, :leader_last_name, :leader_description, :active, :online)
   end
 end

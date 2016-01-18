@@ -1,7 +1,5 @@
 class Pro::DashboardController < Pro::ProController
 
-  before_action :authenticate_business!
-
   def dashboard
     @business = Business.find(params[:business_id])
     @perks = @business.perks
@@ -25,4 +23,8 @@ class Pro::DashboardController < Pro::ProController
     end
   end
 
+  def profile
+    @business = Business.find(params[:business_id])
+    authorize @business
+  end
 end
