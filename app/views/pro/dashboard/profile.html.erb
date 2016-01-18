@@ -1,0 +1,44 @@
+<div class="container-fluid admin">
+  <!-- Sub Menu Sidebar -->
+  <%= render "pro/dashboard/shared/sidebar" %>
+  <!-- Content - Statistics -->
+  <div class="dashboard dashboard-business">
+    <!-- Nav tabs -->
+    <ul id="menu" class="nav nav-tabs">
+      <li role="profile" class="active">
+        <%= link_to "Vos informations", "#business", role: "tab", data_toggle: "tab" %>
+      </li>
+      <li role="profile">
+        <%= link_to "Votre commerce", "#shop", role: "tab", data_toggle: "tab" %>
+      </li>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="business">
+        <%= render "pro/dashboard/shared/form_business" %>
+      </div>
+      <div role="tabpanel" class="tab-pane" id="shop">
+        <%= render "pro/dashboard/shared/form_shop" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% content_for :after_js do %>
+
+  <script>
+
+    $(document).ready(function() {
+      $("#menu a").click(function (e) {
+        e.preventDefault()
+        // $(".alert").remove();
+        $(this).tab('show');
+      });
+    });
+
+  </script>
+
+<% end %>
+
+  </div>
+</div>
