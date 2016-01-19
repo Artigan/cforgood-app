@@ -5,7 +5,7 @@ ActiveAdmin.register User do
     column :email
     column :first_name
     column :last_name
-    column :name
+    column :city
     column :created_at
     column :admin
     column :active
