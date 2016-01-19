@@ -27,14 +27,14 @@ Une incroyable opportunité de vous faire entendre
   </div>
 </div>
 <!-- PRESENTATION - LA REVOLUTION POSITIVE -->
-<section class="container-fluid presentation" id="presentation-business">
+<section class="container-fluid presentation" id="presentation-text">
   <div class="container">
     <div class="row">
       <h2 class="section-title">Une révolution positive</h2>
       <!-- BLOCK DESCRIPTION -->
       <div class="col-md-8 col-md-offset-2">
-        <p>CforGood est une plateforme qui vous propose de développer votre activité tout en inspirant la générosité. Il s’agit d’un site web et d’une application mobile qui permettent gratuitement aux commerces locaux et responsables d’offrir, aux citoyens engagés, des bons plans Permanent pour développer leurs clientèles, ou Flash pour réduire le gaspillage alimentaire et optimiser leurs marges.
-        Une bonne manière d’attirer de nouveaux clients sans risque, tout en étant un vecteur de solidarité !</p>
+        <p>CforGood est une plateforme qui vous propose de développer votre activité tout en inspirant la générosité. Il s’agit d’un site web et d’une application mobile qui permettent gratuitement aux commerces locaux et responsables d’offrir, aux citoyens engagés, des bons plans Permanent pour développer leurs clientèles, ou Flash pour réduire le gaspillage alimentaire et optimiser leurs marges.</p>
+        <p>Une bonne manière d’attirer de nouveaux clients sans risque, tout en étant un vecteur de solidarité !</p>
         <p><strong>CforGood, l'évidence d'aller dans le bon sens.</strong></p>
         <!-- CTA - EN SAVOIR PLUS -->
         <%= button_to "En Savoir Plus", about_path, method: :get, class: "button button-turquoise" %>
@@ -52,9 +52,25 @@ Une incroyable opportunité de vous faire entendre
         <div class="col-xs-8 col-sm-8 col-md-5" id="screenshot" data-sr="enter bottom and scale up 20% over 1s">
           <%= image_tag("ProIndexPerk.png")%>
         </div>
-        <div class="col-xs-8 col-sm-8 col-md-5 screenshot-legend text-justify">
+        <div class="col-xs-8 col-sm-8 col-md-5 screenshot-legend">
           <h3>Créez</h3>
-          <p>Saisissez votre bon plan sous la forme que vous souhaitez (Flash ou Permanent).</p>
+          <p>Saisissez votre bon plan sous la forme que vous souhaitez.</p>
+          <div class="row screenshot-list">
+            <ul class="list-inline">
+              <li>
+                <span class="screenshot-list-item">
+                  <i><%= image_tag("icons/myperks.png") %></i>
+                  <p>Permanent</p>
+                  <span>Déployer et fidéliser une nouvelle clientèle</span>
+                </span>
+              </li>
+              <li>
+                  <i><%= image_tag("icons/myperks.png") %></i>
+                  <p>Flash</p>
+                  <span>Réduire le gaspillage alimentaire et optimiser les marges</span>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
       <!-- USE CASE 2 -->

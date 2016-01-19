@@ -17,9 +17,9 @@
 
 // SECTION - PRESENTATION
 //***************************************************************************//
-#presentation-business {
+#presentation-text {
   p {
-    line-height: 2em;
+    line-height: 1.8em;
   }
 }
 
@@ -34,6 +34,10 @@
     height: 100%;
     width: 100%;
     }
+
+  h3, p {
+    text-align: justify;
+  }
 }
 
 .screenshot-legend {
@@ -45,6 +49,25 @@
   }
 }
 
+.screenshot-list {
+
+  .screenshot-list-item {
+    position: relative;
+    display: inline-block;
+  }
+
+  i img {
+    position: absolute;
+    left: 0;
+    height: 50px;
+  }
+
+  p {
+    padding-left: 60px;
+  }
+
+}
+
 #first_asset {
   padding-bottom: 50px;
 
@@ -53,12 +76,16 @@
   }
 
   .screenshot-legend {
-    p {
-      padding: 0;
+    h3, p {
+      text-align: left;
     }
 
     h3 {
       color: #00C9FF;
+    }
+
+    p {
+      padding: 0;
     }
   }
 }
