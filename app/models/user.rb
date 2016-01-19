@@ -77,6 +77,8 @@ class User < ActiveRecord::Base
   validate :date_subscription!, if: :subscription_changed?
   validate :member!, if: :date_last_payment_changed?
 
+  after_create :send_welcome_email
+
   def self.find_for_google_oauth2(access_token, signed_in_resourse=nil)
     data = access_token.info
     user = User.where(:provider => access_token.provider, :uid => access_token.uid).first
@@ -152,5 +154,11 @@ class User < ActiveRecord::Base
     if subscription_was != nil && subscription_was[0] == "T" && self.trial_done == false
       self.update(trial_done: true)
     end
+  end
+
+  private
+
+  def send_welcome_email
+    UserMailer.welcome(self).deliver_now
   end
 end
