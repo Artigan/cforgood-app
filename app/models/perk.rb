@@ -82,6 +82,8 @@ class Perk < ActiveRecord::Base
         else
           user.uses.where(perk_id: self.id).count >= self.times
         end
+      else
+        true
       end
     else
       (Time.now >= self.start_date || Time.now <= self.end_date) && Use.where(perk_id: self.id).count < self.times

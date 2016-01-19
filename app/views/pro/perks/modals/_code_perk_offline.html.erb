@@ -1,16 +1,21 @@
-<div class="code-perk-desktop">
+<div class="code-perk-offline">
+    <!-- ITINERAIRE -->
+  <%= link_to "Indiquez Moi L'itinéraire", "http://maps.google.com/maps", class: "button button-turquoise", id:"link-map", disabled: true, data: { locale: I18n.locale, destination: { latitude: Perk.find(params[:perk_id]).business.latitude, longitude: Perk.find(params[:perk_id]).business.longitude } }, :target => "_blank" %>
+  <!-- INPUT CODE PERK -->
   <%= simple_form_for :code, url: perk_uses_path(params[:perk_id], current_user), remote: true, authenticity_token: true, html: { id: :create_use } do |f| %>
     <%= f.input :perk_code, placeholder: "Saisissez le code", label: false, input_html: { :size => 5, :maxlength => 5, id: :perk_code }  %>
-    <%= f.submit "Validez", class: "button button-turquoise" %>
+    <%= f.submit "Validez", class: "button button-turquoise validation" %>
   <% end %>
   <p id="error-modal"></p>
 </div>
 
 <% content_for :after_js do %>
 
+  <script type="text/javascript">setRoutePathFromLocation()</script>
+
   <script>
     $(document).ready(function() {
-      $(".button-turquoise").on('click', function(e) {
+      $(".validation").on('click', function(e) {
         e.preventDefault();
         if ("<%= Perk.find(params[:perk_id]).perk_code %>" == $("#perk_code").val().toUpperCase()) {
           $("#create_use").submit();
