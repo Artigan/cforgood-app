@@ -47,51 +47,51 @@
   p {
     margin: 0 !important;
   }
-}
 
-.screenshot-list {
+  .screenshot-list {
+    margin-top: 10px;
 
-  .screenshot-list-item {
-    position: relative;
-    display: inline-block;
-  }
-
-  i img {
-    position: absolute;
-    left: 0;
-    height: 50px;
-  }
-
-  p {
-    padding-left: 60px;
-  }
-
-}
-
-#first_asset {
-  padding-bottom: 50px;
-
-  #screenshot {
-    margin-left: 60px;
-  }
-
-  .screenshot-legend {
-    h3, p {
-      text-align: left;
+    li {
+      display: block;
+      margin: 10px 0;
     }
 
-    h3 {
-      color: #00C9FF;
+    i img {
+      position: absolute;
+      vertical-align: middle;
+      height: 35px;
+    }
+
+    p, span {
+      display: block;
+      padding-left: 50px !important;
+      font-size: 1.5rem;
     }
 
     p {
-      padding: 0;
+      text-transform: uppercase;
+    }
+
+    span {
+      font-weight: 200;
+    }
+  }
+}
+
+#first_asset, #second_asset, .third_asset {  padding-bottom: 50px; }
+
+#first_asset {
+
+  .screenshot-legend {
+    text-align: left;
+
+    h3 {
+      color: #00C9FF;
     }
   }
 }
 
 #second_asset {
-  padding-bottom: 50px;
 
   .screenshot-legend {
     text-align: right;
@@ -100,22 +100,22 @@
     h3 {
       color: #36d3da;
     }
+
+    img {
+      right: 0px;
+    }
+
+    .screenshot-list {
+      p, span {
+        padding-right: 50px !important;
+        padding-left: 0px !important;
+      }
+    }
   }
 }
 
-#third_asset {
-  padding-bottom: 50px;
-
-  #screenshot {
-    margin-left: 60px;
-  }
-
-  .screenshot-legend {
-
-    h3 {
-      color: #80F2A4;
-    }
-  }
+#third_asset.screenshot-legend h3 {
+  color: #80F2A4;
 }
 
 .benefits {
