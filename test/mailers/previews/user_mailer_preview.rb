@@ -1,6 +1,11 @@
 class UserMailerPreview < ActionMailer::Preview
-  def welcome
+  def registration
     user = User.first
-    UserMailer.welcome(user)
+    UserMailer.registration(user)
+  end
+
+  def activation
+    user = User.first
+    UserMailer.activation(user)
   end
 end

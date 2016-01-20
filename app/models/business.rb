@@ -76,6 +76,9 @@ class Business < ActiveRecord::Base
   validates_attachment_content_type :leader_picture,
       content_type: /\Aimage\/.*\z/
 
+  after_create :send_registration_email
+  after_save :send_activation_email if :active_changed?
+
   def address_changed?
     :street_changed? || :zipcode_changed? || :city_changed?
   end
@@ -102,5 +105,17 @@ class Business < ActiveRecord::Base
 
   def perks_new_users
     perks.reduce(0) { |sum, perk| sum + perk.uses.select(:user_id).distinct.count }
+  end
+
+  private
+
+  def send_registration_email
+    BusinessMailer.registration(self).deliver_now
+  end
+
+  def send_activation_email
+    if self.active == true
+      BusinessMailer.activation(self).deliver_now
+    end
   end
 end

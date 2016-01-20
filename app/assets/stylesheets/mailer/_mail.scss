@@ -1,20 +1,46 @@
 // Your mail style
 #mail {
   background-color: #fff;
+  width: 100%;
+  text-align: center;
+
+  .mail-header {
+    width: 100%;
+  }
+  .header-logo {
+    height: 100px;
+
+    p {
+      text-align: center;
+    }
+  }
 
   p {
     font-size: 15px;
     margin-bottom: 5px;
+    text-align: left;
   }
 
-  .logo-signature {
-    width: 150px;
+  .mail-picture {
+    display: block;
+    width: 100%;
   }
 
-  .go {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    text-align: center;;
+  .link-discover {
+    margin-bottom: 50px;
+
+    p {
+      margin-bottom: 25px;
+    }
+
+    a {
+
+    }
+  }
+
+   .logo-signature {
+    text-align: left;
+    width: 120px;
   }
 }
 

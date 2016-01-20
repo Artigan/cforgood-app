@@ -77,7 +77,9 @@ class User < ActiveRecord::Base
   validate :date_subscription!, if: :subscription_changed?
   validate :member!, if: :date_last_payment_changed?
 
-  after_create :send_welcome_email
+  after_create :send_registration_email
+  after_save :send_activation_email if :active_changed?
+
 
   def self.find_for_google_oauth2(access_token, signed_in_resourse=nil)
     data = access_token.info
@@ -158,7 +160,14 @@ class User < ActiveRecord::Base
 
   private
 
-  def send_welcome_email
-    UserMailer.welcome(self).deliver_now
+  def send_registration_email
+    UserMailer.registration(self).deliver_now
+  end
+
+    def send_activation_email
+      raise
+      if self.active == true
+        UserMailer.activation(self).deliver_now
+      end
   end
 end
