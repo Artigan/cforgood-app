@@ -281,11 +281,24 @@
   }
 }
 
-.code-perk-offline {
- margin-top: 40px;
+/* MODAL - USE CODE  **********************************************************/
 
- form {
-  margin-top: 40px;
- }
+.offline-itineraire, .offline-code {
+  background-color: #f9f9f9;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.07);
+}
+
+.offline-itineraire {
+  padding-bottom: 10px;
+  &-legend {
+    margin-top: 15px;
+    padding-top: 10px;
+    padding-bottom: 15px;
+  }
+}
+
+.offline-code-legend {
+  margin-top: 30px;
+  padding-top: 10px;
 }
 

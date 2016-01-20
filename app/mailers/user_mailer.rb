@@ -1,6 +1,7 @@
 class UserMailer < ApplicationMailer
 
   def welcome(current_user)
-    mail to: current_user.email
+    @user = current_user
+    mail(to: @user.email, subject: 'Bienvenue dans la communauté CforGood')
   end
 end

@@ -1,9 +1,27 @@
-<h1>Bienvenue chez CforGood</h1>
+<div id="mail">
+  <% if @user.first_name %>
+    <p>Bienvenue <%= @user.first_name %>,</p>
+  <% elsif @user.name %>
+    <p>Bienvenue <%= @user.name %>,</p>
+  <% else %>
+    <p>Bienvenue,</p>
+  <% end %>
 
-<p>
-  Votre inscription a bien été prise en compte !
-  Vous recevrez très prochainement un mail vous indiquant que votre espace est actif !
-</p>
+  <p>
+    Merci de rejoindre la communauté des acteurs qui vont dans le bon sens !<br>
+    Voici un guide qui vous aidera à démarrer :
+  </p>
 
-<p> A très bientôt, </p>
+  <%= image_tag ("comment_ca_marche_mail.jpg") %>
+
+  <p>
+    C'est tout ! Qu'attendez-vous pour découvrir le meilleur de votre ville ?!
+  <p>
+
+  <%= link_to "Découvrir maintenant", member_user_dashboard_url(@user), class: "button button-turquoise" %>
+
+  <p> A très vite,<br>
+  L'équipe CforGood</p>
+  <%= image_tag "logo.png", class: 'logo-signature' %>
+</div>
 

@@ -1,12 +1,18 @@
 <div class="code-perk-offline">
     <!-- ITINERAIRE -->
-  <%= link_to "Indiquez Moi L'itinéraire", "http://maps.google.com/maps", class: "button button-turquoise", id:"link-map", disabled: true, data: { locale: I18n.locale, destination: { latitude: Perk.find(params[:perk_id]).business.latitude, longitude: Perk.find(params[:perk_id]).business.longitude } }, :target => "_blank" %>
+  <div class="offline-itineraire">
+    <p class="offline-itineraire-legend"> Pour rejoindre votre commerce :<P>
+    <%= link_to "Indiquez Moi L'itinéraire", "http://maps.google.com/maps", class: "button button-turquoise", id:"link-map", disabled: true, data: { locale: I18n.locale, destination: { latitude: Perk.find(params[:perk_id]).business.latitude, longitude: Perk.find(params[:perk_id]).business.longitude } }, :target => "_blank" %>
+  </div>
   <!-- INPUT CODE PERK -->
-  <%= simple_form_for :code, url: perk_uses_path(params[:perk_id], current_user), remote: true, authenticity_token: true, html: { id: :create_use } do |f| %>
-    <%= f.input :perk_code, placeholder: "Saisissez le code", label: false, input_html: { :size => 5, :maxlength => 5, id: :perk_code }  %>
-    <%= f.submit "Validez", class: "button button-turquoise validation" %>
-  <% end %>
-  <p id="error-modal"></p>
+  <div class="offline-code">
+    <p class="offline-code-legend">Pour profiter du Bon Plan et accédez à votre carte membre, renseignez le code :</p>
+    <%= simple_form_for :code, url: perk_uses_path(params[:perk_id], current_user), remote: true, authenticity_token: true, html: { id: :create_use } do |f| %>
+      <%= f.input :perk_code, placeholder: "Saisissez le code", label: false, input_html: { :size => 5, :maxlength => 5, id: :perk_code }  %>
+      <%= f.submit "Validez", class: "button button-turquoise validation" %>
+    <% end %>
+    <p id="error-modal"></p>
+  </div>
 </div>
 
 <% content_for :after_js do %>
