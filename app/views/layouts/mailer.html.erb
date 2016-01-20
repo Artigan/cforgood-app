@@ -5,10 +5,32 @@
   <body>
     <div class="container" id="mail">
       <div class="row">
-        <div class="col-xs-12 col-md-4 col-md-offset-4 text-center">
+        <div class="col-xs-12 col-md-6 col-md-offset-3 text-center">
           <%= image_tag('cforgood_mail.png', class: "mail-header") %>
         </div>
         <%= yield %>
+        <div class="col-xs-12 col-md-6 col-md-offset-3 mail-signature">
+          <p> A très vite,<br>
+          L'équipe <strong>CforGood</strong></p>
+          <%= image_tag "logo.png", class: "logo-signature" %>
+          <ul class="list-inline social-networks">
+            <li>
+              <a href="https://www.facebook.com/cforgood/" target="_blank">
+                <i class="fa fa-facebook-official"></i>
+              </a>
+            </li>
+            <li>
+              <a href="https://twitter.com/cforgood" target="_blank">
+                <i class="fa fa-twitter-square"></i>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.instagram.com/cforgood/" target="_blank">
+                <i class="fa fa-instagram"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </body>

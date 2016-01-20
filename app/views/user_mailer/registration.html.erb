@@ -1,21 +1,14 @@
-<div class="row mail-content">
-  <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-    <% if @user.first_name %>
-      <p>Bienvenue <%= @user.first_name %>,</p>
-    <% elsif @user.name %>
-      <p>Bienvenue <%= @user.name %>,</p>
-    <% else %>
-      <p>Bienvenue,</p>
-    <% end %>
+<div class="col-xs-12 col-md-6 col-md-offset-3 text-center mail-content">
+  <% if @user.first_name %>
+    <p>Bienvenue <%= @user.first_name %>,</p>
+  <% elsif @user.name %>
+    <p>Bienvenue <%= @user.name %>,</p>
+  <% else %>
+    <p>Bienvenue,</p>
+  <% end %>
 
   <p>Merci beaucoup d’avoir rejoint la communauté des acteurs qui veulent agir dans le bon sens !<br>
   Nous sommes actuellement en bêta privée et nous allons activer en priorité les membres de la métropole bordelaise.</p>
   <p>Si c’est votre cas, vous êtes chanceux, nous devrions vous envoyer l’accès très rapidement !<br>
   Si ça ne l’est pas, soyez patient, nous vous tiendrons informés de nos avancés et de notre arrivé dans votre ville !</p>
-
-  <p> A très vite,<br>
-  L'équipe CforGood</p>
-  <%= image_tag "logo.png", class: "logo-signature" %>
-
-  </div>
 </div>

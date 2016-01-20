@@ -2,45 +2,55 @@
 #mail {
   background-color: #fff;
   width: 100%;
+  min-height: 100%;
   text-align: center;
 
   .mail-header {
+    background-color: #fff;
     width: 100%;
   }
-  .header-logo {
-    height: 100px;
 
-    p {
-      text-align: center;
-    }
+  .mail-content {
+    padding: 25px;
+    background-color: #f1f1f1;
   }
 
   p {
-    font-size: 15px;
     margin-bottom: 5px;
     text-align: left;
+    font-size: 1.4rem;
+    font-weight: 100px;
   }
 
   .mail-picture {
     display: block;
+    margin-top: 25px;
     width: 100%;
+    border: 1px rgba(89, 211, 211, 0.9) solid;
   }
 
   .link-discover {
-    margin-bottom: 50px;
+    margin: 25px 0;
 
     p {
       margin-bottom: 25px;
     }
-
-    a {
-
-    }
   }
 
-   .logo-signature {
-    text-align: left;
+  .mail-signature {
+    margin-top: 25px;
+  }
+
+  .logo-signature {
+    display: block;
+    left: 0;
     width: 120px;
   }
+
+  .social-networks {
+    margin-bottom: 20px;
+
+  }
+
 }
 
