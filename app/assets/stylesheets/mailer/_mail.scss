@@ -38,7 +38,7 @@
   }
 
   .mail-signature {
-    margin-top: 25px;
+    margin: 25px;
   }
 
   .logo-signature {
@@ -48,9 +48,16 @@
   }
 
   .social-networks {
-    margin-bottom: 20px;
-
+    i {
+      background-color: #71bbc6;
+      border-radius: 50%;
+      height: 20px;
+      width: 20px;
+      padding: 5px;
+      margin-right: 5px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
   }
-
 }
 
