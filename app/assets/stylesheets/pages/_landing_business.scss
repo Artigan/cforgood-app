@@ -53,12 +53,11 @@
 
     li {
       display: block;
-      margin: 10px 0;
+      margin: 10px 0 25px 0;
     }
 
     i img {
       position: absolute;
-      vertical-align: middle;
       height: 35px;
     }
 
@@ -78,28 +77,23 @@
   }
 }
 
-#first_asset, #second_asset, .third_asset {  padding-bottom: 50px; }
+.first-asset, .second-asset {  padding-bottom: 50px; }
 
-#first_asset {
+#asset-left {
+  #screenshot {
+    margin-left: 60px;
+  }
 
   .screenshot-legend {
     text-align: left;
-
-    h3 {
-      color: #00C9FF;
-    }
   }
 }
 
-#second_asset {
+#asset-right {
 
   .screenshot-legend {
     text-align: right;
     margin-right: 50px;
-
-    h3 {
-      color: #36d3da;
-    }
 
     img {
       right: 0px;
@@ -114,7 +108,15 @@
   }
 }
 
-#third_asset.screenshot-legend h3 {
+.first-asset h3 {
+  color: #00C9FF;
+}
+
+.second-asset h3 {
+  color: #36d3da;
+}
+
+.third-asset h3 {
   color: #80F2A4;
 }
 
