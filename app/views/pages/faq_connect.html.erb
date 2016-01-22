@@ -6,7 +6,7 @@
 <% end %>
 
 <div class="container-fluid admin">
-  <% if user_space? %>
+  <% if current_user %>
     <!-- Sub Menu Sidebar MEMBER -->
     <%= render "member/dashboard/shared/sidebar" %>
   <% else %>
@@ -15,9 +15,8 @@
   <% end %>
 
   <!-- Content - FAQ -->
-    <div class="dashboard">
+    <div class="dashboard" id="faq">
       <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-        <h1>F.A.Q.</h1>
         <h3>Des réponses à vos questions...</h3>
         <%= render "pages/shared/faq_content" %>
       </div>

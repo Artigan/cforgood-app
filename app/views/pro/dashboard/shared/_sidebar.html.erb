@@ -26,8 +26,8 @@
           <span class="admin-label">Créer un Bon Plan</span>
         <% end %>
       </li>
-      <li class="<%= active_class(edit_business_registration_path)%> light">
-        <%= link_to pro_business_profile_path do %>
+      <li class="<%= active_class(edit_business_registration_path(current_business))%> light">
+        <%= link_to pro_business_profile_path(current_business) do %>
           <div class="icon-container">
             <%= image_tag('icons/profil.png', :class => 'admin-icon') %>
           </div>

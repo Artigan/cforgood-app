@@ -164,40 +164,40 @@ Une incroyable opportunité de vous faire connaître
       <h2 class="section-title">Quelques réponses à vos questions !</h2>
       <!-- CONTENT FAP -->
       <div class="col-xs-12 col-sm-8 col-sm-offset-2 text-justify faq-content">
-        <ul class="faq-list">
+        <ul>
           <li>
-            <div class="faq-question-landing"><i class="fa fa-chevron-circle-right"></i>Comment puis-je inscrire mon association ?</div>
-            <div class="faq-answer-landing">
+            <div class="faq-question"><i class="fa fa-chevron-circle-right"></i>Comment puis-je inscrire mon association ?</div>
+            <div class="faq-answer">
               En remplissant le formulaire d'inscription à cette adresse www. ou en cliquant sur "Devenir Partenaire" en haut et bas de page. Nous sommes toujours des associations potentiellement partenaires, n'hésitez pas !
             </div>
           </li>
           <li>
-            <div class="faq-question-landing"><i class="fa fa-chevron-circle-right"></i>Puis-je contacter les membres qui soutiennent mon association ?</div>
-            <div class="faq-answer-landing">
+            <div class="faq-question"><i class="fa fa-chevron-circle-right"></i>Puis-je contacter les membres qui soutiennent mon association ?</div>
+            <div class="faq-answer">
               Du à la protection des données privées, nous ne partageons aucune donnée privée de nos membres. Cependant nous les encourageons à vous contacter. Vous pouvez également les rencontrer lors de nos événements et prochainement, vous serez en mesure de poster vous même, depuis votre tableau de bord, vos appels à bénévolat et autres demandes à la communauté.
             </div>
           </li>
           <li>
-            <div class="faq-question-landing"><i class="fa fa-chevron-circle-right"></i>Comment puis-je augmenter le nombre de membres soutenant mon association ?</div>
-            <div class="faq-answer-landing">
+            <div class="faq-question"><i class="fa fa-chevron-circle-right"></i>Comment puis-je augmenter le nombre de membres soutenant mon association ?</div>
+            <div class="faq-answer">
               CforGood vous fournit un incroyable moyen de récompenser vos donateurs ! Le meilleur moyen d’en profiter est de partager votre page CforGood à tous vos contacts et futurs supporteurs ! Faites leur savoir qu’il existe maintenant un moyen simple de vous soutenir et qu’ils seront récompensés par des réductions chez les commerces locaux et responsables autour d’eux !
             </div>
           </li>
           <li>
-            <div class="faq-question-landing"><i class="fa fa-chevron-circle-right"></i>Est-ce que CforGood prélève une commission sur mes fonds ?</div>
-            <div class="faq-answer-landing">
+            <div class="faq-question"><i class="fa fa-chevron-circle-right"></i>Est-ce que CforGood prélève une commission sur mes fonds ?</div>
+            <div class="faq-answer">
               Non. Les fonds indiqués sur votre cagnotte vous sont intégralement reversés.
             </div>
           </li>
           <li>
-            <div class="faq-question-landing"><i class="fa fa-chevron-circle-right"></i>Comment puis-je recevoir mes fonds ? D’où proviennent ils ?</div>
-            <div class="faq-answer-landing">
+            <div class="faq-question"><i class="fa fa-chevron-circle-right"></i>Comment puis-je recevoir mes fonds ? D’où proviennent ils ?</div>
+            <div class="faq-answer">
               Notre solution de paiement, MangoPay, gère tout le processus et vous envoie les fonds récoltés au début de chaque mois.
             </div>
           </li>
           <li>
-            <div class="faq-question-landing"><i class="fa fa-chevron-circle-right"></i>Quand puis-je recevoir les fonds récoltés ?</div>
-            <div class="faq-answer-landing">
+            <div class="faq-question"><i class="fa fa-chevron-circle-right"></i>Quand puis-je recevoir les fonds récoltés ?</div>
+            <div class="faq-answer">
               Les fonds récoltés vous sont reversés par notre solution de paiement MangoPay au début de chaque mois. Ils vous enverront un reçu !
             </div>
           </li>
@@ -207,20 +207,24 @@ Une incroyable opportunité de vous faire connaître
   </div>
 </section>
 
+<!-- CALL FOR ACTION SUBCRIPTION -->
+<section class="container-fluid registration">
+  <div class="overlay-registration"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6 col-sm-offset-3">
+        <h3>Inscrivez-vous dès aujourd'hui !</h3>
+        <!-- SIGNUP -->
+        <%= link_to "S'inscrire gratuitement", href="https://cforgood1.typeform.com/to/PdisGd", target: "_blank", class: "button button-turquoise" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <% content_for :after_js do %>
 
-  <script>
-
-    $(document).ready(function() {
-      $("ul li div.faq-question-landing").on("click", function() {
-        $(this).next("div.faq-answer-landing").slideToggle();
-        $("div.faq-question-landing").not(this).next("div.faq-answer-landing").slideUp();
-        $("div.faq-question-landing i.fa-chevron-circle-down").addClass("fa-chevron-circle-right").removeClass("fa-chevron-circle-down");
-        $("i", this).toggleClass("fa-chevron-circle-right").toggleClass("fa-chevron-circle-down");
-      });
-    });
-
-  </script>
+  <%= render "pages/js/faq" %>
 
 <% end %>
 

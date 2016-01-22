@@ -20,7 +20,8 @@
 .categories,
 .ecosysteme,
 .ambassadors,
-.supporters {
+.supporters,
+.registration {
   position: relative;
   text-align: center;
   border-top: 1px #f1f1f1 solid;
@@ -276,3 +277,28 @@
   }
 }
 
+// SECTION - CTA REGISTRATION //**********************************************//
+//****************************************************************************//
+.registration {
+  position: relative;
+  background-image: image-url("cover-cforgood-legal.jpg");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-position: bottom;
+
+  .overlay-registration {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(30,49,50,0.3);
+  }
+
+  h3 {
+    color: $white;
+    margin-bottom: 40px;
+  }
+}

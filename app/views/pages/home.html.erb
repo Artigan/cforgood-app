@@ -226,6 +226,64 @@ CforGood fait de chaque citoyen un acteur du changement grâce à une plateforme
   </div>
 </section>
 
+<!-- FAQ -->
+<section class="container-fluid" id="faq">
+  <div class="container">
+    <div class="row">
+      <h2 class="section-title">Quelques réponses à vos questions !</h2>
+      <!-- CONTENT FAP -->
+      <div class="col-xs-12 col-sm-8 col-sm-offset-2 text-justify faq-content">
+        <ul>
+          <li>
+            <div class="faq-question"><i class="fa fa-chevron-circle-right"></i>Est-ce que je dois être membre pour bénéficier des bons plans des commerces partenaires ? </div>
+            <div class="faq-answer">
+              Oui, nos bons plans sont exclusivement réservés à nos membres qui soutiennent l’association de leurs choix à travers notre adhésion.
+            </div>
+          </li>
+          <li>
+            <div class="faq-question"><i class="fa fa-chevron-circle-right"></i>Comment marche le site ?</div>
+            <div class="faq-answer">
+              C’est très simple. Une fois inscrit, vous arrivez sur la carte de votre ville qui référence l’ensemble des commerces partenaires et les bons plans qu’ils proposent pour vous récompenser. Vous pouvez consulter tous les bons plans et associations par thématique et en voir les détails simplement en cliquant dessus. Pour profiter des bons plans, il suffit de présenter votre carte de membre physique ou de cliquer sur « j’en profite » pour accéder à votre carte de membre numérique. Pas d’impression, ni de téléchargement, inscrivez vous, donner et présenter votre carte pour bénéficier des bons plans. Nous voulons rendre ça aussi simple que possible, pour que vous puissiez trouver ce que vous cherchez et en profitez. Alors baladez vous dans CforGood, nous sommes sûrs que vous allez adorer ! Comment puis-je accéder à ma carte ? Nous vous expliquons tout ça très simplement ici.
+            </div>
+          </li>
+          <li>
+            <div class="faq-question"><i class="fa fa-chevron-circle-right"></i>Comment puis-je soutenir une association ?</div>
+            <div class="faq-answer">
+              En vous inscrivant sur CforGood, vous allez reverser la moitié de votre abonnement à une des associations partenaires. Lors de votre inscription, vous pourrez choisir celle de votre choix et obtenir des nouvelles de son actualité, de ses événements et de son impact grâce à votre aide.
+            </div>
+          </li>
+          <li>
+            <div class="faq-question"><i class="fa fa-chevron-circle-right"></i>Comment vous choisissez vos associations ?</div>
+            <div class="faq-answer">
+              Nos associations sont choisies pour leur engagement et leur impact sur le territoire. Leur caractère innovant, social ou environnemental est déterminant dans notre choix. À travers nos 8 grandes thématiques, nous essayons de représenter toutes les causes dans le besoin, mais nous savons qu’il nous en manque certaines. Nous espérons à terme mettre en place un système où les utilisateurs pourront eux-mêmes sélectionner les projets. C’est encore en construction.
+            </div>
+          </li>
+          <li>
+            <div class="faq-question"><i class="fa fa-chevron-circle-right"></i>Allez vous vous étendre en dehors de Bordeaux ?</div>
+            <div class="faq-answer">
+              Bien sûr. Notre plan est de démarrer la communauté à Bordeaux puis propager CforGood au reste du monde, en commençant par les grandes villes de France.
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CALL FOR ACTION SUBCRIPTION -->
+<section class="container-fluid registration">
+  <div class="overlay-registration"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6 col-sm-offset-3">
+        <h3>Inscrivez-vous dès aujourd'hui !</h3>
+        <!-- SIGNUP -->
+        <%= link_to "S'inscrire gratuitement", new_user_registration_path, class: "button button-turquoise" %>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- SUPPORTERS -->
 <section class="container-fluid supporters">
   <div class="container">
@@ -244,3 +302,9 @@ CforGood fait de chaque citoyen un acteur du changement grâce à une plateforme
     </div>
   </div>
 </section>
+
+<% content_for :after_js do %>
+
+  <%= render "pages/js/faq" %>
+
+<% end %>

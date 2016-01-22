@@ -13,7 +13,9 @@ module ApplicationHelper
   end
 
   def pro_space?
-    request.env['PATH_INFO'].include?("/pro/") || request.env['PATH_INFO'].include?("/landing_business")
+    request.env['PATH_INFO'].include?("/pro/") ||
+    request.env['PATH_INFO'].include?("/landing_business") ||
+    (business_signed_in? && request.path == "/faq_connect")
   end
 
   def asso_space?

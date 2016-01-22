@@ -1,10 +1,10 @@
 <div class="col-xs-12 col-md-4 col-md-offset-4 text-center mail-content">
   <% if @user.first_name %>
-    <p>Bienvenue <%= @user.first_name %>,</p>
+    <p>Bonjour <%= @user.first_name %>,</p>
   <% elsif @user.name %>
-    <p>Bienvenue <%= @user.name %>,</p>
+    <p>Bonjour <%= @user.name %>,</p>
   <% else %>
-    <p>Bienvenue,</p>
+    <p>Bonjour,</p>
   <% end %>
 
   <p>Merci beaucoup d’avoir rejoint la communauté des acteurs qui veulent agir dans le bon sens !<br>

@@ -8,6 +8,9 @@
 #header {
   position: relative;
   height: $header-height;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   background-size: cover;
   background-attachment: fixed;
   background-position: bottom;
