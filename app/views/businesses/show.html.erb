@@ -9,10 +9,10 @@
   <!-- Sub Menu Sidebar -->
   <%= render "member/dashboard/shared/sidebar" %>
   <!-- Content - Statistics -->
-  <div class="dashboard dashboard-perks">
+  <div class="dashboard dashboard-cards">
     <% @business.perks.find(params[:perk_id]).update_nb_view! if user_space? %>
-    <div class="perk-board">
-      <div class="perk-header" style="background-image: url('<%= image_url @business.picture %>');">
+    <div class="organisation-board">
+      <div class="organisation-header" style="background-image: url('<%= image_url @business.picture %>');">
         <h1><%= @business.name %><br><small><%=  @business.business_category.name %></small></h1>
         <div class="perk-owner" style="background-image: url('<%= image_url @business.leader_picture %>');"></div>
         <span><i class="fa fa-map-marker"></i><%= @business.street %>, <%= @business.city %></span>

@@ -10,89 +10,89 @@ Business.destroy_all
 Perk.destroy_all
 
 # Chemin pour lese images
-path = "/Users/Didi/Desktop/CforGood/images/Seed/"
+path = "/Users/cedricmenteau/Desktop/Seeds/"
 
 #----------------------------------------------------
 # Création table BUSINESS_CATEGORIES
 #----------------------------------------------------
 
-# BusinessCategory.destroy_all
+BusinessCategory.destroy_all
 
-# puts "--------CREATE BUSINESS CATEGORIES--------"
-# beaute = BusinessCategory.create!({
-#   name: "Santé & Fitness",
-#   picture: File.new("#{path}icon_beaute.png"),
-#   marker: File.new("#{path}marker_beaute.png")
-#   })
+puts "--------CREATE BUSINESS CATEGORIES--------"
+beaute = BusinessCategory.create!({
+  name: "Santé & Fitness",
+  picture: File.new("#{path}icon_beaute.png"),
+  marker: File.new("#{path}marker_beaute.png")
+  })
 
-# cafe = BusinessCategory.create!({
-#   name: "Cafés & Lieux de vie",
-#   picture: File.new("#{path}icon_cafe.png"),
-#   marker: File.new("#{path}marker_cafe.png")
-#   })
+cafe = BusinessCategory.create!({
+  name: "Cafés & Lieux de vie",
+  picture: File.new("#{path}icon_cafe.png"),
+  marker: File.new("#{path}marker_cafe.png")
+  })
 
-# epicerie = BusinessCategory.create!({
-#   name: "Marchés & Epiceries",
-#   picture: File.new("#{path}icon_epicerie.png"),
-#   marker: File.new("#{path}marker_epicerie.png")
-#   })
+epicerie = BusinessCategory.create!({
+  name: "Marchés & Epiceries",
+  picture: File.new("#{path}icon_epicerie.png"),
+  marker: File.new("#{path}marker_epicerie.png")
+  })
 
-# loisirs = BusinessCategory.create!({
-#   name: "Loisirs & Sorties",
-#   picture: File.new("#{path}icon_loisirs.png"),
-#   marker: File.new("#{path}marker_loisirs.png")
-#   })
+loisirs = BusinessCategory.create!({
+  name: "Loisirs & Sorties",
+  picture: File.new("#{path}icon_loisirs.png"),
+  marker: File.new("#{path}marker_loisirs.png")
+  })
 
-# maison =  BusinessCategory.create!({
-#   name: "Maison & Jardin",
-#   picture: File.new("#{path}icon_maison.png"),
-#   marker: File.new("#{path}marker_maison.png")
-#   })
+maison =  BusinessCategory.create!({
+  name: "Maison & Jardin",
+  picture: File.new("#{path}icon_maison.png"),
+  marker: File.new("#{path}marker_maison.png")
+  })
 
-# online =  BusinessCategory.create!({
-#   name: "Online",
-#   picture: File.new("#{path}icon_online.png"),
-#   marker: File.new("#{path}marker_online.png")
-#   })
+online =  BusinessCategory.create!({
+  name: "Online",
+  picture: File.new("#{path}icon_online.png"),
+  marker: File.new("#{path}marker_online.png")
+  })
 
-# restaurant =  BusinessCategory.create!({
-#   name: "Bars & Restaurants",
-#   picture: File.new("#{path}icon_restaurant.png"),
-#   marker: File.new("#{path}marker_restaurant.png")
-#   })
+restaurant =  BusinessCategory.create!({
+  name: "Bars & Restaurants",
+  picture: File.new("#{path}icon_restaurant.png"),
+  marker: File.new("#{path}marker_restaurant.png")
+  })
 
-# forme =  BusinessCategory.create!({
-#   name: "Santé & Fitness",
-#   picture: File.new("#{path}icon_forme.png"),
-#   marker: File.new("#{path}marker_forme.png")
-#   })
+forme =  BusinessCategory.create!({
+  name: "Santé & Fitness",
+  picture: File.new("#{path}icon_forme.png"),
+  marker: File.new("#{path}marker_forme.png")
+  })
 
-# shopping =  BusinessCategory.create!({
-#   name: "Shopping",
-#   picture: File.new("#{path}icon_shopping.png"),
-#   marker: File.new("#{path}marker_shopping.png")
-#   })
-# puts "--------END BUSINESS CATEGORIES-----------"
+shopping =  BusinessCategory.create!({
+  name: "Shopping",
+  picture: File.new("#{path}icon_shopping.png"),
+  marker: File.new("#{path}marker_shopping.png")
+  })
+puts "--------END BUSINESS CATEGORIES-----------"
 
-#----------------------------------------------
+# ----------------------------------------------
 # Création table PERIODICITIES
-#----------------------------------------------
+# ----------------------------------------------
 
-# Periodicity.destroy_all
+Periodicity.destroy_all
 
-# puts "--------CREATE PERIODICITIES--------------"
-# semaine = Periodicity.create!({
-#   period: "Semaine"
-#   })
+puts "--------CREATE PERIODICITIES--------------"
+semaine = Periodicity.create!({
+  period: "Semaine"
+  })
 
-# mois = Periodicity.create!({
-#   period: "Mois"
-#   })
+mois = Periodicity.create!({
+  period: "Mois"
+  })
 
-# annee = Periodicity.create!({
-#   period: "Année"
-#   })
-# puts "--------END PERIODICITIES-----------------"
+annee = Periodicity.create!({
+  period: "Année"
+  })
+puts "--------END PERIODICITIES-----------------"
 
 
 #-------------------------------------------------

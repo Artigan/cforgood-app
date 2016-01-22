@@ -1,0 +1,358 @@
+.signup-container {
+  position: relative;
+  margin: 60px auto 0;
+  padding: 50px 60px 20px 60px;
+  width: 640px;
+  background-color: #fff;
+  border-radius: 10px;
+
+  -webkit-box-shadow: 0px 20px 33px -7px rgba(0,0,0,0.48);
+  -moz-box-shadow: 0px 20px 33px -7px rgba(0,0,0,0.48);
+  box-shadow: 0px 20px 33px -7px rgba(0,0,0,0.48);
+
+  /* JS ANIMATIONS *************************************************************/
+
+  /* SLIDES */
+  .slideup {
+    transform:translateY(0%) !important;
+  }
+
+  .ishidden {
+    transform:translateY(-100%);
+    opacity: 0;
+  }
+
+  /* BREADCRUMB */
+  .slide-2 {
+    li:nth-child(2) {
+      color: $turquoise;
+      border: 2px solid $turquoise;
+    }
+
+    &:before {
+      border-bottom: 2px solid $turquoise;
+    }
+  }
+
+  .slide-3 {
+    li:nth-child(3) {
+      color: $turquoise;
+      border: 2px solid $turquoise;
+    }
+
+    &:after {
+      border-bottom: 2px solid $turquoise;
+    }
+  }
+
+  /* CAUSES CARDS OVERLAY */
+  .signup-cause {
+    .cause-card.cause-overlay {
+      .cause-popover {
+        img {
+          box-shadow: 0 0 0 125px $turquoise, 0 1px 2px rgba(0,0,0,0.1);
+        }
+      }
+    }
+  }
+
+  /* SHARED STYLES ************************************************************/
+
+  .signup-card   {
+    position: relative;
+    height: 520px;
+    overflow: hidden;
+  }
+
+  .signup-cause,
+  .signup-plan,
+  .signup-payment {
+    position: absolute;
+    min-width: 520px;
+    min-height: 475px;
+    @include transition(all, 0.4s, ease-in-out);
+  }
+
+  .signup-plan,
+  .signup-payment {
+    transform:translateY(100%);
+  }
+
+  button,
+  input[type="submit"] {
+    display: block;
+    margin: 10px auto 0;
+    padding: 15px 20px;
+    width: 200px;
+    max-width: 50%;
+    border-radius: 30px;
+    color: #fff;
+    text-transform: uppercase;
+    background: #36d3da;
+    border: 1px solid #19A2C2;
+    font-size: small;
+    font-weight: 100;
+    @include transition(all, 0.3s, ease-in-out);
+  }
+
+  button:hover,
+  button:focus,
+  button:active,
+  input[type="submit"]:hover,
+  input[type="submit"]:focus,
+  input[type="submit"]:active {
+    background-color: #19A2C2;
+    outline-color: transparent;
+    outline-style: none;
+  }
+
+  /* BREAD CRUMB **************************************************************/
+  ul {
+    position: relative;
+    width: 40%;
+    margin: 0 auto 20px;
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+
+    @include transition(all, 0.3s);
+
+    &:before {
+      content: "";
+      position: absolute;
+      width: 50%;
+      border-bottom: 2px solid #cdcdcd;
+      top: 13px;
+      left: 25%;
+      transform: translateX(-50%);
+      z-index: 1;
+    }
+
+    &:after {
+      content: "";
+      position: absolute;
+      width: 50%;
+      border-bottom: 2px solid #cdcdcd;
+      top: 13px;
+      left: 75%;
+      transform: translateX(-50%);
+      z-index: 1;
+    }
+
+    li {
+      font-size: 10px;
+      font-weight: 600;
+      color: #cdcdcd;
+      background-color: #fff;
+      border: 2px solid #cdcdcd;
+      border-radius: 50%;
+      padding: 0px 10px;
+      z-index: 2;
+
+      &:nth-child(1) {
+        color: $turquoise;
+        border: 2px solid $turquoise;
+      }
+    }
+  }
+}
+
+/* FORM - CAUSES **************************************************************/
+.signup-cause {
+  text-align: center;
+
+  span {
+    display: block;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .form-control {
+    margin: 0 auto;
+    width: 60%;
+  }
+
+  /* CHOOSE A CARD */
+  .card-container {
+    position: relative;
+    min-height: 210px;
+    margin: 5px;
+    border-radius: 6px;
+
+    .cause-card {
+      height: 200px;
+      background: no-repeat center;
+      background-size: cover;
+      color: white;
+      border-radius: 6px;
+
+      cursor: pointer;
+      overflow: hidden;
+
+      /* POPOVER - CAUSE DESCRIPTION ***********************************************/
+      .cause-popover {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        height: 100%;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 4px;
+
+        h1 {
+          min-height: 45px;
+          margin: 0;
+          font-size: 14px;
+          font-weight: 600;
+          z-index: 1;
+        }
+        span {
+          margin: 0;
+          font-size: 10px;
+          font-weight: normal;
+          z-index: 1;
+        }
+        img {
+          width: 40px;
+          border: 2px solid #fff;
+          border-radius: 50%;
+          @include transition(all, 0.3s, ease-in-out);
+        }
+      }
+    }
+  }
+
+  /* DROPDOWN LIST */
+  .select-causes {
+    position: relative;
+
+    span {
+      margin-bottom: 5px;
+      font-size: 10px;
+      font-weight: normal;
+    }
+
+    .selector {
+      min-height: 180px;
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+    }
+  }
+}
+
+/* FORM - PRICING PLAN ********************************************************/
+.signup-plan {
+
+  .subscription-title {
+    text-transform: uppercase;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .offer-index {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-content: space-between;
+    padding: 64px 20px 20px;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 10px;
+
+    .offer-card {
+      display: flex;
+      flex-direction: column;
+      box-sizing: border-box;
+      width: 150px;
+      position: relative;
+      padding: 20px;
+      margin: 1%;
+      margin-bottom: 5px;
+      background-color: #fff;
+      border-radius: 4px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07);
+
+      -webkit-transition: all 0.3s;
+      -moz-transition: all 0.3s;
+      transition: all 0.3s;
+
+      &:hover { box-shadow: 0px 7px 16px rgba(0, 0, 0, 0.2); }
+    }
+
+    .offer-title {
+      text-transform: uppercase;
+    }
+
+    .offer-extra {
+      height: 80px;
+      padding-top: 20px;
+      font-size: 9px;
+      font-weight: 200;
+    }
+
+    .offer-price {
+      margin-bottom: 50px;
+      padding-bottom: 30px;
+    }
+
+    .offer-most-popular {
+      position: absolute;
+      width: 90%;
+      text-align: center;
+      text-transform: uppercase;
+      font-size: 10px;
+      font-weight: 200;
+      color: #fff;
+      background-color: $turquoise;
+      border-radius: 4px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+      padding: 0 4px;
+      top: -15px;
+      left: 8px;
+    }
+
+    .offer-btn {
+      position: absolute;
+      left: 4px;
+      bottom: 15px;
+
+      .btn {
+        margin: 3px;
+      }
+    }
+  }
+}
+
+.signup-payment {
+
+  .subscription-form form input {
+    width: 100%;
+  }
+
+  ul {
+    list-style: none;
+    text-align: center;
+    margin-top: 5px;
+  }
+
+  li {
+    display: inline-block;
+    padding: 5px;
+  }
+
+  img {
+    height: 20px;
+  }
+}
+
+#loading-indicator {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+}

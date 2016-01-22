@@ -1,23 +1,40 @@
-<div class="form-edit-container">
-  <div class="form-edit">
-    <%= simple_form_for(current_user, url: member_update_profile_path, method: :put, remote: true, authenticity_token: true, html: { id: :form_profile_user }) do |f| %>
-      <%= f.error_notification %>
-      <%= f.input :last_name, placeholder: 'Nom', required: true, autofocus: true, label: false %>
-      <%= f.input :first_name, placeholder: 'Prénom', required: true, label: false %>
-      <%= f.input :email, placeholder: 'Adresse email', required: true, label: false %>
-      <%= image_tag current_user.picture.url(:thumb) if current_user.picture %>
-      <%= f.input :picture, as: :file, hint: 'Votre photo', required: true, label: false %>
-      <%= f.input :birthday, as: :date, label: false, start_year: Date.today.year - 90,
-                  end_year: Date.today.year - 17,
-                  selected: current_user.birthday || Date.today.year - 35,
-                  order: [:day, :month, :year] %>
-      <%= f.input :street, placeholder: 'Rue', required: true, label: false %>
-      <%= f.input :zipcode, placeholder: 'Code postal', required: true, label: false %>
-      <%= f.input :city, placeholder: 'Ville', required: true, label: false %>
-      <%= f.button :submit, "Sauvegarder", class: "btn btn-turquoise" %>
-    <% end %>
-  </div>
-  <div>
-    <%= link_to t(".change_your_password", :default => "Changez votre mot de passe ?"), new_user_password_path(current_user), class: "new-password" %>
+<div class="user-profil">
+  <%= image_tag current_user.picture.url(:thumb) if current_user.picture %>
+  <div class="user-info">
+    <span>Mes informations</span>
+    <span><%= current_user.first_name + " " + current_user.last_name %></span>
+    <span><%= current_user.birthday.strftime('%d %b. %Y') %></span>
+
+    <span>Mon adresse</span>
+    <span><%= current_user.street %> <%= current_user.zipcode %> <%= current_user.city %></span>
+
   </div>
 </div>
+
+<div class="form-edit">
+  <%= simple_form_for(current_user, url: member_update_profile_path, method: :put, remote: true, authenticity_token: true, html: { method: :put, id: :form_profile_user }) do |f| %>
+    <%= f.error_notification %>
+    <span>Ma photo</span>
+    <%= image_tag current_user.picture.url(:thumb) if current_user.picture %>
+    <%= f.input :picture, as: :file, hint: 'Votre photo', required: true, label: false %>
+
+    <span>Mes informations personnelles</span>
+    <%= f.input :last_name, placeholder: 'Nom', required: true, autofocus: true, label: 'Nom' %>
+    <%= f.input :first_name, placeholder: 'Prénom', required: true, label: 'Prénom' %>
+    <%= f.input :email, placeholder: 'Adresse email', required: true, label: 'Email' %>
+    <%= f.input :birthday, as: :date, label: "Ma date de naissance", start_year: Date.today.year - 90,
+                end_year: Date.today.year - 17,
+                selected: current_user.birthday || Date.today.year - 35,
+                order: [:day, :month, :year] %>
+
+    <span>Mon adresse</span>
+    <%= f.input :street, placeholder: 'Rue', required: true, label: false %>
+    <%= f.input :zipcode, placeholder: 'Code postal', required: true, label: false %>
+    <%= f.input :city, placeholder: 'Ville', required: true, label: false %>
+    <%= f.button :submit, "Sauvegarder", class: "btn btn-turquoise" %>
+  <% end %>
+</div>
+<div>
+  <%= link_to t(".change_your_password", :default => "Changez votre mot de passe ?"), new_user_password_path(current_user), class: "new-password" %>
+</div>
+

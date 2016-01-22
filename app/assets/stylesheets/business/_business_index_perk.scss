@@ -1,4 +1,4 @@
-.dashboard-perks {
+.dashboard-cards {
   padding: 30px 30px 90px;
 
   .header-cards{
@@ -161,6 +161,7 @@
           text-shadow: 1px 1px rgba(0,0,0,0.3);
         }
 
+        .card-logo,
         .card-owner {
           position: absolute;
           background-size: cover;
@@ -174,13 +175,17 @@
           border: 3px solid #fff;
           z-index: 2;
         }
+
+        .card-logo {
+          border: 3px solid #71bbc6;
+        }
       }
 
       .card-body {
         display: flex;
         flex-direction: column;
         position: relative;
-        height: 200px;
+        height: 250px;
         width: 100%;
 
         .business-details {
@@ -203,6 +208,7 @@
           }
         }
 
+        .cause-description,
         .perk-description {
           padding: 10px;
           width: 100%;
@@ -210,6 +216,14 @@
           text-align: center;
           text-transform: uppercase;
           color: #888888;
+        }
+
+        .cause-description {
+          padding: 25px 10px;
+          font-size: 12px;
+          text-align: justify;
+          line-height: 20px;
+          text-transform: none;
         }
 
         .goto-perk {

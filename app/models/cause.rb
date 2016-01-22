@@ -44,10 +44,16 @@ class Cause < ActiveRecord::Base
   belongs_to   :user
 
   has_attached_file :picture,
-      styles: { medium: "300x300>", small: "200x200", thumb: "100x100>" }
+    styles: { medium: "300x300>", small: "200x200", thumb: "100x100>" }
 
-    validates_attachment_content_type :picture,
-      content_type: /\Aimage\/.*\z/
+  validates_attachment_content_type :picture,
+    content_type: /\Aimage\/.*\z/
+
+  has_attached_file :logo,
+    styles: { medium: "300x300>", thumb: "100x100>" }
+
+  validates_attachment_content_type :logo,
+    content_type: /\Aimage\/.*\z/
 
   validates :name, presence: true
   validates :email, presence: true

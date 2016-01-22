@@ -39,12 +39,15 @@
     background: #fff;
     border-radius: 10px;
 
+    overflow: hidden;
+
     -webkit-box-shadow: 0px 20px 33px -7px rgba(0,0,0,0.48);
     -moz-box-shadow: 0px 20px 33px -7px rgba(0,0,0,0.48);
     box-shadow: 0px 20px 33px -7px rgba(0,0,0,0.48);
   }
 
   span {
+    display: block;
     text-transform: uppercase;
     font-weight: 600;
   }
