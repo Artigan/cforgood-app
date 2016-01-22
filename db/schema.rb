@@ -127,6 +127,10 @@ ActiveRecord::Schema.define(version: 20160114222513) do
     t.string   "wallet_id"
     t.string   "representative_first_name"
     t.string   "representative_last_name"
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
   end
 
   add_index "causes", ["cause_category_id"], name: "index_causes_on_cause_category_id", using: :btree

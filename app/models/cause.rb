@@ -29,6 +29,10 @@
 #  wallet_id                 :string
 #  representative_first_name :string
 #  representative_last_name  :string
+#  logo_file_name            :string
+#  logo_content_type         :string
+#  logo_file_size            :integer
+#  logo_updated_at           :datetime
 #
 # Indexes
 #
