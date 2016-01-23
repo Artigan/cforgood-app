@@ -66,13 +66,4 @@
 .legal-title {
   position: relative;
   margin-bottom: 15px;
-
-  &:after {
-    content: '';
-    display: block;
-    margin: 0 auto;
-    padding-top: 15px;
-    width: 150px;
-    border-bottom: 3px solid $turquoise;
-  }
 }
