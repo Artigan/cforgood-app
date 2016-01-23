@@ -203,6 +203,8 @@
     height: 250px;
     margin-bottom: 25px;
     padding: 5px;
+    @media only screen and (max-width: 768px){ margin-bottom: 70px; }
+    @media only screen and (max-width: 480px){ margin-bottom: 0; }
 
   .title-benefit {
     text-transform: uppercase;
