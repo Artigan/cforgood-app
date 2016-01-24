@@ -1,8 +1,7 @@
 .left-sidebar {
   position: absolute;
   width: 15%;
-  top: 50px;
-  bottom: 0px;
+  height: 100%;
   left: 0px;
 
   ul {
@@ -137,3 +136,54 @@
   }
 }
 
+
+@media only screen and (max-width:768px){
+  .left-sidebar {
+    position: fixed;
+    width: 100%;
+    height: 60px;
+    bottom: 0;
+    z-index: 10;
+
+    ul {
+      flex-wrap: nowrap;
+
+      li:hover {
+        border-left: none;
+      }
+
+      li.active {
+        &:after {
+          content: none;
+        }
+
+        .icon-container {
+          background-color: transparent;
+        }
+      }
+    }
+  }
+
+  .business-sidebar {
+    background-color: #9FD6AE;
+
+    ul {
+      li {
+        height: 100%;
+
+        img {
+          width: 30px;
+          height: 30px;
+        }
+      }
+
+      li.active {
+        background-color: #8BBD99;
+      }
+    }
+
+    .signout {
+      display: none;
+    }
+  }
+}

@@ -20,7 +20,7 @@ Consultez vos chiffres
     <!-- Content - Statistics -->
     <div class="dashboard">
       <div class="data-container">
-        <ul>
+        <ul class="data-desktop">
           <li>
             <span class="number"><%= @business.perks.count %></span>
             <span class="label">Bons plans créés</span>
@@ -38,6 +38,26 @@ Consultez vos chiffres
             <span class="label">Nombre nouveaux clients</span>
           </li>
         </ul>
+        <!-- SLICK | DATA ON MOBILE -->
+        <ul class="data-mobile">
+          <li>
+            <span class="number"><%= @business.perks.count %></span>
+            <span class="label">Bons plans créés</span>
+          </li>
+          <li>
+            <span class="number"><%= @business.perks_uses_count %></span>
+            <span class="label">Bons plans utlisés</span>
+          </li>
+          <li>
+            <span class="number"><%= @business.perks_views_count %></span>
+            <span class="label">Nombre total de vues</span>
+          </li>
+          <li>
+            <span class="number"><%= @business.perks_new_users %></span>
+            <span class="label">Nombre nouveaux clients</span>
+          </li>
+        </ul>
+
       </div>
       <div id="map" class="pro-map-businesses" style="width: 82%;"></div>
       <% content_for(:after_js) do %>

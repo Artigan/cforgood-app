@@ -72,3 +72,11 @@ $('.filter-carrousel').slick({
     // instead of a settings object
   ]
 });
+
+$('.data-mobile').slick({
+  dots: true,
+  arrows:false,
+  infinite: false,
+  autoplay: false,
+  slidesToScroll: 1,
+});
