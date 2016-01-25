@@ -46,7 +46,7 @@
     flex-wrap: wrap;
     align-content: space-between;
     cursor: pointer;
-    text-align: right;
+    text-align: left;
     margin: 1%;
     margin-top: 25px;
     padding: 10px;
@@ -59,8 +59,12 @@
     }
   }
 
+  .perk-overlay {
+    background-color: #9fd6ae;
+    box-shadow: 0px 7px 16px rgba(0, 0, 0, 0.2);
+  }
+
   .perk-popover {
-    margin-left: 40px;
     text-decoration: none;
     color: rgba(0,0,0,0.7);
 
@@ -80,9 +84,9 @@
 
     img {
       position: absolute;
-      height: 30px;
-      top: 15px;
-      left: 15px;
+      height: 25px;
+      top: 5px;
+      right: 10px;
     }
   }
 
@@ -164,9 +168,6 @@
       width: 100%;
     }
   }
-
-  .date_hidden { display: none; }
-  .recurrence_hidden { display: none; }
 
   .perk_permanent {
     display: flex;

@@ -18,11 +18,11 @@
       <div class="card-container" >
         <a class="card-perk" id="perk-durable">
           <!-- InfoWindow on Hover -->
-          <div class="perk-popover" data-content="C'est une offre pour fidéliser : doit être durable et équitable : c‘est une offre pour FIDÉLISER. Exemple dans ton cas : - 10% sur toute commande en présentant la carte de membre." data-placement="bottom" data-original-title="Bon plan durable" data-trigger="hover">
+          <div class="perk-popover" data-content="C‘est une offre pour FIDÉLISER : doit être durable et équitable. Exemple dans ton cas : - 10% sur toute commande en présentant la carte de membre." data-placement="bottom" data-original-title="Bon plan durable" data-trigger="hover">
             <!-- Card content -->
             <h1>Bon Plan durable</h1>
             <%= image_tag("icons/icon_pastille_permanent.png") %>
-            <span>f idélisation</span>
+            <span>fidélisation</span>
           </div>
         </a>
       </div>
@@ -47,25 +47,25 @@
       <%= f.input :perk, label: "Nom du bon plan", placeholder: "I feel good", required: true %>
       <%= f.input :description, label: "Description", placeholder: "Dites-nous tout...", required: true, :input_html => { :rows => 6 } %>
       <%= f.input :detail, label: "Détail", placeholder: "Venez nous présenter votre carte" %>
-      <%= f.input :permanent, as: :hidden, checked: true %>
-      <%#= f.input :appel, as: :hidden, checked: true %>
-      <%#= f.input :durable, as: :hidden, checked: false %>
-      <%#= f.input :flash, as: :hidden, checked: false %>
-      <%= f.input :times, as: :hidden, default: 1 %>
+      <%= f.input :permanent, as: :hidden %>
+      <%= f.input :appel, as: :hidden %>
+      <%= f.input :durable, as: :hidden %>
+      <%= f.input :flash, as: :hidden %>
+      <%= f.input :times, as: :hidden %>
       <%= f.button :submit, "Enregistrer", class: "btn-create" %>
     <% end %>
   </div>
   <!-- Card Perk DURABLE -->
-    <div class="perk-durable" id="form-perk" hidden>
+  <div class="perk-durable" id="form-perk" hidden>
     <%= simple_form_for [:pro, @business, @perk] do |f| %>
       <%= f.error_notification %>
       <%= f.input :perk, label: "Nom du bon plan", placeholder: "I feel good", required: true %>
       <%= f.input :description, label: "Description", placeholder: "Dites-nous tout...", required: true, :input_html => { :rows => 6 } %>
       <%= f.input :detail, label: "Détail", placeholder: "Venez nous présenter votre carte" %>
-      <%= f.input :permanent, as: :hidden, checked: true %>
-      <%#= f.input :appel, as: :hidden, checked: false %>
-      <%#= f.input :durable, as: :hidden, checked: true %>
-      <%#= f.input :flash, as: :hidden, checked: false %>
+      <%= f.input :permanent, as: :hidden %>
+      <%= f.input :appel, as: :hidden %>
+      <%= f.input :durable, as: :hidden %>
+      <%= f.input :flash, as: :hidden %>
       <%= f.input :times, as: :string, label: false, placeholder: "Récurrence", input_html: { min: 0 } %>
       <%= f.button :submit, "Enregistrer", class: "btn-create" %>
     <% end %>
@@ -77,10 +77,10 @@
       <%= f.input :perk, label: "Nom du bon plan", placeholder: "I feel good", required: true %>
       <%= f.input :description, label: "Description", placeholder: "Dites-nous tout...", required: true, :input_html => { :rows => 6 } %>
       <%= f.input :detail, label: "Détail", placeholder: "Venez nous présenter votre carte" %>
-      <%= f.input :permanent, as: :hidden, checked: false %>
-      <%#= f.input :appel, as: :hidden, checked: false %>
-      <%#= f.input :durable, as: :hidden, checked: false %>
-      <%#= f.input :flash, as: :hidden, checked: true %>
+      <%= f.input :permanent, as: :hidden %>
+      <%= f.input :appel, as: :hidden %>
+      <%= f.input :durable, as: :hidden %>
+      <%= f.input :flash, as: :hidden %>
       <%= f.input :start_date, as: :string, label: false, placeholder: "Début", input_html: {"data-provide" => "datepicker", "data-date-language" => "fr", value: f.object.start_date.try(:strftime, '%d/%m/%Y') } %>
       <%= f.input :end_date, as: :string, label: false, placeholder: "Fin", :input_html => {"data-provide" => "datepicker", "data-date-language" => "fr", value: f.object.end_date.try(:strftime, '%d/%m/%Y') } %>
       <%= f.input :times, as: :string, label: false, placeholder: "Récurrence", input_html: { min: 0 } %>
@@ -95,7 +95,20 @@
 
     $(document).ready(function() {
 
-      console.log()
+      if ($("#perk_appel").val() == "true") {
+        $(".perk-appel").slideToggle();
+        $("#perk-appel").toggleClass("perk-overlay");
+      }
+
+      if ($("#perk_durable").val() == "true") {
+        $(".perk-durable").slideToggle();
+        $("#perk-durable").toggleClass("perk-overlay");
+      }
+
+      if ($("#perk_flash").val() == "true") {
+        $(".perk-flash").slideToggle();
+        $("#perk-flash").toggleClass("perk-overlay");
+      }
 
       $(".perk-popover").popover({
         html: true,
@@ -106,10 +119,30 @@
       $(".card-perk").on("click", function(e) {
         e.preventDefault;
         var typePerk = $(this).val('div').attr('id');
-        // $(".perk-overlay").toggleClass("perk-overlay");
-        // $($(this).toggleClass("perk-overlay"));
+        $(".perk-overlay").toggleClass("perk-overlay");
+        $($(this).toggleClass("perk-overlay"));
         $("#form-perk:not(."+typePerk+")").slideUp();
         $("."+typePerk).slideToggle();
+        if (typePerk == "perk-appel") {
+          $(".perk-appel #perk_permanent").val("true");
+          $(".perk-appel #perk_appel").val("true");
+          $(".perk-appel #perk_durable").val("false");
+          $(".perk-appel #perk_flash").val("false");
+          $(".perk-appel #perk_times").val("1");
+          console.log($(".perk-appel #perk_times"));
+        }
+        if (typePerk == "perk-durable") {
+          $(".perk-durable #perk_permanent").val("true");
+          $(".perk-durable #perk_appel").val("false");
+          $(".perk-durable #perk_durable").val("true");
+          $(".perk-durable #perk_flash").val("false");
+        }
+        if (typePerk == "perk-flash") {
+          $(".perk-flash #perk_permanent").val("false");
+          $(".perk-flash #perk_appel").val("false");
+          $(".perk-flash #perk_durable").val("false");
+          $(".perk-flash #perk_flash").val("true");
+        }
       });
     });
 
