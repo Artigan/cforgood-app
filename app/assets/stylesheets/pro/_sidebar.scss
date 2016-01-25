@@ -1,8 +1,10 @@
 .left-sidebar {
   position: absolute;
+  padding-top: 50px;
   width: 15%;
   height: 100%;
   left: 0px;
+  z-index: 20;
 
   ul {
     list-style: none;
@@ -128,6 +130,10 @@
     }
   }
 
+  li.mobile-dropdown {
+    display: none;
+  }
+
   .signout {
     background-color: #8BBD99;
     &:hover {
@@ -140,10 +146,11 @@
 @media only screen and (max-width:768px){
   .left-sidebar {
     position: fixed;
+    padding-top: 0;
     width: 100%;
     height: 60px;
     bottom: 0;
-    z-index: 10;
+    z-index: 20;
 
     ul {
       flex-wrap: nowrap;
@@ -166,10 +173,15 @@
 
   .business-sidebar {
     background-color: #9FD6AE;
+    box-shadow: 2px 1px 9px rgba(0,0,0,0.2);
 
     ul {
+      display: flex;
+
       li {
+        position: relative;
         height: 100%;
+        width: 25%;
 
         img {
           width: 30px;
@@ -179,6 +191,87 @@
 
       li.active {
         background-color: #8BBD99;
+      }
+
+      li.desktop-profile {
+        display: none;
+      }
+
+      li.mobile-dropdown {
+        display: block;
+
+        &:hover, &:active, &:focus {
+          background-color: #9FD6AE;
+        }
+
+        .mobile-menu {
+          display: flex;
+          flex-direction: column;
+          position: fixed;
+          width: 220px;
+          bottom: 69px;
+          right: 10px;
+          text-align: left;
+          background-color: #fff;
+          box-shadow: 0px 1px 9px rgba(0,0,0,0.2);
+
+          &:after {
+            top: 99%;
+            right: 9%;
+            border: solid transparent;
+            content: " ";
+            height: 0;
+            width: 0;
+            position: absolute;
+            pointer-events: none;
+            border-top-color: #fff;
+            border-width: 18px;
+          }
+
+          .business-details {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: #8BBD99;
+            border-radius: 3px 3px 0 0;
+
+            img {
+              height: 50px;
+              width: 50px;
+              border-radius: 50%;
+              border: 2px solid #fff;
+            }
+
+            span {
+              margin-left: 10px;
+              text-transform: uppercase;
+              font-size: 14px;
+              font-weight: 600;
+              color: #fff;
+            }
+          }
+
+          li {
+            padding: 15px 20px;
+            width: 100%;
+
+            a {
+              text-transform: uppercase;
+              font-size: 12px;
+              font-weight: 600;
+              color: #636363;
+
+              .fa {
+                margin-right: 8px;
+              }
+            }
+          }
+
+          li:last-child {
+            padding-bottom: 30px;
+          }
+        }
       }
     }
 

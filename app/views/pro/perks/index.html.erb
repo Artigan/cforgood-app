@@ -11,13 +11,15 @@
   <!-- Content - Statistics -->
   <div class="dashboard">
     <div class="admin-perks">
+      <span class="mobile-perks">Mes bons plans</span>
       <% @perks.reverse.each do |perk| %>
         <div class="admin-perk-card">
           <!-- PERK ACTIVATION -->
           <div class="perk-activation">
+            <span>Activer le bon plan</span>
             <input class="tgl tgl-light" id="<%= perk.id %>" type="checkbox" <%= 'checked="checked"' if perk.active %>>
             <label class="tgl-btn" for="<%= perk.id %>"></label>
-            <%= simple_form_for :perk, url: pro_business_perk_path(current_business, perk.id), method: :patch, html: { id: "update_perk_#{perk.id}" } do |f| %>
+            <%= simple_form_for :perk, url: pro_business_perk_path(current_business, perk.id), method: :patch, html: { id: "update_perk_#{perk.id}", class: "hidden" } do |f| %>
               <%= f.input :active, as: :hidden, input_html: { value: !perk.active } %>
               <%= f.submit "", :style => "display: none;" %>
             <% end %>
@@ -43,11 +45,18 @@
                   <span><i class="fa fa-calendar-check-o"></i> du <%= perk.start_date.strftime("%d %b") if perk.start_date != nil %> au <%= perk.end_date.strftime("%d %b %Y") if perk.end_date != nil %></span>
                 <% end %>
               </div>
+              <div class="perk-stats">
+                <ul>
+                  <li>Vues <strong><%= perk.nb_views %></strong></li>
+                  <li>Utilisations <strong><%= perk.uses.count %></strong></li>
+                  <li>Clients <strong><%= perk.uses.select(:user_id).distinct.count %></strong></li>
+                </ul>
+              </div>
             </div>
           </div>
           <div class="perk-status">
             <%= link_to edit_pro_perk_path(perk) do %>
-              Mettre à jour
+              Modifier
             <% end %>
           </div>
         </div>

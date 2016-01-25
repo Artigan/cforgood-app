@@ -5,7 +5,11 @@
   </head>
 
   <body>
-    <%= render "layouts/shared/navbar" %>
+
+    <div class="mobile-hidden">
+      <%= render "layouts/shared/navbar" %>
+    </div>
+
     <div id="menu-overlay">
       <%= yield %>
     </div>

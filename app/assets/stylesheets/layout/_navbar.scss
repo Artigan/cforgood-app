@@ -91,6 +91,10 @@
 
 @media only screen and (max-width:768px){
 
+  .mobile-hidden {
+    display: none;
+  }
+
   .navbar {
     width: 260px;
     height: 100%;

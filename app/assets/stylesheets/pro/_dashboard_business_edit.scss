@@ -47,3 +47,22 @@
     background-color: #fff;
   }
 }
+
+@media only screen and (max-width:768px){
+  .dashboard-business {
+    padding: 20px;
+
+    .nav-tabs {
+      width: 100%;
+
+      li {
+        width: 50%;
+      }
+    }
+
+    .tab-content {
+      padding: 20px;
+      width: 100%;
+    }
+  }
+}
