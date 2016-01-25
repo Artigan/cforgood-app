@@ -1,14 +1,118 @@
-<%= simple_form_for [:pro, @business, @perk], html: { id: :test } do |f| %>
-<%= f.error_notification %>
-  <%= f.input :perk, label: "Nom du bon plan", placeholder: "I feel good", required: true %>
-  <%= f.input :description, label: "Description", placeholder: "Dites-nous tout...", required: true, :input_html => { :rows => 6 } %>
-  <%= f.input :detail, label: "Détail", placeholder: "Venez nous présenter votre carte" %>
-  <%= f.input :permanent, label: "Type du plan", as: :radio_buttons, collection: [['Permanent', true ], ['Flash', false ]], checked: @perk.permanent %>
-  <%= f.input :start_date, as: :string, label: false, placeholder: "Début", input_html: {"data-provide" => "datepicker", "data-date-language" => "fr", value: f.object.start_date.try(:strftime, '%d/%m/%Y'),  class: "date_hidden"} %>
-  <%= f.input :end_date, as: :string, label: false, placeholder: "Fin", :input_html => {"data-provide" => "datepicker", "data-date-language" => "fr", value: f.object.end_date.try(:strftime, '%d/%m/%Y'), class: "date_hidden", } %>
-  <%= f.input :times, as: :string, label: false, placeholder: "Récurrence", input_html: { min: 0 } %>
-  <%= f.input :periodicity_id, label: false, collection: Periodicity.all, label_method: :period, value_method: :id, include_blank: 'Choisissez une périodicité', input_html: {class: "recurrence_hidden"} %>
-  <%= f.button :submit, "Enregistrer", class: "btn-create" %>
+<div class="dashboard-perk">
+  <span>Choississez votre bon plan</span>
+  <div class="row">
+    <!-- Card Perk APPEL -->
+    <div class="col-xs-12 col-sm-6 col-md-4">
+      <a class="card-perk" id="perk-appel">
+        <!-- InfoWindow on Hover -->
+        <div class="perk-popover" data-content="C’est une offre pour ACQUÉRIR : doit être impactant quitte à rogner ses marges à zéro. <br> Exemple dans ton cas : - 30% sur la première commande." data-placement="bottom" data-original-title="Bon plan d'appel" data-trigger="hover">
+            <!-- Card content -->
+            <h1>Bon Plan d'appel</h1>
+            <%= image_tag("icons/icon_pastille_appel.png") %>
+            <span>acquisition</span>
+        </div>
+      </a>
+    </div>
+    <!-- Card Perk DURABLE -->
+    <div class="col-xs-12 col-sm-6 col-md-4">
+      <div class="card-container" >
+        <a class="card-perk" id="perk-durable">
+          <!-- InfoWindow on Hover -->
+          <div class="perk-popover" data-content="C'est une offre pour fidéliser : doit être durable et équitable : c‘est une offre pour FIDÉLISER. Exemple dans ton cas : - 10% sur toute commande en présentant la carte de membre." data-placement="bottom" data-original-title="Bon plan durable" data-trigger="hover">
+            <!-- Card content -->
+            <h1>Bon Plan durable</h1>
+            <%= image_tag("icons/icon_pastille_permanent.png") %>
+            <span>f idélisation</span>
+          </div>
+        </a>
+      </div>
+    </div>
+    <!-- Card Perk FLASH -->
+    <div class="col-xs-12 col-sm-6 col-md-4">
+      <a class="card-perk" id="perk-flash">
+        <!-- InfoWindow on Hover -->
+        <div class="perk-popover" data-content="C’est une offre pour ANIMER/ACTIVER : doit être impactant et temporaire. Exemple dans ton cas : Fête de noël, lancement nouveau produit ou autre à - X% ou autre exemple : -40% sur les 4 derniers sandwichs de la journée chez Label Terre)" data-placement="bottom" data-original-title="Bon plan flash" data-trigger="hover">
+          <!-- Card content -->
+          <h1>Bon Plan flash</h1>
+          <%= image_tag("icons/icon_pastille_flash.png") %>
+          <span>activation</span>
+        </div>
+      </a>
+    </div>
+  </div>
+  <!-- Card Perk APPEL -->
+  <div class="perk-appel" id="form-perk" hidden>
+    <%= simple_form_for [:pro, @business, @perk] do |f| %>
+      <%= f.error_notification %>
+      <%= f.input :perk, label: "Nom du bon plan", placeholder: "I feel good", required: true %>
+      <%= f.input :description, label: "Description", placeholder: "Dites-nous tout...", required: true, :input_html => { :rows => 6 } %>
+      <%= f.input :detail, label: "Détail", placeholder: "Venez nous présenter votre carte" %>
+      <%= f.input :permanent, as: :hidden, checked: true %>
+      <%#= f.input :appel, as: :hidden, checked: true %>
+      <%#= f.input :durable, as: :hidden, checked: false %>
+      <%#= f.input :flash, as: :hidden, checked: false %>
+      <%= f.input :times, as: :hidden, default: 1 %>
+      <%= f.button :submit, "Enregistrer", class: "btn-create" %>
+    <% end %>
+  </div>
+  <!-- Card Perk DURABLE -->
+    <div class="perk-durable" id="form-perk" hidden>
+    <%= simple_form_for [:pro, @business, @perk] do |f| %>
+      <%= f.error_notification %>
+      <%= f.input :perk, label: "Nom du bon plan", placeholder: "I feel good", required: true %>
+      <%= f.input :description, label: "Description", placeholder: "Dites-nous tout...", required: true, :input_html => { :rows => 6 } %>
+      <%= f.input :detail, label: "Détail", placeholder: "Venez nous présenter votre carte" %>
+      <%= f.input :permanent, as: :hidden, checked: true %>
+      <%#= f.input :appel, as: :hidden, checked: false %>
+      <%#= f.input :durable, as: :hidden, checked: true %>
+      <%#= f.input :flash, as: :hidden, checked: false %>
+      <%= f.input :times, as: :string, label: false, placeholder: "Récurrence", input_html: { min: 0 } %>
+      <%= f.button :submit, "Enregistrer", class: "btn-create" %>
+    <% end %>
+  </div>
+  <!-- Form Perk FLASH -->
+  <div class="perk-flash" id="form-perk" hidden>
+    <%= simple_form_for [:pro, @business, @perk] do |f| %>
+      <%= f.error_notification %>
+      <%= f.input :perk, label: "Nom du bon plan", placeholder: "I feel good", required: true %>
+      <%= f.input :description, label: "Description", placeholder: "Dites-nous tout...", required: true, :input_html => { :rows => 6 } %>
+      <%= f.input :detail, label: "Détail", placeholder: "Venez nous présenter votre carte" %>
+      <%= f.input :permanent, as: :hidden, checked: false %>
+      <%#= f.input :appel, as: :hidden, checked: false %>
+      <%#= f.input :durable, as: :hidden, checked: false %>
+      <%#= f.input :flash, as: :hidden, checked: true %>
+      <%= f.input :start_date, as: :string, label: false, placeholder: "Début", input_html: {"data-provide" => "datepicker", "data-date-language" => "fr", value: f.object.start_date.try(:strftime, '%d/%m/%Y') } %>
+      <%= f.input :end_date, as: :string, label: false, placeholder: "Fin", :input_html => {"data-provide" => "datepicker", "data-date-language" => "fr", value: f.object.end_date.try(:strftime, '%d/%m/%Y') } %>
+      <%= f.input :times, as: :string, label: false, placeholder: "Récurrence", input_html: { min: 0 } %>
+      <%= f.button :submit, "Enregistrer", class: "btn-create" %>
+    <% end %>
+  </div>
+</div>
+
+<% content_for :after_js do %>
+
+  <script>
+
+    $(document).ready(function() {
+
+      console.log()
+
+      $(".perk-popover").popover({
+        html: true,
+        container: "body",
+        trigger: "hover"
+      });
+
+      $(".card-perk").on("click", function(e) {
+        e.preventDefault;
+        var typePerk = $(this).val('div').attr('id');
+        // $(".perk-overlay").toggleClass("perk-overlay");
+        // $($(this).toggleClass("perk-overlay"));
+        $("#form-perk:not(."+typePerk+")").slideUp();
+        $("."+typePerk).slideToggle();
+      });
+    });
+
+  </script>
+
 <% end %>
-
-

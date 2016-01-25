@@ -31,6 +31,61 @@
     }
   }
 
+  .dashboard-perk {
+    text-align: center;
+
+    span {
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+  }
+
+  .card-perk {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
+    cursor: pointer;
+    text-align: right;
+    margin: 1%;
+    margin-top: 25px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.09);
+
+    &:hover {
+      box-shadow: 0px 7px 16px rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  .perk-popover {
+    margin-left: 40px;
+    text-decoration: none;
+    color: rgba(0,0,0,0.7);
+
+
+    h1 {
+      font-size: 0.9em;
+      font-weight: 500;
+      margin: 0;
+      padding: 0;
+    }
+
+    span {
+      font-size: 0.8em;
+      line-height: 20px;
+      font-weight: 200;
+    }
+
+    img {
+      position: absolute;
+      height: 30px;
+      top: 15px;
+      left: 15px;
+    }
+  }
+
   .form-group {
     width: 100%;
   }
@@ -42,6 +97,7 @@
     flex-wrap: wrap;
     box-sizing: border-box;
     text-align: left;
+    margin-top: 25px;
 
     label {
       margin: 0 0 5px 20px;
