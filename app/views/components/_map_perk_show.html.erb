@@ -15,6 +15,7 @@
       markers = handler.addMarkers(<%= raw markers.to_json %>);
       handler.bounds.extendWith(markers);
       handler.fitMapToBounds();
+      handler.map.centerOn([<%= raw latitude.to_json %>, <%= raw longitude.to_json %>]);
       handler.getMap().setZoom(14);
     });
   });
