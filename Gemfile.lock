@@ -189,6 +189,13 @@ GEM
     mimemagic (0.3.0)
     mini_portile (0.6.2)
     minitest (5.8.3)
+    mobileesp_converted (0.2.3)
+    mobvious (0.3.2)
+      mobileesp_converted (~> 0.2.0)
+      rack (>= 1.1.0)
+    mobvious-rails (0.1.2)
+      activesupport
+      mobvious
     multi_json (1.11.2)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
@@ -343,6 +350,8 @@ DEPENDENCIES
   letter_opener
   mail_form
   mangopay
+  mobvious
+  mobvious-rails
   omniauth
   omniauth-facebook
   omniauth-google-oauth2!

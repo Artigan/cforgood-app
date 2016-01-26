@@ -1,7 +1,7 @@
 <div class="code-perk-offline">
     <!-- ITINERAIRE -->
   <div class="offline-itineraire">
-    <p class="offline-itineraire-legend"> Pour rejoindre votre commerce :<P>
+    <p class="offline-itineraire-legend"> Pour rejoindre votre commerce :</p>
     <%= link_to "Indiquez Moi L'itinéraire", "http://maps.google.com/maps", class: "button button-turquoise", id:"link-map", disabled: true, data: { locale: I18n.locale, destination: { latitude: Perk.find(params[:perk_id]).business.latitude, longitude: Perk.find(params[:perk_id]).business.longitude } }, :target => "_blank" %>
   </div>
   <!-- INPUT CODE PERK -->

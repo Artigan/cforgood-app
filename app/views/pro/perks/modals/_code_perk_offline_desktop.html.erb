@@ -1,0 +1,12 @@
+<div class="code-perk-offline">
+  <!-- INFORMATION -->
+  <div class="offline-code">
+    <p class="offline-code-legend">Pour profiter du Bon Plan, rendez-vous dans votre magasin et venez rencontrer votre commerçant !</p>
+  </div>
+  <!-- ITINERAIRE -->
+  <div class="offline-itineraire">
+    <p class="offline-itineraire-legend">Pour rejoindre votre commerce :</p>
+    <%= link_to "Indiquez Moi L'itinéraire", "http://maps.google.com/maps", class: "button button-turquoise", id:"link-map", disabled: true, data: { locale: I18n.locale, destination: { latitude: Perk.find(params[:perk_id]).business.latitude, longitude: Perk.find(params[:perk_id]).business.longitude } }, :target => "_blank" %>
+  </div>
+</div>
+

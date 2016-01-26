@@ -12,7 +12,7 @@
 
 //= require vendor/slick.js
 //= require app/slick.js
-
+//= require mobvious-rails
 
 
 //= require_tree ./app

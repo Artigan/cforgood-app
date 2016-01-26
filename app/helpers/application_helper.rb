@@ -1,4 +1,7 @@
 module ApplicationHelper
+
+  include Mobvious::Rails::Helper
+
   def avatar_url(user)
     gravatar_id = Digest::MD5::hexdigest(user.email).downcase
     if user.picture # si le user est connecté avec fb
