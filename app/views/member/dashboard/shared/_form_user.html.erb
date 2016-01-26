@@ -3,7 +3,7 @@
   <div class="user-info">
     <span>Mes informations</span>
     <span><%= current_user.first_name + " " + current_user.last_name %></span>
-    <span><%= current_user.birthday.strftime('%d %b. %Y') %></span>
+    <span><%= current_user.birthday.try(:strftime, '%d %b. %Y') %></span>
 
     <span>Mon adresse</span>
     <span><%= current_user.street %> <%= current_user.zipcode %> <%= current_user.city %></span>
@@ -22,7 +22,8 @@
     <%= f.input :last_name, placeholder: 'Nom', required: true, autofocus: true, label: 'Nom' %>
     <%= f.input :first_name, placeholder: 'Prénom', required: true, label: 'Prénom' %>
     <%= f.input :email, placeholder: 'Adresse email', required: true, label: 'Email' %>
-    <%= f.input :birthday, as: :date, label: "Ma date de naissance", start_year: Date.today.year - 90,
+    <%= f.input :birthday, as: :date, label: "Ma date de naissance",
+                start_year: Date.today.year - 90,
                 end_year: Date.today.year - 17,
                 selected: current_user.birthday || Date.today.year - 35,
                 order: [:day, :month, :year] %>
