@@ -24,102 +24,156 @@
   }
 }
 
-// SECTION - BENEFITS
+// SECTION - MOCKUPS
 //***************************************************************************//
-#screenshot {
-  border-radius: 5px;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 1);
 
-  img {
+#first-mockup, #second-mockup, #third-mockup {
+  .screenshot-picture img {
+    height: 75%;
+    width: 75%;
     border-radius: 5px;
-    height: 100%;
-    width: 100%;
-    }
-
-  h3, p {
-    text-align: justify;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 1);
+    @media only screen and (max-width: 768px){ height: 100%;  width: 100%; }
   }
-}
 
-.screenshot-legend {
-  padding: 30px 0px;
-  margin-left: 50px;
-
-  p {
-    margin: 0 !important;
+  h3 {
+    @media only screen and (max-width: 768px){ text-align: center; }
+  }
+  .screenshot-legend p {
+    margin: 10px 0;
+    @media only screen and (max-width: 768px){
+      text-align: center;
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
   }
 
   .screenshot-list {
-    margin-top: 10px;
+    @media only screen and (max-width: 768px){ padding-left: 130px; }
+    @media only screen and (max-width: 480px){ padding-left: 15px; }
+  }
 
-    li {
-      display: block;
-      margin: 10px 0 25px 0;
-    }
-
-    i img {
-      position: absolute;
-      height: 35px;
-    }
-
-    p, span {
-      display: block;
-      padding-left: 50px !important;
-      font-size: 1.5rem;
-    }
-
-    p {
-      text-transform: uppercase;
-    }
-
-    span {
-      font-weight: 200;
-    }
+  strong {
+    font-weight: 500;
   }
 }
 
-.first-asset, .second-asset {  padding-bottom: 50px; }
-
-#asset-left {
-  #screenshot {
-    margin-left: 60px;
+#first-mockup, #third-mockup {
+  .screenshot-picture img {
+    margin-left: 20%;
+    @media only screen and (max-width: 768px){ margin-left: 0px; }
   }
 
   .screenshot-legend {
-    text-align: left;
+    padding-left: 30px;
+  }
+
+  .screenshot-list p {
+    margin-left: 50px;
+    @media only screen and (max-width: 768px){
+      text-align: left;
+      padding-top: 8px;
+    }
   }
 }
 
-#asset-right {
+#second-mockup {
+  background-color: #f9f9f9;
+
+  .screenshot-picture img {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-right: 20%;
+    @media only screen and (max-width: 768px){
+      margin-right: 0px;
+      margin-bottom: 0px;
+    }
+  }
 
   .screenshot-legend {
     text-align: right;
-    margin-right: 50px;
-
-    img {
-      right: 0px;
+    padding-right: 40px;
+    margin-top: 70px;
+    @media only screen and (max-width: 768px){
+      text-align: left;
+      margin-top: 0;
     }
+  }
 
-    .screenshot-list {
-      p, span {
-        padding-right: 50px !important;
-        padding-left: 0px !important;
+  ul {
+    @media only screen and (max-width: 768px){ padding-left: 5px; }
+  }
+
+  .screenshot-list {
+    padding-right: 30px;
+    @media only screen and (max-width: 768px){ margin-bottom: 40px; }
+    @media only screen and (max-width: 480px){ margin-bottom: 0; }
+
+    p {
+      margin-right: 10px;
+      @media only screen and (max-width: 768px){
+        text-align: left;
+        margin-left: 50px;
+        padding-top: 0;
       }
     }
   }
+
+  h3 {
+    color: #36d3da;
+    @media only screen and (max-width: 768px){ margin-top: 35px; }
+  }
 }
 
-.first-asset h3 {
-  color: #00C9FF;
+#first-mockup {
+  margin-bottom: 50px;
+  @media only screen and (max-width: 480px){ margin-bottom: 0; }
+
+  h3 {
+    color: #00C9FF;
+    @media only screen and (max-width: 768px){ margin-top: 35px; }
+  }
+
+  .screenshot-legend p {
+    @media only screen and (max-width: 768px){ padding-top: 0; }
+  }
 }
 
-.second-asset h3 {
-  color: #36d3da;
+#third-mockup {
+  margin-top: 50px;
+
+  h3 {
+    color: #80F2A4;
+  }
+
+  .screenshot-legend {
+    margin-top: 30px;
+    padding-left: 30px;
+    @media only screen and (max-width: 768px){ margin-top: 15px; }
+  }
 }
 
-.third-asset h3 {
-  color: #80F2A4;
+.screenshot-list {
+  p {
+    font-size: 1.5rem;
+    font-weight: 200;
+    padding-top: 8px;
+  }
+
+  li {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 25px;
+  }
+
+  i img {
+    position: absolute;
+    height: 40px;
+  }
 }
+
+// SECTION - BENEFITS
+//***************************************************************************//
 
 .benefits {
   position: relative;
@@ -149,6 +203,8 @@
     height: 250px;
     margin-bottom: 25px;
     padding: 5px;
+    @media only screen and (max-width: 768px){ margin-bottom: 70px; }
+    @media only screen and (max-width: 480px){ margin-bottom: 0; }
 
   .title-benefit {
     text-transform: uppercase;

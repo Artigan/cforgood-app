@@ -16,7 +16,10 @@
 #  perk_code      :string
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
-#  nb_views       :integer
+#  nb_views       :integer          default(0)
+#  appel          :boolean          default(FALSE), not null
+#  durable        :boolean          default(FALSE), not null
+#  flash          :boolean          default(FALSE), not null
 #
 # Indexes
 #

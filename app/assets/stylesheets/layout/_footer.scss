@@ -55,7 +55,7 @@
 
 #footer-menu {
   padding-left: 20px;
-  @media only screen and (max-width:480px){ padding-left: 0; }
+  @media only screen and (max-width:768px){ padding-left: 0; }
 }
 
 .footer-title {
@@ -63,7 +63,7 @@
   font-weight: 500;
   padding-bottom: 20px;
   color: white;
-  @media only screen and (max-width:480px){ padding-top: 15px; padding-bottom: 10px; }
+  @media only screen and (max-width:768px){ padding-top: 15px; padding-bottom: 10px; }
 }
 
 .text-center {

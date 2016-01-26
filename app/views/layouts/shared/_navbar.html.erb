@@ -70,7 +70,11 @@
     <!-- PRO SIGN IN -->
     <% if business_signed_in? && pro_space? %>
       <div class="visible-xs menu-user-info">
-        <%= image_tag avatar_url(current_business), class: "user-pic" %>
+        <% if current_business.picture_file_name %>
+          <%= image_tag avatar_url(current_business), class: "user-pic" %>
+        <% else %>
+          <%= image_tag "default_pic.png", class: "image-circle" %>
+        <% end %>
         <span class="user-name">
           Bienvenue,<br> <%= current_business.name %>
         </span>
@@ -89,22 +93,34 @@
         <li class="hidden-xs">
           <% if current_business.active %>
             <%= link_to pro_business_profile_path(current_business) do %>
-              <%= image_tag avatar_url(current_business), class: "img-circle", type: "button" %>
+              <% if current_business.picture_file_name %>
+                <%= image_tag avatar_url(current_business), class: "img-circle", type: "button" %>
+              <% else %>
+                <%= image_tag "default_pic.png", class: "img-circle", type: "button"  %>
+              <% end %>
               <span class="user-name"><%= current_business.name %></span>
             <% end %>
           <% else %>
             <%= link_to pro_business_dashboard_path(current_business) do %>
-              <%= image_tag avatar_url(current_business), class: "img-circle", type: "button" %>
+              <% if current_business.picture_file_name %>
+                <%= image_tag avatar_url(current_business), class: "img-circle", type: "button" %>
+              <% else %>
+                <%= image_tag "default_pic.png", class: "img-circle", type: "button"  %>
+              <% end %>
               <span class="user-name"><%= current_business.name %></span>
             <% end %>
           <% end%>
         </li>
-      </ul>
+
     <!-- USER SIGN IN -->
     <% else %>
       <% if user_signed_in? && user_space? %>
         <div class="visible-xs menu-user-info">
-          <%= image_tag avatar_url(current_user), class: "user-pic" %>
+          <% if current_user.picture_file_name %>
+            <%= image_tag avatar_url(current_user), class: "user-pic" %>
+          <% else %>
+            <%= image_tag "default_pic.png", class: "img-circle" %>
+          <% end %>
           <span class="user-name">
             Bienvenue,<br> <%= current_user.first_name %> <%= current_user.last_name.chars.first + "." %>
           </span>
@@ -123,12 +139,20 @@
           <li>
             <% if current_user.active %>
               <%= link_to member_user_profile_path(current_user) do %>
-                <%= image_tag avatar_url(current_user), class: "img-circle" %>
+                <% if current_user.picture_file_name %>
+                  <%= image_tag avatar_url(current_user), class: "img-circle" %>
+                <% else %>
+                  <%= image_tag "default_pic.png", class: "img-circle" %>
+                <% end %>
                 <span class="user-name"><%= current_user.first_name %> <%= current_user.last_name.chars.first + "." %></span>
               <% end %>
             <% else %>
               <%= link_to member_user_dashboard_path(current_user) do %>
-                <%= image_tag avatar_url(current_user), class: "img-circle" %>
+                <% if current_user.picture_file_name %>
+                  <%= image_tag avatar_url(current_user), class: "img-circle" %>
+                <% else %>
+                  <%= image_tag "default_pic.png", class: "img-circle" %>
+                <% end %>
                 <span class="user-name"><%= current_user.first_name %> <%= current_user.last_name.chars.first + "." %></span>
               <% end %>
             <% end %>

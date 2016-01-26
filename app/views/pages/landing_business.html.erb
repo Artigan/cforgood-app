@@ -26,9 +26,10 @@ Une incroyable opportunité de vous faire entendre
     </div>
   </div>
 </div>
+
 <!-- PRESENTATION - LA REVOLUTION POSITIVE -->
 <section class="container-fluid presentation" id="presentation-text">
-  <div class="container">
+  <!-- <div class="container"> -->
     <div class="row">
       <h2 class="section-title">Une révolution positive</h2>
       <!-- BLOCK DESCRIPTION -->
@@ -40,98 +41,111 @@ Une incroyable opportunité de vous faire entendre
         <%= button_to "En Savoir Plus", about_path, method: :get, class: "button button-turquoise" %>
       </div>
     </div>
-  </div>
+  <!-- </div> -->
 </section>
+
 <!-- COMMENT ÇA MARCHE -->
 <section class="container-fluid process">
-  <div class="container">
+  <div class="container-fluid" id="first-mockup">
     <div class="row">
       <h2 class="section-title">Comment ça marche ?</h2>
       <!-- USE CASE 1 -->
-      <div class="row first-asset" id="asset-left">
-        <div class="col-xs-8 col-sm-8 col-md-5" id="screenshot" data-sr="enter bottom and scale up 20% over 1s">
+      <div class="row">
+        <div class="col-xs-12 col-md-6 screenshot-picture" data-sr="enter bottom and scale up 20% over 1s">
           <%= image_tag("ProIndexPerk.png")%>
         </div>
-        <div class="col-xs-8 col-sm-8 col-md-5 screenshot-legend text-justify">
+        <div class="col-xs-12 col-md-6 screenshot-legend text-justify">
           <h3>Créez</h3>
           <p>Saisissez votre bon plan sous la forme que vous souhaitez.</p>
           <div class="row screenshot-list">
             <ul class="list-inline">
               <li>
+                <i><%= image_tag("icons/icon_pastille_appel.png") %></i>
+                <p><strong>APPEL : </strong>Grandir et se faire connaître sur le territoire</p>
+              </li>
+              <li>
                 <i><%= image_tag("icons/icon_pastille_permanent.png") %></i>
-                <p>Permanent</p>
-                <span>Déployer et fidéliser une nouvelle clientèle</span>
+                <p><strong>DURABLE : </strong>Fidéliser une nouvelle clientèle</p>
               </li>
               <li>
                 <i><%= image_tag("icons/icon_pastille_flash.png") %></i>
-                <p>Flash</p>
-                <span>Réduire le gaspillage alimentaire et optimiser les marges</span>
+                <p><strong>FLASH : </strong>Réduire le gaspillage alimentaire</p>
               </li>
             </ul>
           </div>
         </div>
       </div>
-      <!-- USE CASE 2 RIGHT -->
-      <div class="row hidden-xs hidden-sm second-asset" id="asset-right">
-        <div class="col-xs-8 col-sm-8 col-md-5 screenshot-legend text-justify" >
+    </div>
+  </div>
+
+  <!-- USE CASE 2 RIGHT -->
+  <div class="container-fluid" id="second-mockup">
+    <div class="row">
+      <div class="row hidden-xs hidden-sm">
+        <div class="col-xs-12 col-md-6 screenshot-legend text-justify" >
           <h3>Publiez</h3>
           <p>Rendez le visible instantanément auprès de notre communauté CforGood.</p>
           <div class="row screenshot-list">
             <ul class="list-inline">
               <li>
                 <i><%= image_tag("icons/icon_pastille_play.png") %></i>
-                <span>Une gestion en temps réel des bons plans</span>
+                <p>Une gestion en temps réel des bons plans</p>
               </li>
               <li>
                 <i><%= image_tag("icons/icon_pastille_heart.png") %></i>
-                <span>Une cible sensible à la consommation responsable</span>
+                <p>Une cible sensible à la consommation responsable</p>
               </li>
             </ul>
           </div>
         </div>
-        <div class="col-xs-8 col-sm-8 col-md-5" id="screenshot" data-sr="enter bottom and scale up 20% over 1s">
+        <div class="col-xs-12 col-md-6 screenshot-picture" data-sr="enter bottom and scale up 20% over 1s">
           <%= image_tag("ProDashboardMap.png") %>
         </div>
       </div>
       <!-- USE CASE 2 LEFT FOR MOBILE -->
-      <div class="row hidden-md hidden-lg second-asset" id="asset-left">
-        <div class="col-xs-8 col-sm-8 col-md-5" id="screenshot" data-sr="enter bottom and scale up 20% over 1s">
+      <div class="row hidden-md hidden-lg">
+        <div class="col-xs-12 col-md-6 screenshot-picture" data-sr="enter bottom and scale up 20% over 1s">
           <%= image_tag("ProDashboardMap.png") %>
         </div>
-        <div class="col-xs-8 col-sm-8 col-md-5 screenshot-legend text-justify" >
+        <div class="col-xs-12 col-md-6 screenshot-legend text-justify" >
           <h3>Publiez</h3>
           <p>Rendez le visible instantanément auprès de notre communauté CforGood.</p>
           <div class="row screenshot-list">
             <ul class="list-inline">
               <li>
                 <i><%= image_tag("icons/icon_pastille_play.png") %></i>
-                <span>Une géocalisation en temps réel des bons plans</span>
+                <p>Une géocalisation en temps réel des bons plans</p>
               </li>
               <li>
                 <i><%= image_tag("icons/icon_pastille_heart.png") %></i>
-                <span>Une cible sensible à la consommation responsable</span>
+                <p>Une cible sensible à la consommation responsable</p>
               </li>
             </ul>
           </div>
         </div>
-      </div>
-      <!-- USE CASE 3 -->
-      <div class="row third-asset" id="asset-left">
-        <div class="col-xs-8 col-sm-8 col-md-5" id="screenshot" data-sr="enter bottom and scale up 20% over 1s">
+     </div>
+    </div>
+  </div>
+
+  <!-- USE CASE 3 -->
+  <div class="container-fluid" id="third-mockup">
+    <div class="row">
+      <div class="row">
+        <div class="col-xs-12 col-md-6 screenshot-picture" data-sr="enter bottom and scale up 20% over 1s">
           <%= image_tag("MemberShowPerk.png") %>
         </div>
-        <div class="col-xs-8 col-sm-8 col-md-5 screenshot-legend text-justify">
+        <div class="col-xs-12 col-md-6 screenshot-legend text-justify">
           <h3>Souriez !</h3>
           <p>Les clients affluent pour bénéficier de votre offre exclusive !</p>
           <div class="row screenshot-list">
             <ul class="list-inline">
               <li>
                 <i><%= image_tag("icons/icon_pastille_dashboard.png") %></i>
-                <span>Une visibilité totale de votre activité</span>
+                <p>Une visibilité totale de votre activité</p>
               </li>
               <li>
                 <i><%= image_tag("icons/icon_pastille_societal.png") %></i>
-                <span>Un engagement sociétal valorisant</span>
+                <p>Un engagement sociétal valorisant</p>
               </li>
             </ul>
           </div>
@@ -140,6 +154,7 @@ Une incroyable opportunité de vous faire entendre
     </div>
   </div>
 </section>
+
 <!-- BENEFICES -->
 <section class="container-fluid benefits">
   <div class="blackbox"></div>
@@ -202,6 +217,7 @@ Une incroyable opportunité de vous faire entendre
     </div>
   </div>
 </section>
+
 <!-- TESTIMONIALS -->
 <!-- <section class="container-fluid testimonials">
   <div class="container">
@@ -249,6 +265,7 @@ Une incroyable opportunité de vous faire entendre
     </div>
   </div>
 </section> -->
+
 <!-- FAQ -->
 <section class="container-fluid" id="faq">
   <div class="container">
@@ -272,9 +289,12 @@ Une incroyable opportunité de vous faire entendre
           <li>
             <div class="faq-question"><i class="fa fa-chevron-circle-right"></i>Existe t’il différents types de bons plans ?</div>
             <div class="faq-answer">
-              <span>Oui, il en existe 2.</span></br>
-              <span>- Le bon plan Permanent qui propose une offre valable à tout moment pour attirer de nouveaux clients et récompenser les citoyens engagés. Un bon plan Permanent doit être actif pour rendre visible votre commerce sur notre plateforme.</span></br>
-              <span>- Le bon plan Flash qui vous permet de maximiser vos profits et de réduire le gaspillage en vendant à temps vos excédents alimentaires ou vos produits saisonniers sur une courte durée et en toute simplicité.</span>
+              <span>Oui, il en existe 3.</span><br>
+              <span>- <strong>Le bon plan d’appel :</strong> Avec un objectif d’acquisition. Bon plan impactant et valable une seule fois, destiné à faire connaitre votre commerce à de nouveaux clients.</span><br>
+
+              <span>- <strong>Le bon plans durable :</strong> Avec un objectif de fidélisation. Bon plan régulier fait pour récompenser et fidéliser les membres engagés pour une association.</span><br>
+
+              <span>- <strong>Le bon plan flash :</strong> Avec un objectif de réduction du gaspillage et d’optimisation des marges. Bon plan destiné à vendre à temps vos produits alimentaires, déstocker vos produits saisonniers ou promouvoir votre commerce de manière ponctuelle.</span>
             </div>
           </li>
           <li>

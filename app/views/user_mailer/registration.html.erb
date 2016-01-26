@@ -1,14 +1,69 @@
-<div class="col-xs-12 col-md-4 col-md-offset-4 text-center mail-content">
-  <% if @user.first_name %>
-    <p>Bonjour <%= @user.first_name %>,</p>
-  <% elsif @user.name %>
-    <p>Bonjour <%= @user.name %>,</p>
-  <% else %>
-    <p>Bonjour,</p>
-  <% end %>
+<table class="body">
+  <tr>
+    <td class="center" align="center" valign="top">
+      <table class="container">
+        <tr>
+          <td>
+            <table class="row">
+              <tr>
+                <td class="last">
+                  <table class="twelve columns">
+                    <tr>
+                      <td>
+                        <%= image_tag "cforgood_mail.png" %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <% if @user.first_name %>
+                          <p class="salutation">Bonjour <%= @user.first_name %>,</p>
+                        <% elsif @user.name %>
+                          <p class="salutation">Bonjour <%= @user.name %>,</p>
+                        <% else %>
+                          <p class="salutation">Bonjour,</p>
+                        <% end %>
+                        <p>Merci beaucoup d’avoir rejoint la communauté des acteurs qui veulent agir dans le bon sens !<br>
+                        Nous sommes actuellement en bêta privée et nous allons activer en priorité les membres de la métropole bordelaise.</p>
+                        <p>Si c’est votre cas, vous êtes chanceux, nous devrions vous envoyer l’accès très rapidement !<br>
+                        Si ça ne l’est pas, soyez patient, nous vous tiendrons informés de nos avancés et de notre arrivé dans votre ville !</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p> A très vite,<br>
+                        L'équipe <strong>CforGood</strong></p>
+                        <p><%= image_tag "logo.png", class: "logo", style: "width:120px;" %></p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <hr>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p class="social-link">
+                          <a class="icon" href="https://www.facebook.com/cforgood/" target="_blank">
+                            <%= image_tag "icons/icon_facebook.png" %>
+                          </a>
+                          <a class="icon" href="https://twitter.com/cforgood" target="_blank">
+                            <%= image_tag "icons/icon_twitter.png" %>
+                          </a>
+                        </p>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
 
-  <p>Merci beaucoup d’avoir rejoint la communauté des acteurs qui veulent agir dans le bon sens !<br>
-  Nous sommes actuellement en bêta privée et nous allons activer en priorité les membres de la métropole bordelaise.</p>
-  <p>Si c’est votre cas, vous êtes chanceux, nous devrions vous envoyer l’accès très rapidement !<br>
-  Si ça ne l’est pas, soyez patient, nous vous tiendrons informés de nos avancés et de notre arrivé dans votre ville !</p>
-</div>
+
+
+
+

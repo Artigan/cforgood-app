@@ -26,7 +26,7 @@ class BusinessCategory < ActiveRecord::Base
     content_type: /\Aimage\/.*\z/
 
   has_attached_file :marker,
-    styles: { marker: "32X32>" }
+    styles: { marker: "40X43>" }
 
   validates_attachment_content_type :marker,
     content_type: /\Aimage\/.*\z/

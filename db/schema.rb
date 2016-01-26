@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160114222513) do
+ActiveRecord::Schema.define(version: 20160125174928) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -150,12 +150,15 @@ ActiveRecord::Schema.define(version: 20160114222513) do
     t.integer  "times"
     t.datetime "start_date"
     t.datetime "end_date"
-    t.boolean  "permanent",      default: true, null: false
-    t.boolean  "active",         default: true, null: false
+    t.boolean  "permanent",      default: true,  null: false
+    t.boolean  "active",         default: true,  null: false
     t.string   "perk_code"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
-    t.integer  "nb_views"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "nb_views",       default: 0
+    t.boolean  "appel",          default: false, null: false
+    t.boolean  "durable",        default: false, null: false
+    t.boolean  "flash",          default: false, null: false
   end
 
   add_index "perks", ["business_id"], name: "index_perks_on_business_id", using: :btree

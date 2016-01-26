@@ -1,12 +1,67 @@
-<div <div class="col-xs-12 col-md-4 col-md-offset-4 text-center mail-content">
-  <p>Bonjour <%= @business.name %>,<p>
+<table class="body">
+  <tr>
+    <td class="center" align="center" valign="top">
+      <table class="container">
+        <tr>
+          <td>
+            <table class="row">
+              <tr>
+                <td class="last">
+                  <table class="twelve columns">
+                    <tr>
+                      <td>
+                        <%= image_tag "cforgood_mail.png" %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>Bonjour <%= @business.name %>,<p>
+                        <p>Merci beaucoup d’avoir rejoint CforGood, la plateforme d’économie <strong>responsable & solidaire</strong> qui vous permet de développer votre activité tout en inspirant la solidarité !</p>
 
-  <p>Merci beaucoup d’avoir rejoint CforGood, la plateforme d’économie <strong>responsable & solidaire</strong> qui vous permet de développer votre activité tout en inspirant la solidarité !</p>
+                        <p>Afin de nous assurer que chaque commerce correspond à la charte CforGood, votre compte passe par une phase d’étude avant validation.</p>
 
-  <p>Afin de nous assurer que chaque commerce correspond à la charte CforGood, votre compte passe par une phase d’étude avant validation.</p>
+                        <p>Nous activons en priorité les commerces de la métropole bordelaise.<br>
+                        Si c’est votre cas, vous êtes chanceux, nous devrions vous ouvrir l’accès très rapidement !<br>
+                        Si ça ne l’est pas, soyez patient, nous vous tiendrons informés de nos avancées et de notre arrivée dans votre ville !</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p> A très vite,<br>
+                        L'équipe <strong>CforGood</strong></p>
+                        <p><%= image_tag "logo.png", class: "logo", style: "width:120px;" %></p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <hr>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p class="social-link">
+                          <a class="icon" href="https://www.facebook.com/cforgood/" target="_blank">
+                            <%= image_tag "icons/icon_facebook.png" %>
+                          </a>
+                          <a class="icon" href="https://twitter.com/cforgood" target="_blank">
+                            <%= image_tag "icons/icon_twitter.png" %>
+                          </a>
+                        </p>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
 
-  <p>Nous activons en priorité les commerces de la métropole bordelaise.<br>
-  Si c’est votre cas, nous devrions vous ouvrir l’accès très rapidement !<br>
-  Si ça ne l’est pas, soyez patient, nous vous tiendrons informés de nos avancées et de notre arrivée dans votre ville !</p>
-</div>
+
+
+
+
 
