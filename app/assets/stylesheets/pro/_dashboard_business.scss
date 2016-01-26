@@ -19,6 +19,7 @@
     }
 
     .data-container {
+      padding-top: 50px;
       width: 18%;
       height: 100%;
       background-color: #f1f1f1;
@@ -303,6 +304,7 @@
 
       .data-container {
         position: fixed;
+        padding-top: 0;
         width: 100%;
         height: 120px;
         bottom: 60px;
