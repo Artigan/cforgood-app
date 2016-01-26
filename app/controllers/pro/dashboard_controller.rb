@@ -16,8 +16,8 @@ class Pro::DashboardController < Pro::ProController
       end
       marker.picture({
         url: BusinessCategory.find(business.business_category_id).marker.url(:marker),
-        width: 32,
-        height: 32
+        width: 40,
+        height: 43
       })
       marker.infowindow render_to_string(partial: "components/map_box", locals: { business: business })
     end
