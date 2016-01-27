@@ -1,7 +1,7 @@
 <div class="code-perk-offline">
   <!-- INFORMATION -->
   <div class="offline-code">
-    <p class="offline-code-legend">Pour profiter du Bon Plan, rendez-vous dans votre magasin et venez rencontrer votre commerçant !</p>
+    <p class="offline-code-legend">Pour profiter du Bon Plan, rendez-vous en magasin pour nous rencontrer !</p>
   </div>
   <!-- ITINERAIRE -->
   <div class="offline-itineraire">
@@ -10,3 +10,8 @@
   </div>
 </div>
 
+<% content_for :after_js do %>
+
+  <script type="text/javascript">setRoutePathFromLocation()</script>
+
+<% end %>
