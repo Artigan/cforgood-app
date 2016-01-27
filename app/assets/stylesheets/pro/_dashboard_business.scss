@@ -10,6 +10,15 @@
     background-color: #f1f1f1;
     overflow-y: scroll;
 
+    .view-title {
+      display: flex;
+      align-items: center;
+      text-transform: uppercase;
+      font-size: 14px;
+      font-weight: 600;
+      color: #636363;
+    }
+
     .admin-stats {
       position: absolute;
       top: 0;

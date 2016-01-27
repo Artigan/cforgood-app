@@ -1,5 +1,4 @@
 .form-perk-container {
-  padding: 40px;
 
   .form-perk {
     position: relative;
@@ -28,15 +27,6 @@
 
     &:hover {
       background-color: #19A2C2;
-    }
-  }
-
-  .dashboard-perk {
-    text-align: center;
-
-    span {
-      text-transform: uppercase;
-      font-weight: 600;
     }
   }
 
@@ -155,15 +145,9 @@
       margin-left: 5%;
     }
 
-    .perk_start_date,
-    .perk_end_date {
-      width: 45%;
-      margin: 0 2.5% 20px;
-    }
 
     #perk_periodicity_id,
     #perk_times,
-    #perk_start_date,
     #perk_end_date {
       width: 100%;
     }
@@ -182,4 +166,244 @@
       margin-top: 10px;
     }
   }
+
+  .dashboard-create-perk {
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    overflow-X: hidden;
+
+    /* CARD - SELECT TYPE OF PERK *********************************************/
+    .type-card {
+      display: flex;
+      flex-direction: column;
+      margin: 20px 0 35px;
+      background-color: #fff;
+      cursor: pointer;
+
+      span {
+        text-transform: uppercase;
+        font-weight: 600;
+      }
+
+      .type-title {
+        position: relative;
+        padding: 10px 20px;
+        color: #fff;
+        background-color: #9FD6AE;
+        border-radius: 3px 3px 0 0;
+
+        .fa {
+          position: absolute;
+          margin-right: 10px;
+          width: 35px;
+          height: 35px;
+          border: 1px solid #fff;
+          border-radius: 50%;
+          line-height: 33px;
+          text-align: center;
+          color: #fff;
+          font-size: 15px;
+          left: 20px;
+          top: 15px;
+        }
+
+        span {
+          margin-left: 50px;
+        }
+
+        .type-category {
+          display: block;
+          color: #636363;
+        }
+      }
+
+      .type-content {
+        display: flex;
+
+        p {
+          margin: 0;
+          padding: 10px 20px;
+          width: 75%;
+          font-size: 12px;
+          color: #636363;
+        }
+
+        .type-create {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 25%;
+          font-size: 20px;
+          background-color: #636363;
+          border-radius: 0 0 3px 0;
+
+          .fa {
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+
+  /* FORM - CREATE PERK *****************************************************/
+  .perk-form-card {
+    position: absolute;
+    width: 335px;
+    top: 20px;
+    border-radius: 3px;
+    background-color: #fff;
+
+    @include transition(all, 0.3s, ease-in-out);
+    transform: translateX(110%);
+    z-index: 30;
+
+    .perk-form-title {
+      position: relative;
+      padding: 10px 20px;
+      color: #fff;
+      background-color: #9FD6AE;
+      border-radius: 3px 3px 0 0;
+
+      .fa {
+        position: absolute;
+        width: 35px;
+        height: 35px;
+        border: 1px solid #fff;
+        border-radius: 50%;
+        line-height: 33px;
+        text-align: center;
+        color: #fff;
+        font-size: 15px;
+        right: 20px;
+        top: 15px;
+        cursor: pointer;
+      }
+
+      span {
+        margin: 0;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+
+      .type-category {
+        display: block;
+        color: #636363;
+      }
+    }
+
+    .type-reminder {
+      padding: 10px 20px;
+      background-color: #f4f4f4;
+      text-transform: uppercase;
+      font-size: 11px;
+      color: #636363;
+    }
+
+
+    form {
+      position: relative;
+      padding: 20px;
+      margin: 0;
+      width: 100%;
+      display: flex;
+      text-align: none;
+
+      label {
+        margin: 0;
+        width: 100%;
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      input,
+      textarea {
+        padding: 10px 0px;
+        max-width: 100%;
+        background-color: transparent;
+        box-shadow: none;
+        border: none;
+        border-radius: 0;
+        border-bottom: 1px solid #f4f4f4;
+        font-size: 14px;
+      }
+
+      input:focus, textarea:focus,
+      input:active, textarea:active {
+        padding: 10px 5px;
+        box-shadow: none;
+        background-color: #f4f4f4;
+        border-left: 3px solid #636363;
+      }
+
+      input[type="submit"] {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        background-color: #9FD6AE;
+        border-radius: 3px;
+        font-size: 16px;
+        font-weight: 600;
+      }
+
+      select {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        padding: 0;
+        box-shadow: none;
+        border: none;
+        border-bottom: 1px solid #F4F4F4;
+        border-radius: 0;
+        background-color: #fff;
+        font-size: 14px;
+        color: #A5A5A5;
+      }
+
+      .select-wrapper {
+        position: relative;
+        width: 100%;
+      }
+
+      .select-wrapper:before {
+        position: absolute;
+        display: inline-block;
+        right: 5px;
+        top: 10px;
+        content: '\f0d7';
+        font-family: FontAwesome;
+        font-size: 14px;
+        color: #A5A5A5;
+        pointer-events: none;
+      }
+
+      .perk_start_date,
+      .perk_end_date {
+        width: 45%;
+        display: inline-block;
+        float: left;
+      }
+
+      .perk_start_date { margin-right: 5%; }
+      .perk_end_date { margin-left: 5%; }
+    }
+  }
+
+  .type-show {
+    z-index: 200;
+    transform: translateX(0);
+    margin-bottom: 60px;
+  }
+}
+
+.dashboard-overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0,0,0,0.4);
+  z-index: 20;
+  @include transition(all, 0.3s, ease-in-out);
 }

@@ -1,92 +1,142 @@
-<div class="dashboard-perk">
-  <span>Choississez votre bon plan</span>
-  <div class="row">
-    <!-- Card Perk APPEL -->
-    <div class="col-xs-12 col-sm-6 col-md-4">
-      <a class="card-perk" id="perk-appel">
-        <!-- InfoWindow on Hover -->
-        <div class="perk-popover" data-content="C’est une offre pour ACQUÉRIR : doit être impactant quitte à rogner ses marges à zéro. <br> Exemple dans ton cas : - 30% sur la première commande." data-placement="bottom" data-original-title="Bon plan d'appel" data-trigger="hover">
-            <!-- Card content -->
-            <h1>Bon Plan d'appel</h1>
-            <%= image_tag("icons/icon_pastille_appel.png") %>
-            <span>acquisition</span>
-        </div>
-      </a>
-    </div>
-    <!-- Card Perk DURABLE -->
-    <div class="col-xs-12 col-sm-6 col-md-4">
-      <div class="card-container" >
-        <a class="card-perk" id="perk-durable">
-          <!-- InfoWindow on Hover -->
-          <div class="perk-popover" data-content="C‘est une offre pour FIDÉLISER : doit être durable et équitable. Exemple dans ton cas : - 10% sur toute commande en présentant la carte de membre." data-placement="bottom" data-original-title="Bon plan durable" data-trigger="hover">
-            <!-- Card content -->
-            <h1>Bon Plan durable</h1>
-            <%= image_tag("icons/icon_pastille_permanent.png") %>
-            <span>fidélisation</span>
-          </div>
-        </a>
-      </div>
-    </div>
-    <!-- Card Perk FLASH -->
-    <div class="col-xs-12 col-sm-6 col-md-4">
-      <a class="card-perk" id="perk-flash">
-        <!-- InfoWindow on Hover -->
-        <div class="perk-popover" data-content="C’est une offre pour ANIMER/ACTIVER : doit être impactant et temporaire. Exemple dans ton cas : Fête de noël, lancement nouveau produit ou autre à - X% ou autre exemple : -40% sur les 4 derniers sandwichs de la journée chez Label Terre)" data-placement="bottom" data-original-title="Bon plan flash" data-trigger="hover">
-          <!-- Card content -->
-          <h1>Bon Plan flash</h1>
-          <%= image_tag("icons/icon_pastille_flash.png") %>
-          <span>activation</span>
-        </div>
-      </a>
-    </div>
-  </div>
+<div class="dashboard-create-perk">
+  <span class="view-title">Créer un bon plan</span>
   <!-- Card Perk APPEL -->
-  <div class="perk-appel" id="form-perk" hidden>
-    <%= simple_form_for [:pro, @business, @perk] do |f| %>
-      <%= f.error_notification %>
-      <%= f.input :perk, label: "Nom du bon plan", placeholder: "I feel good", required: true %>
-      <%= f.input :description, label: "Description", placeholder: "Dites-nous tout...", required: true, :input_html => { :rows => 6 } %>
-      <%= f.input :detail, label: "Détail", placeholder: "Venez nous présenter votre carte" %>
-      <%= f.input :permanent, as: :hidden %>
-      <%= f.input :appel, as: :hidden %>
-      <%= f.input :durable, as: :hidden %>
-      <%= f.input :flash, as: :hidden %>
-      <%= f.input :times, as: :hidden %>
-      <%= f.button :submit, "Enregistrer", class: "btn-create" %>
-    <% end %>
-  </div>
+  <a class="type-card" id="perk-appel">
+    <div class="type-title">
+      <i class="fa fa-users"></i>
+      <span>Bon Plan d'appel</span>
+      <span class="type-category">Acquisition</span>
+    </div>
+    <div class="type-content">
+      <p>Proposez une offre attractive.<br>Utilisable 1x par nouveau client</p>
+      <span id="type-create-appel" class="type-create"><i class="fa fa-plus"></i></span>
+    </div>
+  </a>
+
   <!-- Card Perk DURABLE -->
-  <div class="perk-durable" id="form-perk" hidden>
-    <%= simple_form_for [:pro, @business, @perk] do |f| %>
-      <%= f.error_notification %>
-      <%= f.input :perk, label: "Nom du bon plan", placeholder: "I feel good", required: true %>
-      <%= f.input :description, label: "Description", placeholder: "Dites-nous tout...", required: true, :input_html => { :rows => 6 } %>
-      <%= f.input :detail, label: "Détail", placeholder: "Venez nous présenter votre carte" %>
-      <%= f.input :permanent, as: :hidden %>
-      <%= f.input :appel, as: :hidden %>
-      <%= f.input :durable, as: :hidden %>
-      <%= f.input :flash, as: :hidden %>
-      <%= f.input :times, as: :string, label: false, placeholder: "Récurrence", input_html: { min: 0 } %>
-      <%= f.button :submit, "Enregistrer", class: "btn-create" %>
-    <% end %>
+  <a class="type-card" id="perk-durable">
+    <div class="type-title">
+      <i class="fa fa-calendar-check-o"></i>
+      <span>Bon Plan durable</span>
+      <span class="type-category">Fidélisation</span>
+    </div>
+    <div class="type-content">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      <span id="type-create-durable" class="type-create"><i class="fa fa-plus"></i></span>
+    </div>
+  </a>
+
+  <!-- Card Perk FLASH -->
+  <a class="type-card" id="perk-flash">
+    <div class="type-title">
+      <i class="fa fa-bolt"></i>
+      <span>Bon Plan flash</span>
+      <span class="type-category">Activation</span>
+    </div>
+    <div class="type-content">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      <span id="type-create-flash" class="type-create"><i class="fa fa-plus"></i></span>
+    </div>
+  </a>
+
+
+
+<!-- Card Perk APPEL -->
+<div class="perk-appel perk-form-card" id="form-perk">
+  <div class="perk-form-title">
+    <i class="fa fa-times close-create"></i>
+    <span>Bon Plan d'appel</span>
+    <span class="type-category">Acquisition</span>
   </div>
-  <!-- Form Perk FLASH -->
-  <div class="perk-flash" id="form-perk" hidden>
-    <%= simple_form_for [:pro, @business, @perk] do |f| %>
-      <%= f.error_notification %>
-      <%= f.input :perk, label: "Nom du bon plan", placeholder: "I feel good", required: true %>
-      <%= f.input :description, label: "Description", placeholder: "Dites-nous tout...", required: true, :input_html => { :rows => 6 } %>
-      <%= f.input :detail, label: "Détail", placeholder: "Venez nous présenter votre carte" %>
-      <%= f.input :permanent, as: :hidden %>
-      <%= f.input :appel, as: :hidden %>
-      <%= f.input :durable, as: :hidden %>
-      <%= f.input :flash, as: :hidden %>
-      <%= f.input :start_date, as: :string, label: false, placeholder: "Début", input_html: {"data-provide" => "datepicker", "data-date-language" => "fr", value: f.object.start_date.try(:strftime, '%d/%m/%Y') } %>
-      <%= f.input :end_date, as: :string, label: false, placeholder: "Fin", :input_html => {"data-provide" => "datepicker", "data-date-language" => "fr", value: f.object.end_date.try(:strftime, '%d/%m/%Y') } %>
-      <%= f.input :times, as: :string, label: false, placeholder: "Récurrence", input_html: { min: 0 } %>
-      <%= f.button :submit, "Enregistrer", class: "btn-create" %>
-    <% end %>
+  <div class="type-reminder">
+    <span>Offre valable 1x par nouveau client</span>
   </div>
+  <%= simple_form_for [:pro, @business, @perk] do |f| %>
+    <%= f.error_notification %>
+    <label class="hint--top-right" data-hint="Quelque chose de court et engageant">Nom du bon plan *</label>
+    <%= f.input :perk, label: false, placeholder: "140 car. max", required: true %>
+    <label class="hint--top-right" data-hint="Précisez le contenu de votre offre">Description *</label>
+    <%= f.input :description, label: false, placeholder: "Dites-nous tout...", required: true, :input_html => { :rows => 3 } %>
+    <label class="hint--top-right" data-hint="Sélectionnez le moyen d'activation">Utilisation *</label>
+    <div class="select-wrapper">
+      <%= f.input :detail, label: false, collection: ["Présentez votre carte en magasin", "Envoyez-nous un email", "Entrez le code promo CforGood (online)"], selected: 1 %>
+    </div>
+    <%= f.input :permanent, as: :hidden %>
+    <%= f.input :appel, as: :hidden %>
+    <%= f.input :durable, as: :hidden %>
+    <%= f.input :flash, as: :hidden %>
+    <%= f.input :times, as: :hidden %>
+    <%= f.button :submit, "Créer le bon plan", class: "btn-create" %>
+  <% end %>
+</div>
+
+<!-- Card Perk DURABLE -->
+<div class="perk-durable perk-form-card" id="form-perk">
+  <div class="perk-form-title">
+    <i class="fa fa-times close-create"></i>
+    <span>Bon plan durable</span>
+    <span class="type-category">Fidélisation</span>
+  </div>
+  <div class="type-reminder">
+    <span>Offre récurrente sans limite d'utilisation</span>
+  </div>
+  <%= simple_form_for [:pro, @business, @perk] do |f| %>
+    <%= f.error_notification %>
+    <label class="hint--top-right" data-hint="Quelque chose de court et engageant">Nom du bon plan *</label>
+    <%= f.input :perk, label: false, placeholder: "I feel good", required: true %>
+    <label class="hint--top-right" data-hint="Précisez le contenu de votre offre">Description *</label>
+    <%= f.input :description, label: false, placeholder: "Dites-nous tout...", required: true, :input_html => { :rows => 3 } %>
+    <label class="hint--top-right" data-hint="Sélectionnez le moyen d'activation">Utilisation *</label>
+    <div class="select-wrapper">
+      <%= f.input :detail, label: false, collection: ["Présentez votre carte en magasin", "Envoyez-nous un email", "Entrez le code promo CforGood (online)"], selected: 1 %>
+    </div>
+    <%= f.input :permanent, as: :hidden %>
+    <%= f.input :appel, as: :hidden %>
+    <%= f.input :durable, as: :hidden %>
+    <%= f.input :flash, as: :hidden %>
+    <%= f.button :submit, "Créer le bon plan", class: "btn-create" %>
+  <% end %>
+</div>
+
+<!-- Form Perk FLASH -->
+<div class="perk-flash perk-form-card" id="form-perk">
+  <div class="perk-form-title">
+    <i class="fa fa-times close-create"></i>
+    <span>Bon plan flash</span>
+    <span class="type-category">Activation</span>
+  </div>
+   <div class="type-reminder">
+    <span>Offre limité en temps et quantité</span>
+  </div>
+  <%= simple_form_for [:pro, @business, @perk] do |f| %>
+    <%= f.error_notification %>
+    <label class="hint--top-right" data-hint="Quelque chose de court et engageant">Nom du bon plan *</label>
+    <%= f.input :perk, label: false, placeholder: "I feel good", required: true %>
+    <label class="hint--top-right" data-hint="Précisez le contenu de votre offre">Description *</label>
+    <%= f.input :description, label: false, placeholder: "Dites-nous tout...", required: true, :input_html => { :rows => 3 } %>
+    <label class="hint--top-right" data-hint="Sélectionnez le moyen d'activation">Utilisation *</label>
+    <div class="select-wrapper">
+      <%= f.input :detail, label: false, collection: ["Présentez votre carte en magasin", "Envoyez-nous un email", "Entrez le code promo CforGood (online)"], selected: 1 %>
+    </div>
+    <%= f.input :permanent, as: :hidden %>
+    <%= f.input :appel, as: :hidden %>
+    <%= f.input :durable, as: :hidden %>
+    <%= f.input :flash, as: :hidden %>
+    <label class="hint--top-right" data-hint="Déterminez une période de disponibilité">Période *</label>
+    <%= f.input :start_date, as: :string, label: false, placeholder: "Début", input_html: {"data-provide" => "datepicker", "data-date-language" => "fr", value: f.object.start_date.try(:strftime, '%d/%m/%Y') } %>
+    <%= f.input :end_date, as: :string, label: false, placeholder: "Fin", :input_html => {"data-provide" => "datepicker", "data-date-language" => "fr", value: f.object.end_date.try(:strftime, '%d/%m/%Y') } %>
+    <label class="hint--top-right" data-hint="Nombre d'activations possibles">Quantité</label>
+    <%= f.input :times, as: :string, label: false, placeholder: "0" %>
+    <div class="">
+      <button id="quantity-plus" type="button"><i class="fa fa-plus"></i></button>
+      <button id="quantity-minus" type="button"><i class="fa fa-minus"></i></button>
+    </div>
+
+
+    <%= f.button :submit, "Créer le bon plan", class: "btn-create" %>
+  <% end %>
+</div>
+
 </div>
 
 <% content_for :after_js do %>
@@ -94,6 +144,59 @@
   <script>
 
     $(document).ready(function() {
+
+      // PERK FLASH - INCREMENT QUANTITY
+      $("#quantity-plus").on("click", function(e) {
+        e.preventDefault();
+        fieldId = $('#perk_times');
+        var currentVal = parseInt($(fieldId).val());
+        if (!isNaN(currentVal)) {
+          // Increment
+          $(fieldId).val((currentVal + 1).toString());
+        } else {
+          // Otherwise put a 0 there
+          $(fieldId).val('1');
+        }
+
+      });
+
+      // OPEN PERK APPEL ON CLICK
+      $("#type-create-appel").on("click", function() {
+        $('.dashboard').scrollTop(0);
+        $(".dashboard-overlay").removeClass('hidden');
+        $(".perk-appel").addClass('type-show');
+      });
+
+      // OPEN PERK DURABLE ON CLICK
+      $("#type-create-durable").on("click", function() {
+        $('.dashboard').scrollTop(0);
+        $(".dashboard-overlay").removeClass('hidden');
+        $(".perk-durable").addClass('type-show');
+      });
+
+      // OPEN PERK FLASH ON CLICK
+      $("#type-create-flash").on("click", function() {
+        $('.dashboard').scrollTop(0);
+        $(".dashboard-overlay").removeClass('hidden');
+        $(".perk-flash").addClass('type-show');
+      });
+
+      // CLOSE PERK ON CLICK
+      $(".close-create").on("click", function(e) {
+        e.preventDefault;
+        $(".dashboard-overlay").addClass('hidden');
+        $(".perk-form-card").removeClass('type-show');
+      });
+
+      //REMOVE PERK ON CLICK OUTSIDE THE CARD
+      $(".dashboard-overlay").on("click", function(e) {
+        e.preventDefault;
+        $(this).addClass('hidden');
+        $(".perk-form-card").removeClass('type-show');
+      });
+
+      //////////////////////////////////////////////////////////////////////////
+
 
       if ($("#perk_appel").val() == "true") {
         $(".perk-appel").slideToggle();
@@ -109,12 +212,6 @@
         $(".perk-flash").slideToggle();
         $("#perk-flash").toggleClass("perk-overlay");
       }
-
-      $(".perk-popover").popover({
-        html: true,
-        container: "body",
-        trigger: "hover"
-      });
 
       $(".card-perk").on("click", function(e) {
         e.preventDefault;
