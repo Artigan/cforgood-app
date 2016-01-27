@@ -135,11 +135,6 @@
       resize: none;
     }
 
-    .perk_times {
-      width: 45%;
-      margin-right: 5%;
-    }
-
     .perk_periodicity_id {
       width: 45%;
       margin-left: 5%;
@@ -361,6 +356,12 @@
         color: #A5A5A5;
       }
 
+      input[type=number]::-webkit-inner-spin-button,
+      input[type=number]::-webkit-outer-spin-button {
+         -webkit-appearance: none;
+      }
+
+
       .select-wrapper {
         position: relative;
         width: 100%;
@@ -387,6 +388,30 @@
 
       .perk_start_date { margin-right: 5%; }
       .perk_end_date { margin-left: 5%; }
+
+      .perk_times {
+        width: 25%;
+        margin-right: 10%;
+      }
+
+      .quantity-selector {
+        button {
+          border-radius: 50%;
+          box-shadow: none;
+          border: none;
+          margin: 0 2px;
+          width: 30px;
+          height: 30px;
+          background-color: #9FD6AE;
+          color: #fff;
+        }
+
+        button:active,
+        button:focus {
+          box-shadow: none;
+          outline: 0 none;
+        }
+      }
     }
   }
 
