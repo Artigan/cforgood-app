@@ -10,6 +10,10 @@
     background-color: #f1f1f1;
     overflow-y: scroll;
 
+    .mobile-title {
+      display: none;
+    }
+
     .view-title {
       display: flex;
       align-items: center;
@@ -39,6 +43,10 @@
       box-shadow: 0 2px 9px rgba(0, 0, 0, 0.2);
 
       .data-mobile {
+        display: none;
+      }
+
+      .business-into {
         display: none;
       }
 
@@ -406,14 +414,12 @@
             left: 0;
             right: 0;
             border-radius: 3px 3px 0 0;
-            //background-color: rgba(0, 0, 0, 0.4);
-            //background-color: rgba(255, 255, 255, 0.2);
             opacity: 0.65;
             background: -webkit-linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* Chrome 10+, Saf5.1+ */
-          background: -moz-linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* FF3.6+ */
-          background: -ms-linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* IE10 */
-          background: -o-linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* Opera 11.10+ */
-          background: linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* W3C */
+            background: -moz-linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* FF3.6+ */
+            background: -ms-linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* IE10 */
+            background: -o-linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* Opera 11.10+ */
+            background: linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* W3C */
           }
 
           .business-owner {

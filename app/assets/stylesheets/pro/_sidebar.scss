@@ -79,15 +79,17 @@
 
   li.active {
     opacity: 1;
+    border-left: 10px solid #5D8A69;
+    background-color: #8BBD99;
 
     &:after {
-    content:"";
-    position: absolute;
-    display:inline-block;
-    border: 20px solid white;
-    border-color: transparent #f1f1f1 transparent transparent;
-    top: 50px;
-    right: 0px;
+      content:"";
+      position: absolute;
+      display:inline-block;
+      border: 10px solid white;
+      border-color: transparent #f1f1f1 transparent transparent;
+      top: 50px;
+      right: 0px;
     }
 
     .icon-container {

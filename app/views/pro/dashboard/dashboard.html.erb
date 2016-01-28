@@ -31,11 +31,11 @@ Consultez vos chiffres
           </li>
           <li>
             <span class="number"><%= @business.perks_views_count %></span>
-            <span class="label">Nombre total de vues</span>
+            <span class="label">Nombre total<br>de vues</span>
           </li>
           <li>
             <span class="number"><%= @business.perks_new_users %></span>
-            <span class="label">Nombre nouveaux clients</span>
+            <span class="label">Nouveaux clients</span>
           </li>
         </ul>
         <!-- SLICK | DATA ON MOBILE -->
@@ -44,8 +44,7 @@ Consultez vos chiffres
           <span class="business-name"><%= current_business.name %></span>
           <span class="business-location"><i class="fa fa-map-marker"></i><%= current_business.city %></span>
         </div>
-        <!-- <ul class="data-mobile"> -->
-        <ul class="">
+        <ul class="data-mobile">
           <li>
             <span class="number"><%= @business.perks.count %></span>
             <span class="label">Bons plans créés</span>
@@ -63,8 +62,6 @@ Consultez vos chiffres
             <span class="label">Nombre nouveaux clients</span>
           </li>
         </ul>
-
-
       </div>
        <div class="mobile-title">
           <%= image_tag('logo-cforgood-blanc.png', class: '') %>
@@ -77,3 +74,11 @@ Consultez vos chiffres
     </div>
   <% end %>
 </div>
+
+<!-- $('.data-mobile').slick({
+  dots: true,
+  arrows:false,
+  infinite: false,
+  autoplay: false,
+  slidesToScroll: 1,
+}); -->
