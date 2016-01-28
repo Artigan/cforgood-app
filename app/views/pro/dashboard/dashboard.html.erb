@@ -65,7 +65,7 @@ Consultez vos chiffres
       </div>
        <div class="mobile-title">
           <%= image_tag('logo-cforgood-blanc.png', class: '') %>
-          <span>Bienvenue dans votre espace</span>
+          <span>Bienvenue <%= current_business.name %></span>
         </div>
       <div id="map" class="pro-map-businesses" style="width: 82%;"></div>
       <% content_for(:after_js) do %>
