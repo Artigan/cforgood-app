@@ -120,8 +120,8 @@
       <div class="modal-body text-center">
         <% if @business.online %>
           <%= render "pro/perks/modals/code_perk_online" %>
-        <%# elsif device_type == :mobile %>
-          <%#= render "pro/perks/modals/code_perk_offline_mobile" %>
+        <% elsif device_type == :mobile %>
+          <%= render "pro/perks/modals/code_perk_offline_mobile" %>
         <% else %>
           <%= render "pro/perks/modals/code_perk_offline_desktop" %>
         <% end %>
