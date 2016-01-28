@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   #include Pundit
-
+  include Mobvious::Rails::Controller
   # protect_from_forgery with: :exception
   protect_from_forgery with: :null_session
 

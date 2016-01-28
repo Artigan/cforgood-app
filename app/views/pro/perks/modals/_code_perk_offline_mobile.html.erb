@@ -1,7 +1,7 @@
 <div class="code-perk-offline">
     <!-- ITINERAIRE -->
   <div class="offline-itineraire">
-    <p class="offline-itineraire-legend"> Pour rejoindre votre commerce :<P>
+    <p class="offline-itineraire-legend"> Pour rejoindre votre commerce :</p>
     <%= link_to "Indiquez Moi L'itinéraire", "http://maps.google.com/maps", class: "button button-turquoise", id:"link-map", disabled: true, data: { locale: I18n.locale, destination: { latitude: Perk.find(params[:perk_id]).business.latitude, longitude: Perk.find(params[:perk_id]).business.longitude } }, :target => "_blank" %>
   </div>
   <!-- INPUT CODE PERK -->
@@ -20,14 +20,18 @@
   <script type="text/javascript">setRoutePathFromLocation()</script>
 
   <script>
+    // CONTROL CODE PERK
     $(document).ready(function() {
       $(".validation").on('click', function(e) {
         e.preventDefault();
-        if ("<%= Perk.find(params[:perk_id]).perk_code %>" == $("#perk_code").val().toUpperCase()) {
-          $("#create_use").submit();
-        } else {
+        if ("<=% @business.perks.find(params[:perk_id]).perk_usable?(current_user) %>" == false) {
           $("#error-modal").html("");
-          $("#error-modal").append("Le code est erroné");
+          $("#error-modal").append("Ce bon plan n'est plus disponible");
+        } else if ("<%= Perk.find(params[:perk_id]).perk_code %>" != $("#perk_code").val().toUpperCase()) {
+            $("#error-modal").html("");
+            $("#error-modal").append("Le code est erroné");
+        } else {
+            $("#create_use").submit();
         };
       });
     });

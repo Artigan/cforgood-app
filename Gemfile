@@ -34,6 +34,8 @@ gem "geocoder"
 gem "gmaps4rails"
 gem "underscore-rails"
 gem "rails-erd"
+gem 'mobvious'
+gem 'mobvious-rails'
 
 gem 'bootstrap-datepicker-rails'
 

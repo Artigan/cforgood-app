@@ -28,7 +28,7 @@ Une incroyable opportunité de vous faire entendre
 </div>
 
 <!-- PRESENTATION - LA REVOLUTION POSITIVE -->
-<section class="container-fluid presentation" id="presentation-text">
+<section class="container-fluid presentation" id="presentation-business">
   <!-- <div class="container"> -->
     <div class="row">
       <h2 class="section-title">Une révolution positive</h2>
@@ -277,7 +277,7 @@ Une incroyable opportunité de vous faire entendre
           <li>
             <div class="faq-question"><i class="fa fa-chevron-circle-right"></i>Quelle est la procédure pour inscrire mon commerce ?</div>
             <div class="faq-answer">
-              <span>Pour devenir partenaire, il vous suffit de créer un compte commerçant en remplissant le formulaire d'inscription sur le site www.cforgood.com/pro/sign_up. Notre équipe vous contactera dans les plus bref délais pour activer votre compte (s’il est en accord avec notre charte) puis s’occupera de la prise de photo et vous formera à l’utilisation de notre plateforme mise gratuitement à votre disposition.</span>
+              <span>Pour devenir partenaire, il vous suffit de créer un compte commerçant en <%= link_to "cliquant ici", new_business_registration_path, target: "_blank" %>. Notre équipe vous contactera dans les plus bref délais pour activer votre compte (s’il est en accord avec notre <%= link_to "charte", notre_charte_path, target: "_blank" %>) puis s’occupera de la prise de photo et vous formera à l’utilisation de notre plateforme mise gratuitement à votre disposition.</span>
             </div>
           </li>
           <li>
@@ -306,7 +306,7 @@ Une incroyable opportunité de vous faire entendre
           <li>
             <div class="faq-question"><i class="fa fa-chevron-circle-right"></i>Puis-je réaliser le bon plan / la réduction que je souhaite ?</div>
             <div class="faq-answer">
-              <span>Oui totalement, cela peut être une promotion de 20% sur votre magasin, un produit / service offert, une offre spéciale. Soyez créatif ! Notre équipe a de l’expérience dans ce domaine et peut vous aider à choisir les bons plans en accord avec vos objectifs, nous sommes là pour vous aiguiller à hello@cforgood.com.</span>
+              <span>Oui totalement, cela peut être une promotion de 20% sur votre magasin, un produit / service offert, une offre spéciale. Soyez créatif ! Notre équipe a de l’expérience dans ce domaine et peut vous aider à choisir les bons plans en accord avec vos objectifs, nous sommes là pour vous aiguiller à <a href="mailto:hello@cforgood.com" target="_blank">hello@cforgood.com</a>.</span>
             </div>
           </li>
           <li>
@@ -318,7 +318,7 @@ Une incroyable opportunité de vous faire entendre
           <li>
             <div class="faq-question"><i class="fa fa-chevron-circle-right"></i>Quelles sont les conditions pour devenir partenaire sur CforGood ?</div>
             <div class="faq-answer">
-              <span>Les entreprises partenaires sur CforGood doivent répondre à au moins un critère d’engagement social, économique ou environnemental de la Charte CforGood.
+              <span>Les entreprises partenaires sur CforGood doivent répondre à au moins un critère d’engagement social, économique ou environnemental de la <%= link_to "Charte CforGood", notre_charte_path, target: "_blank" %>.
               Les entreprises devront donc être validées avant de pouvoir poster sur CforGood.</span>
             </div>
           </li>

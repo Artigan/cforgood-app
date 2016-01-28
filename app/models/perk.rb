@@ -8,7 +8,7 @@
 #  description    :text
 #  detail         :string
 #  periodicity_id :integer
-#  times          :integer
+#  times          :integer          default(0)
 #  start_date     :datetime
 #  end_date       :datetime
 #  permanent      :boolean          default(TRUE), not null
@@ -69,27 +69,13 @@ class Perk < ActiveRecord::Base
   end
 
   def perk_usable?(user)
-    if self.permanent
-      if self.times
-        if self.periodicity_id
-          date = Time.now
-          case Periodicity.find(self.periodicity_id)
-            when "Semaine"
-              date = date.prev_week
-            when "Mois"
-              date = date.prev_month
-            when "Année"
-              date = date.prev_year
-          end
-          user.uses.where("perk_id = :id and created_at >= :date", {id: self.id, date: date} ).count < self.times
-        else
-          user.uses.where(perk_id: self.id).count >= self.times
-        end
-      else
-        true
-      end
-    else
-      (Time.now >= self.start_date || Time.now <= self.end_date) && Use.where(perk_id: self.id).count < self.times
+    if self.durable
+      true
+    elsif self.appel
+      user.uses.where(perk_id: self.id).count == 0
+    elsif self.flash
+      raise
+      Time.now >= self.start_date && Time.now <= self.end_date && (self.times == 0 || Use.where(perk_id: self.id).count < self.times)
     end
   end
 end

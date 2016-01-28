@@ -21,6 +21,7 @@ function getPosition(position) {
   var locale = $("#link-map").data("locale");
   var destination = $("#link-map").data("destination");
   var linkToNavigation = $("#link-map").attr("href");
+  console.log(locale);
 
   //saddr=latitude,longitude&daddr=latitude,longitude&hl=#{I18n.locale}
   linkToNavigation = linkToNavigation + "?saddr=" + lat + "," + lng
