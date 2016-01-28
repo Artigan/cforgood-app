@@ -39,7 +39,13 @@ Consultez vos chiffres
           </li>
         </ul>
         <!-- SLICK | DATA ON MOBILE -->
-        <ul class="data-mobile">
+        <div class="business-into" style="background-image: url('<%= current_business.picture %>');">
+          <%= image_tag current_business.leader_picture, class: 'business-owner' %>
+          <span class="business-name"><%= current_business.name %></span>
+          <span class="business-location"><i class="fa fa-map-marker"></i><%= current_business.city %></span>
+        </div>
+        <!-- <ul class="data-mobile"> -->
+        <ul class="">
           <li>
             <span class="number"><%= @business.perks.count %></span>
             <span class="label">Bons plans créés</span>
@@ -58,7 +64,12 @@ Consultez vos chiffres
           </li>
         </ul>
 
+
       </div>
+       <div class="mobile-title">
+          <%= image_tag('logo-cforgood-blanc.png', class: '') %>
+          <span>Bienvenue dans votre espace</span>
+        </div>
       <div id="map" class="pro-map-businesses" style="width: 82%;"></div>
       <% content_for(:after_js) do %>
         <%= render 'components/map', markers: @markers, map_id: "map" %>
