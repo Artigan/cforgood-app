@@ -206,35 +206,15 @@
       //////////////////////////////////////////////////////////////////////////
 
 
-      if ($("#perk_appel").val() == "true") {
-        $(".perk-appel").slideToggle();
-        $("#perk-appel").toggleClass("perk-overlay");
-      }
-
-      if ($("#perk_durable").val() == "true") {
-        $(".perk-durable").slideToggle();
-        $("#perk-durable").toggleClass("perk-overlay");
-      }
-
-      if ($("#perk_flash").val() == "true") {
-        $(".perk-flash").slideToggle();
-        $("#perk-flash").toggleClass("perk-overlay");
-      }
-
-      $(".card-perk").on("click", function(e) {
+      $(".type-card").on("click", function(e) {
         e.preventDefault;
         var typePerk = $(this).val('div').attr('id');
-        $(".perk-overlay").toggleClass("perk-overlay");
-        $($(this).toggleClass("perk-overlay"));
-        $("#form-perk:not(."+typePerk+")").slideUp();
-        $("."+typePerk).slideToggle();
+
         if (typePerk == "perk-appel") {
           $(".perk-appel #perk_permanent").val("true");
           $(".perk-appel #perk_appel").val("true");
           $(".perk-appel #perk_durable").val("false");
           $(".perk-appel #perk_flash").val("false");
-          $(".perk-appel #perk_times").val("1");
-          console.log($(".perk-appel #perk_times"));
         }
         if (typePerk == "perk-durable") {
           $(".perk-durable #perk_permanent").val("true");

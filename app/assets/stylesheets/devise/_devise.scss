@@ -1,29 +1,24 @@
-.connexion.connexion-pro { background-image: image-url("cover-business.jpg"); }
-.connexion.connexion-user { background-image: image-url("bg-banner-home.jpg"); }
+.connexion-pro { background-image: image-url("cover-business.jpg"); }
+.connexion-user { background-image: image-url("bg-banner-home.jpg"); }
 
 .connexion {
-  //position: relative;
-  height: 100vh;
-  //background-color: #292c31;
-  text-align: center;
-
   position: relative;
-  //background-image: image-url("bg-banner-home.jpg");
-  //background-image: image-url("cover-business.jpg");
+  padding: 70px 0;
+  height: 100%;
+  min-height: 100vh;
+  text-align: center;
   background-size: cover;
   background-attachment: fixed;
   background-position: bottom;
 
-  @media only screen and (max-width: 480px) and (orientation : portrait) { background-position: center center; }
-
-  .connexion-overlay {
+  &:after {
+    content: "";
     position: absolute;
-    height: 100%;
-    width: 100%;
-
-    z-index: 0;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
     opacity: 0.65;
-
     background: -webkit-linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* Chrome 10+, Saf5.1+ */
     background: -moz-linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* FF3.6+ */
     background: -ms-linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* IE10 */
@@ -32,18 +27,100 @@
   }
 
   .form-card {
-    height: 100%;
-    padding: 40px 60px 20px 60px;
-    @media only screen and (max-width:480px){ padding-left: 0; padding-right: 0 };
-    margin-top: 50px;
+    position: relative;
+    padding: 40px 20px;
+    margin: 0 auto;
     background: #fff;
-    border-radius: 10px;
-
-    overflow: hidden;
+    border-radius: 3px;
+    z-index: 1;
 
     -webkit-box-shadow: 0px 20px 33px -7px rgba(0,0,0,0.48);
     -moz-box-shadow: 0px 20px 33px -7px rgba(0,0,0,0.48);
+    -o-box-shadow: 0px 20px 33px -7px rgba(0,0,0,0.48);
     box-shadow: 0px 20px 33px -7px rgba(0,0,0,0.48);
+
+    /* SIGNUP /  SIGNIN FORM */
+    .subscription-form {
+      display: flex;
+      justify-content: center;
+      margin-top: 25px;
+      padding: 0 20px;
+
+      form {
+        position: relative;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        box-sizing: border-box;
+        text-align: left;
+
+        abbr {
+          display: none;
+        }
+
+        label {
+          margin: 0;
+          text-transform: uppercase;
+          font-size: 12px;
+          color: #636363;
+          font-weight: 600;
+        }
+
+        input,
+        select {
+          padding: 10px 0px;
+          max-width: 100%;
+          background-color: transparent;
+          box-shadow: none;
+          border: none;
+          border-radius: 0;
+          border-bottom: 1px solid #f4f4f4;
+          font-size: 14px;
+          @include transition(all, 0.2s, ease-in-out);
+        }
+
+        select {
+          -webkit-appearance:none;
+          -moz-appearance:none;
+          -ms-appearance:none;
+          appearance:none;
+          background: #fff url('https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_down_48px-128.png') no-repeat;
+        }
+
+        input:focus, input:active,
+        textarea:focus, textarea:active,
+        select:focus, select:active {
+          padding: 10px 10px;
+          box-shadow: none;
+          background-color: #f4f4f4;
+          border-left: 3px solid $turquoise;
+        }
+
+        input[type="submit"] {
+          display: block;
+          padding: 10px;
+          background-color: $turquoise;
+          border-radius: 3px;
+          color: #fff;
+          text-transform: uppercase;
+          font-size: 14px;
+          font-weight: 600;
+        }
+
+        input[type="submit"]:focus,
+        input[type="submit"]:active, {
+          background-color: #19A2C2;
+        }
+      }
+    }
+
+    .signin {
+
+    }
+
+    .signup {
+
+    }
   }
 
   span {
@@ -53,7 +130,7 @@
   }
 
   p {
-    margin: 10px auto 20px 0;
+    margin: 10px auto 20px;
     font-size: 0.7em;
   }
 
@@ -62,13 +139,13 @@
   }
   .subscription-network {
     padding: 0 20px;
-    margin: 15px 0 30px 0;
+    margin: 15px 0 0;
 
     a:nth-child(even) { margin-right: 1%; }
     a:nth-child(odd) { margin-left: 1%; }
 
     span {
-      padding-bottom: 30px;
+      padding-bottom: 15px;
       font-size: 0.7em;
       font-weight: 100;
       color: #A5A5A5;
@@ -87,14 +164,16 @@
         flex: 1;
       }
 
-      &::before { margin: 0 20px 0 0; }
-      &::after { margin: 0 0 0 20px; }
+      &::before { margin: 0 20px 0 20px; }
+      &::after { margin: 0 20px 0 20px; }
 
     }
   }
 
   .already-subscribed {
+    position: relative;
     margin-top: 15px;
+    z-index: 1;
 
     span {
       color: $white;
@@ -148,86 +227,16 @@
   }
 }
 
-/* SIGNUP /  SIGNIN FORM */
-
-.subscription-form {
-  display: flex;
-  justify-content: center;
-  margin-top: 25px;
-  padding: 0 20px;
-
-  form {
-    position: relative;
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    box-sizing: border-box;
-    text-align: left;
-
-    label {
-      margin: 0 0 5px 20px;
-      text-transform: uppercase;
-      font-size: small;
-      font-weight: 100;
-      color: #A5A5A5;
-      abbr { display: none; }
-    }
-
-    input {
-      width: 295px;
-      padding: 20px 20px;
-      border-radius: 20px;
-      background: #f1f1f1;
-      border: 1px solid #f9f9F9;
-      font-size: small;
-      font-weight: 100;
-
-      @include transition(all, 0.2s, ease-in-out);
-    }
-
-    .form-group:nth-child(odd) { input { margin-right: 5px; } }
-    .form-group:nth-child(even) { input { margin-left: 5px; } }
-
-    input[type="text"]:focus,
-    input[type="email"]:focus,
-    input[type="password"]:focus {
-      background-color: #fff;
-      border-color: #f1F1F1;
-      -webkit-box-shadow: 0px 20px 18px -19px rgba(0, 0, 0, 0.6);
-      -moz-box-shadow: 0px 20px 18px -19px rgba(0, 0, 0, 0.6);
-      box-shadow: 0px 20px 18px -19px rgba(0, 0, 0, 0.6);
-      outline: 0 none;
-    }
-
-    input[type="submit"] {
-      display: block;
-      max-width: 50%;
-      @media only screen and (max-width:480px){ max-width: 100% };
-      margin: 0 auto;
-      padding: 15px 20px;
-      border-radius: 30px;
-      color: $white;
-      text-transform: uppercase;
-      background: $turquoise;
-      border: 1px solid #19A2C2;
-      font-size: small;
-      font-weight: 100;
-
-      &:hover { background-color: #19A2C2; }
-    }
-
-
-    input[type="submit"]:focus {
-
-    }
-  }
-}
 
 // SIGNIN PAGE - USER & PRO
 
 .signin {
   .form-card {
+    position: relative;
+    margin: 0 auto;
+    width: 320px;
     padding-bottom: 40px;
+    z-index: 1;
   }
 
   .subscription-form {
@@ -262,6 +271,79 @@
       line-height: 40px;
 
       i:before { margin: 0;}
+    }
+  }
+}
+
+// SIGNUP PAGE - USER & PRO
+
+.signup {
+  .form-card {
+    position: relative;
+    margin: 0 auto;
+    width: 600px;
+    padding-bottom: 40px;
+    z-index: 1;
+
+    .subscription-form {
+
+      form {
+        .form-group {
+          margin-bottom: 15px;
+          width: 45%;
+        }
+
+        .form-group:nth-child(odd) { margin-right: 5%; }
+        .form-group:nth-child(even) { margin-left: 5%; }
+
+        input[type="submit"] {
+          margin: 0 auto;
+          width: 50%;
+        }
+
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) and (orientation : portrait) {
+  .signup {
+    .form-card {
+      width: 320px;
+
+      .subscription-form {
+        form {
+          .form-group {
+            width: 100%;
+          }
+
+          .form-group:nth-child(odd) { margin-right: 0; }
+          .form-group:nth-child(even) { margin-left: 0; }
+
+          input[type="submit"] {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 480px) and (orientation : portrait) {
+  .connexion {
+    padding: 40px 0 80px;
+    background-position: center center;
+  }
+}
+
+@media only screen and (max-width: 320px) and (orientation : portrait) {
+  .connexion {
+    .form-card {
+      position: relative;
+      margin: 0 auto;
+      width: 280px;
+      padding-bottom: 40px;
+      z-index: 1;
     }
   }
 }

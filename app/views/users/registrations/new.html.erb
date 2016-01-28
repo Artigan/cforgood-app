@@ -1,35 +1,30 @@
-<div class="container-fluid connexion connexion-user">
-  <div class="connexion-overlay"></div>
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12 col-sm-8 col-sm-offset-2 form-card">
-        <span>Créer mon compte</span>
-        <!-- SUBSCRIPTION FORM -->
-        <div class="subscription-form">
-          <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-          <%= f.error_notification %>
-            <%= f.input :first_name, placeholder: 'John', required: true, label: 'Prénom' %>
-            <%= f.input :last_name, placeholder: 'Doe', required: true, label: 'Nom' %>
-            <%= f.input :email, placeholder: 'john@doe.com', required: true, label: 'Votre email' %>
-            <%= f.input :password, placeholder: '***** ', required: true, label: 'Mot de passe' %>
-            <%= f.input :city, placeholder: 'Bordeaux', required: true, label: 'Votre ville' %>
+<div class="connexion connexion-user signup">
+  <div class="form-card">
+    <span>Créer mon compte</span>
+    <!-- SUBSCRIPTION FORM -->
+    <div class="subscription-form">
+      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= f.error_notification %>
+        <%= f.input :first_name, placeholder: 'John', required: true, label: 'Prénom *' %>
+        <%= f.input :last_name, placeholder: 'Doe', required: true, label: 'Nom *' %>
+        <%= f.input :email, placeholder: 'john@doe.com', required: true, label: 'Votre email *' %>
+        <%= f.input :password, placeholder: '***** ', required: true, label: 'Mot de passe *' %>
+        <%= f.input :city, placeholder: 'Bordeaux', required: true, label: 'Votre ville *' %>
 
-            <p>En cliquant sur <strong>S'inscrire</strong>, <strong>Facebook</strong> ou <strong>Google+</strong> vous acceptez les <a type="href" class="" data-toggle="modal" data-target="#modal-cgu"><strong>CGU</strong></a> et certifiez avoir de plus de 18 ans.</p>
+        <p>En cliquant sur <strong>S'inscrire</strong>, <strong>Facebook</strong> ou <strong>Google+</strong> vous acceptez les <a type="href" class="" data-toggle="modal" data-target="#modal-cgu"><strong>CGU</strong></a> et certifiez avoir de plus de 18 ans.</p>
 
-            <%= f.button :submit, "S'inscrire", class: "", style: "width:100%;" %>
-            <%= render "components/modals/signup_cgu" %>
-          <% end %>
-        </div>
-        <!-- FB & GOOGLE SUBSCRIPTION BUTTONS -->
-        <div class="subscription-network">
-          <span>ou</span>
-          <%= link_to raw("<i class=\"fa fa-facebook\">Facebook</i>"), user_omniauth_authorize_path(:facebook), class: "btn-facebook" %>
-          <%= link_to raw("<i class=\"fa fa-google\">Google</i>"), user_omniauth_authorize_path(:google_oauth2), class: "btn-google" %>
-        </div>
-      </div>
-      <div class="col-xs-12 already-subscribed">
-        <span class=""> Déjà membre ? <strong><%= link_to t(".connexion", :default => "Connexion"), new_session_path(resource_name) %></strong></span>
-      </div>
+        <%= f.button :submit, "Créer mon compte", class: "", style: "width:100%;" %>
+        <%= render "components/modals/signup_cgu" %>
+      <% end %>
     </div>
+    <!-- FB & GOOGLE SUBSCRIPTION BUTTONS -->
+    <div class="subscription-network">
+      <span>ou</span>
+      <%= link_to raw("<i class=\"fa fa-facebook\">Facebook</i>"), user_omniauth_authorize_path(:facebook), class: "btn-facebook" %>
+      <%= link_to raw("<i class=\"fa fa-google\">Google</i>"), user_omniauth_authorize_path(:google_oauth2), class: "btn-google" %>
+    </div>
+  </div>
+  <div class="col-xs-12 already-subscribed">
+    <span class=""> Déjà membre ? <strong><%= link_to t(".connexion", :default => "Connexion"), new_session_path(resource_name) %></strong></span>
   </div>
 </div>
