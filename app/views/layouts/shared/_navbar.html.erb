@@ -122,8 +122,11 @@
             <%= image_tag "default_pic.png", class: "img-circle" %>
           <% end %>
           <span class="user-name">
-            Bienvenue,<br> <%= current_user.first_name %> <%= current_user.last_name.chars.first + "." %>
-          </span>
+            <% if current_user.last_name %>
+              Bienvenue,<br> <%= current_user.first_name %> <%= current_user.last_name.chars.first + "." %>
+            <% elsif current_user.name %>
+              Bienvenue,<br> <%= current_user.name.split(" ")[0] %>
+            <% end %>
         </div>
         <ul>
           <li class="visible-xs">
@@ -144,7 +147,11 @@
                 <% else %>
                   <%= image_tag "default_pic.png", class: "img-circle" %>
                 <% end %>
-                <span class="user-name"><%= current_user.first_name %> <%= current_user.last_name.chars.first + "." %></span>
+                <% if current_user.last_name %>
+                  <span class="user-name"><%= current_user.first_name %> <%= current_user.last_name.chars.first + "." %></span>
+                <% elsif current_user.name %>
+                  <span class="user-name"><%= current_user.name.split(" ")[0]  %></span>
+                <% end %>
               <% end %>
             <% else %>
               <%= link_to member_user_dashboard_path(current_user) do %>
@@ -153,7 +160,11 @@
                 <% else %>
                   <%= image_tag "default_pic.png", class: "img-circle" %>
                 <% end %>
-                <span class="user-name"><%= current_user.first_name %> <%= current_user.last_name.chars.first + "." %></span>
+                  <% if current_user.last_name %>
+                    <span class="user-name"><%= current_user.first_name %> <%= current_user.last_name.chars.first + "." %></span>
+                  <% elsif current_user.name %>
+                    <span class="user-name"><%= current_user.name.split(" ")[0]  %></span>
+                  <% end %>
               <% end %>
             <% end %>
           </li>

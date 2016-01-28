@@ -8,7 +8,7 @@
 #  description    :text
 #  detail         :string
 #  periodicity_id :integer
-#  times          :integer
+#  times          :integer          default(0)
 #  start_date     :datetime
 #  end_date       :datetime
 #  permanent      :boolean          default(TRUE), not null
