@@ -63,9 +63,9 @@ class User < ActiveRecord::Base
   has_many :uses, dependent: :destroy
 
   validates :email, presence: true, uniqueness: true
-  validates :first_name, presence: true
-  validates :last_name, presence: true
-  validates :city, presence: true
+  # validates :first_name, presence: true
+  # validates :last_name, presence: true
+  # validates :city, presence: true
 
   has_attached_file :picture,
     styles: { medium: "300x300>", thumb: "100x100>" }
