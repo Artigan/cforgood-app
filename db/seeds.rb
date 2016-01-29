@@ -10,7 +10,7 @@ Business.destroy_all
 Perk.destroy_all
 
 # Chemin pour lese images
-path = "/Users/cedricmenteau/Desktop/Seeds/"
+path = "/Users/Didi/Desktop/CforGood/images/Seed/"
 
 #----------------------------------------------------
 # Création table BUSINESS_CATEGORIES
