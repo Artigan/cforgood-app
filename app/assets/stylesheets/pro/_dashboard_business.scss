@@ -10,8 +10,25 @@
     background-color: #f1f1f1;
     overflow-y: scroll;
 
+    .mobile-menu-overlay {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: rgba(0,0,0,0.4);
+      z-index: 20;
+      @include transition(all, 0.3s, ease-in-out);
+    }
+
     .mobile-title {
       display: none;
+    }
+
+    .logo-title {
+      float: left;
+      width: 25px;
+      margin-right: 5px;
     }
 
     .view-title {

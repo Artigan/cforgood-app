@@ -10,12 +10,6 @@ if ($(window).width() > 768) {
 };
 
 $(document).ready(function(){
-  $('.mobile-dropdown').click(function(event) {
-    $('.mobile-menu').toggleClass('hidden');
-  });
-});
-
-$(document).ready(function(){
   $('.menu-toggle').click(function(event) {
     $('#navbar').toggleClass('menu-toggled');
     $('#menu-icon').toggleClass('open');

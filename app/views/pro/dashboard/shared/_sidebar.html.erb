@@ -77,3 +77,19 @@
     </div>
   </div>
 <% end %>
+
+<% content_for :after_js do %>
+  <script>
+    $(document).ready(function(){
+      $('.mobile-dropdown').click(function(event) {
+        $('.mobile-menu').toggleClass('hidden');
+        $('.mobile-menu-overlay').toggleClass('hidden');
+      });
+
+      $('.mobile-menu-overlay').click(function(event) {
+        $(this).addClass('hidden');
+        $('.mobile-menu').addClass('hidden');
+      });
+    });
+  </script>
+<% end %>
