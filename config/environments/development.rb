@@ -42,9 +42,9 @@ Rails.application.configure do
   config.action_controller.asset_host = ENV['ASSET_HOST']
   config.action_mailer.asset_host = ENV['ASSET_HOST']
 
-  config.action_mailer.default_url_options = { host: "localhost:3000" }
-  # config.action_mailer.delivery_method = :letter_opener
-  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default_url_options = { host: "http://localhost:3000" }
+  config.action_mailer.delivery_method = :letter_opener
+  # config.action_mailer.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
     port:                 '587',
     address:              'smtp.mandrillapp.com',

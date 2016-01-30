@@ -95,6 +95,10 @@
     @include transition(all, 0.3s, ease-in-out);
   }
 
+  button[disabled="disabled"] {
+    background-color: grey;
+  }
+
   button:hover,
   button:focus,
   button:active,
