@@ -10,8 +10,25 @@
     background-color: #f1f1f1;
     overflow-y: scroll;
 
+    .mobile-menu-overlay {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: rgba(0,0,0,0.4);
+      z-index: 20;
+      @include transition(all, 0.3s, ease-in-out);
+    }
+
     .mobile-title {
       display: none;
+    }
+
+    .logo-title {
+      float: left;
+      width: 25px;
+      margin-right: 5px;
     }
 
     .view-title {
@@ -84,7 +101,8 @@
 
     .pro-map-businesses {
       position: relative;
-      height: 100vh;
+      margin-top: 50px;
+      height: calc(100vh - 50px);
       left: 18%;
     }
   }
@@ -378,12 +396,11 @@
       }
 
       .data-container {
-        position: absolute;
+        position: relative;
         padding-top: 0;
-        margin: 10px 20px 90px 20px;
+        margin: 0 20px 80px 20px;
         width: 90%;
         height: auto;
-        top: 50px;
         background-color: #fff;
         box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
 
@@ -460,6 +477,54 @@
           }
         }
 
+        .business-presentation {
+          padding: 50px 20px 0;
+          text-align: left;
+
+          span {
+            font-size: 14px;
+            text-transform: uppercase;
+            font-weight: 600;
+            color: #636363;
+          }
+
+          p {
+            font-size: 12px;
+            color: #636363;
+          }
+
+          ul {
+            display: flex;
+            flex-direction: row;
+
+            li, li:nth-child(1) {
+              display: flex;
+              flex-direction: row;
+              padding: 10px 0 10px;
+              line-height: 40px;
+              border-bottom: none;
+
+              .fa {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-right: 10px;
+                width: 30px;
+                height: 30px;
+                font-size: 14px;
+                color: #fff;
+                background-color: #9FD6AE;
+                border-radius: 50%;
+              }
+
+              i {
+                font-size: 12px;
+                color: #636363;
+              }
+            }
+          }
+        }
+
         .slick-slider {
           margin-bottom: 0;
 
@@ -468,14 +533,30 @@
           }
 
           .slick-dots {
-            position: relative;
-            height: 20px;
-            bottom: -7px;
+            display: flex !important;
+            flex-direction: row;
+            position: absolute;
+            height: 30px;
+            top: 0;
+            align-items: center;
             justify-content: center;
+            background-color: #636363;
+
+            li.slick-active button:before {
+              opacity: 1;
+            }
 
             li {
+              display: flex;
+              flex-direction: row;
+              border-bottom: none;
+              padding: 0;
+              margin: 0;
+              height: auto;
+
               button:before {
-                font-size: 25px;
+                font-size: 30px;
+                color: #fff;
               }
             }
           }
@@ -503,6 +584,226 @@
               padding-top: 5px;
               font-size: 14px;
             }
+          }
+
+          li:nth-child(1) {
+            padding-top: 30px;
+          }
+        }
+      }
+
+      /* PROFILE | BUSINESS DETAILS *******************************************/
+
+      .tab-container {
+        padding: 0 20px 90px;
+
+        .nav-tabs {
+          width: 100%;
+          border: none;
+
+          li {
+            width: 50%;
+            margin-bottom: -1px;
+            border: none;
+            text-align: center;
+
+            a {
+              margin: 0;
+              padding: 20px 15px;
+              background-color: transparent;
+              border: none;
+              border-radius: 4px 4px 0 0;
+              font-size: 13px;
+              font-weight: 600;
+              text-transform: uppercase;
+              color: #555555;
+              opacity: 0.6;
+
+              &:hover {
+                background-color: transparent;
+                opacity: 1;
+              }
+            }
+          }
+
+          li.active a,
+          li.active a:focus {
+            border: none;
+            background-color: #fff;
+            opacity: 1;
+
+            &:hover {
+              border: none;
+            }
+          }
+        }
+
+        .tab-content {
+          padding: 20px;
+          width: 100%;
+          background-color: #fff;
+
+          .form-group {
+            width: 100%;
+          }
+
+          form {
+            position: relative;
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            box-sizing: border-box;
+            text-align: left;
+
+            abbr {
+              display: none;
+            }
+
+            label {
+              margin: 0;
+              text-transform: uppercase;
+              font-size: 12px;
+              color: #636363;
+              font-weight: 600;
+            }
+
+            input,
+            select,
+            textarea {
+              padding: 10px 0px;
+              max-width: 100%;
+              background-color: transparent;
+              box-shadow: none;
+              border: none;
+              border-radius: 0;
+              border-bottom: 1px solid #f4f4f4;
+              font-size: 14px;
+              @include transition(all, 0.2s, ease-in-out);
+            }
+
+            textarea {
+              resize: none;
+            }
+
+            select {
+              -webkit-appearance:none;
+              -moz-appearance:none;
+              -ms-appearance:none;
+              appearance:none;
+              padding: 0;
+              width: 100%;
+              background: #fff url('https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_down_48px-128.png') no-repeat;
+            }
+
+            input:focus, input:active,
+            textarea:focus, textarea:active {
+              padding: 10px 10px;
+              box-shadow: none;
+              background-color: #f4f4f4;
+              border-left: 3px solid #636363;
+            }
+
+            select:focus, select:active {
+              padding: 0;
+            }
+
+            input[type="submit"] {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              width: 100%;
+              padding: 10px;
+              background-color: #9FD6AE;
+              border-radius: 3px;
+              color: #fff;
+              text-transform: uppercase;
+              font-size: 16px;
+              font-weight: 600;
+            }
+
+            input[type="submit"]:focus,
+            input[type="submit"]:active, {
+              background-color: #8BBD99;
+              border: none;
+            }
+
+            /* PROFILE - BUSINESS OWNER ***************************************/
+            .business_leader_first_name { width: 45%; margin-right: 5%; }
+
+            .business_leader_last_name { width: 45%; margin-left: 5%; }
+
+            .picture-container {
+              padding-bottom: 10px;
+              margin: 10px 0 0;
+              background-color: #f4f4f4;
+              border-radius: 3px 3px 0 0;
+              width: 100%;
+              padding: 10px;
+              text-align: center;
+              @include transition(all, 0.3s, ease-in-out);
+
+              .picture-owner,
+              .picture-business {
+                width: 100px !important;
+                height: 100px;
+              }
+            }
+
+            .business_picture,
+            .business_leader_picture {
+              width: 100%;
+              margin: 0 0 20px;
+            }
+
+            .business_picture,
+            .business_leader_picture {
+              label {
+                padding: 10px 20px;
+                border: 1px solid #f4f4f4;
+                border-top: none;
+                text-align: center;
+              }
+            }
+
+            #business_picture,
+            #business_leader_picture {
+              width: 0.1px;
+              height: 0.1px;
+              opacity: 0;
+              overflow: hidden;
+              position: absolute;
+              z-index: -1;
+            }
+
+             /* PROFILE - BUSINESS ********************************************/
+
+            .radio_buttons {
+              .radio {
+                margin: 10px 0 0;
+                width: 50%;
+                display: inline-block;
+              }
+            }
+
+            .business_zipcode {
+              width: 45%;
+              margin-right: 5%;
+            }
+
+            .business_city {
+              width: 45%;
+              margin-left: 5%;
+            }
+          }
+
+          .new-password {
+            display: block;
+            margin: 10px auto 0;
+            font-size: 12px;
+            color: #A5A5A5;
+            text-decoration: underline;
+            width: 100%;
+            text-align: center;
           }
         }
       }

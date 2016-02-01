@@ -72,3 +72,11 @@ $('.filter-carrousel').slick({
     // instead of a settings object
   ]
 });
+
+$('.business-dashboard').slick({
+      dots: true,
+      arrows:false,
+      infinite: false,
+      autoplay: false,
+      slidesToScroll: 1,
+    });
