@@ -4,7 +4,7 @@
       <%= f.error_notification %>
       <label>Photo</label>
       <div class="picture-container">
-         <%= image_tag current_business.picture.url, class: 'picture-business' %>
+         <%= image_tag current_business.picture.url(:thumb), class: 'picture-business' %>
       </div>
       <%= f.input :picture, as: :file, required: false, label: 'Sélectionner une nouvelle image' %>
       <%= f.input :name, placeholder: 'Nom', required: true, autofocus: true, label: "Nom de l'établissement" %>
