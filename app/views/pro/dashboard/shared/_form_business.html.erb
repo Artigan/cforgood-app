@@ -2,23 +2,47 @@
   <div class="form-edit">
     <%= simple_form_for(current_business, url: pro_update_business_path, method: :put, remote: true, authenticity_token: true) do |f| %>
       <%= f.error_notification %>
-      <%= f.input :name, placeholder: 'Nom', required: true, autofocus: true, label: false %>
-      <%= f.input :email, placeholder: 'Adresse email', required: true, label: false %>
-      <%= f.input :business_category_id, required: true, label: false, collection: BusinessCategory.all, hint: ("Choisissez la catégorie de votre commerce") %>
-      <%= image_tag current_business.picture.url(:thumb) %>
-      <%= f.input :picture, as: :file, hint: 'Photo de votre commerce', required: true, label: false %>
-      <br>
-      <%= f.input :telephone, placeholder: 'Téléphone', required: true, label: false %>
-      <%= f.input :facebook, placeholder: 'Facebook', label: false %>
-      <%= f.input :twitter, placeholder: 'Twitter', label: false %>
-      <%= f.input :instagram, placeholder: 'Instagram', label: false %>
-      <%= f.input :street, placeholder: 'Rue', required: true, label: false %>
-      <%= f.input :zipcode, placeholder: 'Code postal', required: true, label: false %>
-      <%= f.input :city, placeholder: 'Ville', required: true, label: false %>
-      <%= f.input :description, as: :text, placeholder: 'Description de votre commerce', required: true, label: false %>
-      <%= f.input :online, label: "Commerce online", as: :radio_buttons, collection: [['Oui', true ], ['Non', false ]], checked: current_business.online || false  %>
-      <%= f.input :url, placeholder: 'Adresse site', label: false %>
-      <%= f.button :submit, "Sauvegarder", class: "btn btn-turquoise" %>
+      <label>Photo</label>
+      <div class="picture-container">
+         <%= image_tag current_business.picture.url, class: 'picture-business' %>
+      </div>
+      <%= f.input :picture, as: :file, required: false, label: 'Sélectionner une nouvelle image' %>
+      <%= f.input :name, placeholder: 'Nom', required: true, autofocus: true, label: "Nom de l'établissement" %>
+      <%= f.input :description, as: :text, placeholder: 'Visible sur vos bons plans', :input_html => { :rows => 6 }, required: true, label: "Présenter votre commercie" %>
+      <%= f.input :street, placeholder: 'Rue', required: true, label: 'Adresse' %>
+      <%= f.input :zipcode, placeholder: 'Code postal', required: true, label: "Code postal" %>
+      <%= f.input :city, placeholder: 'Ville', required: true, label: 'Ville' %>
+      <%= f.input :business_category_id, required: true, label: 'Activité', collection: BusinessCategory.all %>
+      <%= f.input :online, label: "Avez-vous une e-boutique ?", as: :radio_buttons, collection: [['Oui', true ], ['Non', false ]], checked: current_business.online || false  %>
+      <%= f.input :url, placeholder: 'www.johndoe.com', label: 'Site web' %>
+      <%= f.input :email, placeholder: 'contact@johndoe.com', required: true, label: "Email" %>
+      <%= f.input :telephone, placeholder: 'Téléphone', required: true, label: 'Téléphone' %>
+      <%= f.input :facebook, placeholder: 'lapagedejohndoe', label: 'Facebook' %>
+      <%= f.input :twitter, placeholder: 'johndoe', label: 'Twitter' %>
+      <%= f.input :instagram, placeholder: 'johndoe', label: 'Instagram' %>
+      <%= f.button :submit, "Sauvegarder" %>
     <% end %>
   </div>
 </div>
+
+<% content_for :after_js do %>
+  <script>
+    $(document).ready(function() {
+      function readURL(input) {
+        var reader = new FileReader();
+          reader.onload = function (e) {
+            $('.picture-business').attr('src', e.target.result);
+          }
+        reader.readAsDataURL(input);
+      }
+
+      $('#profile-tab').addClass('active');
+      $(".business_picture").on("change", function(e) {
+        e.preventDefault();
+        var newFile = document.querySelector('#shop input[type=file]').files[0];
+        $(".business_picture").children().html(newFile.name);
+        readURL(newFile);
+      });
+    });
+  </script>
+<% end %>

@@ -10,7 +10,7 @@
           <span class="admin-label">Mon suivi</span>
         <% end %>
       </li>
-      <li class="<%= active_class(pro_business_perks_path(current_business))%> light">
+      <li id="perk-tab" class="<%= active_class(pro_business_perks_path(current_business))%> light">
         <%= link_to pro_business_perks_path(current_business) do %>
           <div class="icon-container">
             <%= image_tag('icons/myperks.png', :class => 'admin-icon') %>
@@ -27,7 +27,7 @@
         <% end %>
       </li>
       <!-- DESKTOP | GO TO PROFILE -->
-      <li class="<%= active_class(edit_business_registration_path(current_business))%> light desktop-profile">
+      <li id="perk-tab" class="<%= active_class(edit_business_registration_path(current_business))%> light desktop-profile">
         <%= link_to pro_business_profile_path(current_business) do %>
           <div class="icon-container">
             <%= image_tag('icons/profil.png', :class => 'admin-icon') %>
@@ -36,7 +36,7 @@
         <% end %>
       </li>
       <!-- MOBILE | OPEN MENU DROPDOWN -->
-      <li class="mobile-dropdown">
+      <li id="profile-tab" class="mobile-dropdown">
         <a href="#">
           <div class="icon-container">
             <%= image_tag('icons/profil.png', :class => 'admin-icon') %>

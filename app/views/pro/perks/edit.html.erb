@@ -18,3 +18,10 @@ Modifiez votre Bon Plan
   </div>
 </div>
 
+<% content_for :after_js do %>
+  <script>
+    $(document).ready(function() {
+     $('#perk-tab').addClass('active');
+    });
+  </script>
+<% end %>

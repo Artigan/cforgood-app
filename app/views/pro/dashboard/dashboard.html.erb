@@ -99,21 +99,21 @@ Consultez vos chiffres
               <ul>
                 <% if @business.facebook.present? %>
                   <li>
-                    <a href="<%= @business.facebook %>" class="link-facebook-business business-icon-container" target="_blank">
+                    <a href="http://facebook.com/<%= @business.facebook %>" class="link-facebook-business business-icon-container" target="_blank">
                       <i class="fa fa-facebook business-icon"></i>
                     </a>
                   </li>
                 <% end %>
                 <% if @business.twitter.present? %>
                   <li>
-                    <a href="<%= @business.twitter %>" class="link-instagram-business business-icon-container" target="_blank">
+                    <a href="http://twitter.com/<%= @business.twitter %>" class="link-instagram-business business-icon-container" target="_blank">
                       <i class="fa fa-twitter business-icon"></i>
                     </a>
                   </li>
                 <% end %>
                 <% if @business.instagram.present? %>
                   <li>
-                    <a href="<%= @business.instagram %>" class="link-instagram-business business-icon-container" target="_blank">
+                    <a href="http://instagram.com/<%= @business.instagram %>" class="link-instagram-business business-icon-container" target="_blank">
                       <i class="fa fa-instagram business-icon"></i>
                     </a>
                   </li>
