@@ -2,7 +2,9 @@
   <%= image_tag current_user.picture.url(:thumb) if current_user.picture %>
   <div class="user-info">
     <span>Mes informations</span>
-    <span><%= current_user.first_name + " " + current_user.last_name %></span>
+    <% if current_user.last_name != "" && current_user.last_name != nil %>
+      <span><%= current_user.first_name + " " + current_user.last_name %></span>
+    <% end %>
     <span><%= current_user.birthday.try(:strftime, '%d %b. %Y') %></span>
 
     <span>Mon adresse</span>
