@@ -14,7 +14,6 @@
         <p>En cliquant sur <strong>S'inscrire</strong>, <strong>Facebook</strong> ou <strong>Google+</strong> vous acceptez les <a type="href" class="" data-toggle="modal" data-target="#modal-cgu"><strong>CGU</strong></a> et certifiez avoir de plus de 18 ans.</p>
 
         <%= f.button :submit, "Créer mon compte", class: "", style: "width:100%;", id: "btn-submit", disabled: true %>
-        <%= render "components/modals/signup_cgu" %>
       <% end %>
     </div>
     <!-- FB & GOOGLE SUBSCRIPTION BUTTONS -->
@@ -29,6 +28,8 @@
   </div>
 </div>
 
+<!-- MODAL CGU CFORGOOD -->
+<%= render "components/modals/signup_cgu" %>
 
 <% content_for :after_js do %>
 
