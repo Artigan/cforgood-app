@@ -13,7 +13,6 @@
         <%= f.input :city, placeholder: 'Bordeaux', required: true, label: 'Votre ville *' %>
         <p>En cliquant sur <strong>S'inscrire</strong>, vous acceptez les <a type="href" class="" data-toggle="modal" data-target="#modal-cgu"><strong>CGU</strong></a> et certifiez avoir de plus de 18 ans.</p>
         <%= f.button :submit, "Créer mon compte" %>
-        <%= render "components/modals/signup_cgu" %>
       <% end %>
     </div>
   </div>
@@ -21,3 +20,6 @@
     <span>Déjà membre ?<strong><%= link_to t(".connexion", :default => "Connexion"), new_session_path(resource_name) %></strong></span>
   </div>
 </div>
+
+<!-- MODAL CGU CFORGOOD -->
+<%= render "components/modals/signup_cgu" %>

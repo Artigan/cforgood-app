@@ -30,10 +30,18 @@
       <li><img src="<%= image_path 'mastercard2.jpg' %>" alt="MASTERCARD"></li>
     </ul>
   </div>
+  <div >
+      <img src="<%= image_path 'powered-by-mangopay.png' %>" alt="CB"></li>
+      <a type="href" class="" data-toggle="modal" data-target="#modal-cgu-mangopay"><strong> | Informations légales</a>
+    </ul>
+  </div>
 </div>
 <div>
   <%= image_tag('icons/loading.gif', id: "loading-indicator", style: "display:none") %>
 </div>
+
+<!-- MODAL MESSAGE INFORMATION -->
+<%= render "components/modals/cgu_mangopay" %>
 
 <!-- MODAL MESSAGE INFORMATION -->
 <%= render "components/modals/payment" %>
