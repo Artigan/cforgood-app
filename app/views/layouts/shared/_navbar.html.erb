@@ -124,7 +124,7 @@
           <span class="user-name">
             <% if current_user.last_name != "" && current_user.last_name != nil %>
               Bienvenue,<br> <%= current_user.first_name %> <%= current_user.last_name.chars.first + "." %>
-            <% elsif current_user.name != "" && current_user.last_name != nil %>
+            <% elsif current_user.name != "" && current_user.name != nil %>
               Bienvenue,<br> <%= current_user.name.split(" ")[0] %>
             <% end %>
         </div>
@@ -149,7 +149,7 @@
                 <% end %>
                 <% if current_user.last_name != "" && current_user.last_name != nil %>
                   <span class="user-name"><%= current_user.first_name %> <%= current_user.last_name.chars.first + "." %></span>
-                <% elsif current_user.name != "" && current_user.last_name != nil %>
+                <% elsif current_user.name != "" && current_user.name != nil %>
                   <span class="user-name"><%= current_user.name.split(" ")[0]  %></span>
                 <% end %>
               <% end %>
@@ -162,7 +162,7 @@
                 <% end %>
                   <% if current_user.last_name != "" && current_user.last_name != nil %>
                     <span class="user-name"><%= current_user.first_name %> <%= current_user.last_name.chars.first + "." %></span>
-                  <% elsif current_user.name != "" && current_user.last_name != nil %>
+                  <% elsif current_user.name != "" && current_user.name != nil %>
                     <span class="user-name"><%= current_user.name.split(" ")[0]  %></span>
                   <% end %>
               <% end %>
