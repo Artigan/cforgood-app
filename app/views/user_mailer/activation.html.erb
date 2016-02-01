@@ -33,8 +33,8 @@
                       <td>
                         <p> A très vite,<br>
                         L'équipe <strong>CforGood</strong></p>
-                        <%= link_to root_path, target: "_blank" do %>
-                          <%= image_tag "logo.png", class: "logo" %>
+                        <%= link_to root_url, target: "_blank" do %>
+                          <%= image_tag "logo.png", class: "logo", style: "width:140px;" %>
                         <% end %>
                       </td>
                     </tr>
@@ -42,10 +42,10 @@
                       <td>
                         <p class="social-link">
                           <a class="icon" href="https://www.facebook.com/cforgood/" target="_blank">
-                            <%= image_tag "icons/icon_facebook.png" %>
+                            <%= image_tag "icons/icon_facebook.png", style: "width:25px;"  %>
                           </a>
                           <a class="icon" href="https://twitter.com/cforgood" target="_blank">
-                            <%= image_tag "icons/icon_twitter.png" %>
+                            <%= image_tag "icons/icon_twitter.png", style: "width:25px;"  %>
                           </a>
                         </p>
                       </td>
