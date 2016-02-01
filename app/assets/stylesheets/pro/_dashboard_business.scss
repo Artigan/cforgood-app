@@ -602,7 +602,7 @@
 
           li {
             width: 50%;
-            margin-bottom: 0;
+            margin-bottom: -1px;
             border: none;
             text-align: center;
 
@@ -667,7 +667,8 @@
             }
 
             input,
-            select {
+            select,
+            textarea {
               padding: 10px 0px;
               max-width: 100%;
               background-color: transparent;
@@ -677,6 +678,10 @@
               border-bottom: 1px solid #f4f4f4;
               font-size: 14px;
               @include transition(all, 0.2s, ease-in-out);
+            }
+
+            textarea {
+              resize: none;
             }
 
             select {
@@ -698,7 +703,9 @@
 
             input[type="submit"] {
               display: block;
+              width: 100%;
               padding: 10px;
+              margin-top: 20px;
               background-color: $turquoise;
               border-radius: 3px;
               color: #fff;
@@ -710,6 +717,47 @@
             input[type="submit"]:focus,
             input[type="submit"]:active, {
               background-color: #19A2C2;
+            }
+
+            /* PROFILE - BUSINESS OWNER ***************************************/
+            .business_leader_first_name,
+            .business_leader_phone { width: 45%; margin-right: 5%; }
+
+            .business_leader_last_name,
+            .business_leader_email { width: 45%; margin-left: 5%; }
+
+            .picture-container {
+              padding-bottom: 10px;
+              margin: 10px 0 20px;
+
+
+              .picture-owner{
+                float: left;
+                width: 100px !important;
+                height: 100px;
+              }
+            }
+
+            .business_leader_picture {
+              width: 66%;
+              margin: 0;
+            }
+
+            #business_leader_picture {
+              width: 0.1px;
+              height: 0.1px;
+              opacity: 0;
+              overflow: hidden;
+              position: absolute;
+              z-index: -1;
+            }
+
+            .business_leader_picture {
+              label {
+                text-transform: none;
+                border: 1px solid #636363;
+
+              }
             }
           }
         }

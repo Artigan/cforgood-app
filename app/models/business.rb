@@ -41,6 +41,8 @@
 #  leader_description          :string
 #  active                      :boolean          default(FALSE), not null
 #  online                      :boolean          default(FALSE), not null
+#  leader_phone                :string
+#  leader_email                :string
 #
 # Indexes
 #

@@ -1,0 +1,45 @@
+<div class="form-edit-container">
+  <div class="form-edit">
+    <%= simple_form_for(current_business, url: pro_update_business_path, method: :put, remote: true, authenticity_token: true) do |f| %>
+      <%= f.error_notification %>
+      <label>Photo</label>
+      <div class="picture-container">
+        <%= image_tag current_business.leader_picture.url, class: 'picture-owner' %>
+        <%= f.input :leader_picture, as: :file, required: false, label: current_business.leader_picture_file_name %>
+      </div>
+      <%= f.input :leader_first_name, placeholder: 'John', required: true, label: 'Prénom', class: "inline-input" %>
+      <%= f.input :leader_last_name, placeholder: 'Doe', required: true, label: 'Nom', class: "inline-input" %>
+      <%= f.input :leader_description, as: :text, :input_html => { :rows => 6 }, placeholder: 'Le saviez-vous ?', required: true, label: 'Bio' %>
+      <%= f.input :leader_phone, placeholder: '05 56 01 01 01', required: true, label: 'Ligne perso', class: "inline-input" %>
+      <%= f.input :leader_email, placeholder: 'john@doe.com', required: true, label: 'Email perso', class: "inline-input" %>
+      <%# if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <!-- <p>Currently waiting confirmation for: <%#= resource.unconfirmed_email %></p> -->
+      <%# end %>
+      <%= f.button :submit, "Sauvegarder", class: "btn btn-turquoise" %>
+    <% end %>
+  </div>
+  <div>
+    <%= link_to t(".change_your_password", :default => "Changez votre mot de passe ?"), new_business_password_path(:business), class: "new-password" %>
+  </div>
+</div>
+
+<% content_for :after_js do %>
+  <script>
+    function readURL(input) {
+      var reader = new FileReader();
+        reader.onload = function (e) {
+          $('.picture-owner').attr('src', e.target.result);
+        }
+      reader.readAsDataURL(input);
+    }
+
+    $(document).ready(function() {
+      $(".business_leader_picture").on("change", function(e) {
+        e.preventDefault();
+        var newFile = document.querySelector('input[type=file]').files[0];
+        $(".business_leader_picture").children().html(newFile.name);
+        readURL(newFile);
+      });
+    });
+  </script>
+<% end %>
