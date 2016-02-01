@@ -10,7 +10,7 @@
                   <table class="twelve columns">
                     <tr>
                       <td>
-                        <%= image_tag "cforgood_mail.png" %>
+                        <%= image_tag "cforgood_mail.jpg", class: "img-header" %>
                       </td>
                     </tr>
                     <tr>
@@ -32,7 +32,9 @@
                       <td>
                         <p> A très vite,<br>
                         L'équipe <strong>CforGood</strong></p>
-                        <p><%= image_tag "logo.png", class: "logo", style: "width:120px;" %></p>
+                        <%= link_to root_path, target: "_blank" do %>
+                          <%= image_tag "logo.png", class: "logo" %>
+                        <% end %>
                       </td>
                     </tr>
                     <tr>
