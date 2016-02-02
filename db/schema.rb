@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160201085711) do
+ActiveRecord::Schema.define(version: 20160202085832) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -136,6 +136,14 @@ ActiveRecord::Schema.define(version: 20160201085711) do
   end
 
   add_index "causes", ["cause_category_id"], name: "index_causes_on_cause_category_id", using: :btree
+
+  create_table "partners", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "code_promo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "periodicities", force: :cascade do |t|
     t.string   "period"
