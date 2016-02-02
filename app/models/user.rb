@@ -44,14 +44,13 @@
 #  city                   :string
 #  latitude               :float
 #  longitude              :float
-#  partner_id             :integer
 #  date_partner           :date
+#  code_promo             :string
 #
 # Indexes
 #
 #  index_users_on_cause_id              (cause_id)
 #  index_users_on_email                 (email) UNIQUE
-#  index_users_on_partner_id            (partner_id)
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
 
@@ -64,7 +63,6 @@ class User < ActiveRecord::Base
 
   # has_one :cause
   has_many :uses
-  belongs_to :partners
 
   validates :email, presence: true, uniqueness: true
   # validates :first_name, presence: true
@@ -77,9 +75,14 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :picture,
     content_type: /\Aimage\/.*\z/
 
-  after_save :trial_done!, if: :subscription_changed?
+  validate :code_promo?, if: :code_promo_changed?
   validate :date_subscription!, if: :subscription_changed?
   validate :member!, if: :date_last_payment_changed?
+
+  geocoded_by :address
+  after_validation :geocode, if: :address_changed?
+
+  after_save :trial_done!, if: :subscription_changed?
 
   after_create :send_registration_email
   after_save :send_activation_email if :active_changed?
@@ -162,6 +165,23 @@ class User < ActiveRecord::Base
   end
 
   private
+
+  def code_promo?
+    if Partner.find_by_code_promo(code_promo)
+      self.code_promo.upcase!
+      self.date_partner = Time.now
+    else
+      errors.add(:code_promo, "Code promotionnel invalide") unless Partner.find_by_code_promo(code_promo.upcase)
+    end
+  end
+
+  def address_changed?
+    :street_changed? || :zipcode_changed? || :city_changed?
+  end
+
+  def address
+    "#{street}, #{zipcode} #{city}"
+  end
 
   def send_registration_email
     UserMailer.registration(self).deliver_now
