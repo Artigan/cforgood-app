@@ -14,4 +14,6 @@ class Partner < ActiveRecord::Base
   validates :name, presence: true
   validates :email, presence: true, uniqueness: true
   validates :code_promo, presence: true, uniqueness: true
+
+  has_many :users
 end

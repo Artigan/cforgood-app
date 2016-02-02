@@ -44,11 +44,14 @@
 #  city                   :string
 #  latitude               :float
 #  longitude              :float
+#  partner_id             :integer
+#  date_partner           :date
 #
 # Indexes
 #
 #  index_users_on_cause_id              (cause_id)
 #  index_users_on_email                 (email) UNIQUE
+#  index_users_on_partner_id            (partner_id)
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
 
@@ -61,6 +64,7 @@ class User < ActiveRecord::Base
 
   # has_one :cause
   has_many :uses
+  belongs_to :partners
 
   validates :email, presence: true, uniqueness: true
   # validates :first_name, presence: true
@@ -68,7 +72,7 @@ class User < ActiveRecord::Base
   # validates :city, presence: true
 
   has_attached_file :picture,
-    styles: { medium: "300x300>", thumb: "100x100>" }
+    styles: { medium: "300x300#", thumb: "100x100#" }
 
   validates_attachment_content_type :picture,
     content_type: /\Aimage\/.*\z/
@@ -79,7 +83,6 @@ class User < ActiveRecord::Base
 
   after_create :send_registration_email
   after_save :send_activation_email if :active_changed?
-
 
   def self.find_for_google_oauth2(access_token, signed_in_resourse=nil)
     data = access_token.info
@@ -165,7 +168,7 @@ class User < ActiveRecord::Base
   end
 
     def send_activation_email
-      if active_was == false and self.active == true
+      if active_was == false && self.active == true
         UserMailer.activation(self).deliver_now
       end
   end
