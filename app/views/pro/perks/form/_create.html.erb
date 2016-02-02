@@ -10,7 +10,7 @@
       <span class="type-category">Acquisition</span>
     </div>
     <div class="type-content">
-      <p>Proposez une offre attractive.<br>Utilisable 1x par nouveau client</p>
+      <p>Proposez une offre attractive<br>Utilisable 1x par nouveau client</p>
       <span id="type-create-appel" class="type-create"><i class="fa fa-plus"></i></span>
     </div>
   </a>
@@ -23,7 +23,7 @@
       <span class="type-category">Fidélisation</span>
     </div>
     <div class="type-content">
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      <p>Fidéliser une nouvelle clientèle<br>Utilisable à l'infini</p>
       <span id="type-create-durable" class="type-create"><i class="fa fa-plus"></i></span>
     </div>
   </a>
@@ -36,7 +36,7 @@
       <span class="type-category">Activation</span>
     </div>
     <div class="type-content">
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      <p>Réduire le gaspillage<br>Quantité et temps limité</p>
       <span id="type-create-flash" class="type-create"><i class="fa fa-plus"></i></span>
     </div>
   </a>
@@ -172,30 +172,39 @@
 
       // OPEN PERK APPEL ON CLICK
       $("#type-create-appel").on("click", function() {
+        $(this).find('.fa-plus').addClass('plus-animation');
         $('.dashboard').scrollTop(0);
         $(".dashboard-overlay").removeClass('hidden');
         $(".perk-appel").addClass('type-show');
+        //$('.type-card').siblings().addClass('hidden');
+        $(this).parents('.type-card').addClass('card-visible').siblings('.type-card').addClass('card-invisible');
       });
 
       // OPEN PERK DURABLE ON CLICK
       $("#type-create-durable").on("click", function() {
+        $(this).find('.fa-plus').addClass('plus-animation');
         $('.dashboard').scrollTop(0);
         $(".dashboard-overlay").removeClass('hidden');
         $(".perk-durable").addClass('type-show');
+        $(this).parents('.type-card').addClass('card-visible').siblings('.type-card').addClass('card-invisible');
       });
 
       // OPEN PERK FLASH ON CLICK
       $("#type-create-flash").on("click", function() {
+        $(this).find('.fa-plus').addClass('plus-animation');
         $('.dashboard').scrollTop(0);
         $(".dashboard-overlay").removeClass('hidden');
         $(".perk-flash").addClass('type-show');
+        $(this).parents('.type-card').addClass('card-visible').siblings('.type-card').addClass('card-invisible');
       });
 
       // CLOSE PERK ON CLICK
       $(".close-create").on("click", function(e) {
         e.preventDefault;
+        $('.fa-plus').removeClass('plus-animation');
         $(".dashboard-overlay").addClass('hidden');
         $(".perk-form-card").removeClass('type-show');
+        $('.type-card').removeClass('card-invisible');
       });
 
       //REMOVE PERK ON CLICK OUTSIDE THE CARD

@@ -931,3 +931,223 @@
     }
   }
 }
+
+/* PROFILE | BUSINESS DETAILS *******************************************/
+
+.admin {
+  .dashboard {
+    .tab-container {
+      padding: 0 20px 90px;
+
+      .nav-tabs {
+        width: 100%;
+        border: none;
+
+        li {
+          width: 50%;
+          margin-bottom: -1px;
+          border: none;
+          text-align: center;
+
+          a {
+            margin: 0;
+            padding: 20px 15px;
+            background-color: transparent;
+            border: none;
+            border-radius: 4px 4px 0 0;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #555555;
+            opacity: 0.6;
+
+            &:hover {
+              background-color: transparent;
+              opacity: 1;
+            }
+          }
+        }
+
+        li.active a,
+        li.active a:focus {
+          border: none;
+          background-color: #fff;
+          opacity: 1;
+
+          &:hover {
+            border: none;
+          }
+        }
+      }
+
+      .tab-content {
+        padding: 20px;
+        width: 100%;
+        background-color: #fff;
+
+        .form-group {
+          width: 100%;
+        }
+
+        form {
+          position: relative;
+          width: 100%;
+          display: flex;
+          flex-wrap: wrap;
+          box-sizing: border-box;
+          text-align: left;
+
+          abbr {
+            display: none;
+          }
+
+          label {
+            margin: 0;
+            text-transform: uppercase;
+            font-size: 12px;
+            color: #636363;
+            font-weight: 600;
+          }
+
+          input,
+          select,
+          textarea {
+            padding: 10px 0px;
+            max-width: 100%;
+            background-color: transparent;
+            box-shadow: none;
+            border: none;
+            border-radius: 0;
+            border-bottom: 1px solid #f4f4f4;
+            font-size: 14px;
+            @include transition(all, 0.2s, ease-in-out);
+          }
+
+          textarea {
+            resize: none;
+          }
+
+          select {
+            -webkit-appearance:none;
+            -moz-appearance:none;
+            -ms-appearance:none;
+            appearance:none;
+            padding: 0;
+            width: 100%;
+            background: #fff url('https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_down_48px-128.png') no-repeat;
+          }
+
+          input:focus, input:active,
+          textarea:focus, textarea:active {
+            padding: 10px 10px;
+            box-shadow: none;
+            background-color: #f4f4f4;
+            border-left: 3px solid #636363;
+          }
+
+          select:focus, select:active {
+            padding: 0;
+          }
+
+          input[type="submit"] {
+            // display: flex;
+            // align-items: center;
+            // justify-content: center;
+            width: 100%;
+            padding: 10px;
+            background-color: #9FD6AE;
+            border-radius: 3px;
+            color: #fff;
+            text-transform: uppercase;
+            font-size: 16px;
+            font-weight: 600;
+          }
+
+          input[type="submit"]:focus,
+          input[type="submit"]:active, {
+            background-color: #8BBD99;
+            border: none;
+          }
+
+          /* PROFILE - BUSINESS OWNER ***************************************/
+          .business_leader_first_name { width: 45%; margin-right: 5%; }
+
+          .business_leader_last_name { width: 45%; margin-left: 5%; }
+
+          .picture-container {
+            padding-bottom: 10px;
+            margin: 10px 0 0;
+            background-color: #f4f4f4;
+            border-radius: 3px 3px 0 0;
+            width: 100%;
+            padding: 10px;
+            text-align: center;
+            @include transition(all, 0.3s, ease-in-out);
+
+            .picture-owner,
+            .picture-business {
+              width: 100px !important;
+              height: 100px;
+            }
+          }
+
+          .business_picture,
+          .business_leader_picture {
+            width: 100%;
+            margin: 0 0 20px;
+          }
+
+          .business_picture,
+          .business_leader_picture {
+            label {
+              padding: 10px 20px;
+              border: 1px solid #f4f4f4;
+              border-top: none;
+              text-align: center;
+            }
+          }
+
+          #business_picture,
+          #business_leader_picture {
+            width: 0.1px;
+            height: 0.1px;
+            opacity: 0;
+            overflow: hidden;
+            position: absolute;
+            z-index: -1;
+          }
+
+           /* PROFILE - BUSINESS ********************************************/
+
+          .radio_buttons {
+            .radio {
+              margin: 10px 0 0;
+              width: 50%;
+              display: inline-block;
+            }
+          }
+
+          .business_zipcode {
+            width: 45%;
+            margin-right: 5%;
+          }
+
+          .business_city {
+            width: 45%;
+            margin-left: 5%;
+          }
+        }
+
+        .new-password {
+          display: block;
+          margin: 10px auto 0;
+          font-size: 12px;
+          color: #A5A5A5;
+          text-decoration: underline;
+          width: 100%;
+          text-align: center;
+        }
+      }
+    }
+  }
+}
