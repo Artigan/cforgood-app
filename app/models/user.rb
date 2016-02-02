@@ -60,7 +60,7 @@ class User < ActiveRecord::Base
          :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
 
   # has_one :cause
-  has_many :uses, dependent: :destroy
+  has_many :uses
 
   validates :email, presence: true, uniqueness: true
   # validates :first_name, presence: true
