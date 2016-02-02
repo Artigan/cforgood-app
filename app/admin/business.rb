@@ -5,6 +5,7 @@ ActiveAdmin.register Business do
     column :business_category
     column :email
     column :telephone
+    column :city
     column :created_at
     actions
   end
@@ -25,6 +26,12 @@ ActiveAdmin.register Business do
       f.input :longitude
       f.input :telephone
       f.input :picture, :as => :file
+      f.input :leader_first_name
+      f.input :leader_last_name
+      f.input :leader_description
+      f.input :leader_phone
+      f.input :leader_email
+      f.input :leader_picture, :as => :file
     end
     f.inputs "Admin" do
       f.input :active
@@ -32,19 +39,5 @@ ActiveAdmin.register Business do
     f.actions
   end
 
-  permit_params :name, :email, :business_category_id, :description, :url, :street, :zipcode, :city, :facebook, :twitter, :instagram, :telephone, :picture, :latitude, :longitude, :active
-# See permitted parameters documentation:
-# https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-#
-# permit_params :list, :of, :attributes, :on, :model
-#
-# or
-#
-# permit_params do
-#   permitted = [:permitted, :attributes]
-#   permitted << :other if resource.something?
-#   permitted
-# end
-
-
+  permit_params :name, :email, :business_category_id, :description, :url, :street, :zipcode, :city, :facebook, :twitter, :instagram, :telephone, :picture, :latitude, :longitude, :active, :leader_picture, :leader_first_name, :leader_last_name, :leader_description, :leader_phone, :leader_email
 end
