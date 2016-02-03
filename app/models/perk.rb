@@ -41,6 +41,23 @@ class Perk < ActiveRecord::Base
   validate :start_date_cannot_be_greater_than_end_date
   validate :generate_code
 
+  def update_nb_view!
+    self.increment!(:nb_views)
+  end
+
+  def perk_usable?(user)
+    if self.durable
+      true
+    elsif self.appel
+      user.uses.where(perk_id: self.id).count == 0
+    elsif self.flash
+      raise
+      Time.now >= self.start_date && Time.now <= self.end_date && (self.times == 0 || Use.where(perk_id: self.id).count < self.times)
+    end
+  end
+
+  private
+
   def dates_required_if_flash
     if !permanent && !start_date.present?
       errors.add(:start_date, "La date de début est obligatoire pour un bon plan flash.")
@@ -64,18 +81,4 @@ class Perk < ActiveRecord::Base
     end
   end
 
-  def update_nb_view!
-    self.increment!(:nb_views)
-  end
-
-  def perk_usable?(user)
-    if self.durable
-      true
-    elsif self.appel
-      user.uses.where(perk_id: self.id).count == 0
-    elsif self.flash
-      raise
-      Time.now >= self.start_date && Time.now <= self.end_date && (self.times == 0 || Use.where(perk_id: self.id).count < self.times)
-    end
-  end
 end
