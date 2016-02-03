@@ -13,12 +13,12 @@
     <div class="mobile-menu-overlay hidden"></div>
     <div class="admin-perks">
       <%= image_tag('logopouce.png', class: 'logo-title') %>
-      <span class="mobile-perks">Mes bons plans</span>
+      <span class="view-title">Mes bons plans</span>
       <% @perks.reverse.each do |perk| %>
         <div class="admin-perk-card">
           <!-- PERK ACTIVATION -->
           <div class="perk-activation">
-            <span>Activer le bon plan</span>
+            <span>Désactiver / Activer</span>
             <input class="tgl tgl-light" id="<%= perk.id %>" type="checkbox" <%= 'checked="checked"' if perk.active %>>
             <label class="tgl-btn" for="<%= perk.id %>"></label>
             <%= simple_form_for :perk, url: pro_business_perk_path(current_business, perk.id), method: :patch, html: { id: "update_perk_#{perk.id}", class: "hidden" } do |f| %>
@@ -30,10 +30,16 @@
           <div class="perk-details">
             <div class="perk-title">
               <%= perk.perk.upcase %>
-              <% if !perk.permanent %>
+              <% if perk.appel %>
+                <i class="fa fa-users pro-card-perk-flash"></i>
+              <% end %>
+              <% if perk.durable %>
+                <i class="fa fa-calendar-check-o pro-card-perk-flash"></i>
+              <% end %>
+              <% if perk.flash %>
                 <i class="fa fa-bolt pro-card-perk-flash"></i>
               <% end %>
-              <span class="perk-code"><%= perk.perk_code %></span>
+              <span class="perk-code">Code client : <%= perk.perk_code %></span>
             </div>
             <div class="perk-content">
               <%= perk.description %>
@@ -56,10 +62,9 @@
               </div>
             </div>
           </div>
-          <div class="perk-status">
-            <%= link_to edit_pro_perk_path(perk) do %>
-              Modifier
-            <% end %>
+          <%= link_to 'Modifier', edit_pro_perk_path(perk), class: "perk-status"  %>
+          <div class="perk-creation-date">
+            <span>Créé : <em>le 3 février 2016</em></span>
           </div>
         </div>
       <% end %>

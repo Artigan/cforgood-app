@@ -3,25 +3,6 @@
 .admin {
   .dashboard {
 
-    .mobile-title {
-      display: none;
-    }
-
-    .logo-title {
-      float: left;
-      width: 25px;
-      margin-right: 5px;
-    }
-
-    .view-title {
-      display: flex;
-      align-items: center;
-      text-transform: uppercase;
-      font-size: 14px;
-      font-weight: 600;
-      color: #636363;
-    }
-
     .admin-stats {
       position: absolute;
       top: 0;
