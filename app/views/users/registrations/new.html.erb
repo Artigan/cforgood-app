@@ -39,18 +39,12 @@
 
       $("form").on("change", function(e) {
         e.preventDefault();
-        if ($("#user_code_promo").val() != "") {
-          var codePromo = $("#user_code_promo").val();
-          var partnerId = "<%= Partner.find_by_code_promo(params[:code_promo]) %>";
-          console.log(codePromo);
-          console.log(partnerId);
-          if ($("#user_first_name").val() != "" &&
-              $("#user_last_name").val() != "" &&
-              $("#user_city").val() != "" ) {
-            $("#btn-submit").attr("disabled", false);
-          } else {
-          $("#btn-submit").attr("disabled", true);
-          }
+        if ($("#user_first_name").val() != "" &&
+            $("#user_last_name").val() != "" &&
+            $("#user_city").val() != "" ) {
+          $("#btn-submit").attr("disabled", false);
+        } else {
+        $("#btn-submit").attr("disabled", true);
         }
       });
 
