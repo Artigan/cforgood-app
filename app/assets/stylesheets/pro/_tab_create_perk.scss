@@ -440,6 +440,98 @@
   @include transition(all, 0.3s, ease-in-out);
 }
 
+/* PERK CREATION CONFIRMATION *************************************************/
+.done-overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(0,0,0,0.6);
+  @include transition(all, 0.3s, ease-in-out);
+
+  .done-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    padding: 45px 20px 20px;
+    width: 300px;
+    height: 420px;
+    background-color: #fff;
+    border-radius: 3px;
+    z-index: 500;
+
+    .wrapper {
+      padding: 20px 20px 15px;
+      width: 140px;
+      background-color: #9FD6AE;
+      border-radius: 50%;
+
+      .checkmark {
+        stroke: #fff;
+        stroke-dashoffset: 745.74853515625;
+        stroke-dasharray: 745.74853515625;
+        animation: dash 2s ease-out forwards;
+         -webkit-animation-delay: 2s;
+        animation-delay: 1s;
+      }
+
+      @keyframes dash {
+        0% {
+          stroke-dashoffset: 745.74853515625;
+        }
+        100% {
+          stroke-dashoffset: 0;
+        }
+      }
+    }
+
+    span {
+      padding-top: 30px;
+      text-transform: uppercase;
+      font-weight: 600;
+      font-size: 20px;
+      text-align: center;
+
+      small {
+        font-size: 15px;
+        text-transform: none;
+        color: #636363;
+      }
+    }
+
+    p {
+      margin: 0;
+      padding: 20px 10px;
+      font-size: 12px;
+      color: #636363;
+      text-align: center;
+    }
+
+    a {
+      position: absolute;
+      padding: 10px 0;
+      margin: 0;
+      width: 100%;
+      left: 0px;
+      bottom: 0;
+      background-color: #f4f4f4;
+      border-radius: 0 0 3px 3px;
+      text-align: center;
+      font-size: 12px;
+      color: #636363;
+      text-decoration: underline;
+
+      &:hover, &:active, &:focus {
+        color: #636363;
+      }
+    }
+  }
+}
 
 @media only screen and (min-width:769px){
 
@@ -447,8 +539,14 @@
     .dashboard-create-perk {
       min-height: 100vh;
 
+      .view-title,
+      .logo-title {
+        display: none;
+      }
+
       .type-card {
         max-width: 47%;
+        margin: 0 0 20px;
       }
 
       .card-visible {
@@ -464,17 +562,24 @@
 
     .perk-form-card {
       width: 47%;
-      min-height: 479px;
-      top: 64px;
+      min-height: 448px;
       -webkit-transform: translateX(500%);
       -moz-transform: translateX(500%);
       -o-transform: translateX(500%);
       transform: translateX(500%);
+
+      .type-reminder {
+        display: none;
+      }
+
+      form {
+        min-height: 380px;
+      }
     }
 
     .type-show {
       z-index: 200;
-      margin-bottom: 60px;
+      margin-bottom: 0;
        -webkit-transform: translateX(100%);
       -moz-transform: translateX(100%);
       -o-transform: translateX(100%);
@@ -496,17 +601,17 @@
 
 @media only screen and (min-width:1200px){
   .form-perk-container {
-      .dashboard-create-perk {
-        .perk-form-card {
-          width: 50%;
-        }
+    .dashboard-create-perk {
+      .perk-form-card {
+        width: 50%;
+      }
 
-        .type-show {
-           -webkit-transform: translateX(93%);
-          -moz-transform: translateX(93%);
-          -o-transform: translateX(93%);
-          transform: translateX(93%);
-        }
+      .type-show {
+         -webkit-transform: translateX(93%);
+        -moz-transform: translateX(93%);
+        -o-transform: translateX(93%);
+        transform: translateX(93%);
       }
     }
+  }
 }

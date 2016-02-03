@@ -2,21 +2,26 @@
   <div class="form-edit">
     <%= simple_form_for(current_business, url: pro_update_business_path, method: :put, remote: true, authenticity_token: true) do |f| %>
       <%= f.error_notification %>
-      <label>Photo</label>
-      <div class="picture-container">
-        <%= image_tag current_business.leader_picture.url(:thumb), class: 'picture-owner' %>
-      </div>
+      <div class="col-1">
+        <label>Photo</label>
+        <div class="picture-container">
+          <%= image_tag current_business.leader_picture.url(:thumb), class: 'picture-owner' %>
+        </div>
         <%= f.input :leader_picture, as: :file, required: false, label: 'Sélectionner une nouvelle image' %>
-
-      <%= f.input :leader_first_name, placeholder: 'John', required: true, label: 'Prénom', class: "inline-input" %>
-      <%= f.input :leader_last_name, placeholder: 'Doe', required: true, label: 'Nom', class: "inline-input" %>
-      <%= f.input :leader_description, as: :text, :input_html => { :rows => 6 }, placeholder: 'Visible sur vos bons plans', required: true, label: 'Bio' %>
+      </div>
+      <div class="col-1">
+        <%= f.input :leader_first_name, placeholder: 'John', required: true, label: 'Prénom', class: "inline-input" %>
+        <%= f.input :leader_last_name, placeholder: 'Doe', required: true, label: 'Nom', class: "inline-input" %>
+        <%= f.input :leader_description, as: :text, :input_html => { :rows => 6 }, placeholder: 'Visible sur vos bons plans', required: true, label: 'Bio' %>
+      </div>
       <%= f.input :leader_phone, placeholder: '05 56 01 01 01', required: true, label: 'Ligne personnelle', class: "inline-input" %>
       <%= f.input :leader_email, placeholder: 'john@doe.com', required: true, label: 'Email personnel', class: "inline-input" %>
       <%# if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
         <!-- <p>Currently waiting confirmation for: <%#= resource.unconfirmed_email %></p> -->
       <%# end %>
-      <%= f.button :submit, "Sauvegarder" %>
+      <div class="col-2">
+        <%= f.button :submit, "Sauvegarder" %>
+      </div>
     <% end %>
   </div>
   <div>

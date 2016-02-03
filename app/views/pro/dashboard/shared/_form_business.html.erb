@@ -2,17 +2,23 @@
   <div class="form-edit">
     <%= simple_form_for(current_business, url: pro_update_business_path, method: :put, remote: true, authenticity_token: true) do |f| %>
       <%= f.error_notification %>
-      <label>Photo</label>
-      <div class="picture-container">
-         <%= image_tag current_business.picture.url(:thumb), class: 'picture-business' %>
+      <div class="col-1">
+        <label>Photo</label>
+        <div class="picture-container">
+           <%= image_tag current_business.picture.url, class: 'picture-business' %>
+        </div>
+        <%= f.input :picture, as: :file, required: false, label: 'Sélectionner une nouvelle image' %>
       </div>
-      <%= f.input :picture, as: :file, required: false, label: 'Sélectionner une nouvelle image' %>
-      <%= f.input :name, placeholder: 'Nom', required: true, autofocus: true, label: "Nom de l'établissement" %>
-      <%= f.input :description, as: :text, placeholder: 'Visible sur vos bons plans', :input_html => { :rows => 6 }, required: true, label: "Présenter votre commercie" %>
+      <div class="col-1">
+        <%= f.input :name, placeholder: 'Nom', required: true, label: "Nom de l'établissement" %>
+        <%= f.input :description, as: :text, placeholder: 'Visible sur vos bons plans', :input_html => { :rows => 6 }, required: true, label: "Présenter votre commerce" %>
+      </div>
       <%= f.input :street, placeholder: 'Rue', required: true, label: 'Adresse' %>
       <%= f.input :zipcode, placeholder: 'Code postal', required: true, label: "Code postal" %>
       <%= f.input :city, placeholder: 'Ville', required: true, label: 'Ville' %>
-      <%= f.input :business_category_id, required: true, label: 'Activité', collection: BusinessCategory.all %>
+      <div class="select-wrapper">
+        <%= f.input :business_category_id, required: true, label: 'Activité', collection: BusinessCategory.all %>
+      </div>
       <%= f.input :online, label: "Avez-vous une e-boutique ?", as: :radio_buttons, collection: [['Oui', true ], ['Non', false ]], checked: current_business.online || false  %>
       <%= f.input :url, placeholder: 'www.johndoe.com', label: 'Site web' %>
       <%= f.input :email, placeholder: 'contact@johndoe.com', required: true, label: "Email" %>
@@ -20,7 +26,9 @@
       <%= f.input :facebook, placeholder: 'lapagedejohndoe', label: 'Facebook' %>
       <%= f.input :twitter, placeholder: 'johndoe', label: 'Twitter' %>
       <%= f.input :instagram, placeholder: 'johndoe', label: 'Instagram' %>
-      <%= f.button :submit, "Sauvegarder" %>
+      <div class="col-2">
+        <%= f.button :submit, "Sauvegarder" %>
+      </div>
     <% end %>
   </div>
 </div>
