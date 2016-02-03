@@ -29,6 +29,9 @@
       <div role="tabpanel" class="tab-pane tab-profile" id="subscription">
         <%= render "member/dashboard/shared/form_subscription" %>
       </div>
+      <div role="tabpanel" class="tab-pane tab-profile" id="payment">
+        <%= render "member/dashboard/shared/form_payment" %>
+      </div>
     </div>
   </div>
 </div>
@@ -42,6 +45,8 @@
         e.preventDefault()
         $(".alert").remove();
         $(this).tab('show');
+        $("#menu a.show-payment").addClass('hidden');
+        $("#menu a.show-payment").tab('hide');
       });
     });
 

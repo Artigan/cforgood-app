@@ -1,3 +1,4 @@
+
 <div class="signup-payment">
   <span>Renseignez vos données bancaires</span>
   <div class="subscription-form">
@@ -31,17 +32,13 @@
     </ul>
   </div>
   <div >
-      <img src="<%= image_path 'powered-by-mangopay.png' %>" alt="CB"></li>
-      <a type="href" class="" data-toggle="modal" data-target="#modal-cgu-mangopay"><strong> | Informations légales</a>
-    </ul>
+    <img src="<%= image_path 'powered-by-mangopay.png' %>" alt="CB">
+    <%=link_to " | Informations légales", "https://www.mangopay.com/terms/Mangopay_Terms-FR.pdf", target: "_blank" %>
   </div>
 </div>
 <div>
   <%= image_tag('icons/loading.gif', id: "loading-indicator", style: "display:none") %>
 </div>
-
-<!-- MODAL MESSAGE INFORMATION -->
-<%= render "components/modals/cgu_mangopay" %>
 
 <!-- MODAL MESSAGE INFORMATION -->
 <%= render "components/modals/payment" %>
