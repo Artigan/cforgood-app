@@ -22,7 +22,7 @@
                         <% else %>
                           <p class="salutation">Bonjour,</p>
                         <% end %>
-                        <% if @user.code_promo %>
+                        <% if @user.code_promo.present? %>
                           <p class="promo"><strong><%= Partner.find_by_code_promo(@user.code_promo).name%></strong> vous offre votre premier mois <strong>GRATUIT</strong> pour essayer l'application !</p>
                         <% end %>
                         <p>Merci beaucoup d’avoir rejoint la communauté des acteurs qui veulent agir dans le bon sens !<br>
