@@ -216,10 +216,12 @@
 
       /* BUSINESS DESCRIPTION *************************************************/
       .business-presentation {
+        position: relative;
         padding: 50px 20px 0;
         text-align: left;
 
         span {
+          width: 100%;
           font-size: 14px;
           text-transform: uppercase;
           font-weight: 600;
@@ -316,12 +318,26 @@
           border-radius: 3px;
         }
 
+        .business-presentation {
+          .link-profile {
+            position: absolute;
+            right: 20px;
+            font-size: 12px;
+            color: #636363;
+            text-decoration: underline;
+
+            &:active, &:focus {
+              color: #636363;
+            }
+          }
+        }
+
         .data-desktop {
           display: flex;
           flex-direction: row;
           flex-wrap: wrap;
           list-style: none;
-          padding-bottom: 20px;
+          padding-bottom: 10px;
           margin: 0 0 1.5%;
           width: 49%;
           background-color: #fff;
@@ -378,7 +394,7 @@
           display: flex;
           margin: 1.5% 0 0;
           width: 49%;
-          max-height: 311px;
+          max-height: 325px;
           background-color: #fff;
           box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
           border-radius: 3px;
@@ -415,7 +431,7 @@
           }
 
           ul {
-            padding-top: 44px;
+            padding-top: 50px;
             padding-bottom: 2px;
 
             li.perk-item {
