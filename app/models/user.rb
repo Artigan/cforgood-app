@@ -167,11 +167,13 @@ class User < ActiveRecord::Base
   private
 
   def code_promo?
-    if Partner.find_by_code_promo(code_promo.upcase)
-      self.code_promo.upcase!
-      self.date_partner = Time.now
-    else
-      errors.add(:code_promo, "Code promotionnel invalide")
+    if code_promo.present?
+      if Partner.find_by_code_promo(code_promo.upcase)
+        self.code_promo.upcase!
+        self.date_partner = Time.now
+      else
+        errors.add(:code_promo, "Code promotionnel invalide")
+      end
     end
   end
 
