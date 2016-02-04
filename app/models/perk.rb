@@ -2,24 +2,28 @@
 #
 # Table name: perks
 #
-#  id             :integer          not null, primary key
-#  perk           :string
-#  business_id    :integer
-#  description    :text
-#  detail         :string
-#  periodicity_id :integer
-#  times          :integer          default(0)
-#  start_date     :datetime
-#  end_date       :datetime
-#  permanent      :boolean          default(TRUE), not null
-#  active         :boolean          default(TRUE), not null
-#  perk_code      :string
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
-#  nb_views       :integer          default(0)
-#  appel          :boolean          default(FALSE), not null
-#  durable        :boolean          default(FALSE), not null
-#  flash          :boolean          default(FALSE), not null
+#  id                   :integer          not null, primary key
+#  perk                 :string
+#  business_id          :integer
+#  description          :text
+#  detail               :string
+#  periodicity_id       :integer
+#  times                :integer          default(0)
+#  start_date           :datetime
+#  end_date             :datetime
+#  permanent            :boolean          default(TRUE), not null
+#  active               :boolean          default(TRUE), not null
+#  perk_code            :string
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#  nb_views             :integer          default(0)
+#  appel                :boolean          default(FALSE), not null
+#  durable              :boolean          default(FALSE), not null
+#  flash                :boolean          default(FALSE), not null
+#  picture_file_name    :string
+#  picture_content_type :string
+#  picture_file_size    :integer
+#  picture_updated_at   :datetime
 #
 # Indexes
 #
@@ -40,6 +44,29 @@ class Perk < ActiveRecord::Base
   validate :dates_required_if_flash
   validate :start_date_cannot_be_greater_than_end_date
   validate :generate_code
+
+  has_attached_file :picture,
+    styles: { medium: "300x300>", thumb: "100x100>" }
+
+  validates_attachment_content_type :picture,
+    content_type: /\Aimage\/.*\z/
+
+  def update_nb_view!
+    self.increment!(:nb_views)
+  end
+
+  def perk_usable?(user)
+    if self.durable
+      true
+    elsif self.appel
+      user.uses.where(perk_id: self.id).count == 0
+    elsif self.flash
+      raise
+      Time.now >= self.start_date && Time.now <= self.end_date && (self.times == 0 || Use.where(perk_id: self.id).count < self.times)
+    end
+  end
+
+  private
 
   def dates_required_if_flash
     if !permanent && !start_date.present?
@@ -64,18 +91,4 @@ class Perk < ActiveRecord::Base
     end
   end
 
-  def update_nb_view!
-    self.increment!(:nb_views)
-  end
-
-  def perk_usable?(user)
-    if self.durable
-      true
-    elsif self.appel
-      user.uses.where(perk_id: self.id).count == 0
-    elsif self.flash
-      raise
-      Time.now >= self.start_date && Time.now <= self.end_date && (self.times == 0 || Use.where(perk_id: self.id).count < self.times)
-    end
-  end
 end

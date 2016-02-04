@@ -1,6 +1,6 @@
 class UserMailerPreview < ActionMailer::Preview
   def registration
-    user = User.first
+    user = User.last
     UserMailer.registration(user)
   end
 

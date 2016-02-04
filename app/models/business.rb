@@ -78,20 +78,9 @@ class Business < ActiveRecord::Base
   validates_attachment_content_type :leader_picture,
       content_type: /\Aimage\/.*\z/
 
-  after_create :send_registration_email
+  after_create :send_registration_email, :create_code_promo
   after_save :send_activation_email if :active_changed?
 
-  def address_changed?
-    :street_changed? || :zipcode_changed? || :city_changed?
-  end
-
-  def address
-    "#{street}, #{zipcode} #{city}"
-  end
-
-  # def gmaps4rails_infowindow
-  #   "#{link_to 'Business', business_path}"
-  # end
 
   def activated
     self.joins(:perks).where("perks.permanent = ?", true)
@@ -101,7 +90,7 @@ class Business < ActiveRecord::Base
     perks.reduce(0) { |sum, perk| sum + perk.uses.count }
   end
 
-   def perks_views_count
+  def perks_views_count
     perks.reduce(0) { |sum, perk| sum + perk.nb_views.to_i }
   end
 
@@ -111,8 +100,30 @@ class Business < ActiveRecord::Base
 
   private
 
+  def address_changed?
+    :street_changed? || :zipcode_changed? || :city_changed?
+  end
+
+  def address
+    "#{street}, #{zipcode} #{city}"
+  end
+
   def send_registration_email
     BusinessMailer.registration(self).deliver_now
+  end
+
+  def create_code_promo
+    partner = Partner.new
+    partner.name       = self.name
+    partner.email      = self.email
+    code = self.name.upcase.gsub(/[^a-zA-Z]/, '').strip
+    i = 0
+    while Partner.find_by_code_promo(code)
+       code += i.to_s
+       i += 1
+    end
+    partner.code_promo = code
+    partner.save
   end
 
   def send_activation_email

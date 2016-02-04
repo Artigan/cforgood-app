@@ -44,6 +44,8 @@
 #  city                   :string
 #  latitude               :float
 #  longitude              :float
+#  date_partner           :date
+#  code_promo             :string
 #
 # Indexes
 #
@@ -60,7 +62,7 @@ class User < ActiveRecord::Base
          :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
 
   # has_one :cause
-  has_many :uses, dependent: :destroy
+  has_many :uses
 
   validates :email, presence: true, uniqueness: true
   # validates :first_name, presence: true
@@ -68,18 +70,22 @@ class User < ActiveRecord::Base
   # validates :city, presence: true
 
   has_attached_file :picture,
-    styles: { medium: "300x300>", thumb: "100x100>" }
+    styles: { medium: "300x300#", thumb: "100x100#" }
 
   validates_attachment_content_type :picture,
     content_type: /\Aimage\/.*\z/
 
-  after_save :trial_done!, if: :subscription_changed?
+  validate :code_promo?, if: :code_promo_changed?
   validate :date_subscription!, if: :subscription_changed?
   validate :member!, if: :date_last_payment_changed?
 
+  geocoded_by :address
+  after_validation :geocode, if: :address_changed?
+
+  after_save :trial_done!, if: :subscription_changed?
+
   after_create :send_registration_email
   after_save :send_activation_email if :active_changed?
-
 
   def self.find_for_google_oauth2(access_token, signed_in_resourse=nil)
     data = access_token.info
@@ -160,12 +166,29 @@ class User < ActiveRecord::Base
 
   private
 
+  def code_promo?
+    if Partner.find_by_code_promo(code_promo.upcase)
+      self.code_promo.upcase!
+      self.date_partner = Time.now
+    else
+      errors.add(:code_promo, "Code promotionnel invalide")
+    end
+  end
+
+  def address_changed?
+    :street_changed? || :zipcode_changed? || :city_changed?
+  end
+
+  def address
+    "#{street}, #{zipcode} #{city}"
+  end
+
   def send_registration_email
     UserMailer.registration(self).deliver_now
   end
 
     def send_activation_email
-      if active_was == false and self.active == true
+      if active_was == false && self.active == true
         UserMailer.activation(self).deliver_now
       end
   end

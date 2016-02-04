@@ -10,12 +10,6 @@
 
 #navbar { border-radius: 0; } /* REMOVE BOOTSTRAP DEFAULT */
 
-.flash {
-  top: 35px;
-  @media only screen and (max-width: 480px) { top: 0; }
-  @media only screen and (max-width: 768px) { top: 0; }
-}
-
 .navbar {
   position: fixed;
   width: 100%;
@@ -332,8 +326,15 @@
 }
 
 /* BANNER-PROMO */
-/* REMOVE WHEN NO BANNER */
+/* REMOVE WHEN NO BANNER -----------------------------------------------------*/
+.flash {
+  top: 35px;
+  @media only screen and (max-width: 870px) { top: 0; }
+}
+
 #banner-promo {
+  @media only screen and (max-width: 870px){ display: none; }
+
   position: fixed;
   width: 100%;
   height: 35px;
@@ -359,4 +360,5 @@
     margin-left: 5px;
   }
 }
+/*----------------------------------------------------------------------------*/
 
