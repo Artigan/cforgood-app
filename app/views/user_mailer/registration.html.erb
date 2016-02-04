@@ -22,12 +22,11 @@
                         <% else %>
                           <p class="salutation">Bonjour,</p>
                         <% end %>
-                        <p>Merci beaucoup d’avoir rejoint la communauté des acteurs qui veulent agir dans le bon sens !<br>
                         <% if @user.code_promo %>
-                          <p class="promo"><strong><%= Partner.find_by_code_promo(@user.code_promo).name%></strong> vous offre votre premier mois <stong>gratuit</strong> pour essayer l'application !</p>
+                          <p class="promo"><strong><%= Partner.find_by_code_promo(@user.code_promo).name%></strong> vous offre votre premier mois <strong>GRATUIT</strong> pour essayer l'application !</p>
                         <% end %>
-                        <p>
-                        Nous sommes actuellement en bêta privée et nous allons activer en priorité les membres de la métropole bordelaise.</p>
+                        <p>Merci beaucoup d’avoir rejoint la communauté des acteurs qui veulent agir dans le bon sens !<br>
+                        <p>Nous sommes actuellement en bêta privée et nous allons activer en priorité les membres de la métropole bordelaise.</p>
                         <p>Si c’est votre cas, vous êtes chanceux, nous devrions vous envoyer l’accès très rapidement !<br>
                         Si ça ne l’est pas, soyez patient, nous vous tiendrons informés de nos avancées et de notre arrivée dans votre ville !</p>
                       </td>
