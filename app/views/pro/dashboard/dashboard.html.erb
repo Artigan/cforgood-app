@@ -6,6 +6,7 @@ Consultez vos chiffres
 <% end %>
 
 <div class="container-fluid admin">
+  <!-- DISCLAIMER | WAITING FOR ACTIVATION -->
   <% if !current_business.active %>
     <%= image_tag('dashboard_business_inactive.png', class: 'whitebox-business-blur') %>
     <%= link_to destroy_user_session_path, method: :delete do %>
@@ -15,16 +16,16 @@ Consultez vos chiffres
       </div>
     <% end %>
   <% else %>
-    <!-- Sub Menu Sidebar -->
-    <%= render "pro/dashboard/shared/sidebar" %>
-    <!-- Content - Statistics -->
+
+  <!-- ACTIVE ACOUNT -->
+  <!-- Sub Menu Sidebar -->
+  <%= render "pro/dashboard/shared/sidebar" %>
+
     <div class="dashboard">
       <div class="mobile-menu-overlay hidden"></div>
-      <div class="mobile-title">
-        <%= image_tag('logopouce.png', class: '') %>
-        <span>Bienvenue <%= current_business.name %></span>
-      </div>
       <div class="data-container">
+
+        <!-- DESKTOP VIEW | CARDS -->
         <ul class="data-desktop">
           <li>
             <span class="number"><%= @business.perks.count %></span>
@@ -43,12 +44,19 @@ Consultez vos chiffres
             <span class="label">Nouveaux clients</span>
           </li>
         </ul>
-        <!-- SLICK | DATA ON MOBILE -->
+        <!-- END DESKTOP VIEW -->
+
+        <!-- MOBILE VIEW -->
+        <div class="mobile-title">
+          <%= image_tag('logopouce.png', class: '') %>
+          <span>Bienvenue <%= current_business.name %></span>
+        </div>
         <div class="business-into" style="background-image: url('<%= current_business.picture %>');">
           <%= image_tag current_business.leader_picture, class: 'business-owner' %>
           <span class="business-name"><%= current_business.name %></span>
           <span class="business-location"><i class="fa fa-map-marker"></i><%= current_business.city %></span>
         </div>
+        <!-- SLICK | FRAME & ITEMS -->
         <div class="business-dashboard">
           <ul class="data-mobile">
             <li>
@@ -122,11 +130,8 @@ Consultez vos chiffres
             </div>
           </div>
         </div>
+        <!-- END MOBILE VIEW -->
       </div>
-      <div id="map" class="pro-map-businesses" style="width: 82%;"></div>
-      <% content_for(:after_js) do %>
-        <%= render 'components/map', markers: @markers, map_id: "map" %>
-      <% end %>
     </div>
   <% end %>
 </div>

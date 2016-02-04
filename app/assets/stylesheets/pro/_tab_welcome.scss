@@ -1,76 +1,6 @@
 /* WELCOME | BUSINESS LANDING AFTER SIGNIN ************************************/
 
-.admin {
-  .dashboard {
-
-    .admin-stats {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: 100%;
-      background-color: #fff;
-    }
-
-    .data-container {
-      padding-top: 50px;
-      width: 18%;
-      height: 100%;
-      background-color: #f1f1f1;
-      z-index: 10;
-      position: absolute;
-      box-sizing: border-box;
-      text-align: center;
-      box-shadow: 0 2px 9px rgba(0, 0, 0, 0.2);
-
-      .data-mobile {
-        display: none;
-      }
-
-      .business-into {
-        display: none;
-      }
-
-      ul {
-        list-style: none;
-        color: #fff;
-
-        li {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          height: 139px;
-          line-height: 50px;
-
-          span {
-            display: block;
-            color: #41444a;
-          }
-
-          span.number {
-            font-size: 50px;
-            font-weight: 900;
-          }
-
-          span.label {
-            padding-top: 16px;
-            text-transform: uppercase;
-            font-family: avenir;
-            font-weight: 100;
-          }
-        }
-      }
-    }
-
-    .pro-map-businesses {
-      position: relative;
-      margin-top: 50px;
-      height: calc(100vh - 50px);
-      left: 18%;
-    }
-  }
-}
-
+/* IF INACIVE *****************************************************************/
 .whitebox-business-blur {
   position: absolute;
   height: 100%;
@@ -107,265 +37,250 @@
   }
 }
 
-@media only screen and (max-width:768px){
-  .admin {
-    padding-top: 0;
+/* IF ACIVE *******************************************************************/
+
+.admin {
+  padding-top: 0;
+  height: 100vh;
+  overflow: hidden;
+
+  .dashboard {
+    position: relative;
+    left: 0;
+    width: 100%;
     height: 100vh;
-    overflow: hidden;
+    background-color: #f1f1f1;
+    overflow-y: scroll;
 
-    .dashboard {
+    .data-container {
+      box-sizing: border-box;
       position: relative;
-      left: 0;
-      width: 100%;
-      height: 100vh;
-      background-color: #f1f1f1;
-      overflow-y: scroll;
+      padding-top: 0;
+      margin: 0 20px 80px 20px;
+      width: 90%;
+      height: auto;
+      background-color: #fff;
+      box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
+      z-index: 10;
 
-      .pro-map-businesses {
+      .data-desktop {
         display: none;
+      }
+
+      .business-into {
+        display: flex;
+        padding-left: 135px;
         position: relative;
-        width: 100% !important;
-        height: 100vh;
-        left: 0;
-      }
-
-      .mobile-title {
-        display: flex;
-        align-items: center;
-        padding: 20px;
-        text-transform: uppercase;
-        font-size: 14px;
-        font-weight: 600;
-        color: #636363;
-
-        img {
-          width: 25px;
-          margin-right: 5px;
-        }
-      }
-
-      .pro-welcome {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        position: absolute;
-        padding: 40px 20px 0;
         width: 100%;
-        height: 100%;
-        z-index: 2;
-        background-color: #f4f4f4;
+        height: 160px;
+        background-size: cover;
+        background-position: center;
+        border-radius: 3px;
+        z-index: 3;
 
-        h1 {
-          position: relative;
-          font-size: 22px;
-          font-weight: 600;
-          text-align: center;
-          color: #fff;
-          z-index: 3;
+        &:after {
+          content: "";
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          border-radius: 3px 3px 0 0;
+          opacity: 0.65;
+          background: -webkit-linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* Chrome 10+, Saf5.1+ */
+          background: -moz-linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* FF3.6+ */
+          background: -ms-linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* IE10 */
+          background: -o-linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* Opera 11.10+ */
+          background: linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* W3C */
         }
 
-        img {
-          position: relative;
-          width: 90px;
-          z-index: 3;
+        .business-owner {
+          position: absolute;
+          height: 100px;
+          width: 100px;
+          bottom: -45px;
+          left: 20px;
+          border: 2px solid #fff;
+          border-radius: 50%;
+          z-index: 5;
+        }
+
+        .business-name {
+          position: absolute;
+          font-weight: 600;
+          color: #fff;
+          text-transform: uppercase;
+          font-size: 20px;
+          bottom: 30px;
+          text-align: left;
+          z-index: 10;
+        }
+
+        .business-location {
+          position: absolute;
+          bottom: 6px;
+          color: #fff;
+          font-size: 12px;
+          font-weight: 600;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          z-index: 10;
+
+          .fa {
+            margin-right: 5px;
+          }
         }
       }
 
-      .data-container {
-        position: relative;
-        padding-top: 0;
-        margin: 0 20px 80px 20px;
-        width: 90%;
-        height: auto;
-        background-color: #fff;
-        box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
+      /* WELCOME SLICK SLIDER *************************************************/
+      .slick-slider {
+        margin-bottom: 0;
 
-        .data-desktop {
-          display: none;
+        .slick-list {
+          padding: 10px 0 0 0;
         }
 
-        .data-mobile {
-          display: block;
-        }
+        .slick-dots {
+          display: flex !important;
+          flex-direction: row;
+          position: absolute;
+          height: 30px;
+          top: 0;
+          align-items: center;
+          justify-content: center;
+          background-color: #636363;
 
-        .business-into {
-          display: flex;
-          padding-left: 135px;
-          position: relative;
-          width: 100%;
-          height: 160px;
-          background-size: cover;
-          background-position: center;
-          border-radius: 3px;
-          z-index: 3;
-
-          &:after {
-            content: "";
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            border-radius: 3px 3px 0 0;
-            opacity: 0.65;
-            background: -webkit-linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* Chrome 10+, Saf5.1+ */
-            background: -moz-linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* FF3.6+ */
-            background: -ms-linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* IE10 */
-            background: -o-linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* Opera 11.10+ */
-            background: linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* W3C */
+          li.slick-active button:before {
+            opacity: 1;
           }
 
-          .business-owner {
-            position: absolute;
-            height: 100px;
-            width: 100px;
-            bottom: -45px;
-            left: 20px;
-            border: 2px solid #fff;
-            border-radius: 50%;
-            z-index: 5;
-          }
-
-          .business-name {
-            position: absolute;
-            font-weight: 600;
-            color: #fff;
-            text-transform: uppercase;
-            font-size: 20px;
-            bottom: 30px;
-            text-align: left;
-            z-index: 10;
-          }
-
-          .business-location {
-            position: absolute;
-            bottom: 6px;
-            color: #fff;
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            z-index: 10;
-
-            .fa {
-              margin-right: 5px;
-            }
-          }
-        }
-
-        .business-presentation {
-          padding: 50px 20px 0;
-          text-align: left;
-
-          span {
-            font-size: 14px;
-            text-transform: uppercase;
-            font-weight: 600;
-            color: #636363;
-          }
-
-          p {
-            font-size: 12px;
-            color: #636363;
-          }
-
-          ul {
+          li {
             display: flex;
             flex-direction: row;
+            border-bottom: none;
+            padding: 0;
+            margin: 0;
+            height: auto;
 
-            li, li:nth-child(1) {
-              display: flex;
-              flex-direction: row;
-              padding: 10px 0 10px;
-              line-height: 40px;
-              border-bottom: none;
-
-              .fa {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                margin-right: 10px;
-                width: 30px;
-                height: 30px;
-                font-size: 14px;
-                color: #fff;
-                background-color: #9FD6AE;
-                border-radius: 50%;
-              }
-
-              i {
-                font-size: 12px;
-                color: #636363;
-              }
+            button:before {
+              font-size: 30px;
+              color: #fff;
             }
           }
         }
+      }
 
-        .slick-slider {
-          margin-bottom: 0;
+      /* DATA *****************************************************************/
+      .data-mobile {
+        display: block;
+      }
 
-          .slick-list {
-            padding: 10px 0 0 0;
+      ul {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        list-style: none;
+        color: #fff;
+
+        li {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          padding: 15px;
+          height: 100%;
+          line-height: 50px;
+          border-bottom: 1px solid #f4f4f4;
+
+          span {
+            display: block;
+            color: #41444a;
           }
 
-          .slick-dots {
-            display: flex !important;
-            flex-direction: row;
-            position: absolute;
-            height: 30px;
-            top: 0;
-            align-items: center;
-            justify-content: center;
-            background-color: #636363;
-
-            li.slick-active button:before {
-              opacity: 1;
-            }
-
-            li {
-              display: flex;
-              flex-direction: row;
-              border-bottom: none;
-              padding: 0;
-              margin: 0;
-              height: auto;
-
-              button:before {
-                font-size: 30px;
-                color: #fff;
-              }
-            }
+          span.number {
+            font-size: 30px;
+            font-weight: 900;
           }
+
+          span.label {
+            padding-top: 5px;
+            font-size: 14px;
+            text-transform: uppercase;
+            font-family: avenir;
+            font-weight: 100;
+          }
+        }
+
+        li:nth-child(1) {
+          padding-top: 30px;
+        }
+      }
+
+      /* BUSINESS DESCRIPTION *************************************************/
+      .business-presentation {
+        padding: 50px 20px 0;
+        text-align: left;
+
+        span {
+          font-size: 14px;
+          text-transform: uppercase;
+          font-weight: 600;
+          color: #636363;
+        }
+
+        p {
+          font-size: 12px;
+          color: #636363;
         }
 
         ul {
           display: flex;
-          flex-direction: column;
-          width: 100%;
-          height: 100%;
+          flex-direction: row;
 
-          li {
+          li, li:nth-child(1) {
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            height: 100%;
-            padding: 15px;
-            border-bottom: 1px solid #f4f4f4;
+            flex-direction: row;
+            padding: 10px 0 10px;
+            line-height: 40px;
+            border-bottom: none;
 
-            span.number {
-              font-size: 30px;
-            }
-
-            span.label {
-              padding-top: 5px;
+            .fa {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              margin-right: 10px;
+              width: 30px;
+              height: 30px;
               font-size: 14px;
+              color: #fff;
+              background-color: #9FD6AE;
+              border-radius: 50%;
             }
-          }
 
-          li:nth-child(1) {
-            padding-top: 30px;
+            i {
+              font-size: 12px;
+              color: #636363;
+            }
           }
         }
+      }
+    }
+  }
+}
+
+
+@media only screen and (min-width:769px){
+  .admin {
+    .dashboard {
+      .data-container {
+
+
+
+
+
+
+
       }
     }
   }
