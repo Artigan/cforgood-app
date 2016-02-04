@@ -64,7 +64,7 @@
           </div>
           <%= link_to 'Modifier', edit_pro_perk_path(perk), class: "perk-status"  %>
           <div class="perk-creation-date">
-            <span>Créé : <em>le 3 février 2016</em></span>
+            <span>Créé : <em>le <%= perk.created_at.strftime("%d %b %Y") %></em></span>
           </div>
         </div>
       <% end %>
