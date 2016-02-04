@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160202223916) do
+ActiveRecord::Schema.define(version: 20160204154204) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -157,18 +157,22 @@ ActiveRecord::Schema.define(version: 20160202223916) do
     t.text     "description"
     t.string   "detail"
     t.integer  "periodicity_id"
-    t.integer  "times",          default: 0
+    t.integer  "times",                default: 0
     t.datetime "start_date"
     t.datetime "end_date"
-    t.boolean  "permanent",      default: true,  null: false
-    t.boolean  "active",         default: true,  null: false
+    t.boolean  "permanent",            default: true,  null: false
+    t.boolean  "active",               default: true,  null: false
     t.string   "perk_code"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-    t.integer  "nb_views",       default: 0
-    t.boolean  "appel",          default: false, null: false
-    t.boolean  "durable",        default: false, null: false
-    t.boolean  "flash",          default: false, null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.integer  "nb_views",             default: 0
+    t.boolean  "appel",                default: false, null: false
+    t.boolean  "durable",              default: false, null: false
+    t.boolean  "flash",                default: false, null: false
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
   end
 
   add_index "perks", ["business_id"], name: "index_perks_on_business_id", using: :btree
