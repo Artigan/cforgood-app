@@ -36,6 +36,7 @@ gem "underscore-rails"
 gem "rails-erd"
 gem 'mobvious'
 gem 'mobvious-rails'
+gem 'slack-notifier'
 
 gem 'bootstrap-datepicker-rails'
 

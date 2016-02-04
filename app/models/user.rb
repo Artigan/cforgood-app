@@ -187,9 +187,9 @@ class User < ActiveRecord::Base
     UserMailer.registration(self).deliver_now
   end
 
-    def send_activation_email
-      if active_was == false && self.active == true
-        UserMailer.activation(self).deliver_now
-      end
+  def send_activation_email
+    if active_was == false && self.active == true
+      UserMailer.activation(self).deliver_now
+    end
   end
 end
