@@ -84,7 +84,7 @@ class User < ActiveRecord::Base
 
   after_save :trial_done!, if: :subscription_changed?
 
-  after_create :send_registration_email
+  after_create :send_registration_email, :send_registration_slack
   after_save :send_activation_email if :active_changed?
 
   def self.find_for_google_oauth2(access_token, signed_in_resourse=nil)
@@ -185,6 +185,17 @@ class User < ActiveRecord::Base
 
   def send_registration_email
     UserMailer.registration(self).deliver_now
+  end
+
+  def send_registration_slack
+    notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_URL']
+    if last_name.present?
+      notifier.ping "#{first_name} #{last_name} a rejoint la communauté !"
+    elsif name.present?
+      notifier.ping "#{name} a rejoint la communauté !"
+    else
+      notifier.ping "#{email} a rejoint la communauté !"
+    end
   end
 
   def send_activation_email
