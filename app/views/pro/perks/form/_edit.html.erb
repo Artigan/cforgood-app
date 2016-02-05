@@ -40,8 +40,6 @@
     </div>
   </a>
 
-
-
 <!-- Card Perk APPEL -->
 <div class="perk-appel perk-form-card" id="form-perk">
   <div class="perk-form-title">
@@ -137,13 +135,30 @@
 </div>
 
 <!-- UPDATE PERK CONFIRMATION -->
-<!--<#= render "pro/perks/form/updated" %> -->
+<%#= render "pro/perks/form/updated" %>
 
 <% content_for :after_js do %>
 
   <script>
 
     $(document).ready(function() {
+
+      // ACTIVE INITIAL PERK
+      $('.dashboard').scrollTop(0);
+      $(".dashboard-overlay").removeClass('hidden');
+      if (<%= @perk.appel %>) {
+        $("#type-create-appel").find('.fa-plus').addClass('plus-animation');
+        $(".perk-appel").addClass('type-show');
+        $("#type-create-appel").parents('.type-card').addClass('card-visible').siblings('.type-card').addClass('card-invisible');
+      } else if (<%= @perk.durable %>) {
+        $("#type-create-durable").find('.fa-plus').addClass('plus-animation');
+        $(".perk-durable").addClass('type-show');
+        $("#type-create-durable").parents('.type-card').addClass('card-visible').siblings('.type-card').addClass('card-invisible');
+      } else {
+        $("#type-create-flash").find('.fa-plus').addClass('plus-animation');
+        $(".perk-flash").addClass('type-show');
+        $("#type-create-flash").parents('.type-card').addClass('card-visible').siblings('.type-card').addClass('card-invisible');
+      }
 
       // PERK FLASH - INCREMENT QUANTITY
       $("#quantity-plus").on("click", function(e) {
@@ -171,42 +186,48 @@
 
       // OPEN PERK APPEL ON CLICK
       $("#type-create-appel").on("click", function() {
+        $(this).find('.fa-plus').addClass('plus-animation');
         $('.dashboard').scrollTop(0);
         $(".dashboard-overlay").removeClass('hidden');
         $(".perk-appel").addClass('type-show');
+        $(this).parents('.type-card').addClass('card-visible').siblings('.type-card').addClass('card-invisible');
       });
 
       // OPEN PERK DURABLE ON CLICK
       $("#type-create-durable").on("click", function() {
+        $(this).find('.fa-plus').addClass('plus-animation');
         $('.dashboard').scrollTop(0);
         $(".dashboard-overlay").removeClass('hidden');
         $(".perk-durable").addClass('type-show');
+        $(this).parents('.type-card').addClass('card-visible').siblings('.type-card').addClass('card-invisible');
       });
 
       // OPEN PERK FLASH ON CLICK
       $("#type-create-flash").on("click", function() {
+        $(this).find('.fa-plus').addClass('plus-animation');
         $('.dashboard').scrollTop(0);
         $(".dashboard-overlay").removeClass('hidden');
         $(".perk-flash").addClass('type-show');
+        $(this).parents('.type-card').addClass('card-visible').siblings('.type-card').addClass('card-invisible');
       });
 
       // CLOSE PERK ON CLICK
       $(".close-create").on("click", function(e) {
         e.preventDefault;
+        $('.fa-plus').removeClass('plus-animation');
         $(".dashboard-overlay").addClass('hidden');
         $(".perk-form-card").removeClass('type-show');
+        $('.type-card').removeClass('card-invisible');
       });
 
-      //REMOVE PERK ON CLICK OUTSIDE THE CARD
+      // REMOVE PERK ON CLICK OUTSIDE THE CARD
       $(".dashboard-overlay").on("click", function(e) {
         e.preventDefault;
         $(this).addClass('hidden');
         $(".perk-form-card").removeClass('type-show');
       });
 
-      //////////////////////////////////////////////////////////////////////////
-
-
+      // SUPPLY BOOLEAN FIELDS
       $(".type-card").on("click", function(e) {
         e.preventDefault;
         var typePerk = $(this).val('div').attr('id');

@@ -27,7 +27,7 @@ Consultez vos chiffres
         <div id="welcome-desktop">
           <!-- DESKTOP VIEW | CARDS -->
           <div class="business-into" style="background-image: url('<%= current_business.picture %>');">
-            <%= image_tag current_business.leader_picture, class: 'business-owner' %>
+            <%= image_tag current_business.leader_picture(:thumb), class: 'business-owner' %>
             <span class="business-name"><%= current_business.name %></span>
             <span class="business-location"><i class="fa fa-map-marker"></i><%= current_business.city %></span>
           </div>
@@ -137,7 +137,7 @@ Consultez vos chiffres
             <span>Bienvenue <%= current_business.name %></span>
           </div>
           <div class="business-into" style="background-image: url('<%= current_business.picture %>');">
-            <%= image_tag current_business.leader_picture, class: 'business-owner' %>
+            <%= image_tag current_business.leader_picture(:thumb), class: 'business-owner' %>
             <span class="business-name"><%= current_business.name %></span>
             <span class="business-location"><i class="fa fa-map-marker"></i><%= current_business.city %></span>
           </div>

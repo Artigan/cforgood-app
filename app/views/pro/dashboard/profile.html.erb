@@ -31,13 +31,16 @@
   </div>
 </div>
 
+<!-- UPDATE PROFILE CONFIRMATION -->
+<%= render "pro/dashboard/shared/updated" %>
+
 <% content_for :after_js do %>
 
   <script>
 
     $(document).ready(function() {
       $("#menu a").click(function (e) {
-        e.preventDefault()
+        e.preventDefault();
         // $(".alert").remove();
         $(this).tab('show');
       });
@@ -47,5 +50,5 @@
 
 <% end %>
 
-  </div>
-</div>
+<!--   </div>
+</div> -->
