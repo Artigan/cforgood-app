@@ -138,7 +138,7 @@
 </div>
 
 <!-- CREATE PERK CONFIRMATION -->
-<%= render "pro/perks/form/done" %>
+<%#= render "pro/perks/form/done" %>
 
 <% content_for :after_js do %>
 
@@ -207,16 +207,14 @@
         $('.type-card').removeClass('card-invisible');
       });
 
-      //REMOVE PERK ON CLICK OUTSIDE THE CARD
+      // REMOVE PERK ON CLICK OUTSIDE THE CARD
       $(".dashboard-overlay").on("click", function(e) {
         e.preventDefault;
         $(this).addClass('hidden');
         $(".perk-form-card").removeClass('type-show');
       });
 
-      //////////////////////////////////////////////////////////////////////////
-
-
+      // SUPPLY BOOLEAN FIELDS
       $(".type-card").on("click", function(e) {
         e.preventDefault;
         var typePerk = $(this).val('div').attr('id');

@@ -1,0 +1,8 @@
+// $(".done-overlay").removeClass("hidden");
+<%# if current_user.errors.any? %>
+  // $(document).find("form").prepend('<%#= j render("components/error_messages", formats: [:html]) %>');
+<%# else %>
+  // $(document).find("form").prepend('<%#= j render("components/info_messages", formats: [:html]) %>');
+<%# end %>
+
+
