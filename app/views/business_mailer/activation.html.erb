@@ -16,9 +16,11 @@
                     <tr>
                       <td>
                         <p class="salutation">Bonjour <%= @business.name %>,</p>
-                        <p>Merci de rejoindre la communauté des acteurs qui vont dans le bon sens !<br>
-                          Voici un guide qui vous aidera à démarrer :</p>
-                          <%#= image_tag "comment_ca_marche_mail.jpg" %>
+                        <p>Votre compte vient d'être activé. Vous venez réellement de rejoindre la communauté des acteurs qui vont dans le bon sens !<br>
+                        Voici un guide qui vous aidera à démarrer :</p>
+                        <%= image_tag "comment_ca_marche_business_mail.jpg" %>
+                        <p><strong>C'est tout ! </strong>Qu'attendez-vous pour découvrir le meilleur de votre ville ?!<p>
+                        <%= link_to "Découvrir Maintenant", pro_business_profile_url(@business), class: "button-turquoise" %>
                       </td>
                     </tr>
                     <tr>
@@ -28,18 +30,6 @@
                         <%= link_to root_url, target: "_blank" do %>
                           <%= image_tag "logo.png", class: "logo", style: "width:140px;" %>
                         <% end %>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <p class="social-link">
-                          <a class="icon" href="https://www.facebook.com/cforgood/" target="_blank">
-                            <%= image_tag "icons/icon_facebook.png", style: "width:25px;" %>
-                          </a>
-                          <a class="icon" href="https://twitter.com/cforgood" target="_blank">
-                            <%= image_tag "icons/icon_twitter.png", style: "width:25px;" %>
-                          </a>
-                        </p>
                       </td>
                     </tr>
                   </table>
@@ -53,6 +43,7 @@
   </tr>
 </table>
 
+ C'est tout ! Vous pouvez dès maintenant créer vos premiers Bons Plans !
 
 
 

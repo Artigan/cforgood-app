@@ -23,6 +23,7 @@ gem 'mangopay'
 gem "paperclip"
 gem "aws-sdk", "< 2.0"
 gem "gibbon"
+gem "mandrill-api"
 gem 'activeadmin', github: 'activeadmin'
 
 gem "jquery-rails"

@@ -188,13 +188,16 @@ class User < ActiveRecord::Base
   end
 
   def send_registration_slack
-    notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_URL']
-    if last_name.present?
-      notifier.ping "#{first_name} #{last_name} a rejoint la communauté !"
-    elsif name.present?
-      notifier.ping "#{name} a rejoint la communauté !"
-    else
-      notifier.ping "#{email} a rejoint la communauté !"
+    if !Rails.env.development?
+      notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_USER_URL']
+
+      if last_name.present?
+        notifier.ping "#{first_name} #{last_name} a rejoint la communauté !"
+      elsif name.present?
+        notifier.ping "#{name} a rejoint la communauté !"
+      else
+        notifier.ping "#{email} a rejoint la communauté !"
+      end
     end
   end
 
