@@ -1,6 +1,6 @@
 <!-- BUSINESS SIGN IN -->
 <% if business_signed_in? %>
-  <div class="left-sidebar business-sidebar">
+  <div class="business-sidebar">
     <ul id="sidebar">
       <li class="<%= active_class(pro_business_dashboard_path(current_business))%>">
         <%= link_to pro_business_dashboard_path(current_business) do %>

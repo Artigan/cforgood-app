@@ -18,7 +18,31 @@ Autour de vous
     <!-- Sub Menu Sidebar -->
     <%= render "member/dashboard/shared/sidebar" %>
     <!-- Content - Statistics -->
-    <div class="dashboard">
+    <div class="dashboard welcome-users">
+      <div class="mobile-menu-overlay hidden"></div>
+      <div class="container-categories">
+        <span id="opener"><i class="fa fa-cog"></i>Filtrer par catégories</span>
+        <ul>
+          <a href="#" class="filter-category">
+            <li class="category-item is-selected">
+              <div class="container-icon">
+                <i class="fa fa-cubes"></i>
+              </div>
+              Toutes les catégories
+            </li>
+          </a>
+          <% BusinessCategory.all.each do |category| %>
+          <a href="#" data-filter="<%= "."+category.id.to_s %>" class="filter-category current">
+            <li class="category-item">
+              <div class="container-icon">
+                <%= image_tag image_url category.picture %>
+              </div>
+              <%= category.name %>
+            </li>
+          </a>
+          <% end %>
+        </ul>
+      </div>
       <div id="map-dashboard" class="user-map-businesses" style="width: 100%;"></div>
     </div>
   <% end %>
@@ -26,4 +50,16 @@ Autour de vous
 
 <% content_for(:after_js) do %>
   <%= render 'components/map', markers: @markers, map_id: "map-dashboard" %>
+  <script>
+    $(document).ready(function(){
+      $('#opener').click(function(event) {
+        $('.container-categories').toggleClass('is-open');
+        $('.category-item').toggleClass('category-is-open');
+      });
+
+      $('.category-item').click(function(event) {
+        $(this).toggleClass('is-selected');
+      });
+    });
+  </script>
 <% end %>
