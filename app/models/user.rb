@@ -164,6 +164,16 @@ class User < ActiveRecord::Base
     end
   end
 
+  def find_name?
+    if self.first_name.present?
+      name = self.first_name
+    elsif self.name.present?
+      name = self.name
+    else
+      name = ""
+    end
+  end
+
   private
 
   def code_promo?

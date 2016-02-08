@@ -19,11 +19,7 @@ class UserMailer < BaseMandrillMailer
 
     subject = "Bienvenue dans la communauté CforGood"
 
-    if current_user.first_name.present?
-      name = current_user.first_name
-    else
-      nme = current_user.name
-    end
+    name = current_user.find_name?
 
     merge_vars = {
       "USER_NAME" => name,
@@ -39,11 +35,7 @@ class UserMailer < BaseMandrillMailer
 
     subject = "Activation de votre espace CforGood"
 
-    if current_user.first_name.present?
-      name = current_user.first_name
-    else
-      nme = current_user.name
-    end
+    name = current_user.find_name?
 
     merge_vars = {
       "NAME" => name
@@ -54,3 +46,4 @@ class UserMailer < BaseMandrillMailer
     send_mail(current_user.email, subject, body)
   end
 end
+
