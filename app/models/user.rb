@@ -84,7 +84,7 @@ class User < ActiveRecord::Base
 
   after_save :trial_done!, if: :subscription_changed?
 
-  after_create :send_registration_email
+  after_create :send_registration_email, :send_registration_slack
   after_save :send_activation_email if :active_changed?
 
   def self.find_for_google_oauth2(access_token, signed_in_resourse=nil)
@@ -164,6 +164,16 @@ class User < ActiveRecord::Base
     end
   end
 
+  def find_name?
+    if self.first_name.present?
+      name = self.first_name
+    elsif self.name.present?
+      name = self.name
+    else
+      name = ""
+    end
+  end
+
   private
 
   def code_promo?
@@ -189,9 +199,23 @@ class User < ActiveRecord::Base
     UserMailer.registration(self).deliver_now
   end
 
-    def send_activation_email
-      if active_was == false && self.active == true
-        UserMailer.activation(self).deliver_now
+  def send_registration_slack
+    if !Rails.env.development?
+      notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_USER_URL']
+
+      if last_name.present?
+        notifier.ping "#{first_name} #{last_name} a rejoint la communauté !"
+      elsif name.present?
+        notifier.ping "#{name} a rejoint la communauté !"
+      else
+        notifier.ping "#{email} a rejoint la communauté !"
       end
+    end
+  end
+
+  def send_activation_email
+    if active_was == false && self.active == true
+      UserMailer.activation(self).deliver_now
+    end
   end
 end

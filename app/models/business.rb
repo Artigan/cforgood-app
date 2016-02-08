@@ -56,7 +56,7 @@ class Business < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable,
          :rememberable, :trackable, :validatable
-  belongs_to  :business_category
+  belongs_to :business_category
   has_many :perks, dependent: :destroy
 
   validates :email, presence: true, uniqueness: true
@@ -78,7 +78,7 @@ class Business < ActiveRecord::Base
   validates_attachment_content_type :leader_picture,
       content_type: /\Aimage\/.*\z/
 
-  after_create :send_registration_email, :create_code_promo
+  after_create :send_registration_email, :create_code_promo, :send_registration_slack
   after_save :send_activation_email if :active_changed?
 
 
@@ -124,6 +124,13 @@ class Business < ActiveRecord::Base
     end
     partner.code_promo = code
     partner.save
+  end
+
+  def send_registration_slack
+    if !Rails.env.development?
+      notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_BUSINESS_URL']
+      notifier.ping "#{name} a rejoint la communauté !"
+    end
   end
 
   def send_activation_email

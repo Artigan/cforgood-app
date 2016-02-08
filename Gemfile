@@ -23,6 +23,7 @@ gem 'mangopay'
 gem "paperclip"
 gem "aws-sdk", "< 2.0"
 gem "gibbon"
+gem "mandrill-api"
 gem 'activeadmin', github: 'activeadmin'
 
 gem "jquery-rails"
@@ -36,6 +37,7 @@ gem "underscore-rails"
 gem "rails-erd"
 gem 'mobvious'
 gem 'mobvious-rails'
+gem 'slack-notifier'
 
 gem 'bootstrap-datepicker-rails'
 
