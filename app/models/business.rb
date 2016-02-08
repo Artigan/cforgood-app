@@ -82,6 +82,12 @@ class Business < ActiveRecord::Base
   validates_attachment_content_type :leader_picture,
       content_type: /\Aimage\/.*\z/
 
+  has_attached_file :logo,
+      styles: { medium: "300x300#", thumb: "100x100#" }
+
+  validates_attachment_content_type :logo,
+      content_type: /\Aimage\/.*\z/
+
   after_create :send_registration_email, :create_code_promo, :send_registration_slack
   after_save :send_activation_email if :active_changed?
 
