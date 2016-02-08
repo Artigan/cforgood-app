@@ -43,6 +43,10 @@
 #  online                      :boolean          default(FALSE), not null
 #  leader_phone                :string
 #  leader_email                :string
+#  logo_file_name              :string
+#  logo_content_type           :string
+#  logo_file_size              :integer
+#  logo_updated_at             :datetime
 #
 # Indexes
 #
