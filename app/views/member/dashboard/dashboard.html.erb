@@ -20,11 +20,32 @@ Autour de vous
     <!-- Content - Statistics -->
     <div class="dashboard welcome-users">
       <div class="mobile-menu-overlay hidden"></div>
-      <div class="container-categories">
-        <span id="opener"><i class="fa fa-cog"></i>Filtrer par catégories</span>
+      <div class="side-menu-overlay hidden"></div>
+      <div class="side-menu side-notification">
+        <span id="open-notification" >Notification<%= image_tag('logopouce.png') %><div class="notifier"></div></span>
+        <div class="notification-panel">
+          <h2>
+            Hello
+            <% if current_user.last_name != "" && current_user.last_name != nil %>
+              <%= current_user.first_name %>,
+            <% elsif current_user.name != "" && current_user.name != nil %>
+              <%= current_user.name.split(" ")[0] %>,
+            <% end %>
+          </h2>
+          <p>Merci de participer à la BETA de CforGood. Surtout ne cassez-rien ! Si vous remarquez quelque chose d'approximatif, dites-le nous en utilisant le formulaire ci-dessous :) Mille merci !</p>
+          <a href="#" class="notification-link">Aidez-nous</a>
+        </div>
+      </div>
+      <div class="in-central-city">
+        <div class="flash">
+          <i class="fa fa-bolt"></i>
+        </div>
+      </div>
+      <div class="side-menu side-categories">
+        <span id="open-categories"><i class="fa fa-cog"></i>Filtrer par catégories</span>
         <ul>
           <a href="#" class="filter-category">
-            <li class="category-item is-selected">
+            <li id="categories-all" class="category-item is-selected">
               <div class="container-icon">
                 <i class="fa fa-cubes"></i>
               </div>
@@ -43,6 +64,19 @@ Autour de vous
           <% end %>
         </ul>
       </div>
+      <div class="welcome-user">
+          <% if current_user.picture_file_name %>
+            <%= image_tag avatar_url(current_user) %>
+           <% else %>
+            <%= image_tag "default_pic.png" %>
+          <% end %>
+         <span> Bienvenue
+          <% if current_user.last_name != "" && current_user.last_name != nil %>
+            <%= current_user.first_name %> <%= current_user.last_name.chars.first + "." %>
+          <% elsif current_user.name != "" && current_user.name != nil %>
+            <%= current_user.name.split(" ")[0] %></span>
+          <% end %></span>
+      </div>
       <div id="map-dashboard" class="user-map-businesses" style="width: 100%;"></div>
     </div>
   <% end %>
@@ -52,13 +86,33 @@ Autour de vous
   <%= render 'components/map', markers: @markers, map_id: "map-dashboard" %>
   <script>
     $(document).ready(function(){
-      $('#opener').click(function(event) {
-        $('.container-categories').toggleClass('is-open');
-        $('.category-item').toggleClass('category-is-open');
+      $('#open-notification').click(function(event) {
+        $('.notifier').addClass('hidden');
+        $('.side-notification').toggleClass('is-open-max');
+        $('.notification-panel').toggleClass('is-open-min');
+        $('.side-categories').removeClass('is-open-max');
+        $('.category-item').removeClass('is-open-min');
+      });
+
+      $('.in-central-city').click(function(event) {
+        $('.flash').toggleClass('is-running');
+      });
+
+      $('#open-categories').click(function(event) {
+        $('.side-categories').toggleClass('is-open-max');
+        $('.category-item').toggleClass('is-open-min');
+        $('.side-notification').removeClass('is-open-max');
+        $('.notification-panel').removeClass('is-open-min');
       });
 
       $('.category-item').click(function(event) {
-        $(this).toggleClass('is-selected');
+        if ($(this).val('div').attr('id') != 'categories-all'){
+          $(this).toggleClass('is-selected');
+          $('#categories-all').removeClass('is-selected');
+        } else {
+          $('.category-item').removeClass('is-selected');
+          $('#categories-all').addClass('is-selected');
+        }
       });
     });
   </script>
