@@ -7,13 +7,20 @@ Autour de vous
 
 <div class="container-fluid admin">
   <% if !current_user.active %>
-    <%= image_tag('dashboard_user_inactive.png', class: 'whitebox-user-blur') %>
-    <%= link_to destroy_user_session_path, method: :delete do %>
-      <div class='whitebox-user-msg'>
-        <p>Nous sommes actuellement en BETA,<br> votre espace sera très prochainement actif !</p>
-        <%= image_tag('icons/signout.png', :class => 'signout-icon') %><%= t ".se_déconnecter", default: "À bientôt" %>
+    <div class="done-overlay waiting">
+      <div class="done-container">
+        <div class="wrapper">
+          <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+           viewBox="0 0 98.5 98.5" enable-background="new 0 0 98.5 98.5" xml:space="preserve">
+            <path class="checkmark" fill="none" stroke-width="3" stroke-miterlimit="10" d="M81.7,17.8C73.5,9.3,62,4,49.2,4
+          C24.3,4,4,24.3,4,49.2s20.3,45.2,45.2,45.2s45.2-20.3,45.2-45.2c0-8.6-2.4-16.6-6.5-23.4l0,0L45.6,68.2L24.7,47.3"/>
+          </svg>
+        </div>
+        <span>Félicitations !<br><small>Votre compte Cforgood est créé.</small></span>
+        <p>Votre espace sera très prochainement actif, surveillez votre boîte mail dans les jours à venir.</p>
+        <%= link_to "À très vite !", destroy_user_session_path, method: :delete %>
       </div>
-    <% end %>
+    </div>
   <% else %>
     <!-- Sub Menu Sidebar -->
     <%= render "member/dashboard/shared/sidebar" %>
