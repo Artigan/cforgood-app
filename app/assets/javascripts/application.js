@@ -13,7 +13,7 @@
 //= require vendor/slick.js
 //= require app/slick.js
 //= require mobvious-rails
-
+//= require leaflet
 
 //= require_tree ./app
 
