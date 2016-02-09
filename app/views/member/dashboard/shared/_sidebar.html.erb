@@ -1,5 +1,5 @@
 <% if user_signed_in? %>
-  <div class="left-sidebar user-sidebar">
+  <div class="users-sidebar">
   <!-- USER SIGN IN -->
     <ul id="sidebar">
       <li class="<%= active_class(member_user_dashboard_path(current_user))%>">
@@ -26,13 +26,56 @@
           <span class="admin-label">Les associations</span>
         <% end %>
       </li>
-      <li class="<%= active_class(member_user_profile_path(current_user))%> light">
+      <!-- DESKTOP | GO TO PROFILE -->
+      <li class="<%= active_class(member_user_profile_path(current_user)) %> light light desktop-profile">
         <%= link_to member_user_profile_path(current_user) do %>
           <div class="icon-container">
             <%= image_tag('icons/profil.png', :class => 'admin-icon') %>
           </div>
           <span class="admin-label">Mon profil</span>
         <% end %>
+      </li>
+      <!-- MOBILE | OPEN MENU DROPDOWN -->
+      <li id="profile-tab" class="mobile-dropdown">
+        <a href="#">
+          <div class="icon-container">
+            <%= image_tag('icons/profil.png', :class => 'admin-icon') %>
+          </div>
+          <span class="admin-label">Mon profil</span>
+        </a>
+        <ul class="mobile-menu hidden">
+          <!-- BUSINESS DETAILS -->
+          <% if user_signed_in? %>
+            <div class="business-details">
+              <% if current_user.picture_file_name %>
+                <%= image_tag avatar_url(current_user) %>
+               <% else %>
+                <%= image_tag "default_pic.png" %>
+              <% end %>
+              <% if current_user.last_name != "" && current_user.last_name != nil %>
+                <span><%= current_user.first_name %> <%= current_user.last_name.chars.first + "." %></span>
+              <% elsif current_user.name != "" && current_user.name != nil %>
+                <span><%= current_user.name.split(" ")[0] %></span>
+              <% end %>
+            </div>
+          <% end %>
+          <!-- OTHER LINKS -->
+          <li class="<%= active_class(member_user_profile_path(current_user))%>">
+            <%= link_to member_user_profile_path(current_user) do %>
+              <i class="fa fa-user"></i>Mon profil
+            <% end %>
+          </li>
+          <li>
+            <%= link_to faq_connect_path do %>
+              <i class="fa fa-question"></i>Aide et conseils
+            <% end %>
+          </li>
+          <li>
+            <%= link_to destroy_user_session_path, method: :delete do %>
+              <i class="fa fa-power-off"></i>Se déconnecter
+            <% end %>
+          </li>
+        </ul>
       </li>
     </ul>
     <div class="signout">
@@ -41,4 +84,20 @@
       <% end %>
     </div>
   </div>
+<% end %>
+
+<% content_for :after_js do %>
+  <script>
+    $(document).ready(function(){
+      $('.mobile-dropdown').click(function(event) {
+        $('.mobile-menu').toggleClass('hidden');
+        $('.mobile-menu-overlay').toggleClass('hidden');
+      });
+
+      $('.mobile-menu-overlay').click(function(event) {
+        $(this).addClass('hidden');
+        $('.mobile-menu').addClass('hidden');
+      });
+    });
+  </script>
 <% end %>
