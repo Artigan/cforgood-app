@@ -12,7 +12,7 @@ class Member::DashboardController < ApplicationController
     @businesses = Business.joins(:perks).where("perks.permanent = ?", true).distinct
     # authorize @businesses
     # Let's DYNAMICALLY build the markers for the view.
-    @bou = Gmaps4rails.build_markers(@businesses) do |business, marker|
+    @markers = Gmaps4rails.build_markers(@businesses) do |business, marker|
       marker.lat business.latitude
       marker.lng business.longitude
       marker.picture({
@@ -29,7 +29,7 @@ class Member::DashboardController < ApplicationController
     @bounds = @businesses.map{ |l| [l.id, l.latitude, l.longitude, l.business_category_id] }
     # @businesses.each do |business|
     #   @markers.append
-    @popups = @businesses.map{ |l| render_to_string(partial: "components/map_box", locals: { business: l }).to_json }
+    @popups = @businesses.map{ |l| render_to_string(partial: "components/map_box", locals: { business: l })}
     # Let's DYNAMICALLY build the markers for the view.
     # @markers = @businesses.each do |business, marker|
     #   marker.lat business.latitude

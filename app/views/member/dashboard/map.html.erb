@@ -4,57 +4,47 @@
 
 <script>
 
+  var bounds = <%= @bounds %>;
+  console.log('<%= BusinessCategory.find(@bounds[1][3]).marker.url %>');
+  var popups = <%= raw(@popups) %>;
+
   var map = new L.Map('map', {
     center: new L.LatLng("<%= current_user.latitude %>", "<%= current_user.longitude %>"),
     zoom: 14});
 
 
-  // L.tileLayer('http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
-  // // L.tileLayer('http://{s}.tile.openstreetmap.fr/openriverboatmap/{z}/{x}/{y}.png', {
-  //         attribution: 'Map Data &copy; <a href="http://openstreetmap.org">OSM</a>',
-  //         maxZoom: 14
-  //     }).addTo(map)
+  L.tileLayer('http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+  // L.tileLayer('http://{s}.tile.openstreetmap.fr/openriverboatmap/{z}/{x}/{y}.png', {
+          attribution: 'Map Data &copy; <a href="http://openstreetmap.org">OSM</a>',
+          maxZoom: 14
+      }).addTo(map);
 
-  var googleLayer = new L.Google('ROADMAP');
-  map.addLayer(googleLayer);
+  // var googleLayer = new L.Google('ROADMAP');
+  // map.addLayer(googleLayer);
 
   // var myIcon = L.icon({
-  //   iconUrl: "<%= BusinessCategory.find(105).marker.url %>",
-  //   iconRetinaUrl: "<%= BusinessCategory.find(105).marker.url %>",
-  //   // shadowUrl: 'leaf-shadow.png',
+  //   iconUrl: "<%#= BusinessCategory.find(103).marker.url %>",
+  //   iconRetinaUrl: "<%#= BusinessCategory.find(103).marker.url %>",
+  // //   // shadowUrl: 'leaf-shadow.png',
 
-  //   iconSize:     [60, 63] // size of the icon
-  //   // shadowSize:   [50, 64], // size of the shadow
-  //   // iconAnchor:   [22, 94] // point of the icon which will correspond to marker's location
-  //   // shadowAnchor: [4, 62],  // the same for the shadow
-  //   // popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+  // //   iconSize:     [60, 63] // size of the icon
+  // //   // shadowSize:   [50, 64], // size of the shadow
+  // //   // iconAnchor:   [22, 94] // point of the icon which will correspond to marker's location
+  // //   // shadowAnchor: [4, 62],  // the same for the shadow
+  // //   // popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
   // });
 
-
-
-  var bounds = <%= @bounds %>;
-  var popups = <%= j render_to_string @popups %>;
-
-
   var myIcon = L.icon({
-    iconUrl: "<%#= BusinessCategory.find("bounds[1][3]").marker.url %>",
-    iconRetinaUrl: "<%#= BusinessCategory.find("bounds[1][3]").marker.url %>",
+    iconUrl: "<%= BusinessCategory.find(@bounds[1][3]).marker.url %>",
+    iconRetinaUrl: "<%= BusinessCategory.find(@bounds[1][3]).marker.url %>",
     iconSize:     [60, 63] // size of the icon
   });
 
   for (index = 0; index < bounds.length; ++index) {
-    console.log("<%#= BusinessCategory.find("bounds[index][3]").marker.url %>");
+    // var marker = L.marker(new L.LatLng(bounds[index][1], bounds[index][2]));
     var marker = L.marker(new L.LatLng(bounds[index][1], bounds[index][2]), {icon: myIcon});
-
-  marker.addTo(map).bindPopup(popups[index]);
-    // var marker = L.marker(bounds[index]).addTo(map);
-   }
-      // render_to_string(partial: "components/map_box", locals: { business: @business(index) })
-
-  // var marker = L.marker(new L.LatLng("<%#= Business.find(53).latitude %>", "<%#= Business.find(53).longitude %>"), {
-  //   icon: myIcon});
-
-  // marker.addTo(map);
+    marker.addTo(map).bindPopup(popups[index]);
+  }
 
 
   ////
@@ -86,7 +76,7 @@
   //     icon: myIcon
   // });
 
-    ///
+
 
   </script>
 
