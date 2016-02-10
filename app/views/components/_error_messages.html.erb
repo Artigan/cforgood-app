@@ -1,8 +1,8 @@
-<div id="error_explanation">
+<div class="container" id="error_explanation">
   <div class="alert alert-danger alert-dismissible" role="alert">
-    Le formulaire contient <%= pluralize(current_user.errors.count, "erreur") %>.
+    Le formulaire contient <%= pluralize(current_business.errors.count, "erreur") %>.
     <ul>
-      <% current_user.errors.full_messages.each do |msg| %>
+      <% current_business.errors.full_messages.each do |msg| %>
           <li class="alert-message"><%= msg %></li>
       <% end %>
     </ul>

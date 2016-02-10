@@ -100,6 +100,8 @@ class User < ActiveRecord::Base
       else
         user = User.create(
           name: data['name'],
+          first_name: data['first_name'],
+          last_name: data['last_name'],
           provider: access_token.provider,
           email: data['email'],
           uid: access_token.uid,
@@ -123,6 +125,8 @@ class User < ActiveRecord::Base
       else
         user = User.create(
           name: access_token.extra.raw_info.name,
+          first_name: access_token.extra.raw_info.first_name,
+          last_name: access_token.extra.raw_info.last_name,
           provider: access_token.provider,
           email: data.email,
           uid: access_token.uid,

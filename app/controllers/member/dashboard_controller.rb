@@ -12,15 +12,34 @@ class Member::DashboardController < ApplicationController
     @businesses = Business.joins(:perks).where("perks.permanent = ?", true).distinct
     # authorize @businesses
     # Let's DYNAMICALLY build the markers for the view.
-    @markers = Gmaps4rails.build_markers(@businesses) do |business, marker|
+    @bou = Gmaps4rails.build_markers(@businesses) do |business, marker|
       marker.lat business.latitude
       marker.lng business.longitude
       marker.picture({
-        url: BusinessCategory.find(business.business_category_id).marker.url(:marker),
+        url: BusinessCategory.find(business.business_category_id).marker.url,
         width: 40,
         height: 43
       })
       marker.infowindow render_to_string(partial: "components/map_box", locals: { business: business })
     end
+  end
+
+  def map
+    @businesses = Business.joins(:perks).where("perks.permanent = ?", true).distinct
+    @bounds = @businesses.map{ |l| [l.id, l.latitude, l.longitude, l.business_category_id] }
+    # @businesses.each do |business|
+    #   @markers.append
+    @popups = @businesses.map{ |l| render_to_string(partial: "components/map_box", locals: { business: l }).to_json }
+    # Let's DYNAMICALLY build the markers for the view.
+    # @markers = @businesses.each do |business, marker|
+    #   marker.lat business.latitude
+    #   marker.lng business.longitude
+    #   marker.picture({
+    #     url: BusinessCategory.find(business.business_category_id).marker.url(:marker),
+    #     width: 40,
+    #     height: 43
+    #   })
+    #   marker.infowindow render_to_string(partial: "components/map_box", locals: { business: business })
+    # end
   end
 end
