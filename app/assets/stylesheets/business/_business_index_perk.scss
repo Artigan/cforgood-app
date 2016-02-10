@@ -126,7 +126,7 @@
           right: 0;
           opacity: 0.35;
           border-radius: 3px;
-          background-color:rgba(0,0,0,0.4);
+          background-color:rgba(0,0,0,0.6);
         }
 
         .business-details {
@@ -228,19 +228,30 @@
 @media only screen and (min-width:769px){
   .dashboard-view-perks {
     .container-perk-cards {
-      padding: 20px;
+      padding: 1.5%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
 
       .card-frame {
-        width: 49%;
+        width: 31.33333%;
       }
 
-      .card-frame:nth-child(odd) {
-        margin-right: 1%;
-      }
+      // .card-frame:nth-child(0n+1) {
+      //   margin-left: 0;
+      // }
 
-      .card-frame:nth-child(even) {
-        margin-left: 1%;
-      }
+      // .card-frame:nth-child(1n+3) {
+      //   margin-right: 0;
+      // }
+
+      // .card-frame:nth-child(-n+1) {
+      //   margin-left: 0;
+      // }
+
+      // .card-frame:nth-child(n+3) {
+      //   margin-right: 0;
+      // }
     }
   }
 }
