@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 20160208133640) do
     t.string   "marker_content_type"
     t.integer  "marker_file_size"
     t.datetime "marker_updated_at"
+    t.string   "color"
   end
 
   create_table "businesses", force: :cascade do |t|
@@ -104,6 +105,7 @@ ActiveRecord::Schema.define(version: 20160208133640) do
     t.string   "picture_content_type"
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
+    t.string   "color"
   end
 
   create_table "causes", force: :cascade do |t|
