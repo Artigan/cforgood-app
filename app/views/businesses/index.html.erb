@@ -40,26 +40,19 @@
                 <span class="perk-title"><%= business.name %></span>
                 <span class="perk-owner"><%= business.leader_first_name %> <%= business.leader_last_name %> vous accueillera</span>
               </div>
-
               <div class="card-header-category" style="background-color: <%= BusinessCategory.find(business.business_category_id).color %>;">
                 <!-- <#= image_tag image_url BusinessCategory.find(business.business_category_id).picture %> -->
                 <div class="category-container" style="background-color: <%= BusinessCategory.find(business.business_category_id).color %>;">
                   <i class="fa fa-cog"></i>
                 </div>
               </div>
-              <div class="card-header-extra">
-                <% if perk.flash? %>
-                  <i class="fa fa-flash"></i>
-                <% end %>
-              </div>
             </div>
             <!-- CARD BODY -->
             <div class="card-body" style="background-image: url('<%= image_url business.picture %>');">
-               <% if perk.flash? %>
-                    <span><i class="fa fa-bookmark" style="color: <%= BusinessCategory.find(business.business_category_id).color %>;"></i><%= perk.times - Use.where(perk_id: perk.id).count  %> restants</span>
-                  <% end %>
               <div class="business-details">
-
+                <% if perk.flash? %>
+                  <span style="background-color: <%= BusinessCategory.find(business.business_category_id).color %>;"><i class="fa fa-flash"></i><%= perk.times - Use.where(perk_id: perk.id).count  %> restants</span>
+                <% end %>
                 <h3><%= perk.perk %></h3>
               </div>
             </div>
