@@ -123,6 +123,7 @@ class User < ActiveRecord::Base
       if registred_user
         return registred_user
       else
+        raise
         user = User.create(
           name: access_token.extra.raw_info.name,
           first_name: access_token.extra.raw_info.first_name,
