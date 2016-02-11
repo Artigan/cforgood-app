@@ -1,22 +1,42 @@
 <script>
+
   $(document).ready(function() {
 
-    handler = Gmaps.build('Google', { builders: { Marker: InfoBoxBuilder} });
-    // handler = Gmaps.build('Google');
-    handler.buildMap({
-      provider: {
-      disableDefaultUI: true,
-      scrollwheel: false,
-      styles : [{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#444444"}]},{"featureType":"administrative.country","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"administrative.country","elementType":"geometry","stylers":[{"visibility":"off"}]},{"featureType":"administrative.country","elementType":"geometry.fill","stylers":[{"visibility":"off"}]},{"featureType":"administrative.country","elementType":"geometry.stroke","stylers":[{"visibility":"off"}]},{"featureType":"administrative.province","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"administrative.locality","elementType":"labels","stylers":[{"hue":"#ffe500"}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#f2f2f2"},{"visibility":"on"}]},{"featureType":"landscape.natural","elementType":"all","stylers":[{"visibility":"on"}]},{"featureType":"landscape.natural.landcover","elementType":"all","stylers":[{"visibility":"on"}]},{"featureType":"landscape.natural.terrain","elementType":"all","stylers":[{"visibility":"on"}]},{"featureType":"landscape.natural.terrain","elementType":"geometry","stylers":[{"visibility":"on"}]},{"featureType":"landscape.natural.terrain","elementType":"geometry.fill","stylers":[{"visibility":"on"}]},{"featureType":"landscape.natural.terrain","elementType":"geometry.stroke","stylers":[{"visibility":"on"}]},{"featureType":"landscape.natural.terrain","elementType":"labels","stylers":[{"visibility":"on"}]},{"featureType":"landscape.natural.terrain","elementType":"labels.text","stylers":[{"visibility":"on"}]},{"featureType":"landscape.natural.terrain","elementType":"labels.text.fill","stylers":[{"visibility":"on"}]},{"featureType":"landscape.natural.terrain","elementType":"labels.text.stroke","stylers":[{"visibility":"on"}]},{"featureType":"landscape.natural.terrain","elementType":"labels.icon","stylers":[{"visibility":"on"}]},{"featureType":"poi","elementType":"all","stylers":[{"visibility":"on"}]},{"featureType":"poi.attraction","elementType":"all","stylers":[{"visibility":"on"}]},{"featureType":"poi.business","elementType":"all","stylers":[{"visibility":"on"}]},{"featureType":"poi.place_of_worship","elementType":"all","stylers":[{"visibility":"on"}]},{"featureType":"poi.school","elementType":"all","stylers":[{"visibility":"simplified"}]},{"featureType":"road","elementType":"all","stylers":[{"saturation":-100},{"lightness":45},{"visibility":"on"}]},{"featureType":"road.highway","elementType":"all","stylers":[{"visibility":"simplified"}]},{"featureType":"road.arterial","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"transit.station","elementType":"all","stylers":[{"visibility":"simplified"}]},{"featureType":"transit.station.airport","elementType":"all","stylers":[{"visibility":"on"}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#9bdffb"},{"visibility":"on"}]}]
-      },
-      internal: { id: '<%= map_id %>' }
-    },
+    var geoJson = <%= raw(@geojson.to_json) %>;
 
-    function(){
-      markers = handler.addMarkers(<%= raw markers.to_json %>);
-      handler.bounds.extendWith(markers);
-      handler.fitMapToBounds();
-      handler.getMap().setZoom(14);
+    L.mapbox.accessToken = 'pk.eyJ1IjoiZnJlZHBldHJpcyIsImEiOiJjaWtoem9qd2IwMDJmdnBtNmZ0Y29zcG5sIn0.atyCUDfyMaoUauNY1diwtQ';
+
+    var mapboxTiles = L.tileLayer('https://api.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=' + L.mapbox.accessToken, {
+      attribution: '<a href="http://www.mapbox.com/about/maps/" target="_blank">Terms &amp; Feedback</a>'
     });
+
+    var map = L.map('map-dashboard')
+      .addLayer(mapboxTiles)
+      .setView(["<%= current_user.latitude %>", "<%= current_user.longitude %>"]);
+
+    // New Layer
+    var mapLayer = L.mapbox.featureLayer().addTo(map);
+
+    // Set a custom icon on each marker based on feature properties.
+    mapLayer.on('layeradd', function(e) {
+      var marker = e.layer,
+          feature = marker.feature;
+      marker.setIcon(L.icon(feature.properties.icon));
+      marker.bindPopup(feature.properties.popupContent,{
+        closeButton: true
+      });
+    });
+
+    // mapLayer.on('click', function(e) {
+    //   map.panTo(e.layer.getLatLng());
+    // });
+
+    // Add features to the map.
+    mapLayer.setGeoJSON(geoJson);
+
+    // Fit around the markers of the map
+    // map.fitBounds(mapLayer.getBounds());
+
   });
+
 </script>
