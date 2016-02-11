@@ -7,18 +7,83 @@ Autour de vous
 
 <div class="container-fluid admin">
   <% if !current_user.active %>
-    <%= image_tag('dashboard_user_inactive.png', class: 'whitebox-user-blur') %>
-    <%= link_to destroy_user_session_path, method: :delete do %>
-      <div class='whitebox-user-msg'>
-        <p>Nous sommes actuellement en BETA,<br> votre espace sera très prochainement actif !</p>
-        <%= image_tag('icons/signout.png', :class => 'signout-icon') %><%= t ".se_déconnecter", default: "À bientôt" %>
+    <div class="done-overlay waiting">
+      <div class="done-container">
+        <div class="wrapper">
+          <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+           viewBox="0 0 98.5 98.5" enable-background="new 0 0 98.5 98.5" xml:space="preserve">
+            <path class="checkmark" fill="none" stroke-width="3" stroke-miterlimit="10" d="M81.7,17.8C73.5,9.3,62,4,49.2,4
+          C24.3,4,4,24.3,4,49.2s20.3,45.2,45.2,45.2s45.2-20.3,45.2-45.2c0-8.6-2.4-16.6-6.5-23.4l0,0L45.6,68.2L24.7,47.3"/>
+          </svg>
+        </div>
+        <span>Félicitations !<br><small>Votre compte Cforgood est créé.</small></span>
+        <p>Votre espace sera très prochainement actif, surveillez votre boîte mail dans les jours à venir.</p>
+        <%= link_to "À très vite !", destroy_user_session_path, method: :delete %>
       </div>
-    <% end %>
+    </div>
   <% else %>
     <!-- Sub Menu Sidebar -->
     <%= render "member/dashboard/shared/sidebar" %>
     <!-- Content - Statistics -->
-    <div class="dashboard">
+    <div class="dashboard welcome-users">
+      <div class="mobile-menu-overlay hidden"></div>
+      <div class="side-menu-overlay hidden"></div>
+      <div class="side-menu side-notification">
+        <span id="open-notification" >Notification<%= image_tag('logopouce.png') %><div class="notifier"></div></span>
+        <div class="notification-panel">
+          <h2>
+            Hello
+            <% if current_user.last_name != "" && current_user.last_name != nil %>
+              <%= current_user.first_name %>,
+            <% elsif current_user.name != "" && current_user.name != nil %>
+              <%= current_user.name.split(" ")[0] %>,
+            <% end %>
+          </h2>
+          <p>Merci de participer à la BETA de CforGood. Surtout ne cassez-rien ! Si vous remarquez quelque chose d'approximatif, dites-le nous en utilisant le formulaire ci-dessous :) Mille merci !</p>
+          <a href="#" class="notification-link">Aidez-nous</a>
+        </div>
+      </div>
+      <div class="in-central-city">
+        <div class="flash">
+          <i class="fa fa-bolt"></i>
+        </div>
+      </div>
+      <div class="side-menu side-categories">
+        <span id="open-categories"><i class="fa fa-cog"></i>Filtrer par catégories</span>
+        <ul>
+          <a href="#" class="filter-category">
+            <li id="categories-all" class="category-item is-selected">
+              <div class="container-icon" style="background-color: #DFDFDF;">
+                <!-- Waiting for something -->
+              </div>
+              Toutes les catégories
+            </li>
+          </a>
+          <% BusinessCategory.all.each do |category| %>
+          <a href="#" data-filter="<%= "."+category.id.to_s %>" class="filter-category current">
+            <li class="category-item">
+              <div class="container-icon" style="background-color: <%= category.color %>;">
+                <!-- <#= image_tag image_url category.picture %> -->
+              </div>
+              <%= category.name %>
+            </li>
+          </a>
+          <% end %>
+        </ul>
+      </div>
+      <div class="welcome-user">
+          <% if current_user.picture_file_name %>
+            <%= image_tag avatar_url(current_user) %>
+           <% else %>
+            <%= image_tag "default_pic.png" %>
+          <% end %>
+         <span> Bienvenue
+          <% if current_user.last_name != "" && current_user.last_name != nil %>
+            <%= current_user.first_name %> <%= current_user.last_name.chars.first + "." %>
+          <% elsif current_user.name != "" && current_user.name != nil %>
+            <%= current_user.name.split(" ")[0] %></span>
+          <% end %></span>
+      </div>
       <div id="map-dashboard" class="user-map-businesses" style="width: 100%;"></div>
     </div>
   <% end %>
@@ -26,4 +91,36 @@ Autour de vous
 
 <% content_for(:after_js) do %>
   <%= render 'components/map', markers: @markers, map_id: "map-dashboard" %>
+  <script>
+    $(document).ready(function(){
+      $('#open-notification').click(function(event) {
+        $('.notifier').addClass('hidden');
+        $('.side-notification').toggleClass('is-open-max');
+        $('.notification-panel').toggleClass('is-open-min');
+        $('.side-categories').removeClass('is-open-max');
+        $('.category-item').removeClass('is-open-min');
+      });
+
+      $('.in-central-city').click(function(event) {
+        $('.flash').toggleClass('is-running');
+      });
+
+      $('#open-categories').click(function(event) {
+        $('.side-categories').toggleClass('is-open-max');
+        $('.category-item').toggleClass('is-open-min');
+        $('.side-notification').removeClass('is-open-max');
+        $('.notification-panel').removeClass('is-open-min');
+      });
+
+      $('.category-item').click(function(event) {
+        if ($(this).val('div').attr('id') != 'categories-all'){
+          $(this).toggleClass('is-selected');
+          $('#categories-all').removeClass('is-selected');
+        } else {
+          $('.category-item').removeClass('is-selected');
+          $('#categories-all').addClass('is-selected');
+        }
+      });
+    });
+  </script>
 <% end %>

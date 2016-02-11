@@ -43,6 +43,10 @@
 #  online                      :boolean          default(FALSE), not null
 #  leader_phone                :string
 #  leader_email                :string
+#  logo_file_name              :string
+#  logo_content_type           :string
+#  logo_file_size              :integer
+#  logo_updated_at             :datetime
 #
 # Indexes
 #
@@ -76,6 +80,12 @@ class Business < ActiveRecord::Base
       styles: { medium: "300x300#", thumb: "100x100#" }
 
   validates_attachment_content_type :leader_picture,
+      content_type: /\Aimage\/.*\z/
+
+  has_attached_file :logo,
+      styles: { medium: "300x300#", thumb: "100x100#" }
+
+  validates_attachment_content_type :logo,
       content_type: /\Aimage\/.*\z/
 
   after_create :send_registration_email, :create_code_promo, :send_registration_slack

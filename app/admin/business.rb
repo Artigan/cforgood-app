@@ -4,8 +4,9 @@ ActiveAdmin.register Business do
     column :name
     column :business_category
     column :email
-    column :telephone
     column :city
+    column :online
+    column :active
     column :created_at
     actions
   end
@@ -32,12 +33,15 @@ ActiveAdmin.register Business do
       f.input :leader_phone
       f.input :leader_email
       f.input :leader_picture, :as => :file
+      f.input :logo, :as => :file
+
     end
     f.inputs "Admin" do
       f.input :active
+      f.input :online
     end
     f.actions
   end
 
-  permit_params :name, :email, :business_category_id, :description, :url, :street, :zipcode, :city, :facebook, :twitter, :instagram, :telephone, :picture, :latitude, :longitude, :active, :leader_picture, :leader_first_name, :leader_last_name, :leader_description, :leader_phone, :leader_email
+  permit_params :name, :email, :business_category_id, :description, :url, :street, :zipcode, :city, :facebook, :twitter, :instagram, :telephone, :picture, :latitude, :longitude, :active, :leader_picture, :leader_first_name, :leader_last_name, :leader_description, :leader_phone, :leader_email, :logo, :online
 end

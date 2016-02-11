@@ -3,14 +3,14 @@ ActiveAdmin.register Perk do
   index do
     selectable_column
     column :perk
-    column :business_id
+    column :business
     column :created_at
     actions
   end
   form do |f|
     f.inputs "Identity" do
       f.input :perk
-      f.input :business_id
+      f.input :business
       f.input :description
       f.input :detail
       f.input :periodicity_id

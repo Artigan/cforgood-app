@@ -1,4 +1,4 @@
-.business-sidebar {
+.users-sidebar {
   position: absolute;
   padding-top: 50px;
   width: 15%;
@@ -82,14 +82,14 @@
 
   li.active {
     opacity: 1;
-    background-color: #8BBD99;
+    background-color: #32C4CB;
 
     &:after {
       content:"";
       position: absolute;
       display:inline-block;
       border: 10px solid white;
-      border-color: transparent #f1f1f1 transparent transparent;
+      border-color: transparent #fff transparent transparent;
       top: 50px;
       right: 0px;
     }
@@ -106,24 +106,20 @@
   }
 }
 
-.business-sidebar {
-  background-color: #9FD6AE;
+.users-sidebar {
+  background-color: #36d3da;
 
   li {
     &:hover {
-      border-left: 10px solid #5D8A69;
-      background-color: #8BBD99;
+      border-left: 10px solid #386971;
+      background-color: #32C4CB;
     }
   }
 
-  li.mobile-dropdown {
-    display: none;
-  }
-
   .signout {
-    background-color: #8BBD99;
+    background-color: #32C4CB;
     &:hover {
-      background-color: #5D8A69;
+      background-color: #386971;
     }
   }
 
@@ -133,14 +129,15 @@
 }
 
 
+
 @media only screen and (max-width:768px){
-  .business-sidebar {
+  .users-sidebar {
     position: fixed;
     padding-top: 0;
     width: 100%;
-    height: 60px;
+    height: 10%;
     bottom: 0;
-    background-color: #9FD6AE;
+    background-color: #36d3da;
     box-shadow: 2px 1px 9px rgba(0,0,0,0.2);
     z-index: 300;
 
@@ -166,11 +163,12 @@
       }
 
       li:hover {
+        background-color: #32C4CB;
         border-left: none;
       }
 
       li.active {
-        background-color: #8BBD99;
+        background-color: #32C4CB;
 
         &:after {
           content: none;
@@ -189,7 +187,7 @@
         display: block;
 
         &:hover, &:active, &:focus {
-          background-color: #9FD6AE;
+          background-color: #32C4CB;
         }
 
         .mobile-menu {
@@ -223,7 +221,7 @@
             align-items: center;
             padding: 20px;
             margin-bottom: 20px;
-            background-color: #8BBD99;
+            background-color: #61A6B1;
             border-radius: 3px 3px 0 0;
 
             img {
