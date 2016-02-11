@@ -189,6 +189,7 @@ GEM
       json (>= 1.7.7, < 2.0)
     mangopay (3.0.20)
       multi_json (>= 1.7.7)
+    mapbox-rails (1.6.1.1)
     method_source (0.8.2)
     mime-types (2.99)
     mimemagic (0.3.0)
@@ -359,6 +360,7 @@ DEPENDENCIES
   mail_form
   mandrill-api
   mangopay
+  mapbox-rails
   mobvious
   mobvious-rails
   omniauth

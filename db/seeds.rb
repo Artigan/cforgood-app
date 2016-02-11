@@ -20,7 +20,7 @@ BusinessCategory.destroy_all
 
 puts "--------CREATE BUSINESS CATEGORIES--------"
 beaute = BusinessCategory.create!({
-  name: "Santé & Fitness",
+  name: "Beauté & Bien Être",
   picture: File.new("#{path}icon_beaute.png"),
   marker: File.new("#{path}marker_beaute.png")
   })

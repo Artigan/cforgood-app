@@ -1,6 +1,6 @@
 .infoBoxContainer { margin-top: 10px; }
 
-.infoBox {
+.infoBox, .leaflet-popup-content {
 // .gm-s  tyle-iw {
   width: 320px !important;
   height: 300px;
@@ -105,18 +105,4 @@
       }
     }
   }
-}
-
-/////// test LEAFLET ///////////////////////////////////////////////////////////
-#map {
-  width: 100%;
-  height: 600px;
-}
-
-.leaflet-google-layer{
-    z-index: 0;
-}
-
-.leaflet-map-pane{
-    z-index: 100;
 }

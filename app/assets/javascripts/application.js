@@ -14,6 +14,7 @@
 //= require app/slick.js
 //= require mobvious-rails
 //= require leaflet
+//= require mapbox.js
 
 //= require_tree ./app
 

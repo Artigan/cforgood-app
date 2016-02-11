@@ -35,6 +35,7 @@ gem "geocoder"
 gem "gmaps4rails"
 gem "underscore-rails"
 gem 'leaflet-rails'
+gem 'mapbox-rails'
 gem "rails-erd"
 gem 'mobvious'
 gem 'mobvious-rails'

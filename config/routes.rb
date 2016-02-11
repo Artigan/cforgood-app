@@ -34,7 +34,6 @@ Rails.application.routes.draw do
     resources :users, only: [:show, :update] do
       get "dashboard", to: "dashboard#dashboard"
       get "profile", to: "dashboard#profile"
-      get "map", to: "dashboard#map"
     end
     resources :signup, only: [:new, :create]
     resources :perks, only: [:show]

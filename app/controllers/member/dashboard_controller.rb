@@ -10,36 +10,26 @@ class Member::DashboardController < ApplicationController
 
   def dashboard
     @businesses = Business.joins(:perks).where("perks.permanent = ?", true).distinct
-    # authorize @businesses
-    # Let's DYNAMICALLY build the markers for the view.
-    @markers = Gmaps4rails.build_markers(@businesses) do |business, marker|
-      marker.lat business.latitude
-      marker.lng business.longitude
-      marker.picture({
-        url: BusinessCategory.find(business.business_category_id).marker.url,
-        width: 40,
-        height: 43
-      })
-      marker.infowindow render_to_string(partial: "components/map_box", locals: { business: business })
-    end
-  end
 
-  def map
-    @businesses = Business.joins(:perks).where("perks.permanent = ?", true).distinct
-    @bounds = @businesses.map{ |l| [l.id, l.latitude, l.longitude, l.business_category_id] }
-    # @businesses.each do |business|
-    #   @markers.append
-    @popups = @businesses.map{ |l| render_to_string(partial: "components/map_box", locals: { business: l })}
-    # Let's DYNAMICALLY build the markers for the view.
-    # @markers = @businesses.each do |business, marker|
-    #   marker.lat business.latitude
-    #   marker.lng business.longitude
-    #   marker.picture({
-    #     url: BusinessCategory.find(business.business_category_id).marker.url(:marker),
-    #     width: 40,
-    #     height: 43
-    #   })
-    #   marker.infowindow render_to_string(partial: "components/map_box", locals: { business: business })
-    # end
+    @geojson = Array.new
+
+    @businesses.each do |business|
+      @geojson << {
+        type: 'Feature',
+        geometry: {
+          type: 'Point',
+          coordinates: [business.longitude, business.latitude]
+        },
+        properties: {
+          popupContent: render_to_string(partial: "components/map_box", locals: { business: business }),
+          icon: {
+            iconUrl: BusinessCategory.find(business.business_category_id).marker.url,
+            iconSize: [40, 43],
+            iconAnchor: [25, 25],
+            popupAnchor: [0, -25]
+          }
+        }
+      }
+    end
   end
 end
