@@ -22,6 +22,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 
     @include transition(all 0.3s ease-in-out);
 
@@ -196,6 +197,7 @@
           flex-direction: column;
           position: fixed;
           width: 220px;
+          max-height: 260px;
           bottom: 69px;
           right: 10px;
           text-align: left;
