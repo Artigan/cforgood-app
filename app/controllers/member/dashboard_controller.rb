@@ -22,6 +22,7 @@ class Member::DashboardController < ApplicationController
         },
         properties: {
           "marker-symbol": ("." + business.business_category_id.to_s),
+          "show_on_map": true,
           popupContent: render_to_string(partial: "components/map_box", locals: { business: business }),
           icon: {
             iconUrl: BusinessCategory.find(business.business_category_id).marker.url,
@@ -31,6 +32,10 @@ class Member::DashboardController < ApplicationController
           }
         }
       }
+    end
+    respond_to do |format|
+      format.html
+      format.json{render json: @geojson}
     end
   end
 end
