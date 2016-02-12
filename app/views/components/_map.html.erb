@@ -1,7 +1,5 @@
 <script>
 
-  $(document).ready(function() {
-
     var geoJson = <%= raw(@geojson.to_json) %>;
 
     L.mapbox.accessToken = 'pk.eyJ1IjoiZnJlZHBldHJpcyIsImEiOiJjaWtoem9qd2IwMDJmdnBtNmZ0Y29zcG5sIn0.atyCUDfyMaoUauNY1diwtQ';
@@ -12,7 +10,7 @@
 
     var map = L.map('map-dashboard')
       .addLayer(mapboxTiles)
-      .setView(["<%= current_user.latitude %>", "<%= current_user.longitude %>"]);
+      .setView(["<%= current_user.latitude %>", "<%= current_user.longitude %>"], 14);
 
     // New Layer
     var mapLayer = L.mapbox.featureLayer().addTo(map);
@@ -35,8 +33,6 @@
     mapLayer.setGeoJSON(geoJson);
 
     // Fit around the markers of the map
-    // map.fitBounds(mapLayer.getBounds());
-
-  });
+    map.fitBounds(mapLayer.getBounds());
 
 </script>

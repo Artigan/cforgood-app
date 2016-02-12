@@ -84,13 +84,16 @@ Autour de vous
             <%= current_user.name.split(" ")[0] %></span>
           <% end %></span>
       </div>
-      <div id="map-dashboard" class="user-map-businesses" style="width: 100%;"></div>
+      <div id="map-dashboard" class="user-map-businesses" style="width: 100%;">
+      </div>
     </div>
   <% end %>
 </div>
 
 <% content_for(:after_js) do %>
-  <%= render 'components/map', markers: @markers, map_id: "map-dashboard" %>
+
+  <%= render 'components/map', geojson: @geojson %>
+
   <script>
     $(document).ready(function(){
       $('#open-notification').click(function(event) {

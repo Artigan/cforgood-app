@@ -53,6 +53,10 @@
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
+# Foreign Keys
+#
+#  fk_rails_130d5504e9  (cause_id => causes.id)
+#
 
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
