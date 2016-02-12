@@ -343,8 +343,7 @@
   -webkit-filter: blur(3px);
   filter: url('/media/blur.svg#blur');
   filter: blur(3px);
-  z_index : 50;
-  @media only screen and (min-width:768px) { padding-top : 50px }
+  @media only screen and (min-width:768px) {padding-top : 50px}
 }
 
 .whitebox-user-msg {
@@ -363,7 +362,6 @@
   border-radius: 3px;
   font-size: 14px;
   font-weight: 600px;
-  z-index: 51;
 
   img {
     height: 10%;

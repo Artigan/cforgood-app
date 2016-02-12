@@ -30,6 +30,11 @@
 #  index_perks_on_business_id     (business_id)
 #  index_perks_on_periodicity_id  (periodicity_id)
 #
+# Foreign Keys
+#
+#  fk_rails_369c0ee5d8  (periodicity_id => periodicities.id)
+#  fk_rails_5797f2b98a  (business_id => businesses.id)
+#
 
 class Perk < ActiveRecord::Base
   belongs_to :business
@@ -61,7 +66,6 @@ class Perk < ActiveRecord::Base
     elsif self.appel
       user.uses.where(perk_id: self.id).count == 0
     elsif self.flash
-      raise
       Time.now >= self.start_date && Time.now <= self.end_date && (self.times == 0 || Use.where(perk_id: self.id).count < self.times)
     end
   end

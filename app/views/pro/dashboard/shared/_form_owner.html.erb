@@ -36,7 +36,6 @@
         var reader = new FileReader();
           reader.onload = function (e) {
             $('#business .picture-owner').attr('src', e.target.result).addClass("thumb-crop");
-            console.log(e.target.result);
           }
         reader.readAsDataURL(input);
       }

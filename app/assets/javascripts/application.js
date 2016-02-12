@@ -13,6 +13,9 @@
 
 //= require vendor/slick.js
 //= require app/slick.js
+//= require leaflet
+//= require mapbox.js
+
 //= require_tree ./app
 
 // Please do not put any code in here. Create a new .js file in

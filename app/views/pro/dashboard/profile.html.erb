@@ -4,6 +4,8 @@
   <!-- Content - Statistics -->
   <div class="dashboard">
     <div class="mobile-menu-overlay hidden"></div>
+    <!-- UPDATE PROFILE CONFIRMATION -->
+    <%= render "pro/dashboard/shared/updated" %>
     <div class="mobile-title">
       <%= image_tag('logopouce.png', class: '') %>
       <span>Mes informations personnelles</span>
@@ -30,9 +32,6 @@
     </div>
   </div>
 </div>
-
-<!-- UPDATE PROFILE CONFIRMATION -->
-<%= render "pro/dashboard/shared/updated" %>
 
 <% content_for :after_js do %>
 

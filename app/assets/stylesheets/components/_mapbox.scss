@@ -1,6 +1,6 @@
 .infoBoxContainer { margin-top: 10px; }
 
-.infoBox {
+.infoBox, .leaflet-popup-content {
 // .gm-s  tyle-iw {
   width: 320px !important;
   height: 300px;
@@ -106,4 +106,3 @@
     }
   }
 }
-

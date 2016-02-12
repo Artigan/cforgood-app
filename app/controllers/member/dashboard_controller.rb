@@ -9,18 +9,28 @@ class Member::DashboardController < ApplicationController
   # rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   def dashboard
-    @businesses = Business.joins(:perks).where("perks.permanent = ?", true).distinct
-    # authorize @businesses
-    # Let's DYNAMICALLY build the markers for the view.
-    @markers = Gmaps4rails.build_markers(@businesses) do |business, marker|
-      marker.lat business.latitude
-      marker.lng business.longitude
-      marker.picture({
-        url: BusinessCategory.find(business.business_category_id).marker.url(:marker),
-        width: 40,
-        height: 43
-      })
-      marker.infowindow render_to_string(partial: "components/map_box", locals: { business: business })
+    @businesses = Business.where(online: false).joins(:perks).where("perks.permanent = ?", true).distinct
+
+    @geojson = Array.new
+
+    @businesses.each do |business|
+      @geojson << {
+        type: 'Feature',
+        geometry: {
+          type: 'Point',
+          coordinates: [business.longitude, business.latitude]
+        },
+        properties: {
+          "marker-symbol": ("." + business.business_category_id.to_s),
+          popupContent: render_to_string(partial: "components/map_box", locals: { business: business }),
+          icon: {
+            iconUrl: BusinessCategory.find(business.business_category_id).marker.url,
+            iconSize: [40, 43],
+            iconAnchor: [25, 25],
+            popupAnchor: [0, -25]
+          }
+        }
+      }
     end
   end
 end

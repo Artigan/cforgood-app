@@ -53,6 +53,10 @@
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
+# Foreign Keys
+#
+#  fk_rails_130d5504e9  (cause_id => causes.id)
+#
 
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
@@ -100,6 +104,8 @@ class User < ActiveRecord::Base
       else
         user = User.create(
           name: data['name'],
+          first_name: data['first_name'],
+          last_name: data['last_name'],
           provider: access_token.provider,
           email: data['email'],
           uid: access_token.uid,
@@ -121,8 +127,11 @@ class User < ActiveRecord::Base
       if registred_user
         return registred_user
       else
+        raise
         user = User.create(
           name: access_token.extra.raw_info.name,
+          first_name: access_token.extra.raw_info.first_name,
+          last_name: access_token.extra.raw_info.last_name,
           provider: access_token.provider,
           email: data.email,
           uid: access_token.uid,

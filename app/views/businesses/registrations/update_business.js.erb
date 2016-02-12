@@ -1,8 +1,20 @@
-// $(".done-overlay").removeClass("hidden");
-<%# if current_user.errors.any? %>
-  // $(document).find("form").prepend('<%#= j render("components/error_messages", formats: [:html]) %>');
-<%# else %>
-  // $(document).find("form").prepend('<%#= j render("components/info_messages", formats: [:html]) %>');
-<%# end %>
+if (<%= !current_business.errors.any? %>) {
+
+  // DISCLAIMER - DISPLAYED
+  $(".done-overlay").removeClass("hidden");
+
+  window.setTimeout(function(){
+    // DISCLAIMER - HIDDEN
+    $(".done-overlay").addClass("hidden");
+    // window.location.href = "<%#= pro_business_dashboard_path(current_business) %>";
+  }, 5000);
+
+} else {
+
+  $(".alert").remove();
+  $(document).find("form").prepend('<%= j render("components/error_messages", formats: [:html]) %>');
+
+}
+
 
 
