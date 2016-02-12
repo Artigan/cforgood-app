@@ -51,7 +51,7 @@ Autour de vous
       <div class="side-menu side-categories">
         <span id="open-categories"><i class="fa fa-cog"></i>Filtrer par catégories</span>
         <ul>
-          <a href="#" class="filter-category">
+          <a href="#" data-filter="all" class="filter-category">
             <li id="categories-all" class="category-item is-selected">
               <div class="container-icon" style="background-color: #DFDFDF;">
                 <!-- Waiting for something -->
@@ -123,6 +123,20 @@ Autour de vous
           $('.category-item').removeClass('is-selected');
           $('#categories-all').addClass('is-selected');
         }
+      });
+
+      $('.filter-category').on('click', function() {
+      // For each filter link, get the 'data-filter' attribute value.
+        var filter = $(this).data('filter');
+
+        mapLayer.setFilter(function(f) {
+        // markers.setFilter(function(f) {
+          // If the data-filter attribute is set to "all", return
+          // all (true). Otherwise, filter on markers that have
+          // a value set to true based on the filter name.
+          return (filter === 'all') ? true : f.properties[filter] === true;
+        });
+        return false;
       });
     });
   </script>

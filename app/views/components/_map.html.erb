@@ -15,7 +15,7 @@
     // New Layer
     var mapLayer = L.mapbox.featureLayer().addTo(map);
 
-    // Set a custom icon on each marker based on feature properties.
+    // Set a custom icon on each marker based on feature properties
     mapLayer.on('layeradd', function(e) {
       var marker = e.layer,
           feature = marker.feature;
@@ -25,11 +25,12 @@
       });
     });
 
+    // Center on marker click
     // mapLayer.on('click', function(e) {
     //   map.panTo(e.layer.getLatLng());
     // });
 
-    // Add features to the map.
+    // Add features to the map
     mapLayer.setGeoJSON(geoJson);
 
     // Fit around the markers of the map

@@ -21,6 +21,7 @@ class Member::DashboardController < ApplicationController
           coordinates: [business.longitude, business.latitude]
         },
         properties: {
+          "marker-symbol": ("." + business.business_category_id.to_s),
           popupContent: render_to_string(partial: "components/map_box", locals: { business: business }),
           icon: {
             iconUrl: BusinessCategory.find(business.business_category_id).marker.url,

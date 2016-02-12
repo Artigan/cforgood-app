@@ -63,8 +63,6 @@ class Business < ActiveRecord::Base
   belongs_to :business_category
   has_many :perks, dependent: :destroy
 
-  scope :mappable, -> { where(online: false) }
-
   validates :email, presence: true, uniqueness: true
   validates :business_category_id, presence: true
   validates :name, presence: true

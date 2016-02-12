@@ -1,24 +1,18 @@
 class PagesController < ApplicationController
 
+  before_action :redirect_to_dasboard!
+
   def home
     @businesses = Business.joins(:perks).where("perks.permanent = ?", true).distinct
   end
 
-  # def info_business
-  # end
+  private
 
-  # def info_cause
-  # end
+  def redirect_to_dasboard!
+    if request['action'] != "faq_connect"
+      redirect_to(member_user_dashboard_path(current_user)) if user_signed_in?
+      redirect_to(pro_business_dashboard_path(current_business)) if business_signed_in?
+    end
+  end
 
-  # def about
-  # end
-
-  # def charte
-  # end
-
-  # def member_card
-  # end
-
-  # def faq
-  # end
 end
