@@ -20,8 +20,8 @@
         icon: {
           iconUrl: BusinessCategory.find(@business.business_category_id).marker.url,
           iconSize: [40, 43],
-          iconAnchor: [25, 25],
-          popupAnchor: [0, -25]
+          # iconAnchor: [25, 25],
+          # popupAnchor: [0, -25]
         }
       }
     }

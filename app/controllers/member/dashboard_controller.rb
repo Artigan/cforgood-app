@@ -11,10 +11,10 @@ class Member::DashboardController < ApplicationController
   def dashboard
     @businesses = Business.where(online: false).joins(:perks).where("perks.permanent = ?", true).distinct
 
-    @geojson = Array.new
+    @geojson = {"type" => "FeatureCollection", "features" => []}
 
     @businesses.each do |business|
-      @geojson << {
+      @geojson["features"] << {
         type: 'Feature',
         geometry: {
           type: 'Point',
@@ -22,7 +22,7 @@ class Member::DashboardController < ApplicationController
         },
         properties: {
           "marker-symbol": ("." + business.business_category_id.to_s),
-          "show_on_map": true,
+          # "show_on_map": true,
           popupContent: render_to_string(partial: "components/map_box", locals: { business: business }),
           icon: {
             iconUrl: BusinessCategory.find(business.business_category_id).marker.url,

@@ -1,14 +1,14 @@
 <script>
 
-    var geoJson = <%= raw(@geojson.to_json) %>;
+  var geoJson = <%= raw(@geojson.to_json) %>;
 
-    L.mapbox.accessToken = 'pk.eyJ1IjoiZnJlZHBldHJpcyIsImEiOiJjaWtoem9qd2IwMDJmdnBtNmZ0Y29zcG5sIn0.atyCUDfyMaoUauNY1diwtQ';
+  L.mapbox.accessToken = 'pk.eyJ1IjoiZnJlZHBldHJpcyIsImEiOiJjaWtoem9qd2IwMDJmdnBtNmZ0Y29zcG5sIn0.atyCUDfyMaoUauNY1diwtQ';
 
-    var mapboxTiles = L.tileLayer('https://api.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=' + L.mapbox.accessToken, {
-      attribution: '<a href="http://www.mapbox.com/about/maps/" target="_blank">Terms &amp; Feedback</a>'
-    });
+  var mapboxTiles = L.tileLayer('https://api.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=' + L.mapbox.accessToken, {
+    attribution: '<a href="http://www.mapbox.com/about/maps/" target="_blank">Terms &amp; Feedback</a>'
+  });
 
-    var map = L.map('map-dashboard')
+  var map = L.map('map-dashboard')
       .addLayer(mapboxTiles)
       .setView(["<%= current_user.latitude %>", "<%= current_user.longitude %>"], 14);
 
@@ -33,7 +33,54 @@
     // Add features to the map
     mapLayer.setGeoJSON(geoJson);
 
-    // Fit around the markers of the map
+    //Fit around the markers of the map
     map.fitBounds(mapLayer.getBounds());
+
+
+  ///// MAPBOXGL ///////
+  // mapboxgl.accessToken = 'pk.eyJ1IjoiZnJlZHBldHJpcyIsImEiOiJjaWtoem9qd2IwMDJmdnBtNmZ0Y29zcG5sIn0.atyCUDfyMaoUauNY1diwtQ';
+
+  // var map = new mapboxgl.Map({
+  //   container: 'map-dashboard',
+  //   style: 'mapbox://styles/mapbox/streets-v8',
+  //   center: ["<%= current_user.longitude %>", "<%= current_user.latitude %>"],
+  //   zoom: 14
+  // });
+
+  // map.on('style.load', function () {
+  //   //Add marker data as a new GeoJSON source.
+  //   map.addSource("markers", {
+  //     "type": "geojson",
+  //     "data": geoJson
+  //   });
+  //   // var markers = new mapboxgl.GeoJSONSource({ data: geoJson });
+  //   // map.addSource('markers', markers);
+
+  //   // Add a layer showing the markers.
+  //   map.addLayer({
+  //     "id": "markers",
+  //     "interactive": true,
+  //     "type": "symbol",
+  //     "source": "markers",
+  //     // "layout": {
+  //     //   "icon-image": "default-image"
+  //     // }
+  //   });
+  // });
+
+  // // When a click event occurs near a marker icon, open a popup at the location of
+  // // the feature, with description HTML from its properties.
+  // map.on('click', function (e) {
+  //   map.featuresAt(e.point, {layer: 'markers', radius: 10, includeGeometry: true}, function (err, features) {
+  //       if (err || !features.length)
+  //           return;
+
+  //       var feature = features[0];
+  //       new mapboxgl.Popup()
+  //           .setLngLat(feature.geometry.coordinates)
+  //           .setHTML(feature.properties.popupContent)
+  //           .addTo(map);
+  //   });
+  // });
 
 </script>
