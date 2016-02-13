@@ -131,7 +131,7 @@
 </div>
 
 <% content_for(:after_js) do %>
-  <%= render 'components/map_perk_show', markers: @markers, map_id: "map-perk", latitude: @business.latitude, longitude: (@business.longitude + 0.012) %>
+  <%= render 'components/map_perk_show', geojson: @geojson, latitude:  @business.latitude, longitude:  @business.longitude %>
   <script>
     $(document).ready(function() {
       $("#button-used").popover({

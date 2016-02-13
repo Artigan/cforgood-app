@@ -127,11 +127,11 @@ class User < ActiveRecord::Base
       if registred_user
         return registred_user
       else
-        raise
         user = User.create(
           name: access_token.extra.raw_info.name,
           first_name: access_token.extra.raw_info.first_name,
           last_name: access_token.extra.raw_info.last_name,
+          city: access_token.user_location,
           provider: access_token.provider,
           email: data.email,
           uid: access_token.uid,
@@ -213,12 +213,21 @@ class User < ActiveRecord::Base
       notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_USER_URL']
 
       if last_name.present?
-        notifier.ping "#{first_name} #{last_name} a rejoint la communauté !"
+        message = "#{first_name} #{last_name}"
       elsif name.present?
-        notifier.ping "#{name} a rejoint la communauté !"
+        message = "#{name}"
       else
-        notifier.ping "#{email} a rejoint la communauté !"
+        massage = "#{email}"
       end
+
+      if city.present?
+        message = message + " de *#{city}*"
+      end
+
+      message = message + " a rejoint la communauté !"
+
+      notifier.ping message
+
     end
   end
 
