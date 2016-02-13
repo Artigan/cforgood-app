@@ -56,6 +56,8 @@ class Perk < ActiveRecord::Base
   validates_attachment_content_type :picture,
     content_type: /\Aimage\/.*\z/
 
+  after_create :send_registration_slack
+
   def update_nb_view!
     self.increment!(:nb_views)
   end
@@ -92,6 +94,13 @@ class Perk < ActiveRecord::Base
       code = ("A".."Z").to_a.sample(4).join
       code += (0..9).to_a.sample.to_s
       self.perk_code = code if !Perk.find_by_perk_code(code)
+    end
+  end
+
+  def send_registration_slack
+    if !Rails.env.development?
+      notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_PERK_URL']
+      notifier.ping "#{self.business.name} a créé un nouveau bon plan : #{perk}"
     end
   end
 
