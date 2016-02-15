@@ -1,6 +1,6 @@
 <div class="map-box">
   <div class="box-header">
-    <img src='<%= business.picture %>'>
+    <%= image_tag image_url business.picture(:medium) %>
     <div class="business-details">
       <h3><%= business.name %></h3>
       <span><%= business.business_category.name %></span>
@@ -11,9 +11,13 @@
     <div class="map-perks">
       <ul>
       <% business.perks.active.each do |perk| %>
-        <li>
+        <li style="box-shadow: inset -35px 0 0 0 <%= BusinessCategory.find(business.business_category_id).color %>;">
           <%= link_to business_path(perk.business_id, perk_id: perk.id), class: "see-perk" do %>
-            <%= perk.perk %><i class="fa fa-angle-right"></i>
+            <% if perk.picture? %>
+              <%= image_tag image_url perk.picture(:medium) %>
+            <% end %>
+            <span><%= perk.perk %></span>
+            <i class="fa fa-angle-right"></i>
           <% end %>
         </li>
       <% end %>
