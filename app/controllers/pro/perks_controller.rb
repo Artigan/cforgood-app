@@ -15,10 +15,15 @@ class Pro::PerksController < Pro::ProController
   def create
     @perk = @business.perks.build(perk_params)
     authorize @perk
-    if @perk.save
-      redirect_to pro_business_perks_path(@business)
-    else
-      render :new
+    @perk.save
+    # if @perk.save
+    #   redirect_to pro_business_perks_path(@business)
+    # else
+    #   render :new
+    # end
+    respond_to do |format|
+      format.html {redirect_to :back}
+      format.js {}
     end
   end
 
@@ -45,6 +50,6 @@ class Pro::PerksController < Pro::ProController
   end
 
   def perk_params
-    params.require(:perk).permit(:perk, :description, :detail, :times, :start_date, :end_date, :permanent, :periodicity_id, :active, :appel, :durable, :flash)
+    params.require(:perk).permit(:perk, :description, :detail, :times, :start_date, :end_date, :perk_code, :picture, :permanent, :periodicity_id, :active, :appel, :durable, :flash)
   end
 end

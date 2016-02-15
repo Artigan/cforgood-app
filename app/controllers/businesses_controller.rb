@@ -11,17 +11,15 @@
 
     @geojson = Array.new
     @geojson << {
-      type: 'Feature',
-      geometry: {
-        type: 'Point',
-        coordinates: [@business.longitude, @business.latitude]
+      "type": 'Feature',
+      "geometry": {
+        "type": 'Point',
+        "coordinates": [@business.longitude, @business.latitude]
       },
-      properties: {
-        icon: {
-          iconUrl: BusinessCategory.find(@business.business_category_id).marker.url,
-          iconSize: [40, 43],
-          # iconAnchor: [25, 25],
-          # popupAnchor: [0, -25]
+      "properties": {
+        "icon": {
+          "iconUrl": BusinessCategory.find(@business.business_category_id).marker.url,
+          "iconSize": [40, 43]
         }
       }
     }
