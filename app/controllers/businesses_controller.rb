@@ -9,18 +9,18 @@
   def show
     @business = Business.find(params[:id])
 
-    @geojson = Array.new
-    @geojson << {
+    @geojson = {"type" => "FeatureCollection", "features" => []}
+
+    @geojson["features"] << {
       "type": 'Feature',
       "geometry": {
         "type": 'Point',
         "coordinates": [@business.longitude, @business.latitude]
       },
       "properties": {
-        "icon": {
-          "iconUrl": BusinessCategory.find(@business.business_category_id).marker.url,
-          "iconSize": [40, 43]
-        }
+        # "marker-symbol": ("." + business.business_category_id.to_s),
+        "marker-symbol": "monument",
+        # "description": render_to_string(partial: "components/map_box", locals: { business: business })
       }
     }
     respond_to do |format|

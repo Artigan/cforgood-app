@@ -2,45 +2,6 @@
 
   var geoJson = <%= raw(@geojson.to_json) %>;
 
-console.log(geoJson);
-  // L.mapbox.accessToken = 'pk.eyJ1IjoiZnJlZHBldHJpcyIsImEiOiJjaWtoem9qd2IwMDJmdnBtNmZ0Y29zcG5sIn0.atyCUDfyMaoUauNY1diwtQ';
-
-  // var mapboxTiles = L.tileLayer('https://api.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=' + L.mapbox.accessToken, {
-  //   attribution: '<a href="http://www.mapbox.com/about/maps/" target="_blank">Terms &amp; Feedback</a>'
-  // });
-
-  // var map = L.map('map-dashboard')
-  //     .addLayer(mapboxTiles)
-  //     .setView(["<%= current_user.latitude %>", "<%= current_user.longitude %>"], 14);
-
-  //   // New Layer
-  //   var mapLayer = L.mapbox.featureLayer().addTo(map);
-
-  //   // Set a custom icon on each marker based on feature properties
-  //   mapLayer.on('layeradd', function(e) {
-  //     var marker = e.layer,
-  //         feature = marker.feature;
-  //     marker.setIcon(L.icon(feature.properties.icon));
-  //     marker.bindPopup(feature.properties.popupContent,{
-  //       closeButton: true
-  //     });
-  //   });
-
-  //   // Center on marker click
-  //   // mapLayer.on('click', function(e) {
-  //   //   map.panTo(e.layer.getLatLng());
-  //   // });
-
-  //   // Add features to the map
-  //   mapLayer.setGeoJSON(geoJson);
-
-  //   //Fit around the markers of the map
-  //   map.fitBounds(mapLayer.getBounds());
-
-
-  ///// MAPBOXGL //////
-//////
-
   mapboxgl.accessToken = 'pk.eyJ1IjoiZnJlZHBldHJpcyIsImEiOiJjaWtoem9qd2IwMDJmdnBtNmZ0Y29zcG5sIn0.atyCUDfyMaoUauNY1diwtQ';
   var map = new mapboxgl.Map({
       container: 'map-dashboard',
@@ -113,7 +74,6 @@ console.log(geoJson);
 
         var feature = features[0];
         var coordinates = features[0].geometry.coordinates;
-        console.log(coordinates);
         // Get coordinates from the symbol and center the map on those coordinates
         map.flyTo({center: [coordinates[0],coordinates[1]-0.012]});
         new mapboxgl
@@ -134,8 +94,5 @@ console.log(geoJson);
   //         map.getCanvas().style.cursor = (!err && features.length) ? 'pointer' : '';
   //     });
   // });
-
-
-
 
 </script>
