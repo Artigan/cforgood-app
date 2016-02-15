@@ -54,6 +54,13 @@
     <%= f.error_notification %>
     <label class="hint--top-right" data-hint="Quelque chose de court et engageant">Nom du bon plan *</label>
     <%= f.input :perk, label: false, placeholder: "140 car. max", required: true %>
+    <div class="photo">
+      <label class="hint--top-right" data-hint="Votre bon plan en image !">Photo</label>
+      <div class="picture-container">
+        <%= image_tag @perk.picture.url(:thumb), class: 'picture-perk' %>
+      </div>
+      <%= f.input :picture, as: :file, required: false, label: 'Sélectionner une nouvelle image' %>
+    </div>
     <label class="hint--top-right" data-hint="Précisez le contenu de votre offre">Description *</label>
     <%= f.input :description, label: false, placeholder: "Dites-nous tout...", required: true, :input_html => { :rows => 3 } %>
     <label class="hint--top-right" data-hint="Sélectionnez le moyen d'activation">Utilisation *</label>
@@ -82,6 +89,13 @@
     <%= f.error_notification %>
     <label class="hint--top-right" data-hint="Quelque chose de court et engageant">Nom du bon plan *</label>
     <%= f.input :perk, label: false, placeholder: "I feel good", required: true %>
+    <div class="photo">
+      <label class="hint--top-right" data-hint="Votre bon plan en image !">Photo</label>
+      <div class="picture-container">
+        <%= image_tag @perk.picture.url(:thumb), class: 'picture-perk' %>
+      </div>
+      <%= f.input :picture, as: :file, required: false, label: 'Sélectionner une nouvelle image' %>
+    </div>
     <label class="hint--top-right" data-hint="Précisez le contenu de votre offre">Description *</label>
     <%= f.input :description, label: false, placeholder: "Dites-nous tout...", required: true, :input_html => { :rows => 3 } %>
     <label class="hint--top-right" data-hint="Sélectionnez le moyen d'activation">Utilisation *</label>
@@ -110,6 +124,13 @@
       <%= f.error_notification %>
       <label class="hint--top-right" data-hint="Quelque chose de court et engageant">Nom du bon plan *</label>
       <%= f.input :perk, label: false, placeholder: "I feel good", required: true %>
+      <div class="photo">
+        <label class="hint--top-right" data-hint="Votre bon plan en image !">Photo</label>
+        <div class="picture-container">
+          <%= image_tag @perk.picture.url(:thumb), class: 'picture-perk' %>
+        </div>
+        <%= f.input :picture, as: :file, required: false, label: 'Sélectionner une nouvelle image' %>
+      </div>
       <label class="hint--top-right" data-hint="Précisez le contenu de votre offre">Description *</label>
       <%= f.input :description, label: false, placeholder: "Dites-nous tout...", required: true, :input_html => { :rows => 3 } %>
       <label class="hint--top-right" data-hint="Sélectionnez le moyen d'activation">Utilisation *</label>
