@@ -5,7 +5,8 @@
       <li class="<%= active_class(member_user_dashboard_path(current_user))%>">
         <%= link_to member_user_dashboard_path(current_user) do %>
           <div class="icon-container">
-            <%= image_tag('icons/suivi.png', :class => 'admin-icon') %>
+            <!-- <#= image_tag('icons/suivi.png', :class => 'admin-icon') %> -->
+            <%= render "shared/icons/around_me" %>
           </div>
           <span class="admin-label">Autour de vous</span>
         <% end %>
@@ -13,7 +14,8 @@
       <li class="<%= active_class(businesses_path)%> light">
         <%= link_to businesses_path do %>
           <div class="icon-container">
-            <%= image_tag('icons/myperks.png', :class => 'admin-icon') %>
+            <!-- <#= image_tag('icons/myperks.png', :class => 'admin-icon') %> -->
+            <%= render "shared/icons/perks" %>
           </div>
           <span class="admin-label">Les Bons Plans</span>
         <% end %>
@@ -21,7 +23,8 @@
       <li class="<%= active_class(asso_causes_path)%> light">
         <%= link_to asso_causes_path do %>
           <div class="icon-container">
-            <%= image_tag('icons/createperks.png', :class => 'admin-icon') %>
+            <!-- <#= image_tag('icons/createperks.png', :class => 'admin-icon') %> -->
+            <%= render "shared/icons/causes" %>
           </div>
           <span class="admin-label">Les associations</span>
         <% end %>
@@ -30,7 +33,8 @@
       <li class="<%= active_class(member_user_profile_path(current_user)) %> light light desktop-profile">
         <%= link_to member_user_profile_path(current_user) do %>
           <div class="icon-container">
-            <%= image_tag('icons/profil.png', :class => 'admin-icon') %>
+            <!-- <#= image_tag('icons/profil.png', :class => 'admin-icon') %> -->
+            <%= render "shared/icons/profile" %>
           </div>
           <span class="admin-label">Mon profil</span>
         <% end %>
@@ -39,7 +43,8 @@
       <li id="profile-tab" class="mobile-dropdown">
         <a href="#">
           <div class="icon-container">
-            <%= image_tag('icons/profil.png', :class => 'admin-icon') %>
+            <!-- <#= image_tag('icons/profil.png', :class => 'admin-icon') %> -->
+            <%= render "shared/icons/profile" %>
           </div>
           <span class="admin-label">Mon profil</span>
         </a>

@@ -55,9 +55,9 @@
                 <span class="perk-owner"><%= business.leader_first_name %> <%= business.leader_last_name %> vous accueillera</span>
               </div>
               <div class="card-header-category" style="background-color: <%= BusinessCategory.find(business.business_category_id).color %>;">
-                <!-- <#= image_tag image_url BusinessCategory.find(business.business_category_id).picture %> -->
-                <div class="category-container" style="background-color: <%= BusinessCategory.find(business.business_category_id).color %>;">
-                </div>
+                <%= image_tag image_url BusinessCategory.find(business.business_category_id).picture %>
+                <!-- <div class="category-container" style="background-color: <#= BusinessCategory.find(business.business_category_id).color %>;">
+                </div> -->
               </div>
             </div>
             <!-- CARD BODY -->
