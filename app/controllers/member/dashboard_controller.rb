@@ -15,21 +15,15 @@ class Member::DashboardController < ApplicationController
 
     @businesses.each do |business|
       @geojson["features"] << {
-        type: 'Feature',
-        geometry: {
-          type: 'Point',
-          coordinates: [business.longitude, business.latitude]
+        "type": 'Feature',
+        "geometry": {
+          "type": 'Point',
+          "coordinates": [business.longitude, business.latitude]
         },
-        properties: {
-          "marker-symbol": ("." + business.business_category_id.to_s),
-          # "show_on_map": true,
-          popupContent: render_to_string(partial: "components/map_box", locals: { business: business }),
-          icon: {
-            iconUrl: BusinessCategory.find(business.business_category_id).marker.url,
-            iconSize: [40, 43],
-            iconAnchor: [25, 25],
-            popupAnchor: [0, -25]
-          }
+        "properties": {
+          # "marker-symbol": ("." + business.business_category_id.to_s),
+          "marker-symbol": "monument",
+          "description": render_to_string(partial: "components/map_box", locals: { business: business })
         }
       }
     end

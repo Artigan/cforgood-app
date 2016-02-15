@@ -17,6 +17,7 @@ ActiveAdmin.register Perk do
       f.input :times
       f.input :start_date
       f.input :end_date
+      f.input :perk_code
       f.input :picture
     end
     f.inputs "Admin" do
@@ -29,5 +30,5 @@ ActiveAdmin.register Perk do
     f.actions
   end
 
-  permit_params :perk, :business_id, :description, :detail, :periodicity_id, :times , :start_date, :end_date, :permanent, :active, :appel, :durable, :flash, :picture
+  permit_params :perk, :business_id, :description, :detail, :periodicity_id, :times , :start_date, :end_date, :perk_code, :permanent, :active, :appel, :durable, :flash, :picture
 end

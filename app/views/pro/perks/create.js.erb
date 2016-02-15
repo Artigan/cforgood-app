@@ -6,7 +6,7 @@ if (<%= !current_business.errors.any? %>) {
   window.setTimeout(function(){
     // DISCLAIMER - HIDDEN
     $(".done-overlay").addClass("hidden");
-    // window.location.href = "<%#= pro_business_dashboard_path(current_business) %>";
+    window.location.href = "<%= pro_business_perks_path(current_business) %>";
   }, 3000);
 
 } else {
@@ -15,6 +15,3 @@ if (<%= !current_business.errors.any? %>) {
   $(document).find("form").prepend('<%= j render("components/error_messages", formats: [:html]) %>');
 
 }
-
-
-
