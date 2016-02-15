@@ -54,12 +54,12 @@
     <%= f.error_notification %>
     <label class="hint--top-right" data-hint="Quelque chose de court et engageant">Nom du bon plan *</label>
     <%= f.input :perk, label: false, placeholder: "140 car. max", required: true %>
-    <div class="photo">
+    <div class="photo-perk">
       <label class="hint--top-right" data-hint="Votre bon plan en image !">Photo</label>
       <div class="picture-container">
-        <%= image_tag @perk.picture.url(:thumb), class: 'picture-perk' %>
+        <%= image_tag @perk.picture.url(:thumb), class: 'picture-perk', id: 'perk-appel-preview'%>
       </div>
-      <%= f.input :picture, as: :file, required: false, label: 'Sélectionner une nouvelle image' %>
+      <%= f.input :picture, as: :file, required: false, label: 'Sélectionner une nouvelle image', input_html: {id: :perk_appel_file } %>
     </div>
     <label class="hint--top-right" data-hint="Précisez le contenu de votre offre">Description *</label>
     <%= f.input :description, label: false, placeholder: "Dites-nous tout...", required: true, :input_html => { :rows => 3 } %>
@@ -89,12 +89,12 @@
     <%= f.error_notification %>
     <label class="hint--top-right" data-hint="Quelque chose de court et engageant">Nom du bon plan *</label>
     <%= f.input :perk, label: false, placeholder: "I feel good", required: true %>
-    <div class="photo">
+    <div class="photo-perk">
       <label class="hint--top-right" data-hint="Votre bon plan en image !">Photo</label>
       <div class="picture-container">
-        <%= image_tag @perk.picture.url(:thumb), class: 'picture-perk' %>
+        <%= image_tag @perk.picture.url(:thumb), class: 'picture-perk', id: 'perk-durable-preview'%>
       </div>
-      <%= f.input :picture, as: :file, required: false, label: 'Sélectionner une nouvelle image' %>
+      <%= f.input :picture, as: :file, required: false, label: 'Sélectionner une nouvelle image', input_html: {id: :perk_durable_file } %>
     </div>
     <label class="hint--top-right" data-hint="Précisez le contenu de votre offre">Description *</label>
     <%= f.input :description, label: false, placeholder: "Dites-nous tout...", required: true, :input_html => { :rows => 3 } %>
@@ -124,12 +124,12 @@
       <%= f.error_notification %>
       <label class="hint--top-right" data-hint="Quelque chose de court et engageant">Nom du bon plan *</label>
       <%= f.input :perk, label: false, placeholder: "I feel good", required: true %>
-      <div class="photo">
+      <div class="photo-perk">
         <label class="hint--top-right" data-hint="Votre bon plan en image !">Photo</label>
         <div class="picture-container">
-          <%= image_tag @perk.picture.url(:thumb), class: 'picture-perk' %>
+          <%= image_tag @perk.picture.url(:thumb), class: 'picture-perk', id: 'perk-flash-preview'%>
         </div>
-        <%= f.input :picture, as: :file, required: false, label: 'Sélectionner une nouvelle image' %>
+        <%= f.input :picture, as: :file, required: false, label: 'Sélectionner une nouvelle image', input_html: {id: :perk_flash_file } %>
       </div>
       <label class="hint--top-right" data-hint="Précisez le contenu de votre offre">Description *</label>
       <%= f.input :description, label: false, placeholder: "Dites-nous tout...", required: true, :input_html => { :rows => 3 } %>
@@ -271,6 +271,33 @@
           $(".perk-flash #perk_durable").val("false");
           $(".perk-flash #perk_flash").val("true");
         }
+      });
+
+      // PICTURE LOAD PREVIEW
+      function readURL(file, classe) {
+        var reader = new FileReader();
+          reader.onload = function (e) {
+            $(classe).attr('src', e.target.result);
+          }
+        reader.readAsDataURL(file);
+      }
+      $("#perk_appel_file").on("change", function(e) {
+        e.preventDefault();
+        var newFile = document.querySelector('#perk_appel_file').files[0];
+        $("#perk_appel_file").parent().children().html(newFile.name);
+        readURL(newFile, "#perk-appel-preview");
+      });
+      $("#perk_durable_file").on("change", function(e) {
+        e.preventDefault();
+        var newFile = document.querySelector('#perk_durable_file').files[0];
+        $("#perk_durable_file").parent().children().html(newFile.name);
+        readURL(newFile, "#perk-durable-preview");
+      });
+      $("#perk_flash_file").on("change", function(e) {
+        e.preventDefault();
+        var newFile = document.querySelector('#perk_flash_file').files[0];
+        $("#perk_flash_file").parent().children().html(newFile.name);
+        readURL(newFile, "#perk-flash-preview");
       });
     });
 
