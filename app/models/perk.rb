@@ -45,7 +45,7 @@ class Perk < ActiveRecord::Base
   scope :active, -> { where(active: true) }
 
   validates :times, numericality: { only_integer: true, greater_than_or_equal_to: 0 }, allow_nil: true
-  validates :perk_code, uniqueness: true
+  validates :perk_code, uniqueness: true, format: { with: /[A-Z0-9]/ }
 
   validate :dates_required_if_flash
   validate :start_date_cannot_be_greater_than_end_date
@@ -56,6 +56,7 @@ class Perk < ActiveRecord::Base
   validates_attachment_content_type :picture,
     content_type: /\Aimage\/.*\z/
 
+  before_validation :perk_code_upcase!, if: :perk_code_changed?
   after_create :generate_code!, :send_registration_slack
 
   def update_nb_view!
@@ -102,6 +103,10 @@ class Perk < ActiveRecord::Base
       notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_PERK_URL']
       notifier.ping "#{self.business.name} a créé un nouveau bon plan : #{perk}"
     end
+  end
+
+  def perk_code_upcase!
+    perk_code.upcase!
   end
 
 end
