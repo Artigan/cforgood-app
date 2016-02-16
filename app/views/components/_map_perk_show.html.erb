@@ -6,11 +6,11 @@
 
   mapboxgl.accessToken = 'pk.eyJ1IjoiZnJlZHBldHJpcyIsImEiOiJjaWtoem9qd2IwMDJmdnBtNmZ0Y29zcG5sIn0.atyCUDfyMaoUauNY1diwtQ';
   var map = new mapboxgl.Map({
-      container: 'map-perk',
-      style: 'mapbox://styles/mapbox/streets-v8',
-      center: coordinates,
-      interactive: false,
-      zoom: 15
+    container: 'map-perk',
+    style: 'mapbox://styles/fredpetris/cikporvjj00p8b5lwovwd3kq9',
+    center: coordinates,
+    interactive: false,
+    zoom: 15
   });
 
   map.on('style.load', function () {
@@ -25,7 +25,7 @@
       "source": "markers",
       "interactive": true,
       "layout": {
-          "icon-image": "{marker-symbol}-15"
+          "icon-image": "{marker-symbol}"
           // "text-field": "{title}",
           // "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
           // "text-offset": [0, 0.6],

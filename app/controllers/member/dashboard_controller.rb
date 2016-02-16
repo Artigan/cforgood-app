@@ -21,10 +21,7 @@ class Member::DashboardController < ApplicationController
           "coordinates": [business.longitude, business.latitude]
         },
         "properties": {
-          # "marker-symbol": ("." + business.business_category_id.to_s),
-          "marker-symbol": BusinessCategory.find(business.business_category_id).name,
-          # "marker-symbol": 'shop',
-          # "circle-color": BusinessCategory.find(business.business_category_id).color,
+          "marker-symbol": business.business_category.marker_symbol,
           "description": render_to_string(partial: "components/map_box", locals: { business: business })
         }
       }
