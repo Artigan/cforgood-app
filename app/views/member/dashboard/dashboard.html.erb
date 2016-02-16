@@ -60,8 +60,8 @@ Autour de vous
             </li>
           </a>
           <% BusinessCategory.all.each do |category| %>
-          <a href="#" data-filter="<%= "."+category.id.to_s %>" class="filter-category current">
-            <li class="category-item">
+          <a href="#" data-filter="<%= "poi-"+category.name %>" class="filter-category current">
+            <li id="<%= "poi-"+category.name %>" class="category-item">
               <div class="container-icon" style="background-color: <%= category.color %>;">
                 <!-- <#= image_tag image_url category.picture %> -->
               </div>
@@ -116,28 +116,33 @@ Autour de vous
       });
 
       $('.category-item').click(function(event) {
-        if ($(this).val('div').attr('id') != 'categories-all'){
+        var input = document.getElementsByClassName('category-item');
+        if ($(this).val('div').attr('id') != 'categories-all') {
           $(this).toggleClass('is-selected');
           $('#categories-all').removeClass('is-selected');
+          // SET VISIBLE SELECTED LAYERS
+          var i;
+          for (i = 0; i < input.length; i++) {
+            var filter = input[i].getAttribute('id');
+            if (map.getLayer(filter) != undefined) {
+              map.setLayoutProperty(filter, 'visibility',
+                input[i].classList.contains("is-selected") ? 'visible' : 'none');
+            }
+          }
         } else {
           $('.category-item').removeClass('is-selected');
           $('#categories-all').addClass('is-selected');
+          // SET VISIBLE ALL LAYERS
+          var i;
+          for (i = 0; i < input.length; i++) {
+            var filter = input[i].getAttribute('id');
+            if (map.getLayer(filter) != undefined) {
+              map.setLayoutProperty(filter, 'visibility', 'visible');
+            }
+          }
         }
       });
-
-      $('.filter-category').on('click', function() {
-      // For each filter link, get the 'data-filter' attribute value.
-        var filter = $(this).data('filter');
-
-        mapLayer.setFilter(function(f) {
-        // markers.setFilter(function(f) {
-          // If the data-filter attribute is set to "all", return
-          // all (true). Otherwise, filter on markers that have
-          // a value set to true based on the filter name.
-          return (filter === 'all') ? true : f.properties[filter] === true;
-        });
-        return false;
-      });
     });
+
   </script>
 <% end %>

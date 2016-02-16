@@ -22,7 +22,9 @@ class Member::DashboardController < ApplicationController
         },
         "properties": {
           # "marker-symbol": ("." + business.business_category_id.to_s),
-          "marker-symbol": "monument",
+          "marker-symbol": BusinessCategory.find(business.business_category_id).name,
+          # "marker-symbol": 'shop',
+          # "circle-color": BusinessCategory.find(business.business_category_id).color,
           "description": render_to_string(partial: "components/map_box", locals: { business: business })
         }
       }
