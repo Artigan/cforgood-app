@@ -6,6 +6,7 @@
 
   // mapboxgl.accessToken = 'pk.eyJ1IjoiZnJlZHBldHJpcyIsImEiOiJjaWtoem9qd2IwMDJmdnBtNmZ0Y29zcG5sIn0.atyCUDfyMaoUauNY1diwtQ';
   mapboxgl.accessToken = 'pk.eyJ1IjoiZnJlZHBldHJpcyIsImEiOiJjaWtvMTIzNmIwMDlsd2hsczgzNmhoZjZ3In0.57Q6lRMPraIiM86QfsXKxg';
+
   var map = new mapboxgl.Map({
     container: 'map-dashboard',
     style: 'mapbox://styles/fredpetris/cikporvjj00p8b5lwovwd3kq9',
@@ -65,5 +66,13 @@
           .addTo(map);
     });
   });
+
+  // Use the same approach as above to indicate that the symbols are clickable
+  // by changing the cursor style to 'pointer'.
+  // map.on('mousemove', function (e) {
+  //     map.featuresAt(e.point, {layer: 'markers', radius: 10}, function (err, features) {
+  //         map.getCanvas().style.cursor = (!err && features.length) ? 'pointer' : '';
+  //     });
+  // });
 
 </script>

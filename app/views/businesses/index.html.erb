@@ -25,7 +25,8 @@
         </a> -->
         <a href="#" data-filter="all" class="filter-btn current">
           <li id="categories-all" class="category-item is-selected">
-            <div class="container-icon" style="background-color: #DFDFDF;">
+            <div class="container-icon" style="background-color: #fff;">
+              <%= image_tag "icons/all.png" %>
             </div>
             Toutes les catégories
           </li>
@@ -34,7 +35,7 @@
         <a href="#" data-filter="<%= "."+category.id.to_s %>" class="filter-btn current">
           <li class="category-item">
             <div class="container-icon" style="background-color: <%= category.color %>;">
-              <!-- <#= image_tag image_url category.picture %> -->
+              <%= image_tag image_url category.picture %>
             </div>
             <%= category.name %>
           </li>
@@ -55,9 +56,9 @@
                 <span class="perk-owner"><%= business.leader_first_name %> <%= business.leader_last_name %> vous accueillera</span>
               </div>
               <div class="card-header-category" style="background-color: <%= BusinessCategory.find(business.business_category_id).color %>;">
-                <!-- <#= image_tag image_url BusinessCategory.find(business.business_category_id).picture %> -->
-                <div class="category-container" style="background-color: <%= BusinessCategory.find(business.business_category_id).color %>;">
-                </div>
+                <%= image_tag image_url BusinessCategory.find(business.business_category_id).picture %>
+                <!-- <div class="category-container" style="background-color: <#= BusinessCategory.find(business.business_category_id).color %>;">
+                </div> -->
               </div>
             </div>
             <!-- CARD BODY -->

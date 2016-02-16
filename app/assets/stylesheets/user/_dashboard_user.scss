@@ -30,9 +30,9 @@
   }
 
   .welcome-user {
-    position: absolute;
+    position: fixed;
     background-color: #fff;
-    bottom: 60px;
+    bottom: 10%;
     z-index: 10;
     padding: 7px 30px 7px 20px;
     border-radius: 0 3px 0 0;
@@ -50,7 +50,7 @@
   }
 
   .in-central-city {
-    position: absolute;
+    position: fixed;
     top: 30px;
     left: 50%;
     z-index: 10;
@@ -108,7 +108,7 @@
   }
 
   .side-menu {
-    position: absolute;
+    position: fixed;
     z-index: 100;
     height: auto;
     width: 260px;
@@ -180,16 +180,29 @@
           display: flex;
           justify-content: center;
           align-items: center;
+          position: relative;
           padding: 10px 0;
           margin-right: 10px;
           width: 50px;
           height: 100%;
           min-height: 40px;
           background-color: #f4f4f4;
+
+          &:after {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #f4f4f4;
+          }
         }
 
         img {
           height: 20px;
+          opacity: 0.4;
+          z-index: 10;
           -webkit-filter: grayscale(1);
           -moz-filter: grayscale(1);
           -o-filter: grayscale(1);
@@ -208,6 +221,14 @@
         .container-icon {
           &:after {
             background-color: transparent;
+          }
+
+          img {
+            opacity: 1;
+            -webkit-filter: grayscale(0);
+            -moz-filter: grayscale(0);
+            -o-filter: grayscale(0);
+            filter: grayscale(0);
           }
         }
       }
@@ -376,12 +397,14 @@
 
 @media only screen and (min-width:769px){
   .dashboard {
+
     .container-categories {
       top: 100px;
     }
 
     .side-menu,
     .in-central-city {
+      position: absolute;
       top: 90px;
     }
 
