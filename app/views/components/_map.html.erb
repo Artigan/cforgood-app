@@ -1,19 +1,31 @@
 <script>
 
   var geoJson = <%= raw(@geojson.to_json) %>;
-  var markers = geoJson
+  var markers = geoJson;
   var filterGroup = document.getElementById('filter-group');
 
   // mapboxgl.accessToken = 'pk.eyJ1IjoiZnJlZHBldHJpcyIsImEiOiJjaWtoem9qd2IwMDJmdnBtNmZ0Y29zcG5sIn0.atyCUDfyMaoUauNY1diwtQ';
   mapboxgl.accessToken = 'pk.eyJ1IjoiZnJlZHBldHJpcyIsImEiOiJjaWtvMTIzNmIwMDlsd2hsczgzNmhoZjZ3In0.57Q6lRMPraIiM86QfsXKxg';
 
-  var map = new mapboxgl.Map({
-    container: 'map-dashboard',
-    style: 'mapbox://styles/fredpetris/cikporvjj00p8b5lwovwd3kq9',
-    // style: 'mapbox://styles/mapbox/streets-v8',
-    center: ["<%= current_user.longitude %>", "<%= current_user.latitude %>"],
-    zoom: 12
-  });
+  if ("<%= current_user.latitude.present? %>" && "<%= current_user.longitude.present? %>") {
+    var map = new mapboxgl.Map({
+      container: 'map-dashboard',
+      style: 'mapbox://styles/fredpetris/cikporvjj00p8b5lwovwd3kq9',
+      // style: 'mapbox://styles/mapbox/streets-v8',
+      center: ["<%= current_user.longitude %>", "<%= current_user.latitude %>"],
+      zoom: 12
+    });
+  }
+
+  if ("<%= !current_user.latitude.present? %>" || "<%= !current_user.longitude.present? %>") {
+    var map = new mapboxgl.Map({
+      container: 'map-dashboard',
+      style: 'mapbox://styles/fredpetris/cikporvjj00p8b5lwovwd3kq9',
+      // style: 'mapbox://styles/mapbox/streets-v8',
+      center: [-0.57918, 44.837789],
+      zoom: 12
+    });
+  };
 
   map.on('style.load', function () {
     // Add marker data as a new GeoJSON source.

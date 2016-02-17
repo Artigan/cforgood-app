@@ -45,10 +45,10 @@ class Perk < ActiveRecord::Base
   scope :active, -> { where(active: true) }
 
   validates :times, numericality: { only_integer: true, greater_than_or_equal_to: 0 }, allow_nil: true
-  validates :perk_code, uniqueness: true, format: { with: /[A-Z0-9]/ }
-
+  validates :perk_code, format: { with: /\A[A-Za-z0-9]+\z/ }, allow_blank: true
   validate :dates_required_if_flash
   validate :start_date_cannot_be_greater_than_end_date
+  validate :perk_code_uniqueness
 
   has_attached_file :picture,
     styles: { medium: "300x300#", thumb: "100x100#" }
@@ -56,7 +56,6 @@ class Perk < ActiveRecord::Base
   validates_attachment_content_type :picture,
     content_type: /\Aimage\/.*\z/
 
-  before_validation :perk_code_upcase!, if: :perk_code_changed?
   after_create :generate_code!, :send_registration_slack
 
   def update_nb_view!
@@ -105,8 +104,10 @@ class Perk < ActiveRecord::Base
     end
   end
 
-  def perk_code_upcase!
-    perk_code.upcase!
+  def perk_code_uniqueness
+    if perk_code.present?
+      perk_code.upcase!
+      errors.add(:perk_code, "Ce code n'est pas disponible !") if Perk.where(perk_code: self.perk_code).where(business_id: self.business_id).count > 0
+    end
   end
-
 end
