@@ -15,7 +15,6 @@
 #  marker_file_size     :integer
 #  marker_updated_at    :datetime
 #  color                :string
-#  marker_symbol        :string
 #
 
 class BusinessCategory < ActiveRecord::Base
