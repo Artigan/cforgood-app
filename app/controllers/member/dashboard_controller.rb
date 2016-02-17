@@ -21,8 +21,7 @@ class Member::DashboardController < ApplicationController
           "coordinates": [business.longitude, business.latitude]
         },
         "properties": {
-          # "marker-symbol": ("." + business.business_category_id.to_s),
-          "marker-symbol": "monument",
+          "marker-symbol": business.business_category.marker_symbol,
           "description": render_to_string(partial: "components/map_box", locals: { business: business })
         }
       }

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160210160839) do
+ActiveRecord::Schema.define(version: 20160216232205) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 20160210160839) do
     t.integer  "marker_file_size"
     t.datetime "marker_updated_at"
     t.string   "color"
+    t.string   "marker_symbol"
   end
 
   create_table "businesses", force: :cascade do |t|
