@@ -11,9 +11,10 @@ ActiveAdmin.register BusinessCategory do
       f.input :picture, :as => :file
       f.input :marker, :as => :file
       f.input :color
+      f.input :marker_symbol
     end
     f.actions
   end
 
-permit_params :name, :picture, :marker, :color
+permit_params :name, :picture, :marker, :color, :marker_symbol
 end

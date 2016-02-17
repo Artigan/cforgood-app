@@ -1,34 +1,44 @@
 <script>
 
-    var geoJson = <%= raw(@geojson.to_json) %>;
+  var geoJson = <%= raw(@geojson.to_json) %>;
 
-    L.mapbox.accessToken = 'pk.eyJ1IjoiZnJlZHBldHJpcyIsImEiOiJjaWtoem9qd2IwMDJmdnBtNmZ0Y29zcG5sIn0.atyCUDfyMaoUauNY1diwtQ';
+  var coordinates = geoJson.features[0].geometry.coordinates;
 
-    var mapboxTiles = L.tileLayer('https://api.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=' + L.mapbox.accessToken, {
-      attribution: '<a href="http://www.mapbox.com/about/maps/" target="_blank">Terms &amp; Feedback</a>',
-      });
+  mapboxgl.accessToken = 'pk.eyJ1IjoiZnJlZHBldHJpcyIsImEiOiJjaWtoem9qd2IwMDJmdnBtNmZ0Y29zcG5sIn0.atyCUDfyMaoUauNY1diwtQ';
+  var map = new mapboxgl.Map({
+    container: 'map-perk',
+    style: 'mapbox://styles/fredpetris/cikporvjj00p8b5lwovwd3kq9',
+    center: coordinates,
+    interactive: false,
+    zoom: 15
+  });
 
-    var map = L.map('map-perk')
-      .addLayer(mapboxTiles)
-
-    // Slide marker to right
-    if (<%= device_type == :mobile %>) {
-      map.setView(['<%= @business.latitude %>', '<%= @business.longitude + 0.0015 %>'], 16);
-    } else {
-      map.setView(['<%= @business.latitude %>', '<%= @business.longitude + 0.005 %>'], 16);
-    }
-
-    // New Layer
-    var mapLayer = L.mapbox.featureLayer().addTo(map);
-
-    // Set a custom icon on each marker based on feature properties
-    mapLayer.on('layeradd', function(e) {
-      var marker = e.layer,
-          feature = marker.feature;
-      marker.setIcon(L.icon(feature.properties.icon));
+  map.on('style.load', function () {
+    map.addSource("markers", {
+      "type": "geojson",
+      "data": geoJson
     });
 
-    // Add features to the map
-    mapLayer.setGeoJSON(geoJson);
+    map.addLayer({
+      "id": "markers",
+      "type": "symbol",
+      "source": "markers",
+      "interactive": true,
+      "layout": {
+          "icon-image": "{marker-symbol}"
+          // "text-field": "{title}",
+          // "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+          // "text-offset": [0, 0.6],
+          // "text-anchor": "top"
+      }
+    });
+  });
+
+  if (<%= device_type == :mobile %>) {
+    map.flyTo({center: [coordinates[0]+0.0015,coordinates[1]]});
+  } else {
+    map.flyTo({center: [coordinates[0]+0.005,coordinates[1]]});
+  }
 
 </script>
+
