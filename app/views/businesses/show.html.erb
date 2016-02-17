@@ -9,8 +9,32 @@
   <!-- Sub Menu Sidebar -->
   <%= render "member/dashboard/shared/sidebar" %>
   <!-- Content - Statistics -->
-  <div class="dashboard dashboard-cards">
+  <div class="dashboard">
     <% @business.perks.find(params[:perk_id]).update_nb_view! if user_space? %>
+    <!-- CARD HEADER -->
+    <div class="card-header">
+      <div class="card-header-main">
+        <span class="perk-title"><%= @business.name %></span>
+        <span class="perk-owner"><%= @business.leader_first_name %> vous accueillera</span>
+      </div>
+      <div class="card-header-category" style="background-color: <%= BusinessCategory.find(@business.business_category_id).color %>;">
+        <%= image_tag image_url BusinessCategory.find(@business.business_category_id).picture %>
+        <!-- <div class="category-container" style="background-color: <#= BusinessCategory.find(business.business_category_id).color %>;">
+        </div> -->
+      </div>
+    </div>
+    <!-- CARD BODY -->
+    <div class="card-body" style="background-image: url('<%= image_url @business.picture %>');">
+      <div class="business-details">
+        <% if @business.perks.find(params[:perk_id]).flash? %>
+          <span style="background-color: <%= BusinessCategory.find(@business.business_category_id).color %>;"><i class="fa fa-flash"></i><%= @business.perks.find(params[:perk_id]).perk.times - Use.where(perk_id: perk.id).count  %> restants</span>
+        <% end %>
+        <h3><%= @business.perks.find(params[:perk_id]).perk.upcase %></h3>
+      </div>
+    </div>
+
+
+
     <div class="organisation-board">
       <div class="organisation-header" style="background-image: url('<%= image_url @business.picture %>');">
         <h1><%= @business.name %><br><small><%=  @business.business_category.name %></small></h1>
