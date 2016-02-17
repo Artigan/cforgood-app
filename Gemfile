@@ -34,6 +34,7 @@ gem "font-awesome-sass"
 gem "autoprefixer-rails"
 gem "geocoder"
 gem "gmaps4rails"
+gem 'forest_liana'
 gem "underscore-rails"
 gem 'leaflet-rails'
 gem 'mapbox-rails'

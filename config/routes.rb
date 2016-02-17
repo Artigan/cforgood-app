@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  mount ForestLiana::Engine => '/forest'
   ActiveAdmin.routes(self)
 
   # ROOT TO LANDING WEBSITE
