@@ -220,7 +220,7 @@ class User < ActiveRecord::Base
       end
 
       if city.present?
-        message = message + " de *#{city}*"
+        message = message + ", *#{city}*,"
       end
 
       message = message + " a rejoint la communauté !"
