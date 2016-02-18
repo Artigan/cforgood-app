@@ -51,7 +51,7 @@ Autour de vous
       <div class="side-menu side-categories">
         <span id="open-categories"><i class="fa fa-cog"></i>Filtrer par catégories</span>
         <ul>
-          <a href="#" data-filter="all" class="filter-category">
+          <a href="#" class="filter-category">
             <li id="categories-all" class="category-item is-selected">
               <div class="container-icon" style="background-color: #fff;">
                 <%= image_tag "icons/all.png" %>
@@ -60,8 +60,8 @@ Autour de vous
             </li>
           </a>
           <% BusinessCategory.all.each do |category| %>
-          <a href="#" data-filter="<%= "poi-"+category.marker_symbol %>" class="filter-category current">
-            <li id="<%= "poi-"+category.marker_symbol %>" class="category-item">
+          <a href="#" class="filter-category current">
+            <li id="<%= "layer-"+category.marker_symbol %>" class="category-item">
               <div class="container-icon" style="background-color: <%= category.color %>;">
                 <%= image_tag image_url category.picture %>
               </div>

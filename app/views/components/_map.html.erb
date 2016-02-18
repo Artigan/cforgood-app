@@ -2,7 +2,6 @@
 
   var geoJson = <%= raw(@geojson.to_json) %>;
   var markers = geoJson;
-  var filterGroup = document.getElementById('filter-group');
 
   // mapboxgl.accessToken = 'pk.eyJ1IjoiZnJlZHBldHJpcyIsImEiOiJjaWtoem9qd2IwMDJmdnBtNmZ0Y29zcG5sIn0.atyCUDfyMaoUauNY1diwtQ';
   mapboxgl.accessToken = 'pk.eyJ1IjoiZnJlZHBldHJpcyIsImEiOiJjaWtvMTIzNmIwMDlsd2hsczgzNmhoZjZ3In0.57Q6lRMPraIiM86QfsXKxg';
@@ -27,6 +26,8 @@
     });
   };
 
+  var layers = [];
+
   map.on('style.load', function () {
     // Add marker data as a new GeoJSON source.
     map.addSource("markers", {
@@ -36,10 +37,13 @@
 
     markers.features.forEach(function(feature) {
       var symbol = feature.properties['marker-symbol'];
-      var layerID = 'poi-' + symbol;
+      var layerID = 'layer-' + symbol;
 
       // Add a layer for this symbol type if it hasn't been added already.
       if (!map.getLayer(layerID)) {
+        // Add layerID in Layers Array
+        layers.push(layerID);
+        // Add Layer
         map.addLayer({
           "id": layerID,
           "type": "symbol",
@@ -59,7 +63,7 @@
   // the feature, with description HTML from its properties.
   map.on('click', function (e) {
 
-    map.featuresAt(e.point, {radius: 10, includeGeometry: true}, function (err, features) {
+    map.featuresAt(e.point, {layer: layers, radius: 15, includeGeometry: true}, function (err, features) {
 
       if (err || !features.length)
         return;
@@ -81,10 +85,10 @@
 
   // Use the same approach as above to indicate that the symbols are clickable
   // by changing the cursor style to 'pointer'.
-  // map.on('mousemove', function (e) {
-  //     map.featuresAt(e.point, {layer: 'markers', radius: 10}, function (err, features) {
-  //         map.getCanvas().style.cursor = (!err && features.length) ? 'pointer' : '';
-  //     });
-  // });
+  map.on('mousemove', function (e) {
+      map.featuresAt(e.point, {layer: layers, radius: 10}, function (err, features) {
+          map.getCanvas().style.cursor = (!err && features.length) ? 'pointer' : '';
+      });
+  });
 
 </script>
