@@ -11,67 +11,72 @@
   <!-- Content - Statistics -->
   <div class="dashboard dashboard-perk">
     <% @business.perks.find(params[:perk_id]).update_nb_view! if user_space? %>
-    <!-- PERK HEADER -->
-    <div class="perk-header">
-      <div class="category-icon" style="background-color: <%= BusinessCategory.find(@business.business_category_id).color %>;">
-        <%= image_tag image_url BusinessCategory.find(@business.business_category_id).picture %>
-      </div>
-    </div>
-    <!-- PERK IMAGE -->
-    <% if @business.perks.find(params[:perk_id]).picture? %>
-      <div class="perk-image" style="background-image: url('<%= image_url @business.perks.find(params[:perk_id]).picture %>'); border-bottom: 6px solid <%= BusinessCategory.find(@business.business_category_id).color %>;">
-        <h1><%= @business.perks.find(params[:perk_id]).perk %></h1>
-        <p><%= @business.perks.find(params[:perk_id]).description %></p>
-        <div class="use-perk">
-          <% if current_user.member %>
-            <% if @business.perks.find(params[:perk_id]).perk_usable?(current_user) %>
-              <button type="button" class="use-button" data-toggle="modal" data-target="#codeModal" style="background-color: <%= BusinessCategory.find(@business.business_category_id).color %>;">J'en profite</button>
-            <% else %>
-              <div class="button-use-popover" id="button-used", data-content="Ce Bon Plan n'est plus accessible, mais il y en a bien d'autres à découvrir !" data-placement="bottom" data-original-title="Oups !" data-trigger="hover">
-                <button class="button button-inactive">J'en profite</button>
-              </div>
-            <% end %>
-          <% end %>
-        </div>
-      </div>
-    <% else %>
-      <div class="perk-image" style="background-image: url('<%= image_url @business.picture %>'); border-bottom: 6px solid <%= BusinessCategory.find(@business.business_category_id).color %>;">
-        <h1><%= @business.perks.find(params[:perk_id]).perk %></h1>
-        <p><%= @business.perks.find(params[:perk_id]).description %></p>
-        <div class="use-perk">
-          <% if current_user.member %>
-            <% if @business.perks.find(params[:perk_id]).perk_usable?(current_user) %>
-              <button type="button" class="use-button" data-toggle="modal" data-target="#codeModal" style="background-color: <%= BusinessCategory.find(@business.business_category_id).color %>;">J'en profite</button>
-            <% else %>
-              <div class="button-use-popover" id="button-used", data-content="Ce Bon Plan n'est plus accessible, mais il y en a bien d'autres à découvrir !" data-placement="bottom" data-original-title="Oups !" data-trigger="hover">
-                <button class="button button-inactive">J'en profite</button>
-              </div>
-            <% end %>
-          <% end %>
-        </div>
-      </div>
-    <% end %>
-    <div class="perk-owner">
-      <div class="owner-details">
-        <% if @business.leader_picture.present? %>
-          <%= image_tag image_url @business.leader_picture %>
-        <% else %>
-          <%= image_tag image_url @business.picture %>
-        <% end %>
-        <span>Rendez-vous chez <%= @business.name %><br><small><%= @business.leader_first_name %> vous accueillera.</small></span>
-      </div>
-      <div id="map-perk" style="width: 100%;"></div>
+    <!-- PERK MENU -->
+    <div class="switch-tab">
+      <span class="switch-active"></span>
+      <button class="switch-button active-case">Bon plan</button>
+      <button class="switch-button"><%= @business.name %></button>
     </div>
 
+    <!-- PERK CARDS -->
+    <div class="flip-container">
+      <div class="flipper">
+        <div class="front">
+        <!-- PERK IMAGE - CHANGE BACKGROUND IMAGE -->
+        <% if @business.perks.find(params[:perk_id]).picture? %>
+        <div class="perk-image" style="background-image: url('<%= image_url @business.perks.find(params[:perk_id]).picture %>');">
+        <% else %>
+        <div class="perk-image" style="background-image: url('<%= image_url @business.picture %>');">
+        <% end %>
+
+        <!-- IF FLASH PERK -->
+        <% if @business.perks.find(params[:perk_id]).flash? %>
+          <span class="flash-notification" style="background-color: <%= BusinessCategory.find(@business.business_category_id).color %>;"><i class="fa fa-flash"></i><%= @business.perks.find(params[:perk_id]).times - Use.count  %> restants</span>
+          <span class="availabilities">Valable du <%= @business.perks.find(params[:perk_id]).start_date.try(:strftime, '%d %b.') %> au <%= @business.perks.find(params[:perk_id]).end_date.try(:strftime, '%d %b. %Y') %></span>
+        <% end %>
+        <h1><%= @business.perks.find(params[:perk_id]).perk %></h1>
+        <p><%= @business.perks.find(params[:perk_id]).description %></p>
+        <div class="use-perk">
+          <% if current_user.member %>
+            <% if @business.perks.find(params[:perk_id]).perk_usable?(current_user) %>
+              <button type="button" class="use-button" data-toggle="modal" data-target="#codeModal" style="background-color: <%= BusinessCategory.find(@business.business_category_id).color %>;">J'en profite</button>
+            <% else %>
+              <div id="button-used">
+                <button class="empty">Bon plan épuisé</button>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="perk-owner">
+        <div class="owner-details">
+          <% if @business.leader_picture.present? %>
+            <%= image_tag image_url @business.leader_picture %>
+          <% else %>
+            <%= image_tag image_url @business.picture %>
+          <% end %>
+          <span>Rendez-vous chez <%= @business.name %><br><small><%= @business.leader_first_name %> vous accueillera.</small></span>
+        </div>
+        <div id="map-perk" style="width: 100%;"></div>
+        <span class="business-address"><i class="fa fa-map-marker"></i><%= @business.street %>, <%= @business.zipcode %> <%= @business.city %></span>
+      </div>
+     <!-- END FRONT CARD -->
+    </div>
+
+    <!-- BACK CARD -->
+    <div class="back">
+    <!-- END BACK CARD -->
+    bouuuuuuuuu
+    </div>
   </div>
 
+  </div>
+</div>
 
 
-     <div class="business-details">
-        <% if @business.perks.find(params[:perk_id]).flash? %>
-          <span style="background-color: <%= BusinessCategory.find(@business.business_category_id).color %>;"><i class="fa fa-flash"></i><%= @business.perks.find(params[:perk_id]).perk.times - Use.where(perk_id: perk.id).count  %> restants</span>
-        <% end %>
-      </div>
+
+
 
     <div class="organisation-board">
 
@@ -192,6 +197,11 @@
 <% content_for(:after_js) do %>
   <%= render 'components/map_perk_show', geojson: @geojson, latitude:  @business.latitude, longitude:  @business.longitude %>
   <script>
+
+    $('.switch-button').click(function() {
+      $('.switch-active').toggleClass('activated');
+    });
+
     $(document).ready(function() {
       $("#button-used").popover({
         html: true,
