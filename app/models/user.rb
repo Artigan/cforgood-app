@@ -119,11 +119,10 @@ class User < ActiveRecord::Base
   def self.find_for_facebook_oauth(access_token, signed_in_resourse=nil)
     data = access_token.info
     user = User.where(:provider => access_token.provider, :uid => access_token.uid).first
-
     if user
       return user
     else
-    registred_user = User.where(:email => data.email).first
+      registred_user = User.where(:email => data.email).first
       if registred_user
         return registred_user
       else
@@ -131,7 +130,7 @@ class User < ActiveRecord::Base
           name: access_token.extra.raw_info.name,
           first_name: access_token.extra.raw_info.first_name,
           last_name: access_token.extra.raw_info.last_name,
-          city: access_token.user_location,
+          city: access_token.extra.raw_info.location.name.split(",").first,
           provider: access_token.provider,
           email: data.email,
           uid: access_token.uid,
@@ -221,7 +220,7 @@ class User < ActiveRecord::Base
       end
 
       if city.present?
-        message = message + " de *#{city}*"
+        message = message + ", *#{city}*,"
       end
 
       message = message + " a rejoint la communauté !"

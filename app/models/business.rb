@@ -139,7 +139,7 @@ class Business < ActiveRecord::Base
   def send_registration_slack
     if !Rails.env.development?
       notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_BUSINESS_URL']
-      notifier.ping "#{name} a rejoint la communauté !"
+      notifier.ping "#{name}, *#{city}*, a rejoint la communauté !"
     end
   end
 

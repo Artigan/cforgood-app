@@ -9,12 +9,11 @@ ActiveAdmin.register BusinessCategory do
     f.inputs "Identity" do
       f.input :name
       f.input :picture, :as => :file
-      f.input :marker, :as => :file
       f.input :color
       f.input :marker_symbol
     end
     f.actions
   end
 
-permit_params :name, :picture, :marker, :color, :marker_symbol
+permit_params :name, :picture, :color, :marker_symbol
 end

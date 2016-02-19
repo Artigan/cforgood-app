@@ -162,7 +162,6 @@ GEM
       multi_json (>= 1.11.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
-    gmaps4rails (2.1.2)
     groupdate (2.5.2)
       activesupport (>= 3)
     has_scope (0.6.0)
@@ -196,7 +195,6 @@ GEM
       activesupport (>= 3.0.0)
     launchy (2.4.3)
       addressable (~> 2.3)
-    leaflet-rails (0.7.4)
     letter_opener (1.4.1)
       launchy (~> 2.2)
     loofah (2.0.3)
@@ -211,7 +209,6 @@ GEM
       json (>= 1.7.7, < 2.0)
     mangopay (3.0.20)
       multi_json (>= 1.7.7)
-    mapbox-rails (1.6.1.1)
     method_source (0.8.2)
     mime-types (2.99)
     mimemagic (0.3.0)
@@ -389,15 +386,12 @@ DEPENDENCIES
   forest_liana
   geocoder
   gibbon
-  gmaps4rails
   high_voltage
   jquery-rails
-  leaflet-rails
   letter_opener
   mail_form
   mandrill-api
   mangopay
-  mapbox-rails
   mobvious
   mobvious-rails
   omniauth

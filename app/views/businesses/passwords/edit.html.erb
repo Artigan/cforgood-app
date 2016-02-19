@@ -1,18 +1,17 @@
-<h2>Change your password</h2>
-<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= f.error_notification %>
-
-  <%= f.input :reset_password_token, as: :hidden %>
-  <%= f.full_error :reset_password_token %>
-
-  <div class="form-inputs">
-    <%= f.input :password, label: "New password", required: true, autofocus: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
-    <%= f.input :password_confirmation, label: "Confirm your new password", required: true %>
+<div class="connexion signin connexion-pro">
+  <div class="form-card">
+    <span>Changer<br>mon mot de passe</span>
+    <div class="subscription-form">
+      <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+        <%= devise_error_messages! %>
+        <%= f.hidden_field :reset_password_token %>
+        <%= f.input :password, placeholder: '8 cars. minimum', required: true, label: 'Mot de passe *' %>
+        <%= f.input :password_confirmation, placeholder: '8 cars. minimum', required: true, label: 'Confirmation du mot de passe *' %>
+        <%= f.button :submit, "Changer le mot de passe" %>
+      <% end %>
+    </div>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Change my password" %>
+  <div class="col-xs-12 already-subscribed">
+    <span class=""> Pas de compte ? <strong><%= link_to t(".connexion", :default => "Je m'inscris"), new_registration_path(resource_name) %></strong></span>
   </div>
-<% end %>
-
-<%= render "businesses/shared/links" %>
+</div>
