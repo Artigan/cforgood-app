@@ -1,46 +1,27 @@
-.leaflet-control-zoom {
-    display: none;
-}
-
-.leaflet-popup-tip-container {
-    border-color: transparent #fff transparent transparent;
-    border-width: 13px;
-    border-style: solid;
-    content: '';
-    display: inline-block;
-    position: absolute;
-    bottom: -24px;
-    margin-left: -18px;
-   }
-
-.leaflet-popup-pane {
-    top: -18px;
-}
 
 .mapboxgl-popup {
   width: 320px;
 }
 
 .mapboxgl-popup-tip {
+  position: absolute;
+  display: inline-block;
   border-color: transparent transparent  #fff transparent;
   border-width: 10px;
   border-style: solid;
   content: '';
-  display: inline-block;
-  position: absolute;
-  top: 6px;
-  left: 150px;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 1;
 }
 
-.infoBoxContainer { margin-top: 10px; }
-
-.infoBox, .leaflet-popup-content, .mapboxgl-popup-content {
+.mapboxgl-popup-content {
 // .gm-s  tyle-iw {
   position: absolute;
   width: 300px !important;
   max-height: 271px;
-  top: 25px;
+  top: 12px;
   padding: 0;
   left: 50%;
   transform: translateX(-50%);

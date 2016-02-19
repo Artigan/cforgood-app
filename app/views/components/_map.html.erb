@@ -6,25 +6,39 @@
   // mapboxgl.accessToken = 'pk.eyJ1IjoiZnJlZHBldHJpcyIsImEiOiJjaWtoem9qd2IwMDJmdnBtNmZ0Y29zcG5sIn0.atyCUDfyMaoUauNY1diwtQ';
   mapboxgl.accessToken = 'pk.eyJ1IjoiZnJlZHBldHJpcyIsImEiOiJjaWtvMTIzNmIwMDlsd2hsczgzNmhoZjZ3In0.57Q6lRMPraIiM86QfsXKxg';
 
-  if ("<%= current_user.latitude.present? %>" && "<%= current_user.longitude.present? %>") {
-    var map = new mapboxgl.Map({
-      container: 'map-dashboard',
-      style: 'mapbox://styles/fredpetris/cikporvjj00p8b5lwovwd3kq9',
-      // style: 'mapbox://styles/mapbox/streets-v8',
-      center: ["<%= current_user.longitude %>", "<%= current_user.latitude %>"],
-      zoom: 12
-    });
-  }
+  var map = new mapboxgl.Map({
+    container: 'map-dashboard',
+    style: 'mapbox://styles/fredpetris/cikporvjj00p8b5lwovwd3kq9',
+    // style: 'mapbox://styles/mapbox/streets-v8',
+    // center: ["<%#= current_user.longitude %>", "<%= current_user.latitude %>"],
+    center: mapCenter(),
+    zoom: 12
+  });
 
-  if ("<%= !current_user.latitude.present? %>" || "<%= !current_user.longitude.present? %>") {
-    var map = new mapboxgl.Map({
-      container: 'map-dashboard',
-      style: 'mapbox://styles/fredpetris/cikporvjj00p8b5lwovwd3kq9',
-      // style: 'mapbox://styles/mapbox/streets-v8',
-      center: [-0.57918, 44.837789],
-      zoom: 12
-    });
+  function mapCenter() {
+     var mapCenter = [];
+    if ("<%= current_user.latitude == nil %>" && "<%= current_user.longitude == nil %>") {
+        console.log("vrai");
+        mapCenter.push("<%= current_user.longitude %>", "<%= current_user.latitude %>");
+
+    } else {
+       console.log("faux");
+        mapCenter.push(-0.57918, 44.837789);
+    }
+    console.log("final:" + mapCenter);
+    return mapCenter;
   };
+
+  // if ("<%= !current_user.latitude.present? %>" || "<%= !current_user.longitude.present? %>") {
+  //   console.log("dafault");
+  //   var map = new mapboxgl.Map({
+  //     container: 'map-dashboard',
+  //     style: 'mapbox://styles/fredpetris/cikporvjj00p8b5lwovwd3kq9',
+  //     // style: 'mapbox://styles/mapbox/streets-v8',
+  //     center: [-0.57918, 44.837789],
+  //     zoom: 12
+  //   });
+  // };
 
   var layers = [];
 
@@ -64,22 +78,31 @@
   // the feature, with description HTML from its properties.
   map.on('click', function (e) {
 
-    map.featuresAt(e.point, {layer: layers, radius: 15, includeGeometry: true}, function (err, features) {
+    map.featuresAt(e.point, {
+      layer: layers,
+      radius: 30,
+      includeGeometry: true
+    }, function (err, features) {
 
       if (err || !features.length)
+        // popup.remove();
         return;
 
         var feature = features[0];
-        var coordinates = features[0].geometry.coordinates;
+        var newCoordinates = [features[0].geometry.coordinates[0], (features[0].geometry.coordinates[1])-Math(0.005)];
+        console.log(features[0].geometry.coordinates);
+        console.log(newCoordinates);
         // Get coordinates from the symbol and center the map on those coordinates
-        map.flyTo({center: [coordinates[0],coordinates[1]-0.012]});
-        new mapboxgl
-          .Popup({
+        if (<%= device_type == :mobile %>) {
+          // map.flyTo({center: features[0].geometry.coordinates});
+          map.flyTo({center: newCoordinates});
+        }
+        new mapboxgl.Popup({
             closeButton: false,
             closeOnClick: true,
             anchor: "bottom"})
-          .setLngLat(feature.geometry.coordinates)
-          .setHTML(feature.properties.description)
+          .setLngLat(features[0].geometry.coordinates)
+          .setHTML(features[0].properties.description)
           .addTo(map);
     });
   });
@@ -87,7 +110,10 @@
   // Use the same approach as above to indicate that the symbols are clickable
   // by changing the cursor style to 'pointer'.
   map.on('mousemove', function (e) {
-      map.featuresAt(e.point, {layer: layers, radius: 10}, function (err, features) {
+      map.featuresAt(e.point, {
+        layer: layers,
+        radius: 30
+      }, function (err, features) {
           map.getCanvas().style.cursor = (!err && features.length) ? 'pointer' : '';
       });
   });
