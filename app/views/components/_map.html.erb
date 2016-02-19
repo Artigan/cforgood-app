@@ -3,42 +3,23 @@
   var geoJson = <%= raw(@geojson.to_json) %>;
   var markers = geoJson;
 
+
   // mapboxgl.accessToken = 'pk.eyJ1IjoiZnJlZHBldHJpcyIsImEiOiJjaWtoem9qd2IwMDJmdnBtNmZ0Y29zcG5sIn0.atyCUDfyMaoUauNY1diwtQ';
   mapboxgl.accessToken = 'pk.eyJ1IjoiZnJlZHBldHJpcyIsImEiOiJjaWtvMTIzNmIwMDlsd2hsczgzNmhoZjZ3In0.57Q6lRMPraIiM86QfsXKxg';
+
+
+  // if (<%#= current_user.latitude.present? %> && <%#= current_user.longitude.present? %>) {
+    // mapCenter = [<%#= current_user.longitude %>, <%#= current_user.latitude %>];
+  // } else {
+    mapCenter = [-0.57918, 44.837789];
+  // }
 
   var map = new mapboxgl.Map({
     container: 'map-dashboard',
     style: 'mapbox://styles/fredpetris/cikporvjj00p8b5lwovwd3kq9',
-    // style: 'mapbox://styles/mapbox/streets-v8',
-    // center: ["<%#= current_user.longitude %>", "<%= current_user.latitude %>"],
-    center: mapCenter(),
+    center: mapCenter,
     zoom: 12
   });
-
-  function mapCenter() {
-     var mapCenter = [];
-    if ("<%= current_user.latitude == nil %>" && "<%= current_user.longitude == nil %>") {
-        console.log("vrai");
-        mapCenter.push("<%= current_user.longitude %>", "<%= current_user.latitude %>");
-
-    } else {
-       console.log("faux");
-        mapCenter.push(-0.57918, 44.837789);
-    }
-    console.log("final:" + mapCenter);
-    return mapCenter;
-  };
-
-  // if ("<%= !current_user.latitude.present? %>" || "<%= !current_user.longitude.present? %>") {
-  //   console.log("dafault");
-  //   var map = new mapboxgl.Map({
-  //     container: 'map-dashboard',
-  //     style: 'mapbox://styles/fredpetris/cikporvjj00p8b5lwovwd3kq9',
-  //     // style: 'mapbox://styles/mapbox/streets-v8',
-  //     center: [-0.57918, 44.837789],
-  //     zoom: 12
-  //   });
-  // };
 
   var layers = [];
 
@@ -85,13 +66,11 @@
     }, function (err, features) {
 
       if (err || !features.length)
-        // popup.remove();
         return;
 
         var feature = features[0];
-        var newCoordinates = [features[0].geometry.coordinates[0], (features[0].geometry.coordinates[1])-Math(0.005)];
-        console.log(features[0].geometry.coordinates);
-        console.log(newCoordinates);
+        var newCoordinates = [features[0].geometry.coordinates[0], (features[0].geometry.coordinates[1])];
+
         // Get coordinates from the symbol and center the map on those coordinates
         if (<%= device_type == :mobile %>) {
           // map.flyTo({center: features[0].geometry.coordinates});
@@ -101,8 +80,8 @@
             closeButton: false,
             closeOnClick: true,
             anchor: "bottom"})
-          .setLngLat(features[0].geometry.coordinates)
-          .setHTML(features[0].properties.description)
+          .setLngLat(feature.geometry.coordinates)
+          .setHTML(feature.properties.description)
           .addTo(map);
     });
   });
