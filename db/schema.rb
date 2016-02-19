@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160216232205) do
+ActiveRecord::Schema.define(version: 20160218104858) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,10 +39,6 @@ ActiveRecord::Schema.define(version: 20160216232205) do
     t.string   "picture_content_type"
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
-    t.string   "marker_file_name"
-    t.string   "marker_content_type"
-    t.integer  "marker_file_size"
-    t.datetime "marker_updated_at"
     t.string   "color"
     t.string   "marker_symbol"
   end

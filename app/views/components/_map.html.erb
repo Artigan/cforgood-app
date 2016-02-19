@@ -2,30 +2,26 @@
 
   var geoJson = <%= raw(@geojson.to_json) %>;
   var markers = geoJson;
-  var filterGroup = document.getElementById('filter-group');
+
 
   // mapboxgl.accessToken = 'pk.eyJ1IjoiZnJlZHBldHJpcyIsImEiOiJjaWtoem9qd2IwMDJmdnBtNmZ0Y29zcG5sIn0.atyCUDfyMaoUauNY1diwtQ';
   mapboxgl.accessToken = 'pk.eyJ1IjoiZnJlZHBldHJpcyIsImEiOiJjaWtvMTIzNmIwMDlsd2hsczgzNmhoZjZ3In0.57Q6lRMPraIiM86QfsXKxg';
 
-  if ("<%= current_user.latitude.present? %>" && "<%= current_user.longitude.present? %>") {
-    var map = new mapboxgl.Map({
-      container: 'map-dashboard',
-      style: 'mapbox://styles/fredpetris/cikporvjj00p8b5lwovwd3kq9',
-      // style: 'mapbox://styles/mapbox/streets-v8',
-      center: ["<%= current_user.longitude %>", "<%= current_user.latitude %>"],
-      zoom: 12
-    });
-  }
 
-  if ("<%= !current_user.latitude.present? %>" || "<%= !current_user.longitude.present? %>") {
-    var map = new mapboxgl.Map({
-      container: 'map-dashboard',
-      style: 'mapbox://styles/fredpetris/cikporvjj00p8b5lwovwd3kq9',
-      // style: 'mapbox://styles/mapbox/streets-v8',
-      center: [-0.57918, 44.837789],
-      zoom: 12
-    });
-  };
+  // if (<%#= current_user.latitude.present? %> && <%#= current_user.longitude.present? %>) {
+    // mapCenter = [<%#= current_user.longitude %>, <%#= current_user.latitude %>];
+  // } else {
+    mapCenter = [-0.57918, 44.837789];
+  // }
+
+  var map = new mapboxgl.Map({
+    container: 'map-dashboard',
+    style: 'mapbox://styles/fredpetris/cikporvjj00p8b5lwovwd3kq9',
+    center: mapCenter,
+    zoom: 12
+  });
+
+  var layers = [];
 
   map.on('style.load', function () {
     // Add marker data as a new GeoJSON source.
@@ -36,10 +32,13 @@
 
     markers.features.forEach(function(feature) {
       var symbol = feature.properties['marker-symbol'];
-      var layerID = 'poi-' + symbol;
+      var layerID = 'layer-' + symbol;
 
       // Add a layer for this symbol type if it hasn't been added already.
       if (!map.getLayer(layerID)) {
+        // Add layerID in Layers Array
+        layers.push(layerID);
+        // Add Layer
         map.addLayer({
           "id": layerID,
           "type": "symbol",
@@ -47,6 +46,7 @@
           "interactive": true,
           "layout": {
             "icon-image": symbol,
+            "icon-offset": [0,-20],
             "icon-allow-overlap": true
           },
           "filter": ["==", "marker-symbol", symbol]
@@ -59,17 +59,24 @@
   // the feature, with description HTML from its properties.
   map.on('click', function (e) {
 
-    map.featuresAt(e.point, {radius: 10, includeGeometry: true}, function (err, features) {
+    map.featuresAt(e.point, {
+      layer: layers,
+      radius: 30,
+      includeGeometry: true
+    }, function (err, features) {
 
       if (err || !features.length)
         return;
 
         var feature = features[0];
-        var coordinates = features[0].geometry.coordinates;
+        var newCoordinates = [features[0].geometry.coordinates[0], (features[0].geometry.coordinates[1])];
+
         // Get coordinates from the symbol and center the map on those coordinates
-        map.flyTo({center: [coordinates[0],coordinates[1]-0.012]});
-        new mapboxgl
-          .Popup({
+        if (<%= device_type == :mobile %>) {
+          // map.flyTo({center: features[0].geometry.coordinates});
+          map.flyTo({center: newCoordinates});
+        }
+        new mapboxgl.Popup({
             closeButton: false,
             closeOnClick: true,
             anchor: "bottom"})
@@ -81,10 +88,13 @@
 
   // Use the same approach as above to indicate that the symbols are clickable
   // by changing the cursor style to 'pointer'.
-  // map.on('mousemove', function (e) {
-  //     map.featuresAt(e.point, {layer: 'markers', radius: 10}, function (err, features) {
-  //         map.getCanvas().style.cursor = (!err && features.length) ? 'pointer' : '';
-  //     });
-  // });
+  map.on('mousemove', function (e) {
+      map.featuresAt(e.point, {
+        layer: layers,
+        radius: 30
+      }, function (err, features) {
+          map.getCanvas().style.cursor = (!err && features.length) ? 'pointer' : '';
+      });
+  });
 
 </script>

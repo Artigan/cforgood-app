@@ -2,7 +2,6 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require underscore
-//= require gmaps/google
 
 //= require navbar
 //= require bootstrap-datepicker/core
@@ -13,8 +12,6 @@
 
 //= require vendor/slick.js
 //= require app/slick.js
-//= require leaflet
-//= require mapbox.js
 
 //= require_tree ./app
 

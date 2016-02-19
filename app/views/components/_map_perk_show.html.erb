@@ -25,17 +25,14 @@
       "source": "markers",
       "interactive": true,
       "layout": {
-          "icon-image": "{marker-symbol}"
-          // "text-field": "{title}",
-          // "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
-          // "text-offset": [0, 0.6],
-          // "text-anchor": "top"
+        "icon-image": "{marker-symbol}",
+        "icon-offset": [5,-20]
       }
     });
   });
 
   if (<%= device_type == :mobile %>) {
-    map.flyTo({center: [coordinates[0]+0.0015,coordinates[1]]});
+    map.flyTo({center: [coordinates[0]+0.002,coordinates[1]+0.0005]});
   } else {
     map.flyTo({center: [coordinates[0]+0.005,coordinates[1]]});
   }
