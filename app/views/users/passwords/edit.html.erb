@@ -1,16 +1,17 @@
-<h2><%= t('.change_your_password', :default => 'Change your password') %></h2>
-
-<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
-  <%= devise_error_messages! %>
-  <%= f.hidden_field :reset_password_token %>
-
-  <div><%= f.label :password, t('.new_password', :default => 'New password') %><br />
-  <%= f.password_field :password %></div>
-
-  <div><%= f.label :password_confirmation, t('.confirm_new_password', :default => 'Confirm new password') %><br />
-  <%= f.password_field :password_confirmation %></div>
-
-  <div><%= f.submit t('.change_my_password', :default => 'Change my password') %></div>
-<% end %>
-
-<%= render "users/shared/links" %>
+<div class="connexion signin connexion-user">
+  <div class="form-card">
+    <span>Changer<br>mon mot de passe</span>
+    <div class="subscription-form">
+      <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+        <%= devise_error_messages! %>
+        <%= f.hidden_field :reset_password_token %>
+        <%= f.input :password, placeholder: '8 cars. minimum', required: true, label: 'Mot de passe *' %>
+        <%= f.input :password_confirmation, placeholder: '8 cars. minimum', required: true, label: 'Confirmation du mot de passe *' %>
+        <%= f.button :submit, "Changer le mot de passe" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-xs-12 already-subscribed">
+    <span class=""> Pas de compte ? <strong><%= link_to t(".connexion", :default => "Je m'inscris"), new_registration_path(resource_name) %></strong></span>
+  </div>
+</div>
