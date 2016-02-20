@@ -1,5 +1,6 @@
 
 .dashboard-perk {
+  min-height: 100%;
   padding: 20px 20px 120px;
 
   .switch-tab {
@@ -49,6 +50,7 @@
     width: 100%;
     height: auto;
     border-radius: 3px 3px 0 0;
+    text-shadow: 1px 1px rgba(0,0,0,0.2);
 
     &:after {
       position:absolute;
@@ -58,7 +60,10 @@
       left: 0;
       right: 0;
       opacity: 0.6;
-      background-color: rgba(0, 0, 0, 0.6);
+      //background-color: rgba(0, 0, 0, 0.6);
+      background: -webkit-linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%);
+      background: -webkit-linear-gradient(left, #00C9FF 10%, #80F2A4 90%);
+      background: linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%);
       border-radius: 3px 3px 0 0;
     }
 
@@ -215,14 +220,18 @@
       }
 
       .front {
-        box-shadow: 0 1px 2px rgba(0,0,0,0.2)
+        min-height: 470px;
+        margin-bottom: 120px;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.2);
       }
 
       .back {
+        display: flex;
+        flex-direction: column;
         min-height: 470px;
+        margin-bottom: 120px;
         background-color: #fff;
         transform: rotateY( 180deg );
-        box-shadow: 0 1px 2px rgba(0,0,0,0.2)
       }
     }
 

@@ -62,8 +62,20 @@
         <span class="business-address"><i class="fa fa-map-marker"></i><%= @business.street %>, <%= @business.zipcode %> <%= @business.city %></span>
       </div>
     </figure> <!-- END FRONT CARD -->
+
     <figure class="back"><!-- BACK CARD -->
-      bouuuuuuuuu
+      <% if @business.name.present? && @business.description.present? %>
+        <h3>En savoir plus sur <%= @business.name %></h3>
+        <p><%= @business.description %></p>
+      <% else %>
+        <p>Profil en construction</p>
+      <% end %>
+
+
+      <% if @business.leader_description.present? %>
+        <h3>Qui se cache derrière ?</h3>
+        <p><%= @business.leader_description %></p>
+      <%end %>
     </figure><!-- END BACK CARD -->
   </div>
 
@@ -93,9 +105,10 @@
 </div>
 
 <% content_for(:after_js) do %>
-  <%= render 'components/map_perk_show', geojson: @geojson, latitude:  @business.latitude, longitude:  @business.longitude %>
-  <script>
 
+  <%= render 'components/map_perk_show', geojson: @geojson, latitude:  @business.latitude, longitude:  @business.longitude %>
+
+  <script>
     $('.switch-button').click(function() {
       $('.switch-active').toggleClass('activated');
       $('.flipper').toggleClass('flipped');
