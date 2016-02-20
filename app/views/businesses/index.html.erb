@@ -53,7 +53,7 @@
             <div class="card-header">
               <div class="card-header-main">
                 <span class="perk-title"><%= business.name %></span>
-                <span class="perk-owner"><%= business.leader_first_name %> <%= business.leader_last_name %> vous accueillera</span>
+                <span class="perk-owner"><%= business.leader_first_name %> vous accueillera</span>
               </div>
               <div class="card-header-category" style="background-color: <%= BusinessCategory.find(business.business_category_id).color %>;">
                 <%= image_tag image_url BusinessCategory.find(business.business_category_id).picture %>
