@@ -69,7 +69,7 @@
         return;
 
         var feature = features[0];
-        var newCoordinates = [features[0].geometry.coordinates[0], (features[0].geometry.coordinates[1])];
+        var newCoordinates = [features[0].geometry.coordinates[0], features[0].geometry.coordinates[1]];
 
         // Get coordinates from the symbol and center the map on those coordinates
         if (<%= device_type == :mobile %>) {
