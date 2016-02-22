@@ -44,11 +44,13 @@ class Perk < ActiveRecord::Base
   scope :permanent, -> { where(permanent: true) }
   scope :active, -> { where(active: true) }
 
+  validates :perk, presence: true
+  validates :description, presence: true
   validates :times, numericality: { only_integer: true, greater_than_or_equal_to: 0 }, allow_nil: true
   validates :perk_code, format: { with: /\A[A-Za-z0-9]+\z/ }, allow_blank: true
   validate :dates_required_if_flash
   validate :start_date_cannot_be_greater_than_end_date
-  validate :perk_code_uniqueness
+  validate :perk_code_uniqueness, if: :perk_code_changed?
 
   has_attached_file :picture,
     styles: { medium: "300x300#", thumb: "100x100#" }

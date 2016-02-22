@@ -16,16 +16,16 @@ class Pro::PerksController < Pro::ProController
     @perk = @business.perks.build(perk_params)
     authorize @perk
 
-    if @perk.save
-      redirect_to pro_business_perks_path(@business)
-    else
-      render :new
-    end
-    # @perk.save
-    # respond_to do |format|
-    #   format.html {redirect_to :back}
-    #   format.js {}
+    # if @perk.save
+    #   redirect_to pro_business_perks_path(@business)
+    # else
+    #   render :new
     # end
+    @perk.save
+    respond_to do |format|
+      format.html {redirect_to :back}
+      format.js {}
+    end
   end
 
   def edit
@@ -33,9 +33,13 @@ class Pro::PerksController < Pro::ProController
 
   def update
     if @perk.update(perk_params)
-      redirect_to pro_business_perks_path(current_business)
-    else
-     render :edit
+      respond_to do |format|
+        format.html {redirect_to :back}
+        format.js {}
+      end
+    #   redirect_to pro_business_perks_path(current_business)
+    # else
+    #  render :edit
     end
   end
 
