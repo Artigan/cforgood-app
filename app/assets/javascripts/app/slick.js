@@ -74,9 +74,17 @@ $('.filter-carrousel').slick({
 });
 
 $('.business-dashboard').slick({
-      dots: true,
-      arrows:false,
-      infinite: false,
-      autoplay: false,
-      slidesToScroll: 1,
-    });
+  dots: true,
+  arrows:false,
+  infinite: false,
+  autoplay: false,
+  slidesToScroll: 1,
+});
+
+$('.profile-card').slick({
+  dots: true,
+  arrows:false,
+  infinite: false,
+  autoplay: false,
+  slidesToScroll: 1,
+});
