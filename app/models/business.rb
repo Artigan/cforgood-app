@@ -92,9 +92,9 @@ class Business < ActiveRecord::Base
   after_save :send_activation_email if :active_changed?
 
 
-  def activated
-    self.joins(:perks).where("perks.permanent = ?", true)
-  end
+  # def activated
+  #   self.joins(:perks).where("perks.active = ?", true)
+  # end
 
   def perks_uses_count
     perks.reduce(0) { |sum, perk| sum + perk.uses.count }

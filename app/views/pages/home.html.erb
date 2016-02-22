@@ -97,7 +97,7 @@ CforGood est une plateforme d’économie responsable & solidaire dont la vocati
         <!-- SLICK SLIDER -->
         <div class="container carrousel">
           <% @businesses.each do |business| %>
-          <% if business.perks.permanent.first != nil %>
+          <% if business.perks.active.first != nil %>
           <div class="col-xs-12 col-sm-3">
             <div class="perk-card">
               <%= image_tag image_url business.picture %>
@@ -105,7 +105,7 @@ CforGood est une plateforme d’économie responsable & solidaire dont la vocati
                 <span><%= business.business_category.name%></span>
                 <h3 class="business-name"><%= business.name%></h3>
                 <i class="fa fa-map-marker"><strong><%=business.city%></strong></i>
-                <h4 class="business-perk"><%= business.perks.permanent.first.perk.upcase%></h4>
+                <h4 class="business-perk"><%= business.perks.active.first.perk.upcase%></h4>
               </div>
             </div>
           </div>
