@@ -1,3 +1,5 @@
+  $(".alert").remove();
+
 if (<%= !current_business.errors.any? %>) {
 
   // DISCLAIMER - DISPLAYED
@@ -11,8 +13,7 @@ if (<%= !current_business.errors.any? %>) {
 
 } else {
 
-  $(".alert").remove();
-  $(document).find("form").prepend('<%= j render("components/error_messages", formats: [:html]) %>');
+  $(document).find("form").prepend('<%= j render("components/error_messages", resource: current_business, formats: [:html]) %>');
 
 }
 
