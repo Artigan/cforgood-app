@@ -64,18 +64,68 @@
     </figure> <!-- END FRONT CARD -->
 
     <figure class="back"><!-- BACK CARD -->
-      <% if @business.name.present? && @business.description.present? %>
-        <h3>En savoir plus sur <%= @business.name %></h3>
-        <p><%= @business.description %></p>
-      <% else %>
-        <p>Profil en construction</p>
-      <% end %>
+      <div class="business-card">
+        <!-- BACKGROUND IMAGE -->
+        <div class="perk-image" style="background-image: url('<%= image_url @business.picture %>');">
+          <%= image_tag image_url @business.leader_picture %>
+        </div>
 
-
-      <% if @business.leader_description.present? %>
-        <h3>Qui se cache derrière ?</h3>
-        <p><%= @business.leader_description %></p>
-      <%end %>
+        <div class="profile-card">
+          <div class="profile-business">
+            <% if @business.name.present? && @business.description.present? %>
+              <h3>En quelques mots</h3>
+              <p><%= @business.description %></p>
+            <% else %>
+              <p>Profil en construction</p>
+            <% end %>
+            <!-- LINKS | WEB -->
+            <ul>
+              <% if @business.url.present? %>
+                <li>
+                  <a href="<%= @business.url %>" class="link-website-business business-icon-container" target="_blank">
+                    <i class="fa fa-globe business-icon"></i>
+                  </a>
+                </li>
+              <% end %>
+              <% if @business.email.present? %>
+                <li>
+                  <a href="mailto:<%= @business.email %>" class="link-mail-business business-icon-container" target="_blank">
+                    <i class="fa fa-envelope business-icon"></i>
+                  </a>
+                </li>
+              <% end %>
+              <% if @business.facebook.present? %>
+                <li>
+                  <a href="<%= @business.facebook %>" class="link-facebook-business business-icon-container" target="_blank">
+                    <i class="fa fa-facebook business-icon"></i>
+                  </a>
+                </li>
+              <% end %>
+              <% if @business.twitter.present? %>
+                <li>
+                  <a href="<%= @business.twitter %>" class="link-instagram-business business-icon-container" target="_blank">
+                    <i class="fa fa-twitter business-icon"></i>
+                  </a>
+                </li>
+              <% end %>
+              <% if @business.instagram.present? %>
+                <li>
+                  <a href="<%= @business.instagram %>" class="link-instagram-business business-icon-container" target="_blank">
+                    <i class="fa fa-instagram business-icon"></i>
+                  </a>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+          <!-- SECOND SLIDE -->
+          <div class="profile-owner">
+            <% if @business.leader_description.present? %>
+              <h3>Qui se cache derrière ?</h3>
+              <p><%= @business.leader_description %></p>
+            <%end %>
+          </div>
+        </div>
+      </div>
     </figure><!-- END BACK CARD -->
   </div>
 
@@ -109,6 +159,7 @@
   <%= render 'components/map_perk_show', geojson: @geojson, latitude:  @business.latitude, longitude:  @business.longitude %>
 
   <script>
+
     $('.switch-button').click(function() {
       $('.switch-active').toggleClass('activated');
       $('.flipper').toggleClass('flipped');
@@ -121,5 +172,6 @@
         trigger: "hover"
       });
     });
+
   </script>
 <% end %>
