@@ -91,7 +91,7 @@
       z-index: 1;
     }
 
-    h1 {
+    h1, h2{
       position: relative;
       padding: 10px 0;
       margin: 0;
@@ -103,6 +103,13 @@
       font-weight: 600;
       z-index: 10;
     }
+
+    h2 {
+      position: absolute;
+      left: 125px;
+      bottom: 0;
+    }
+
 
     p {
       position: relative;
@@ -274,15 +281,65 @@
             .slick-slide {
               padding: 0 10px;
 
+              #map-perk {
+                margin-top: 15px;
+                height: 120px;
+                opacity: 0.4;
+
+                .mapboxgl-ctrl-attrib {
+                  display: none;
+                }
+              }
+
               ul {
                 display: flex;
                 list-style: none;
-                padding-bottom: 20px;
+                margin: 10px 0;
 
                 li {
                   display: flex;
                   justify-content: center;
                   align-items: center;
+                  margin: 0 1px;
+                  width: 25%;
+                  background-color: #f4f4f4;
+
+                  .business-link,
+                  .business-link:active,
+                  .business-link:focus {
+                    padding: 10px;
+                    width: 100%;
+                    text-align: center;
+                    color: #fff;
+                  }
+
+                  .link-website { background-color: #636363; }
+                  .link-mailto { background-color: #9ECE89; }
+                  .link-facebook { background-color: #4a66a0; }
+                  .link-twitter { background-color: #1da1f2; }
+                  .link-instagram { background-color: #145889; }
+                }
+
+                li:first-child {
+                  margin: 0 1px 0 0;
+                  a { border-radius: 3px 0 0 3px; }
+                }
+
+                li:last-child {
+                  margin: 0 0 0 1px;
+                  a { border-radius: 0 3px 3px 0; }
+                }
+              }
+
+              ul.reach-us {
+
+                li {
+                  margin: 0;
+                  width: 33.33333%;
+                }
+
+                li:nth-child(2) {
+                  margin: 0 2px;
                 }
               }
             }

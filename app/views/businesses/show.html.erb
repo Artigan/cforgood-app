@@ -68,6 +68,7 @@
         <!-- BACKGROUND IMAGE -->
         <div class="perk-image" style="background-image: url('<%= image_url @business.picture %>');">
           <%= image_tag image_url @business.leader_picture %>
+          <h2><%= @business.name %></h2>
         </div>
 
         <div class="profile-card">
@@ -78,43 +79,90 @@
             <% else %>
               <p>Profil en construction</p>
             <% end %>
-            <!-- LINKS | WEB -->
-            <ul>
-              <% if @business.url.present? %>
-                <li>
-                  <a href="<%= @business.url %>" class="link-website-business business-icon-container" target="_blank">
-                    <i class="fa fa-globe business-icon"></i>
-                  </a>
-                </li>
-              <% end %>
-              <% if @business.email.present? %>
-                <li>
-                  <a href="mailto:<%= @business.email %>" class="link-mail-business business-icon-container" target="_blank">
+            <!-- LINKS | FIND THEM -->
+            <h3>Contactez-nous</h3>
+            <ul class="reach-us">
+              <li>
+                <% if @business.email.present? %>
+                  <a href="mailto:<%= @business.email %>" class="business-link link-mailto" target="_blank">
                     <i class="fa fa-envelope business-icon"></i>
                   </a>
-                </li>
-              <% end %>
-              <% if @business.facebook.present? %>
-                <li>
-                  <a href="<%= @business.facebook %>" class="link-facebook-business business-icon-container" target="_blank">
+                <% else %>
+                   <div class="business-link">
+                    <i class="fa fa-envelope business-icon"></i>
+                  </div>
+                <% end %>
+              </li>
+              <li>
+                <% if @business.telephone.present? %>
+                  <a href="tel:<%= @business.telephone %>" class="business-link link-mailto hint--top" target="_blank" data-hint="<%= @business.telephone %>">
+                    <i class="fa fa-phone"></i>
+                  </a>
+                <% else %>
+                   <div class="business-link">
+                    <i class="fa fa-phone"></i>
+                  </div>
+                <% end %>
+              </li>
+              <li>
+                <% if @business.telephone.present? %>
+                  <%= link_to "http://maps.google.com/maps", class: "business-link link-mailto", id:"link-map", disabled: true, data: { locale: I18n.locale, destination: { latitude: Perk.find(params[:perk_id]).business.latitude, longitude: Perk.find(params[:perk_id]).business.longitude } }, :target => "_blank" do %>
+                    <i class="fa fa-location-arrow"></i>
+                  <% end %>
+                <% else %>
+                   <div class="business-link">
+                    <i class="fa fa-location-arrow"></i>
+                  </div>
+                <% end %>
+              </li>
+            </ul>
+            <!-- LINKS | WEB -->
+            <h3>En savoir plus</h3>
+            <ul>
+              <li>
+                <% if @business.url.present? %>
+                  <a href="http://<%= @business.url %>" class="business-link link-website" target="_blank">
+                    <i class="fa fa-globe business-icon"></i>
+                  </a>
+                 <% else %>
+                  <div class="business-link">
+                    <i class="fa fa-globe business-icon"></i>
+                  </div>
+                <% end %>
+              </li>
+              <li>
+                <% if @business.facebook.present? %>
+                  <a href="http://facebook.com/<%= @business.facebook %>" class="business-link link-facebook" target="_blank">
                     <i class="fa fa-facebook business-icon"></i>
                   </a>
-                </li>
-              <% end %>
-              <% if @business.twitter.present? %>
-                <li>
-                  <a href="<%= @business.twitter %>" class="link-instagram-business business-icon-container" target="_blank">
+                <% else %>
+                   <div class="business-link">
+                    <i class="fa fa-facebook business-icon"></i>
+                  </div>
+                <% end %>
+              </li>
+              <li>
+                <% if @business.twitter.present? %>
+                  <a href="http://twitter.com/<%= @business.twitter %>" class="business-link link-twitter" target="_blank">
                     <i class="fa fa-twitter business-icon"></i>
                   </a>
-                </li>
-              <% end %>
-              <% if @business.instagram.present? %>
-                <li>
-                  <a href="<%= @business.instagram %>" class="link-instagram-business business-icon-container" target="_blank">
+                <% else %>
+                   <div class="business-link">
+                    <i class="fa fa-twitter business-icon"></i>
+                  </div>
+                <% end %>
+              </li>
+              <li>
+                <% if @business.instagram.present? %>
+                  <a href="http://instagram.com/<%= @business.instagram %>" class="business-link link-instagram" target="_blank">
                     <i class="fa fa-instagram business-icon"></i>
                   </a>
-                </li>
-              <% end %>
+                <% else %>
+                   <div class="business-link">
+                    <i class="fa fa-instagram business-icon"></i>
+                  </div>
+                <% end %>
+              </li>
             </ul>
           </div>
           <!-- SECOND SLIDE -->
