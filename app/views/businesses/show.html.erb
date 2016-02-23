@@ -10,6 +10,10 @@
   <%= render "member/dashboard/shared/sidebar" %>
   <!-- Content - Statistics -->
   <div class="dashboard dashboard-perk">
+    <!-- OVERLY ON MENU ACTIVATION -->
+    <div class="mobile-menu-overlay hidden"></div>
+    <div class="side-menu-overlay hidden"></div>
+
     <% @business.perks.find(params[:perk_id]).update_nb_view! if user_space? %>
     <!-- PERK MENU -->
     <div class="switch-tab">
