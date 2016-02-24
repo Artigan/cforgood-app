@@ -9,44 +9,32 @@
   <!-- Sub Menu Sidebar -->
   <%= render "member/dashboard/shared/sidebar" %>
   <!-- Content - Statistics -->
-  <div class="dashboard dashboard-cards">
-    <div class="organisation-board">
-      <div class="organisation-header" style="background-image: url('<%= image_url @cause.picture %>');">
-        <h1><%= @cause.name %><br><small><%=  @cause.cause_category.name %></small></h1>
-        <div class="cause-logo" style="background-image: url('<%= image_url @cause.logo %>');"></div>
+  <div class="dashboard dashboard-causes">
+    <div class="cause-container">
+
+      <div class="cause-header" style="background-image: url('<%= image_url @cause.picture %>');">
+        <img class="cause-logo" src="<%= image_url @cause.logo %>" style="border: 3px solid <%= CauseCategory.find(@cause.cause_category_id).color %>;">
+        <h1><%= @cause.name %></h1>
+        <div class="disque-item item-category" style="background-color: <%= CauseCategory.find(@cause.cause_category_id).color %>;">
+            <%= image_tag image_url CauseCategory.find(@cause.cause_category_id).picture %>
+        </div>
+        <% if @cause.impact.present? %>
+          <span style="background-color: <%= CauseCategory.find(@cause.cause_category_id).color %>;"><%= @cause.impact %></span>
+        <% else %>
+          <span style="background-color: <%= CauseCategory.find(@cause.cause_category_id).color %>;"><%= CauseCategory.find(@cause.cause_category_id).name %></span>
+        <% end %>
       </div>
-      <div class="section-cause">
+
+
+      <div class="cause-content" style="border-top: 3px solid <%= CauseCategory.find(@cause.cause_category_id).color %>;">
         <div class="cause-details">
           <!-- BUSINESS | DESCRIPTION -->
-          <h3>En savoir plus sur <%= @cause.name %></h3>
+          <h2>En savoir plus</h2>
           <p><%= @cause.description %></p>
         </div>
         <div class="cause-info">
-          <!-- IMPACT | DESCRIPTION -->
-          <% if @cause.impact.present? %>
-            <h3>Leur engagement</h3>
-            <p><%= @cause.impact %></p>
-          <%end %>
-          <!-- LINKS | WEB -->
-          <h3>Sur le web </h3>
-          <ul>
-            <% if @cause.email.present? %>
-              <li>
-                <a href="mailto:<%= @cause.email %>" class="link-mail-business business-icon-container" target="_blank">
-                  <i class="fa fa-envelope business-icon"></i><span><%= @cause.email %></span>
-                </a>
-              </li>
-            <% end %>
-            <% if @cause.url.present? %>
-              <li>
-                <a href="<%= @cause.url %>" class="link-website-business business-icon-container" target="_blank">
-                  <i class="fa fa-globe business-icon"></i><span><%= @cause.url %></span>
-                </a>
-              </li>
-            <% end %>
-          </ul>
+          <h2>Nous retrouver</h2>
           <!-- LINKS | SOCIAL NETWORKS -->
-          <h3>Sur les réseaux</h3>
           <ul class="network">
             <% if @cause.facebook.present? %>
               <li>
@@ -66,6 +54,30 @@
               <li>
                 <a href="<%= @cause.instagram %>" class="link-instagram-business business-icon-container" target="_blank">
                   <i class="fa fa-instagram business-icon"></i>
+                </a>
+              </li>
+            <% end %>
+          </ul>
+          <!-- LINKS | WEB -->
+          <ul class="direct-contact">
+             <% if @cause.telephone.present? %>
+              <li>
+                <a href="telto:<%= @cause.telephone %>" class="link-website-business business-icon-container" target="_blank">
+                  <i class="fa fa-globe business-icon"></i><span><%= @cause.telephone %></span>
+                </a>
+              </li>
+            <% end %>
+            <% if @cause.email.present? %>
+              <li>
+                <a href="mailto:<%= @cause.email %>" class="link-mail-business business-icon-container" target="_blank">
+                  <i class="fa fa-envelope business-icon"></i><span><%= @cause.email %></span>
+                </a>
+              </li>
+            <% end %>
+            <% if @cause.url.present? %>
+              <li>
+                <a href="<%= @cause.url %>" class="link-website-business business-icon-container" target="_blank">
+                  <i class="fa fa-globe business-icon"></i><span><%= @cause.url %></span>
                 </a>
               </li>
             <% end %>
