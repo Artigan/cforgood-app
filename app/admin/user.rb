@@ -18,6 +18,7 @@ ActiveAdmin.register User do
       f.input :name
       f.input :email
       f.input :city
+      f.input :picture
     end
     f.inputs "Admin" do
       f.input :admin
@@ -25,19 +26,5 @@ ActiveAdmin.register User do
     end
     f.actions
   end
-  permit_params :first_name, :last_name, :name, :email, :picture, :admin, :active, :city
-# See permitted parameters documentation:
-# https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-#
-# permit_params :list, :of, :attributes, :on, :model
-#
-# or
-#
-# permit_params do
-#   permitted = [:permitted, :attributes]
-#   permitted << :other if resource.something?
-#   permitted
-# end
-
-
+  permit_params :first_name, :last_name, :name, :email, :city, :picture, :admin, :active
 end

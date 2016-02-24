@@ -39,7 +39,8 @@
         <div class="use-perk">
           <% if current_user.member %>
             <% if @business.perks.find(params[:perk_id]).perk_usable?(current_user) %>
-              <button type="button" class="use-button" data-toggle="modal" data-target="#codeModal" style="background-color: <%= BusinessCategory.find(@business.business_category_id).color %>;">J'en profite</button>
+             <!--  <button type="button" class="use-button" data-toggle="modal" data-target="#codeModal" style="background-color: <%#= BusinessCategory.find(@business.business_category_id).color %>;">J'en profite</button> -->
+              <button type="button" class="use-button" style="background-color: <%= BusinessCategory.find(@business.business_category_id).color %>;">J'en profite</button>
             <% else %>
               <div id="button-used">
                 <button class="empty">Bon plan épuisé</button>
@@ -180,27 +181,14 @@
   </div>
 </div>
 
-
 <!-- MODAL CODE PERK -->
-<div class="modal fade" id="codeModal" tabindex="-1" role="dialog" aria-labelledby="codeModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header bg-turquoise">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title text-center" id="codeModalLabel">Code d'accès au bon plan</h4>
-      </div>
-      <div class="modal-body text-center">
-        <% if @business.online %>
-          <%= render "pro/perks/modals/code_perk_online" %>
-        <% elsif device_type == :mobile %>
-          <%= render "pro/perks/modals/code_perk_offline_mobile" %>
-        <% else %>
-          <%= render "pro/perks/modals/code_perk_offline_desktop" %>
-        <% end %>
-      </div>
-    </div>
-  </div>
-</div>
+<% if @business.online %>
+  <%= render "pro/perks/modals/code_perk_online" %>
+<% elsif device_type == :mobile %>
+  <%= render "pro/perks/modals/code_perk_offline_mobile" %>
+<% else %>
+  <%= render "pro/perks/modals/code_perk_offline_desktop" %>
+<% end %>
 
 <% content_for(:after_js) do %>
 
@@ -213,12 +201,24 @@
       $('.flipper').toggleClass('flipped');
     });
 
+    // $(document).ready(function() {
+    //   $("#button-used").popover({
+    //     html: true,
+    //     container: "body",
+    //     trigger: "hover"
+    //   });
+    // });
+
     $(document).ready(function() {
-      $("#button-used").popover({
-        html: true,
-        container: "body",
-        trigger: "hover"
+
+      $(".use-button").click(function() {
+        $('.done-overlay').removeClass('hidden');
       });
+
+      $(".close-button").click(function() {
+        $('.done-overlay').addClass('hidden');
+      });
+
     });
 
   </script>
