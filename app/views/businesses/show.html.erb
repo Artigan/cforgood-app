@@ -10,6 +10,10 @@
   <%= render "member/dashboard/shared/sidebar" %>
   <!-- Content - Statistics -->
   <div class="dashboard dashboard-perk">
+    <!-- OVERLY ON MENU ACTIVATION -->
+    <div class="mobile-menu-overlay hidden"></div>
+    <div class="side-menu-overlay hidden"></div>
+
     <% @business.perks.find(params[:perk_id]).update_nb_view! if user_space? %>
     <!-- PERK MENU -->
     <div class="switch-tab">
@@ -68,7 +72,7 @@
         <!-- BACKGROUND IMAGE -->
         <div class="perk-image" style="background-image: url('<%= image_url @business.picture %>');">
           <%= image_tag image_url @business.leader_picture %>
-          <h2><%= @business.name %></h2>
+          <h1><%= @business.name %></h1>
         </div>
 
         <div class="profile-card">
