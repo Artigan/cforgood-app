@@ -15,6 +15,7 @@ ActiveAdmin.register Business do
       f.input :name
       f.input :business_category
       f.input :email
+      f.input :password
       f.input :url
       f.input :description
       f.input :street
@@ -43,5 +44,5 @@ ActiveAdmin.register Business do
     f.actions
   end
 
-  permit_params :name, :email, :business_category_id, :description, :url, :street, :zipcode, :city, :facebook, :twitter, :instagram, :telephone, :picture, :latitude, :longitude, :active, :leader_picture, :leader_first_name, :leader_last_name, :leader_description, :leader_phone, :leader_email, :logo, :online
+  permit_params :name, :business_category_id, :email, :password, :url, :description, :street, :zipcode, :city, :facebook, :twitter, :instagram, :telephone, :picture, :latitude, :longitude, :active, :leader_picture, :leader_first_name, :leader_last_name, :leader_description, :leader_phone, :leader_email, :logo, :online
 end
