@@ -14,7 +14,7 @@
 </div>
 
 <div class="form-edit">
-  <%= simple_form_for(current_user, url: member_update_profile_path, method: :put, remote: true, authenticity_token: true, html: { method: :put, id: :form_profile_user }) do |f| %>
+  <%= simple_form_for(current_user, url: member_update_profile_path, method: :put, remote: true, authenticity_token: true, html: { id: :form_profile_user }) do |f| %>
     <%= f.error_notification %>
     <span>Ma photo</span>
     <%= image_tag current_user.picture.url(:thumb) if current_user.picture %>
