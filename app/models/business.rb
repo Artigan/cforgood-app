@@ -91,8 +91,7 @@ class Business < ActiveRecord::Base
   after_create :send_registration_email, :create_code_promo, :send_registration_slack
   after_save :send_activation_email if :active_changed?
 
-
-  # def activated
+   # def activated
   #   self.joins(:perks).where("perks.active = ?", true)
   # end
 

@@ -1,2 +1,102 @@
+---
 fr:
-  hello: "Bonjour à tous"
+  active_admin:
+    dashboard: Dashboard
+    dashboard_welcome:
+      call_to_action: Call to action
+      welcome: Welcome
+  businesses:
+    passwords:
+      edit:
+        connexion: Connexion
+      new:
+        connexion: Connexion
+    registrations:
+      new:
+        connexion: Connexion
+    sessions:
+      new:
+        connexion: Connexion
+        forgot_your_password: Forgot your password
+  controllers:
+    application:
+      user_not_authorized: Vous ne pouvez pas accéder à cette page.
+  devise:
+    omniauth_callbacks:
+      success: Success
+  hello: Hello world
+  helpers:
+    page_entries_info:
+      more_pages:
+        display_entries: "%{entry_name}  <b>%{first} - %{last}</b> sur <b>%{total}</b>au total"
+      one_page:
+        display_entries:
+          one: "<b>%{count}</b> %{entry_name}"
+          other: "<b>tous les %{count}</b> %{entry_name}"
+  layouts:
+    shared:
+      navbar:
+        connexion: Connexion
+        espace_pro: Espace pro
+        how_it_works: How it works
+        inscription: Inscription
+  member:
+    dashboard:
+      shared:
+        form_user:
+          change_your_password: Change your password
+        sidebar:
+          se_déconnecter: Se déconnecter
+  pro:
+    dashboard:
+      shared:
+        form_owner:
+          change_your_password: Change your password
+        sidebar:
+          se_déconnecter: Se déconnecter
+  users:
+    confirmations:
+      new:
+        resend_confirmation_instructions: Resend confirmation instructions
+    mailer:
+      confirmation_instructions:
+        action: Action
+        greeting: Greeting
+        instruction: Instruction
+      unlock_instructions:
+        action: Action
+        greeting: Greeting
+        instruction: Instruction
+        message: Message
+    passwords:
+      edit:
+        connexion: Connexion
+      new:
+        connexion: Connexion
+    registrations:
+      new:
+        connexion: Connexion
+    sessions:
+      new:
+        connexion: Connexion
+        forgot_your_password: Forgot your password
+    shared:
+      facebook:
+        sign_in_with_provider: Sign in with provider
+      links:
+        didn_t_receive_confirmation_instructions: Didn t receive confirmation instructions
+        didn_t_receive_unlock_instructions: Didn t receive unlock instructions
+        forgot_your_password: Forgot your password
+        sign_in: Sign in
+        sign_in_with_provider: Sign in with provider
+        sign_up: Sign up
+    unlocks:
+      new:
+        resend_unlock_instructions: Resend unlock instructions
+  views:
+    pagination:
+      first: "&laquo; Premier"
+      last: Dernier &raquo;
+      next: Suivant &rsaquo;
+      previous: "&lsaquo; Précédent"
+      truncate: "&hellip;"

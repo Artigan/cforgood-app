@@ -37,7 +37,7 @@
         <h1><%= @business.perks.find(params[:perk_id]).perk %></h1>
         <p><%= @business.perks.find(params[:perk_id]).description %></p>
         <div class="use-perk">
-          <% if current_user.member %>
+          <%# if current_user.member %>
             <% if @business.perks.find(params[:perk_id]).perk_usable?(current_user) %>
              <!--  <button type="button" class="use-button" data-toggle="modal" data-target="#codeModal" style="background-color: <%#= BusinessCategory.find(@business.business_category_id).color %>;">J'en profite</button> -->
               <button type="button" class="use-button" style="background-color: <%= BusinessCategory.find(@business.business_category_id).color %>;">J'en profite</button>
@@ -46,7 +46,7 @@
                 <button class="empty">Bon plan épuisé</button>
               </div>
             <% end %>
-          <% end %>
+          <%# end %>
         </div>
       </div>
 
@@ -182,7 +182,9 @@
 </div>
 
 <!-- MODAL CODE PERK -->
-<% if @business.online %>
+<% if !current_user.member %>
+  <%= render "pro/perks/modals/code_perk_not_member" %>
+<% elsif @business.online %>
   <%= render "pro/perks/modals/code_perk_online" %>
 <% elsif device_type == :mobile %>
   <%= render "pro/perks/modals/code_perk_offline_mobile" %>
