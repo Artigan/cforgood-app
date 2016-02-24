@@ -15,7 +15,6 @@ ActiveAdmin.register Business do
       f.input :name
       f.input :business_category
       f.input :email
-      f.input :password
       f.input :url
       f.input :description
       f.input :street
