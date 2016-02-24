@@ -17,7 +17,6 @@ ActiveAdmin.register User do
       f.input :last_name
       f.input :name
       f.input :email
-      f.input :password
       f.input :city
       f.input :picture
     end
