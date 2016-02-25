@@ -1,7 +1,11 @@
 <div class="done-overlay hidden">
-  <button type="button" class="close-button">&times;</button>
-  <div class="code-perk-offline">
-    <p>N'étant pas encore membre, vous ne pouvez pas encore bénéficier du bon plan !</p>
-    <%= link_to "M'abonner maintenant", member_user_profile_url(current_user), class: "button-turquoise" %>
+  <div class="box-use-code"></div>
+    <button type="button" class="close-button">&times;</button>
+    <div class="box-code-content">
+      <div class="box-code">
+        <p>N'étant pas encore membre, vous ne pouvez pas bénéficier du bon plan !</p>
+        <%= link_to "M'abonner maintenant", member_user_profile_path(current_user, anchor: 'subscription'), class: "button button-turquoise" %>
+      </div>
+    </div>
   </div>
 </div>

@@ -1,6 +1,7 @@
-<% if @exist %>
+<% if @perk_exist %>
   $('.flipper-mobile').toggleClass('flipped');
 <% else %>
+  $("#error-code").html("");
   $("#error-code").append("Le code n'est pas valide !");
 <% end %>
 

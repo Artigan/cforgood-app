@@ -1,3 +1,6 @@
----
 fr:
   hello: "Bonjour à tous"
+  activerecord:
+    attributes:
+      business:
+        remember_me: Se souvenir de moi
