@@ -88,7 +88,7 @@ class User < ActiveRecord::Base
 
   after_save :trial_done!, if: :subscription_changed?
 
-  after_create :send_registration_email, :send_registration_slack
+  after_create :send_registration_email, :send_registration_slack, :subscribe_to_newsletter
   after_save :send_activation_email if :active_changed?
 
   def self.find_for_google_oauth2(access_token, signed_in_resourse=nil)
@@ -228,6 +228,10 @@ class User < ActiveRecord::Base
       notifier.ping message
 
     end
+  end
+
+  def subscribe_to_newsletter
+    SubscribeToNewsletter.new(self).run
   end
 
   def send_activation_email
