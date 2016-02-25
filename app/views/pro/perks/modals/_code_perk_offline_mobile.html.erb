@@ -1,39 +1,44 @@
 <div class="done-overlay hidden">
-  <button type="button" class="close-button">&times;</button>
-
-  <div class="code-perk-offline">
+  <div class="box-use-code">
+    <button type="button" class="close-button">&times;</button>
     <!-- PERK CARDS -->
-    <div class="flip-container-mobile">
-      <div class="flipper-mobile">
-        <figure class="front"><!-- FRONT CARD-->
-          <!-- ITINERAIRE -->
-          <div class="offline-itineraire">
-            <p class="offline-itineraire-legend"> Pour rejoindre votre commerce :</p>
-            <%= link_to "Indiquez Moi L'itinéraire", "http://maps.google.com/maps", class: "button button-turquoise", id:"link-map", disabled: true, data: { locale: I18n.locale, destination: { latitude: Perk.find(params[:perk_id]).business.latitude, longitude: Perk.find(params[:perk_id]).business.longitude } }, :target => "_blank" %>
-          </div>
-          <!-- INPUT CODE PERK -->
-          <div class="offline-code">
-            <p class="offline-code-legend">Pour profiter du Bon Plan et accéder à votre carte membre, renseignez le code :</p>
-            <%= simple_form_for(:code, url: perk_uses_path(params[:perk_id]), method: :post, remote: true, authenticity_token: true, html: { id: :create_use }) do |f| %>
-              <%= f.input :perk_code, placeholder: "Saisissez le code", label: false, input_html: { id: :perk_code }  %>
-              <%= f.submit "Validez", class: "button button-turquoise validation" %>
-            <% end %>
-            <p id="error-code"></p>
-          </div>
-        </figure> <!-- END FRONT CARD -->
+    <div class="box-use-code-content">
+      <div class="flip-container-mobile">
+        <div class="flipper-mobile">
+          <figure class="front"><!-- FRONT CARD-->
+            <!-- ITINERAIRE -->
+            <div class="box-itineraire">
+              <p class="box-itineraire-legend"> Pour rejoindre votre commerce :</p>
+              <%= link_to "Indiquez Moi L'itinéraire", "http://maps.google.com/maps", class: "button button-turquoise", id:"link-map", disabled: true, data: { locale: I18n.locale, destination: { latitude: Perk.find(params[:perk_id]).business.latitude, longitude: Perk.find(params[:perk_id]).business.longitude } }, :target => "_blank" %>
+            </div>
+            <!-- INPUT CODE PERK -->
+            <div class="box-code">
+              <p class="box-code-legend">Pour profiter du Bon Plan et accéder à votre carte membre, renseignez le code :</p>
+              <%= simple_form_for(:code, url: perk_uses_path(params[:perk_id]), method: :post, remote: true, authenticity_token: true, html: { id: :create_use }) do |f| %>
+                <%= f.input :perk_code, placeholder: "Saisissez le code", label: false, input_html: { id: :perk_code }  %>
+                <%= f.submit "Validez", class: "button button-turquoise validation" %>
+              <% end %>
+              <p id="error-code"></p>
+            </div>
+          </figure> <!-- END FRONT CARD -->
 
-        <figure class="back"><!-- BACK CARD -->
-            <div class="card relative">
-              <%= image_tag (current_user.picture? ? current_user.picture : "profile.png"), class: "img-circle", style: "margin:auto;" %>
-
+          <figure class="back"><!-- BACK CARD -->
+            <div class="member-card">
               <%= image_tag "macarte_horizontale.png", class: "img-card"%>
-              <% if current_user.name %>
-                <h2><%= current_user.name %></h2>
+              <span class="date"><%= DateTime.now.strftime('%d %b. %Y') %></span>
+              <%= image_tag (current_user.picture? ? current_user.picture : "profile.png"), class: "img-circle user"%>
+              <% if current_user.name.present? %>
+                <span class="user"><%= current_user.name %></span>
               <% else %>
-                <h2><%= current_user.first_name %> <%= current_user.last_name %></h2>
+                <span class="user"><%= current_user.first_name %> <%= current_user.last_name %></span>
+              <% end %>
+              <% if current_user.cause_id.present? %>
+                  <span class="cause"><%= Cause.find(current_user.cause_id).name %></span>
+                  <%= image_tag (Cause.find(current_user.cause_id).picture), class: "img-circle cause" %>
               <% end %>
             </div>
-        </figure><!-- END BACK CARD -->
+          </figure><!-- END BACK CARD -->
+        </div>
       </div>
     </div>
   </div>

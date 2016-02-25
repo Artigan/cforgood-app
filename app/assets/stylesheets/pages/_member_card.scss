@@ -1,36 +1,44 @@
-.card {
+.member-card {
   position: relative;
-}
-.card h2{
-  position: absolute;
-  z-index: 1;
-  text-align: center;
-  left: 46%;
-  width: 200px;
-  line-height: 50px;
-  margin-left: -160px;
-  line-height: 50px;
-  top: 40%;
-  margin-top: 51px;
-  -webkit-transform: rotate(90deg);
-  -ms-transform: rotate(90deg);
-  transform: rotate(90deg);
-  color: rgb(51,51,51);
-}
-.card .img-circle {
-  width: 80px;
-  position: relative;
-  top: 115px;
-  left: 70px;
-  z-index: 1;
-  -webkit-transform: rotate(90deg);
-  -ms-transform: rotate(90deg);
-  transform: rotate(90deg);
-}
 
-.card .img-card {
-  margin-left: 8%;
-  margin-top: -5%;
-  margin-bottom: 10%;
-  width: 80%;
+  .img-card {
+    margin-top: 10%;
+    width: 100%;
+  }
+
+  .img-circle {
+    position: absolute;
+    width: 35px;
+    border-radius: 50%;
+    border: 1px solid #636363;
+    top: 140px;
+
+    &.user {
+      left: 15px;
+    }
+
+    &.cause {
+      right: 15px;
+    }
+  }
+
+  span {
+    position: absolute;
+    font-size: 1rem;
+    font-weight: 100;
+    top: 145px;
+
+    &.date {
+      top: 24px;
+      right: 20px;
+    }
+
+    &.user {
+      left: 60px;
+    }
+
+    &.cause {
+      right: 60px;
+    }
+  }
 }
