@@ -1,19 +1,28 @@
-<div class="done-overlay hidden">
-  <div class="box-use-code">
-    <button type="button" class="close-button">&times;</button>
-    <div class="box-use-code-content">
-      <!-- INFORMATION -->
-      <div class="box-code">
-        <p class="box-code-legend">Pour profiter du Bon Plan, rendez-vous en magasin pour nous rencontrer !</p>
-      </div>
-      <!-- ITINERAIRE -->
-      <div class="box-itineraire">
-        <p class="box-itineraire-legend">Pour rejoindre votre commerce :</p>
-        <%= link_to "Indiquez Moi L'itinéraire", "http://maps.google.com/maps", class: "button button-turquoise", id:"link-map", disabled: true, data: { locale: I18n.locale, destination: { latitude: Perk.find(params[:perk_id]).business.latitude, longitude: Perk.find(params[:perk_id]).business.longitude } }, :target => "_blank" %>
-      </div>
+<div class="use-overlay hidden">
+  <div class="flip-container-mobile">
+    <div class="flipper-mobile">
+      <!-- FRONT CARD-->
+      <figure class="front">
+        <!-- CLOSE BUTTON-->
+        <button type="button" class="close-button">&times;</button>
+        <!-- ILLUSTRATION-->
+        <div class="wrapper">
+          <%= render "shared/icons/backpack" %>
+        </div>
+        <!-- CTA -->
+        <div class="itinary">
+          <%= link_to "http://maps.google.com/maps", class: "", id:"link-map", disabled: true, data: { locale: I18n.locale, destination: { latitude: Perk.find(params[:perk_id]).business.latitude, longitude: Perk.find(params[:perk_id]).business.longitude } }, :target => "_blank" do %>
+            <i class="fa fa-location-arrow"></i><abbr><%= @business.street %><br><%= @business.zipcode %> <%= @business.city %></abbr>
+          <% end %>
+        </div>
+        <div class="container-code">
+          <p class="box-code-legend">Rendez-vous en magasin pour nous rencontrer et profitez du bon plan !</p>
+        </div>
+      </figure>
     </div>
   </div>
 </div>
+
 
 <% content_for :after_js do %>
 

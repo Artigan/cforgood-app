@@ -1,12 +1,25 @@
-<div class="done-overlay hidden">
-  <div class="box-use-code">
-    <button type="button" class="close-button">&times;</button>
-    <div class="box-use-code-content">
-      <div class="box-code">
-        <p>Ce code vous permet de bénéficier de réductions directement sur le site du commerçant :</p>
-        <p><%= @business.perks.find(params[:perk_id]).perk_code.upcase %></p>
-        <%= link_to "J'accède au site", "#{@business.url}", target: "_blank", class: "button button-rouge link-business" %>
-      </div>
+<div class="use-overlay hidden">
+  <div class="flip-container-mobile">
+    <div class="flipper-mobile">
+      <!-- FRONT CARD-->
+      <figure class="front">
+        <!-- CLOSE BUTTON-->
+        <button type="button" class="close-button">&times;</button>
+        <!-- ILLUSTRATION-->
+        <div class="wrapper">
+          <%= render "shared/icons/browser" %>
+        </div>
+        <!-- CTA -->
+        <div class="itinary">
+          <%= link_to "http://#{@business.url}", class: "", :target => "_blank" do %>
+            <i class="fa fa-globe"></i></i><abbr><%= @business.url %></abbr>
+          <% end %>
+        </div>
+        <div class="container-code">
+          <p class="box-code-legend">Ce code vous permet de bénéficier de réductions directement sur le site du commerçant :</p>
+          <span class="online-code"><%= @business.perks.find(params[:perk_id]).perk_code.upcase %></span>
+        </div>
+      </figure>
     </div>
   </div>
 </div>
