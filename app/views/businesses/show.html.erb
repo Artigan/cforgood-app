@@ -111,7 +111,7 @@
               </li>
               <li>
                 <% if @business.telephone.present? %>
-                  <%= link_to "http://maps.google.com/maps", class: "business-link link-mailto", id:"link-map1", disabled: true, data: { locale: I18n.locale, destination: { latitude: Perk.find(params[:perk_id]).business.latitude, longitude: Perk.find(params[:perk_id]).business.longitude } }, :target => "_blank" do %>
+                  <%= link_to "http://maps.google.com/maps", class: "business-link link-mailto", id:"link-itinerary", disabled: true, data: { locale: I18n.locale, destination: { latitude: Perk.find(params[:perk_id]).business.latitude, longitude: Perk.find(params[:perk_id]).business.longitude } }, :target => "_blank" do %>
                     <i class="fa fa-location-arrow"></i>
                   <% end %>
                 <% else %>
@@ -201,6 +201,7 @@
 <% content_for(:after_js) do %>
 
   <%= render 'components/map_perk_show', geojson: @geojson, latitude:  @business.latitude, longitude:  @business.longitude %>
+  <script type="text/javascript">setRoutePathFromLocation()</script>
 
   <script>
 

@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def after_sign_in_path_for(resource)
-    # ---  COMMENTER LE TEMPS DU LE DEBUT DE LA BETA ---
+    # ---  COMMENTER LE TEMPS LE TEMPS DE LA BETA ---
     # if resource.sign_in_count == 1 && resource_name != :business
     #   @mangopay_user = MangopayServices.new(current_user).create_mangopay_natural_user
     #   resource.update_attribute("mangopay_id", @mangopay_user["Id"]) if @mangopay_user
