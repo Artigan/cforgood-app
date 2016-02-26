@@ -230,7 +230,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  def subscribe_to_newsletter
+  def subscribe_to_newsletter_user
     SubscribeToNewsletter.new(self).run
   end
 
