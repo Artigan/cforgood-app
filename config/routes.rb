@@ -29,7 +29,7 @@ Rails.application.routes.draw do
     put "member/update_cause",    to: "member/registrations#update_cause"
     put "member/update_profile",  to: "member/registrations#update_profile"
   end
-  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', passwords: :passwords }
 
   namespace :member do
     resources :users, only: [:show, :update] do
@@ -40,7 +40,7 @@ Rails.application.routes.draw do
     resources :perks, only: [:show]
   end
 
-  devise_for :businesses, path: :pro, controllers: {registrations: :registrations}
+  devise_for :businesses, path: :pro, controllers: {registrations: :registrations, passwords: :passwords}
   devise_scope :business do
     put "pro/update_business",  to: "pro/registrations#update_business"
   end

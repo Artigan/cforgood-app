@@ -143,7 +143,9 @@ class Business < ActiveRecord::Base
   end
 
   def subscribe_to_newsletter_business
-    SubscribeToNewsletterBusiness.new(self).run
+    if !Rails.env.development?
+      SubscribeToNewsletterBusiness.new(self).run
+    end
   end
 
   def send_activation_email
