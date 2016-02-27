@@ -47,26 +47,3 @@
     </div>
   </div>
 </div>
-
-<% content_for :after_js do %>
-
-  <script type="text/javascript">setRoutePathFromLocation()</script>
-
-  <script>
-    // CONTROL CODE PERK AND CREATE USE
-    // $(document).ready(function() {
-    //   $(".validation").on('click', function(e) {
-    //     e.preventDefault();
-    //     if ("<%= Perk.find(params[:perk_id]).perk_code %>" != $("#perk_code").val().toUpperCase()) {
-    //       $("#error-code").html("");
-    //       $("#error-code").append("Le code n'est pas valide !");
-    //     } else {
-    //       $("#create_use").submit();
-    //       $('.flipper-mobile').toggleClass('flipped');
-    //     }
-    //   });
-    // });
-
-  </script>
-
-<% end %>

@@ -18,9 +18,14 @@ function setRoutePathFromLocation() {
 function getPosition(position) {
   var lat = position.coords.latitude
   var lng = position.coords.longitude
-  var locale = $("#link-map").data("locale");
-  var destination = $("#link-map").data("destination");
-  var linkToNavigation = $("#link-map").attr("href");
+  buildUrl("#link-map", lat, lng);
+  buildUrl("#link-itinerary", lat, lng);
+}
+
+function buildUrl(selector, lat, lng) {
+  var locale = $(selector).data("locale");
+  var destination = $(selector).data("destination");
+  var linkToNavigation = $(selector).attr("href");
 
   //saddr=latitude,longitude&daddr=latitude,longitude&hl=#{I18n.locale}
   linkToNavigation = linkToNavigation + "?saddr=" + lat + "," + lng
@@ -28,8 +33,8 @@ function getPosition(position) {
   + "&hl=" + locale;
 
   //$("loader").hide();
-  $("#link-map").removeAttr('disabled');
-  $("#link-map").attr("href", linkToNavigation);
+  $(selector).removeAttr('disabled');
+  $(selector).attr("href", linkToNavigation);
 }
 
 function geolocErrors(error) {
