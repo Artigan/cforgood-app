@@ -10,7 +10,6 @@ Rails.application.routes.draw do
   get 'cgu',                      to: 'pages#cgu'
   get 'charte_confidentialite',   to: 'pages#charte_confidentialite'
   get 'mentions_legales',         to: 'pages#mentions_legales'
-  get 'member_card',              to: 'pages#member_card'
   get 'info_business',            to: 'pages#info_business'
   get 'info_cause',               to: 'pages#info_cause'
   get 'faq',                      to: 'pages#faq'
@@ -26,6 +25,7 @@ Rails.application.routes.draw do
   devise_scope :user do
     get "member/signup",          to: "devise/registrations#new"
     get "member/signin",          to: "devise/sessions#new"
+    get "member/sent_mail",       to: "devise/passwords#sent_mail"
     put "member/update_cause",    to: "member/registrations#update_cause"
     put "member/update_profile",  to: "member/registrations#update_profile"
   end
