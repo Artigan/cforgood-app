@@ -12,7 +12,7 @@
         <%= f.input :business_category_id, required: true, label: "Activité de l'entreprise *", collection: BusinessCategory.all, prompt: 'Sélectionnez une catégorie' %>
         <%= f.input :city, placeholder: 'Bordeaux', required: true, label: 'Votre ville *' %>
         <p>En cliquant sur <strong>S'inscrire</strong>, vous acceptez les <a type="href" class="" data-toggle="modal" data-target="#modal-cgu"><strong>CGU</strong></a> et certifiez avoir de plus de 18 ans.</p>
-        <%= f.button :submit, "Créer mon compte" %>
+        <%= f.button :submit, "Créer mon compte", id: "btn-submit", disabled: true   %>
       <% end %>
     </div>
   </div>
@@ -23,3 +23,27 @@
 
 <!-- MODAL CGU CFORGOOD -->
 <%= render "components/modals/signup_cgu" %>
+
+<% content_for :after_js do %>
+
+  <script>
+    $(document).ready(function() {
+
+      $("form").on("change", function(e) {
+        e.preventDefault();
+        if ($("#business_name").val() != "" &&
+            $("#business_email").val() != "" &&
+            $("#business_password").val() != "" &&
+            $("#business_password_confirmation").val() != "" &&
+            $("#business_business_category_id").val() != "" &&
+            $("#business_city").val() != "" ) {
+          $("#btn-submit").attr("disabled", false);
+        } else {
+        $("#btn-submit").attr("disabled", true);
+        }
+      });
+
+    });
+  </script>
+
+<% end %>
