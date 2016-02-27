@@ -30,18 +30,26 @@
       <!-- BACK CARD -->
       <figure class="back">
         <div class="member-card">
-          <%= image_tag "macarte_horizontale.png", class: "img-card"%>
-          <span class="date"><%= DateTime.now.strftime('%d %b. %Y') %></span>
-          <%= image_tag (current_user.picture? ? current_user.picture : "profile.png"), class: "img-circle user"%>
-          <% if current_user.name.present? %>
-            <span class="user"><%= current_user.name %></span>
-          <% else %>
-            <span class="user"><%= current_user.first_name %> <%= current_user.last_name %></span>
-          <% end %>
-          <% if current_user.cause_id.present? %>
-              <span class="cause"><%= Cause.find(current_user.cause_id).name %></span>
-              <%= image_tag (Cause.find(current_user.cause_id).picture), class: "img-circle cause" %>
-          <% end %>
+          <div class="validation-date">
+            <span>Valable jusqu'au <%= DateTime.now.strftime('%d %b. %Y') %></span>
+          </div>
+
+          <div class="logo">
+            <%= image_tag 'logo-classic.png' %>
+          </div>
+
+          <div class="member-info">
+            <%= image_tag (current_user.picture? ? current_user.picture : "profile.png"), class: "img-circle user"%>
+            <% if current_user.name.present? %>
+              <span class="user"><%= current_user.name %></span>
+            <% else %>
+              <span class="user"><%= current_user.first_name %> <%= current_user.last_name %></span>
+            <% end %>
+            <% if current_user.cause_id.present? %>
+                <span class="cause"><%= Cause.find(current_user.cause_id).name %></span>
+                <%= image_tag (Cause.find(current_user.cause_id).logo), class: "img-circle cause" %>
+            <% end %>
+          </div>
         </div>
       </figure>
     </div>
