@@ -88,7 +88,7 @@ class Business < ActiveRecord::Base
   validates_attachment_content_type :logo,
       content_type: /\Aimage\/.*\z/
 
-  after_create :send_registration_email, :create_code_promo, :send_registration_slack
+  after_create :send_registration_email, :create_code_promo, :send_registration_slack, :subscribe_to_newsletter_business
   after_save :send_activation_email if :active_changed?
 
    # def activated
@@ -139,6 +139,12 @@ class Business < ActiveRecord::Base
     if !Rails.env.development?
       notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_BUSINESS_URL']
       notifier.ping "#{name}, *#{city}*, a rejoint la communauté !"
+    end
+  end
+
+  def subscribe_to_newsletter_business
+    if !Rails.env.development?
+      SubscribeToNewsletterBusiness.new(self).run
     end
   end
 
