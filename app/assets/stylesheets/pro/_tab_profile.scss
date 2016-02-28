@@ -183,6 +183,25 @@
             border: none;
           }
 
+          #user_picture {
+            width: 0.1px;
+            height: 0.1px;
+            opacity: 0;
+            overflow: hidden;
+            position: absolute;
+            z-index: -1;
+          }
+
+          .user_picture {
+            label {
+              padding: 10px 20px;
+              border: 1px solid #f4f4f4;
+              border-top: none;
+              text-align: center;
+              cursor: pointer;
+            }
+          }
+
           /* PROFILE - BUSINESS OWNER ***************************************/
           .business_leader_first_name { width: 45%; margin-right: 5%; }
 
@@ -250,6 +269,15 @@
             }
           }
 
+          .business_name {
+            width: 58%;
+            margin-right: 5%;
+          }
+
+          .business_password {
+            width: 37%;
+          }
+
           .business_zipcode {
             width: 45%;
             margin-right: 5%;
@@ -261,15 +289,15 @@
           }
         }
 
-        .new-password {
-          display: block;
-          margin: 10px auto 0;
-          font-size: 12px;
-          color: #A5A5A5;
-          text-decoration: underline;
-          width: 100%;
-          text-align: center;
-        }
+        // .new-password {
+        //   display: block;
+        //   margin: 10px auto 0;
+        //   font-size: 12px;
+        //   color: #A5A5A5;
+        //   text-decoration: underline;
+        //   width: 100%;
+        //   text-align: center;
+        // }
       }
     }
 
@@ -400,13 +428,27 @@
                 margin-left: 2%;
               }
 
-              .user_first_name,
+              .user_first_name {
+                width: 32%;
+                margin-right: 1%;
+              }
+
+              .user_last_name, {
+                width: 32%;
+                margin-left: 1%;
+                margin-right: 1%;
+              }
+
+              .user_password, {
+                width: 32%;
+                margin-left: 1%;
+              }
+
               .user_email {
                 width: 49%;
                 margin-right: 1%;
               }
 
-              .user_last_name,
               .user_birthday {
                 width: 49%;
                 margin-left: 1%;

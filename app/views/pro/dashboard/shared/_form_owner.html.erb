@@ -16,17 +16,10 @@
       </div>
       <%= f.input :leader_phone, placeholder: '05 56 01 01 01', required: true, label: 'Ligne personnelle', class: "inline-input" %>
       <%= f.input :leader_email, placeholder: 'john@doe.com', required: true, label: 'Email personnel', class: "inline-input" %>
-      <%= f.input :password, placeholder: '********', required: true, label: 'Nouveau mot de passe', class: "inline-input" %>
-      <%# if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-        <!-- <p>Currently waiting confirmation for: <%#= resource.unconfirmed_email %></p> -->
-      <%# end %>
       <div class="col-2">
         <%= f.button :submit, "Sauvegarder" %>
       </div>
     <% end %>
-  </div>
-  <div>
-    <%= link_to t(".change_your_password", :default => "Changez votre mot de passe ?"), new_business_password_path(:business), class: "new-password" %>
   </div>
 </div>
 

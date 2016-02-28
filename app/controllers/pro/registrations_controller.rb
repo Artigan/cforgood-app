@@ -1,7 +1,11 @@
 class Pro::RegistrationsController < Devise::RegistrationsController
 
   def update_business
-    current_business.update(business_params)
+    if business_params[:password].present?
+      current_business.update(business_params)
+    else
+      current_business.update_without_password(business_params)
+    end
     respond_to do |format|
       format.html {redirect_to :back}
       format.js {}
