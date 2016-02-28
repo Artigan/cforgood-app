@@ -35,9 +35,8 @@
     <%= f.input :zipcode, placeholder: 'Code postal', required: true, label: false %>
     <%= f.input :city, placeholder: 'Ville', required: true, label: false %>
     <%= f.button :submit, "Sauvegarder", class: "btn btn-turquoise" %>
+    <%= link_to t(".change_your_password", :default => "Changez votre mot de passe ?"), new_user_password_path(current_user), class: "new-password" %>
+    <%= f.input :password, placeholder: 'Nouveau mot de passe', required: true, label: false, class: 'hidden' %>
   <% end %>
-</div>
-<div>
-  <%= link_to t(".change_your_password", :default => "Changez votre mot de passe ?"), new_user_password_path(current_user), class: "new-password" %>
 </div>
 
