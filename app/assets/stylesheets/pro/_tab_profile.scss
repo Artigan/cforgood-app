@@ -55,7 +55,7 @@
           width: 100%;
         }
 
-        .col-1, .col-2 {
+        .col-1, .col-2, .col-3 {
           width: 100%;
         }
 
@@ -112,6 +112,33 @@
               color: #A5A5A5;
               pointer-events: none;
             }
+          }
+
+          .user_birthday {
+            #user_birthday_3i {
+              width: 19%;
+              margin-right: 1%;
+            }
+
+            #user_birthday_2i {
+              width: 48%;
+              margin: 0 1% 0 1%;
+            }
+
+            #user_birthday_1i {
+              width: 29%;
+              margin-left: 1%;
+            }
+          }
+
+          .user_zipcode {
+            width: 29%;
+            margin-right: 1%;
+          }
+
+          .user_city {
+            width: 69%;
+            margin-left: 1%;
           }
 
           select {
@@ -245,6 +272,10 @@
         }
       }
     }
+
+    .user-container {
+      padding-top: 20px;
+    }
   }
 }
 
@@ -261,7 +292,7 @@
         }
 
         .tab-content {
-          .col-1, .col-2 {
+          .col-1, .col-2, .col-3 {
             width: 100%;
           }
         }
@@ -295,6 +326,12 @@
               input[type="submit"] {
                 width: 320px;
               }
+            }
+
+            .col-3 {
+              display: flex;
+              padding-top: 20px;
+              width: 50%;
             }
 
             .business_leader_phone {
@@ -361,6 +398,34 @@
               .business_instagram {
                 width: 32%;
                 margin-left: 2%;
+              }
+
+              .user_first_name,
+              .user_email {
+                width: 49%;
+                margin-right: 1%;
+              }
+
+              .user_last_name,
+              .user_birthday {
+                width: 49%;
+                margin-left: 1%;
+              }
+
+              .user_street {
+                width: 49%;
+                margin-left: 1%;
+              }
+
+              .user_zipcode {
+                width: 18%;
+                margin-left: 1%;
+                margin-right: 1%;
+              }
+
+              .user_city {
+                width: 29%;
+                margin-left: 1%;
               }
             }
           }
