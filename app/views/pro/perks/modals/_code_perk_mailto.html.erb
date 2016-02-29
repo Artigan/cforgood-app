@@ -1,0 +1,30 @@
+<div class="use-overlay hidden">
+  <div class="flip-container-mobile">
+    <div class="flipper-mobile">
+      <!-- FRONT CARD-->
+      <figure class="front">
+        <!-- CLOSE BUTTON-->
+        <button type="button" class="close-button">&times;</button>
+        <!-- ILLUSTRATION-->
+        <div class="wrapper">
+          <%= render "shared/icons/backpack" %>
+        </div>
+        <!-- CTA -->
+        <div class="itinary">
+          <%= link_to "http://maps.google.com/maps", class: "", id:"link-map", disabled: true, data: { locale: I18n.locale, destination: { latitude: Perk.find(params[:perk_id]).business.latitude, longitude: Perk.find(params[:perk_id]).business.longitude } }, :target => "_blank" do %>
+            <i class="fa fa-location-arrow"></i><abbr><%= @business.street %><br><%= @business.zipcode %> <%= @business.city %></abbr>
+          <% end %>
+        </div>
+        <div class="container-code">
+          <p class="box-code-legend">Envoyez-nous un email pour réserver votre bon plan : </p>
+        </div>
+        <div class="itinary send-mail">
+          <a href="mailto:<%= @business.email %>?subject=Réservation du Bon Plan '<%= Perk.find(params[:perk_id]).perk %>' : code <%= Perk.find(params[:perk_id]).perk_code %>" class="link-mail-business business-icon-container" target="_blank">
+          <i class="fa fa-envelope"></i><abbr>Ecrivez-nous !</abbr>
+          </a>
+        </div>
+      </figure>
+    </div>
+  </div>
+</div>
+
