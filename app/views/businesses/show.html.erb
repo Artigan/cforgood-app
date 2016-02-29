@@ -45,7 +45,6 @@
           <div class="use-perk">
             <%# if current_user.member %>
               <% if @business.perks.find(params[:perk_id]).perk_usable?(current_user) %>
-               <!--  <button type="button" class="use-button" data-toggle="modal" data-target="#codeModal" style="background-color: <%#= BusinessCategory.find(@business.business_category_id).color %>;">J'en profite</button> -->
                 <button type="button" class="use-button" style="background-color: <%= BusinessCategory.find(@business.business_category_id).color %>;">J'en profite</button>
               <% else %>
                 <div id="button-used">
@@ -95,7 +94,11 @@
               <% if @business.leader_description.present? %>
                 <p><%= @business.leader_description %></p>
               <% else %>
-                <p>Profil en cours de construction</p>
+               <% if @business.leader_first_name.present? %>
+                  <p>C'est <%= @business.leader_first_name %> qui se cache derrière. Quand vous le verrez, rappelez-lui de raconter un peu son histoire !</p>
+                <% else %>
+                    <p>Profil en cours de construction</p>
+                <% end %>
               <% end %>
             </div>
           </div>
@@ -169,7 +172,11 @@
             <% if @business.leader_description.present? %>
               <p><%= @business.leader_description %></p>
             <% else %>
-              <p>Profil en cours de construction</p>
+             <% if @business.leader_first_name.present? %>
+                <p>C'est <%= @business.leader_first_name %> qui se cache derrière. Quand vous le verrez, rappelez-lui de raconter un peu son histoire !</p>
+              <% else %>
+                  <p>Profil en cours de construction</p>
+              <% end %>
             <% end %>
           </div>
         </div>

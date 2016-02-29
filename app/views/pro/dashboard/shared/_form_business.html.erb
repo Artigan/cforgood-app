@@ -12,7 +12,7 @@
       <div class="col-1">
         <%= f.input :name, placeholder: 'Nom', required: true, label: "Nom de l'établissement" %>
         <%= f.input :password, placeholder: '********', required: true, label: "Nouveau mot de passe" %>
-        <%= f.input :description, as: :text, placeholder: 'Visible sur vos bons plans', :input_html => { :rows => 6 }, required: true, label: "Présenter votre commerce" %>
+        <%= f.input :description, as: :text, placeholder: 'Visible sur vos bons plans', :input_html => { :rows => 6, maxlength: 330 }, required: true, label: "Présenter votre commerce" %>
       </div>
       <%= f.input :street, placeholder: 'Rue', required: true, label: 'Adresse' %>
       <%= f.input :zipcode, placeholder: 'Code postal', required: true, label: "Code postal" %>

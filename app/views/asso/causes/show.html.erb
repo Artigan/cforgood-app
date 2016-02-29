@@ -87,8 +87,10 @@
           </ul>
           <!-- INFO | ADRESSE -->
           <div class="place">
-             <i class="fa fa-map-marker" style="border: 1px solid <%= CauseCategory.find(@cause.cause_category_id).color %>; color: <%= CauseCategory.find(@cause.cause_category_id).color %>;"></i>
-             <span><%= @cause.street %><br><%= @cause.zipcode %> <%= @cause.city %></span>
+            <% if @cause.city.present? %>
+              <i class="fa fa-map-marker" style="border: 1px solid <%= CauseCategory.find(@cause.cause_category_id).color %>; color: <%= CauseCategory.find(@cause.cause_category_id).color %>;"></i>
+              <span><%= @cause.street %><br><%= @cause.zipcode %> <%= @cause.city %></span>
+            <% end %>
           </div>
         </div>
       </div>
