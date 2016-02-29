@@ -11,6 +11,7 @@ class Member::RegistrationsController < Devise::RegistrationsController
   def update_profile
     if user_params[:password].present?
       current_user.update(user_params)
+      sign_in(current_user, bypass: true)
     else
       current_user.update_without_password(user_params)
     end

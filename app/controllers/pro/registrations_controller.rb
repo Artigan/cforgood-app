@@ -3,6 +3,7 @@ class Pro::RegistrationsController < Devise::RegistrationsController
   def update_business
     if business_params[:password].present?
       current_business.update(business_params)
+      sign_in(current_business, bypass: true)
     else
       current_business.update_without_password(business_params)
     end
