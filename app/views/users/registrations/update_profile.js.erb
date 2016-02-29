@@ -1,6 +1,18 @@
 $(".alert").remove();
-<% if current_user.errors.any? %>
+
+if (<%= !current_user.errors.any? %>) {
+
+  // DISCLAIMER - DISPLAYED
+  $(".done-overlay").removeClass("hidden");
+
+  window.setTimeout(function(){
+    // DISCLAIMER - HIDDEN
+    $(".done-overlay").addClass("hidden");
+    // window.location.href = "<%#= pro_business_dashboard_path(current_business) %>";
+  }, 3000);
+
+} else {
+
   $(document).find("form").prepend('<%= j render("components/error_messages", resource: current_user, formats: [:html]) %>');
-<% else %>
-  $(document).find("form").prepend('<%= j render("components/info_messages", resource: current_user, formats: [:html]) %>');
-<% end %>
+
+}

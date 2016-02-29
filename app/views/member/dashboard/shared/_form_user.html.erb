@@ -6,7 +6,7 @@
       <div class="col-1">
         <label>Photo</label>
         <div class="picture-container">
-          <%= image_tag current_user.picture.url(:thumb), class: 'picture-owner' %>
+          <%= image_tag current_user.picture.url(:thumb), class: 'user-picture' %>
         </div>
         <%= f.input :picture, as: :file, required: false, label: 'Sélectionner une nouvelle image' %>
       </div>
@@ -14,6 +14,7 @@
       <div class="col-1">
         <%= f.input :first_name, placeholder: 'Prénom', required: true, label: 'Prénom' %>
         <%= f.input :last_name, placeholder: 'Nom', required: true, label: 'Nom' %>
+        <%= f.input :password, placeholder: '********', label: "Nouveau mot de passe" %>
         <%= f.input :email, placeholder: 'Adresse email', required: true, label: 'Email' %>
         <%= f.input :birthday, as: :date, label: "Ma date de naissance",
                   start_year: Date.today.year - 90,
@@ -31,9 +32,6 @@
       </div>
     <% end %>
   </div>
-  <div>
-    <%= link_to t(".change_your_password", :default => "Changez votre mot de passe ?"), new_user_password_path(current_user), class: "new-password" %>
-  </div>
 </div>
 
 <% content_for :after_js do %>
@@ -42,18 +40,19 @@
       function readURL(input) {
         var reader = new FileReader();
           reader.onload = function (e) {
-            $('#business .picture-owner').attr('src', e.target.result).addClass("thumb-crop");
+            $('.user-picture').attr('src', e.target.result).addClass("thumb-crop");
           }
         reader.readAsDataURL(input);
       }
-
       $('#profile-tab').addClass('active');
       $(".user_picture").on("change", function(e) {
         e.preventDefault();
-        var newFile = document.querySelector('#business input[type=file]').files[0];
+        var newFile = document.querySelector('#form_profile_user input[type=file]').files[0];
         $(".user_picture").children().html(newFile.name);
         readURL(newFile);
       });
     });
   </script>
 <% end %>
+
+

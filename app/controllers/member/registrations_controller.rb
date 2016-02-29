@@ -9,9 +9,11 @@ class Member::RegistrationsController < Devise::RegistrationsController
   end
 
   def update_profile
-    current_user.update(user_params)
-    if current_user.save && request.referer.include?("user_profile")
-      flash[:notice] = "Vos données ont été mises à jour."
+    if user_params[:password].present?
+      current_user.update(user_params)
+      sign_in(current_user, bypass: true)
+    else
+      current_user.update_without_password(user_params)
     end
     respond_to do |format|
       format.html {redirect_to :back}
@@ -22,6 +24,6 @@ class Member::RegistrationsController < Devise::RegistrationsController
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :picture, :cause_id, :subscription, :birthday, :street, :zipcode, :city)
+    params.require(:user).permit(:first_name, :last_name, :password, :email, :picture, :cause_id, :subscription, :birthday, :street, :zipcode, :city)
   end
 end
