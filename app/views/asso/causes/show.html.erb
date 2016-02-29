@@ -41,21 +41,21 @@
           <ul class="network">
             <% if @cause.facebook.present? %>
               <li style="background-color: <%= CauseCategory.find(@cause.cause_category_id).color %>;">
-                <a href="<%= @cause.facebook %>" class="link-facebook-business business-icon-container" target="_blank">
+                <a href="https://facebook.com/<%= @cause.facebook %>" class="link-facebook-business business-icon-container" target="_blank">
                   <i class="fa fa-facebook business-icon"></i>
                 </a>
               </li>
             <% end %>
             <% if @cause.twitter.present? %>
               <li style="background-color: <%= CauseCategory.find(@cause.cause_category_id).color %>;">
-                <a href="<%= @cause.twitter %>" class="link-instagram-business business-icon-container" target="_blank">
+                <a href="https://twitter.com/<%= @cause.twitter %>" class="link-instagram-business business-icon-container" target="_blank">
                   <i class="fa fa-twitter business-icon"></i>
                 </a>
               </li>
             <% end %>
             <% if @cause.instagram.present? %>
               <li style="background-color: <%= CauseCategory.find(@cause.cause_category_id).color %>;">
-                <a href="<%= @cause.instagram %>" class="link-instagram-business business-icon-container" target="_blank">
+                <a href="https://instagram.com/<%= @cause.instagram %>" class="link-instagram-business business-icon-container" target="_blank">
                   <i class="fa fa-instagram business-icon"></i>
                 </a>
               </li>
@@ -66,7 +66,7 @@
              <% if @cause.telephone.present? %>
               <li>
                 <a href="tel:<%= @cause.telephone %>" class="link-website-business business-icon-container" target="_blank" >
-                  <i class="fa fa-globe business-icon" style="border: 1px solid <%= CauseCategory.find(@cause.cause_category_id).color %>; color: <%= CauseCategory.find(@cause.cause_category_id).color %>;"></i><span><%= @cause.telephone %></span>
+                  <i class="fa fa-phone business-icon" style="border: 1px solid <%= CauseCategory.find(@cause.cause_category_id).color %>; color: <%= CauseCategory.find(@cause.cause_category_id).color %>;"></i><span><%= @cause.telephone %></span>
                 </a>
               </li>
             <% end %>
