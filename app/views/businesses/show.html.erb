@@ -59,9 +59,9 @@
         <div class="perk-owner">
           <div class="owner-details">
             <% if @business.leader_picture.present? %>
-              <%= image_tag image_url @business.leader_picture %>
+              <%= image_tag image_url @business.leader_picture.url(:thumb) %>
             <% else %>
-              <%= image_tag image_url @business.picture %>
+              <%= image_tag image_url 'default_pic.png' %>
             <% end %>
             <span>Rendez-vous chez <%= @business.name %><br><small><%= @business.leader_first_name %> vous accueillera.</small></span>
           </div>
@@ -80,21 +80,23 @@
 
           <div class="profile-card">
             <div class="profile-business">
-              <% if @business.name.present? && @business.description.present? %>
-                <h3>En quelques mots</h3>
+              <h3>En quelques mots</h3>
+              <% if @business.description.present? %>
                 <p><%= @business.description %></p>
               <% else %>
-                <p>Profil en construction</p>
+                <p>Profil en cours de construction</p>
               <% end %>
               <!-- LINKS | FIND THEM -->
               <%= render "pro/dashboard/shared/business_links" %>
             </div>
             <!-- SECOND SLIDE -->
             <div class="profile-owner">
+              <h3>Qui se cache derrière ?</h3>
               <% if @business.leader_description.present? %>
-                <h3>Qui se cache derrière ?</h3>
                 <p><%= @business.leader_description %></p>
-              <%end %>
+              <% else %>
+                <p>Profil en cours de construction</p>
+              <% end %>
             </div>
           </div>
         </div>
@@ -144,25 +146,31 @@
 
       <div class="business-misc">
         <div class="perk-image" style="background-image: url('<%= image_url @business.picture %>');">
-          <%= image_tag image_url @business.leader_picture %>
+          <% if @business.leader_picture.present? %>
+            <%= image_tag image_url @business.leader_picture.url(:thumb) %>
+          <% else %>
+            <%= image_tag image_url 'default_pic.png' %>
+          <% end %>
           <h1><%= @business.name %></h1>
         </div>
 
         <div class="profile-card">
           <div class="profile-business">
-            <% if @business.name.present? && @business.description.present? %>
-              <h3>En quelques mots</h3>
+            <h3>En quelques mots</h3>
+            <% if @business.description.present? %>
               <p><%= @business.description %></p>
             <% else %>
-              <p>Profil en construction</p>
+              <p>Profil en cours de construction</p>
             <% end %>
           </div>
           <!-- SECOND SLIDE -->
           <div class="profile-owner">
+            <h3>Qui se cache derrière ?</h3>
             <% if @business.leader_description.present? %>
-              <h3>Qui se cache derrière ?</h3>
               <p><%= @business.leader_description %></p>
-            <%end %>
+            <% else %>
+              <p>Profil en cours de construction</p>
+            <% end %>
           </div>
         </div>
         <div class="business-contact">
