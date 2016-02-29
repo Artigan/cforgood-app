@@ -43,7 +43,6 @@
         <div class="use-perk">
           <%# if current_user.member %>
             <% if @business.perks.find(params[:perk_id]).perk_usable?(current_user) %>
-             <!--  <button type="button" class="use-button" data-toggle="modal" data-target="#codeModal" style="background-color: <%#= BusinessCategory.find(@business.business_category_id).color %>;">J'en profite</button> -->
               <button type="button" class="use-button" style="background-color: <%= BusinessCategory.find(@business.business_category_id).color %>;">J'en profite</button>
             <% else %>
               <div id="button-used">
@@ -190,8 +189,9 @@
 <%# if !current_user.member %>
   <%#= render "pro/perks/modals/code_perk_not_member" %>
 <%# elsif @business.online %>
-<%# if Perk.find(params[:perk_id]).detail  == "Envoyer_nous un mail" %>
-<% if @business.online %>
+<% if Perk.find(params[:perk_id]).detail  == "Envoyez-nous un email" %>
+  <%= render "pro/perks/modals/code_perk_mailto" %>
+<% elsif @business.online %>
   <%= render "pro/perks/modals/code_perk_online" %>
 <% elsif device_type == :mobile %>
   <%= render "pro/perks/modals/code_perk_offline_mobile" %>
@@ -210,14 +210,6 @@
       $('.switch-active').toggleClass('activated');
       $('.flipper').toggleClass('flipped');
     });
-
-    // $(document).ready(function() {
-    //   $("#button-used").popover({
-    //     html: true,
-    //     container: "body",
-    //     trigger: "hover"
-    //   });
-    // });
 
     $(document).ready(function() {
 
