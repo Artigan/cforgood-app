@@ -14,7 +14,6 @@
       <div class="col-1">
         <%= f.input :first_name, placeholder: 'Prénom', required: true, label: 'Prénom' %>
         <%= f.input :last_name, placeholder: 'Nom', required: true, label: 'Nom' %>
-        <%= f.input :password, placeholder: '********', label: "Nouveau mot de passe" %>
         <%= f.input :email, placeholder: 'Adresse email', required: true, label: 'Email' %>
         <%= f.input :birthday, as: :date, label: "Ma date de naissance",
                   start_year: Date.today.year - 90,
@@ -25,6 +24,7 @@
         <%= f.input :street, placeholder: 'Rue', required: true, label: false %>
         <%= f.input :zipcode, placeholder: 'Code postal', required: true, label: false %>
         <%= f.input :city, placeholder: 'Ville', required: true, label: false %>
+        <%= f.input :password, placeholder: '********', label: "Nouveau mot de passe" %>
       </div>
 
       <div class="col-2">
