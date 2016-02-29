@@ -66,7 +66,7 @@
              <% if @cause.telephone.present? %>
               <li>
                 <a href="tel:<%= @cause.telephone %>" class="link-website-business business-icon-container" target="_blank" >
-                  <i class="fa fa-globe business-icon" style="border: 1px solid <%= CauseCategory.find(@cause.cause_category_id).color %>; color: <%= CauseCategory.find(@cause.cause_category_id).color %>;"></i><span><%= @cause.telephone %></span>
+                  <i class="fa fa-phone business-icon" style="border: 1px solid <%= CauseCategory.find(@cause.cause_category_id).color %>; color: <%= CauseCategory.find(@cause.cause_category_id).color %>;"></i><span><%= @cause.telephone %></span>
                 </a>
               </li>
             <% end %>
