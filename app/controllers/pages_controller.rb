@@ -6,6 +6,14 @@ class PagesController < ApplicationController
     @businesses = Business.joins(:perks).where("perks.active = ?", true).distinct
   end
 
+  def newsletter
+    SubscribeToNewsletter.new(params[:newsletter]).run
+    respond_to do |format|
+      format.html {redirect_to :back}
+      format.js {}
+    end
+  end
+
   private
 
   def redirect_to_dasboard!

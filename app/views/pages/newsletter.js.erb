@@ -1,0 +1,6 @@
+if (<%= Rails.logger.error %>) {
+
+  $(document).find("form#newsletter").append('<%= j render("components/error_messages", @newsletter, formats: [:html]) %>');
+
+}
+

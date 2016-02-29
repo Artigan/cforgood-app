@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get 'faq_connect',              to: 'pages#faq_connect'
   get 'landing_business',         to: 'pages#landing_business'
   get 'landing_cause',            to: 'pages#landing_cause'
+  put 'newsletter',               to: 'pages#newsletter'
 
   resources :contact_forms, only: [:new, :create]
 
