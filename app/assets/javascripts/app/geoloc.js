@@ -38,13 +38,13 @@ function buildUrl(selector, lat, lng) {
 }
 
 function geolocErrors(error) {
-  var info = "Erreur lors de la géolocalisation : ";
+  var info = "";
   switch(error.code) {
     case error.TIMEOUT:
       info += "Timeout !";
     break;
     case error.PERMISSION_DENIED:
-      info += "Vous n’avez pas donné la permission";
+      info += "Avez-vous autorisé la géolocalisation ?";
     break;
     case error.POSITION_UNAVAILABLE:
       info += "La position n’a pu être déterminée";
@@ -53,5 +53,7 @@ function geolocErrors(error) {
       info += "Erreur inconnue";
     break;
   }
-  $("#link-map").after(info);
+  $("#link-map").addClass("unable");
+  $("#link-map").after('<span class="info-unable">' + info + "</span>");
+  $("#link-itinerary").addClass("unable");
 }

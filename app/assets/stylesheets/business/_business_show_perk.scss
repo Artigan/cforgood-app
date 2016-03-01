@@ -771,5 +771,24 @@
   }
 }
 
+#link-itinerary.unable {
+  background-color: #f4f4f4;
+  pointer-events: none;
+  cursor: default;
+}
+
+#link-map.unable {
+  pointer-events: none;
+  cursor: default;
+  border-color: #ccc;
+  height: 44px;
+
+  .fa {
+      background-color: #ccc;
+  }
+}
+
+
+
 
 
