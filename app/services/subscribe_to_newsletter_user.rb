@@ -10,6 +10,7 @@ class SubscribeToNewsletterUser
       body: {
         email_address: @user.email,
         status: "subscribed",
+        double_optin: false,
         merge_fields: {
           FNAME: @user.first_name,
           LNAME: @user.last_name,

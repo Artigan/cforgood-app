@@ -10,6 +10,7 @@ class SubscribeToNewsletterBusiness
       body: {
         email_address: @business.email,
         status: "subscribed",
+        double_optin: false,
         merge_fields: {
           NAME: @business.name,
           CITY: @business.city

@@ -9,12 +9,6 @@
         <div class="wrapper">
           <%= render "shared/icons/backpack" %>
         </div>
-        <!-- CTA -->
-        <div class="itinary">
-          <%= link_to "http://maps.google.com/maps", class: "", id:"link-map", disabled: true, data: { locale: I18n.locale, destination: { latitude: Perk.find(params[:perk_id]).business.latitude, longitude: Perk.find(params[:perk_id]).business.longitude } }, :target => "_blank" do %>
-            <i class="fa fa-location-arrow"></i><abbr><%= @business.street %><br><%= @business.zipcode %> <%= @business.city %></abbr>
-          <% end %>
-        </div>
         <div class="container-code">
           <p class="box-code-legend">Envoyez-nous un email pour réserver votre bon plan : </p>
         </div>

@@ -7,10 +7,10 @@ class PagesController < ApplicationController
   end
 
   def newsletter
-    SubscribeToNewsletter.new(params[:newsletter]).run
+    @result = SubscribeToNewsletter.new(params[:newsletter]).run
     respond_to do |format|
       format.html {redirect_to :back}
-      format.js {}
+      format.js { @result }
     end
   end
 

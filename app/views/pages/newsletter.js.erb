@@ -1,6 +1,7 @@
-if (<%= Rails.logger.error %>) {
+$("form.newsletter .newsletter_email .error-newsletter").remove();
+$("form.newsletter .newsletter_email .info-newsletter").remove();
 
-  $(document).find("form#newsletter").append('<%= j render("components/error_messages", @newsletter, formats: [:html]) %>');
-
+if (<%= @result.present? %>) {
+  $(document).find("form.newsletter .newsletter_email").append('<%= raw @result %>');
 }
 

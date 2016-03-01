@@ -60,11 +60,12 @@
 #newsletter-footer {
   form {
     display: flex;
+    padding-bottom: 15px;
   }
 
   input {
     height: 25px;
-    width: 140%;
+    width: 200px;
     font-size: 14px;
     border-radius: 20px;
   }
@@ -74,8 +75,22 @@
     width: 25px;
     padding: 0;
     margin-top: 0;
-    margin-left: 26%;
     border-radius: 50%;
+  }
+
+  span {
+    padding-top: 3px;
+    padding-left: 13px;
+    font-size: 12px;
+    width: 200px;
+
+    &.error-newsletter {
+      color: $orange;
+    }
+
+    &.info-newsletter {
+      color: #9FD6AE;
+    }
   }
 }
 
