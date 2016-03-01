@@ -3,7 +3,7 @@ class PagesController < ApplicationController
   before_action :redirect_to_dasboard!
 
   def home
-    @businesses = Business.joins(:perks).where("perks.active = ?", true).distinct
+    @businesses = Business.active.joins(:perks).active.distinct
   end
 
   def newsletter

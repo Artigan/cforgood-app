@@ -3,7 +3,7 @@ class BusinessesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @businesses = Business.joins(:perks).where("perks.active = ?", true).distinct
+    @businesses = Business.active.joins(:perks).active.distinct
   end
 
   def show

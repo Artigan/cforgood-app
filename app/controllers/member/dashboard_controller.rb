@@ -9,7 +9,7 @@ class Member::DashboardController < ApplicationController
   # rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   def dashboard
-    @businesses = Business.where(online: false).joins(:perks).where("perks.active = ?", true).distinct
+    @businesses = Business.active.where(online: false).joins(:perks).active.distinct
 
     @geojson = {"type" => "FeatureCollection", "features" => []}
 

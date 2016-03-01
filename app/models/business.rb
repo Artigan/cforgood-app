@@ -63,6 +63,8 @@ class Business < ActiveRecord::Base
   belongs_to :business_category
   has_many :perks, dependent: :destroy
 
+  scope :active, -> { where(active: true) }
+
   validates :email, presence: true, uniqueness: true
   validates :business_category_id, presence: true
   validates :name, presence: true
@@ -90,10 +92,6 @@ class Business < ActiveRecord::Base
 
   after_create :send_registration_email, :create_code_promo, :send_registration_slack, :subscribe_to_newsletter_business
   after_save :send_activation_email if :active_changed?
-
-   # def activated
-  #   self.joins(:perks).where("perks.active = ?", true)
-  # end
 
   def perks_uses_count
     perks.reduce(0) { |sum, perk| sum + perk.uses.count }
