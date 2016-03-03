@@ -7,7 +7,7 @@
         <button type="button" class="close-button">&times;</button>
         <!-- ILLUSTRATION-->
         <div class="wrapper">
-          <%= render "shared/icons/backpack" %>
+          <%= render "shared/icons/send_mail" %>
         </div>
         <div class="container-code">
           <p class="box-code-legend">Envoyez-nous un email pour réserver votre bon plan : </p>
@@ -18,7 +18,30 @@
           </a>
         </div>
       </figure>
+      <!-- BACK CARD -->
+      <figure class="back">
+        <div class="container-query">
+          <p>Avez-vous profitez du bon plan ?</p>
+          <div class="container-answer">
+            <%= simple_form_for(:code, url: perk_uses_path(params[:perk_id]), method: :post, remote: true, authenticity_token: true, html: { id: :create_use }) do |f| %>
+                 <i class="fa fa-check-circle"></i>
+            <% end %>
+            <%= link_to business_path(@business, perk_id: params[:perk_id]) do %>
+                 <i class="fa fa-times-circle"></i>
+            <% end %>
+          </div>
+        </div>
+      </figure>
     </div>
   </div>
 </div>
 
+<% content_for :after_js do %>
+  <script>
+    // $(document).ready(function(){
+    //   $('.itinary').click(function(event) {
+    //     $('.flipper-mobile').toggleClass('flipped');
+    //   });
+    // });
+  </script>
+<% end %>

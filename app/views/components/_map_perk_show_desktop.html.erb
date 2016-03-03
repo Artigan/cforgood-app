@@ -5,7 +5,7 @@
   var coordinates = geoJson.features[0].geometry.coordinates;
 
   mapboxgl.accessToken = 'pk.eyJ1IjoiZnJlZHBldHJpcyIsImEiOiJjaWtoem9qd2IwMDJmdnBtNmZ0Y29zcG5sIn0.atyCUDfyMaoUauNY1diwtQ';
-  var map = new mapboxgl.Map({
+  var map_desktop = new mapboxgl.Map({
     container: 'map-perk-desktop',
     style: 'mapbox://styles/fredpetris/cikporvjj00p8b5lwovwd3kq9',
     center: coordinates,
@@ -13,13 +13,13 @@
     zoom: 15
   });
 
-  map.on('style.load', function () {
-    map.addSource("markers", {
+  map_desktop.on('style.load', function () {
+    map_desktop.addSource("markers", {
       "type": "geojson",
       "data": geoJson
     });
 
-    map.addLayer({
+    map_desktop.addLayer({
       "id": "markers",
       "type": "symbol",
       "source": "markers",
