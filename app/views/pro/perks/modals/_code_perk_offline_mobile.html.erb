@@ -31,7 +31,7 @@
       <figure class="back">
         <div class="member-card">
           <div class="validation-date">
-            <span>Valable jusqu'au <%= DateTime.now.strftime('%d %b. %Y') %></span>
+            <span>Le <%= DateTime.now.strftime('%d %b. %Y') %></span>
           </div>
 
           <div class="logo">
@@ -39,7 +39,7 @@
           </div>
 
           <div class="member-info">
-            <%= image_tag (current_user.picture? ? current_user.picture : "profile.png"), class: "img-circle user"%>
+            <%= image_tag (current_user.picture? ? current_user.picture(:thumb) : "profile.png"), class: "img-circle user"%>
             <% if current_user.name.present? %>
               <span class="user"><%= current_user.name %></span>
             <% else %>

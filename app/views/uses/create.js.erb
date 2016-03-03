@@ -1,5 +1,11 @@
 <% if @perk_exist %>
-  $('.flipper-mobile').toggleClass('flipped');
+  <% if params[:redirect_index] %>
+    // REDIRECTION TO INDEX WHEN COME FROM MAILTO AND ONLINE
+    window.location.href = "<%= businesses_path %>";
+  <% else %>
+    // REDIRECTION TO MEMBER
+    $('.flipper-mobile').toggleClass('flipped');
+  <% end %>
 <% else %>
   $("#error-code").html("");
   $("#error-code").append("Le code n'est pas valide !");
