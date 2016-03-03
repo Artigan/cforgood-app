@@ -11,7 +11,7 @@
         </div>
         <!-- CTA -->
         <div class="itinary">
-          <%= link_to "http://#{@business.url}", class: "", :target => "_blank" do %>
+          <%= link_to "#{@business.url}", class: "send-to-shop", target: "_blank" do %>
             <i class="fa fa-globe"></i></i><abbr><%= @business.url %></abbr>
           <% end %>
         </div>
@@ -20,6 +20,37 @@
           <span class="online-code"><%= @business.perks.find(params[:perk_id]).perk_code.upcase %></span>
         </div>
       </figure>
+      <!-- BACK CARD -->
+      <figure class="back">
+        <div class="container-query">
+          <p>Avez-vous profitez du bon plan ?</p>
+          <div class="container-answer">
+            <div class="answer-yes">
+              <%= simple_form_for(:code, url: perk_uses_path(params[:perk_id], redirect_index: true ), method: :post, remote: true, authenticity_token: true, html: { id: :create_use }) do |f| %>
+                <%= f.input :perk_code, as: :hidden, input_html: { value: Perk.find(params[:perk_id]).perk_code } %>
+                <button type:"submit"><%= image_tag "icons/check_OK.png" %></button>
+              <% end %>
+            </div>
+            <div class="answer-no">
+              <%= link_to businesses_path do %>
+                <%= image_tag "icons/check_KO.png" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </figure>
     </div>
   </div>
 </div>
+
+<% content_for :after_js do %>
+  <script>
+    $(document).ready(function(){
+
+      $('.send-to-shop').click(function(event) {
+        $('.flipper-mobile').toggleClass('flipped');
+      });
+
+    });
+  </script>
+<% end %>
