@@ -29,7 +29,7 @@
         <div class="flipper">
           <figure class="front">
           <!-- PERK IMAGE - CHANGE BACKGROUND IMAGE -->
-          <% if @business.perks.find(params[:perk_id]).picture? %>
+          <% if @business.perks.find(params[:perk_id]).picture.present? %>
           <div class="perk-image" style="background-image: url('<%= image_url @business.perks.find(params[:perk_id]).picture %>');">
           <% else %>
           <div class="perk-image" style="background-image: url('<%= image_url @business.picture %>');">
@@ -73,7 +73,12 @@
         <div class="business-card">
           <!-- BACKGROUND IMAGE -->
           <div class="perk-image" style="background-image: url('<%= image_url @business.picture %>');">
-            <%= image_tag @business.leader_picture(:thumb) %>
+            <% if @business.leader_picture.present? %>
+
+              <%= image_tag @business.leader_picture(:thumb) %>
+            <% else %>
+              <%= image_tag image_url 'default_pic.png' %>
+            <% end %>
             <h1><%= @business.name %></h1>
           </div>
 
@@ -112,7 +117,7 @@
     <!-- COLUMN LEFT -->
     <div class="perk-details">
        <!-- BLOCK PERK -->
-        <% if @business.perks.find(params[:perk_id]).picture? %>
+        <% if @business.perks.find(params[:perk_id]).picture.present? %>
           <div class="perk-image" style="background-image: url('<%= image_url @business.perks.find(params[:perk_id]).picture %>');">
         <% else %>
           <div class="perk-image" style="background-image: url('<%= image_url @business.picture %>');">
