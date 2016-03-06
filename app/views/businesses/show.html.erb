@@ -58,7 +58,7 @@
         <div class="perk-owner">
           <div class="owner-details">
             <% if @business.leader_picture.present? %>
-              <%= image_tag image_url @business.leader_picture.url(:thumb) %>
+              <%= image_tag @business.leader_picture(:thumb) %>
             <% else %>
               <%= image_tag image_url 'default_pic.png' %>
             <% end %>
@@ -73,7 +73,7 @@
         <div class="business-card">
           <!-- BACKGROUND IMAGE -->
           <div class="perk-image" style="background-image: url('<%= image_url @business.picture %>');">
-            <%= image_tag image_url @business.leader_picture %>
+            <%= image_tag @business.leader_picture(:thumb) %>
             <h1><%= @business.name %></h1>
           </div>
 
@@ -150,7 +150,7 @@
       <div class="business-misc">
         <div class="perk-image" style="background-image: url('<%= image_url @business.picture %>');">
           <% if @business.leader_picture.present? %>
-            <%= image_tag image_url @business.leader_picture.url(:thumb) %>
+            <%= image_tag @business.leader_picture(:thumb) %>
           <% else %>
             <%= image_tag image_url 'default_pic.png' %>
           <% end %>

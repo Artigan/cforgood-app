@@ -1,6 +1,12 @@
 <div class="map-box">
   <div class="box-header">
-    <%= image_tag image_url business.picture(:medium) %>
+    <% if business.picture.present? %>
+      <%= image_tag business.picture(:medium) %>
+    <% else %>
+      <div class="box-header-img" style="background-color: <%= BusinessCategory.find(business.business_category_id).color %>;">
+        <%= image_tag BusinessCategory.find(business.business_category_id).picture %>
+      </div>
+    <% end %>
     <div class="business-details">
       <h3><%= business.name %></h3>
       <span><%= business.business_category.name %></span>
@@ -13,8 +19,8 @@
       <% business.perks.active.each do |perk| %>
         <li style="box-shadow: inset -35px 0 0 0 <%= BusinessCategory.find(business.business_category_id).color %>;">
           <%= link_to business_path(perk.business_id, perk_id: perk.id), class: "see-perk" do %>
-            <% if perk.picture? %>
-              <%= image_tag image_url perk.picture(:medium) %>
+            <% if perk.picture.present? %>
+              <%= image_tag perk.picture(:medium) %>
             <% end %>
             <span><%= perk.perk %></span>
             <i class="fa fa-angle-right"></i>
