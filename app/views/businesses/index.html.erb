@@ -12,43 +12,51 @@
   <div class="dashboard dashboard-view-perks">
     <div class="mobile-menu-overlay hidden"></div>
     <div class="side-menu-overlay hidden"></div>
-
     <div class="side-menu side-categories">
       <span id="open-categories"><i class="fa fa-cog"></i>Filtrer par catégories</span>
+      <form class="controls" id="Filters">
       <ul>
-        <!-- <a href="#" data-filter="" class="filter-btn current">
-          <li id="" class="category-item is-selected">
-            <div class="container-icon" style="background-color: #DFDFDF;">
-            </div>
-            Voir les e-commerces
-          </li>
-        </a> -->
-        <a href="#" data-filter="all" class="filter-btn current">
-          <li id="categories-all" class="category-item is-selected">
+        <!-- GROUPE ONLINE -->
+        <fieldset>
+          <a href="#" data-filter=".online" class="filter-btn current">
+            <li id="online" class="category-item">
+              <div class="container-icon" style="background-color: #DFDFDF;">
+              </div>
+              Voir les e-commerces
+            </li>
+          </a>
+        </fieldset>
+        <fieldset>
+        <!-- RESET TO ALL -->
+        <a href="#" data-filter="" class="filter-btn current">
+          <li id="categories-all" class="category-item">
             <div class="container-icon" style="background-color: #fff;">
               <%= image_tag "icons/all.png" %>
             </div>
             Toutes les catégories
           </li>
         </a>
-        <% BusinessCategory.all.each do |category| %>
-        <a href="#" data-filter="<%= "."+category.id.to_s %>" class="filter-btn current">
-          <li class="category-item">
-            <div class="container-icon" style="background-color: <%= category.color %>;">
-              <%= image_tag image_url category.picture %>
-            </div>
-            <%= category.name %>
-          </li>
-        </a>
-        <% end %>
+        <!-- GROUPE CATEGORIES -->
+          <% BusinessCategory.all.each do |category| %>
+          <a href="#" data-filter="<%= "."+category.id.to_s %>" class="filter-btn current">
+            <li class="category-item">
+              <div class="container-icon" style="background-color: <%= category.color %>;">
+                <%= image_tag image_url category.picture %>
+              </div>
+              <%= category.name %>
+            </li>
+          </a>
+          <% end %>
+        </fieldset>
       </ul>
+      </form>
     </div>
 
     <div id="mixitup" class="container-perk-cards">
       <% @businesses.each do |business| %>
         <% business.perks.active.each do |perk| %>
           <!-- COMPONENT | CARD BON PLAN -->
-          <%= link_to business_path(business, perk_id: perk.id), class: "card-frame mix #{business.business_category_id}" do %>
+          <%= link_to business_path(business, perk_id: perk.id), class: "card-frame mix #{business.business_category_id} #{business.online? ? 'online' : ''}" do %>
             <!-- CARD HEADER -->
             <div class="card-header">
               <div class="card-header-main">
@@ -82,35 +90,8 @@
 </div>
 
 <% content_for :after_js do %>
-  <script>
+  // <script>
     $(document).ready(function(){
-      $('#mixitup').mixItUp({
-        load:{
-          filter: 'all'
-        },
-        animation: {
-          duration: 300,
-          effects: 'fade',
-          easing: 'ease'
-        },
-        selectors: {
-          filter: '.filter-btn'
-        },
-        controls: {
-          enable: true
-        }
-      });
-
-      $('.category-item').click(function(event) {
-        if ($(this).val('div').attr('id') != 'categories-all'){
-          $('.category-item').removeClass('is-selected'); // TO DELETE FOR MULTIPLE SELECTION
-          $('#categories-all').removeClass('is-selected');
-          $(this).toggleClass('is-selected');
-        } else {
-          $('.category-item').removeClass('is-selected');
-          $('#categories-all').addClass('is-selected');
-        }
-      });
 
       $('#open-categories').click(function(event) {
         $('.side-menu-overlay').toggleClass('hidden');
@@ -121,5 +102,126 @@
         $('.notification-panel').removeClass('is-open-min');
       });
     });
+
+// To keep our code clean and modular, all custom functionality will be contained inside a single object literal called "buttonFilter".
+
+var buttonFilter = {
+
+  // Declare any variables we will need as properties of the object
+
+  $filters: null,
+  $reset: null,
+  groups: [],
+  outputArray: [],
+  outputString: '',
+
+  // The "init" method will run on document ready and cache any jQuery objects we will need.
+
+  init: function(){
+    var self = this; // As a best practice, in each method we will asign "this" to the variable "self" so that it remains scope-agnostic. We will use it to refer to the parent "buttonFilter" object so that we can share methods and properties between all parts of the object.
+
+    self.$filters = $('#Filters');
+    self.$reset = $('#categories-all');
+    self.$container = $('#mixitup');
+
+    self.$filters.find('fieldset').each(function(){
+      self.groups.push({
+        $buttons: $(this).find('.filter-btn'),
+        active: ''
+      });
+    });
+
+    self.bindHandlers();
+  },
+
+  // The "bindHandlers" method will listen for whenever a button is clicked.
+
+  bindHandlers: function(){
+    var self = this;
+
+    // Handle filter clicks
+
+    self.$filters.on('click', '.filter-btn', function(e){
+      e.preventDefault();
+      var $button = $(this);
+
+      // If the button is active, remove the active class, else make active and deactivate others.
+
+      $button.hasClass('is-selected') ?
+        $button.removeClass('is-selected') :
+        $button.addClass('is-selected').siblings('.filter-btn').removeClass('is-selected');
+
+      self.parseFilters();
+    });
+
+    // Handle reset click
+
+    self.$reset.on('click', function(e){
+      e.preventDefault();
+
+      self.$filters.find('.filter-btn').removeClass('is-selected');
+
+      self.parseFilters();
+    });
+  },
+
+  // The parseFilters method checks which filters are active in each group:
+
+  parseFilters: function(){
+    var self = this;
+
+    // loop through each filter group and grap the active filter from each one.
+
+    for(var i = 0, group; group = self.groups[i]; i++){
+      group.active = group.$buttons.filter('.is-selected').attr('data-filter') || '';
+    }
+
+    self.concatenate();
+  },
+
+  // The "concatenate" method will crawl through each group, concatenating filters as desired:
+
+  concatenate: function(){
+    var self = this;
+
+    self.outputString = ''; // Reset output string
+
+    for(var i = 0, group; group = self.groups[i]; i++){
+      self.outputString += group.active;
+    }
+
+    // If the output string is empty, show all rather than none:
+
+    !self.outputString.length && (self.outputString = 'all');
+
+    // console.log(self.outputString);
+
+    // ^ we can check the console here to take a look at the filter string that is produced
+
+    // Send the output string to MixItUp via the 'filter' method:
+
+    if(self.$container.mixItUp('isLoaded')){
+      self.$container.mixItUp('filter', self.outputString);
+    }
+  }
+};
+
+// On document ready, initialise our code.
+
+$(function(){
+
+  // Initialize buttonFilter code
+
+  buttonFilter.init();
+
+  // Instantiate MixItUp
+
+  $('#mixitup').mixItUp({
+    controls: {
+      enable: true // we won't be needing these
+    },
+  });
+});
+
   </script>
 <% end %>
