@@ -47,7 +47,11 @@
           <!-- BUSINESS DETAILS -->
           <% if business_signed_in? && pro_space? %>
             <div class="business-details">
-              <%= image_tag avatar_url(current_business), class: "b" %>
+              <% if current_business.picture.present? %>
+                <%= image_tag avatar_url(current_business) %>
+              <% else %>
+                <%= image_tag "default_pic.png" %>
+              <% end %>
               <span><%= current_business.name %></span>
             </div>
           <% end %>

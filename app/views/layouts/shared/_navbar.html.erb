@@ -70,7 +70,7 @@
     <!-- PRO SIGN IN -->
     <% if business_signed_in? && pro_space? %>
       <div class="visible-xs menu-user-info">
-        <% if current_business.picture_file_name %>
+        <% if current_business.picture.present? %>
           <%= image_tag avatar_url(current_business), class: "user-pic" %>
         <% else %>
           <%= image_tag "default_pic.png", class: "image-circle" %>
@@ -93,7 +93,7 @@
         <li class="hidden-xs">
           <% if current_business.active %>
             <%= link_to pro_business_profile_path(current_business) do %>
-              <% if current_business.picture_file_name %>
+              <% if current_business.picture.present? %>
                 <%= image_tag avatar_url(current_business), class: "img-circle", type: "button" %>
               <% else %>
                 <%= image_tag "default_pic.png", class: "img-circle", type: "button"  %>
@@ -102,7 +102,7 @@
             <% end %>
           <% else %>
             <%= link_to pro_business_dashboard_path(current_business) do %>
-              <% if current_business.picture_file_name %>
+              <% if current_business.picture.present? %>
                 <%= image_tag avatar_url(current_business), class: "img-circle", type: "button" %>
               <% else %>
                 <%= image_tag "default_pic.png", class: "img-circle", type: "button"  %>
@@ -116,7 +116,7 @@
     <% else %>
       <% if user_signed_in? && user_space? %>
         <div class="visible-xs menu-user-info">
-          <% if current_user.picture_file_name %>
+          <% if current_user.picture.present? %>
             <%= image_tag avatar_url(current_user), class: "user-pic" %>
           <% else %>
             <%= image_tag "default_pic.png", class: "img-circle" %>
@@ -142,7 +142,7 @@
           <li>
             <% if current_user.active %>
               <%= link_to member_user_profile_path(current_user) do %>
-                <% if current_user.picture_file_name %>
+                <% if current_user.picture.present? %>
                   <%= image_tag avatar_url(current_user), class: "img-circle" %>
                 <% else %>
                   <%= image_tag "default_pic.png", class: "img-circle" %>
@@ -155,7 +155,7 @@
               <% end %>
             <% else %>
               <%= link_to member_user_dashboard_path(current_user) do %>
-                <% if current_user.picture_file_name %>
+                <% if current_user.picture.present? %>
                   <%= image_tag avatar_url(current_user), class: "img-circle" %>
                 <% else %>
                   <%= image_tag "default_pic.png", class: "img-circle" %>

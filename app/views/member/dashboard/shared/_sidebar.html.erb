@@ -52,7 +52,7 @@
           <!-- BUSINESS DETAILS -->
           <% if user_signed_in? %>
             <div class="business-details">
-              <% if current_user.picture_file_name %>
+              <% if current_user.picture.present? %>
                 <%= image_tag avatar_url(current_user) %>
                <% else %>
                 <%= image_tag "default_pic.png" %>

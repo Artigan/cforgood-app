@@ -72,7 +72,7 @@ Autour de vous
         </ul>
       </div>
       <div class="welcome-user">
-          <% if current_user.picture_file_name %>
+          <% if current_user.picture.present? %>
             <%= image_tag avatar_url(current_user) %>
            <% else %>
             <%= image_tag "default_pic.png" %>
