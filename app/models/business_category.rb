@@ -10,11 +10,8 @@
 #  picture_content_type :string
 #  picture_file_size    :integer
 #  picture_updated_at   :datetime
-#  marker_file_name     :string
-#  marker_content_type  :string
-#  marker_file_size     :integer
-#  marker_updated_at    :datetime
 #  color                :string
+#  marker_symbol        :string
 #
 
 class BusinessCategory < ActiveRecord::Base

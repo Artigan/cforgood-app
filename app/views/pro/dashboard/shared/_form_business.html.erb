@@ -5,7 +5,13 @@
       <div class="col-1">
         <label>Photo</label>
         <div class="picture-container">
-           <%= image_tag current_business.picture.url, class: 'picture-business' %>
+          <% if current_business.picture? %>
+            <%= image_tag current_business.picture.url, class: 'picture-business' %>
+          <% else %>
+            <div class="picture-none">
+              <%= render 'shared/icons/shop' %>
+            </div>
+          <% end %>
         </div>
         <%= f.input :picture, as: :file, required: false, label: 'Sélectionner une nouvelle image' %>
       </div>
@@ -39,7 +45,7 @@
       function readURL(input) {
         var reader = new FileReader();
           reader.onload = function (e) {
-            $('.picture-business').attr('src', e.target.result);
+            $('.picture-container').attr('src', e.target.result);
           }
         reader.readAsDataURL(input);
       }

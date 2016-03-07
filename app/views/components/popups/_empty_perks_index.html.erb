@@ -1,0 +1,15 @@
+<div class="done-overlay">
+  <div class="done-container">
+    <div class="wrapper">
+      <!-- CLOSE BUTTON-->
+      <button type="button" class="close-button">&times;</button>
+      <!-- ILLUSTRATION-->
+      <%= render 'shared/icons/create_perks' %>
+    </div>
+    <span>Créez votre premier bon plan !</span>
+    <p>Vous deviendrez visible auprès de notre communauté aussitôt l'activation de votre premier bon plan effectuée.</p>
+    <%= link_to new_pro_business_perk_path(current_business) do %>
+      C'est parti !
+    <% end %>
+  </div>
+</div>

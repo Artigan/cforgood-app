@@ -105,19 +105,29 @@ Consultez vos chiffres
         <span class="list-title">Vos 3 derniers bons plans <%= link_to new_pro_business_perk_path(current_business) do %><i class="fa fa-plus"></i><% end %>
         </span>
         <ul>
-          <% @business.perks.active.last(3).each do |perk| %>
-            <%= link_to edit_pro_perk_path(perk), class: "" do %>
-            <li class="perk-item">
-              <div class="perk-show">
-                <span><%= perk.perk %></span>
-                <ul class="perk-stats">
-                  <li>Vues :<strong><%= perk.nb_views %></strong></li>
-                  <li>Utilisations :<strong><%= perk.uses.count %></strong></li>
-                  <li>Clients :<strong><%= perk.uses.select(:user_id).distinct.count %></strong></li>
-                </ul>
-              </div>
-              <i class="fa fa-angle-right"></i>
+          <% if @perks.count == 0 %>
+            <%= link_to new_pro_business_perk_path(current_business) do %>
+              <li class="no-perk-yet">
+                <%= render "shared/icons/wand" %>
+                <span>Créez votre premier bon plan</span>
+                <i class="fa fa-angle-right"></i>
               </li>
+            <% end %>
+          <% else %>
+            <% @business.perks.active.last(3).each do |perk| %>
+              <%= link_to edit_pro_perk_path(perk), class: "" do %>
+              <li class="perk-item">
+                <div class="perk-show">
+                  <span><%= perk.perk %></span>
+                  <ul class="perk-stats">
+                    <li>Vues :<strong><%= perk.nb_views %></strong></li>
+                    <li>Utilisations :<strong><%= perk.uses.count %></strong></li>
+                    <li>Clients :<strong><%= perk.uses.select(:user_id).distinct.count %></strong></li>
+                  </ul>
+                </div>
+                <i class="fa fa-angle-right"></i>
+                </li>
+              <% end %>
             <% end %>
           <% end %>
         </ul>
