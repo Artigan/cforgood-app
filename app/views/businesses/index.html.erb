@@ -72,7 +72,7 @@
             <!-- CARD BODY -->
             <div class="card-body" style="background-image: url('<%= image_url business.picture %>');">
               <div class="business-details">
-                <% if perk.flash? %>
+                <% if perk.flash? && perk.times > 0 %>
                   <span style="background-color: <%= BusinessCategory.find(business.business_category_id).color %>;"><i class="fa fa-flash"></i><%= perk.times - Use.where(perk_id: perk.id).count  %> restants</span>
                 <% end %>
                 <h3><%= perk.name %></h3>

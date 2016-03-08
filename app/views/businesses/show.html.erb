@@ -37,7 +37,9 @@
 
           <!-- IF FLASH PERK -->
           <% if @business.perks.find(params[:perk_id]).flash? %>
-            <span class="flash-notification" style="background-color: <%= BusinessCategory.find(@business.business_category_id).color %>;"><i class="fa fa-flash"></i><%= @business.perks.find(params[:perk_id]).times - Use.where(perk_id: params[:perk_id]).count %> restants</span>
+            <% if @business.perks.find(params[:perk_id]).times > 0 %>
+              <span class="flash-notification" style="background-color: <%= BusinessCategory.find(@business.business_category_id).color %>;"><i class="fa fa-flash"></i><%= @business.perks.find(params[:perk_id]).times - Use.where(perk_id: params[:perk_id]).count %> restants</span>
+            <% end %>
             <span class="availabilities">Valable du <%= @business.perks.find(params[:perk_id]).start_date.try(:strftime, '%d %b.') %> au <%= @business.perks.find(params[:perk_id]).end_date.try(:strftime, '%d %b. %Y') %></span>
           <% end %>
           <h1><%= @business.perks.find(params[:perk_id]).name %></h1>
@@ -125,7 +127,9 @@
 
         <!-- IF FLASH PERK -->
         <% if @business.perks.find(params[:perk_id]).flash? %>
-          <span class="flash-notification" style="background-color: <%= BusinessCategory.find(@business.business_category_id).color %>;"><i class="fa fa-flash"></i><%= @business.perks.find(params[:perk_id]).times - Use.where(perk_id: params[:perk_id]).count %> restants</span>
+          <% if @business.perks.find(params[:perk_id]).times > 0 %>
+            <span class="flash-notification" style="background-color: <%= BusinessCategory.find(@business.business_category_id).color %>;"><i class="fa fa-flash"></i><%= @business.perks.find(params[:perk_id]).times - Use.where(perk_id: params[:perk_id]).count %> restants</span>
+          <% end %>
           <span class="availabilities">Valable du <%= @business.perks.find(params[:perk_id]).start_date.try(:strftime, '%d %b.') %> au <%= @business.perks.find(params[:perk_id]).end_date.try(:strftime, '%d %b. %Y') %></span>
         <% end %>
         <h1><%= @business.perks.find(params[:perk_id]).name %></h1>

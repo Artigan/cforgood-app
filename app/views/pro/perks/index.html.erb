@@ -49,7 +49,7 @@
                 <% elsif perk.durable %>
                    <span>Bon Plan durable</span>
                 <% else %>
-                  <% if perk.times != nil %>
+                  <% if perk.times > 0 %>
                     <span><i class="fa fa-barcode"></i><%= perk.times - Use.where(perk_id: perk.id).count  %> restants</span>
                   <% end %>
                   <span><i class="fa fa-calendar-check-o"></i> du <%= perk.start_date.strftime("%d %b") if perk.start_date != nil %> au <%= perk.end_date.strftime("%d %b %Y") if perk.end_date != nil %></span>
