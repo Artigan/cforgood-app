@@ -14,61 +14,66 @@
     <div class="admin-perks">
       <%= image_tag('logopouce.png', class: 'logo-title') %>
       <span class="view-title">Mes bons plans</span>
-      <% @perks.reverse.each do |perk| %>
-        <div class="admin-perk-card">
-          <!-- PERK ACTIVATION -->
-          <div class="perk-activation">
-            <span>Désactiver / Activer</span>
-            <input class="tgl tgl-light" id="<%= perk.id %>" type="checkbox" <%= 'checked="checked"' if perk.active %>>
-            <label class="tgl-btn" for="<%= perk.id %>"></label>
-            <%= simple_form_for :perk, url: pro_business_perk_path(current_business, perk.id), method: :patch, html: { id: "update_perk_#{perk.id}", class: "hidden" } do |f| %>
-              <%= f.input :active, as: :hidden, input_html: { value: !perk.active } %>
-              <%= f.submit "", :style => "display: none;" %>
-            <% end %>
-          </div>
-          <!-- PERK MAIN INFOS -->
-          <div class="perk-details">
-            <div class="perk-title">
-              <%= perk.name.upcase %>
-              <% if perk.appel %>
-                <i class="fa fa-users pro-card-perk-flash"></i>
+      <% if @perks.count == 0 %>
+        <%= render 'components/popups/empty_perks_index' %>
+      <% else %>
+        <% @perks.reverse.each do |perk| %>
+          <div class="admin-perk-card">
+            <!-- PERK ACTIVATION -->
+            <div class="perk-activation">
+              <span>Désactiver / Activer</span>
+              <input class="tgl tgl-light" id="<%= perk.id %>" type="checkbox" <%= 'checked="checked"' if perk.active %>>
+              <label class="tgl-btn" for="<%= perk.id %>"></label>
+              <%= simple_form_for :perk, url: pro_business_perk_path(current_business, perk.id), method: :patch, html: { id: "update_perk_#{perk.id}", class: "hidden" } do |f| %>
+                <%= f.input :active, as: :hidden, input_html: { value: !perk.active } %>
+                <%= f.submit "", :style => "display: none;" %>
               <% end %>
-              <% if perk.durable %>
-                <i class="fa fa-calendar-check-o pro-card-perk-flash"></i>
-              <% end %>
-              <% if perk.flash %>
-                <i class="fa fa-bolt pro-card-perk-flash"></i>
-              <% end %>
-              <span class="perk-code">Code client : <%= perk.perk_code %></span>
             </div>
-            <div class="perk-content">
-              <%= perk.description %>
-              <div class="perk-date">
+            <!-- PERK MAIN INFOS -->
+            <div class="perk-details">
+              <div class="perk-title">
+                <%= perk.name.upcase %>
                 <% if perk.appel %>
-                  <span>Bon Plan de bienvenue</span>
-                <% elsif perk.durable %>
-                   <span>Bon Plan durable</span>
-                <% else %>
-                  <% if perk.times > 0 %>
-                    <span><i class="fa fa-barcode"></i><%= perk.times - Use.where(perk_id: perk.id).count  %> restants</span>
-                  <% end %>
-                  <span><i class="fa fa-calendar-check-o"></i> du <%= perk.start_date.strftime("%d %b") if perk.start_date != nil %> au <%= perk.end_date.strftime("%d %b %Y") if perk.end_date != nil %></span>
+                  <i class="fa fa-users pro-card-perk-flash"></i>
+                <% end %>
+                <% if perk.durable %>
+                  <i class="fa fa-calendar-check-o pro-card-perk-flash"></i>
+                <% end %>
+                <% if perk.flash %>
+                  <i class="fa fa-bolt pro-card-perk-flash"></i>
                 <% end %>
               </div>
-              <div class="perk-stats">
-                <ul>
-                  <li>Vues <strong><%= perk.nb_views %></strong></li>
-                  <li>Utilisations <strong><%= perk.uses.count %></strong></li>
-                  <li>Clients <strong><%= perk.uses.select(:user_id).distinct.count %></strong></li>
-                </ul>
+
+              <div class="perk-content">
+                <%= perk.description %>
+                <div class="perk-date">
+                  <% if perk.appel %>
+                    <span>Bon Plan de bienvenue</span>
+                  <% elsif perk.durable %>
+                     <span>Bon Plan durable</span>
+                  <% else %>
+                    <% if perk.times > 0 %>
+                      <span><i class="fa fa-barcode"></i><%= perk.times - Use.where(perk_id: perk.id).count  %> restants</span>
+                    <% end %>
+                    <span><i class="fa fa-calendar-check-o"></i> du <%= perk.start_date.strftime("%d %b") if perk.start_date != nil %> au <%= perk.end_date.strftime("%d %b %Y") if perk.end_date != nil %></span>
+                  <% end %>
+                </div>
+
+                <div class="perk-stats">
+                  <ul>
+                    <li>Vues <strong><%= perk.nb_views %></strong></li>
+                    <li>Utilisations <strong><%= perk.uses.count %></strong></li>
+                    <li>Clients <strong><%= perk.uses.select(:user_id).distinct.count %></strong></li>
+                  </ul>
+                </div>
               </div>
             </div>
+            <%= link_to 'Modifier', edit_pro_perk_path(perk), class: "perk-status"  %>
+            <div class="perk-creation-date">
+              <span>Créé : <em>le <%= perk.created_at.strftime("%d %b %Y") %></em></span>
+            </div>
           </div>
-          <%= link_to 'Modifier', edit_pro_perk_path(perk), class: "perk-status"  %>
-          <div class="perk-creation-date">
-            <span>Créé : <em>le <%= perk.created_at.strftime("%d %b %Y") %></em></span>
-          </div>
-        </div>
+        <% end %>
       <% end %>
     </div>
   </div>

@@ -6,7 +6,7 @@
   <a class="type-card" id="perk-appel">
     <div class="type-title">
       <i class="fa fa-users"></i>
-      <span>Bon Plan d'appel</span>
+      <span>Bon Plan de bienvenue</span>
       <span class="type-category">Acquisition</span>
     </div>
     <div class="type-content">
@@ -47,7 +47,7 @@
   <div class="perk-appel perk-form-card">
     <div class="perk-form-title">
       <i class="fa fa-times close-create"></i>
-      <span>Bon Plan d'appel</span>
+      <span>Bon Plan de bienvenue</span>
       <span class="type-category">Acquisition</span>
     </div>
     <div class="type-reminder">
@@ -60,7 +60,11 @@
       <div class="photo-perk">
         <label class="hint--top-right" data-hint="Votre bon plan en image !">Photo</label>
         <div class="picture-container">
-          <%= image_tag @perk.picture.url(:thumb), class: 'picture-perk-preview', id: 'perk-appel-preview' %>
+          <% if @perk.picture? %>
+            <%= image_tag @perk.picture.url(:thumb), class: 'picture-perk', id: 'perk-appel-preview'%>
+          <% else %>
+            <%= render 'shared/icons/perkpic' %>
+          <% end %>
         </div>
         <%= f.input :picture, as: :file, required: false, label: 'Sélectionner une nouvelle image', input_html: {class: :perk_picture, id: :perk_appel_file } %>
       </div>
@@ -96,7 +100,11 @@
       <div class="photo-perk">
         <label class="hint--top-right" data-hint="Votre bon plan en image !">Photo</label>
         <div class="picture-container">
-          <%= image_tag @perk.picture.url(:thumb), class: 'picture-perk-preview', id: 'perk-durable-preview' %>
+          <% if @perk.picture? %>
+            <%= image_tag @perk.picture.url(:thumb), class: 'picture-perk-preview', id: 'perk-durable-preview' %>
+          <% else %>
+            <%= render 'shared/icons/perkpic' %>
+          <% end %>
         </div>
         <%= f.input :picture, as: :file, required: false, label: 'Sélectionner une nouvelle image', input_html: {id: :perk_durable_file } %>
       </div>
@@ -132,7 +140,11 @@
       <div class="photo-perk">
         <label class="hint--top-right" data-hint="Votre bon plan en image !">Photo</label>
         <div class="picture-container">
-          <%= image_tag @perk.picture.url(:thumb), class: 'picture-perk-preview', id: 'perk-flash-preview' %>
+          <% if @perk.picture? %>
+            <%= image_tag @perk.picture.url(:thumb), class: 'picture-perk-preview', id: 'perk-flash-preview' %>
+          <% else %>
+            <%= render 'shared/icons/perkpic' %>
+          <% end %>
         </div>
         <%= f.input :picture, as: :file, required: false, label: 'Sélectionner une nouvelle image', input_html: {id: :perk_flash_file } %>
       </div>

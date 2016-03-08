@@ -47,6 +47,7 @@
     right: 10px;
     font-size: 40px;
     font-weight: 100;
+    outline: none;
   }
   a {
     line-height: 15px;
@@ -115,6 +116,7 @@
           left: 20px;
           border: 2px solid #fff;
           border-radius: 50%;
+          background-color: #fff;
           z-index: 5;
         }
 
@@ -216,6 +218,10 @@
             font-weight: 900;
           }
 
+          .number-inactive {
+            opacity: 0.4;
+          }
+
           span.label {
             padding-top: 5px;
             font-size: 14px;
@@ -233,7 +239,7 @@
       /* BUSINESS DESCRIPTION *************************************************/
       .business-presentation {
         position: relative;
-        padding: 50px 20px 0;
+        padding: 58px 20px 0;
         text-align: left;
 
         span {
@@ -278,6 +284,10 @@
             i {
               font-size: 12px;
               color: #636363;
+            }
+
+            .network-inactive {
+              background-color: #f4f4f4;
             }
           }
         }
@@ -328,7 +338,7 @@
           margin-bottom: 20px;
           margin-right: 2%;
           width: 49%;
-          min-height: 612px;
+          min-height: 100%;
           background-color: #fff;
           box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
           border-radius: 3px;
@@ -338,6 +348,7 @@
           .link-profile {
             position: absolute;
             right: 20px;
+            bottom: 10px;
             font-size: 12px;
             color: #636363;
             text-decoration: underline;
@@ -408,6 +419,8 @@
 
         .list-perks {
           display: flex;
+          flex-direction: column;
+          position: relative;
           margin: 1.5% 0 0;
           width: 49%;
           max-height: 325px;
@@ -416,9 +429,9 @@
           border-radius: 3px;
 
           .list-title {
-            position: absolute;
+            position: relative;
             padding: 10px 20px;
-            width: 47%;
+            width: 100%;
             border-radius: 3px 3px 0 0;
             background-color: #9FD6AE;
             font-weight: 600;
@@ -446,16 +459,14 @@
             }
           }
 
+          /* IF BUSINESS HAS PERKS ********************************************/
           ul {
-            padding-top: 50px;
-            padding-bottom: 2px;
-
             li.perk-item {
               @include transition(all, 0.4s, ease-in-out);
+            }
 
-              &:hover {
-                box-shadow: inset -45px 0px 0px #f4f4f4;
-              }
+            li:hover {
+              box-shadow: inset -45px 0px 0px #f4f4f4;
             }
 
             li {

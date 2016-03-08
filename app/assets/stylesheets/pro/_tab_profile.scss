@@ -207,6 +207,10 @@
 
           .business_leader_last_name { width: 45%; margin-left: 5%; }
 
+          .picture-none {
+            padding: 30px;
+          }
+
           .picture-container {
             display: flex;
             justify-content: center;
@@ -431,7 +435,7 @@
 
               .user_street {
                 width: 49%;
-                margin-left: 1%;
+                margin-right: 1%;
               }
 
               .user_zipcode {
@@ -447,7 +451,7 @@
 
               .user_password, {
                 width: 32%;
-                margin-left: 1%;
+                margin-right: 1%;
               }
             }
           }
