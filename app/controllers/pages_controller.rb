@@ -18,8 +18,8 @@ class PagesController < ApplicationController
 
   def redirect_to_dasboard!
     if request['action'] != "faq_connect"
-      redirect_to(member_user_dashboard_path(current_user)) if user_signed_in?
-      redirect_to(pro_business_dashboard_path(current_business)) if business_signed_in?
+      return redirect_to(member_user_dashboard_path(current_user)) if user_signed_in?
+      return redirect_to(pro_business_dashboard_path(current_business)) if business_signed_in?
     end
   end
 
