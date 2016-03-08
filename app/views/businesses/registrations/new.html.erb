@@ -4,7 +4,9 @@
     <!-- SUBSCRIPTION FORM -->
     <div class="subscription-form">
       <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-      <%= f.error_notification %>
+        <div id="error-code">
+          <%= flash[:alert].humanize unless flash[:alert] == nil %>
+        </div>
         <%= f.input :name, placeholder: 'John & Co.', required: true, autofocus: false, label: "Nom de l'entreprise *" %>
         <%= f.input :email, placeholder: 'john@doe.com', required: true, label: 'Email professionel*' %>
         <%= f.input :password, placeholder: '8 cars. minimum', required: true, label: 'Mot de passe *' %>
