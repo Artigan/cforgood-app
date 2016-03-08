@@ -3,7 +3,7 @@
 # Table name: perks
 #
 #  id                   :integer          not null, primary key
-#  perk                 :string
+#  name                 :string
 #  business_id          :integer
 #  description          :text
 #  detail               :string
@@ -23,11 +23,13 @@
 #  picture_content_type :string
 #  picture_file_size    :integer
 #  picture_updated_at   :datetime
+#  perk_detail_id       :integer
 #
 # Indexes
 #
 #  index_perks_on_business_id     (business_id)
 #  index_perks_on_periodicity_id  (periodicity_id)
+#  index_perks_on_perk_detail_id  (perk_detail_id)
 #
 # Foreign Keys
 #
@@ -39,10 +41,11 @@ class Perk < ActiveRecord::Base
   belongs_to :business
   belongs_to :periodicity
   has_many :uses, dependent: :destroy
+  belongs_to :perk_detail
 
   scope :active, -> { where(active: true) }
 
-  validates :perk, presence: true
+  validates :name, presence: true
   validates :description, presence: true
   validates :times, numericality: { only_integer: true, greater_than_or_equal_to: 0 }, allow_nil: true
   validates :perk_code, format: { with: /\A[A-Za-z0-9]+\z/ }, allow_blank: true

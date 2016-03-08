@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160308000620) do
+ActiveRecord::Schema.define(version: 20160308092340) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -162,7 +162,7 @@ ActiveRecord::Schema.define(version: 20160308000620) do
   end
 
   create_table "perks", force: :cascade do |t|
-    t.string   "perk"
+    t.string   "name"
     t.integer  "business_id"
     t.text     "description"
     t.string   "detail"
@@ -182,10 +182,12 @@ ActiveRecord::Schema.define(version: 20160308000620) do
     t.string   "picture_content_type"
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
+    t.integer  "perk_detail_id"
   end
 
   add_index "perks", ["business_id"], name: "index_perks_on_business_id", using: :btree
   add_index "perks", ["periodicity_id"], name: "index_perks_on_periodicity_id", using: :btree
+  add_index "perks", ["perk_detail_id"], name: "index_perks_on_perk_detail_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false

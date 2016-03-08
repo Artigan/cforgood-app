@@ -75,7 +75,7 @@
                 <% if perk.flash? %>
                   <span style="background-color: <%= BusinessCategory.find(business.business_category_id).color %>;"><i class="fa fa-flash"></i><%= perk.times - Use.where(perk_id: perk.id).count  %> restants</span>
                 <% end %>
-                <h3><%= perk.perk %></h3>
+                <h3><%= perk.name %></h3>
               </div>
             </div>
           <% end %>

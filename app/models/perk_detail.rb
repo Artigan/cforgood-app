@@ -10,4 +10,5 @@
 #
 
 class PerkDetail < ActiveRecord::Base
+  has_many :perks
 end
