@@ -11,7 +11,6 @@
 #  times                :integer          default(0)
 #  start_date           :datetime
 #  end_date             :datetime
-#  permanent            :boolean          default(TRUE), not null
 #  active               :boolean          default(TRUE), not null
 #  perk_code            :string
 #  created_at           :datetime         not null
@@ -41,7 +40,6 @@ class Perk < ActiveRecord::Base
   belongs_to :periodicity
   has_many :uses, dependent: :destroy
 
-  scope :permanent, -> { where(permanent: true) }
   scope :active, -> { where(active: true) }
 
   validates :perk, presence: true
@@ -77,10 +75,10 @@ class Perk < ActiveRecord::Base
   private
 
   def dates_required_if_flash
-    if !permanent && !start_date.present?
+    if flash && !start_date.present?
       errors.add(:start_date, "La date de début est obligatoire pour un bon plan flash.")
     end
-    if !permanent && !end_date.present?
+    if flash && !end_date.present?
       errors.add(:end_date, "La date de fin est obligatoire pour un bon plan flash.")
     end
   end

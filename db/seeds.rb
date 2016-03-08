@@ -165,7 +165,7 @@ puts "--------END BUSINESS CATEGORIES-----------"
 #     description: "Sur présentation de votre carte de membre, nous vous accueillerons avec un thé et un grand sourire pour faire connaissance ! (Du mardi au vendredi)",
 #     detail: "Valable une seule fois",
 #     times: "1",
-#     permanent: "true",
+#     durable: "true",
 #     active: "true",
 #     business_id: business_id
 #   }]
@@ -207,7 +207,7 @@ puts "--------END BUSINESS CATEGORIES-----------"
 #     description: "",
 #     detail: "Valable sur le premier achat",
 #     times: "1",
-#     permanent: "true",
+#     appel: "true",
 #     active: "true",
 #     business_id: business_id
 #   },
@@ -216,7 +216,7 @@ puts "--------END BUSINESS CATEGORIES-----------"
 #     detail: "Valable sur l’ensemble de la gamme",
 #     times: "2",
 #     periodicity_id: semaine,
-#     permanent: "true",
+#     durable: "true",
 #     active: "true",
 #     business_id: business_id
 #   }]
@@ -254,7 +254,7 @@ puts "--------END BUSINESS CATEGORIES-----------"
 # perks_attributes = [{
 #   perk: "10% de remise",
 #   detail: "Non cumulable avec d’autres promotions",
-#   permanent: "true",
+#   appel: "true",
 #   active: "true",
 #   business_id: business_id
 # }]
@@ -295,7 +295,7 @@ puts "--------END BUSINESS CATEGORIES-----------"
 # perks_attributes = [{
 #   perk: "20% Offert",
 #   detail: "Valable sur le sauna",
-#   permanent: "true",
+#   appel: "true",
 #   active: "true",
 #   business_id: business_id
 # }]
@@ -334,7 +334,7 @@ puts "--------END BUSINESS CATEGORIES-----------"
 # perks_attributes = [{
 #   perk: "10% Offert",
 #   detail: "Valable sur l’ensemble de la marque Fantôme",
-#   permanent: "true",
+#   appel: "true",
 #   active: "true",
 #   business_id: business_id
 # }]

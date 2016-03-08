@@ -44,8 +44,10 @@
             <div class="perk-content">
               <%= perk.description %>
               <div class="perk-date">
-                <% if perk.permanent %>
-                  <span>Bon Plan permanent</span>
+                <% if perk.appel %>
+                  <span>Bon Plan de bienvenue</span>
+                <% elsif perk.durable %>
+                   <span>Bon Plan durable</span>
                 <% else %>
                   <% if perk.times != nil %>
                     <span><i class="fa fa-barcode"></i><%= perk.times - Use.where(perk_id: perk.id).count  %> restants</span>
