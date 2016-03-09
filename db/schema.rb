@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160308092340) do
+ActiveRecord::Schema.define(version: 20160309204619) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -165,8 +165,6 @@ ActiveRecord::Schema.define(version: 20160308092340) do
     t.string   "name"
     t.integer  "business_id"
     t.text     "description"
-    t.string   "detail"
-    t.integer  "periodicity_id"
     t.integer  "times",                default: 0
     t.datetime "start_date"
     t.datetime "end_date"
@@ -186,7 +184,6 @@ ActiveRecord::Schema.define(version: 20160308092340) do
   end
 
   add_index "perks", ["business_id"], name: "index_perks_on_business_id", using: :btree
-  add_index "perks", ["periodicity_id"], name: "index_perks_on_periodicity_id", using: :btree
   add_index "perks", ["perk_detail_id"], name: "index_perks_on_perk_detail_id", using: :btree
 
   create_table "users", force: :cascade do |t|
@@ -250,7 +247,6 @@ ActiveRecord::Schema.define(version: 20160308092340) do
   add_index "uses", ["user_id"], name: "index_uses_on_user_id", using: :btree
 
   add_foreign_key "perks", "businesses"
-  add_foreign_key "perks", "periodicities"
   add_foreign_key "users", "causes"
   add_foreign_key "uses", "perks"
   add_foreign_key "uses", "users"

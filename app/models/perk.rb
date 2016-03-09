@@ -28,12 +28,10 @@
 # Indexes
 #
 #  index_perks_on_business_id     (business_id)
-#  index_perks_on_periodicity_id  (periodicity_id)
 #  index_perks_on_perk_detail_id  (perk_detail_id)
 #
 # Foreign Keys
 #
-#  fk_rails_369c0ee5d8  (periodicity_id => periodicities.id)
 #  fk_rails_5797f2b98a  (business_id => businesses.id)
 #
 
