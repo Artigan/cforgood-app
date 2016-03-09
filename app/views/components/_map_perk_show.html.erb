@@ -4,7 +4,8 @@
 
   var coordinates = geoJson.features[0].geometry.coordinates;
 
-  mapboxgl.accessToken = 'pk.eyJ1IjoiZnJlZHBldHJpcyIsImEiOiJjaWtoem9qd2IwMDJmdnBtNmZ0Y29zcG5sIn0.atyCUDfyMaoUauNY1diwtQ';
+  mapboxgl.accessToken = '<%= ENV['MAPBOXGL_TOKEN'] %>';
+
   var map = new mapboxgl.Map({
     container: 'map-perk',
     style: 'mapbox://styles/fredpetris/cikporvjj00p8b5lwovwd3kq9',
