@@ -3,10 +3,7 @@
   var geoJson = <%= raw(@geojson.to_json) %>;
   var markers = geoJson;
 
-
-  // mapboxgl.accessToken = 'pk.eyJ1IjoiZnJlZHBldHJpcyIsImEiOiJjaWtoem9qd2IwMDJmdnBtNmZ0Y29zcG5sIn0.atyCUDfyMaoUauNY1diwtQ';
-  mapboxgl.accessToken = 'pk.eyJ1IjoiZnJlZHBldHJpcyIsImEiOiJjaWtvMTIzNmIwMDlsd2hsczgzNmhoZjZ3In0.57Q6lRMPraIiM86QfsXKxg';
-
+  mapboxgl.accessToken = '<%= ENV['MAPBOXGL_TOKEN'] %>';
 
   // if (<%#= current_user.latitude.present? %> && <%#= current_user.longitude.present? %>) {
     // mapCenter = [<%#= current_user.longitude %>, <%#= current_user.latitude %>];
@@ -68,15 +65,17 @@
 
       if (err || !features.length)
         return;
-
         var feature = features[0];
-        var newCoordinates = [features[0].geometry.coordinates[0], features[0].geometry.coordinates[1]];
 
-        // Get coordinates from the symbol and center the map on those coordinates
+        // Tranform geographical coordinates from the symbol in pixel coordinates
+        var newCoordinates = map.project(features[0].geometry.coordinates);
+        newCoordinates.y += 100;
+
+        // Get center the map on those coordinates
         if (<%= device_type == :mobile %>) {
-          // map.flyTo({center: features[0].geometry.coordinates});
-          map.flyTo({center: newCoordinates});
+          map.flyTo({center: map.unproject(newCoordinates)});
         }
+
         new mapboxgl.Popup({
             closeButton: false,
             closeOnClick: true,
