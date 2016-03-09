@@ -6,8 +6,6 @@
 #  name                 :string
 #  business_id          :integer
 #  description          :text
-#  detail               :string
-#  periodicity_id       :integer
 #  times                :integer          default(0)
 #  start_date           :datetime
 #  end_date             :datetime

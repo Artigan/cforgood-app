@@ -172,15 +172,19 @@
   i img {
     position: absolute;
     height: 40px;
+    width: 40px;
   }
 
   .fa {
     position: absolute;
     color: white;
     background-color: #00C9FF;
-    padding: 11px;
+    text-align: center;
+    padding-top: 7px;
+    height: 40px;
+    width: 40px;
     border-radius: 50%;
-    font-size: 20px;
+    font-size: 25px;
   }
 }
 
