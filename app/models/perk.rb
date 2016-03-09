@@ -45,8 +45,9 @@ class Perk < ActiveRecord::Base
 
   scope :active, -> { where(active: true) }
 
-  validates :name, presence: true
-  validates :description, presence: true
+  validates :name, presence: true, length: { maximum: 35 }
+  validates :description, presence: true, length: { maximum: 220 }
+  validates :perk_detail_id, presence: true
   validates :times, numericality: { only_integer: true, greater_than_or_equal_to: 0 }, allow_nil: true
   validates :perk_code, format: { with: /\A[A-Za-z0-9]+\z/ }, allow_blank: true
   validate :dates_required_if_flash
