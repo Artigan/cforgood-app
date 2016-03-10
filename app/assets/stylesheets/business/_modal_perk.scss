@@ -41,7 +41,7 @@
         display: flex;
         flex-direction: column;
         position: relative;
-        padding: 45px 20px 20px;
+        padding: 35px 20px 20px;
         background-color: #fff;
         border-radius: 3px;
         @include transition(all, 0.3s, ease-in-out);
@@ -64,8 +64,8 @@
           align-items: center;
           position: relative;
           margin: 0 auto;
-          width: 140px;
-          height: 140px;
+          width: 100px;
+          height: 100px;
           background-color: #9FD6AE;
           border-radius: 50%;
         }

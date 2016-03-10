@@ -18,7 +18,7 @@
 
         <!-- INPUT CODE PERK -->
         <div class="container-code">
-          <p class="box-code-legend">Pour profiter du Bon Plan et accéder à votre carte membre, demandez le code au commerçant :</p>
+          <p class="box-code-legend">Pour profiter du Bon Plan demandez le code au commerçant :</p>
           <div id="error-code"></div>
           <%= simple_form_for(:code, url: perk_uses_path(params[:perk_id]), method: :post, remote: true, authenticity_token: true, html: { id: :create_use }) do |f| %>
             <%= f.input :perk_code, placeholder: "Saisissez le code", label: false, input_html: { id: :perk_code }  %>
