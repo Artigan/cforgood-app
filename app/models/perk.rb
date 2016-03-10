@@ -3,7 +3,7 @@
 # Table name: perks
 #
 #  id                   :integer          not null, primary key
-#  name                 :string
+#  perk                 :string
 #  business_id          :integer
 #  description          :text
 #  detail               :string
@@ -11,6 +11,7 @@
 #  times                :integer          default(0)
 #  start_date           :datetime
 #  end_date             :datetime
+#  permanent            :boolean          default(TRUE), not null
 #  active               :boolean          default(TRUE), not null
 #  perk_code            :string
 #  created_at           :datetime         not null
@@ -23,7 +24,6 @@
 #  picture_content_type :string
 #  picture_file_size    :integer
 #  picture_updated_at   :datetime
-#  perk_detail_id       :integer
 #
 # Indexes
 #
