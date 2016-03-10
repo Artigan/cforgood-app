@@ -34,7 +34,7 @@
 <ul>
   <li>
     <% if @business.url.present? %>
-      <a href="http://<%= @business.url %>" class="business-link link-website" target="_blank">
+      <a href="<%= @business.url %>" class="business-link link-website" target="_blank">
         <i class="fa fa-globe business-icon"></i>
       </a>
      <% else %>
@@ -81,7 +81,7 @@
 <ul class="follow-us">
   <% if @business.url.present? %>
     <li>
-      <a href="http://<%= @business.url %>" class="business-link link-website" target="_blank">
+      <a href="<%= @business.url %>" class="business-link link-website" target="_blank">
         <i class="fa fa-globe business-icon"></i>
       </a>
     </li>
