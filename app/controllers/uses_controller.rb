@@ -26,7 +26,7 @@ class UsesController < ApplicationController
   def create
     @use = current_user.uses.new(perk_id: params[:perk_id])
     # Control perk_code exist
-    if Perk.find(params[:perk_id]).perk_code == params[:code][:perk_code].upcase
+    if Perk.find(params[:perk_id]).perk_code == params[:code][:perk_code].squish.upcase
       @perk_exist = true
     else
       @perk_exist = false
