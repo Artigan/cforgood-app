@@ -6,8 +6,6 @@
 #  perk                 :string
 #  business_id          :integer
 #  description          :text
-#  detail               :string
-#  periodicity_id       :integer
 #  times                :integer          default(0)
 #  start_date           :datetime
 #  end_date             :datetime
@@ -28,25 +26,23 @@
 # Indexes
 #
 #  index_perks_on_business_id     (business_id)
-#  index_perks_on_periodicity_id  (periodicity_id)
 #  index_perks_on_perk_detail_id  (perk_detail_id)
 #
 # Foreign Keys
 #
-#  fk_rails_369c0ee5d8  (periodicity_id => periodicities.id)
 #  fk_rails_5797f2b98a  (business_id => businesses.id)
 #
 
 class Perk < ActiveRecord::Base
   belongs_to :business
-  belongs_to :periodicity
   has_many :uses, dependent: :destroy
   belongs_to :perk_detail
 
   scope :active, -> { where(active: true) }
 
-  validates :name, presence: true
-  validates :description, presence: true
+  validates :name, presence: true, length: { maximum: 35 }
+  validates :description, presence: true, length: { maximum: 220 }
+  validates :perk_detail_id, presence: true
   validates :times, numericality: { only_integer: true, greater_than_or_equal_to: 0 }, allow_nil: true
   validates :perk_code, format: { with: /\A[A-Za-z0-9]+\z/ }, allow_blank: true
   validate :dates_required_if_flash
@@ -103,7 +99,7 @@ class Perk < ActiveRecord::Base
   def send_registration_slack
     if !Rails.env.development?
       notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_PERK_URL']
-      notifier.ping "#{self.business.name} a créé un nouveau bon plan : #{perk}"
+      notifier.ping "#{self.business.name} a créé un nouveau bon plan : #{name}"
     end
   end
 

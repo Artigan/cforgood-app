@@ -5,7 +5,7 @@
   <!-- Card Perk APPEL -->
   <a class="type-card" id="perk-appel">
     <div class="type-title">
-      <i class="fa fa-users"></i>
+      <i class="fa fa-gift"></i>
       <span>Bon Plan de bienvenue</span>
       <span class="type-category">Acquisition</span>
     </div>
@@ -18,7 +18,7 @@
   <!-- Card Perk DURABLE -->
   <a class="type-card" id="perk-durable">
     <div class="type-title">
-      <i class="fa fa-calendar-check-o"></i>
+      <i class="fa fa-repeat"></i>
       <span>Bon Plan durable</span>
       <span class="type-category">Fidélisation</span>
     </div>
@@ -72,7 +72,7 @@
       <%= f.input :description, label: false, placeholder: "Dites-nous tout...", required: true, :input_html => { :rows => 3, maxlength: 220 } %>
       <label class="hint--top-right" data-hint="Sélectionnez le moyen d'activation">Utilisation *</label>
       <div class="select-wrapper">
-        <%= f.input :perk_detail_id, label: false, collection: PerkDetail.all, prompt: "Choisissez le mode d'utilisation",  label_method: :description %>
+        <%= f.input :perk_detail_id, label: false, collection: PerkDetail.all,  label_method: :description, selected: PerkDetail.find_by_name('carte') %>
       </div>
       <label class="hint--top-right" data-hint="Vous pouvez choisir le code d'accès du bon plan">Code d'accès</label>
       <%= f.input :perk_code, label: false %>
@@ -112,7 +112,7 @@
       <%= f.input :description, label: false, placeholder: "Dites-nous tout...", required: true, :input_html => { :rows => 3, maxlength: 220 } %>
       <label class="hint--top-right" data-hint="Sélectionnez le moyen d'activation">Utilisation *</label>
       <div class="select-wrapper">
-        <%= f.input :perk_detail_id, label: false, collection: PerkDetail.all, prompt: "Choisissez le mode d'utilisation",  label_method: :description %>
+        <%= f.input :perk_detail_id, label: false, collection: PerkDetail.all, label_method: :description, selected: PerkDetail.find_by_name('carte')%>
       </div>
       <label class="hint--top-right" data-hint="Vous pouvez choisir le code d'accès du bon plan">Code d'accès</label>
       <%= f.input :perk_code, label: false%>
@@ -152,7 +152,7 @@
       <%= f.input :description, label: false, placeholder: "Dites-nous tout...", required: true, :input_html => { :rows => 3, maxlength: 220 } %>
       <label class="hint--top-right" data-hint="Sélectionnez le moyen d'activation">Utilisation *</label>
       <div class="select-wrapper">
-        <%= f.input :perk_detail_id, label: false, collection: PerkDetail.all, prompt: "Choisissez le mode d'utilisation",  label_method: :description %>
+        <%= f.input :perk_detail_id, label: false, collection: PerkDetail.all, label_method: :description, selected: PerkDetail.find_by_name('carte')%>
       </div>
       <label class="hint--top-right" data-hint="Déterminez une période de disponibilité">Période *</label>
       <%= f.input :start_date, as: :string, label: false, placeholder: "Début", input_html: {"data-provide" => "datepicker", "data-date-language" => "fr", value: f.object.start_date.try(:strftime, '%d/%m/%Y') } %>

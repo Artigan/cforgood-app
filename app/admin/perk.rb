@@ -2,6 +2,7 @@ ActiveAdmin.register Perk do
 
   index do
     selectable_column
+    column :id
     column :name
     column :business
     column :created_at
@@ -12,9 +13,7 @@ ActiveAdmin.register Perk do
       f.input :name
       f.input :business
       f.input :description
-      f.input :detail
       f.input :perk_detail
-      f.input :periodicity
       f.input :times
       f.input :start_date
       f.input :end_date
@@ -30,5 +29,5 @@ ActiveAdmin.register Perk do
     f.actions
   end
 
-  permit_params :name, :business_id, :description, :detail, :perk_detail_id, :periodicity_id, :times , :start_date, :end_date, :perk_code, :active, :appel, :durable, :flash, :picture
+  permit_params :name, :business_id, :description, :perk_detail_id, :times , :start_date, :end_date, :perk_code, :active, :appel, :durable, :flash, :picture
 end
