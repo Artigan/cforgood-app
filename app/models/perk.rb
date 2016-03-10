@@ -35,7 +35,6 @@
 
 class Perk < ActiveRecord::Base
   belongs_to :business
-  belongs_to :periodicity
   has_many :uses, dependent: :destroy
   belongs_to :perk_detail
 
