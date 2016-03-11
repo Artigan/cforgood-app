@@ -13,8 +13,8 @@
         <div class="itinary">
           <%= link_to "#{@business.url}", class: "send-to-shop", target: "_blank" do %>
             <i class="fa fa-globe"></i>
-            <% if @business.url.size > 35 %>
-              <abbr><%= truncate(@business.url, length: 32) %>...</abbr>
+            <% if @business.url.size > 28 %>
+              <abbr><%= truncate(@business.url, length: 28) %></abbr>
             <% else %>
               <abbr><%= @business.url %></abbr>
             <% end %>
