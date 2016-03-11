@@ -129,7 +129,6 @@
     },
 
     // The "bindHandlers" method will listen for whenever a button is clicked.
-
     bindHandlers: function(){
       var self = this;
 
@@ -195,6 +194,11 @@
         controls: {
           enable: true // we won't be needing these
         },
+        animationOptions: {
+          duration: 750,
+          easing: 'linear',
+          queue: false
+        }
       });
     });
 
