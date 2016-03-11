@@ -7,7 +7,10 @@ Consultez vos chiffres
 
 <div class="container-fluid admin">
   <!-- DISCLAIMER IF INACTIVE BUSINESS -->
-  <% if !current_business.active %>
+  <% if !current_business.active &&
+    (request.env["HTTP_REFERER"] == nil ||
+     request.env["HTTP_REFERER"].include?("/pro/sign_up") ||
+     request.env["HTTP_REFERER"].include?("/pro/sign_in")) %>
     <%= render "pro/dashboard/shared/welcome_inactive" %>
   <% end %>
   <!-- ACOUNT -->
@@ -15,12 +18,13 @@ Consultez vos chiffres
   <%= render "pro/dashboard/shared/sidebar" %>
 
   <div class="dashboard">
-
-    <div class="mobile-menu-overlay hidden"></div>
     <div class="data-container">
       <div id="welcome-desktop">
         <!-- DESKTOP VIEW | CARDS -->
         <div class="business-into" style="background-image: url('<%= current_business.picture.present? ? current_business.picture : image_url('cover-business.jpg') %>');">
+          <% if !current_business.active %>
+            <span class="business-message">Votre compte sera bientôt activé !</span>
+          <% end %>
           <% if @business.leader_picture.present? %>
             <%= image_tag current_business.leader_picture(:thumb), class: 'business-owner' %>
           <% else %>
@@ -210,6 +214,9 @@ Consultez vos chiffres
             <%= image_tag current_business.leader_picture(:thumb), class: 'business-owner' %>
           <% else %>
             <%= image_tag 'default_pic.png', class: 'business-owner' %>
+          <% end %>
+          <% if !current_business.active %>
+            <span class="business-message">Votre compte sera bientôt activé !</span>
           <% end %>
           <span class="business-name"><%= current_business.name %></span>
           <span class="business-location"><i class="fa fa-map-marker"></i><%= current_business.city %></span>
