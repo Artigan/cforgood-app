@@ -229,19 +229,16 @@
 
           .container-answer {
             display: flex;
+            align-self: center;
             margin-top: 20px;
 
             .answer-yes {
-              margin-left: 28px;
+              margin-right: 40px;
 
               button {
                 border: 0;
                 background-color: transparent;
               }
-            }
-
-            .answer-no {
-              margin-left: 40px;
             }
           }
         }
