@@ -13,7 +13,7 @@
           <p class="box-code-legend">Envoyez-nous un email pour réserver votre bon plan : </p>
         </div>
         <div class="itinary send-mail">
-          <a href="mailto:<%= @business.email %>?subject=Réservation du Bon Plan '<%= Perk.find(params[:perk_id]).name %>' : code <%= Perk.find(params[:perk_id]).perk_code %>" class="link-mail-business business-icon-container" target="_blank">
+          <a href='mailto:<%= @business.email %>?subject=Réservation du Bon Plan : code <%= Perk.find(params[:perk_id]).perk_code %>' class="link-mail-business business-icon-container" target="_blank">
           <i class="fa fa-envelope"></i><abbr>Ecrivez-nous !</abbr>
           </a>
         </div>
