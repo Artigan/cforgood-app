@@ -20,22 +20,4 @@ $(document).ready(function(){
   });
 });
 
-// $(document).ready(function(){
-//   $('.business-filter a').click(function(){
-//     $('.business-filter .current').removeClass('current');
-//     $(this).addClass('current');
 
-//     var $container = $('.index-cards');
-//     var selector = $(this).attr('data-filter');
-//     $container.isotope({
-//       percentPosition: true,
-//       containerStyle: null,
-//       filter: selector,
-//       animationOptions: {
-//           duration: 750,
-//           easing: 'linear',
-//           queue: false
-//       }
-//     });
-//   });
-// });

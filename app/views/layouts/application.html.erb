@@ -6,9 +6,13 @@
 
   <body>
 
-    <div class="mobile-hidden">
+    <% if signup_or_signin_page? %>
       <%= render "layouts/shared/navbar" %>
-    </div>
+    <% else %>
+      <div class="mobile-hidden">
+        <%= render "layouts/shared/navbar" %>
+      </div>
+    <% end %>
 
     <div id="menu-overlay">
       <%= yield %>

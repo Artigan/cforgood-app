@@ -34,4 +34,11 @@ module ApplicationHelper
     request.path == "/landing_business" ||
     request.path == "/landing_cause"
   end
+
+  def signup_or_signin_page?
+    request.path == "/member/signin" ||
+    request.path == "/member/signup" ||
+    request.path == "/pro/sign_in" ||
+    request.path == "/pro/sign_up"
+  end
 end
