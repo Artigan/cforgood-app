@@ -6,7 +6,13 @@
       <div class="col-1">
         <label>Photo</label>
         <div class="picture-container">
-          <%= image_tag current_user.picture.url(:thumb), class: 'user-picture' %>
+          <% if current_user.picture? %>
+            <%= image_tag current_user.picture.url(:thumb), class: 'user-picture' %>
+          <% else %>
+            <div class="picture-none">
+              <%= render 'shared/icons/profile' %>
+            </div>
+          <% end %>
         </div>
         <%= f.input :picture, as: :file, required: false, label: 'Sélectionner une nouvelle image' %>
       </div>
@@ -40,6 +46,10 @@
       function readURL(input) {
         var reader = new FileReader();
           reader.onload = function (e) {
+            if ($('.user-picture').attr('src') === undefined) {
+              $(".picture-none").remove();
+              $('.picture-container').append('<img src=" " class="user-picture" >')
+            };
             $('.user-picture').attr('src', e.target.result).addClass("thumb-crop");
           }
         reader.readAsDataURL(input);

@@ -45,7 +45,11 @@
       function readURL(input) {
         var reader = new FileReader();
           reader.onload = function (e) {
-            $('.picture-container').attr('src', e.target.result);
+            if ($('#shop .picture-business').attr('src') === undefined) {
+              $("#shop .picture-none").remove();
+              $('#shop .picture-container').append('<img src=" " class="picture-business" >')
+            };
+            $('#shop .picture-business').attr('src', e.target.result);
           }
         reader.readAsDataURL(input);
       }

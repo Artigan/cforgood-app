@@ -36,6 +36,10 @@
       function readURL(input) {
         var reader = new FileReader();
           reader.onload = function (e) {
+            if ( $('#business .picture-owner').attr('src') === undefined) {
+              $("#business .picture-none").remove();
+              $('#business .picture-container').append('<img src=" " class="picture-owner" >')
+            };
             $('#business .picture-owner').attr('src', e.target.result).addClass("thumb-crop");
           }
         reader.readAsDataURL(input);
