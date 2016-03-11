@@ -59,9 +59,9 @@
       <%= f.input :name, label: false, placeholder: "I feel good", required: true, input_html: {maxlength: 35} %>
       <div class="photo-perk">
         <label class="hint--top-right" data-hint="Votre bon plan en image !">Photo</label>
-        <div class="picture-container">
+        <div class="picture-container perk-appel-preview">
           <% if @perk.picture? %>
-            <%= image_tag @perk.picture.url(:thumb), class: 'picture-perk', id: 'perk-appel-preview'%>
+            <%= image_tag @perk.picture.url(:thumb), class: 'picture-perk-preview', id: 'perk-appel-preview'%>
           <% else %>
             <%= render 'shared/icons/perkpic' %>
           <% end %>
@@ -99,7 +99,7 @@
       <%= f.input :name, label: false, placeholder: "I feel good", required: true , input_html: {maxlength: 35} %>
       <div class="photo-perk">
         <label class="hint--top-right" data-hint="Votre bon plan en image !">Photo</label>
-        <div class="picture-container">
+        <div class="picture-container perk-durable-preview">
           <% if @perk.picture? %>
             <%= image_tag @perk.picture.url(:thumb), class: 'picture-perk-preview', id: 'perk-durable-preview' %>
           <% else %>
@@ -139,7 +139,7 @@
       <%= f.input :name, label: false, placeholder: "I feel good", required: true , input_html: {maxlength: 35} %>
       <div class="photo-perk">
         <label class="hint--top-right" data-hint="Votre bon plan en image !">Photo</label>
-        <div class="picture-container">
+        <div class="picture-container perk-flash-preview">
           <% if @perk.picture? %>
             <%= image_tag @perk.picture.url(:thumb), class: 'picture-perk-preview', id: 'perk-flash-preview' %>
           <% else %>
@@ -275,7 +275,11 @@
       function readURL(file, classe) {
         var reader = new FileReader();
           reader.onload = function (e) {
-            $(classe).attr('src', e.target.result);
+            if ($("#"+classe).attr('src') === undefined) {
+              $(".picture-container."+classe+" svg").remove();
+              $(".picture-container."+classe).append('<img src=" " class="picture-perk-preview" id="'+classe+'">')
+            };
+            $("#"+classe).attr('src', e.target.result);
           }
         reader.readAsDataURL(file);
       }
@@ -283,19 +287,19 @@
         e.preventDefault();
         var newFile = document.querySelector('#perk_appel_file').files[0];
         $("#perk_appel_file").parent().children().html(newFile.name);
-        readURL(newFile, "#perk-appel-preview");
+        readURL(newFile, "perk-appel-preview");
       });
       $("#perk_durable_file").on("change", function(e) {
         e.preventDefault();
         var newFile = document.querySelector('#perk_durable_file').files[0];
         $("#perk_durable_file").parent().children().html(newFile.name);
-        readURL(newFile, "#perk-durable-preview");
+        readURL(newFile, "perk-durable-preview");
       });
       $("#perk_flash_file").on("change", function(e) {
         e.preventDefault();
         var newFile = document.querySelector('#perk_flash_file').files[0];
         $("#perk_flash_file").parent().children().html(newFile.name);
-        readURL(newFile, "#perk-flash-preview");
+        readURL(newFile, "perk-flash-preview");
       });
     });
 
