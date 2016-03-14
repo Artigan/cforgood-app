@@ -68,8 +68,7 @@ class Business < ActiveRecord::Base
   validates :email, presence: true, uniqueness: true
   validates :business_category_id, presence: true
   validates :name, presence: true
-  # validates :url, format: { with: /^(http|https):+/ }, allow_blank: true
-
+  validates :url, format: { with: /\Ahttps?:\/\/[\S]+/, message: "Votre URL doit commencer par http:// ou https://" }, allow_blank: true
 
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
