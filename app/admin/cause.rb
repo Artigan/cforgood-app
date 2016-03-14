@@ -18,6 +18,7 @@ ActiveAdmin.register Cause do
       f.input :description
       f.input :street
       f.input :impact
+      f.input :amount_impact
       f.input :description_impact
       f.input :zipcode
       f.input :city
@@ -33,7 +34,7 @@ ActiveAdmin.register Cause do
     f.actions
   end
 
-  permit_params :name, :email, :cause_category_id, :impact, :url, :latitude, :longitude, :description, :description_impact, :street, :zipcode, :city, :telephone, :facebook, :twitter, :instagram, :picture, :logo
+  permit_params :name, :email, :cause_category_id, :impact, :url, :latitude, :longitude, :description, :amount_impact, :description_impact, :street, :zipcode, :city, :telephone, :facebook, :twitter, :instagram, :picture, :logo
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
