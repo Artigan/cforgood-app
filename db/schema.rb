@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160314105419) do
+ActiveRecord::Schema.define(version: 20160314170244) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -231,6 +231,7 @@ ActiveRecord::Schema.define(version: 20160314105419) do
     t.float    "longitude"
     t.date     "date_partner"
     t.string   "code_promo"
+    t.date     "date_support"
   end
 
   add_index "users", ["cause_id"], name: "index_users_on_cause_id", using: :btree

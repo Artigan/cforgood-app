@@ -46,6 +46,7 @@
 #  longitude              :float
 #  date_partner           :date
 #  code_promo             :string
+#  date_support           :date
 #
 # Indexes
 #
@@ -79,17 +80,19 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :picture,
     content_type: /\Aimage\/.*\z/
 
-  validate :code_promo?, if: :code_promo_changed?
-  validate :date_subscription!, if: :subscription_changed?
-  validate :member!, if: :date_last_payment_changed?
-
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
+
+  validate :code_promo?, if: :code_promo_changed?
+  after_validation :date_subscription!, if: :subscription_changed?
+  after_validation :member!, if: :date_last_payment_changed?
+  after_validation :date_support!, if: :cause_id_changed?
 
   after_save :trial_done!, if: :subscription_changed?
 
   after_create :send_registration_email, :send_registration_slack, :subscribe_to_newsletter_user
   after_save :send_activation_email if :active_changed?
+
 
   def self.find_for_google_oauth2(access_token, signed_in_resourse=nil)
     data = access_token.info
@@ -160,6 +163,10 @@ class User < ActiveRecord::Base
 
   def member!
     self.member = true
+  end
+
+  def date_support!
+    self.date_support = Time.now
   end
 
   def trial_done?
