@@ -3,7 +3,6 @@
   padding-top: 50px;
   width: 15%;
   height: 100%;
-  min-height: 100vh;
   left: 0px;
   z-index: 300;
 
@@ -271,5 +270,11 @@
     .signout {
       display: none;
     }
+  }
+}
+
+@media only screen and (min-width:768px){
+  .business-sidebar {
+    min-height: 100vh;
   }
 }

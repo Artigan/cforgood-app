@@ -69,6 +69,7 @@
         align-items: center;
         position: relative;
         padding: 5px 10px;
+        max-width: 740px;
         top: 20px;
         left: -10px;
         border-radius: 0px 20px 20px;
@@ -244,7 +245,7 @@
 
       .cause-content {
         flex-direction: row;
-        padding: 100px 85px 40px;
+        padding: 135px 85px 40px;
 
         .cause-category {
           position: absolute;

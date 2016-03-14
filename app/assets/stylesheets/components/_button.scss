@@ -124,3 +124,24 @@
   border: 1px solid #444444;
   background-color: #222222;
 }
+
+.user-button {
+  position: relative;
+  padding: 10px 20px;
+  margin: 0;
+  width: 100%;
+  max-width: 320px;
+  background-color: $turquoise;
+  color: #fff;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 3px;
+  font-size: 16px;
+  font-weight: 600;
+  outline: none;
+  @include transition(all, 0.3s, ease-in-out);
+
+  &:hover {
+    background-color: #32C4CB;
+  }
+}
