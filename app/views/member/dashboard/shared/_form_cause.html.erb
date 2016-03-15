@@ -1,30 +1,36 @@
 <!-- FORM SELECT CAUSE -->
 <div class="choose-cause">
-
+  <!-- USER SUPPORT -->
   <div class="user-support">
-    <div class="picture-container">
-      <% if current_user.picture? %>
-        <%= image_tag current_user.picture.url(:thumb), class: 'user-picture' %>
-      <% else %>
-        <div class="picture-none">
-          <%= render 'shared/icons/profile' %>
-        </div>
-      <% end %>
+    <div class="pictures-container">
+      <div class="picture-container">
+        <% if current_user.picture? %>
+          <%= image_tag current_user.picture.url(:thumb), class: 'user-picture' %>
+        <% else %>
+          <div class="picture-none">
+            <%= render 'shared/icons/profile' %>
+          </div>
+        <% end %>
+      </div>
+      <div class="picture-container">
+        <% if current_user.cause_id.present? %>
+          <%= image_tag Cause.find(current_user.cause_id).logo.url(:thumb), class: 'cause-picture' %>
+        <% else %>
+          <div class="picture-none">
+            <%= render 'shared/icons/profile' %>
+          </div>
+        <% end %>
+      </div>
     </div>
-    <div class="picture-container">
+    <div class="user-cause-disclaimer">
       <% if current_user.cause_id.present? %>
-        <%= image_tag Cause.find(current_user.cause_id).logo.url(:thumb), class: 'user-picture' %>
+        Vous soutenez actuellement<br><%= Cause.find(current_user.cause_id).name %>.
       <% else %>
-        <div class="picture-none">
-          <%= render 'shared/icons/profile' %>
-        </div>
+        Choisissez une association à soutenir !
       <% end %>
     </div>
-    <% if current_user.cause_id.present? %>
-      Vous soutenez actuellement <%= Cause.find(current_user.cause_id).name %>.
-    <% end %>
   </div>
-
+   <!-- CAUSES CARROUSEL -->
   <div class="causes-carrousel">
     <!-- Random Causes cards -->
     <% Cause.all.each do |cause| %>
