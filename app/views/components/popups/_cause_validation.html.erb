@@ -4,11 +4,11 @@
       <!-- ILLUSTRATION-->
       <%= render 'shared/icons/wand' %>
     </div>
-    <span>Créez votre premier bon plan !</span>
-    <p>Vous deviendrez visible auprès de notre communauté aussitôt l'activation de votre premier bon plan effectuée.</p>
+    <span>Vous vous apprêtez à faire une bien jolie action !</span>
+    <p>En cliquant sur le bouton ci-dessous vous reverserez 50% de votre abonnement mensuel à NOM DE L'ASSOCIATION</p>
 
     <%= link_to member_update_cause_path(cause_id: cause.id), method: :put, remote: true, authenticity_token: true do %>
-      Soutenir
+      C'est parti !
     <% end %>
   </div>
 </div>
