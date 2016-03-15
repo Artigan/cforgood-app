@@ -41,8 +41,8 @@
 #
 
 class Cause < ActiveRecord::Base
-  belongs_to   :cause_category
-  belongs_to   :user
+  belongs_to :cause_category
+  has_many :users
 
   has_attached_file :picture,
     styles: { medium: "300x300>", small: "200x200", thumb: "100x100>" }

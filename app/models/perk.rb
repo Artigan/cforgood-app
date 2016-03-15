@@ -47,7 +47,7 @@ class Perk < ActiveRecord::Base
   validates :times, numericality: { only_integer: true, greater_than_or_equal_to: 0 }, allow_nil: true
   validate :dates_required_if_flash
   validate :start_date_cannot_be_greater_than_end_date
-  validates :perk_code, format: { with: /\A[A-Za-z0-9]+\z/, message: "Le code du bon plan ne peut contenir que des lettres et des chiffres" }
+  validates :perk_code, length: { in: 5..15 }, format: { with: /\A[A-Za-z0-9]+\z/, message: "Le code du bon plan ne peut contenir que des lettres et des chiffres" }
   validate :perk_code_uniqueness, if: :perk_code_changed?
 
   has_attached_file :picture,

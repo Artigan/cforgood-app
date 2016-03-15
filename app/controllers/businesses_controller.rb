@@ -47,6 +47,8 @@
 #  logo_content_type           :string
 #  logo_file_size              :integer
 #  logo_updated_at             :datetime
+#  shop                        :boolean          default(TRUE), not null
+#  itinerant                   :boolean          default(FALSE), not null
 #
 # Indexes
 #
