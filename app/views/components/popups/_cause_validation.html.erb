@@ -1,0 +1,14 @@
+<div class="popup-overlay">
+  <div class="popup-container no-perks">
+    <div class="wrapper">
+      <!-- ILLUSTRATION-->
+      <%= render 'shared/icons/wand' %>
+    </div>
+    <span>Créez votre premier bon plan !</span>
+    <p>Vous deviendrez visible auprès de notre communauté aussitôt l'activation de votre premier bon plan effectuée.</p>
+
+    <%= link_to member_update_cause_path(cause_id: cause.id), method: :put, remote: true, authenticity_token: true do %>
+      Soutenir
+    <% end %>
+  </div>
+</div>

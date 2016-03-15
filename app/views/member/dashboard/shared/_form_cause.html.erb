@@ -1,6 +1,7 @@
 <!-- FORM SELECT CAUSE -->
 <div class="choose-cause">
   <!-- USER SUPPORT -->
+  <span class="tab-subtitle">Votre engagement</span>
   <div class="user-support">
     <div class="pictures-container">
       <div class="picture-container">
@@ -24,13 +25,14 @@
     </div>
     <div class="user-cause-disclaimer">
       <% if current_user.cause_id.present? %>
-        Vous soutenez actuellement<br><%= Cause.find(current_user.cause_id).name %>.
+        Vous soutenez actuellement<br><i><%= Cause.find(current_user.cause_id).name %></i>.
       <% else %>
         Choisissez une association à soutenir !
       <% end %>
     </div>
   </div>
    <!-- CAUSES CARROUSEL -->
+  <span class="tab-subtitle">Découvrir d'autres causes</span>
   <div class="causes-carrousel">
     <!-- Random Causes cards -->
     <% Cause.all.each do |cause| %>
@@ -52,8 +54,9 @@
   </div>
 </div>
 
-<% content_for :after_js do %>
+<%= render 'components/popups/cause_validation' %>
 
+<% content_for :after_js do %>
   <script>
     $(document).ready(function() {
       $(".cause-card").on("click", function(e) {
@@ -71,5 +74,4 @@
       });
     });
   </script>
-
 <% end %>
