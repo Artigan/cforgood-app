@@ -12,7 +12,7 @@
 #  email                       :string
 #  created_at                  :datetime         not null
 #  updated_at                  :datetime         not null
-#  description                 :string
+#  description                 :text
 #  picture_file_name           :string
 #  picture_content_type        :string
 #  picture_file_size           :integer
@@ -38,7 +38,7 @@
 #  leader_picture_updated_at   :datetime
 #  leader_first_name           :string
 #  leader_last_name            :string
-#  leader_description          :string
+#  leader_description          :text
 #  active                      :boolean          default(FALSE), not null
 #  online                      :boolean          default(FALSE), not null
 #  leader_phone                :string
@@ -68,6 +68,7 @@ class Business < ActiveRecord::Base
   validates :email, presence: true, uniqueness: true
   validates :business_category_id, presence: true
   validates :name, presence: true
+  validates :url, format: { with: /\Ahttps?:\/\/[\S]+/, message: "Votre URL doit commencer par http:// ou https://" }, allow_blank: true
 
   geocoded_by :address
   after_validation :geocode, if: :address_changed?

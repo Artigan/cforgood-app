@@ -74,7 +74,7 @@
       <div class="select-wrapper">
         <%= f.input :perk_detail_id, label: false, collection: PerkDetail.all,  label_method: :description, selected: PerkDetail.find_by_name('carte') %>
       </div>
-      <label class="hint--top-right" data-hint="Vous pouvez choisir le code d'accès du bon plan">Code d'accès</label>
+      <label class="hint--top-right" data-hint="Vous devez choisir le code d'accès du bon plan">Code d'accès*</label>
       <%= f.input :perk_code, label: false %>
       <%= f.input :appel, as: :hidden %>
       <%= f.input :durable, as: :hidden %>
@@ -114,7 +114,7 @@
       <div class="select-wrapper">
         <%= f.input :perk_detail_id, label: false, collection: PerkDetail.all, label_method: :description, selected: PerkDetail.find_by_name('carte')%>
       </div>
-      <label class="hint--top-right" data-hint="Vous pouvez choisir le code d'accès du bon plan">Code d'accès</label>
+      <label class="hint--top-right" data-hint="Vous pouvez choisir le code d'accès du bon plan">Code d'accès*</label>
       <%= f.input :perk_code, label: false%>
       <%= f.input :appel, as: :hidden %>
       <%= f.input :durable, as: :hidden %>
@@ -163,7 +163,7 @@
         <button id="quantity-plus" type="button"><i class="fa fa-plus"></i></button>
         <button id="quantity-minus" type="button"><i class="fa fa-minus"></i></button>
       </div>
-      <label class="hint--top-right" data-hint="Vous pouvez choisir le code d'accès du bon plan">Code d'accès</label>
+      <label class="hint--top-right" data-hint="Vous pouvez choisir le code d'accès du bon plan">Code d'accès*</label>
       <%= f.input :perk_code, label: false %>
       <%= f.input :appel, as: :hidden %>
       <%= f.input :durable, as: :hidden %>

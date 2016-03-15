@@ -12,7 +12,7 @@
         <%= f.input :password, placeholder: '8 cars. minimum', required: true, label: 'Mot de passe *' %>
         <%= f.input :password_confirmation, placeholder: '8 cars. minimum', required: true, label: 'Confirmation du mot de passe *' %>
         <%= f.input :business_category_id, required: true, label: "Activité de l'entreprise *", collection: BusinessCategory.all, prompt: 'Sélectionnez une catégorie' %>
-        <%= f.input :city, placeholder: 'Bordeaux', required: true, label: 'Votre ville *' %>
+        <%= f.input :city, placeholder: 'Honolulu', required: true, label: 'Votre ville *' %>
         <p>En cliquant sur <strong>S'inscrire</strong>, vous acceptez les <a type="href" class="" data-toggle="modal" data-target="#modal-cgu"><strong>CGU</strong></a> et certifiez avoir de plus de 18 ans.</p>
         <%= f.button :submit, "Créer mon compte", id: "btn-submit", disabled: true   %>
       <% end %>
