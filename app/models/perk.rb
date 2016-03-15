@@ -68,7 +68,15 @@ class Perk < ActiveRecord::Base
     elsif self.appel
       user.uses.where(perk_id: self.id).count == 0
     elsif self.flash
-      Time.now >= self.start_date && Time.now <= self.end_date && (self.times == 0 || Use.where(perk_id: self.id).count < self.times)
+      self.times == 0 || Use.where(perk_id: self.id).count < self.times
+    end
+  end
+
+  def perk_in_time?
+    if self.flash
+      Time.now >= self.start_date && Time.now <= self.end_date
+    else
+      true
     end
   end
 
