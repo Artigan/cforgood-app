@@ -24,11 +24,24 @@
     border-radius: 3px;
     z-index: 500;
 
+    .close-popup {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 20px;
+      color: #636363;
+      cursor: pointer;
+
+      &:hover {
+         color: #000;
+      }
+    }
+
     span {
       padding-top: 30px;
       text-transform: uppercase;
       font-weight: 600;
-      font-size: 20px;
+      font-size: 18px;
       text-align: center;
 
       small {
@@ -50,10 +63,19 @@
   /* CONFIRMATION CHECKMARK ***************************************************/
   .confirmation {
     .wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       padding: 20px 20px 15px;
-      width: 140px;
+      width: 130px;
+      min-height: 130px;
       background-color: #9FD6AE;
       border-radius: 50%;
+
+      svg {
+        height: 64px;
+        width: 64px;
+      }
 
       .checkmark {
         stroke: #fff;
@@ -90,6 +112,26 @@
         &:hover, &:active, &:focus {
           color: #636363;
         }
+      }
+    }
+  }
+
+
+  /* CAUSE VALIDATION *********************************************************/
+  .cause-confirmation {
+    .wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px 20px 15px;
+      width: 130px;
+      min-height: 130px;
+      background-color: #f4f4f4;
+      border-radius: 50%;
+
+      svg {
+        height: 64px;
+        width: 64px;
       }
     }
   }

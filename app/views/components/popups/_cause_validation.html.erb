@@ -1,16 +1,30 @@
 <div class="popup-overlay hidden">
-  <div class="popup-container no-perks">
+  <div class="popup-container cause-confirmation">
+    <div class="close-popup"><i class="fa fa-times"></i></div>
     <div class="wrapper">
       <!-- ILLUSTRATION-->
-      <%= render 'shared/icons/wand' %>
+      <%= render 'shared/icons/heart' %>
     </div>
-    <span>Vous vous apprêtez à faire une bien jolie action !</span>
-    <p>En cliquant sur le bouton ci-dessous vous reverserez 50% de votre abonnement mensuel à NOM DE L'ASSOCIATION</p>
+    <span>Vous allez faire quelque chose de chouette !</span>
+    <p>En validant votre choix, vous reverserez 50% de votre abonnement mensuel à cette association.</p>
 
     <%= simple_form_for(current_user, url: member_update_cause_path, remote: false, authenticity_token: true, html: { method: :put, id: :update_cause_id }) do |f| %>
       <%= f.input :cause_id, as: :hidden %>
-      <%= f.submit "C'est parti !", class: "btn btn-turquoise" %>
+      <%= f.submit "Valider", class: "user-button" %>
     <% end %>
   </div>
 </div>
+
+<% content_for :after_js do %>
+  <script>
+
+    $(document).ready(function() {
+      $(".close-popup").click(function (e) {
+        e.preventDefault()
+        $(".popup-overlay").toggleClass('hidden');
+      });
+    });
+  </script>
+<% end %>
+
 
