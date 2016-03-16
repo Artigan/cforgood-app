@@ -1,4 +1,4 @@
-<div class="popup-overlay">
+<div class="popup-overlay hidden">
   <div class="popup-container no-perks">
     <div class="wrapper">
       <!-- ILLUSTRATION-->
@@ -7,7 +7,7 @@
     <span>Vous vous apprêtez à faire une bien jolie action !</span>
     <p>En cliquant sur le bouton ci-dessous vous reverserez 50% de votre abonnement mensuel à NOM DE L'ASSOCIATION</p>
 
-    <%= link_to member_update_cause_path(cause_id: cause.id), method: :put, remote: true, authenticity_token: true do %>
+    <%= link_to member_update_cause_path(params[:cause_id]), method: :put, remote: true, authenticity_token: true do %>
       C'est parti !
     <% end %>
   </div>
