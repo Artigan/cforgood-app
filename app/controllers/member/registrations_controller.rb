@@ -1,7 +1,7 @@
 class Member::RegistrationsController < Devise::RegistrationsController
 
   def update_cause
-    current_user.update_attribute("cause_id", params[:cause_id])
+    current_user.update_attribute("cause_id", user_params[:cause_id])
     respond_to do |format|
       format.html {redirect_to :back}
       format.js {}

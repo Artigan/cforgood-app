@@ -7,8 +7,10 @@
     <span>Vous vous apprêtez à faire une bien jolie action !</span>
     <p>En cliquant sur le bouton ci-dessous vous reverserez 50% de votre abonnement mensuel à NOM DE L'ASSOCIATION</p>
 
-    <%= link_to member_update_cause_path(params[:cause_id]), method: :put, remote: true, authenticity_token: true do %>
-      C'est parti !
+    <%= simple_form_for(current_user, url: member_update_cause_path, remote: false, authenticity_token: true, html: { method: :put, id: :update_cause_id }) do |f| %>
+      <%= f.input :cause_id, as: :hidden %>
+      <%= f.submit "C'est parti !", class: "btn btn-turquoise" %>
     <% end %>
   </div>
 </div>
+
