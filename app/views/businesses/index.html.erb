@@ -65,7 +65,11 @@
                 <span class="perk-title"><%= business.name %></span>
               </div>
               <div class="card-header-leader">
-                <%= image_tag business.leader_picture %>
+              <% if business.leader_picture.present? %>
+                <%= image_tag business.leader_picture(:thumb) %>
+              <% else %>
+                <%= image_tag image_url 'default_pic.png' %>
+              <% end %>
               </div>
               <div class="card-header-category" style="background-color: <%= BusinessCategory.find(business.business_category_id).color %>;">
                 <%= image_tag image_url BusinessCategory.find(business.business_category_id).picture %>
