@@ -90,6 +90,7 @@ class User < ActiveRecord::Base
 
   after_save :trial_done!, if: :subscription_changed?
 
+  before_create :default_cause_id!
   after_create :send_registration_email, :send_registration_slack, :subscribe_to_newsletter_user
   after_save :send_activation_email if :active_changed?
 
@@ -208,6 +209,12 @@ class User < ActiveRecord::Base
 
   def address
     "#{street}, #{zipcode} #{city}"
+  end
+
+  def default_cause_id!
+    if !self.cause_id.present?
+      self.cause_id = ENV['CAUSE_ID_CFORGOOD']
+    end
   end
 
   def send_registration_email
