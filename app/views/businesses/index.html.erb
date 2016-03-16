@@ -14,7 +14,7 @@
     <div class="side-menu-overlay hidden"></div>
 
     <div class="side-menu side-categories">
-      <span id="open-categories"><i class="fa fa-cog"></i>Filtrer par catégories</span>
+      <span id="open-categories"><i class="fa fa-search"></i>Filtrer par catégories</span>
       <form class="controls" id="Filters">
         <ul>
           <!-- GROUPE ONLINE -->
@@ -62,7 +62,9 @@
             <div class="card-header">
               <div class="card-header-main">
                 <span class="perk-title"><%= business.name %></span>
-                <span class="perk-owner"><%= business.leader_first_name %> vous accueillera</span>
+              </div>
+              <div class="card-header-leader">
+                <%= image_tag business.leader_picture %>
               </div>
               <div class="card-header-category" style="background-color: <%= BusinessCategory.find(business.business_category_id).color %>;">
                 <%= image_tag image_url BusinessCategory.find(business.business_category_id).picture %>

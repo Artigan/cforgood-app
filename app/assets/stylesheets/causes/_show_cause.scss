@@ -33,6 +33,37 @@
         text-align: left;
         color: #fff;
       }
+
+      .user-button {
+        position: absolute;
+        bottom: -60px;
+        width: 180px;
+        font-size: 12px;
+        padding: 10px;
+        left: 135px;
+        z-index: 15;
+      }
+
+      .love-you {
+        position: absolute;
+        bottom: -60px;
+        left: 122px;
+        display: flex;
+        align-items: center;
+        background-color: #9FD6AE;
+        padding: 6px 20px;
+        border-radius: 25px;
+        color: #fff;
+        text-transform: uppercase;
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 18px;
+        width: 200px;
+
+        svg {
+          margin-left: 10px;
+        }
+      }
     }
 
     .cause-category {
@@ -69,6 +100,7 @@
         align-items: center;
         position: relative;
         padding: 5px 10px;
+        max-width: 740px;
         top: 20px;
         left: -10px;
         border-radius: 0px 20px 20px;
@@ -220,6 +252,28 @@
       margin: 20px;
       background-color: #fff;
       border-radius: 3px;
+
+      .cause-header {
+        h1 {
+          width: 55%;
+        }
+
+        .user-button {
+          position: absolute;
+          bottom: 10px;
+          width: 180px;
+          font-size: 12px;
+          padding: 10px;
+          left: initial;
+          right: 20px !important;
+        }
+
+        .love-you {
+          bottom: 10px;
+          right: 20px;
+          left: inherit;
+        }
+      }
     }
   }
 }
@@ -244,7 +298,7 @@
 
       .cause-content {
         flex-direction: row;
-        padding: 100px 85px 40px;
+        padding: 135px 85px 40px;
 
         .cause-category {
           position: absolute;

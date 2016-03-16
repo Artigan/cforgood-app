@@ -12,10 +12,16 @@
   <div class="dashboard dashboard-causes">
     <div class="mobile-menu-overlay hidden"></div>
 
-    <div class="cause-container">
+    <div id="<%= @cause.id %>" class="cause-container">
       <div class="cause-header" style="background-image: url('<%= image_url @cause.picture %>');">
         <img class="cause-logo" src="<%= image_url @cause.logo %>" style="border: 3px solid <%= CauseCategory.find(@cause.cause_category_id).color %>;">
         <h1><%= @cause.name %></h1>
+        <!-- CTA -->
+        <% if @cause.id == current_user.cause_id %>
+          <div class="love-you">Vous soutenez cette association <%= render 'shared/icons/heart' %></div>
+        <% else %>
+          <button class="user-button">Soutenir cette cause</button>
+        <% end %>
       </div>
 
       <div class="cause-content" style="border-top: 3px solid <%= CauseCategory.find(@cause.cause_category_id).color %>;">
@@ -98,3 +104,19 @@
     </div>
   </div>
 </div>
+
+<%= render 'components/popups/cause_validation' %>
+
+
+<% content_for :after_js do %>
+  <script>
+    $(document).ready(function() {
+      $(".user-button").on("click", function(e) {
+        e.preventDefault;
+        var causeId = $('.cause-container').val('div').attr('id');
+        $(".popup-overlay").toggleClass("hidden");
+        $("#user_cause_id").val(causeId);
+      });
+    });
+  </script>
+<% end %>

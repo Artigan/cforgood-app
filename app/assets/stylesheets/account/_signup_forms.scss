@@ -46,7 +46,7 @@
   }
 
   /* CAUSES CARDS OVERLAY */
-  .signup-cause {
+  .choose-cause {
     .cause-card.cause-overlay {
       .cause-popover {
         img {
@@ -64,7 +64,7 @@
     overflow: hidden;
   }
 
-  .signup-cause,
+  .choose-cause,
   .signup-plan,
   .signup-payment {
     position: absolute;
@@ -162,8 +162,9 @@
 }
 
 /* FORM - CAUSES **************************************************************/
-.signup-cause {
-  text-align: center;
+.choose-cause {
+  position: relative;
+  width: 100%;
 
   span {
     display: block;
@@ -180,53 +181,7 @@
   /* CHOOSE A CARD */
   .card-container {
     position: relative;
-    min-height: 210px;
-    margin: 5px;
-    border-radius: 6px;
-
-    .cause-card {
-      height: 200px;
-      background: no-repeat center;
-      background-size: cover;
-      color: white;
-      border-radius: 6px;
-
-      cursor: pointer;
-      overflow: hidden;
-
-      /* POPOVER - CAUSE DESCRIPTION ***********************************************/
-      .cause-popover {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px;
-        height: 100%;
-        width: 100%;
-        background: rgba(0, 0, 0, 0.3);
-        border-radius: 4px;
-
-        h1 {
-          min-height: 45px;
-          margin: 0;
-          font-size: 14px;
-          font-weight: 600;
-          z-index: 1;
-        }
-        span {
-          margin: 0;
-          font-size: 10px;
-          font-weight: normal;
-          z-index: 1;
-        }
-        img {
-          width: 40px;
-          border: 2px solid #fff;
-          border-radius: 50%;
-          @include transition(all, 0.3s, ease-in-out);
-        }
-      }
-    }
+    width: 100%;
   }
 
   /* DROPDOWN LIST */

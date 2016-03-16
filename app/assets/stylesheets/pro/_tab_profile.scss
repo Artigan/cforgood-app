@@ -292,6 +292,10 @@
 
     .user-container {
       padding-top: 20px;
+
+      .tab-content {
+        max-width: 760px;
+      }
     }
   }
 }
