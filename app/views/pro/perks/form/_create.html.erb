@@ -74,8 +74,8 @@
       <div class="select-wrapper">
         <%= f.input :perk_detail_id, label: false, collection: PerkDetail.all,  label_method: :description, selected: PerkDetail.find_by_name('carte') %>
       </div>
-      <label class="hint--top-right" data-hint="Vous pouvez choisir le code d'accès du bon plan">Code d'accès</label>
-      <%= f.input :perk_code, label: false %>
+      <label class="hint--top-right" data-hint="Choisissez le code d'accès du bon plan">Code d'accès *</label>
+      <%= f.input :perk_code, label: false, placeholder: "De 5 à 15 lettres ou chiffres", input_html: { minlenght: 5, maxlength: 15 } %>
       <%= f.input :appel, as: :hidden %>
       <%= f.input :durable, as: :hidden %>
       <%= f.input :flash, as: :hidden %>
@@ -114,8 +114,8 @@
       <div class="select-wrapper">
         <%= f.input :perk_detail_id, label: false, collection: PerkDetail.all, label_method: :description, selected: PerkDetail.find_by_name('carte')%>
       </div>
-      <label class="hint--top-right" data-hint="Vous pouvez choisir le code d'accès du bon plan">Code d'accès</label>
-      <%= f.input :perk_code, label: false%>
+      <label class="hint--top-right" data-hint="Choisissez le code d'accès du bon plan">Code d'accès *</label>
+      <%= f.input :perk_code, label: false, placeholder: "De 5 à 15 lettres ou chiffres", input_html: { minlenght: 5, maxlength: 15 } %>
       <%= f.input :appel, as: :hidden %>
       <%= f.input :durable, as: :hidden %>
       <%= f.input :flash, as: :hidden %>
@@ -163,8 +163,8 @@
         <button id="quantity-plus" type="button"><i class="fa fa-plus"></i></button>
         <button id="quantity-minus" type="button"><i class="fa fa-minus"></i></button>
       </div>
-      <label class="hint--top-right" data-hint="Vous pouvez choisir le code d'accès du bon plan">Code d'accès</label>
-      <%= f.input :perk_code, label: false %>
+      <label class="hint--top-right" data-hint="Choisissez le code d'accès du bon plan">Code d'accès *</label>
+      <%= f.input :perk_code, label: false, placeholder: "De 5 à 15 lettres ou chiffres", input_html: { minlenght: 5, maxlength: 15 } %>
       <%= f.input :appel, as: :hidden %>
       <%= f.input :durable, as: :hidden %>
       <%= f.input :flash, as: :hidden %>

@@ -40,8 +40,8 @@
 #
 
 class Cause < ActiveRecord::Base
-  belongs_to   :cause_category
-  belongs_to   :user
+  belongs_to :cause_category
+  has_many :users
 
   has_attached_file :picture,
     styles: { medium: "300x300>", small: "200x200", thumb: "100x100>" }
@@ -57,6 +57,8 @@ class Cause < ActiveRecord::Base
 
   validates :name, presence: true
   validates :email, presence: true
+  validates :url, format: { with: /\Ahttps?:\/\/[\S]+/, message: "Votre URL doit commencer par http:// ou https://" }, allow_blank: true
+
   # validates :representative_first_name, presence: true
   # validates :representative_last_name, presence: true
 end

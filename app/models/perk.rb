@@ -6,8 +6,6 @@
 #  name                 :string
 #  business_id          :integer
 #  description          :text
-#  detail               :string
-#  periodicity_id       :integer
 #  times                :integer          default(0)
 #  start_date           :datetime
 #  end_date             :datetime
@@ -43,12 +41,13 @@ class Perk < ActiveRecord::Base
   scope :active, -> { where(active: true) }
 
   validates :name, presence: true, length: { maximum: 35 }
+  validate :name_uniqueness, if: :name_changed?
   validates :description, presence: true, length: { maximum: 220 }
   validates :perk_detail_id, presence: true
   validates :times, numericality: { only_integer: true, greater_than_or_equal_to: 0 }, allow_nil: true
-  validates :perk_code, format: { with: /\A[A-Za-z0-9]+\z/ }, allow_blank: true
   validate :dates_required_if_flash
   validate :start_date_cannot_be_greater_than_end_date
+  validates :perk_code, length: { in: 5..15 }, format: { with: /\A[A-Za-z0-9]+\z/, message: "Le code du bon plan ne peut contenir que des lettres et des chiffres" }
   validate :perk_code_uniqueness, if: :perk_code_changed?
 
   has_attached_file :picture,
@@ -57,7 +56,7 @@ class Perk < ActiveRecord::Base
   validates_attachment_content_type :picture,
     content_type: /\Aimage\/.*\z/
 
-  after_create :generate_code!, :send_registration_slack
+  after_create :send_registration_slack
 
   def update_nb_view!
     self.increment!(:nb_views)
@@ -69,7 +68,15 @@ class Perk < ActiveRecord::Base
     elsif self.appel
       user.uses.where(perk_id: self.id).count == 0
     elsif self.flash
-      Time.now >= self.start_date && Time.now <= self.end_date && (self.times == 0 || Use.where(perk_id: self.id).count < self.times)
+      self.times == 0 || Use.where(perk_id: self.id).count < self.times
+    end
+  end
+
+  def perk_in_time?
+    if self.flash
+      Time.now >= self.start_date && Time.now <= self.end_date
+    else
+      true
     end
   end
 
@@ -90,18 +97,17 @@ class Perk < ActiveRecord::Base
     end
   end
 
-  def generate_code!
-    until perk_code.present?
-      code = ("A".."Z").to_a.sample(4).join
-      code += (0..9).to_a.sample.to_s
-      self.update(perk_code: code) if !Perk.find_by_perk_code(code)
-    end
-  end
-
   def send_registration_slack
     if !Rails.env.development?
       notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_PERK_URL']
       notifier.ping "#{self.business.name} a créé un nouveau bon plan : #{name}"
+    end
+  end
+
+  def name_uniqueness
+    if name.present?
+      name.upcase!
+      errors.add(:name, "Ce nom de bon plan est déjà utilisé !") if Perk.where(name: self.name).where(business_id: self.business_id).count > 0
     end
   end
 

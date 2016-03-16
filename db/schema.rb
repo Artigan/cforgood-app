@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160309204619) do
+ActiveRecord::Schema.define(version: 20160315141542) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 20160309204619) do
     t.string   "email"
     t.datetime "created_at",                                  null: false
     t.datetime "updated_at",                                  null: false
-    t.string   "description"
+    t.text     "description"
     t.string   "picture_file_name"
     t.string   "picture_content_type"
     t.integer  "picture_file_size"
@@ -79,7 +79,7 @@ ActiveRecord::Schema.define(version: 20160309204619) do
     t.datetime "leader_picture_updated_at"
     t.string   "leader_first_name"
     t.string   "leader_last_name"
-    t.string   "leader_description"
+    t.text     "leader_description"
     t.boolean  "active",                      default: false, null: false
     t.boolean  "online",                      default: false, null: false
     t.string   "leader_phone"
@@ -88,6 +88,8 @@ ActiveRecord::Schema.define(version: 20160309204619) do
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
+    t.boolean  "shop",                        default: true,  null: false
+    t.boolean  "itinerant",                   default: false, null: false
   end
 
   add_index "businesses", ["business_category_id"], name: "index_businesses_on_business_category_id", using: :btree
@@ -107,7 +109,7 @@ ActiveRecord::Schema.define(version: 20160309204619) do
 
   create_table "causes", force: :cascade do |t|
     t.string   "name"
-    t.string   "description"
+    t.text     "description"
     t.string   "street"
     t.string   "zipcode"
     t.string   "city"
@@ -136,6 +138,7 @@ ActiveRecord::Schema.define(version: 20160309204619) do
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
+    t.integer  "amount_impact"
   end
 
   add_index "causes", ["cause_category_id"], name: "index_causes_on_cause_category_id", using: :btree
@@ -230,6 +233,7 @@ ActiveRecord::Schema.define(version: 20160309204619) do
     t.float    "longitude"
     t.date     "date_partner"
     t.string   "code_promo"
+    t.date     "date_support"
   end
 
   add_index "users", ["cause_id"], name: "index_users_on_cause_id", using: :btree
