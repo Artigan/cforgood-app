@@ -4,7 +4,7 @@
   <!-- USER SUPPORT -->
   <span class="tab-subtitle">Votre engagement</span>
     <div class="user-support">
-      <div class="user-cause-container" style="background-image: url('<%= image_url Cause.find(current_user.cause_id).picture %>');">
+      <div class="user-cause-container" style="background-image: url('<%= image_url current_user.cause.picture %>');">
 
         <div class="user-cause-content">
           <div class="pictures-container">
@@ -19,7 +19,7 @@
             </div>
             <div class="picture-container">
               <% if current_user.cause_id.present? %>
-                <%= image_tag Cause.find(current_user.cause_id).logo.url(:thumb), class: 'cause-picture' %>
+                <%= image_tag current_user.cause.logo.url(:thumb), class: 'cause-picture' %>
               <% else %>
                 <div class="picture-none">
                   <%= render 'shared/icons/profile' %>
@@ -29,7 +29,7 @@
           </div>
           <div class="user-cause-disclaimer">
             <% if current_user.cause_id.present? %>
-              Vous soutenez actuellement<br><i><%= Cause.find(current_user.cause_id).name %></i>.
+              Vous soutenez actuellement<br><i><%= current_user.cause.name %></i>.
             <% else %>
               Choisissez une association à soutenir !
             <% end %>

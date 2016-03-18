@@ -38,7 +38,7 @@
           <!-- IF FLASH PERK -->
           <% if @business.perks.find(params[:perk_id]).flash? %>
             <% if @business.perks.find(params[:perk_id]).times > 0 %>
-              <span class="flash-notification" style="background-color: <%= BusinessCategory.find(@business.business_category_id).color %>;"><i class="fa fa-flash"></i><%= @business.perks.find(params[:perk_id]).times - Use.where(perk_id: params[:perk_id]).count %> restants</span>
+              <span class="flash-notification" style="background-color: <%= @business.business_category.color %>;"><i class="fa fa-flash"></i><%= @business.perks.find(params[:perk_id]).times - Use.where(perk_id: params[:perk_id]).count %> restants</span>
             <% end %>
             <span class="availabilities">Valable du <%= @business.perks.find(params[:perk_id]).start_date.try(:strftime, '%d %b.') %> au <%= @business.perks.find(params[:perk_id]).end_date.try(:strftime, '%d %b. %Y') %></span>
           <% end %>
@@ -55,7 +55,7 @@
                   <button class="empty">Bon plan épuisé</button>
                 </div>
               <% else %>
-                 <button type="button" class="use-button" style="background-color: <%= BusinessCategory.find(@business.business_category_id).color %>;">J'en profite</button>
+                 <button type="button" class="use-button" style="background-color: <%= @business.business_category.color %>;">J'en profite</button>
               <% end %>
             <%# end %>
           </div>
@@ -132,7 +132,7 @@
         <!-- IF FLASH PERK -->
         <% if @business.perks.find(params[:perk_id]).flash? %>
           <% if @business.perks.find(params[:perk_id]).times > 0 %>
-            <span class="flash-notification" style="background-color: <%= BusinessCategory.find(@business.business_category_id).color %>;"><i class="fa fa-flash"></i><%= @business.perks.find(params[:perk_id]).times - Use.where(perk_id: params[:perk_id]).count %> restants</span>
+            <span class="flash-notification" style="background-color: <%= @business.business_category.color %>;"><i class="fa fa-flash"></i><%= @business.perks.find(params[:perk_id]).times - Use.where(perk_id: params[:perk_id]).count %> restants</span>
           <% end %>
           <span class="availabilities">Valable du <%= @business.perks.find(params[:perk_id]).start_date.try(:strftime, '%d %b.') %> au <%= @business.perks.find(params[:perk_id]).end_date.try(:strftime, '%d %b. %Y') %></span>
         <% end %>
@@ -149,7 +149,7 @@
                 <button class="empty">Bon plan épuisé</button>
               </div>
             <% else %>
-               <button type="button" class="use-button" style="background-color: <%= BusinessCategory.find(@business.business_category_id).color %>;">J'en profite</button>
+               <button type="button" class="use-button" style="background-color: <%= @business.business_category.color %>;">J'en profite</button>
             <% end %>
           <%# end %>
         </div>
