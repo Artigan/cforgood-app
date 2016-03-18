@@ -5,7 +5,6 @@ class CreatePerks < ActiveRecord::Migration
       t.references :business, index: true, foreign_key: true
       t.text :description
       t.string :detail
-      t.references :periodicity, index: true, foreign_key: true
       t.integer :times
       t.datetime :start_date
       t.datetime :end_date
