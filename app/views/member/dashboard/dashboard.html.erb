@@ -43,7 +43,7 @@
           <a href="https://cforgood1.typeform.com/to/XQXiKD" class="notification-link" target="_blank">Aidez-nous</a>
         </div>
       </div>
-      <div class="in-central-city hidden">
+      <div class="in-central-city">
         <div class="flash">
           <i class="fa fa-bolt"></i>
         </div>
@@ -96,6 +96,38 @@
 
   <script>
     $(document).ready(function(){
+
+      // SET VISIBLE OR NOT LAYERS ON MAP
+      function setLayerVisibilty() {
+        var input = document.getElementsByClassName('category-item');
+        var i;
+        for (i = 0; i < input.length; i++) {
+          var filter = input[i].getAttribute('id');
+          var currentFilter = filter;
+          var outFilter = filter+"-flash"
+          // REVERSE CURRENT FILTER IF FLASH
+          if ($(".flash").hasClass('is-running')) {
+            currentFilter = outFilter;
+            outFilter = filter;
+          }
+          // HIDE NOT CURRENT LAYERS
+          if (map.getLayer(outFilter) != undefined) {
+            map.setLayoutProperty(outFilter, 'visibility', 'none');
+          }
+          // SET VISIBLE LAYERS SELECTED
+          if ($('#categories-all').hasClass('is-selected')) {
+            if (map.getLayer(currentFilter) != undefined) {
+              map.setLayoutProperty(currentFilter, 'visibility', 'visible');
+            }
+          } else {
+            if (map.getLayer(currentFilter) != undefined) {
+              map.setLayoutProperty(currentFilter, 'visibility',
+              input[i].classList.contains("is-selected") ? 'visible' : 'none');
+            }
+          }
+        }
+      }
+
       $('#open-notification').click(function(event) {
         $('.notifier').addClass('hidden');
         $('.side-notification').toggleClass('is-open-max');
@@ -106,6 +138,8 @@
 
       $('.in-central-city').click(function(event) {
         $('.flash').toggleClass('is-running');
+        // SET VISIBLE OR NOT LAYERS ON MAP
+        setLayerVisibilty();
       });
 
       $('#open-categories').click(function(event) {
@@ -116,31 +150,15 @@
       });
 
       $('.category-item').click(function(event) {
-        var input = document.getElementsByClassName('category-item');
         if ($(this).val('div').attr('id') != 'categories-all') {
           $(this).toggleClass('is-selected');
           $('#categories-all').removeClass('is-selected');
-          // SET VISIBLE SELECTED LAYERS
-          var i;
-          for (i = 0; i < input.length; i++) {
-            var filter = input[i].getAttribute('id');
-            if (map.getLayer(filter) != undefined) {
-              map.setLayoutProperty(filter, 'visibility',
-                input[i].classList.contains("is-selected") ? 'visible' : 'none');
-            }
-          }
         } else {
           $('.category-item').removeClass('is-selected');
           $('#categories-all').addClass('is-selected');
-          // SET VISIBLE ALL LAYERS
-          var i;
-          for (i = 0; i < input.length; i++) {
-            var filter = input[i].getAttribute('id');
-            if (map.getLayer(filter) != undefined) {
-              map.setLayoutProperty(filter, 'visibility', 'visible');
-            }
-          }
         }
+        // SET VISIBLE OR NOT LAYERS ON MAP
+        setLayerVisibilty();
       });
     });
 
