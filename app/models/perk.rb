@@ -6,7 +6,6 @@
 #  name                 :string
 #  business_id          :integer
 #  description          :text
-#  detail               :string
 #  times                :integer          default(0)
 #  start_date           :datetime
 #  end_date             :datetime
@@ -23,6 +22,7 @@
 #  picture_file_size    :integer
 #  picture_updated_at   :datetime
 #  perk_detail_id       :integer
+#  deleted              :boolean          default(FALSE), not null
 #
 # Indexes
 #

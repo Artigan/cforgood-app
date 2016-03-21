@@ -4,7 +4,7 @@
 #
 #  id                        :integer          not null, primary key
 #  name                      :string
-#  description               :string
+#  description               :text
 #  street                    :string
 #  zipcode                   :string
 #  city                      :string
@@ -33,6 +33,7 @@
 #  logo_content_type         :string
 #  logo_file_size            :integer
 #  logo_updated_at           :datetime
+#  amount_impact             :integer
 #
 # Indexes
 #
