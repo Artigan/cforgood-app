@@ -53,7 +53,7 @@ Rails.application.routes.draw do
       get 'dashboard',  to: 'dashboard#dashboard'
       get "profile",    to: "dashboard#profile"
     end
-    resources :perks, only: [:show, :edit, :update]
+    resources :perks, only: [:show, :edit, :update, :destroy]
   end
 
   namespace :asso do

@@ -1,0 +1,32 @@
+<div class="popup-overlay hidden">
+  <div class="popup-container delete-confirmation">
+    <div class="close-popup"><i class="fa fa-times"></i></div>
+    <div class="wrapper">
+      <!-- ILLUSTRATION-->
+      <%= render 'shared/icons/heart' %>
+    </div>
+    <span>Vous souhaitez vraiment supprimer votre bon plan ?</span>
+    <button type="submit" class="user-button">Validez</button>
+  </div>
+</div>
+
+<% content_for :after_js do %>
+  <script>
+    $(document).ready(function() {
+
+      $(".close-popup").click(function (e) {
+        e.preventDefault();
+        $(".popup-overlay").toggleClass('hidden');
+      });
+
+      $(".user-button").on("click", function (e) {
+        e.preventDefault();
+        var deletePerk = $(this).attr('class').split(" ")[1];
+        $("#"+deletePerk).submit();
+      });
+
+    });
+  </script>
+<% end %>
+
+

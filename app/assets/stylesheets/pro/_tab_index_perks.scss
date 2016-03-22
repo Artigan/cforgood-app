@@ -209,13 +209,13 @@
           }
         }
 
-        .perk-status {
+        .perk-status, {
           display: flex;
           align-items: center;
           justify-content: center;
           order: 3;
           padding: 10px;
-          margin: 0 auto 20px;
+          margin: 0 auto 10px;
           width: 90%;
           border-radius: 3px;
           background-color: #E1E1E1;
@@ -229,6 +229,21 @@
 
           &:hover, a:focus, a:active {
             background-color: #8BBD99;
+            color: #fff;
+          }
+        }
+
+        .perk-deletion-mobile {
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-end;
+          order: 4;
+          width: 90%;
+          margin: 0 auto 20px;
+          font-size: 12px;
+          color: #636363;
+
+          &:hover, a:focus, a:active {
             color: #fff;
           }
         }
@@ -317,10 +332,32 @@
           .perk-status {
             position: absolute;
             bottom: -20px;
-            right: 0;
+            right: 46px;
             width: 87px;
-            border-radius: 0 0 3px 0;
+            margin-bottom: 20px;
+            border-radius: 0;
             text-transform: none;
+          }
+
+          .perk-deletion {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            bottom: 0;
+            right: 0;
+            width: 45px;
+            height: 43px;
+            border-radius: 0 0 3px 0;
+            background-color: #E1E1E1;
+            font-size: 14px;
+            color: #fff;
+
+            &:hover, a:focus, a:active {
+              background-color: #8BBD99;
+              color: #fff;
+            }
           }
         }
       }
@@ -337,7 +374,7 @@
             display: block;
             position: absolute;
             bottom: 0;
-            right: 87px;
+            right: 135px;
             background-color: #9FD6AE;
             color: #fff;
             padding: 10px 20px;

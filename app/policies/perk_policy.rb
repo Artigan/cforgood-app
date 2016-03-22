@@ -16,4 +16,8 @@ class PerkPolicy < ApplicationPolicy
   def update?
     user.id == record.business_id
   end
+
+  def destroy?
+    user.id == record.business_id
+  end
 end

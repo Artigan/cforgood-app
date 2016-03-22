@@ -40,6 +40,7 @@ class Perk < ActiveRecord::Base
   belongs_to :perk_detail
 
   scope :active, -> { where(active: true) }
+  scope :undeleted, -> { where(deleted: false) }
 
   validates :name, presence: true, length: { maximum: 35 }
   validate :name_uniqueness, if: :name_changed?
@@ -79,6 +80,10 @@ class Perk < ActiveRecord::Base
     else
       true
     end
+  end
+
+  def deleted!
+    self.update(active: false, deleted: true)
   end
 
   private
