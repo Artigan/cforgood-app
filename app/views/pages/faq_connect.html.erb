@@ -1,9 +1,6 @@
-<%= content_for(:title) do %>
-  F.A.Q.
-<% end %>
-<%= content_for(:description) do %>
-  Foire aux questions
-<% end %>
+<% content_for :meta_title, "F.A.Q" %>
+<% content_for :meta_description, "Trouvez toutes les réponses à vos questions" %>
+<% content_for :meta_image %>
 
 <div class="container-fluid admin">
   <% if current_user %>

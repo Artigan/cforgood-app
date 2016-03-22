@@ -2,8 +2,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-<title><%= yield(:title) || "CforGood" %></title>
-<meta name="description" content="<%= (yield(:description) || "").squish %>">
+<title><%= meta_title %></title>
+<meta name="description" content="<%= meta_description %>">
+
 <!-- Favicons -->
 <link rel="apple-touch-icon" sizes="57x57" href="<%= image_path 'favicons/apple-touch-icon-57x57.png' %>">
 <link rel="apple-touch-icon" sizes="60x60" href="<%= image_path 'favicons/apple-touch-icon-60x60.png' %>">
@@ -28,43 +29,35 @@
 <meta name="msapplication-TileImage" content="<%= image_path 'favicons/mstile-144x144.png' %>">
 <meta name="msapplication-config" content="<%= image_path 'favicons/browserconfig.xml' %>">
 <meta name="theme-color" content="#ffffff">
-<meta name="google-site-verification" content="5kHzXFyZ62hKohYkbHDbaa-h6FpPHHEONunGF6lP9a0" />
-<!-- Schema.org markup for Google+ -->
-<meta itemprop="name" content="CforGood - La Révolution Positive">
-<meta itemprop="description" content="Le Moyen Le Plus Simple Pour Changer Le Monde Au Quotidien !">
-<meta itemprop="image" content="http://www.cforgood.com/assets/banner-website-e38e2d05c602fdfa57b9286b8c5bb15c6caa88d0d9f74495619984d5860686e0.jpg">
-<meta name="google-site-verification" content="6-6Q6EIdl23zIkiUuf8Su_GHq2HR_AekSHAu3mqnGag" />
-<!-- Open Graph FB -->
-<meta property="og:title" content="  CforGood - La Révolution Positive">
-<meta property="og:type" content="website">
-<meta property="og:description" content="  Le Moyen Le Plus Simple Pour Changer Le Monde Au Quotidien !">
-<meta property="og:url" content="http://www.cforgood.com"/>
-<meta property="og:image" content="http://www.cforgood.com/assets/banner-website-e38e2d05c602fdfa57b9286b8c5bb15c6caa88d0d9f74495619984d5860686e0.jpg"/>
-<meta property="og:site_name" content="CforGood">
-<!-- Twitter card data -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content="@CforGood">
-<meta name="twitter:title" content="  CforGood - La Révolution Positive">
-<meta name="twitter:description" content="  Le Moyen Le Plus Simple Pour Changer Le Monde Au Quotidien !">
-<meta name="twitter:creator" content="@CforGood">
-<meta name="twitter:image:src" content="http://www.cforgood.com/assets/banner-website-e38e2d05c602fdfa57b9286b8c5bb15c6caa88d0d9f74495619984d5860686e0.jpg">
 
-<!-- Validation propriety Google -->
+<!-- Google Site Verification -->
 <meta name="google-site-verification" content="l0XiovQqM1xIHH0sNA31AmubNQsVh9b-XrcL8OKr5J4" />
 
-<link rel="stylesheet" type="text/css" <%= image_path 'vendor/slick.css' %>/>
+<!-- Open Graph FB -->
+<meta property="og:title" content="<%= meta_title %>">
+<meta property="og:type" content="website">
+<meta property="og:description" content="<%= meta_description %>">
+<meta property="og:url" content="http://www.cforgood.com"/>
+<meta property="og:image" content="<%= image_url(meta_image) %>"/>
+<meta property="og:site_name" content="<%= meta_title %>">
+
+<!-- Twitter card data -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="<%= DEFAULT_META[:twitter_account] %>">
+<meta name="twitter:title" content="<%= meta_title %>">
+<meta name="twitter:description" content="<%= meta_description %>">
+<meta name="twitter:creator" content="<%= DEFAULT_META[:twitter_account] %>">
+<meta name="twitter:image:src" content="<%= image_url(meta_image) %>">
+
+<!-- Schema.org markup for Google+ -->
+<meta itemprop="name" content="<%= meta_title %>">
+<meta itemprop="description" content="<%= meta_description %>">
+<meta itemprop="image" content="<%= image_url(meta_image) %>">
+
+<!-- MailChimp -->
 <link href="//cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
-<style type="text/css">
-  #mc_embed_signup{background:#fff; clear:left; font:14px}
-</style>
-
-<!-- Bootsrap -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
-
 <!-- Mapbox GL -->
 <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.15.0/mapbox-gl.css' rel='stylesheet' />
-
 
 <%= stylesheet_link_tag :application, media: "all" %>
 <%= csrf_meta_tags %>
