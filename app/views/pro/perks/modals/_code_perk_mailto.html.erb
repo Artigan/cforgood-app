@@ -13,8 +13,8 @@
           <p class="box-code-legend">Envoyez-nous un email pour réserver votre bon plan : </p>
         </div>
         <div class="itinary send-mail">
-          <a href='mailto:<%= @business.email %>?subject=Réservation du Bon Plan : code <%= Perk.find(params[:perk_id]).perk_code %>' class="link-mail-business business-icon-container" target="_blank">
-          <i class="fa fa-envelope"></i><abbr>Ecrivez-nous !</abbr>
+          <a href='mailto:<%= @business.email %>?subject=Nouvelle demande de bon plan CforGood !&body=Bonjour <%= @business.leader_first_name if @business.leader_first_name.present? %>,%0D%0A<%= @business.name %> semble sympa comme tout !%0D%0AJe souhaiterais bénéficier du bon plan « <%= Perk.find(params[:perk_id]).name.gsub(/%/, "%25").upcase %> » (Code : <%= Perk.find(params[:perk_id]).perk_code %>), pouvez-vous me dire comment procéder ?%0D%0A Merci par avance !%0D%0A<%= current_user.first_name.capitalize if current_user.first_name.present? %> <%= current_user.last_name.capitalize if current_user.last_name.present? %>' class="link-mail-business business-icon-container" target="_blank">
+            <i class="fa fa-envelope"></i><abbr>Ecrivez-nous !</abbr>
           </a>
         </div>
       </figure>
