@@ -1,12 +1,13 @@
 <div class="popup-overlay hidden">
-  <div class="popup-container delete-confirmation">
+  <div class="popup-container delete-perk">
     <div class="close-popup"><i class="fa fa-times"></i></div>
     <div class="wrapper">
       <!-- ILLUSTRATION-->
-      <%= render 'shared/icons/heart' %>
+      <%= render 'shared/icons/trash' %>
     </div>
-    <span>Vous souhaitez vraiment supprimer votre bon plan ?</span>
-    <button type="submit" class="user-button">Validez</button>
+    <span>Oups !</span>
+    <p>Souhaitez-vous vraiment supprimer votre bon plan ?</p>
+    <button type="submit" id="delete-submit" class="business-button">Valider</button>
   </div>
 </div>
 
@@ -19,7 +20,7 @@
         $(".popup-overlay").toggleClass('hidden');
       });
 
-      $(".user-button").on("click", function (e) {
+      $("#delete-submit").on("click", function (e) {
         e.preventDefault();
         var deletePerk = $(this).attr('class').split(" ")[1];
         $("#"+deletePerk).submit();

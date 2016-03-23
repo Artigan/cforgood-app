@@ -73,9 +73,9 @@
             <%= link_to 'Modifier', edit_pro_perk_path(perk), class: "perk-status"  %>
             <!-- PERK DELETION -->
             <% if device_type == :mobile %>
-              <a class="perk-deletion-mobile" id="perk_<%= perk.id %>">Supprimer</a>
+              <a class="perk-delete-button perk-deletion-mobile" id="perk_<%= perk.id %>">Supprimer</a>
             <% else %>
-              <a class="perk-deletion" id="perk_<%= perk.id %>"><i class="fa fa-trash-o"></i></a>
+              <a class="perk-delete-button perk-deletion" id="perk_<%= perk.id %>"><i class="fa fa-trash-o"></i></a>
             <% end %>
             <div class="hidden">
               <%= simple_form_for :perk, url:  pro_perk_path(perk), method: :delete, html: { id: "delete_perk_#{perk.id}" } do |f| %>
@@ -103,10 +103,10 @@
         $('#' + updatePerk).submit();
       });
 
-      $(".perk-deletion").on("click", function() {
+      $(".perk-delete-button").on("click", function() {
         var deletePerk = "delete_" + ($(this).val("div").attr('id'));
         console.log(deletePerk);
-        $(".user-button").addClass(deletePerk);
+        $(".business-button").addClass(deletePerk);
         $(".popup-overlay").toggleClass("hidden");
       });
 

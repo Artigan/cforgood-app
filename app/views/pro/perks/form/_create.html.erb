@@ -41,7 +41,20 @@
     </div>
   </a>
 
-
+  <!-- Card INSPIRATION -->
+  <div class="type-card" id="perk-inspiration">
+    <div class="type-title">
+      <span>En manque d'inspiration !</span>
+      <span class="type-category">Quelques exemples...</span>
+    </div>
+    <div class="type-inspiration">
+      <ul>
+        <li id="perk-example-appel"><a><i class="fa fa-gift"></i></a></li>
+        <li id="perk-example-durable"><a><i class="fa fa-repeat"></i></a></li>
+        <li id="perk-example-flash"><a><i class="fa fa-bolt"></i></a></li>
+      </ul>
+    </div>
+  </div>
 
   <!-- Card Perk APPEL -->
   <div class="perk-appel perk-form-card">
@@ -171,6 +184,52 @@
       <%= f.button :submit, "Créer le bon plan", class: "btn-create" %>
     <% end %>
   </div>
+
+  <!-- Exemple Perk APPEL -->
+  <div class="perk-example-appel perk-form-card">
+    <div class="perk-form-title">
+      <i class="fa fa-times close-create"></i>
+      <span>Idées de Bons plans de bienvenue</span>
+      <span class="type-category">Aquisition</span>
+    </div>
+    <div class="type-example">
+      <ul>
+        <li><%= image_tag "exemple-perk-appel-naturome.png"%></li>
+        <li><%= image_tag "exemple-perk-appel-wan.png"%></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Exemple Perk DURABLE -->
+  <div class="perk-example-durable perk-form-card">
+    <div class="perk-form-title">
+      <i class="fa fa-times close-create"></i>
+      <span>Idées de Bons plans flash</span>
+      <span class="type-category">Fidélisation</span>
+    </div>
+    <div class="type-example">
+      <ul>
+        <li><%= image_tag "exemple-perk-appel-naturome.png"%></li>
+        <li><%= image_tag "exemple-perk-appel-wan.png"%></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Exemple Perk FLASH -->
+  <div class="perk-example-flash perk-form-card">
+    <div class="perk-form-title">
+      <i class="fa fa-times close-create"></i>
+      <span>Idées de Bons plans flash</span>
+      <span class="type-category">Activation</span>
+    </div>
+    <div class="type-example">
+      <ul>
+        <li><%= image_tag "exemple-perk-appel-naturome.png"%></li>
+        <li><%= image_tag "exemple-perk-appel-wan.png"%></li>
+      </ul>
+    </div>
+  </div>
+
 </div>
 
 <!-- CREATE PERK CONFIRMATION -->
@@ -206,30 +265,22 @@
         }
       });
 
-      // OPEN PERK APPEL ON CLICK
-      $("#type-create-appel").on("click", function() {
+      // OPEN PERK ON CLICK
+      $(".type-card").on("click", function() {
+        var perkType = $(this).attr('id');
         $(this).find('.fa-plus').addClass('plus-animation');
-        $('.dashboard').scrollTop(0);
+        $('.dashboard-create-perk').scrollTop(0);
         $(".dashboard-overlay").removeClass('hidden');
-        $(".perk-appel").addClass('type-show');
-        $(this).parents('.type-card').addClass('card-visible').siblings('.type-card').addClass('card-invisible');
+        $("."+perkType).addClass('type-show');
+        $(this).addClass('card-visible').siblings('.type-card').addClass('card-invisible');
       });
 
-      // OPEN PERK DURABLE ON CLICK
-      $("#type-create-durable").on("click", function() {
-        $(this).find('.fa-plus').addClass('plus-animation');
-        $('.dashboard').scrollTop(0);
+      // OPEN PERK EXAMPLE ON CLICK
+      $(".type-inspiration li").on("click", function() {
+        var perkExample = $(this).attr('id');
+        $('.dashboard-create-perk').scrollTop(0);
         $(".dashboard-overlay").removeClass('hidden');
-        $(".perk-durable").addClass('type-show');
-        $(this).parents('.type-card').addClass('card-visible').siblings('.type-card').addClass('card-invisible');
-      });
-
-      // OPEN PERK FLASH ON CLICK
-      $("#type-create-flash").on("click", function() {
-        $(this).find('.fa-plus').addClass('plus-animation');
-        $('.dashboard').scrollTop(0);
-        $(".dashboard-overlay").removeClass('hidden');
-        $(".perk-flash").addClass('type-show');
+        $("."+perkExample).addClass('type-show');
         $(this).parents('.type-card').addClass('card-visible').siblings('.type-card').addClass('card-invisible');
       });
 
