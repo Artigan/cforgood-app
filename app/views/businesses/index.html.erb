@@ -61,13 +61,19 @@
   <script>
     $(document).ready(function(){
 
+      // TOOGLE CATEGORY MENUs
       $('#open-categories').click(function(event) {
         $('.search-category-overlay').toggleClass('hidden');
-        //$('.container-perk-cards').toggleClass('blurred');
+        // TOOGLE CATEGORY MENU
         $('.search-category').toggleClass('is-open-max');
         $('.category-item').toggleClass('is-open-min');
-        $('.side-notification').removeClass('is-open-max');
-        $('.notification-panel').removeClass('is-open-min');
+      });
+
+      // TOOGLE CATEGORY OVERLAY
+      $('.search-category-overlay').click(function(event) {
+        $(this).addClass('hidden');
+        $('.search-category').removeClass('is-open-max');
+        $('.category-item').removeClass('is-open-min');
       });
     });
 
