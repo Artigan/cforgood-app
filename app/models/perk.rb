@@ -22,6 +22,7 @@
 #  picture_file_size    :integer
 #  picture_updated_at   :datetime
 #  perk_detail_id       :integer
+#  deleted              :boolean          default(FALSE), not null
 #
 # Indexes
 #
@@ -39,6 +40,7 @@ class Perk < ActiveRecord::Base
   belongs_to :perk_detail
 
   scope :active, -> { where(active: true) }
+  scope :undeleted, -> { where(deleted: false) }
 
   validates :name, presence: true, length: { maximum: 35 }
   validate :name_uniqueness, if: :name_changed?
@@ -78,6 +80,10 @@ class Perk < ActiveRecord::Base
     else
       true
     end
+  end
+
+  def deleted!
+    self.update(active: false, deleted: true)
   end
 
   private

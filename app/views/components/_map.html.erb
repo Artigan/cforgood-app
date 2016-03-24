@@ -49,6 +49,10 @@
           },
           "filter": ["==", "marker-symbol", symbol]
         });
+        // Layer with flash perk are not visible at first
+        if (layerID.includes("-flash")) {
+          map.setLayoutProperty(layerID, 'visibility', 'none');
+        }
       }
     });
   });
@@ -67,16 +71,15 @@
         return;
         var feature = features[0];
 
-        // Tranform geographical coordinates from the symbol in pixel coordinates
-        var newCoordinates = map.project(features[0].geometry.coordinates);
-        newCoordinates.y += 100;
-
         // Get center the map on those coordinates
         if (<%= device_type == :mobile %>) {
+          // Tranform geographical coordinates from the symbol in pixel coordinates
+          var newCoordinates = map.project(features[0].geometry.coordinates);
+          newCoordinates.y += 100;
           map.flyTo({center: map.unproject(newCoordinates)});
         }
 
-        new mapboxgl.Popup({
+        var popup = new mapboxgl.Popup({
             closeButton: false,
             closeOnClick: true,
             anchor: "bottom"})

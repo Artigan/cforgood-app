@@ -14,6 +14,7 @@ class Member::DashboardController < ApplicationController
     @geojson = {"type" => "FeatureCollection", "features" => []}
 
     @businesses.each do |business|
+      # EVERY BUSINESS
       @geojson["features"] << {
         "type": 'Feature',
         "geometry": {
@@ -22,10 +23,25 @@ class Member::DashboardController < ApplicationController
         },
         "properties": {
           "marker-symbol": business.business_category.marker_symbol,
-          "description": render_to_string(partial: "components/map_box", locals: { business: business })
+          "description": render_to_string(partial: "components/map_box", locals: { business: business, flash: false })
         }
       }
+      # ONLY BUSINESS WITH FLASH PERK
+      if business.perks.find_by_flash(true)
+        @geojson["features"] << {
+          "type": 'Feature',
+          "geometry": {
+            "type": 'Point',
+            "coordinates": [business.longitude, business.latitude]
+          },
+          "properties": {
+            "marker-symbol": business.business_category.marker_symbol+"-flash",
+            "description": render_to_string(partial: "components/map_box", locals: { business: business, flash: true })
+          }
+         }
+      end
     end
+
     respond_to do |format|
       format.html
       format.json{render json: @geojson}

@@ -17,14 +17,18 @@ ActiveAdmin.register User do
       f.input :last_name
       f.input :name
       f.input :email
+      f.input :street
+      f.input :zipcode
       f.input :city
       f.input :picture
+      f.input :cause
     end
     f.inputs "Admin" do
       f.input :admin
+      f.input :member
       f.input :active
     end
     f.actions
   end
-  permit_params :first_name, :last_name, :name, :email, :city, :picture, :admin, :active, :password
+  permit_params :first_name, :last_name, :name, :email, :street, :zipcode, :city, :picture, :admin, :member, :active, :password, :cause_id
 end

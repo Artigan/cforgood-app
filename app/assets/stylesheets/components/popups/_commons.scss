@@ -117,8 +117,8 @@
   }
 
 
-  /* CAUSE VALIDATION *********************************************************/
-  .cause-confirmation {
+  /* CAUSE VALIDATION & DELETE PERK********************************************/
+  .cause-confirmation, .delete-perk {
     .wrapper {
       display: flex;
       justify-content: center;
@@ -136,6 +136,7 @@
     }
   }
 
+
   /* NO PERKS *****************************************************************/
   .no-perks {
     .wrapper {
@@ -148,8 +149,8 @@
       background-color: #f4f4f4;
 
       svg {
-        height: 64px;
-        width: 64px;
+        height: 128px;
+        width: 128px;
       }
     }
 

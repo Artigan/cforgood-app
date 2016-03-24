@@ -69,7 +69,20 @@
                 </div>
               </div>
             </div>
+            <!-- PERK EDIT -->
             <%= link_to 'Modifier', edit_pro_perk_path(perk), class: "perk-status"  %>
+            <!-- PERK DELETION -->
+            <% if device_type == :mobile %>
+              <a class="perk-delete-button perk-deletion-mobile" id="perk_<%= perk.id %>">Supprimer</a>
+            <% else %>
+              <a class="perk-delete-button perk-deletion" id="perk_<%= perk.id %>"><i class="fa fa-trash-o"></i></a>
+            <% end %>
+            <div class="hidden">
+              <%= simple_form_for :perk, url:  pro_perk_path(perk), method: :delete, html: { id: "delete_perk_#{perk.id}" } do |f| %>
+                <%= f.submit "", :style => "display: none;" %>
+              <% end %>
+            </div>
+            <!-- DATE CRETATION -->
             <div class="perk-creation-date">
               <span>Créé : <em>le <%= perk.created_at.strftime("%d %b %Y") %></em></span>
             </div>
@@ -80,6 +93,8 @@
   </div>
 </div>
 
+<%= render 'pro/perks/form/delete_confirmation' %>
+
 <% content_for :after_js do %>
   <script>
     $(document).ready(function() {
@@ -87,6 +102,14 @@
         var updatePerk = "update_perk_" + ($(this).val("form").attr('id'))
         $('#' + updatePerk).submit();
       });
+
+      $(".perk-delete-button").on("click", function() {
+        var deletePerk = "delete_" + ($(this).val("div").attr('id'));
+        console.log(deletePerk);
+        $(".business-button").addClass(deletePerk);
+        $(".popup-overlay").toggleClass("hidden");
+      });
+
     });
   </script>
 <% end %>

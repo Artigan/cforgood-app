@@ -46,8 +46,8 @@
               <span class="user"><%= current_user.first_name %> <%= current_user.last_name %></span>
             <% end %>
             <% if current_user.cause_id.present? %>
-                <span class="cause"><%= Cause.find(current_user.cause_id).name %></span>
-                <%= image_tag (Cause.find(current_user.cause_id).logo), class: "img-circle cause" %>
+                <span class="cause"><%= current_user.cause.name %></span>
+                <%= image_tag (current_user.cause.logo), class: "img-circle cause" %>
             <% end %>
           </div>
         </div>
