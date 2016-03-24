@@ -174,3 +174,16 @@
     top: 90px;
   }
 }
+
+@media only screen and (max-width:320px){
+  .search-category {
+    span {
+      z-index: 1;
+    }
+
+    ul {
+      max-height: 310px;
+      overflow: overlay;
+    }
+  }
+}

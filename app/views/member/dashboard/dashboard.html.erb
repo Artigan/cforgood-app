@@ -34,29 +34,13 @@
       <%= render 'components/menu/notification_center' %>
 
       <!-- FLASH | FIND PERK -->
-      <div class="in-central-city">
-        <div class="flash">
-          <i class="fa fa-bolt"></i>
-        </div>
-      </div>
+      <%= render 'components/user_dashboard/flash_button' %>
 
       <!-- MENU | CATEGORY FILTER -->
       <%= render 'components/menu/search_category' %>
 
       <!-- ON MOBILE | WELCOME -->
-      <div class="welcome-user">
-          <% if current_user.picture.present? %>
-            <%= image_tag avatar_url(current_user) %>
-           <% else %>
-            <%= image_tag "default_pic.png" %>
-          <% end %>
-         <span> Bienvenue
-          <% if current_user.last_name != "" && current_user.last_name != nil %>
-            <%= current_user.first_name %> <%= current_user.last_name.chars.first + "." %>
-          <% elsif current_user.name != "" && current_user.name != nil %>
-            <%= current_user.name.split(" ")[0] %></span>
-          <% end %></span>
-      </div>
+      <%= render 'components/user_dashboard/welcome_user' %>
 
       <!-- MAP -->
       <div id="map-dashboard" class="user-map-businesses" style="width: 100%;"></div>
@@ -158,6 +142,5 @@
         $('.category-item').removeClass('is-open-min');
       });
     });
-
   </script>
 <% end %>
