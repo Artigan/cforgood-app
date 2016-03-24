@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160315141542) do
+ActiveRecord::Schema.define(version: 20160321154649) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -151,12 +151,6 @@ ActiveRecord::Schema.define(version: 20160315141542) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "periodicities", force: :cascade do |t|
-    t.string   "period"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "perk_details", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
@@ -184,6 +178,7 @@ ActiveRecord::Schema.define(version: 20160315141542) do
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
     t.integer  "perk_detail_id"
+    t.boolean  "deleted",              default: false, null: false
   end
 
   add_index "perks", ["business_id"], name: "index_perks_on_business_id", using: :btree

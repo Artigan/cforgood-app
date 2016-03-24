@@ -125,13 +125,12 @@
   background-color: #222222;
 }
 
-.user-button {
+.user-button, .business-button {
   position: relative;
   padding: 10px 20px;
   margin: 0;
   width: 100%;
   max-width: 320px;
-  background-color: $turquoise;
   color: #fff;
   text-transform: uppercase;
   border: none;
@@ -140,8 +139,18 @@
   font-weight: 600;
   outline: none;
   @include transition(all, 0.3s, ease-in-out);
+}
 
+.user-button {
+  background-color: $turquoise;
   &:hover {
     background-color: #32C4CB;
+  }
+}
+
+.business-button {
+  background-color: #9fd6ae;
+  &:hover {
+    background-color: #8BBD99;
   }
 }

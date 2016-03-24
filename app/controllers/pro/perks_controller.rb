@@ -1,10 +1,10 @@
 class Pro::PerksController < Pro::ProController
 
-  before_action :find_perk, only: [:edit, :update]
+  before_action :find_perk, only: [:edit, :update, :destroy]
   before_action :find_business, only: [:index, :new, :create]
 
   def index
-    @perks = policy_scope(Perk)
+    @perks = policy_scope(Perk).undeleted
   end
 
   def new
@@ -42,11 +42,20 @@ class Pro::PerksController < Pro::ProController
     end
   end
 
+  def destroy
+    if @perk.nb_views > 0 || @perk.uses.count > 0
+      @perk.deleted!
+    else
+      @perk.destroy
+    end
+    redirect_to pro_business_perks_path(current_business)
+  end
+
   private
 
   def find_perk
-     @perk = Perk.find(params[:id])
-     authorize @perk
+    @perk = Perk.find(params[:id])
+    authorize @perk
   end
 
   def find_business
