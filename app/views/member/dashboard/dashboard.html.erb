@@ -71,7 +71,6 @@
 
   <script>
     $(document).ready(function(){
-
       // SET VISIBLE OR NOT LAYERS ON MAP
       function setLayerVisibilty() {
         var input = document.getElementsByClassName('category-item');
@@ -103,46 +102,10 @@
         }
       }
 
-      $('#open-notification').click(function(event) {
-        $('.notification-center-overlay').toggleClass('hidden');
-        $('.notifier').addClass('hidden');
-
-        $('.search-category-overlay').addClass('hidden');
-        $('.search-category').removeClass('is-open-max');
-        $('.search-category').removeClass('is-open-min');
-
-        $('.notification-center').toggleClass('is-open-max');
-        $('.notification-panel').toggleClass('is-open-min');
-      });
-
-      $('.notification-center-overlay').click(function(event) {
-        $(this).addClass('hidden');
-        $('.notification-center').toggleClass('is-open-max');
-        $('.notification-panel').toggleClass('is-open-min');
-        $('.search-category').removeClass('is-open-max');
-        $('.search-category').removeClass('is-open-min');
-      });
-
+      // TOOGLE FLASH PERKS LAYER ON MAP
       $('.in-central-city').click(function(event) {
         $('.flash').toggleClass('is-running');
-        // SET VISIBLE OR NOT LAYERS ON MAP
         setLayerVisibilty();
-      });
-
-      $('#open-categories').click(function(event) {
-        $('.search-category-overlay').toggleClass('hidden');
-        $('.search-category').toggleClass('is-open-max');
-        $('.category-item').toggleClass('is-open-min');
-        $('.side-notification').removeClass('is-open-max');
-        $('.notification-panel').removeClass('is-open-min');
-      });
-
-      $('.search-category-overlay').click(function(event) {
-        $(this).addClass('hidden');
-        $('.search-category').toggleClass('is-open-max');
-        $('.search-category').toggleClass('is-open-min');
-        $('.notification-center').removeClass('is-open-max');
-        $('.notification-panel').removeClass('is-open-min');
       });
 
       $('.category-item').click(function(event) {
@@ -155,6 +118,44 @@
         }
         // SET VISIBLE OR NOT LAYERS ON MAP
         setLayerVisibilty();
+      });
+
+      // TOOGLE NOTIFICATION CENTER MENU & HIDE CATEGORY MENU
+      $('#open-notification').click(function(event) {
+        $('.notification-center-overlay').toggleClass('hidden');
+        $('.search-category-overlay').addClass('hidden');
+        // HIDE CATEGORY MENU
+        $('.search-category').removeClass('is-open-max');
+        $('.category-item').removeClass('is-open-min');
+        // TOOGLE NOTIFICATION CENTER MENU
+        $('.notification-center').toggleClass('is-open-max');
+        $('.notification-panel').toggleClass('is-open-min');
+      });
+
+      // TOOGLE NOTIFICATION CENTER OVERLAY
+      $('.notification-center-overlay').click(function(event) {
+        $(this).addClass('hidden');
+        $('.notification-center').toggleClass('is-open-max');
+        $('.notification-panel').toggleClass('is-open-min');
+      });
+
+      // TOOGLE CATEGORY MENU & HIDE NOTIFICATION CENTER
+      $('#open-categories').click(function(event) {
+        $('.search-category-overlay').toggleClass('hidden');
+        $('.notification-center-overlay').addClass('hidden');
+        //HIDE NOTIFICATION CENTER
+        $('.notification-center').removeClass('is-open-max');
+        $('.notification-panel').removeClass('is-open-min');
+        // TOOGLE CATEGORY MENU
+        $('.search-category').toggleClass('is-open-max');
+        $('.category-item').toggleClass('is-open-min');
+      });
+
+      // TOOGLE CATEGORY OVERLAY
+      $('.search-category-overlay').click(function(event) {
+        $(this).addClass('hidden');
+        $('.search-category').removeClass('is-open-max');
+        $('.category-item').removeClass('is-open-min');
       });
     });
 

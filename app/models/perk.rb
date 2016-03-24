@@ -22,7 +22,6 @@
 #  picture_file_size    :integer
 #  picture_updated_at   :datetime
 #  perk_detail_id       :integer
-#  deleted              :boolean          default(FALSE), not null
 #
 # Indexes
 #
