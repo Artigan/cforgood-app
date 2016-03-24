@@ -26,7 +26,14 @@
 class Address < ActiveRecord::Base
   belongs_to :business
 
-  validates :day, :inclusion=> { :in => I18n.t(:"date.day_names") }
+  scope :active, -> { where(active: true) }
+
+  validates :day, presence: true, :inclusion=> { :in => I18n.t(:"date.day_names") }
+  validates :business_id, presence: true
+  validates :street, presence: true
+  validates :zipcode, presence: true
+  validates :city, presence: true
+  validate :day_uniqueness, if: :day_changed?
 
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
@@ -39,5 +46,11 @@ class Address < ActiveRecord::Base
 
   def address
     "#{street}, #{zipcode} #{city}"
+  end
+
+  def day_uniqueness
+    if day.present? && business_id.present?
+      errors.add(:perk_code, "Ce jour est déjà créé !") if Address.where(day: self.day).where(business_id: self.business_id).count > 0
+    end
   end
 end

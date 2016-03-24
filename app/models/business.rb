@@ -63,6 +63,7 @@ class Business < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :recoverable,
          :rememberable, :trackable, :validatable
   belongs_to :business_category
+  has_many :addresses, dependent: :destroy
   has_many :perks, dependent: :destroy
 
   scope :active, -> { where(active: true) }

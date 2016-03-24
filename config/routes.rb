@@ -49,6 +49,7 @@ Rails.application.routes.draw do
 
   namespace :pro do
     resources :businesses, only: [:show, :update] do
+      resources :addresses
       resources :perks, only: [:index, :new, :create, :update]
       get 'dashboard',  to: 'dashboard#dashboard'
       get "profile",    to: "dashboard#profile"
