@@ -25,4 +25,19 @@
 
 class Address < ActiveRecord::Base
   belongs_to :business
+
+  validates :day, :inclusion=> { :in => I18n.t(:"date.day_names") }
+
+  geocoded_by :address
+  after_validation :geocode, if: :address_changed?
+
+  private
+
+  def address_changed?
+    :street_changed? || :zipcode_changed? || :city_changed?
+  end
+
+  def address
+    "#{street}, #{zipcode} #{city}"
+  end
 end
