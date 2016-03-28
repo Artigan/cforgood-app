@@ -1,30 +1,32 @@
 class Pro::AddressesController < ApplicationController
 
+  before_action :find_address, only: [:edit, :update, :destroy]
   before_action :find_business, only: [:index, :new, :create]
 
   def index
-    @addresses = policy_scope(Address)
+    # @addresses = policy_scope(Address)
+    @addresses = current_business.addresses
   end
 
-  def new
-    @address = Address.new
-    authorize @address
-  end
+  # def new
+  #   @address = Address.new
+  #   authorize @address
+  # end
 
-  def create
-    @address = @business.adresses.build(address_params)
-    authorize @address
+  # def create
+  #   @address = @business.adresses.build(address_params)
+  #   authorize @address
 
-    respond_to do |format|
-      if @address.save
-        format.html { redirect_to pro_business_addresses_path(@business) }
-        format.js {}
-      else
-        format.html { render :new }
-        format.js {}
-      end
-    end
-  end
+  #   respond_to do |format|
+  #     if @address.save
+  #       format.html { redirect_to pro_business_addresses_path(@business) }
+  #       format.js {}
+  #     else
+  #       format.html { render :new }
+  #       format.js {}
+  #     end
+  #   end
+  # end
 
   def edit
   end
@@ -41,16 +43,16 @@ class Pro::AddressesController < ApplicationController
     end
   end
 
-  def destroy
-    @address.destroy
-    redirect_to pro_business_addresses_path(current_business)
-  end
+  # def destroy
+  #   @address.destroy
+  #   redirect_to pro_business_addresses_path(current_business)
+  # end
 
   private
 
   def find_address
     @address = Address.find(params[:id])
-    authorize @address
+    # authorize @address
   end
 
   def find_business
