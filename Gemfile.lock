@@ -180,6 +180,8 @@ GEM
       responders
     intercom (3.4.0)
       json (~> 1.8)
+    intercom-rails (0.2.31)
+      activesupport (> 3.0)
     jquery-rails (4.1.0)
       rails-dom-testing (~> 1.0)
       railties (>= 4.2.0)
@@ -388,6 +390,7 @@ DEPENDENCIES
   geocoder
   gibbon
   high_voltage
+  intercom-rails
   jquery-rails
   letter_opener
   mail_form
