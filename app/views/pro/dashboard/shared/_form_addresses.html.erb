@@ -5,35 +5,37 @@
       <div class="address-edit">
         <%= simple_form_for [:pro, @business, address], remote: false, method: :patch do |f| %>
           <%= f.error_notification %>
-          <%= f.input :day, label: false, placeholder: "Le jour", required: true %>
+          <%= f.input :day, label: false, placeholder: 'Jour', required: true, label: 'Jour' %>
           <%= f.input :street, placeholder: 'Rue', required: true, label: 'Adresse' %>
           <%= f.input :zipcode, placeholder: 'Code postal', required: true, label: "Code postal" %>
           <%= f.input :city, placeholder: 'Ville', required: true, label: 'Ville' %>
-          <%= f.button :submit, "Modifer cette addresse", class: "btn-update" %>
+          <%= f.button :submit, "Modifier", class: "address-update" %>
         <% end %>
-      </div>
-      <!-- ADDRESS ACTIVATION -->
-      <div class="address-activation">
-        <span>Désactiver / Activer</span>
-        <input class="tgl tgl-light" id="<%= address.id %>" type="checkbox" <%= 'checked="checked"' if address.active %>>
-        <label class="tgl-btn" for="<%= address.id %>"></label>
-        <%= simple_form_for :address, url: pro_business_address_path(current_business, address.id), method: :patch, html: { id: "update_address_#{address.id}", class: "hidden" } do |f| %>
-          <%= f.input :active, as: :hidden, input_html: { value: !address.active } %>
-          <%= f.submit "", :style => "display: none;" %>
-        <% end %>
+        <!-- ADDRESS DELETION -->
+        <a class="address-delete-button" id="address_<%= address.id %>"><i class="fa fa-trash-o"></i></a>
+        <!-- ADDRESS ACTIVATION -->
+        <div class="address-activation">
+          <span>Désactiver / Activer</span>
+          <input class="tgl tgl-light" id="<%= address.id %>" type="checkbox" <%= 'checked="checked"' if address.active %>>
+          <label class="tgl-btn" for="<%= address.id %>"></label>
+          <%= simple_form_for :address, url: pro_business_address_path(current_business, address.id), method: :patch, html: { id: "update_address_#{address.id}", class: "hidden" } do |f| %>
+            <%= f.input :active, as: :hidden, input_html: { value: !address.active } %>
+            <%= f.submit "", :style => "display: none;" %>
+          <% end %>
+        </div>
       </div>
     <% end %>
 
     <!-- ADDRESS NEW -->
     <div class="address-new">
-  <!--     <%#= simple_form_for new_pro_business_address(current_business, @address), remote: true do |f| %>
-        <%#= f.error_notification %>
-        <%#= f.input :day, label: false, placeholder: "Le jour", required: true %>
-        <%#= f.input :street, placeholder: 'Rue', required: true, label: 'Adresse' %>
-        <%#= f.input :zipcode, placeholder: 'Code postal', required: true, label: "Code postal" %>
-        <%#= f.input :city, placeholder: 'Ville', required: true, label: 'Ville' %>
-        <%#= f.button :submit, "Ajouter cette addresse", class: "btn-create" %>
-      <%# end %> -->
+      <%= simple_form_for [:pro, @business], remote: true do |f| %>
+        <%= f.error_notification %>
+        <%= f.input :day, label: false, placeholder: "Le jour", required: true %>
+        <%= f.input :street, placeholder: 'Rue', required: true, label: 'Adresse' %>
+        <%= f.input :zipcode, placeholder: 'Code postal', required: true, label: "Code postal" %>
+        <%= f.input :city, placeholder: 'Ville', required: true, label: 'Ville' %>
+        <%= f.button :submit, "Ajouter cette addresse", class: "btn-create" %>
+      <% end %>
     </div>
   </div>
 </div>
