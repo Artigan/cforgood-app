@@ -41,6 +41,9 @@ class Perk < ActiveRecord::Base
   scope :active, -> { where(active: true) }
   scope :undeleted, -> { where(deleted: false) }
 
+  extend TimeSplitter::Accessors
+  split_accessor :start_date, :end_date
+
   validates :name, presence: true, length: { maximum: 35 }
   validate :name_uniqueness, if: :name_changed?
   validates :description, presence: true, length: { maximum: 220 }
