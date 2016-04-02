@@ -115,14 +115,14 @@ class Perk < ActiveRecord::Base
   def name_uniqueness
     if name.present?
       name.upcase!
-      errors.add(:name, "Ce nom de bon plan est déjà utilisé !") if Perk.where(name: self.name).where(business_id: self.business_id).count > 0
+      errors.add(:name, "Ce nom de bon plan est déjà utilisé !") if Perk.where(name: self.name, deleted: false).where(business_id: self.business_id).count > 0
     end
   end
 
   def perk_code_uniqueness
     if perk_code.present?
       perk_code.upcase!
-      errors.add(:perk_code, "Ce code n'est pas disponible !") if Perk.where(perk_code: self.perk_code).where(business_id: self.business_id).count > 0
+      errors.add(:perk_code, "Ce code n'est pas disponible !") if Perk.where(perk_code: self.perk_code, deleted: false).where(business_id: self.business_id).count > 0
     end
   end
 end

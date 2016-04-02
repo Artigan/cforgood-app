@@ -426,12 +426,29 @@
         pointer-events: none;
       }
 
-      .perk_start_date,
-      .perk_end_date {
-        width: 45%;
+      .perk_start_date_date,
+      .perk_end_date_date {
+        width: 30%;
         display: inline-block;
         float: left;
+        margin-right: 3%;
       }
+
+      .perk_start_date_hour,
+      .perk_end_date_hour,
+      .perk_start_date_min,
+      .perk_end_date_min {
+        width: 5%;
+        margin-right: 3%;
+      }
+
+      .perk_start_date_hour:after,
+      .perk_end_date_hour:after {
+          content: ":";
+          position: absolute;
+          margin-top: -32px;
+          margin-left: 5%;
+       }
 
       .perk_start_date { margin-right: 5%; }
       .perk_end_date { margin-left: 5%; }
