@@ -40,6 +40,7 @@ class Perk < ActiveRecord::Base
 
   scope :active, -> { where(active: true) }
   scope :undeleted, -> { where(deleted: false) }
+  scope :in_time, -> { where('perks.active = ? and (perks.durable = ? or perks.appel = ? or (perks.flash = ? and perks.start_date <= ? and perks.end_date >= ?))', true, true, true, true, Time.now, Time.now) }
 
   extend TimeSplitter::Accessors
   split_accessor :start_date, :end_date
@@ -78,7 +79,7 @@ class Perk < ActiveRecord::Base
 
   def perk_in_time?
     if self.flash
-      Time.now >= self.start_date && Time.now <= self.end_date
+      (Time.now >= self.start_date && Time.now <= self.end_date) && (self.times == 0 || Use.where(perk_id: self.id).count < self.times)
     else
       true
     end

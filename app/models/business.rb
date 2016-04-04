@@ -66,7 +66,7 @@ class Business < ActiveRecord::Base
   has_many :perks, dependent: :destroy
 
   scope :active, -> { where(active: true) }
-  scope :for_map, -> { where('active = ? and (shop = ? or itinerant = ?)', true, true, true) }
+  scope :for_map, -> { where('businesses.active = ? and (businesses.shop = ? or businesses.itinerant = ?)', true, true, true) }
 
   validates :email, presence: true, uniqueness: true
   validates :business_category_id, presence: true
@@ -107,10 +107,6 @@ class Business < ActiveRecord::Base
 
   def perks_new_users
     perks.reduce(0) { |sum, perk| sum + perk.uses.select(:user_id).distinct.count }
-  end
-
-  def on_map?
-    self.active && ( self.shop || self.itinerant )
   end
 
   private
