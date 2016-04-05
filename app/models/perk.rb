@@ -79,7 +79,6 @@ class Perk < ActiveRecord::Base
 
   def perk_in_time?
     if self.flash
-      raise
       (self.start_date <= Time.now && self.end_date >= Time.now) && (self.times == 0 || Use.where(perk_id: self.id).count < self.times)
     else
       true
