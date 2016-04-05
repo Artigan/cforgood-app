@@ -115,11 +115,9 @@
     </div>
     <label class="hint--top-right" data-hint="Déterminez une période de disponibilité">Période *</label>
     <%= f.input :start_date_date, as: :string, label: false, placeholder: "Début", input_html: {"data-provide" => "datepicker", "data-date-language" => "fr", value: f.object.start_date.try(:strftime, '%d/%m/%Y') } %>
-    <%= f.input :start_date_hour, collection: 0..24, label: false, selected: f.object.start_date_hour || sprintf('%02d',0) %>
-    <%= f.input :start_date_min, collection: [0, 15, 30, 45, 59], label: false, selected: f.object.start_date_min || 0 %>
+    <%= f.input :start_date_hour, collection: 0..23, label: false, selected: f.object.start_date_hour || 0 %>
     <%= f.input :end_date_date, as: :string, label: false, placeholder: "Fin", :input_html => {"data-provide" => "datepicker", "data-date-language" => "fr", value: f.object.end_date.try(:strftime, '%d/%m/%Y') } %>
-    <%= f.input :end_date_hour, collection: 0..24, label: false, selected: f.object.end_date_hour || 23 %>
-    <%= f.input :end_date_min, collection: [0, 15, 30, 45, 59], label: false, selected: f.object.end_date_min || 59 %>
+    <%= f.input :end_date_hour, collection: 0..23, label: false, selected: f.object.end_date_hour || 23 %>
     <label class="hint--top-right" data-hint="Nombre d'activations possibles">Quantité</label>
     <%= f.input :times, as: :integer, label: false, placeholder: "0" %>
     <div class="quantity-selector">
