@@ -2,7 +2,7 @@
 <% if !Rails.env.development? && business_signed_in? %>
   <%= intercom_script_tag({
     :app_id => ENV['INTERCOM_APP_ID'],
-    :user_id => current_business.id,
+    :user_id => 'B'+current_business.id.to_s,
     :email => current_business.email,
     :name => current_business.name,
     :created_at => current_business.created_at,
