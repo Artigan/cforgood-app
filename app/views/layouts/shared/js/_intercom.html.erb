@@ -8,6 +8,7 @@
     :created_at => current_business.created_at,
     :custom_data => {
       'user_type' => 'business',
+      'user_active' => current_business.active,
       'first_name' => current_business.leader_first_name,
       'perks_all' => current_business.perks.count,
       'perks_active' => current_business.perks.undeleted.count

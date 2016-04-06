@@ -51,7 +51,8 @@ IntercomRails.config do |config|
   #
   config.user.custom_data = {
     :user_type => Proc.new { "user" },
-    :first_name => Proc.new { |user| user.first_name }
+    :first_name => Proc.new { |user| user.first_name },
+    :user_active => Proc.new { |user| user.active }
   }
 
   # == User -> Company association
