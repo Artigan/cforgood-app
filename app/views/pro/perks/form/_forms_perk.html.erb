@@ -118,6 +118,7 @@
     <%= f.input :start_date_hour, collection: 0..23, label: false, selected: f.object.start_date_hour || 0 %>
     <%= f.input :end_date_date, as: :string, label: false, placeholder: "Fin", :input_html => {"data-provide" => "datepicker", "data-date-language" => "fr", value: f.object.end_date.try(:strftime, '%d/%m/%Y') } %>
     <%= f.input :end_date_hour, collection: 0..23, label: false, selected: f.object.end_date_hour || 23 %>
+    <%= f.input :all_day, label: "Toute la journée", as: :boolean, checked: f.object.all_day %>
     <label class="hint--top-right" data-hint="Nombre d'activations possibles">Quantité</label>
     <%= f.input :times, as: :integer, label: false, placeholder: "0" %>
     <div class="quantity-selector">
@@ -134,3 +135,133 @@
     <%= f.button :submit, submit_label, class: "btn-create" %>
   <% end %>
 </div>
+
+
+<% content_for :after_js do %>
+
+  <script>
+
+    $(document).ready(function() {
+
+      function setDate() {
+        if ($("#perk_all_day").is(':checked')) {
+          if ($("#perk_start_date_date").val() != "") {
+            $("#perk_end_date_date").val($("#perk_start_date_date").val()).attr("disabled", true);
+          }
+          $("#perk_start_date_hour").val(0).attr("disabled", true);
+          $("#perk_end_date_hour").val(23).attr("disabled", true);
+        } else {
+          $("#perk_end_date_date").attr("disabled", false);
+          $("#perk_start_date_hour").attr("disabled", false);
+          $("#perk_end_date_hour").attr("disabled", false);
+        }
+      }
+
+      // INITITALISATION DATE
+      if (<%= @perk.all_day %>) {
+        setDate();
+      }
+
+      // PERK FLASH - INCREMENT QUANTITY
+      $("#quantity-plus").on("click", function(e) {
+        e.preventDefault();
+        fieldId = $('#perk_times');
+        var currentVal = parseInt($(fieldId).val());
+        if (!isNaN(currentVal)) {
+          $(fieldId).val((currentVal + 1).toString());
+        } else {
+          $(fieldId).val('1');
+        }
+      });
+
+      // PERK FLASH - DECREASE QUANTITY
+      $("#quantity-minus").on("click", function(e) {
+        e.preventDefault();
+        fieldId = $('#perk_times');
+        var currentVal = parseInt($(fieldId).val());
+        if (!isNaN(currentVal) && currentVal > 0) {
+          $(fieldId).val(currentVal - 1);
+        } else {
+          $(fieldId).val(0);
+        }
+      });
+
+      // SUPPLY BOOLEAN FIELDS
+      $(".type-card").on("click", function(e) {
+        e.preventDefault;
+        var typePerk = $(this).val('div').attr('id');
+
+        if (typePerk == "perk-appel") {
+          $(".perk-appel #perk_appel").val("true");
+          $(".perk-appel #perk_durable").val("false");
+          $(".perk-appel #perk_flash").val("false");
+        }
+        if (typePerk == "perk-durable") {
+          $(".perk-durable #perk_appel").val("false");
+          $(".perk-durable #perk_durable").val("true");
+          $(".perk-durable #perk_flash").val("false");
+        }
+        if (typePerk == "perk-flash") {
+          $(".perk-flash #perk_appel").val("false");
+          $(".perk-flash #perk_durable").val("false");
+          $(".perk-flash #perk_flash").val("true");
+        }
+      });
+
+      // CHECKBOX ALL_DAY
+      $("#perk_all_day").on("click", function(e) {
+        e.preventDefault;
+        if ($("#perk_all_day").is(':checked')) {
+          if ($("#perk_start_date_date").val() != "") {
+            $("#perk_end_date_date").val($("#perk_start_date_date").val()).attr("disabled", true);
+          }
+          $("#perk_start_date_hour").val(0).attr("disabled", true);
+          $("#perk_end_date_hour").val(23).attr("disabled", true);
+        } else {
+          $("#perk_end_date_date").attr("disabled", false);
+          $("#perk_start_date_hour").attr("disabled", false);
+          $("#perk_end_date_hour").attr("disabled", false);
+        }
+      });
+
+      $("#perk_start_date_date").on("change", function(e) {
+        e.preventDefault;
+        setDate();
+      });
+
+      // PICTURE LOAD PREVIEW
+      function readURL(file, classe) {
+        var reader = new FileReader();
+          reader.onload = function (e) {
+            if ($("#"+classe).attr('src') === undefined) {
+              $(".picture-container."+classe+" svg").remove();
+              $(".picture-container."+classe).append('<img src=" " class="picture-perk-preview" id="'+classe+'">')
+            };
+            $("#"+classe).attr('src', e.target.result);
+          }
+        reader.readAsDataURL(file);
+      }
+
+      $("#perk_appel_file").on("change", function(e) {
+        e.preventDefault();
+        var newFile = document.querySelector('#perk_appel_file').files[0];
+        $("#perk_appel_file").parent().children().html(newFile.name);
+        readURL(newFile, "perk-appel-preview");
+      });
+      $("#perk_durable_file").on("change", function(e) {
+        e.preventDefault();
+        var newFile = document.querySelector('#perk_durable_file').files[0];
+        $("#perk_durable_file").parent().children().html(newFile.name);
+        readURL(newFile, "perk-durable-preview");
+      });
+      $("#perk_flash_file").on("change", function(e) {
+        e.preventDefault();
+        var newFile = document.querySelector('#perk_flash_file').files[0];
+        $("#perk_flash_file").parent().children().html(newFile.name);
+        readURL(newFile, "perk-flash-preview");
+      });
+    });
+
+  </script>
+
+<% end %>

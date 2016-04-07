@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160321154649) do
+ActiveRecord::Schema.define(version: 20160407075135) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,21 @@ ActiveRecord::Schema.define(version: 20160321154649) do
   add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
   add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
   add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
+
+  create_table "addresses", force: :cascade do |t|
+    t.integer  "business_id"
+    t.string   "day"
+    t.string   "street"
+    t.string   "zipcode"
+    t.string   "city"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.boolean  "active",      default: true, null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "addresses", ["business_id"], name: "index_addresses_on_business_id", using: :btree
 
   create_table "business_categories", force: :cascade do |t|
     t.string   "name"
@@ -151,12 +166,6 @@ ActiveRecord::Schema.define(version: 20160321154649) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "periodicities", force: :cascade do |t|
-    t.string   "period"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "perk_details", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
@@ -185,6 +194,7 @@ ActiveRecord::Schema.define(version: 20160321154649) do
     t.datetime "picture_updated_at"
     t.integer  "perk_detail_id"
     t.boolean  "deleted",              default: false, null: false
+    t.boolean  "all_day",              default: false, null: false
   end
 
   add_index "perks", ["business_id"], name: "index_perks_on_business_id", using: :btree
@@ -251,6 +261,7 @@ ActiveRecord::Schema.define(version: 20160321154649) do
   add_index "uses", ["perk_id"], name: "index_uses_on_perk_id", using: :btree
   add_index "uses", ["user_id"], name: "index_uses_on_user_id", using: :btree
 
+  add_foreign_key "addresses", "businesses"
   add_foreign_key "perks", "businesses"
   add_foreign_key "users", "causes"
   add_foreign_key "uses", "perks"

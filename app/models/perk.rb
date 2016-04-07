@@ -22,6 +22,8 @@
 #  picture_file_size    :integer
 #  picture_updated_at   :datetime
 #  perk_detail_id       :integer
+#  deleted              :boolean          default(FALSE), not null
+#  all_day              :boolean          default(FALSE), not null
 #
 # Indexes
 #
@@ -41,6 +43,7 @@ class Perk < ActiveRecord::Base
   scope :active, -> { where(active: true) }
   scope :undeleted, -> { where(deleted: false) }
   scope :in_time, -> { where('perks.active = ? and (perks.durable = ? or perks.appel = ? or (perks.flash = ? and perks.start_date <= ? and perks.end_date >= ?))', true, true, true, true, Time.now, Time.now) }
+  scope :flash_in_time, -> { where('perks.active = ? and perks.flash = ? and perks.start_date <= ? and perks.end_date >= ?', true, true, Time.now, Time.now) }
 
   extend TimeSplitter::Accessors
   split_accessor :start_date, :end_date
@@ -92,6 +95,12 @@ class Perk < ActiveRecord::Base
   private
 
   def dates_required_if_flash
+    if flash && all_day
+      self.start_date = start_date.change(hour: 0, min: 0)
+      self.end_date = start_date.change(hour: 23, min: 59)
+    else
+      self.end_date = end_date.change(min: 0)
+    end
     if flash && !start_date.present?
       errors.add(:start_date, "La date de début est obligatoire pour un bon plan flash.")
     end

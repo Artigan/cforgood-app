@@ -27,7 +27,7 @@ class Member::DashboardController < ApplicationController
         }
       }
       # ONLY BUSINESS WITH FLASH PERK
-      if business.perks.where("active = ? and flash = ? and start_date <= ? and end_date >= ?", true, true, Time.now, Time.now).count > 0
+      if business.perks.flash_in_time.count > 0
         @geojson["features"] << {
           "type": 'Feature',
           "geometry": {

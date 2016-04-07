@@ -459,6 +459,13 @@
       .perk_start_date { margin-right: 5%; }
       .perk_end_date { margin-left: 10%; }
 
+      .perk_all_day label {
+        position: absolute;
+        margin-top: -20px;
+        font-size: 11px;
+        font-weight: 100;
+      }
+
       .perk_times {
         width: 25%;
         margin-right: 10%;
