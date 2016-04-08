@@ -43,6 +43,7 @@ gem 'mobvious-rails'
 gem 'slack-notifier'
 
 gem 'bootstrap-datepicker-rails'
+gem "time_splitter"
 
 gem "rails-i18n"
 gem "devise-i18n"

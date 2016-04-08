@@ -22,6 +22,8 @@
 #  picture_file_size    :integer
 #  picture_updated_at   :datetime
 #  perk_detail_id       :integer
+#  deleted              :boolean          default(FALSE), not null
+#  all_day              :boolean          default(FALSE), not null
 #
 # Indexes
 #
@@ -40,6 +42,11 @@ class Perk < ActiveRecord::Base
 
   scope :active, -> { where(active: true) }
   scope :undeleted, -> { where(deleted: false) }
+  scope :in_time, -> { where('perks.active = ? and (perks.durable = ? or perks.appel = ? or (perks.flash = ? and perks.start_date <= ? and perks.end_date >= ?))', true, true, true, true, Time.now, Time.now) }
+  scope :flash_in_time, -> { where('perks.active = ? and perks.flash = ? and perks.start_date <= ? and perks.end_date >= ?', true, true, Time.now, Time.now) }
+
+  extend TimeSplitter::Accessors
+  split_accessor :start_date, :end_date
 
   validates :name, presence: true, length: { maximum: 35 }
   validate :name_uniqueness, if: :name_changed?
@@ -75,7 +82,7 @@ class Perk < ActiveRecord::Base
 
   def perk_in_time?
     if self.flash
-      Time.now >= self.start_date && Time.now <= self.end_date
+      (self.start_date <= Time.now && self.end_date >= Time.now) && (self.times == 0 || Use.where(perk_id: self.id).count < self.times)
     else
       true
     end
@@ -88,6 +95,12 @@ class Perk < ActiveRecord::Base
   private
 
   def dates_required_if_flash
+    if flash && all_day
+      self.start_date = start_date.change(hour: 0, min: 0)
+      self.end_date = start_date.change(hour: 23, min: 59)
+    else
+      self.end_date = end_date.change(min: 0)
+    end
     if flash && !start_date.present?
       errors.add(:start_date, "La date de début est obligatoire pour un bon plan flash.")
     end
@@ -112,14 +125,14 @@ class Perk < ActiveRecord::Base
   def name_uniqueness
     if name.present?
       name.upcase!
-      errors.add(:name, "Ce nom de bon plan est déjà utilisé !") if Perk.where(name: self.name).where(business_id: self.business_id).count > 0
+      errors.add(:name, "Ce nom de bon plan est déjà utilisé !") if Perk.where(name: self.name, deleted: false).where(business_id: self.business_id).count > 0
     end
   end
 
   def perk_code_uniqueness
     if perk_code.present?
       perk_code.upcase!
-      errors.add(:perk_code, "Ce code n'est pas disponible !") if Perk.where(perk_code: self.perk_code).where(business_id: self.business_id).count > 0
+      errors.add(:perk_code, "Ce code n'est pas disponible !") if Perk.where(perk_code: self.perk_code, deleted: false).where(business_id: self.business_id).count > 0
     end
   end
 end

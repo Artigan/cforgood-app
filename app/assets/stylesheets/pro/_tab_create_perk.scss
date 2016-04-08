@@ -426,15 +426,45 @@
         pointer-events: none;
       }
 
-      .perk_start_date,
-      .perk_end_date {
-        width: 45%;
+      .perk_start_date_date,
+      .perk_end_date_date {
+        width: 36%;
         display: inline-block;
         float: left;
+        margin-right: 3%;
+      }
+
+      .perk_end_date_date  {
+        margin-left: 5%;
+      }
+
+      .perk_start_date_hour,
+      .perk_end_date_hour, {
+        width: 5%;
+        margin-right: 3%;
+      }
+
+      .perk_start_date_hour:after,
+      .perk_end_date_hour:after {
+        content: "h";
+        position: absolute;
+        margin-top: -30px;
+        margin-left: 5%;
+        font-size: 14px;
+        font-weight: 100;
+        color: #A5A5A5;
+
       }
 
       .perk_start_date { margin-right: 5%; }
-      .perk_end_date { margin-left: 5%; }
+      .perk_end_date { margin-left: 10%; }
+
+      .perk_all_day label {
+        position: absolute;
+        margin-top: -20px;
+        font-size: 11px;
+        font-weight: 100;
+      }
 
       .perk_times {
         width: 25%;
