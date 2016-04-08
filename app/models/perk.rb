@@ -23,6 +23,7 @@
 #  picture_updated_at   :datetime
 #  perk_detail_id       :integer
 #  deleted              :boolean          default(FALSE), not null
+#  all_day              :boolean          default(FALSE), not null
 #
 # Indexes
 #

@@ -19,9 +19,6 @@
         <li role="profile">
           <%= link_to "Votre commerce", "#shop", role: "tab", data_toggle: "tab" %>
         </li>
-        <li role="profile">
-          <%= link_to "Vos adresses", "#address", role: "tab", data_toggle: "tab" %>
-        </li>
       </ul>
       <!-- Tab panes -->
       <div class="tab-content">
@@ -30,9 +27,6 @@
         </div>
         <div role="tabpanel" class="tab-pane" id="shop">
           <%= render "pro/dashboard/shared/form_business" %>
-        </div>
-        <div role="tabpanel" class="tab-pane" id="address">
-          <%= render "pro/dashboard/shared/form_addresses" %>
         </div>
       </div>
     </div>

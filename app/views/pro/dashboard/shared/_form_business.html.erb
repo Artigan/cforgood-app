@@ -1,5 +1,8 @@
 <div class="form-edit-container">
   <div class="form-edit">
+    <!-- LINK ADDRESSES -->
+    <%= render "pro/dashboard/shared/form_addresses" %>
+    <!-- FORM BUSINESS -->
     <%= simple_form_for(current_business, url: pro_update_business_path, method: :put, remote: true, authenticity_token: true) do |f| %>
       <%= f.error_notification %>
       <div class="col-1">
@@ -28,6 +31,11 @@
         <%= f.input :shop, label: "Avez-vous une boutique physique ?", as: :radio_buttons, collection: [['Oui', true ], ['Non', false ]], checked: current_business.shop || false  %>
         <%= f.input :online, label: "Avez-vous une e-boutique ?", as: :radio_buttons, collection: [['Oui', true ], ['Non', false ]], checked: current_business.online || false  %>
         <%= f.input :itinerant, label: "Etes-vous itinérant ?", as: :radio_buttons, collection: [['Oui', true ], ['Non', false ]], checked: current_business.itinerant|| false  %>
+        <% if current_business.itinerant %>
+          <button class="form-address"><%= render "shared/icons/address" %></button>
+        <% else %>
+          <button class="form-address hidden"><%= render "shared/icons/address" %></button>
+        <% end %>
         <%= f.input :url, placeholder: 'www.johndoe.com', label: 'Site web' %>
         <%= f.input :email, placeholder: 'contact@johndoe.com', required: true, label: "Email" %>
         <%= f.input :telephone, placeholder: 'Téléphone', required: true, label: 'Téléphone' %>
@@ -62,6 +70,12 @@
         var newFile = document.querySelector('#shop input[type=file]').files[0];
         $(".business_picture").children().html(newFile.name);
         readURL(newFile);
+      });
+
+      // LINK TO ADRESSE
+      $(".form-address").on("click", function(e) {
+        e.preventDefault();
+        $(".address-overlay").removeClass("hidden");
       });
     });
   </script>

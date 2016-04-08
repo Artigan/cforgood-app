@@ -61,7 +61,8 @@
   /* PERK CREATION CONFIRMATION *************************************************/
 
   .waiting,
-  .done-overlay {
+  .done-overlay,
+  .address-overlay {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -150,6 +151,25 @@
         &:hover, &:active, &:focus {
           color: #636363;
         }
+      }
+    }
+
+    .address-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      padding: 45px 20px 20px;
+      width: 300px;
+      background-color: #fff;
+      border-radius: 3px;
+      z-index: 500;
+
+      .wrapper {
+        padding: 20px 20px 15px;
+        width: 140px;
+        background-color: #9FD6AE;
+        border-radius: 50%;
       }
     }
   }
