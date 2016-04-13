@@ -95,17 +95,19 @@ class Perk < ActiveRecord::Base
   private
 
   def dates_required_if_flash
-    if flash && all_day
-      self.start_date = start_date.change(hour: 0, min: 0)
-      self.end_date = start_date.change(hour: 23, min: 59)
-    else
-      self.end_date = end_date.change(min: 0)
-    end
-    if flash && !start_date.present?
-      errors.add(:start_date, "La date de début est obligatoire pour un bon plan flash.")
-    end
-    if flash && !end_date.present?
-      errors.add(:end_date, "La date de fin est obligatoire pour un bon plan flash.")
+    if flash
+      if !start_date.present?
+        errors.add(:start_date, "La date de début est obligatoire pour un bon plan flash.")
+      end
+      if !end_date.present? && !all_day
+        errors.add(:end_date, "La date de fin est obligatoire pour un bon plan flash.")
+      end
+      if all_day && start_date.present?
+        self.start_date = start_date.change(hour: 0, min: 0)
+        self.end_date = start_date.change(hour: 23, min: 59)
+      else
+        self.end_date = end_date.change(min: 0)
+      end
     end
   end
 
