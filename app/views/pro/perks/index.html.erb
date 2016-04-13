@@ -105,7 +105,6 @@
 
       $(".perk-delete-button").on("click", function() {
         var deletePerk = "delete_" + ($(this).val("div").attr('id'));
-        console.log(deletePerk);
         $(".business-button").addClass(deletePerk);
         $(".popup-overlay").toggleClass("hidden");
       });

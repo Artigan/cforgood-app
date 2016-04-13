@@ -39,9 +39,9 @@ ActiveRecord::Schema.define(version: 20160407075135) do
     t.string   "city"
     t.float    "latitude"
     t.float    "longitude"
-    t.boolean  "active",      default: true, null: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.boolean  "active"
   end
 
   add_index "addresses", ["business_id"], name: "index_addresses_on_business_id", using: :btree

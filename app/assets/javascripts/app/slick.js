@@ -126,3 +126,13 @@ $('.causes-carrousel').slick({
   slidesToScroll: 1,
   variableWidth: true
 });
+
+$('.days-carrousel').slick({
+  dots: false,
+  arrows:true,
+  infinite: false,
+  autoplay: false,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  variableWidth: true
+});

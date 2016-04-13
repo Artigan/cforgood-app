@@ -8,25 +8,19 @@ class Pro::AddressesController < ApplicationController
     @addresses = current_business.addresses
   end
 
-  # def new
-  #   @address = Address.new
-  #   authorize @address
-  # end
-
-  # def create
-  #   @address = @business.adresses.build(address_params)
-  #   authorize @address
-
-  #   respond_to do |format|
-  #     if @address.save
-  #       format.html { redirect_to pro_business_addresses_path(@business) }
-  #       format.js {}
-  #     else
-  #       format.html { render :new }
-  #       format.js {}
-  #     end
-  #   end
-  # end
+  def create
+    @address = @business.addresses.build(address_params)
+    # authorize @address
+    respond_to do |format|
+      if @address.save
+        format.html { redirect_to pro_business_addresses_path(@business) }
+        format.js {}
+      else
+        format.html { redirect_to pro_business_addresses_path(@business) }
+        format.js {}
+      end
+    end
+  end
 
   def edit
   end
@@ -44,8 +38,15 @@ class Pro::AddressesController < ApplicationController
   end
 
   # def destroy
-  #   @address.destroy
-  #   redirect_to pro_business_addresses_path(current_business)
+  #   respond_to do |format|
+  #     if @address.destroy
+  #       format.html { redirect_to pro_business_addresses_path(current_business) }
+  #       format.js {}
+  #     else
+  #       format.html { render :edit }
+  #       format.js {}
+  #     end
+  #   end
   # end
 
   private

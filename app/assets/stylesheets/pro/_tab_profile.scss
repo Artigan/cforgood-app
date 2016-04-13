@@ -290,7 +290,7 @@
 
         /* PROFILE - ADDRESS *********************************************/
 
-        button.form-address {
+        button.button-address {
           position: absolute;
           right: 0;
           margin-top: 10px;
@@ -303,8 +303,92 @@
           }
         }
 
-        .address-edit {
+        .days-carrousel {
+          display: flex;
+          flex-direction: column;
+          width: 265px;
+
+          a:active,
+          a:focus, {
+            outline: none;
+          }
+        }
+
+        .slick-slide {
+          margin-top: 30px;
+          margin-right: 40px;
+        }
+
+        .slick-list {
+          order: 1;
+          margin-top: -30px;
+          min-height: 310px;
+        }
+
+        .slick-arrow,
+        .slick-prev,
+        .slick-prev:hover,
+        .slick-prev:active,
+        .slick-prev:focus,
+        .slick-next,
+        .slick-next:hover,
+        .slick-next:active,
+        .slick-next:focus {
           position: relative;
+          width: 40px;
+          height: 40px;
+          background-color: #9FD6AE;
+          z-index: 10;
+          bottom: -35px;
+        }
+
+        .slick-prev {
+          order: 2;
+          top: -260px;
+          left: 0px;
+          border-radius: 3px 0 0 3px;
+
+           &:before {
+            font-family: FontAwesome;
+            font-size: 24px;
+            content: '\f104';
+          }
+        }
+
+        .slick-next {
+          order: 3;
+          top: -300px;
+          left: 225px;
+          border-radius: 0 3px 3px 0;
+
+          &:before {
+            font-family: FontAwesome;
+            font-size: 24px;
+            content: '\f105';
+          }
+        }
+
+        .title-address {
+          width: 265px;
+          height: 40px;
+          padding: 8px 20px;
+          margin-bottom: 15px;
+          color: #fff;
+          text-align: center;
+          background-color: #9FD6AE;
+          border-radius: 3px 3px 0 0;
+
+          &.day {
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+          }
+        }
+
+        .form-address {
+          width: 265px;
+          margin-left: -18px;
+          margin-top: 20px;
 
           label {
             font-size: 11px;
@@ -318,101 +402,12 @@
           .address_zipcode { width: 35%; }
           .address_city { width: 63%; margin-left: 1%; }
 
-          .address-activation {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            order: 2;
-            padding: 20px;
+          .btn-update, .btn-new {
             width: 100%;
-
-            span {
-              position: absolute;
-              top: 0;
-              right: 0;
-              font-size: 11px;
-              text-transform: uppercase;
-              font-weight: 600;
-              color: #636363;
-            }
-
-            // Toogle Radio Button
-            .tgl{
-              position: absolute;
-              display: none;
-              // add default box-sizing for this scope
-              &, &:after, &:before,
-              & *, & *:after, & *:before,
-              & + .tgl-btn{
-                box-sizing: border-box;
-                &::selection{
-                  background: none;
-                }
-              }
-              + .tgl-btn{
-                position: absolute;
-                top: 30px;
-                right: 38px;
-                outline: 0;
-                display: block;
-                width: 4em;
-                height: 2em;
-                cursor: pointer;
-                user-select: none;
-                &:after, &:before{
-                  position: relative;
-                  display: block;
-                  content: "";
-                  width: 50%;
-                  height: 100%;
-                }
-                &:after{
-                  left: 0;
-                }
-                &:before{
-                  display: none;
-                }
-              }
-              &:checked{
-                + .tgl-btn{
-                  &:after{
-                    left: 50%;
-                  }
-                }
-              }
-            }
-
-            .tgl-light{
-              + .tgl-btn{
-                background: #f0f0f0;
-                border-radius: 2em;
-                padding: 2px;
-                transition: all .4s ease;
-                &:after{
-                  border-radius: 50%;
-                  background: #fff;
-                  transition: all .2s ease;
-                }
-              }
-
-              &:checked{
-                + .tgl-btn{
-                  background: #9FD6AE;
-                }
-              }
-            }
-          }
-
-          .btn.address-update {
-            position: absolute;
-            bottom: -55px;
-            right: 46px;
-            width: 87px;
-            height: 35px;
             margin-bottom: 20px;
             border-radius: 0 0 0 3px;
             font-size: 12px;
-            text-transform: none;
+            text-transform: uppercase;
 
             &:hover, a:focus, a:active {
               background-color: #8BBD99;
@@ -420,14 +415,14 @@
             }
           }
 
-          .address-delete-button {
-            position: absolute;
+          .btn-delete {
             display: flex;
-            align-items: center;
+            float: right;
+            position: relative;
             justify-content: center;
             padding: 10px;
-            bottom: 6px;
-            right: 0;
+            bottom: 55px;
+            right: 5px;
             width: 45px;
             height: 34px;
             border-radius: 0 0 3px 0;
@@ -438,6 +433,86 @@
             &:hover, a:focus, a:active {
               background-color: #8BBD99;
               color: #fff;
+            }
+          }
+        }
+
+        .address-activation {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          width: 100%;
+
+          span {
+            margin-bottom: 0;
+            text-transform: uppercase;
+            font-size: 12px;
+            font-weight: 600;
+            color: #636363;
+          }
+
+          // Toogle Radio Button
+          .tgl{
+            display: none;
+            // add default box-sizing for this scope
+            &, &:after, &:before,
+            & *, & *:after, & *:before,
+            & + .tgl-btn{
+              box-sizing: border-box;
+              &::selection{
+                background: none;
+              }
+            }
+            + .tgl-btn{
+              outline: 0;
+              margin-right: 5px;
+              display: block;
+              width: 5em;
+              height: 2.5em;
+              margin-right: 5px;
+              position: relative;
+              cursor: pointer;
+              user-select: none;
+              &:after, &:before{
+                position: relative;
+                display: block;
+                content: "";
+                width: 50%;
+                height: 100%;
+              }
+              &:after{
+                left: 0;
+              }
+              &:before{
+                display: none;
+              }
+            }
+            &:checked{
+              + .tgl-btn{
+                &:after{
+                  left: 50%;
+                }
+              }
+            }
+          }
+
+          .tgl-light{
+            + .tgl-btn{
+              background: #f0f0f0;
+              border-radius: 2em;
+              padding: 2px;
+              transition: all .4s ease;
+              &:after{
+                border-radius: 50%;
+                background: #fff;
+                transition: all .2s ease;
+              }
+            }
+
+            &:checked{
+              + .tgl-btn{
+                background: #9FD6AE;
+              }
             }
           }
         }

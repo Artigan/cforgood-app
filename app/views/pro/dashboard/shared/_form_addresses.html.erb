@@ -1,50 +1,104 @@
 <div class="address-overlay hidden">
   <div class="address-container">
-    <div class="form-edit">
-      <% @business.addresses.each do |address| %>
-        <!-- ADDRESS EDIT -->
-        <div class="address-edit">
-          <%= simple_form_for [:pro, @business, address], remote: false, method: :patch do |f| %>
-            <%= f.error_notification %>
-            <%= f.input :day, label: false, placeholder: 'Jour', required: true, label: 'Jour' %>
-            <%= f.input :street, placeholder: 'Rue', required: true, label: 'Adresse' %>
-            <%= f.input :zipcode, placeholder: 'Code postal', required: true, label: "Code postal" %>
-            <%= f.input :city, placeholder: 'Ville', required: true, label: 'Ville' %>
-            <%= f.button :submit, "Modifier", class: "address-update" %>
-          <% end %>
-          <!-- ADDRESS DELETION -->
-          <a class="address-delete-button" id="address_<%= address.id %>"><i class="fa fa-trash-o"></i></a>
-          <!-- ADDRESS ACTIVATION -->
-          <div class="address-activation">
-            <span>Désactiver / Activer</span>
-            <input class="tgl tgl-light" id="<%= address.id %>" type="checkbox" <%= 'checked="checked"' if address.active %>>
-            <label class="tgl-btn" for="<%= address.id %>"></label>
-            <%= simple_form_for :address, url: pro_business_address_path(current_business, address.id), method: :patch, html: { id: "update_address_#{address.id}", class: "hidden" } do |f| %>
-              <%= f.input :active, as: :hidden, input_html: { value: !address.active } %>
-              <%= f.submit "", :style => "display: none;" %>
+    <!-- CLOSE BUTTON -->
+    <button type="button" class="close-button"><i class="fa fa-times"></i></button>
+    <!-- DAY CARROUSEL -->
+    <div class="days-carrousel">
+      <% I18n.t(:"date.day_names").each do |day| %>
+        <div class="title-address">
+          <span class="day"><%= day %></span>
+          <div class="form-address" id="<%= day %>">
+            <% if address = current_business.addresses.find_by_day(day) %>
+              <% address = current_business.addresses.find_by_day(day) %>
+              <!-- ADDRESS ACTIVATION -->
+              <%= link_to pro_address_path(address), class: 'link-statut', method: :patch, :remote => true do %>
+                  <i class="icon-trash"></i>
+                <% end %>
+              <div class="address-activation">
+                <span>Désactiver / Activer</span>
+                <input class="tgl tgl-light" id="<%= address.id %>" type="checkbox" <%= 'checked="checked"' if address.active %>>
+                <label class="tgl-btn" for="<%= address.id %>"></label>
+                <%= simple_form_for [:pro, current_business, address], remote: true, method: :patch, html: { id: "update_address_#{address.id}", class: "hidden" } do |f| %>
+                  <%= f.input :active, as: :hidden, input_html: { value: !address.active } %>
+                  <%= f.submit "", :style => "display: none;" %>
+                <% end %>
+              </div>
+              <!-- EDIT ADDRESS -->
+              <%= simple_form_for [:pro, current_business, address], remote: true, method: :patch do |f| %>
+                <%= f.input :street, placeholder: 'Rue', label: 'Adresse *' %>
+                <%= f.input :zipcode, placeholder: 'Code postal', label: 'Code postal *' %>
+                <%= f.input :city, placeholder: 'Ville', label: 'Ville *' %>
+                <%= f.button :submit, "Modifier cette adresse", class: "btn-update", disabled: false  %>
+              <% end %>
+              <!-- ADDRESS DELETION -->
+              <!-- <a class="btn-delete" id="address_<%= address.id %>"><i class="fa fa-trash-o"></i></a> -->
+              <!-- <div class="hidden"> -->
+                <%#= simple_form_for [:pro, @business, address], remote: true, method: :delete, authenticity_token: true, html: { id: "delete_address_#{address.id}" } do |f| %>
+                  <%#= f.submit "", :style => "display: none;" %>
+              <%# end %>
+            <!-- </div> -->
+            <% else %>
+              <!-- CREATE ADDRESS  -->
+              <%= simple_form_for [:pro, @business, Address.new], remote: true do |f| %>
+                <div class="address-activation">
+                  <span>Désactiver / Activer</span>
+                  <input class="tgl tgl-light" id="active-<%= day %>" type="checkbox" <%= 'checked="checked"' %>>
+                  <label class="tgl-btn" for="active-<%= day %>"></label>
+                  <%= f.input :active, as: :hidden %>
+                </div>
+                <%= f.input :day, as: :hidden, input_html: { value: day } %>
+                <%= f.input :street, placeholder: 'Rue', label: 'Adresse *' %>
+                <%= f.input :zipcode, placeholder: 'Code postal',  label: 'Code postal *' %>
+                <%= f.input :city, placeholder: 'Ville', label: 'Ville *' %>
+                <%= f.button :submit, "Ajouter cette adresse", class: "btn-new", disabled: true  %>
+              <% end %>
             <% end %>
           </div>
         </div>
       <% end %>
-
-      <!-- ADDRESS NEW -->
-  <!--     <div class="address-new">
-        <%#= simple_form_for [:pro, @business, @address], remote: true do |f| %>
-          <%#= f.error_notification %>
-          <%#= f.input :day, label: false, placeholder: "Le jour", required: true %>
-          <%#= f.input :street, placeholder: 'Rue', required: true, label: 'Adresse' %>
-          <%#= f.input :zipcode, placeholder: 'Code postal', required: true, label: "Code postal" %>
-          <%#= f.input :city, placeholder: 'Ville', required: true, label: 'Ville' %>
-          <%#= f.button :submit, "Ajouter cette addresse", class: "btn-create" %>
-        <%# end %>
-      </div> -->
     </div>
   </div>
 </div>
 
+<%= render 'pro/dashboard/shared/delete_confirmation' %>
+
 <% content_for :after_js do %>
   <script>
     $(document).ready(function() {
+
+      // CLOSE ADDRESS OVERLAY
+      $('.close-button').click(function() {
+        $('.address-overlay').addClass('hidden');
+      });
+
+      // CONTROL REQUIRED FIELDS
+      $(".form-address").on("change", function(e) {
+        e.preventDefault();
+        var dayName = $(this).attr('id');
+        if ($('#'+dayName).find('#address_street').val() != "" &&
+            $('#'+dayName).find('#address_zipcode').val() != "" &&
+            $('#'+dayName).find('#address_city').val() != "" ) {
+          $('#'+dayName).find('.btn').attr('disabled', false);
+        } else {
+        $('#'+dayName).find('.btn').attr('disabled', true);
+        }
+      });
+
+      // ACTIVE/DESACTIVE ADDRESS
+      $(':checkbox').change(function() {
+        console.log('submit');
+        var updateAddress = "update_address_" + ($(this).val("form").attr('id'))
+        // $('#' + updateAddress).submit();
+        $('.link-statut').submit();
+      });
+
+      // $(".btn-delete").on("click", function() {
+      //   var addressId = ($(this).val("div").attr('id'));
+      //   // $(".business-button").addClass(addressId);
+      //   $('#delete_'+addressId).submit();
+      //   // $(".popup-overlay").toggleClass("hidden");
+      // });
+
     });
   </script>
 <% end %>
