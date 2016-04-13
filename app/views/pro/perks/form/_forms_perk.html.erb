@@ -213,8 +213,9 @@
         e.preventDefault;
         if ($("#perk_all_day").is(':checked')) {
           if ($("#perk_start_date_date").val() != "") {
-            $("#perk_end_date_date").val($("#perk_start_date_date").val()).attr("disabled", true);
+            $("#perk_end_date_date").val($("#perk_start_date_date").val());
           }
+          $("#perk_end_date_date").attr("disabled", true);
           $("#perk_start_date_hour").val(0).attr("disabled", true);
           $("#perk_end_date_hour").val(23).attr("disabled", true);
         } else {
