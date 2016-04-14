@@ -11,9 +11,11 @@
             <% if address = current_business.addresses.find_by_day(day) %>
               <% address = current_business.addresses.find_by_day(day) %>
               <!-- ADDRESS ACTIVATION -->
-              <%= link_to pro_address_path(address), class: 'link-statut', method: :patch, :remote => true do %>
+              <!-- ACTIVATION WITH LINK -->
+              <%= link_to pro_address_path(address, "address" => {active: true}), class: 'link-statut tgl tgl-light', method: :patch, :remote => true do %>
                   <i class="icon-trash"></i>
-                <% end %>
+                <% end %> -->
+              <!-- ACTIVATION WITH FORM -->
               <div class="address-activation">
                 <span>Désactiver / Activer</span>
                 <input class="tgl tgl-light" id="<%= address.id %>" type="checkbox" <%= 'checked="checked"' if address.active %>>
@@ -25,6 +27,11 @@
               </div>
               <!-- EDIT ADDRESS -->
               <%= simple_form_for [:pro, current_business, address], remote: true, method: :patch do |f| %>
+                <label class="hint--top-right" data-hint="Sélectionnez les horaires">Horaire</label>
+                <%= f.input :start_time_hour, label: false, collection: 0..23, selected: 12 %>
+                <%= f.input :start_time_min, label: false, collection: [0, 15, 30, 45], selected: 0 %>
+                <%= f.input :end_time_hour, label: false, collection: 0..23, selected: 14 %>
+                <%= f.input :end_time_min, label: false, collection: [0, 15, 30, 45], selected: 0 %>
                 <%= f.input :street, placeholder: 'Rue', label: 'Adresse *' %>
                 <%= f.input :zipcode, placeholder: 'Code postal', label: 'Code postal *' %>
                 <%= f.input :city, placeholder: 'Ville', label: 'Ville *' %>
@@ -47,6 +54,10 @@
                   <%= f.input :active, as: :hidden %>
                 </div>
                 <%= f.input :day, as: :hidden, input_html: { value: day } %>
+                <%= f.input :start_time_hour, label: 'Horaires *', collection: 0..23, selected: 12 %>
+                <%= f.input :start_time_min, label: false, collection: [0, 15, 30, 45], selected: 0 %>
+                <%= f.input :end_time_hour, label: false, collection: 0..23, selected: 14 %>
+                <%= f.input :end_time_min, label: false, collection: [0, 15, 30, 45], selected: 0 %>
                 <%= f.input :street, placeholder: 'Rue', label: 'Adresse *' %>
                 <%= f.input :zipcode, placeholder: 'Code postal',  label: 'Code postal *' %>
                 <%= f.input :city, placeholder: 'Ville', label: 'Ville *' %>
@@ -89,7 +100,7 @@
         console.log('submit');
         var updateAddress = "update_address_" + ($(this).val("form").attr('id'))
         // $('#' + updateAddress).submit();
-        $('.link-statut').submit();
+        $('.link-statut').click();
       });
 
       // $(".btn-delete").on("click", function() {

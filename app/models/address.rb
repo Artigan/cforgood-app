@@ -13,6 +13,8 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  active      :boolean
+#  start_time  :time
+#  end_time    :time
 #
 # Indexes
 #

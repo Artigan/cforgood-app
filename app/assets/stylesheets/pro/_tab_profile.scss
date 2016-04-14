@@ -397,10 +397,36 @@
             color: #636363;
           }
 
+          .address_start_time_hour,
+          .address_start_time_min,
+          .address_end_time_hour,
+          .address_end_time_min {
+            width: 10%;
+
+            &:before {
+              color: #636363;
+              font-weight: 100;
+            }
+          }
+
+          .address_start_time_hour:before {
+            content: 'De';
+          }
+
+          .address_end_time_hour:before, {
+            content: 'à';
+          }
+
+          .address_start_time_min:before,
+          .address_end_time_min:before {
+            content: ':';
+          }
+
           .address_day { width: 40%; }
           .address_street { width: 100%; }
           .address_zipcode { width: 35%; }
           .address_city { width: 63%; margin-left: 1%; }
+
 
           .btn-update, .btn-new {
             width: 100%;
