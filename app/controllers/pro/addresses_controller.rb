@@ -48,7 +48,7 @@ class Pro::AddressesController < Pro::ProController
   end
 
   def address_params
-    params.require(:address).permit(:day, :business_id, :start_time, :start_time, :end_time, :end_time, :street, :zipcode, :city, :active)
+    params.require(:address).permit(:day, :business_id, :start_time, :start_time_hour, :start_time_min, :end_time, :end_time_hour, :end_time_min, :street, :zipcode, :city, :active)
   end
 
 end
