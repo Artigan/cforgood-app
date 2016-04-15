@@ -109,11 +109,11 @@ class Business < ActiveRecord::Base
     perks.reduce(0) { |sum, perk| sum + perk.uses.select(:user_id).distinct.count }
   end
 
-  private
-
   def address_changed?
-    :street_changed? || :zipcode_changed? || :city_changed?
+    street_changed? || zipcode_changed? || city_changed?
   end
+
+  private
 
   def address
     "#{street}, #{zipcode} #{city}"

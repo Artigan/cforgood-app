@@ -204,7 +204,7 @@ class User < ActiveRecord::Base
   end
 
   def address_changed?
-    :street_changed? || :zipcode_changed? || :city_changed?
+    street_changed? || zipcode_changed? || city_changed?
   end
 
   def address
