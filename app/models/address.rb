@@ -12,7 +12,7 @@
 #  longitude   :float
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  active      :boolean
+#  active      :boolean          default(TRUE), not null
 #  start_time  :time
 #  end_time    :time
 #
