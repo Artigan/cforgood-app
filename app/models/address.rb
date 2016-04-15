@@ -28,6 +28,9 @@
 class Address < ActiveRecord::Base
   belongs_to :business
 
+  extend TimeSplitter::Accessors
+  split_accessor :start_time, :end_time
+
   scope :active, -> { where(active: true) }
 
   validates :day, presence: true, :inclusion=> { :in => I18n.t(:"date.day_names") }
