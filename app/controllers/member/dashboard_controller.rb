@@ -9,7 +9,7 @@ class Member::DashboardController < ApplicationController
   # rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   def dashboard
-    @businesses = Business.active.where(online: false).joins(:perks).active.distinct
+    @businesses = Business.for_map.joins(:perks).merge(Perk.in_time).distinct
 
     @geojson = {"type" => "FeatureCollection", "features" => []}
 
@@ -27,7 +27,7 @@ class Member::DashboardController < ApplicationController
         }
       }
       # ONLY BUSINESS WITH FLASH PERK
-      if business.perks.find_by_flash(true)
+      if business.perks.flash_in_time.count > 0
         @geojson["features"] << {
           "type": 'Feature',
           "geometry": {

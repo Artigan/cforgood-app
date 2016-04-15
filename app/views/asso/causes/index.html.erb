@@ -11,31 +11,9 @@
   <!-- Content - Statistics -->
   <div class="dashboard dashboard-causes">
     <div class="mobile-menu-overlay hidden"></div>
-    <div class="side-menu-overlay hidden"></div>
 
-    <div class="side-menu side-categories">
-      <span id="open-categories"><i class="fa fa-search"></i>Filtrer par catégories</span>
-      <ul>
-        <a href="#" data-filter="all" class="filter-btn current">
-          <li id="categories-all" class="category-item is-selected">
-            <div class="container-icon" style="background-color: #fff;">
-              <%= image_tag "icons/all.png" %>
-            </div>
-            Toutes les catégories
-          </li>
-        </a>
-        <% CauseCategory.all.each do |category| %>
-        <a href="#" data-filter="<%= "."+category.id.to_s %>" class="filter-btn current">
-          <li class="category-item">
-            <div class="container-icon" style="background-color: <%= category.color %>;">
-              <%= image_tag image_url category.picture %>
-            </div>
-            <%= category.name %>
-          </li>
-        </a>
-        <% end %>
-      </ul>
-    </div>
+    <!-- MENU | CATEGORY FILTER -->
+    <%= render 'components/menu/index_causes_search_category' %>
 
     <div id="mixitup" class="container-perk-cards">
       <% @causes.each do |cause| %>
@@ -95,13 +73,19 @@
         }
       });
 
+      // TOOGLE CATEGORY MENUs
       $('#open-categories').click(function(event) {
-        $('.side-menu-overlay').toggleClass('hidden');
-        //$('.container-perk-cards').toggleClass('blurred');
-        $('.side-categories').toggleClass('is-open-max');
+        $('.search-category-overlay').toggleClass('hidden');
+        // TOOGLE CATEGORY MENU
+        $('.search-category').toggleClass('is-open-max');
         $('.category-item').toggleClass('is-open-min');
-        $('.side-notification').removeClass('is-open-max');
-        $('.notification-panel').removeClass('is-open-min');
+      });
+
+      // TOOGLE CATEGORY OVERLAY
+      $('.search-category-overlay').click(function(event) {
+        $(this).addClass('hidden');
+        $('.search-category').removeClass('is-open-max');
+        $('.category-item').removeClass('is-open-min');
       });
     });
   </script>

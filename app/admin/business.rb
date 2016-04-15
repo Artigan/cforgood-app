@@ -1,6 +1,7 @@
 ActiveAdmin.register Business do
   index do
     selectable_column
+    column :id
     column :name
     column :business_category
     column :email

@@ -67,6 +67,7 @@ class Business < ActiveRecord::Base
   has_many :perks, dependent: :destroy
 
   scope :active, -> { where(active: true) }
+  scope :for_map, -> { where('businesses.active = ? and (businesses.shop = ? or businesses.itinerant = ?)', true, true, true) }
 
   validates :email, presence: true, uniqueness: true
   validates :business_category_id, presence: true
