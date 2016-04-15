@@ -8,59 +8,25 @@
         <div class="title-address">
           <span class="day"><%= day %></span>
           <div class="form-address" id="<%= day %>">
-            <% if address = current_business.addresses.find_by_day(day) %>
+            <!-- CREATE OR EDIT ADDRESS -->
+            <% if current_business.addresses.find_by_day(day) %>
               <% address = current_business.addresses.find_by_day(day) %>
-              <!-- ADDRESS ACTIVATION -->
-              <!-- ACTIVATION WITH LINK -->
-              <%= link_to pro_address_path(address, "address" => {active: true}), class: 'link-statut tgl tgl-light', method: :patch, :remote => true do %>
-                  <i class="icon-trash"></i>
-                <% end %> -->
-              <!-- ACTIVATION WITH FORM -->
-              <div class="address-activation">
-                <span>Désactiver / Activer</span>
-                <input class="tgl tgl-light" id="<%= address.id %>" type="checkbox" <%= 'checked="checked"' if address.active %>>
-                <label class="tgl-btn" for="<%= address.id %>"></label>
-                <%= simple_form_for [:pro, current_business, address], remote: true, method: :patch, html: { id: "update_address_#{address.id}", class: "hidden" } do |f| %>
-                  <%= f.input :active, as: :hidden, input_html: { value: !address.active } %>
-                  <%= f.submit "", :style => "display: none;" %>
-                <% end %>
-              </div>
-              <!-- EDIT ADDRESS -->
-              <%= simple_form_for [:pro, current_business, address], remote: true, method: :patch do |f| %>
-                <label class="hint--top-right" data-hint="Sélectionnez les horaires">Horaire</label>
-                <%= f.input :start_time_hour, label: false, collection: 0..23, selected: 12 %>
-                <%= f.input :start_time_min, label: false, collection: [0, 15, 30, 45], selected: 0 %>
-                <%= f.input :end_time_hour, label: false, collection: 0..23, selected: 14 %>
-                <%= f.input :end_time_min, label: false, collection: [0, 15, 30, 45], selected: 0 %>
-                <%= f.input :street, placeholder: 'Rue', label: 'Adresse *' %>
-                <%= f.input :zipcode, placeholder: 'Code postal', label: 'Code postal *' %>
-                <%= f.input :city, placeholder: 'Ville', label: 'Ville *' %>
-                <%= f.button :submit, "Modifier cette adresse", class: "btn-update", disabled: false  %>
-              <% end %>
-              <!-- ADDRESS DELETION -->
-              <!-- <a class="btn-delete" id="address_<%= address.id %>"><i class="fa fa-trash-o"></i></a> -->
-              <!-- <div class="hidden"> -->
-                <%#= simple_form_for [:pro, @business, address], remote: true, method: :delete, authenticity_token: true, html: { id: "delete_address_#{address.id}" } do |f| %>
-                  <%#= f.submit "", :style => "display: none;" %>
-              <%# end %>
-            <!-- </div> -->
             <% else %>
-              <!-- CREATE ADDRESS  -->
-              <%= simple_form_for [:pro, @business, Address.new], remote: true do |f| %>
-                <div class="address-activation">
-                  <span>Désactiver / Activer</span>
-                  <input class="tgl tgl-light" id="active-<%= day %>" type="checkbox" <%= 'checked="checked"' %>>
-                  <label class="tgl-btn" for="active-<%= day %>"></label>
-                  <%= f.input :active, as: :hidden %>
-                </div>
-                <%= f.input :day, as: :hidden, input_html: { value: day } %>
-                <%= f.input :start_time_hour, label: 'Horaires *', collection: 0..23, selected: 12 %>
-                <%= f.input :start_time_min, label: false, collection: [0, 15, 30, 45], selected: 0 %>
-                <%= f.input :end_time_hour, label: false, collection: 0..23, selected: 14 %>
-                <%= f.input :end_time_min, label: false, collection: [0, 15, 30, 45], selected: 0 %>
-                <%= f.input :street, placeholder: 'Rue', label: 'Adresse *' %>
-                <%= f.input :zipcode, placeholder: 'Code postal',  label: 'Code postal *' %>
-                <%= f.input :city, placeholder: 'Ville', label: 'Ville *' %>
+              <% address = Address.new %>
+            <% end %>
+            <%= simple_form_for [:pro, current_business, address], remote: true, method: :patch do |f| %>
+              <%= f.input :active, as: :boolean, label: 'Adresse active' %>  %>
+              <label class="hint--top-right" data-hint="Quel est votre horaire aujourd'hui ?">Horaire</label>
+              <%= f.input :start_time_hour, label: "De", collection: pad0(0..23), selected: 12 %>
+              <%= f.input :start_time_min, label: ":", collection: pad0([0, 15, 30, 45]), selected: 0 %>
+              <%= f.input :end_time_hour, label: "à", collection: pad0(0..23), selected: 14 %>
+              <%= f.input :end_time_min, label: ":",collection: pad0([0, 15, 30, 45]), selected: 0 %>
+              <%= f.input :street, placeholder: 'Rue', label: 'Adresse *' %>
+              <%= f.input :zipcode, placeholder: 'Code postal', label: 'Code postal *' %>
+              <%= f.input :city, placeholder: 'Ville', label: 'Ville *' %>
+              <% if address.id.present? %>
+                <%= f.button :submit, "Modifier cette adresse", class: "btn-update", disabled: false  %>
+              <% else %>
                 <%= f.button :submit, "Ajouter cette adresse", class: "btn-new", disabled: true  %>
               <% end %>
             <% end %>
@@ -71,7 +37,7 @@
   </div>
 </div>
 
-<%= render 'pro/dashboard/shared/delete_confirmation' %>
+<%#= render 'pro/dashboard/shared/update_confirmation' %>
 
 <% content_for :after_js do %>
   <script>
@@ -97,18 +63,9 @@
 
       // ACTIVE/DESACTIVE ADDRESS
       $(':checkbox').change(function() {
-        console.log('submit');
         var updateAddress = "update_address_" + ($(this).val("form").attr('id'))
-        // $('#' + updateAddress).submit();
-        $('.link-statut').click();
+        $('#' + updateAddress).submit();
       });
-
-      // $(".btn-delete").on("click", function() {
-      //   var addressId = ($(this).val("div").attr('id'));
-      //   // $(".business-button").addClass(addressId);
-      //   $('#delete_'+addressId).submit();
-      //   // $(".popup-overlay").toggleClass("hidden");
-      // });
 
     });
   </script>

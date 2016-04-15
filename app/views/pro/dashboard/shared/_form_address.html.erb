@@ -1,0 +1,15 @@
+<%= simple_form_for [:pro, current_business, address], remote: true, method: :patch do |f| %>
+  <%= f.input :active, as: :checkbox, label: 'Désactiver / Activer'  %>
+  <%= f.input :start_time_hour, label: false, label: "De", collection: pad0(0..23), selected: 12 %>
+  <%= f.input :start_time_min, label: false, label: ":", collection: pad0([0, 15, 30, 45]), selected: 0 %>
+  <%= f.input :end_time_hour, label: false, label: "à", collection: pad0(0..23), selected: 14 %>
+  <%= f.input :end_time_min, label: false, label: ":",collection: pad0([0, 15, 30, 45]), selected: 0 %>
+  <%= f.input :street, placeholder: 'Rue', label: 'Adresse *' %>
+  <%= f.input :zipcode, placeholder: 'Code postal', label: 'Code postal *' %>
+  <%= f.input :city, placeholder: 'Ville', label: 'Ville *' %>
+  <% if address.id.present? %>
+    <%= f.button :submit, "Modifier cette adresse", class: "btn-update", disabled: false  %>
+  <% else %>
+    <%= f.button :submit, "Ajouter cette adresse", class: "btn-new", disabled: true  %>
+  <% end %>
+<% end %>

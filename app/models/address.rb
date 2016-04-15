@@ -45,7 +45,7 @@ class Address < ActiveRecord::Base
   private
 
   def address_changed?
-    :street_changed? || :zipcode_changed? || :city_changed?
+    street_changed? || zipcode_changed? || city_changed?
   end
 
   def address

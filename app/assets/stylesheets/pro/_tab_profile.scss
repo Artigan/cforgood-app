@@ -203,6 +203,7 @@
           }
 
           /* PROFILE - BUSINESS OWNER ***************************************/
+
           .business_leader_first_name { width: 45%; margin-right: 5%; }
 
           .business_leader_last_name { width: 45%; margin-left: 5%; }
@@ -263,7 +264,7 @@
             z-index: -1;
           }
 
-           /* PROFILE - BUSINESS ********************************************/
+          /* PROFILE - BUSINESS ********************************************/
 
           .radio_buttons {
             .radio {
@@ -306,7 +307,7 @@
         .days-carrousel {
           display: flex;
           flex-direction: column;
-          width: 265px;
+          width: 260px;
 
           a:active,
           a:focus, {
@@ -322,7 +323,7 @@
         .slick-list {
           order: 1;
           margin-top: -30px;
-          min-height: 310px;
+          min-height: 390px;
         }
 
         .slick-arrow,
@@ -344,7 +345,7 @@
 
         .slick-prev {
           order: 2;
-          top: -260px;
+          top: -340px;
           left: 0px;
           border-radius: 3px 0 0 3px;
 
@@ -357,8 +358,8 @@
 
         .slick-next {
           order: 3;
-          top: -300px;
-          left: 225px;
+          top: -380px;
+          left: 220px;
           border-radius: 0 3px 3px 0;
 
           &:before {
@@ -369,7 +370,7 @@
         }
 
         .title-address {
-          width: 265px;
+          width: 260px;
           height: 40px;
           padding: 8px 20px;
           margin-bottom: 15px;
@@ -386,7 +387,7 @@
         }
 
         .form-address {
-          width: 265px;
+          width: 260px;
           margin-left: -18px;
           margin-top: 20px;
 
@@ -397,41 +398,46 @@
             color: #636363;
           }
 
+          label.hint--top-right {
+            margin-left: -25px;
+            height: 25px;
+          }
+
+          .address_active {
+            margin: 0;
+          }
+
           .address_start_time_hour,
           .address_start_time_min,
           .address_end_time_hour,
           .address_end_time_min {
-            width: 10%;
+            display: inline-flex;
+            align-items: baseline;
+            margin-top: 20px;
+            width: 20%;
 
             &:before {
               color: #636363;
               font-weight: 100;
             }
+
+            label {
+              margin-right: 10px;
+            }
           }
 
-          .address_start_time_hour:before {
-            content: 'De';
+          .address_start_time_hour {
+            margin-left: -48px;
           }
 
-          .address_end_time_hour:before, {
-            content: 'à';
-          }
-
-          .address_start_time_min:before,
-          .address_end_time_min:before {
-            content: ':';
-          }
-
-          .address_day { width: 40%; }
           .address_street { width: 100%; }
           .address_zipcode { width: 35%; }
           .address_city { width: 63%; margin-left: 1%; }
 
-
           .btn-update, .btn-new {
             width: 100%;
             margin-bottom: 20px;
-            border-radius: 0 0 0 3px;
+            border-radius: 0 0 3px 3px;
             font-size: 12px;
             text-transform: uppercase;
 
@@ -459,86 +465,6 @@
             &:hover, a:focus, a:active {
               background-color: #8BBD99;
               color: #fff;
-            }
-          }
-        }
-
-        .address-activation {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          width: 100%;
-
-          span {
-            margin-bottom: 0;
-            text-transform: uppercase;
-            font-size: 12px;
-            font-weight: 600;
-            color: #636363;
-          }
-
-          // Toogle Radio Button
-          .tgl{
-            display: none;
-            // add default box-sizing for this scope
-            &, &:after, &:before,
-            & *, & *:after, & *:before,
-            & + .tgl-btn{
-              box-sizing: border-box;
-              &::selection{
-                background: none;
-              }
-            }
-            + .tgl-btn{
-              outline: 0;
-              margin-right: 5px;
-              display: block;
-              width: 5em;
-              height: 2.5em;
-              margin-right: 5px;
-              position: relative;
-              cursor: pointer;
-              user-select: none;
-              &:after, &:before{
-                position: relative;
-                display: block;
-                content: "";
-                width: 50%;
-                height: 100%;
-              }
-              &:after{
-                left: 0;
-              }
-              &:before{
-                display: none;
-              }
-            }
-            &:checked{
-              + .tgl-btn{
-                &:after{
-                  left: 50%;
-                }
-              }
-            }
-          }
-
-          .tgl-light{
-            + .tgl-btn{
-              background: #f0f0f0;
-              border-radius: 2em;
-              padding: 2px;
-              transition: all .4s ease;
-              &:after{
-                border-radius: 50%;
-                background: #fff;
-                transition: all .2s ease;
-              }
-            }
-
-            &:checked{
-              + .tgl-btn{
-                background: #9FD6AE;
-              }
             }
           }
         }

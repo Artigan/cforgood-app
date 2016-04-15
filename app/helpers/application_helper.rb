@@ -44,4 +44,8 @@ module ApplicationHelper
     request.path == "/pro/sign_in" ||
     request.path == "/pro/sign_up"
   end
+
+  def pad0 items
+    items.map { |item| item.to_s.rjust(2, '0') }
+  end
 end

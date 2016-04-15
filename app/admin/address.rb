@@ -13,6 +13,8 @@ ActiveAdmin.register Address do
       f.input :street
       f.input :zipcode
       f.input :city
+      f.input :start_time
+      f.input :end_time
     end
     f.inputs "Admin" do
       f.input :active
@@ -20,6 +22,6 @@ ActiveAdmin.register Address do
     f.actions
   end
 
-permit_params :day, :business_id, :street, :zipcode, :city, :active
+permit_params :day, :business_id, :street, :zipcode, :city, :start_time, :end_time, :active
 
 end
