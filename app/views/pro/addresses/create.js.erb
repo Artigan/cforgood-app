@@ -1,5 +1,9 @@
 if (<%= !@address.errors.any? %>) {
 
+  // REMOVE FORM CREATE
+  $('#<%= @address.day %> .form-create-address').remove();
+  $('#<%= @address.day %>').append('<%= j render(partial: "pro/addresses/form/edit", locals: { day: @address.day, address: @address }, formats: [:html]) %>');
+
   // DISCLAIMER - DISPLAYED
   $(".done-overlay").removeClass("hidden");
 
@@ -11,6 +15,5 @@ if (<%= !@address.errors.any? %>) {
 } else {
 
   $(".alert").remove();
-  $(document).find("#new_address").prepend('<%= j render("components/error_messages", resource: @address, formats: [:html]) %>');
-
+  $(document).find('#<%= @address.day %>').prepend('<%= j render("components/error_messages", resource: @address, formats: [:html]) %>');
 }

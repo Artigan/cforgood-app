@@ -7,8 +7,8 @@
       <% I18n.t(:"date.day_names").each do |day| %>
         <div class="title-address">
           <span class="day"><%= day %></span>
+          <!-- FORM ADDRESS -->
           <div class="form-address" id="<%= day %>">
-            <!-- CREATE ADDRESS -->
             <% if current_business.addresses.find_by_day(day) %>
               <%= render(partial: 'pro/addresses/form/edit', locals: { day: day, address: current_business.addresses.find_by_day(day) })  %>
             <% else %>
@@ -27,26 +27,31 @@
   <script>
     $(document).ready(function() {
 
-      // DESACTIVATE FIELDS IF ADDRESS NOT ACTIVE
-      if ($('#address_active') === false) {
-          $('#address_street').attr('disabled', false);
+      // ADDRESS INACTIVE/ACTIVE
+      function changeDisabled(dayName) {
+        $('#'+dayName+' .form-control').attr('disabled', !($('#'+dayName+' #address_active').is(':checked')));
       }
 
+      $('body').on('change', ':checkbox', function() {
+      //$(':checkbox').on('change', function() {
+        var dayName = $(this).closest('.form-address').attr('id');
+        changeDisabled(dayName);
+      });
+
       // CLOSE ADDRESS OVERLAY
-      $('.close-button').click(function() {
+      $('.close-button').on('click', function() {
         $('.address-overlay').addClass('hidden');
       });
 
       // CONTROL REQUIRED FIELDS
-      $(".form-address").on("change", function(e) {
-        e.preventDefault();
+      $('.form-address').on('change', function() {
         var dayName = $(this).attr('id');
         if ($('#'+dayName).find('#address_street').val() != "" &&
             $('#'+dayName).find('#address_zipcode').val() != "" &&
             $('#'+dayName).find('#address_city').val() != "" ) {
           $('#'+dayName).find('.btn').attr('disabled', false);
         } else {
-        $('#'+dayName).find('.btn').attr('disabled', true);
+          $('#'+dayName).find('.btn').attr('disabled', true);
         }
       });
 

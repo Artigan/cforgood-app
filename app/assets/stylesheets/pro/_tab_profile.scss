@@ -97,6 +97,14 @@
             resize: none;
           }
 
+          input,
+          select {
+            &:disabled {
+              opacity: 0.3;
+              background-color: #eee;
+            }
+          }
+
           .select-wrapper {
             position: relative;
             width: 100%;
@@ -439,6 +447,7 @@
 
           .btn-update, .btn-new {
             width: 100%;
+            margin-right: 3px;
             margin-bottom: 20px;
             border-radius: 0 0 3px 3px;
             font-size: 12px;
