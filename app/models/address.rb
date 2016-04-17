@@ -30,6 +30,7 @@ class Address < ActiveRecord::Base
   split_accessor :start_time, :end_time
 
   scope :active, -> { where(active: true) }
+  scope :today, -> { where('day= ?', I18n.t(:"date.day_names")[Time.now.wday]) }
 
   validates :day, presence: true, :inclusion=> { :in => I18n.t(:"date.day_names") }
   validate :day_uniqueness, if: :day_changed?
