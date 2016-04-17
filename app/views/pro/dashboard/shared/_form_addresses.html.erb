@@ -33,7 +33,6 @@
       }
 
       $('body').on('change', ':checkbox', function() {
-      //$(':checkbox').on('change', function() {
         var dayName = $(this).closest('.form-address').attr('id');
         changeDisabled(dayName);
       });

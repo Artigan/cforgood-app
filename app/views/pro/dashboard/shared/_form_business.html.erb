@@ -30,7 +30,7 @@
       </div>
         <%= f.input :shop, label: "Avez-vous une boutique physique ?", as: :radio_buttons, collection: [['Oui', true ], ['Non', false ]], checked: current_business.shop || false  %>
         <%= f.input :online, label: "Avez-vous une e-boutique ?", as: :radio_buttons, collection: [['Oui', true ], ['Non', false ]], checked: current_business.online || false  %>
-        <%= f.input :itinerant, label: "Etes-vous itinérant ?", as: :radio_buttons, collection: [['Oui', true ], ['Non', false ]], checked: current_business.itinerant|| false  %>
+        <%= f.input :itinerant, label: "Etes-vous itinérant ?", as: :radio_buttons, collection: [['Oui', true ], ['Non', false ]], checked: current_business.itinerant || false  %>
         <% if current_business.itinerant %>
           <button class="button-address"><%= render "shared/icons/address" %></button>
         <% else %>
@@ -72,7 +72,12 @@
         readURL(newFile);
       });
 
-      // LINK TO ADRESSE
+      // ACTIVATE OR NOT BUTTON ADDRESS
+      $('.business_itinerant').on('change', function(e) {
+        $(".button-address").toggleClass('hidden');
+      });
+
+      // LINK TO ADDRESS
       $(".button-address").on("click", function(e) {
         e.preventDefault();
         $(".address-overlay").removeClass("hidden");
