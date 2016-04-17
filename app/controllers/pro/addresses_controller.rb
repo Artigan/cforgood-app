@@ -1,7 +1,7 @@
 class Pro::AddressesController < Pro::ProController
 
   before_action :find_address, only: [:edit, :update, :destroy]
-  before_action :find_business, only: [:index, :new, :create]
+  before_action :find_business, only: [:index, :new, :create, :update]
 
   def index
     @addresses = policy_scope(Address)
@@ -12,10 +12,10 @@ class Pro::AddressesController < Pro::ProController
     authorize @address
     respond_to do |format|
       if @address.save
-        format.html { redirect_to pro_business_addresses_path(@business) }
+        format.html { redirect_to pro_business_profile_path(@business) }
         format.js {}
       else
-        format.html { redirect_to pro_business_addresses_path(@business) }
+        format.html { redirect_to pro_business_profile_path(@business) }
         format.js {}
       end
     end
@@ -27,7 +27,7 @@ class Pro::AddressesController < Pro::ProController
   def update
     respond_to do |format|
       if @address.update(address_params)
-        format.html { redirect_to pro_business_addresses_path(current_business) }
+        format.html { redirect_to pro_business_profile_path(@business) }
         format.js {}
       else
         format.html { render :edit }
