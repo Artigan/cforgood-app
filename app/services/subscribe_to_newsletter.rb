@@ -16,14 +16,14 @@ class SubscribeToNewsletter
       )
       @result = '<span class="info-newsletter">Félicitations ! Vous êtes inscrit.</span>'
     rescue Gibbon::MailChimpError => exception
-      Rails.logger.error("Erreur lors de l'insciption #{exception.status_code} : #{exception.detail}")
+      Rails.logger.error("Erreur lors de votre insciption #{exception.status_code} : #{exception.detail}")
       case exception.title
       when "Invalid Resource"
         @error = '<span class="error-newsletter"> Vérifiez le format de votre email !</span>'
       when "Member Exists"
         @error = '<span class="error-newsletter"> Vous êtes déjà inscrit !</span>'
       else
-        @error = '<span class="error-newsletter"> Erreur lors de l''inscription </span>'
+        @error = '<span class="error-newsletter"> Erreur lors de votre inscription </span>'
       end
     end
   end

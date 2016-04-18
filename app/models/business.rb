@@ -63,10 +63,12 @@ class Business < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :recoverable,
          :rememberable, :trackable, :validatable
   belongs_to :business_category
+  has_many :addresses, dependent: :destroy
   has_many :perks, dependent: :destroy
 
   scope :active, -> { where(active: true) }
-  scope :for_map, -> { where('businesses.active = ? and (businesses.shop = ? or businesses.itinerant = ?)', true, true, true) }
+  scope :for_map, -> { where('businesses.shop = ? or businesses.itinerant = ?', true, true) }
+
 
   validates :email, presence: true, uniqueness: true
   validates :business_category_id, presence: true
@@ -109,11 +111,11 @@ class Business < ActiveRecord::Base
     perks.reduce(0) { |sum, perk| sum + perk.uses.select(:user_id).distinct.count }
   end
 
-  private
-
   def address_changed?
-    :street_changed? || :zipcode_changed? || :city_changed?
+    street_changed? || zipcode_changed? || city_changed?
   end
+
+  private
 
   def address
     "#{street}, #{zipcode} #{city}"
