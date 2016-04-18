@@ -7,9 +7,9 @@
   <div class="notification-panel">
     <h2>
       Hello
-      <% if current_user.last_name != "" && current_user.last_name != nil %>
+      <% if current_user.last_name.present? %>
         <%= current_user.first_name %>,
-      <% elsif current_user.name != "" && current_user.name != nil %>
+      <% elsif current_user.name.present? %>
         <%= current_user.name.split(" ")[0] %>,
       <% end %>
     </h2>
