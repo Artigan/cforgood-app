@@ -222,7 +222,7 @@ class User < ActiveRecord::Base
   end
 
   def send_registration_slack
-    if !Rails.env.development?
+    if Rails.env.production?
       notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_USER_URL']
 
       if last_name.present?
@@ -245,7 +245,7 @@ class User < ActiveRecord::Base
   end
 
   def subscribe_to_newsletter_user
-    if !Rails.env.development?
+    if Rails.env.production?
       SubscribeToNewsletterUser.new(self).run
     end
   end
