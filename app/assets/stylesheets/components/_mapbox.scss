@@ -10,6 +10,14 @@
   position: absolute;
 }
 
+.mapboxgl-ctrl-group.mapboxgl-ctrl {
+  margin-bottom: 60px;
+}
+
+.mapboxgl-ctrl-icon.mapboxgl-ctrl-compass {
+  display: none;
+}
+
 .mapboxgl-popup {
   width: 320px;
 }

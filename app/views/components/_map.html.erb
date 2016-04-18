@@ -19,6 +19,13 @@
     zoom: 12
   });
 
+  if (<%= device_type == :desktop %>) {
+    // Add zoom controls to the map.
+    map.addControl(new mapboxgl.Navigation({position: 'bottom-left'}));
+    // hidden button map rotation
+    // $('.mapboxgl-ctrl-compass').addClass('hidden');
+  }
+
   var layers = [];
 
   map.on('style.load', function () {
@@ -92,12 +99,12 @@
   // Use the same approach as above to indicate that the symbols are clickable
   // by changing the cursor style to 'pointer'.
   map.on('mousemove', function (e) {
-      map.featuresAt(e.point, {
-        layer: layers,
-        radius: 30
-      }, function (err, features) {
-          map.getCanvas().style.cursor = (!err && features.length) ? 'pointer' : '';
-      });
+    map.featuresAt(e.point, {
+      layer: layers,
+      radius: 30
+    }, function (err, features) {
+        map.getCanvas().style.cursor = (!err && features.length) ? 'pointer' : '';
+    });
   });
 
 </script>
