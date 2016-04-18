@@ -17,7 +17,7 @@
                 </div>
               <% end %>
             </div>
-            <div class="picture-container">
+            <div class="picture-container-cause">
               <% if current_user.cause_id.present? %>
                 <%= image_tag current_user.cause.logo.url(:thumb), class: 'cause-picture' %>
               <% else %>

@@ -322,60 +322,60 @@
             outline: none;
           }
 
-        .slick-slide {
-          margin-top: 30px;
-          margin-right: 40px;
-        }
+          .slick-slide {
+            margin-top: 30px;
+            margin-right: 40px;
+          }
 
-        .slick-list {
-          order: 1;
-          margin-top: -30px;
-          min-height: 390px;
-        }
+          .slick-list {
+            order: 1;
+            margin-top: -30px;
+            min-height: 390px;
+          }
 
-        .slick-arrow,
-        .slick-prev,
-        .slick-prev:hover,
-        .slick-prev:active,
-        .slick-prev:focus,
-        .slick-next,
-        .slick-next:hover,
-        .slick-next:active,
-        .slick-next:focus {
-          position: relative;
-          width: 40px;
-          height: 40px;
-          background-color: #9FD6AE;
-          z-index: 10;
-          bottom: -35px;
-        }
+          .slick-arrow,
+          .slick-prev,
+          .slick-prev:hover,
+          .slick-prev:active,
+          .slick-prev:focus,
+          .slick-next,
+          .slick-next:hover,
+          .slick-next:active,
+          .slick-next:focus {
+            position: relative;
+            width: 40px;
+            height: 40px;
+            background-color: #9FD6AE;
+            z-index: 10;
+            bottom: -35px;
+          }
 
-        .slick-prev {
-          order: 2;
-          top: -340px;
-          left: 0px;
-          border-radius: 3px 0 0 3px;
+          .slick-prev {
+            order: 2;
+            top: -340px;
+            left: 0px;
+            border-radius: 3px 0 0 3px;
 
-           &:before {
-            font-family: FontAwesome;
-            font-size: 24px;
-            content: '\f104';
+             &:before {
+              font-family: FontAwesome;
+              font-size: 24px;
+              content: '\f104';
+            }
+          }
+
+          .slick-next {
+            order: 3;
+            top: -380px;
+            left: 220px;
+            border-radius: 0 3px 3px 0;
+
+            &:before {
+              font-family: FontAwesome;
+              font-size: 24px;
+              content: '\f105';
+            }
           }
         }
-
-        .slick-next {
-          order: 3;
-          top: -380px;
-          left: 220px;
-          border-radius: 0 3px 3px 0;
-
-          &:before {
-            font-family: FontAwesome;
-            font-size: 24px;
-            content: '\f105';
-          }
-        }
-      }
 
         .title-address {
           width: 260px;
