@@ -32,9 +32,9 @@
         <%= f.input :online, label: "Avez-vous une e-boutique ?", as: :radio_buttons, collection: [['Oui', true ], ['Non', false ]], checked: current_business.online || false  %>
         <%= f.input :itinerant, label: "Etes-vous itinérant ?", as: :radio_buttons, collection: [['Oui', true ], ['Non', false ]], checked: current_business.itinerant || false  %>
         <% if current_business.itinerant %>
-          <button class="button-address"><%= render "shared/icons/address" %></button>
+          <a href="#" class="button-address"><%= render "shared/icons/address" %></a>
         <% else %>
-          <button class="button-address hidden"><%= render "shared/icons/address" %></button>
+          <a href="#" class="button-address hidden"><%= render "shared/icons/address" %></a>
         <% end %>
         <%= f.input :url, placeholder: 'www.johndoe.com', label: 'Site web' %>
         <%= f.input :email, placeholder: 'contact@johndoe.com', required: true, label: "Email" %>

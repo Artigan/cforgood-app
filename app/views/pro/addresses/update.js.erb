@@ -1,11 +1,11 @@
 if (<%= !@address.errors.any? %>) {
 
   // DISCLAIMER - DISPLAYED
-  $(".done-overlay").removeClass("hidden");
+  $(".done-overlay-address").removeClass("hidden");
 
   window.setTimeout(function(){
     // DISCLAIMER - HIDDEN
-    $(".done-overlay").addClass("hidden");
+    $(".done-overlay-address").addClass("hidden");
   }, 3000);
 
 } else {
