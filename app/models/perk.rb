@@ -65,6 +65,9 @@ class Perk < ActiveRecord::Base
     content_type: /\Aimage\/.*\z/
 
   after_create :send_registration_slack
+  after_create :update_data_intercom
+  after_save :update_data_intercom if :active_changed?
+  after_destroy :update_data_intercom
 
   def update_nb_view!
     self.increment!(:nb_views)
@@ -136,5 +139,13 @@ class Perk < ActiveRecord::Base
       perk_code.upcase!
       errors.add(:perk_code, "Ce code n'est pas disponible !") if Perk.where(perk_code: self.perk_code, deleted: false).where(business_id: self.business_id).count > 0
     end
+  end
+
+  def update_data_intercom
+    intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
+    user = intercom.users.find(:user_id => 'B'+self.business_id.to_s)
+    user.custom_attributes[:perks_all] = Business.find(self.business_id).perks.count
+    user.custom_attributes[:perks_active] = Business.find(self.business_id).perks.active.count
+    intercom.users.save(user)
   end
 end

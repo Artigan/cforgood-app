@@ -391,6 +391,7 @@ DEPENDENCIES
   geocoder
   gibbon
   high_voltage
+  intercom (~> 3.4.0)
   intercom-rails
   jquery-rails
   letter_opener

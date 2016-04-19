@@ -61,7 +61,8 @@
   /* PERK CREATION CONFIRMATION *************************************************/
 
   .waiting,
-  .done-overlay {
+  .done-overlay,
+  .done-overlay-address {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -230,7 +231,8 @@
     height: 100vh;
     overflow: hidden;
 
-    .done-overlay {
+    .done-overlay,
+    .done-overlay-address {
       left: 15%;
     }
 

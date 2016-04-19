@@ -43,6 +43,7 @@ class Address < ActiveRecord::Base
 
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
+  before_save :controle_geocode!, if: :address_changed?
 
   private
 
@@ -57,6 +58,13 @@ class Address < ActiveRecord::Base
   def day_uniqueness
     if day.present? && business_id.present?
       errors.add(:day, "Ce jour est déjà créé !") if Address.where(day: self.day).where(business_id: self.business_id).count > 0
+    end
+  end
+
+  def controle_geocode!
+    while Address.where('id != ? and day = ? and latitude = ? and longitude = ?', self.id, self.day, latitude, longitude).count > 0
+      self.latitude -= 0.0001
+      self.longitude += 0.0001
     end
   end
 end

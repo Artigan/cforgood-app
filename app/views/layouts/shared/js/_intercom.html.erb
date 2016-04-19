@@ -1,7 +1,7 @@
 <!-- INTERCOM FOR BUSINESS -->
-<% if Rails.env.production? && business_signed_in? %>
+<% if business_signed_in? %>
   <%= intercom_script_tag({
-    :app_id => ENV['INTERCOM_APP_ID'],
+    :app_id => ENV['INTERCOM_API_ID'],
     :user_id => 'B'+current_business.id.to_s,
     :email => current_business.email,
     :name => current_business.name,

@@ -76,7 +76,8 @@ class Business < ActiveRecord::Base
   validates :url, format: { with: /\Ahttps?:\/\/[\S]+/, message: "Votre URL doit commencer par http:// ou https://" }, allow_blank: true
 
   geocoded_by :address
-  after_validation :geocode, if: :address_changed?
+  after_validation :geocode if :address_changed?
+  before_save :controle_geocode! if :address_changed?
 
   has_attached_file :picture,
       styles: { medium: "300x300#", thumb: "100x100#" }
@@ -154,7 +155,21 @@ class Business < ActiveRecord::Base
 
   def send_activation_email
     if active_was == false and self.active == true
+      # MAIL ACTIVATION
       BusinessMailer.activation(self).deliver_now
+      # UPDATE CUSTOM ATTRIBUTES ON INTERCOM
+      intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
+      user = intercom.users.find(:user_id => 'B'+id.to_s)
+      user.custom_attributes["user_active"] = true
+      intercom.users.save(user)
     end
   end
+
+  def controle_geocode!
+    while Business.where('id != ? and latitude = ? and longitude = ?', self.id, latitude, longitude).count > 0
+      self.latitude -= 0.0001
+      self.longitude += 0.0001
+    end
+  end
+
 end
