@@ -42,11 +42,13 @@
 
         .pictures-container {
           display: flex;
+          width: 110px;
           z-index: 1;
         }
 
         .user-picture {
           margin-right: -5px;
+          width: 60px;
         }
 
         .cause-picture {
