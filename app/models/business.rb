@@ -76,7 +76,8 @@ class Business < ActiveRecord::Base
   validates :url, format: { with: /\Ahttps?:\/\/[\S]+/, message: "Votre URL doit commencer par http:// ou https://" }, allow_blank: true
 
   geocoded_by :address
-  after_validation :geocode, if: :address_changed?
+  after_validation :geocode if :address_changed?
+  before_save :controle_geocode! if :address_changed?
 
   has_attached_file :picture,
       styles: { medium: "300x300#", thumb: "100x100#" }
@@ -163,4 +164,12 @@ class Business < ActiveRecord::Base
       intercom.users.save(user)
     end
   end
+
+  def controle_geocode!
+    while Business.where('id != ? and latitude = ? and longitude = ?', self.id, latitude, longitude).count > 0
+      self.latitude -= 0.0001
+      self.longitude += 0.0001
+    end
+  end
+
 end
