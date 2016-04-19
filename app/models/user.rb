@@ -252,7 +252,13 @@ class User < ActiveRecord::Base
 
   def send_activation_email
     if active_was == false && self.active == true
+      # MAIL ACTIVATION
       UserMailer.activation(self).deliver_now
+      # UPDATE CUSTOM ATTRIBUTES ON INTERCOM
+      intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
+      user = intercom.users.find(:user_id => self.id)
+      user.custom_attributes["user_active"] = true
+      intercom.users.save(user)
     end
   end
 end

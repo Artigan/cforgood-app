@@ -154,7 +154,13 @@ class Business < ActiveRecord::Base
 
   def send_activation_email
     if active_was == false and self.active == true
+      # MAIL ACTIVATION
       BusinessMailer.activation(self).deliver_now
+      # UPDATE CUSTOM ATTRIBUTES ON INTERCOM
+      intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
+      user = intercom.users.find(:user_id => 'B'+id.to_s)
+      user.custom_attributes["user_active"] = true
+      intercom.users.save(user)
     end
   end
 end
