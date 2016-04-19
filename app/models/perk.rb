@@ -118,7 +118,7 @@ class Perk < ActiveRecord::Base
   end
 
   def send_registration_slack
-    if !Rails.env.development?
+    if Rails.env.production?
       notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_PERK_URL']
       notifier.ping "#{self.business.name} a créé un nouveau bon plan : #{name}"
     end
