@@ -4,32 +4,34 @@
     <!-- Random Causes cards -->
     <% Cause.all.sample(3).each do |cause| %>
       <%= link_to member_update_cause_path(cause_id: cause.id), method: :put, remote: true, authenticity_token: true do %>
+          <!-- CARD CAUSE -->
+          <%= render(partial: 'components/card_cause', locals: { cause: cause }) %>
         <!-- Card Frame -->
-        <div class="col-xs-12 col-sm-6 col-md-4">
+       <!--  <div class="col-xs-12 col-sm-6 col-md-4">
           <div class="card-container" >
-            <div class="cause-card" id="<%= cause.id %>" style="background-image: url(<%= cause.picture.url(:medium) %>)">
+            <div class="cause-card" id="<%#= cause.id %>" style="background-image: url(<%#= cause.picture.url(:medium) %>)"> -->
               <!-- InfoWindow on Hover -->
-              <div class="cause-popover" data-content="<%=  truncate(cause.description, length: 190) %>" data-placement="bottom" data-original-title="<%= cause.name %>" data-trigger="hover">
+              <!-- <div class="cause-popover" data-content="<%=  truncate(cause.description, length: 190) %>" data-placement="bottom" data-original-title="<%#= cause.name %>" data-trigger="hover"> -->
                   <!-- Card content -->
-                  <span><%= cause.cause_category.name %></span>
-                  <img src="<%= image_url cause.logo %>">
-                  <h1><%= cause.name.upcase %></h1>
-              </div>
+               <!--    <span><%#= cause.cause_category.name %></span>
+                  <img src="<%#= image_url cause.logo %>">
+                  <h1><%#= cause.name.upcase %></h1> -->
+             <!--  </div>
             </div>
           </div>
-        </div>
+        </div> -->
       <% end %>
     <% end %>
   </div>
-  <div class="select-causes">
+  <!-- <div class="select-causes">
     <span>Vous pouvez aussi sélectionner une association parmi la liste ci-dessous :</span>
 
-    <%= simple_form_for(current_user, url: member_update_profile_path, remote: true, authenticity_token: true, html: { method: :put, id: :update_cause_id, class: :selector }) do |f| %>
-      <%= f.input :cause_id, collection: Cause.all, label: false, prompt: ("Ou sélectionnez parmi les autres associations"), selected: current_user.cause_id %>
+    <%#= simple_form_for(current_user, url: member_update_profile_path, remote: true, authenticity_token: true, html: { method: :put, id: :update_cause_id, class: :selector }) do |f| %>
+      <%#= f.input :cause_id, collection: Cause.all, label: false, prompt: ("Ou sélectionnez parmi les autres associations"), selected: current_user.cause_id %>
       <span>Sans choix de votre part, votre abonnement sera reversé à CforGood !</span>
-      <%= f.submit "Suivant", class: "btn btn-next" %>
-    <% end %>
-  </div>
+      <#%= f.submit "Suivant", class: "btn btn-next" %>
+    <%# end %>
+  </div> -->
  <!--  <div>
     <button type="button" class="btn btn-turquoise">Next</button>
   </div> -->
