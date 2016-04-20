@@ -204,7 +204,7 @@ class User < ActiveRecord::Base
   end
 
   def address_changed?
-    :street_changed? || :zipcode_changed? || :city_changed?
+    street_changed? || zipcode_changed? || city_changed?
   end
 
   def address
@@ -222,7 +222,7 @@ class User < ActiveRecord::Base
   end
 
   def send_registration_slack
-    if !Rails.env.development?
+    if Rails.env.production?
       notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_USER_URL']
 
       if last_name.present?
@@ -245,14 +245,20 @@ class User < ActiveRecord::Base
   end
 
   def subscribe_to_newsletter_user
-    if !Rails.env.development?
+    if Rails.env.production?
       SubscribeToNewsletterUser.new(self).run
     end
   end
 
   def send_activation_email
     if active_was == false && self.active == true
+      # MAIL ACTIVATION
       UserMailer.activation(self).deliver_now
+      # UPDATE CUSTOM ATTRIBUTES ON INTERCOM
+      intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
+      user = intercom.users.find(:user_id => self.id)
+      user.custom_attributes["user_active"] = true
+      intercom.users.save(user)
     end
   end
 end

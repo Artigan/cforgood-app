@@ -6,7 +6,10 @@
       <%= render 'shared/icons/heart' %>
     </div>
     <span>Vous allez faire quelque chose de chouette !</span>
-    <p>En validant votre choix, vous reverserez 50% de votre abonnement mensuel à cette association.</p>
+    <p>
+      En validant votre choix, vous allez soutenir
+      <span class="cause-name"></span>
+    </p>
 
     <%= simple_form_for(current_user, url: member_update_cause_path, remote: false, authenticity_token: true, html: { method: :put, id: :update_cause_id }) do |f| %>
       <%= f.input :cause_id, as: :hidden %>
@@ -17,7 +20,6 @@
 
 <% content_for :after_js do %>
   <script>
-
     $(document).ready(function() {
       $(".close-popup").click(function (e) {
         e.preventDefault()

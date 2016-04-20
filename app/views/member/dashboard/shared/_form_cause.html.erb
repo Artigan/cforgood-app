@@ -17,7 +17,7 @@
                 </div>
               <% end %>
             </div>
-            <div class="picture-container">
+            <div class="picture-container-cause">
               <% if current_user.cause_id.present? %>
                 <%= image_tag current_user.cause.logo.url(:thumb), class: 'cause-picture' %>
               <% else %>
@@ -77,8 +77,10 @@
       $(".user-button").on("click", function(e) {
         e.preventDefault;
         var causeId = $('.cause-presentation.slick-active').val('div').attr('id');
+        var causeName = $('.cause-presentation.slick-active .card-cause span').html();
         $(".popup-overlay").toggleClass("hidden");
         $("#user_cause_id").val(causeId);
+        $('.cause-confirmation span.cause-name').html(causeName);
       });
     });
   </script>

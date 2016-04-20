@@ -66,6 +66,7 @@
 
   .slick-slider { margin-top: 30px; }
   ul.slick-dots { display: none; }
+  button.slick-arrow { display: none !important; }
 
   p {
     padding-left: 6px;
@@ -200,6 +201,13 @@
     span { font-size: 12px; }
     p { padding: 0 20px; }
     ul { padding-bottom : 0; }
+  }
+
+  @media only screen and (max-width:320px){
+    img {
+      width: 120px;
+      height: 120px;
+    }
   }
 }
 

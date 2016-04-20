@@ -1,4 +1,5 @@
 .form-perk-container {
+  padding-bottom: 90px;
 
   .form-perk {
     position: relative;
@@ -158,14 +159,14 @@
   .dashboard-create-perk {
     position: relative;
     width: 100%;
-    padding: 20px;
+    padding: 2.5%;
     overflow-X: hidden;
 
     /* CARD - SELECT TYPE OF PERK *********************************************/
     .type-card {
       display: flex;
       flex-direction: column;
-      max-width: 360px;
+      max-width: 100%;
       margin: 20px 0 35px;
       background-color: #fff;
       border-radius: 3px;
@@ -280,9 +281,9 @@
   /* FORM - CREATE PERK *****************************************************/
   .perk-form-card {
     position: absolute;
-    margin-bottom: 90px;
-    width: 335px;
-    top: 20px;
+    margin-bottom: 5%;
+    width: 95%;
+    top: 2.5%;
     border-radius: 3px;
     background-color: #fff;
     box-shadow: 0 1px 2px rgba(0,0,0,0.07);
@@ -425,15 +426,45 @@
         pointer-events: none;
       }
 
-      .perk_start_date,
-      .perk_end_date {
-        width: 45%;
+      .perk_start_date_date,
+      .perk_end_date_date {
+        width: 36%;
         display: inline-block;
         float: left;
+        margin-right: 3%;
+      }
+
+      .perk_end_date_date  {
+        margin-left: 5%;
+      }
+
+      .perk_start_date_hour,
+      .perk_end_date_hour, {
+        width: 5%;
+        margin-right: 3%;
+      }
+
+      .perk_start_date_hour:after,
+      .perk_end_date_hour:after {
+        content: "h";
+        position: absolute;
+        margin-top: -30px;
+        margin-left: 5%;
+        font-size: 14px;
+        font-weight: 100;
+        color: #A5A5A5;
+
       }
 
       .perk_start_date { margin-right: 5%; }
-      .perk_end_date { margin-left: 5%; }
+      .perk_end_date { margin-left: 10%; }
+
+      .perk_all_day label {
+        position: absolute;
+        margin-top: -20px;
+        font-size: 11px;
+        font-weight: 100;
+      }
 
       .perk_times {
         width: 25%;
@@ -459,6 +490,14 @@
           height: 30px;
           background-color: #9FD6AE;
           color: #fff;
+
+          .fa {
+            height: 30px;
+            width: 30px;
+            line-height: 30px;
+            text-align: center;
+            margin-top: -1px
+          }
         }
 
         button:active,
@@ -523,7 +562,7 @@
   .type-show {
     z-index: 200;
     transform: translateX(0);
-    margin-bottom: 120px;
+    //margin-bottom: 120px;
   }
 
   .type-example {
@@ -558,6 +597,15 @@
   background-color: rgba(0,0,0,0.4);
   z-index: 20;
   @include transition(all, 0.3s, ease-in-out);
+}
+
+@media only screen and (max-width:320px){
+  .form-perk-container {
+    .perk-form-card {
+      position: absolute;
+      margin-bottom: 25%;
+    }
+  }
 }
 
 @media only screen and (min-width:769px){

@@ -63,6 +63,6 @@ class Pro::PerksController < Pro::ProController
   end
 
   def perk_params
-    params.require(:perk).permit(:name, :description, :perk_detail_id, :times, :start_date, :end_date, :perk_code, :picture, :active, :appel, :durable, :flash)
+    params.require(:perk).permit(:name, :description, :perk_detail_id, :times, :start_date, :start_date_date, :start_date_hour, :end_date, :end_date_date, :end_date_hour, :all_day, :perk_code, :picture, :active, :appel, :durable, :flash)
   end
 end

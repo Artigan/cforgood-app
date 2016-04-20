@@ -11,48 +11,8 @@
   <!-- Content - Statistics -->
   <div class="dashboard dashboard-view-perks">
     <div class="mobile-menu-overlay hidden"></div>
-    <div class="side-menu-overlay hidden"></div>
 
-    <div class="side-menu side-categories">
-      <span id="open-categories"><i class="fa fa-search"></i>Filtrer par catégories</span>
-      <form class="controls" id="Filters">
-        <ul>
-          <!-- GROUPE ONLINE -->
-          <fieldset>
-            <a href="#" data-filter=".online" class="filter-btn current">
-              <li id="online" class="category-item">
-                <div class="container-icon" style="background-color: #8398C2;">
-                  <%= image_tag "icons/online.png" %>
-                </div>
-                Voir les e-commerces
-              </li>
-            </a>
-          </fieldset>
-          <!-- RESET TO ALL -->
-          <fieldset>
-            <a href="#" data-filter="" class="filter-btn current">
-              <li id="categories-all" class="category-item">
-                <div class="container-icon" style="background-color: #fff;">
-                  <%= image_tag "icons/all.png" %>
-                </div>
-                Toutes les catégories
-              </li>
-            </a>
-            <!-- GROUPE CATEGORIES -->
-            <% BusinessCategory.all.each do |category| %>
-              <a href="#" data-filter="<%= "."+category.id.to_s %>" class="filter-btn current">
-                <li class="category-item">
-                  <div class="container-icon" style="background-color: <%= category.color %>;">
-                    <%= image_tag image_url category.picture %>
-                  </div>
-                  <%= category.name %>
-                </li>
-              </a>
-            <% end %>
-          </fieldset>
-        </ul>
-      </form>
-    </div>
+    <%= render "components/menu/index_search_category" %>
 
     <div id="mixitup" class="container-perk-cards">
       <% @businesses.each do |business| %>
@@ -101,13 +61,19 @@
   <script>
     $(document).ready(function(){
 
+      // TOOGLE CATEGORY MENUs
       $('#open-categories').click(function(event) {
-        $('.side-menu-overlay').toggleClass('hidden');
-        //$('.container-perk-cards').toggleClass('blurred');
-        $('.side-categories').toggleClass('is-open-max');
+        $('.search-category-overlay').toggleClass('hidden');
+        // TOOGLE CATEGORY MENU
+        $('.search-category').toggleClass('is-open-max');
         $('.category-item').toggleClass('is-open-min');
-        $('.side-notification').removeClass('is-open-max');
-        $('.notification-panel').removeClass('is-open-min');
+      });
+
+      // TOOGLE CATEGORY OVERLAY
+      $('.search-category-overlay').click(function(event) {
+        $(this).addClass('hidden');
+        $('.search-category').removeClass('is-open-max');
+        $('.category-item').removeClass('is-open-min');
       });
     });
 

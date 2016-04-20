@@ -19,6 +19,8 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2', git: 'https://github.com/zquestz/omniauth-google-oauth2.git'
 gem 'mangopay'
+gem 'intercom', "~> 3.4.0"
+gem "intercom-rails"
 
 gem "paperclip"
 gem "aws-sdk", "< 2.0"
@@ -42,6 +44,7 @@ gem 'mobvious-rails'
 gem 'slack-notifier'
 
 gem 'bootstrap-datepicker-rails'
+gem "time_splitter"
 
 gem "rails-i18n"
 gem "devise-i18n"

@@ -22,70 +22,29 @@
       </div>
     </div>
   <% else %>
-    <!-- Sub Menu Sidebar -->
+    <!-- SIDEBAR -->
     <%= render "member/dashboard/shared/sidebar" %>
-    <!-- Content - Statistics -->
-    <div class="dashboard welcome-users">
+
+    <!-- DASHBOARD CONTAINER -->
+    <div class="dashboard">
+
       <div class="mobile-menu-overlay hidden"></div>
-      <div class="side-menu-overlay hidden"></div>
-      <div class="side-menu side-notification">
-        <span id="open-notification" >Notification<%= image_tag('logopouce.png') %><div class="notifier"></div></span>
-        <div class="notification-panel">
-          <h2>
-            Hello
-            <% if current_user.last_name != "" && current_user.last_name != nil %>
-              <%= current_user.first_name %>,
-            <% elsif current_user.name != "" && current_user.name != nil %>
-              <%= current_user.name.split(" ")[0] %>,
-            <% end %>
-          </h2>
-          <p>Merci de participer à la BETA de CforGood. Surtout ne cassez-rien ! Si vous remarquez quelque chose d'approximatif, dites-le nous en utilisant le formulaire ci-dessous :) Mille merci !</p>
-          <a href="https://cforgood1.typeform.com/to/XQXiKD" class="notification-link" target="_blank">Aidez-nous</a>
-        </div>
-      </div>
-      <div class="in-central-city">
-        <div class="flash">
-          <i class="fa fa-bolt"></i>
-        </div>
-      </div>
-      <div class="side-menu side-categories">
-        <span id="open-categories"><i class="fa fa-search"></i>Filtrer par catégories</span>
-        <ul>
-          <a href="#" class="filter-category">
-            <li id="categories-all" class="category-item is-selected">
-              <div class="container-icon" style="background-color: #fff;">
-                <%= image_tag "icons/all.png" %>
-              </div>
-              Toutes les catégories
-            </li>
-          </a>
-          <% BusinessCategory.all.each do |category| %>
-          <a href="#" class="filter-category current">
-            <li id="<%= "layer-"+category.marker_symbol %>" class="category-item">
-              <div class="container-icon" style="background-color: <%= category.color %>;">
-                <%= image_tag image_url category.picture %>
-              </div>
-              <%= category.name %>
-            </li>
-          </a>
-          <% end %>
-        </ul>
-      </div>
-      <div class="welcome-user">
-          <% if current_user.picture.present? %>
-            <%= image_tag avatar_url(current_user) %>
-           <% else %>
-            <%= image_tag "default_pic.png" %>
-          <% end %>
-         <span> Bienvenue
-          <% if current_user.last_name != "" && current_user.last_name != nil %>
-            <%= current_user.first_name %> <%= current_user.last_name.chars.first + "." %>
-          <% elsif current_user.name != "" && current_user.name != nil %>
-            <%= current_user.name.split(" ")[0] %></span>
-          <% end %></span>
-      </div>
-      <div id="map-dashboard" class="user-map-businesses" style="width: 100%;">
-      </div>
+
+      <!-- MENU | NOTIFICATION -->
+      <%= render 'components/menu/notification_center' %>
+
+      <!-- FLASH | FIND PERK -->
+      <%= render 'components/user_dashboard/flash_button' %>
+
+      <!-- MENU | CATEGORY FILTER -->
+      <%= render 'components/menu/search_category' %>
+
+      <!-- ON MOBILE | WELCOME -->
+      <%= render 'components/user_dashboard/welcome_user' %>
+
+      <!-- MAP -->
+      <div id="map-dashboard" class="user-map-businesses" style="width: 100%;"></div>
+
     </div>
   <% end %>
 </div>
@@ -96,7 +55,6 @@
 
   <script>
     $(document).ready(function(){
-
       // SET VISIBLE OR NOT LAYERS ON MAP
       function setLayerVisibilty() {
         var input = document.getElementsByClassName('category-item');
@@ -128,25 +86,10 @@
         }
       }
 
-      $('#open-notification').click(function(event) {
-        $('.notifier').addClass('hidden');
-        $('.side-notification').toggleClass('is-open-max');
-        $('.notification-panel').toggleClass('is-open-min');
-        $('.side-categories').removeClass('is-open-max');
-        $('.category-item').removeClass('is-open-min');
-      });
-
+      // TOOGLE FLASH PERKS LAYER ON MAP
       $('.in-central-city').click(function(event) {
         $('.flash').toggleClass('is-running');
-        // SET VISIBLE OR NOT LAYERS ON MAP
         setLayerVisibilty();
-      });
-
-      $('#open-categories').click(function(event) {
-        $('.side-categories').toggleClass('is-open-max');
-        $('.category-item').toggleClass('is-open-min');
-        $('.side-notification').removeClass('is-open-max');
-        $('.notification-panel').removeClass('is-open-min');
       });
 
       $('.category-item').click(function(event) {
@@ -160,7 +103,44 @@
         // SET VISIBLE OR NOT LAYERS ON MAP
         setLayerVisibilty();
       });
-    });
 
+      // TOOGLE NOTIFICATION CENTER MENU & HIDE CATEGORY MENU
+      $('#open-notification').click(function(event) {
+        $('.notification-center-overlay').toggleClass('hidden');
+        $('.search-category-overlay').addClass('hidden');
+        // HIDE CATEGORY MENU
+        $('.search-category').removeClass('is-open-max');
+        $('.category-item').removeClass('is-open-min');
+        // TOOGLE NOTIFICATION CENTER MENU
+        $('.notification-center').toggleClass('is-open-max');
+        $('.notification-panel').toggleClass('is-open-min');
+      });
+
+      // TOOGLE NOTIFICATION CENTER OVERLAY
+      $('.notification-center-overlay').click(function(event) {
+        $(this).addClass('hidden');
+        $('.notification-center').toggleClass('is-open-max');
+        $('.notification-panel').toggleClass('is-open-min');
+      });
+
+      // TOOGLE CATEGORY MENU & HIDE NOTIFICATION CENTER
+      $('#open-categories').click(function(event) {
+        $('.search-category-overlay').toggleClass('hidden');
+        $('.notification-center-overlay').addClass('hidden');
+        //HIDE NOTIFICATION CENTER
+        $('.notification-center').removeClass('is-open-max');
+        $('.notification-panel').removeClass('is-open-min');
+        // TOOGLE CATEGORY MENU
+        $('.search-category').toggleClass('is-open-max');
+        $('.category-item').toggleClass('is-open-min');
+      });
+
+      // TOOGLE CATEGORY OVERLAY
+      $('.search-category-overlay').click(function(event) {
+        $(this).addClass('hidden');
+        $('.search-category').removeClass('is-open-max');
+        $('.category-item').removeClass('is-open-min');
+      });
+    });
   </script>
 <% end %>

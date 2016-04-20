@@ -63,9 +63,12 @@ class Business < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :recoverable,
          :rememberable, :trackable, :validatable
   belongs_to :business_category
+  has_many :addresses, dependent: :destroy
   has_many :perks, dependent: :destroy
 
   scope :active, -> { where(active: true) }
+  scope :for_map, -> { where('businesses.shop = ? or businesses.itinerant = ?', true, true) }
+
 
   validates :email, presence: true, uniqueness: true
   validates :business_category_id, presence: true
@@ -73,7 +76,8 @@ class Business < ActiveRecord::Base
   validates :url, format: { with: /\Ahttps?:\/\/[\S]+/, message: "Votre URL doit commencer par http:// ou https://" }, allow_blank: true
 
   geocoded_by :address
-  after_validation :geocode, if: :address_changed?
+  after_validation :geocode if :address_changed?
+  before_save :controle_geocode! if :address_changed?
 
   has_attached_file :picture,
       styles: { medium: "300x300#", thumb: "100x100#" }
@@ -108,11 +112,11 @@ class Business < ActiveRecord::Base
     perks.reduce(0) { |sum, perk| sum + perk.uses.select(:user_id).distinct.count }
   end
 
-  private
-
   def address_changed?
-    :street_changed? || :zipcode_changed? || :city_changed?
+    street_changed? || zipcode_changed? || city_changed?
   end
+
+  private
 
   def address
     "#{street}, #{zipcode} #{city}"
@@ -137,21 +141,35 @@ class Business < ActiveRecord::Base
   end
 
   def send_registration_slack
-    if !Rails.env.development?
+    if Rails.env.production?
       notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_BUSINESS_URL']
       notifier.ping "#{name}, *#{city}*, a rejoint la communauté !"
     end
   end
 
   def subscribe_to_newsletter_business
-    if !Rails.env.development?
+    if Rails.env.production?
       SubscribeToNewsletterBusiness.new(self).run
     end
   end
 
   def send_activation_email
     if active_was == false and self.active == true
+      # MAIL ACTIVATION
       BusinessMailer.activation(self).deliver_now
+      # UPDATE CUSTOM ATTRIBUTES ON INTERCOM
+      intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
+      user = intercom.users.find(:user_id => 'B'+id.to_s)
+      user.custom_attributes["user_active"] = true
+      intercom.users.save(user)
     end
   end
+
+  def controle_geocode!
+    while Business.where('id != ? and latitude = ? and longitude = ?', self.id, latitude, longitude).count > 0
+      self.latitude -= 0.0001
+      self.longitude += 0.0001
+    end
+  end
+
 end
