@@ -116,6 +116,8 @@
         var causeId = $('.cause-container').val('div').attr('id');
         $(".popup-overlay").toggleClass("hidden");
         $("#user_cause_id").val(causeId);
+        var causeName = "<%= @cause.name %>";
+        $('.cause-confirmation span.cause-name').html(causeName);
       });
     });
   </script>
