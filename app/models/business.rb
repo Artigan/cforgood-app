@@ -97,8 +97,8 @@ class Business < ActiveRecord::Base
   validates_attachment_content_type :logo,
       content_type: /\Aimage\/.*\z/
 
-  after_create :send_registration_email, :create_code_promo, :send_registration_slack, :subscribe_to_newsletter_business
-  after_save :send_activation_email if :active_changed?
+  after_create :create_code_promo, :send_registration_slack, :subscribe_to_newsletter_business
+  after_save :update_data_intercom if :active_changed?
 
   def perks_uses_count
     perks.reduce(0) { |sum, perk| sum + perk.uses.count }
@@ -122,9 +122,9 @@ class Business < ActiveRecord::Base
     "#{street}, #{zipcode} #{city}"
   end
 
-  def send_registration_email
-    BusinessMailer.registration(self).deliver_now
-  end
+  # def send_registration_email
+  #   BusinessMailer.registration(self).deliver_now
+  # end
 
   def create_code_promo
     partner = Partner.new
@@ -153,15 +153,17 @@ class Business < ActiveRecord::Base
     end
   end
 
-  def send_activation_email
-    if active_was == false and self.active == true
-      # MAIL ACTIVATION
-      BusinessMailer.activation(self).deliver_now
-      # UPDATE CUSTOM ATTRIBUTES ON INTERCOM
-      intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
-      user = intercom.users.find(:user_id => 'B'+id.to_s)
-      user.custom_attributes["user_active"] = true
-      intercom.users.save(user)
+  def update_data_intercom
+    if Rails.env.production?
+      if active_was == false and self.active == true
+        # # MAIL ACTIVATION
+        # BusinessMailer.activation(self).deliver_now
+        # UPDATE CUSTOM ATTRIBUTES ON INTERCOM
+        intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
+        user = intercom.users.find(:user_id => 'B'+id.to_s)
+        user.custom_attributes["user_active"] = true
+        intercom.users.save(user)
+      end
     end
   end
 
