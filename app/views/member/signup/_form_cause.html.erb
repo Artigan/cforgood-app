@@ -10,6 +10,7 @@
             <div id="<%= cause.id %>" class="cause-presentation">
               <!-- CARD CAUSE -->
               <%= render(partial: 'components/card_cause', locals: { cause: cause }) %>
+               <div class="love-you hidden">Vous soutenez cette association <%= render 'shared/icons/heart' %></div>
             </div>
           <% end %>
         <% end %>
@@ -20,7 +21,7 @@
       <% end %>
     </div>
   </div>
-  <button class="user-button-next">Continuer</button>
+  <button class="btn-next">Suivant</button>
 </div>
 
 <% content_for :after_js do %>
@@ -31,13 +32,10 @@
       $(".user-button").on("click", function(e) {
         e.preventDefault;
         var causeId = $('.cause-presentation.slick-active').val('div').attr('id');
-        $(".popup-overlay").toggleClass("hidden");
         $("#user_cause_id").val(causeId);
-        var causeName = $('.cause-presentation.slick-active .card-cause span').html();
-        $('.cause-confirmation span.cause-name').html(causeName);
       });
 
-      $(".user-button-next").on("click", function(e) {
+      $(".btn-next").on("click", function(e) {
         e.preventDefault;
         $(".choose-cause").addClass("ishidden");
         $(".signup-plan").addClass("slideup");

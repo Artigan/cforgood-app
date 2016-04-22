@@ -1,28 +1,33 @@
 <div class="signup-plan">
   <span>Choisissez votre abonnement</span>
   <div class="container-fluid">
-    <div class="row">
-      <div class="col-xs-12 col-sm-4 offer-card">
-        <div class="offer-title">Mensuel</div>
-        <div class="offer-price">5€/mois</div>
-        <div class="offer-extra">Sans engagement de durée</div>
+    <div class="offer-index">
+      <div class="offer-card">
+        <div class="offer-title">Bienvenue</div>
+        <div class="offer-extra">Pour découvrir la révolution positive !</div>
+        <div class="offer-price">Gratuit</div>
         <div class="offer-btn">
-          <%= link_to "Essayez", member_update_profile_path("user" => {subscription: "TM"}), method: :put, remote: true, authenticity_token: true, class: "btn btn-green", html: { id: :update_subscription_trial } %>
+          <%= link_to "Souscrivez", member_update_profile_path("user" => {subscription: "B"}), method: :put, remote: true, authenticity_token: true, class: "btn btn-turquoise subscription", html: { id: :update_subscription } %>
+        </div>
+      </div>
+      <div class="offer-card">
+        <div class="offer-title">Mensuel</div>
+        <div class="offer-extra">Sans engagement de durée</div>
+        <div class="offer-price">Montant libre</div>
+        <div class="offer-btn">
           <%= link_to "Souscrivez", member_update_profile_path("user" => {subscription: "M"}), method: :put, remote: true, authenticity_token: true, class: "btn btn-turquoise subscription", html: { id: :update_subscription } %>
         </div>
       </div>
-      <div class="col-xs-12 col-sm-4 offer-card most-popular">
+      <div class="offer-card most-popular">
         <div class="offer-most-popular">Le plus populaire</div>
         <div class="offer-title">Annuel</div>
-         <div class="offer-price">50€/an</div>
         <div class="offer-extra"><span>12 Mois </span>de validité</div>
         <div class="offer-price">50€/an</div>
         <div class="offer-btn">
-          <%= link_to "Essayez", member_update_profile_path("user" => {subscription: "TA"}), method: :put, remote: true, authenticity_token: true, class: "btn btn-green", html: { id: :update_subscription_trial } %>
           <%= link_to "Souscrivez", member_update_profile_path("user" => {subscription: "A"}), method: :put, remote: true, authenticity_token: true, class: "btn btn-turquoise subscription", html: { id: :update_subscription } %>
         </div>
       </div>
-      <div class="col-xs-12 col-sm-4 offer-card">
+      <div class="offer-card">
         <div class="offer-title">Entreprise</div>
         <div class="offer-extra">Pour vos clients ou salariés</div>
         <div class="offer-price">Nous consulter</div>
@@ -32,20 +37,17 @@
       </div>
     </div>
   </div>
-
-
-<div id="g-range-container" class="bg-gray">
-  <input class="g-range" type="range" id="g-range" min="0" max="150" value="5" step="5">
-</div>
-<div id="g-range-values-container" class="range-value">
-  <p class="txt-big-number txt-gray" id="g-range-value">5</p>
-</div>
-
-
-
-
-
-
+  <!-- RANGE SLIDER FOR PRICE -->
+  <div class="pricing-range">
+    <label for="range">Choisissez le montant de votre souscription !</label>
+    <input type="range" name="range" id="range" min="0" max="150" step="5" value="5"/>
+    <output for="range" class="output">5</output>
+  </div>
+  <!-- PARTNER CODE -->
+  <div class="code-promo">
+    <label for="code_promo" class="control-label">Code promotion</label>
+    <input type="text" name="code_promo" id="code_promo" class="form-control">
+  </div>
 
   <button class="btn-plan">Suivant</button>
 </div>
@@ -54,6 +56,11 @@
 
   <script>
     $(document).ready(function() {
+
+      $('#range').on('input', function() {
+        $('.output').html(this.value);
+      });
+
       $(".btn.subscription").on("click", function(e) {
         e.preventDefault();
         $("#update_subscription").submit();
@@ -65,15 +72,6 @@
         $(".signup-payment").addClass("slideup");
         $("#signup-breadcrumb").addClass("slide-3");
       });
-
-
-$('.g-range').on('input', function() {
-  $('#g-range-value').html(this.value);
-  $('#g-range-value').html(this.value);
-  $('input[type="range"]').html(this.value);
-});
-
-
 
     });
   </script>

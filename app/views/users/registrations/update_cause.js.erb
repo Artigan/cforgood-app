@@ -1,3 +1,10 @@
 
+if (<%= !current_user.errors.any? %>) {
+
+  // DISCLAIMER - DISPLAYED
+  $("#"+<%= current_user.cause_id %>+" .love-you").removeClass("hidden");
+
+}
+
   // VALIDATION - HIDDEN
   // $(".popup-overlay").addClass("hidden");
