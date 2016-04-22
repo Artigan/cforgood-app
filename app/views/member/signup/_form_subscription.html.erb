@@ -15,7 +15,13 @@
         <div class="offer-extra">Sans engagement de durée</div>
         <div class="offer-price">Montant libre</div>
         <div class="offer-btn">
-          <%= link_to "Souscrivez", member_update_profile_path("user" => {subscription: "M"}), method: :put, remote: true, authenticity_token: true, class: "btn btn-turquoise subscription", html: { id: :update_subscription } %>
+          <%= simple_form_for(current_user, url: member_update_profile_path, remote: true, authenticity_token: true, html: { method: :put, id: :update_cause_id }) do |f| %>
+            <%= f.input :subscription, as: :hidden, value: "B" %>
+            <%= f.input :amount, as: :hidden, value: "B" %>
+            <%= f.input :code_promo, as: :hidden, value: "B" %>
+            <%= f.submit "Souscrivez", class: "user-button subscription" %>
+          <% end %>
+          <%#= link_to "Souscrivez", member_update_profile_path("user" => {subscription: "M"}), method: :put, remote: true, authenticity_token: true, class: "btn btn-turquoise subscription", html: { id: :update_subscription } %>
         </div>
       </div>
       <div class="offer-card most-popular">
@@ -63,6 +69,10 @@
 
       $(".btn.subscription").on("click", function(e) {
         e.preventDefault();
+        if ($(this).next('.offer-title') == 'Mensuel') {
+          amount = $('.output').html(this.value);
+        }
+
         $("#update_subscription").submit();
        });
 

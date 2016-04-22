@@ -47,6 +47,7 @@
 #  date_partner           :date
 #  code_promo             :string
 #  date_support           :date
+#  amount                 :integer
 #
 # Indexes
 #
