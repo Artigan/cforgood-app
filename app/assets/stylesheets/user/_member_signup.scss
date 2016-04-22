@@ -5,9 +5,7 @@
   .choose-cause,
   .signup-plan,
   .signup-payment {
-    position: absolute;
     width: 100%;
-    height: 100%;
   }
 
   .signup-cause {
@@ -40,8 +38,8 @@
       .user-button {
         width: 100%;
         height: 40px;
-        left: 44%;
-        bottom: 200px;
+        left: 37%;
+        bottom: 156px;
       }
 
       .love-you {
@@ -79,15 +77,20 @@
 
     .offer-index {
       padding: 30px 20px 20px;
+
+      .offer-price {
+        margin-bottom: 20px;
+      }
     }
 
-
     .offer-card {
+      width: 150px;
       height: 230px;
     }
 
-    .offer-price {
-      margin-bottom: 10px;
+    .offer-most-popular {
+      line-height: 12px;
+      padding: 2px 4px;
     }
 
     .pricing-range,
@@ -116,8 +119,8 @@
       position: absolute;
       width: 60px;
       height: 60px;
-      top: 320px;
-      left: 435px;
+      top: 340px;
+      left: 260px;
       border: 2px solid #36d3da;
       border-radius: 50%;
       font-size: 15px;
@@ -148,7 +151,7 @@
     .btn-plan {
       position: absolute;
       right: 0px;
-      bottom: 100px;
+      bottom: 15px;
     }
   }
 

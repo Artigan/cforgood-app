@@ -33,6 +33,8 @@
         e.preventDefault;
         var causeId = $('.cause-presentation.slick-active').val('div').attr('id');
         $("#user_cause_id").val(causeId);
+        $(".love-it").addClass('hidden').removeClass('love-it');
+
       });
 
       $(".btn-next").on("click", function(e) {
