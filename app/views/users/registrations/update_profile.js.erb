@@ -13,6 +13,9 @@ if (<%= !current_user.errors.any? %>) {
 
 } else {
 
-  $(document).find("form").prepend('<%= j render("components/error_messages", resource: current_user, formats: [:html]) %>');
-
+  if (<%= request.env["HTTP_REFERER"].include?("signup") %>) {
+    $(document).find(".signup-plan").prepend('<%= j render("components/error_messages", resource: current_user, formats: [:html]) %>');
+  } else {
+    $(document).find("form").prepend('<%= j render("components/error_messages", resource: current_user, formats: [:html]) %>');
+  }
 }
