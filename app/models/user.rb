@@ -47,6 +47,7 @@
 #  date_partner           :date
 #  code_promo             :string
 #  date_support           :date
+#  amount                 :integer
 #
 # Indexes
 #
@@ -217,10 +218,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  # def send_registration_email
-  #   UserMailer.registration(self).deliver_now
-  # end
-
   def send_registration_slack
     if Rails.env.production?
       notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_USER_URL']
@@ -252,14 +249,13 @@ class User < ActiveRecord::Base
 
   def update_data_intercom
     if Rails.env.production?
-      if active_was == false && self.active == true
-        # # MAIL ACTIVATION
-        # UserMailer.activation(self).deliver_now
-        # UPDATE CUSTOM ATTRIBUTES ON INTERCOM
+      # UPDATE CUSTOM ATTRIBUTES ON INTERCOM
+      begin
         intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
         user = intercom.users.find(:user_id => self.id)
         user.custom_attributes["user_active"] = true
         intercom.users.save(user)
+      rescue Intercom::ResourceNotFound
       end
     end
   end

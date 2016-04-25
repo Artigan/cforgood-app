@@ -34,6 +34,7 @@
 #  logo_file_size            :integer
 #  logo_updated_at           :datetime
 #  amount_impact             :integer
+#  active                    :boolean          default(FALSE), not null
 #
 # Indexes
 #
@@ -62,5 +63,35 @@ class Cause < ActiveRecord::Base
 
   # validates :representative_first_name, presence: true
   # validates :representative_last_name, presence: true
+
+  after_create :subscribe_to_newsletter_cause
+  after_save :update_data_intercom
+
+  private
+
+  def subscribe_to_newsletter_cause
+    if Rails.env.production?
+      SubscribeToNewsletterCause.new(self).run
+    end
+  end
+
+  def update_data_intercom
+    if Rails.env.production?
+      intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
+      begin
+        user = intercom.users.create(
+          :user_id => 'C'+id.to_s,
+          :email => email,
+          :name => name,
+          :created_at => created_at
+        )
+        user.custom_attributes["user_type"]   = "cause"
+        user.custom_attributes["user_active"] = active
+        user.custom_attributes["first_name"]  = representative_first_name
+        intercom.users.save(user)
+      rescue Intercom::ResourceNotFound
+      end
+    end
+  end
 end
 

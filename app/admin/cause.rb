@@ -22,6 +22,8 @@ ActiveAdmin.register Cause do
       f.input :description_impact
       f.input :zipcode
       f.input :city
+      f.input :representative_first_name
+      f.input :representative_last_name
       f.input :telephone
       f.input :facebook
       f.input :twitter
@@ -31,22 +33,14 @@ ActiveAdmin.register Cause do
       f.input :picture, :as => :file
       f.input :logo, :as => :file
     end
+    f.inputs "Admin" do
+      f.input :active
+    end
     f.actions
   end
 
-  permit_params :name, :email, :cause_category_id, :impact, :url, :latitude, :longitude, :description, :amount_impact, :description_impact, :street, :zipcode, :city, :telephone, :facebook, :twitter, :instagram, :picture, :logo
-# See permitted parameters documentation:
-# https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-#
-# permit_params :list, :of, :attributes, :on, :model
-#
-# or
-#
-# permit_params do
-#   permitted = [:permitted, :attributes]
-#   permitted << :other if resource.something?
-#   permitted
-# end
+  permit_params :name, :email, :cause_category_id, :impact, :url, :latitude, :longitude, :description, :amount_impact, :description_impact, :street, :zipcode, :city, :telephone, :facebook, :twitter, :instagram, :picture, :logo, :active, :representative_first_name,
+ :representative_last_name
 
 
 end
