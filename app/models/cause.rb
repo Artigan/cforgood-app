@@ -64,9 +64,16 @@ class Cause < ActiveRecord::Base
   # validates :representative_first_name, presence: true
   # validates :representative_last_name, presence: true
 
+  after_create :subscribe_to_newsletter_cause
   after_save :update_data_intercom
 
   private
+
+  def subscribe_to_newsletter_cause
+    if Rails.env.production?
+      SubscribeToNewsletterCause.new(self).run
+    end
+  end
 
   def update_data_intercom
     if Rails.env.production?
