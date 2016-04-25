@@ -6,6 +6,7 @@ class SubscribeToNewsletterCause
   end
 
   def run
+    pry-buebug
     @gibbon.lists(@list_id).members.create(
       body: {
         email_address: @cause.email,
