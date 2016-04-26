@@ -242,9 +242,9 @@ class User < ActiveRecord::Base
   end
 
   def subscribe_to_newsletter_user
-    if Rails.env.production?
+    # if Rails.env.production?
       SubscribeToNewsletterUser.new(self).run
-    end
+    # end
   end
 
   def update_data_intercom

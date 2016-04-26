@@ -6,17 +6,24 @@ class SubscribeToNewsletterUser
   end
 
   def run
-    @gibbon.lists(@list_id).members.create(
-      body: {
-        email_address: @user.email,
-        status: "subscribed",
-        double_optin: false,
-        merge_fields: {
-          FNAME: @user.first_name,
-          LNAME: @user.last_name,
-          CITY: @user.city
+    begin
+      md5_email = Digest::MD5.hexdigest(@user.email)
+      @gibbon.lists(@list_id).members(md5_email).upsert(
+        body: {
+          email_address: @user.email,
+          status: "subscribed",
+          double_optin: false,
+          update_existing: true,
+          merge_fields: {
+            FNAME: @user.first_name,
+            LNAME: @user.last_name,
+            CITY: @user.city
+          }
         }
-      }
-    )
+      )
+    rescue Gibbon::MailChimpError => exception
+      Rails.logger.error("Erreur lors insciption MAILCHIMP_LIST_USER #{exception.status_code} : #{exception.detail}")
+    end
   end
 end
+
