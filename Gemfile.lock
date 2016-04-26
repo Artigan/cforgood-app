@@ -252,6 +252,9 @@ GEM
     postmark (1.7.1)
       json
       rake
+    postmark-rails (0.12.0)
+      actionmailer (>= 3.0.0)
+      postmark (~> 1.7.0)
     pry (0.10.3)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -403,7 +406,7 @@ DEPENDENCIES
   omniauth-google-oauth2!
   paperclip
   pg
-  postmark
+  postmark-rails (~> 0.12.0)
   pry-byebug
   pry-rails
   puma
