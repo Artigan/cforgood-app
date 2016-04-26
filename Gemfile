@@ -26,7 +26,7 @@ gem "paperclip"
 gem "aws-sdk", "< 2.0"
 gem 'remotipart', '~> 1.2'
 gem "gibbon"
-gem "mandrill-api"
+gem 'postmark'
 gem 'activeadmin', github: 'activeadmin'
 
 gem "jquery-rails"
