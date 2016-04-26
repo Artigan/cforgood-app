@@ -148,9 +148,9 @@ class Business < ActiveRecord::Base
   end
 
   def subscribe_to_newsletter_business
-    # if Rails.env.production?
+    if Rails.env.production?
       SubscribeToNewsletterBusiness.new(self).run
-    # end
+    end
   end
 
   def update_data_intercom

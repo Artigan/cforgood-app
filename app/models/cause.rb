@@ -70,9 +70,9 @@ class Cause < ActiveRecord::Base
   private
 
   def subscribe_to_newsletter_cause
-    # if Rails.env.production?
+    if Rails.env.production?
       SubscribeToNewsletterCause.new(self).run
-    # end
+    end
   end
 
   def update_data_intercom
