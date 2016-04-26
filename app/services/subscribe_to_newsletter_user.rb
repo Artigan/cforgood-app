@@ -2,13 +2,13 @@ class SubscribeToNewsletterUser
   def initialize(user)
     @user = user
     @gibbon = Gibbon::Request.new(api_key: ENV['MAILCHIMP_API_KEY'])
+    @md5_email = Digest::MD5.hexdigest(@user.email)
     @list_id = ENV['MAILCHIMP_LIST_USER']
   end
 
   def run
     begin
-      md5_email = Digest::MD5.hexdigest(@user.email)
-      @gibbon.lists(@list_id).members(md5_email).upsert(
+      @gibbon.lists(@list_id).members(@md5_email).upsert(
         body: {
           email_address: @user.email,
           status: "subscribed",
