@@ -45,7 +45,7 @@
 #  latitude               :float
 #  longitude              :float
 #  date_partner           :date
-#  code_promo             :string
+#  code_partner             :string
 #  date_support           :date
 #  amount                 :integer
 #
@@ -84,7 +84,7 @@ class User < ActiveRecord::Base
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
 
-  validate :code_promo?, if: :code_promo_changed?
+  validate :code_partner?, if: :code_partner_changed?
   after_validation :date_subscription!, if: :subscription_changed?
   after_validation :member!, if: :date_last_payment_changed?
   after_validation :date_support!, if: :cause_id_changed?
@@ -193,13 +193,13 @@ class User < ActiveRecord::Base
 
   private
 
-  def code_promo?
-    if code_promo.present?
-      if Partner.find_by_code_promo(code_promo.upcase)
-        code_promo.upcase!
+  def code_partner?
+    if code_partner.present?
+      if Partner.find_by_code_partner(code_partner.upcase)
+        code_partner.upcase!
         date_partner = Time.now
       else
-        errors.add(:code_promo, "Code promotionnel invalide")
+        errors.add(:code_partner, "Code promotionnel invalide")
       end
     end
   end

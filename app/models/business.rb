@@ -97,7 +97,7 @@ class Business < ActiveRecord::Base
   validates_attachment_content_type :logo,
       content_type: /\Aimage\/.*\z/
 
-  after_create :create_code_promo, :send_registration_slack, :subscribe_to_newsletter_business
+  after_create :create_code_partner, :send_registration_slack, :subscribe_to_newsletter_business
   after_save :update_data_intercom if :active_changed?
 
   def perks_uses_count
@@ -126,17 +126,17 @@ class Business < ActiveRecord::Base
   #   BusinessMailer.registration(self).deliver_now
   # end
 
-  def create_code_promo
+  def create_code_partner
     partner = Partner.new
     partner.name       = self.name
     partner.email      = self.email
     code = self.name.upcase.gsub(/[^a-zA-Z]/, '').strip
     i = 0
-    while Partner.find_by_code_promo(code)
+    while Partner.find_by_code_partner(code)
        code += i.to_s
        i += 1
     end
-    partner.code_promo = code
+    partner.code_partner = code
     partner.save
   end
 

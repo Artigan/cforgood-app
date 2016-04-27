@@ -13,14 +13,14 @@
         </div>
         <!-- PARTNER CODE -->
         <div class="code-promo">
-          <label for="code_promo" class="control-label">Code partenaire</label>
-          <input type="text" name="code_promo" id="code_promo" class="form-control">
+          <label for="code_partner" class="control-label">Code partenaire</label>
+          <input type="text" name="code_partner" id="code_partner" class="form-control">
         </div>
         <div class="offer-btn">
           <%= simple_form_for(current_user, url: member_update_profile_path, method: :put, remote: true, authenticity_token: true, html: { id: "update_subscription" } ) do |f| %>
             <%= f.input :subscription, as: :hidden %>
             <%= f.input :amount, as: :hidden %>
-            <%= f.input :code_promo, as: :hidden %>
+            <%= f.input :code_partner, as: :hidden %>
             <%= f.submit "Souscrivez", class: "btn-subscription"%>
           <% end %>
         </div>
@@ -52,7 +52,7 @@
       $(".btn-subscription").on("click", function() {
         $("#user_subscription").val("M");
         $("#user_amount").val(parseInt($(".output").val()));
-        $("#user_code_promo").val($('#code_promo').val());
+        $("#user_code_partner").val($('#code_partner').val());
       });
 
       $(".btn-plan").on("click", function(e) {
