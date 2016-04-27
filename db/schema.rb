@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160422165030) do
+ActiveRecord::Schema.define(version: 20160425144331) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -133,8 +133,8 @@ ActiveRecord::Schema.define(version: 20160422165030) do
     t.string   "url"
     t.string   "email"
     t.string   "telephone"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
     t.string   "impact"
     t.string   "picture_file_name"
     t.string   "picture_content_type"
@@ -156,6 +156,7 @@ ActiveRecord::Schema.define(version: 20160422165030) do
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
     t.integer  "amount_impact"
+    t.boolean  "active",                    default: false, null: false
   end
 
   add_index "causes", ["cause_category_id"], name: "index_causes_on_cause_category_id", using: :btree

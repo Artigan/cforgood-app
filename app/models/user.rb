@@ -92,8 +92,8 @@ class User < ActiveRecord::Base
   after_save :trial_done!, if: :subscription_changed?
 
   before_create :default_cause_id!
-  after_create :send_registration_email, :send_registration_slack, :subscribe_to_newsletter_user
-  after_save :send_activation_email if :active_changed?
+  after_create :send_registration_slack, :subscribe_to_newsletter_user
+  after_save :update_data_intercom if :active_changed?
 
 
   def self.find_for_google_oauth2(access_token, signed_in_resourse=nil)
@@ -218,10 +218,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  def send_registration_email
-    UserMailer.registration(self).deliver_now
-  end
-
   def send_registration_slack
     if Rails.env.production?
       notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_USER_URL']
@@ -251,15 +247,16 @@ class User < ActiveRecord::Base
     end
   end
 
-  def send_activation_email
-    if active_was == false && self.active == true
-      # MAIL ACTIVATION
-      UserMailer.activation(self).deliver_now
+  def update_data_intercom
+    if Rails.env.production?
       # UPDATE CUSTOM ATTRIBUTES ON INTERCOM
-      intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
-      user = intercom.users.find(:user_id => self.id)
-      user.custom_attributes["user_active"] = true
-      intercom.users.save(user)
+      begin
+        intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
+        user = intercom.users.find(:user_id => self.id)
+        user.custom_attributes["user_active"] = true
+        intercom.users.save(user)
+      rescue Intercom::ResourceNotFound
+      end
     end
   end
 end
