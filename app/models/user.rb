@@ -45,7 +45,7 @@
 #  latitude               :float
 #  longitude              :float
 #  date_partner           :date
-#  code_promo             :string
+#  code_partner           :string
 #  date_support           :date
 #  amount                 :integer
 #
