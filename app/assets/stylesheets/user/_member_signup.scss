@@ -64,6 +64,11 @@
       }
     }
 
+    .comment-cause {
+      position: absolute;
+      bottom: 75px;
+    }
+
     .btn-next {
       position: absolute;
       left: 50%;
@@ -79,26 +84,20 @@
       padding: 30px 20px 20px;
 
       .offer-price {
-        margin-bottom: 20px;
+        margin-bottom: 10px;
       }
     }
 
     .offer-card {
-      height: 230px;
-    }
+      height: 320px;
 
-    .offer-most-popular {
-      line-height: 12px;
-      padding: 2px 4px;
-    }
+      &.offer-monthly {
+        width: 500px;
+      }
 
-    .pricing-range,
-    .code-promo {
-      width: 50%;
-    }
-
-    .code-promo {
-      padding-top: 10px;
+      .offer-extra {
+        height: 60px;
+      }
     }
 
     *:focus {
@@ -106,11 +105,12 @@
     }
 
     #range {
-      // width: 300px;
+      position: absolute;
+      display: block;
+      width: 72%;
       height: 10px;
       background: linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%);
-      margin: 0 auto;
-      display: block;
+      left: 5%;
       border-radius: 10px;
     }
 
@@ -118,7 +118,7 @@
       position: absolute;
       width: 60px;
       height: 60px;
-      top: 340px;
+      bottom: 130px;
       left: 260px;
       border: 2px solid #36d3da;
       border-radius: 50%;
@@ -149,15 +149,19 @@
 
     .btn-subscription {
       padding: 5px;
-      margin: 0;
       border-radius: 4px;
       font: 14px;
     }
 
+    .btn-no-subscription {
+      position: absolute;
+      bottom: 15px;
+      left: 0;
+    }
 
     .btn-plan {
       position: absolute;
-      right: 0px;
+      right: 0;
       bottom: 15px;
     }
   }
@@ -165,8 +169,6 @@
   .signup-payment {
     background-color: #fff;
   }
-
-
 }
 
 

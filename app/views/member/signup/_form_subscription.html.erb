@@ -2,17 +2,27 @@
   <span>Choisissez votre abonnement</span>
   <div class="container-fluid">
     <div class="offer-index">
-      <div class="offer-card">
+      <div class="offer-card offer-monthly">
         <div class="offer-title">Mensuel</div>
         <div class="offer-extra">Sans engagement de durée</div>
-        <div class="offer-price">Montant libre</div>
+        <!-- RANGE SLIDER FOR PRICE -->
+        <div class="offer-price">
+          <label for="range">Choisissez le montant de votre souscription !</label>
+          <input type="range" name="range" id="range" min="1" max="50" value="5"/>
+          <output for="range" class="output">5</output>
+        </div>
+        <!-- PARTNER CODE -->
+        <div class="code-promo">
+          <label for="code_promo" class="control-label">Code partenaire</label>
+          <input type="text" name="code_promo" id="code_promo" class="form-control">
+        </div>
         <div class="offer-btn">
           <%= simple_form_for(current_user, url: member_update_profile_path, method: :put, remote: true, authenticity_token: true, html: { id: "update_subscription" } ) do |f| %>
-          <%= f.input :subscription, as: :hidden %>
-          <%= f.input :amount, as: :hidden %>
-          <%= f.input :code_promo, as: :hidden %>
-          <%= f.submit "Souscrivez", class: "btn-subscription"%>
-        <% end %>
+            <%= f.input :subscription, as: :hidden %>
+            <%= f.input :amount, as: :hidden %>
+            <%= f.input :code_promo, as: :hidden %>
+            <%= f.submit "Souscrivez", class: "btn-subscription"%>
+          <% end %>
         </div>
       </div>
       <div class="offer-card">
@@ -25,18 +35,8 @@
       </div>
     </div>
   </div>
-  <!-- RANGE SLIDER FOR PRICE -->
-  <div class="pricing-range">
-    <label for="range">Choisissez le montant de votre souscription !</label>
-    <input type="range" name="range" id="range" min="1" max="50" value="5"/>
-    <output for="range" class="output">5</output>
-  </div>
-  <!-- PARTNER CODE -->
-  <div class="code-promo">
-    <label for="code_promo" class="control-label">Code partenaire</label>
-    <input type="text" name="code_promo" id="code_promo" class="form-control">
-  </div>
 
+  <%= link_to "Je souscris plus tard !", member_user_dashboard_path(current_user), class: "btn btn-no-subscription btn-turquoise" %>
   <button class="btn-plan">Suivant</button>
 </div>
 
