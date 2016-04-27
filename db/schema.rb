@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160427142040) do
+ActiveRecord::Schema.define(version: 20160427143647) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -165,8 +165,9 @@ ActiveRecord::Schema.define(version: 20160427142040) do
     t.string   "name"
     t.string   "email"
     t.string   "code_partner"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "nb_month",     default: 1
   end
 
   create_table "perk_details", force: :cascade do |t|
@@ -246,7 +247,7 @@ ActiveRecord::Schema.define(version: 20160427142040) do
     t.float    "latitude"
     t.float    "longitude"
     t.date     "date_partner"
-    t.string   "code_partner"
+    t.string   "code_promo"
     t.date     "date_support"
     t.integer  "amount"
   end
