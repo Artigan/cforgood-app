@@ -22,6 +22,8 @@ gem 'mangopay'
 gem 'intercom', "~> 3.4.0"
 gem "intercom-rails"
 gem 'sidekiq'
+gem 'sinatra'  # Dependency of sidekiq
+gem 'sidekiq-failures'
 
 gem "paperclip"
 gem "aws-sdk", "< 2.0"
