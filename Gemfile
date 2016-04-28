@@ -21,6 +21,7 @@ gem 'omniauth-google-oauth2', git: 'https://github.com/zquestz/omniauth-google-o
 gem 'mangopay'
 gem 'intercom', "~> 3.4.0"
 gem "intercom-rails"
+gem 'sidekiq'
 
 gem "paperclip"
 gem "aws-sdk", "< 2.0"
