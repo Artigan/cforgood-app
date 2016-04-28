@@ -10,9 +10,12 @@
           <label for="range">Choisissez le montant de votre souscription !</label>
           <input type="range" name="range" id="range" min="1" max="50" value="5"/>
           <output for="range" class="output">5</output>
+          <p>La somme reversée à l'association de votre choix sera de
+            <output class="output-asso">2,5</output>
+          </p>
         </div>
         <!-- PARTNER CODE -->
-        <div class="code-promo">
+        <div class="code-partner">
           <label for="code_partner" class="control-label">Code partenaire</label>
           <input type="text" name="code_partner" id="code_partner" class="form-control">
         </div>
@@ -44,9 +47,28 @@
 
   <script>
     $(document).ready(function() {
+      function amountAsso(amount) {
+        if (amount <= 5) {
+          var pourcent = ((50 - 30)*((amount-1)/(5-1)))+30;
+        } else if (amount <= 10) {
+          var pourcent = ((70 - 50)*((amount-5)/(10-5)))+50;
+        } else if (amount <= 15) {
+          var pourcent = ((75 - 70)*((amount-10)/(15-10)))+70;
+        } else if (amount <= 20) {
+          var pourcent = ((77.5 - 75)*((amount-15)/(20-15)))+75;
+        } else if (amount <= 25) {
+          var pourcent = ((80 - 77.5)*((amount-20)/(25-20)))+77.5;
+        } else if (amount <= 50) {
+          var pourcent = ((85 - 80)*((amount-25)/(50-25)))+80;
+        }
+        var amountAsso = (amount * pourcent/100).toFixed(2) ;
+        $('.output-asso').html(amountAsso);
+      }
+
 
       $('#range').on('input', function() {
         $('.output').html(this.value);
+        amountAsso(this.value);
       });
 
       $(".btn-subscription").on("click", function() {
