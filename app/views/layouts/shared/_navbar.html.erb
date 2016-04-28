@@ -44,13 +44,13 @@
       </div>
       <ul>
         <li class="visible-xs">
-        <%= link_to landing_business_path do %>
-          <i class="fa fa-home"></i> <%= t(".how_it_works", default: "Accueil") %>
-        <% end %>
+          <%= link_to landing_business_path do %>
+            <i class="fa fa-home"></i> <%= t(".how_it_works", default: "Accueil") %>
+          <% end %>
         </li>
         <li>
           <%= link_to faq_connect_path do %>
-          <i class="fa fa-dot-circle-o"></i> <%= t(".how_it_works", default: "Aide et conseils") %>
+            <i class="fa fa-dot-circle-o"></i> <%= t(".how_it_works", default: "Aide et conseils") %>
           <% end %>
         </li>
         <li class="hidden-xs">
@@ -74,7 +74,7 @@
             <% end %>
           <% end%>
         </li>
-
+      </ul>
     <!-- USER SIGN IN -->
     <% else %>
       <% if user_signed_in? && user_space? %>
