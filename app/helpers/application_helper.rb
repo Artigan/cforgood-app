@@ -52,4 +52,41 @@ module ApplicationHelper
       items.to_s.rjust(2, '0')
     end
   end
+
+  def navbar_classes
+    classes = []
+    classes << "flash" if landing_page?
+    if user_space?
+      classes << "nav-user"
+    else
+      classes << "nav-business" if business_signed_in?
+    end
+
+    return classes.join(' ')
+  end
+
+  def pages_controller?
+    controller_name == "pages"
+  end
+
+
+  def navbar_logo
+    if pages_controller?
+      "logo-white.png"
+    else
+      "cforgood_logo.png"
+    end
+  end
+
+  def navbar_logo_link
+    if user_signed_in?
+      member_user_dashboard_path(current_user)
+    elsif business_signed_in?
+      pro_business_dashboard_path(current_business)
+    else
+      root_path
+    end
+  end
+
+
 end

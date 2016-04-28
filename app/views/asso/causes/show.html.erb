@@ -17,10 +17,12 @@
         <img class="cause-logo" src="<%= image_url @cause.logo %>" style="border: 3px solid <%= @cause.cause_category.color %>;">
         <h1><%= @cause.name %></h1>
         <!-- CTA -->
-        <% if @cause.id == current_user.cause_id %>
-          <div class="love-you">Vous soutenez cette association <%= render 'shared/icons/heart' %></div>
-        <% else %>
-          <button class="user-button">Soutenir cette cause</button>
+        <% if user_signed_in? %>
+          <% if @cause.id == current_user.cause_id %>
+            <div class="love-you">Vous soutenez cette association <%= render 'shared/icons/heart' %></div>
+          <% else %>
+            <button class="user-button">Soutenir cette cause</button>
+          <% end %>
         <% end %>
       </div>
 
@@ -105,20 +107,23 @@
   </div>
 </div>
 
-<%= render 'components/popups/cause_validation' %>
+<% if user_signed_in? %>
+  <%= render 'components/popups/cause_validation' %>
 
 
-<% content_for :after_js do %>
-  <script>
-    $(document).ready(function() {
-      $(".user-button").on("click", function(e) {
-        e.preventDefault;
-        var causeId = $('.cause-container').val('div').attr('id');
-        $(".popup-overlay").toggleClass("hidden");
-        $("#user_cause_id").val(causeId);
-        var causeName = "<%= @cause.name %>";
-        $('.cause-confirmation span.cause-name').html(causeName);
+  <% content_for :after_js do %>
+    <script>
+      $(document).ready(function() {
+        $(".user-button").on("click", function(e) {
+          e.preventDefault;
+          var causeId = $('.cause-container').val('div').attr('id');
+          $(".popup-overlay").toggleClass("hidden");
+          $("#user_cause_id").val(causeId);
+          var causeName = "<%= @cause.name %>";
+          $('.cause-confirmation span.cause-name').html(causeName);
+        });
       });
-    });
-  </script>
+    </script>
+  <% end %>
+
 <% end %>

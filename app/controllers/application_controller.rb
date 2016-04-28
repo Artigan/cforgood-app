@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 
   before_action :set_layout
 
-  before_action :authenticate_user!, unless: :pages_controller?
+  before_action :authenticate_user!
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
@@ -55,11 +55,7 @@ class ApplicationController < ActionController::Base
   end
 
   def devise_or_pages_controller?
-    devise_controller? || pages_controller?
-  end
-
-  def pages_controller?
-    controller_name == "pages" || controller_name == "application"  # Brought by the `high_voltage` gem
+    devise_controller? || controller_name == "pages"
   end
 
   def pages_admin?
