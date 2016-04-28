@@ -15,18 +15,19 @@
           </p>
         </div>
         <!-- PARTNER CODE -->
-        <div class="code-partner">
-          <label for="code_partner" class="control-label">Code partenaire</label>
-          <input type="text" name="code_partner" id="code_partner" class="form-control">
-        </div>
-        <div class="offer-btn">
-          <%= simple_form_for(current_user, url: member_update_profile_path, method: :put, remote: true, authenticity_token: true, html: { id: "update_subscription" } ) do |f| %>
-            <%= f.input :subscription, as: :hidden %>
+        <%= simple_form_for(current_user, url: member_update_profile_path, method: :put, remote: true, authenticity_token: true, html: { id: "update_subscription" } ) do |f| %>
+          <div class="code-partner">
+            <%= f.input :code_partner, label: "Code Partenaire", input_html: { value: "" } %>
+
+          </div>
+
+          <div class="offer-btn">
+            <%= f.input :subscription, as: :hidden, input_html: { value: "M" } %>
             <%= f.input :amount, as: :hidden %>
-            <%= f.input :code_partner, as: :hidden %>
             <%= f.submit "Souscrivez", class: "btn-subscription"%>
-          <% end %>
-        </div>
+          </div>
+          <!-- Current partner code : <%= current_user.code_partner %> -->
+        <% end %>
       </div>
       <div class="offer-card">
         <div class="offer-title">Entreprise</div>
@@ -61,20 +62,15 @@
         } else if (amount <= 50) {
           var pourcent = ((85 - 80)*((amount-25)/(50-25)))+80;
         }
-        var amountAsso = (amount * pourcent/100).toFixed(2) ;
-        $('.output-asso').html(amountAsso);
+        return (amount * pourcent/100).toFixed(2) ;
       }
-
 
       $('#range').on('input', function() {
         $('.output').html(this.value);
-        amountAsso(this.value);
-      });
 
-      $(".btn-subscription").on("click", function() {
-        $("#user_subscription").val("M");
-        $("#user_amount").val(parseInt($(".output").val()));
-        $("#user_code_partner").val($('#code_partner').val());
+        var amount = amountAsso(this.value);
+        $('.output-asso').html(amount);
+        $("#user_amount").val(this.value);
       });
 
       $(".btn-plan").on("click", function(e) {
