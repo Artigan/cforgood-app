@@ -59,7 +59,7 @@ class ApplicationController < ActionController::Base
   end
 
   def pages_controller?
-    controller_name == "pages" || "application"  # Brought by the `high_voltage` gem
+    controller_name == "pages" || controller_name == "application"  # Brought by the `high_voltage` gem
   end
 
   def pages_admin?

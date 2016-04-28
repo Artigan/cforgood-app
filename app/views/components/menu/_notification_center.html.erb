@@ -7,10 +7,12 @@
   <div class="notification-panel">
     <h2>
       Hello
-      <% if current_user.last_name.present? %>
-        <%= current_user.first_name %>,
-      <% elsif current_user.name.present? %>
-        <%= current_user.name.split(" ")[0] %>,
+      <% if user_signed_in? %>
+        <% if current_user.last_name.present? %>
+          <%= current_user.first_name %>,
+        <% elsif current_user.name.present? %>
+          <%= current_user.name.split(" ")[0] %>,
+        <% end %>
       <% end %>
     </h2>
     <p>Merci de participer à la BETA de CforGood. Surtout ne cassez-rien ! Si vous remarquez quelque chose d'approximatif, dites-le nous en utilisant le formulaire ci-dessous :) Mille merci !</p>

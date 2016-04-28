@@ -1,6 +1,6 @@
 class Member::DashboardController < ApplicationController
 
-  before_action :authenticate_user!
+  skip_before_action :authenticate_user!, only: [:dashboard]
   # include Pundit
 
   # after_action :verify_authorized, except: :index, unless: :devise_controller?

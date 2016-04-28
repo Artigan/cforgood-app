@@ -41,6 +41,8 @@ Rails.application.routes.draw do
     resources :perks, only: [:show]
   end
 
+  get "map", to: "member/dashboard#dashboard"
+
   devise_for :businesses, path: :pro, controllers: {registrations: :registrations, passwords: :passwords}
   devise_scope :business do
     get "pro/sent_mail",        to: "pro/passwords#sent_mail"
