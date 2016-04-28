@@ -45,7 +45,7 @@
           <h1><%= @business.perks.find(params[:perk_id]).name %></h1>
           <p><%= @business.perks.find(params[:perk_id]).description %></p>
           <div class="use-perk">
-            <%# if current_user.member %>
+            <% if user_signed_in? %>
               <% if !@business.perks.find(params[:perk_id]).perk_in_time? %>
                 <div id="button-used">
                   <button class="empty">Bon plan non disponible</button>
@@ -57,7 +57,9 @@
               <% else %>
                  <button type="button" class="use-button" style="background-color: <%= @business.business_category.color %>;">J'en profite</button>
               <% end %>
-            <%# end %>
+            <% else %>
+              <%= link_to "J'en profite", member_signup_path, class: "btn btn-primary btn-block" %>
+            <% end %>
           </div>
         </div>
 
@@ -139,7 +141,7 @@
         <h1><%= @business.perks.find(params[:perk_id]).name %></h1>
         <p><%= @business.perks.find(params[:perk_id]).description %></p>
         <div class="use-perk">
-          <%# if current_user.member %>
+          <% if user_signed_in? %>
             <% if !@business.perks.find(params[:perk_id]).perk_in_time? %>
               <div id="button-used">
                 <button class="empty">Bon plan non disponible</button>
@@ -151,7 +153,9 @@
             <% else %>
                <button type="button" class="use-button" style="background-color: <%= @business.business_category.color %>;">J'en profite</button>
             <% end %>
-          <%# end %>
+          <% else %>
+            <%= link_to "J'en profite", member_signup_path, class: "btn btn-primary btn-block" %>
+          <% end %>
         </div>
       </div>
       <!-- BLOCK MAP -->
