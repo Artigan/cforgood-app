@@ -14,6 +14,7 @@ class DailyControlFlashJob < ActiveJob::Base
     else
       puts "nb perks in: 0"
     end
+    puts "-----------------------------------------"
 
     nb_perk_inactivated = 0
 
