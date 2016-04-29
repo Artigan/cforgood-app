@@ -9,7 +9,7 @@
         <label>Photo</label>
         <div class="picture-container">
           <% if current_business.picture? %>
-            <%= image_tag current_business.picture.url, class: 'picture-business' %>
+            <%= image_tag current_business.picture, class: 'picture-business' %>
           <% else %>
             <div class="picture-none">
               <%= render 'shared/icons/shop' %>

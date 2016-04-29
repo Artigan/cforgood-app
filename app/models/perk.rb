@@ -45,8 +45,6 @@ class Perk < ActiveRecord::Base
   scope :in_time, -> { where('perks.active = ? and (perks.durable = ? or perks.appel = ? or (perks.flash = ? and perks.start_date <= ? and perks.end_date >= ?))', true, true, true, true, Time.now, Time.now) }
   scope :flash_in_time, -> { where('perks.active = ? and perks.flash = ? and perks.start_date <= ? and perks.end_date >= ?', true, true, Time.now, Time.now) }
 
-
-
   extend TimeSplitter::Accessors
   split_accessor :start_date, :end_date
 
