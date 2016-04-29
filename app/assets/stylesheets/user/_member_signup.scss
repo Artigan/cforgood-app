@@ -109,8 +109,12 @@
 
         .output-asso {
           position: absolute;
-          bottom: 120px;
-          left: 100px;
+          bottom: 121px;
+          left: 125px;
+
+          &:after {
+          content: " %";
+          }
         }
       }
     }
@@ -142,15 +146,15 @@
       border-radius: 10px;
     }
 
-    .output {
+    #user_amount {
       position: absolute;
       width: 60px;
       height: 60px;
-      bottom: 155px;
+      bottom: 140px;
       left: 260px;
       border: 2px solid #36d3da;
       border-radius: 50%;
-      font-size: 15px;
+      font-size: 16px;
       text-align: center;
       color: #36d3da;
       line-height: 2.7em;
@@ -178,13 +182,13 @@
     .btn-subscription {
       padding: 5px;
       border-radius: 4px;
-      font: 14px;
+      margin-left: 100px;
     }
 
     .btn-no-subscription {
       position: absolute;
       bottom: 15px;
-      left: 0;
+      left: 25px;
     }
 
     .btn-plan {
@@ -196,6 +200,17 @@
 
   .signup-payment {
     background-color: #fff;
+
+    #amount_subscription {
+      width: 50%;
+      left: 50%;
+      position: absolute;
+      transform: translateX(-50%);
+
+      &:after {
+        content: " €";
+      }
+    }
   }
 }
 

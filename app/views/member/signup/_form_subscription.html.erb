@@ -7,11 +7,10 @@
         <div class="offer-extra">Sans engagement de durée</div>
         <!-- RANGE SLIDER FOR PRICE -->
         <div class="offer-price">
-          <label for="range">Choisissez le montant de votre souscription !</label>
+          <label for="range">Choisissez le montant de votre participation !</label>
           <input type="range" name="range" id="range" min="1" max="50" value="5"/>
-          <output for="range" class="output">5</output>
-          <p>La somme reversée à l'association de votre choix sera de
-            <output class="output-asso">2,5</output>
+          <p>Le pourcentage reversée à l'association de votre choix sera de
+            <output class="output-asso">50</output>
           </p>
         </div>
         <!-- PARTNER CODE -->
@@ -23,7 +22,7 @@
 
           <div class="offer-btn">
             <%= f.input :subscription, as: :hidden, input_html: { value: "M" } %>
-            <%= f.input :amount, as: :hidden %>
+            <%= f.input :amount, label: false, input_html: { value: 5 } %>
             <%= f.submit "Souscrivez", class: "btn-subscription"%>
           </div>
           <!-- Current partner code : <%= current_user.code_partner %> -->
@@ -41,14 +40,14 @@
   </div>
 
   <%= link_to "Je souscris plus tard !", member_user_dashboard_path(current_user), class: "btn btn-no-subscription btn-turquoise" %>
-  <button class="btn-plan">Suivant</button>
+ <!--  <button class="btn-plan">Suivant</button> -->
 </div>
 
 <% content_for :after_js do %>
 
   <script>
     $(document).ready(function() {
-      function amountAsso(amount) {
+      function pourcentAsso(amount) {
         if (amount <= 5) {
           var pourcent = ((50 - 30)*((amount-1)/(5-1)))+30;
         } else if (amount <= 10) {
@@ -62,19 +61,23 @@
         } else if (amount <= 50) {
           var pourcent = ((85 - 80)*((amount-25)/(50-25)))+80;
         }
-        return (amount * pourcent/100).toFixed(2) ;
+        return pourcent;
       }
 
       $('#range').on('input', function() {
-        $('.output').html(this.value);
-
-        var amount = amountAsso(this.value);
-        $('.output-asso').html(amount);
         $("#user_amount").val(this.value);
+        var pourcent = pourcentAsso(this.value);
+        $('.output-asso').html(pourcent);
       });
 
-      $(".btn-plan").on("click", function(e) {
-        e.preventDefault;
+      $("#user_amount").on('change', function() {
+        var pourcent = pourcentAsso(this.value);
+        $('.output-asso').html(pourcent);
+        $("#range").val(this.value);
+      });
+
+      $(".btn-subscription").on("click", function() {
+        $("#amount_subscription").html($("#user_amount").val());
         $(".signup-plan").addClass("ishidden");
         $(".signup-payment").addClass("slideup");
         $("#signup-breadcrumb").addClass("slide-3");
