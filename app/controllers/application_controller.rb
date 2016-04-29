@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
-  #include Pundit
+
   include Mobvious::Rails::Controller
-  # protect_from_forgery with: :exception
+
   protect_from_forgery with: :null_session
 
   before_action :set_layout
@@ -9,13 +9,6 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
-
-  # before_action :configure_permitted_parameters, if: :devise_controller
-
-  # after_action :verify_authorized, except:  :index, unless: :devise_or_pages_controller?
-  # after_action :verify_policy_scoped, only: :index, unless: :devise_or_pages_controller?
-
-  # rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   protected
 
@@ -48,14 +41,6 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:first_name, :last_name, :email, :password, :remember_me, :password_confirmation, :name, :business_category_id, :city, :code_partner) }
     devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:email, :password, :remember_me) }
     devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:email, :password, :current_password, :password_confirmation, :business_category_id, :name, :cause_id, :first_name, :last_name, :picture, :leader_picture, :street, :zipcode, :city, :url, :telephone, :description, :facebook, :twitter, :instagram, :subscription, :shop, :online, :itinerant) }
-  end
-
-  def businesses_controller?
-    controller_name == "businesses"
-  end
-
-  def devise_or_pages_controller?
-    devise_controller? || controller_name == "pages"
   end
 
   def pages_admin?

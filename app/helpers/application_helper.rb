@@ -56,11 +56,8 @@ module ApplicationHelper
   def navbar_classes
     classes = []
     classes << "flash" if landing_page?
-    if user_space?
-      classes << "nav-user"
-    else
-      classes << "nav-business" if business_signed_in?
-    end
+    classes << "nav-user" if user_space? && user_signed_in?
+    classes << "nav-business" if !user_space? && business_signed_in?
 
     return classes.join(' ')
   end
@@ -69,9 +66,12 @@ module ApplicationHelper
     controller_name == "pages"
   end
 
+  def devise_or_pages_controller?
+    devise_controller? || controller_name == "pages"
+  end
 
   def navbar_logo
-    if pages_controller?
+    if devise_or_pages_controller?
       "logo-white.png"
     else
       "cforgood_logo.png"
@@ -87,6 +87,5 @@ module ApplicationHelper
       root_path
     end
   end
-
 
 end
