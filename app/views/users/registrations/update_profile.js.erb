@@ -2,14 +2,22 @@ $(".alert").remove();
 
 if (<%= !current_user.errors.any? %>) {
 
-  // DISCLAIMER - DISPLAYED
-  $(".done-overlay").removeClass("hidden");
+  if (<%= request.env["HTTP_REFERER"].include?("signup") %>) {
+    $(".signup-plan").addClass("ishidden");
+    $(".signup-payment").addClass("slideup");
+    $("#signup-breadcrumb").addClass("slide-3");
 
-  window.setTimeout(function(){
-    // DISCLAIMER - HIDDEN
-    $(".done-overlay").addClass("hidden");
-    // window.location.href = "<%#= pro_business_dashboard_path(current_business) %>";
-  }, 3000);
+  } else {
+
+    // DISCLAIMER - DISPLAYED
+    $(".done-overlay").removeClass("hidden");
+
+    window.setTimeout(function(){
+      // DISCLAIMER - HIDDEN
+      $(".done-overlay").addClass("hidden");
+      // window.location.href = "<%#= pro_business_dashboard_path(current_business) %>";
+    }, 3000);
+  }
 
 } else {
 

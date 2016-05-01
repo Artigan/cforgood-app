@@ -88,7 +88,6 @@
         if ($("#form-card-creation").valid()) {
           $("#loading-indicator").show();
           var cardPreRegistration = <%= current_user.mangopay_id ? raw(MangopayServices.new(current_user).create_mangopay_card_pre_registration.to_json) : "null" %>;
-
           // Initialize with card register data prepared on the server
           mangoPay.cardRegistration.init({
             cardRegistrationURL: cardPreRegistration.CardRegistrationURL,

@@ -31,14 +31,30 @@ class MangopayServices
   end
 
   def create_mangopay_payin(wallet_id)
-    amount = 500 if @user.subscription == "M"
-    amount = 5000 if @user.subscription == "A"
+
+    if @user.amount <= 5
+      percent_asso = ((50 - 30)*((@user.amount-1)/(5-1)))+30;
+    elsif @user.amount <= 10
+      percent_asso = ((70 - 50)*((@user.amount-5)/(10-5)))+50;
+    elsif @user.amount <= 15
+      percent_asso = ((75 - 70)*((@user.amount-10)/(15-10)))+70;
+    elsif @user.amount <= 20
+      percent_asso = ((77.5 - 75)*((@user.amount-15)/(20-15)))+75;
+    elsif @user.amount <= 25
+      percent_asso = ((80 - 77.5)*((@user.amount-20)/(25-20)))+77.5;
+    elsif @user.amount <= 50
+      percent_asso = ((85 - 80)*((@user.amount-25)/(50-25)))+80;
+    end
+
+    debited_funds = @user.amount*100
+    credited_funds =  debited_funds*percent_asso/100
+    fees = debited_funds - credited_funds
 
     payin_info = {
       AuthorId: @user.mangopay_id,
-      DebitedFunds: { Currency: 'EUR', Amount: amount },
-      CreditedFunds: { Currency: 'EUR', Amount: amount/2 },
-      Fees: { Currency: 'EUR', Amount: amount/2 },
+      DebitedFunds: { Currency: 'EUR', Amount: debited_funds },
+      CreditedFunds: { Currency: 'EUR', Amount: credited_funds },
+      Fees: { Currency: 'EUR', Amount: fees },
       CreditedWalletId: wallet_id,
       CardId: @user.card_id,
       SecureMode:"DEFAULT",
@@ -51,11 +67,11 @@ class MangopayServices
 
   def create_mangopay_legal_user
     legal_user_info = {
-      Name: current_cause.name,
-      Email: current_cause.email,
+      Name: @user.name,
+      Email: @user.email,
       LegalPersonType: "BUSINESS",
-      LegalRepresentativeFirstName: current_cause.representative_first_name,
-      LegalRepresentativeLastName: current_cause.representative_last_name,
+      LegalRepresentativeFirstName: @user.representative_first_name,
+      LegalRepresentativeLastName: @user.representative_last_name,
       LegalRepresentativeBirthday: 0,
       LegalRepresentativeNationality: 'FR',
       LegalRepresentativeCountryOfResidence: 'FR'
@@ -66,8 +82,8 @@ class MangopayServices
 
   def create_mangopay_wallet
     wallet_info = {
-      Owners: [current_cause.mangopay_id],
-      Description: "Portefeuille de #{current_cause.name}",
+      Owners: [@user.mangopay_id],
+      Description: "Portefeuille de #{@user.name}",
       Currency: 'EUR'
     }
 

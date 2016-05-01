@@ -40,7 +40,7 @@
   </div>
 
   <%= link_to "Je souscris plus tard !", member_user_dashboard_path(current_user), class: "btn btn-no-subscription btn-turquoise" %>
- <!--  <button class="btn-plan">Suivant</button> -->
+  <!-- <button class="btn-plan">Suivant</button> -->
 </div>
 
 <% content_for :after_js do %>
@@ -70,17 +70,19 @@
         $('.output-asso').html(pourcent);
       });
 
-      $("#user_amount").on('change', function() {
+      $("#user_amount").on('input', function() {
         var pourcent = pourcentAsso(this.value);
         $('.output-asso').html(pourcent);
         $("#range").val(this.value);
       });
 
       $(".btn-subscription").on("click", function() {
+        if ($("#user_code_partner").val() != "") {
+          $("#user_subscription").val('T');
+        } else {
+          $("#user_subscription").val('M');
+        }
         $("#amount_subscription").html($("#user_amount").val());
-        $(".signup-plan").addClass("ishidden");
-        $(".signup-payment").addClass("slideup");
-        $("#signup-breadcrumb").addClass("slide-3");
       });
 
     });
