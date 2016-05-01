@@ -1,6 +1,7 @@
 ActiveAdmin.register Cause do
   index do
     selectable_column
+    column :id
     column :name
     column :cause_category
     column :impact
