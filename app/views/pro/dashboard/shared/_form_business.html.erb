@@ -25,6 +25,31 @@
       <%= f.input :street, placeholder: 'Rue', required: true, label: 'Adresse' %>
       <%= f.input :zipcode, placeholder: 'Code postal', required: true, label: "Code postal" %>
       <%= f.input :city, placeholder: 'Ville', required: true, label: 'Ville' %>
+      <p><%= f.link_to_add "Add a task", :addresses %></p>
+      <a href="#" class="button-address-more"><%= render "shared/icons/more" %></a>
+      <!-- FOR MORE ADDRESS -->
+      <div class="address_supp">
+        <%= f.simple_fields_for @business.addresses.shop do |address| %>
+          <!-- <div> -->
+            <% if address.object.present? && !address.object.day.present? %>
+              <%= address.input :active, as: :hidden, checked: true %>
+              <%= address.input :street, placeholder: 'Rue', label: 'Adresse' %>
+              <%= address.input :zipcode, placeholder: 'Code postal', label: 'Code postal' %>
+              <%= address.input :city, placeholder: 'Ville', label: 'Ville' %>
+              <%= f.check_box :_destroy %>
+               <a href="#" class="button-address-minus"><%= render "shared/icons/minus" %></a>
+            <% end %>
+          <!-- </div> -->
+
+          <%# unless a.object.new_record? %>
+            <!-- <div> -->
+              <%#= a.label :_delete, 'Remove:' %>
+              <%#= a.check_box :_delete %>
+            <!-- </div> -->
+          <%# end %>
+        <% end %>
+      </div>
+
       <div class="select-wrapper">
         <%= f.input :business_category_id, required: true, label: 'Activité', collection: BusinessCategory.all %>
       </div>
@@ -71,6 +96,9 @@
         $(".business_picture").children().html(newFile.name);
         readURL(newFile);
       });
+
+      // LINK TO NEW SHOP ADDRESS
+
 
       // ACTIVATE OR NOT BUTTON ADDRESS
       $('.business_itinerant').on('change', function(e) {
