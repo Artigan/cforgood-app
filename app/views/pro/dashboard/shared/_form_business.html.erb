@@ -22,10 +22,9 @@
         <%= f.input :name, placeholder: 'Nom', required: true, label: "Nom de l'établissement" %>
         <%= f.input :description, as: :text, placeholder: 'Visible sur vos bons plans', :input_html => { :rows => 6, maxlength: 330 }, required: true, label: "Présenter votre commerce" %>
       </div>
-      <%= f.input :street, placeholder: 'Rue', required: true, label: 'Adresse' %>
+      <%= f.input :street, placeholder: 'Rue', required: true, label: 'Adresse principale' %>
       <%= f.input :zipcode, placeholder: 'Code postal', required: true, label: "Code postal" %>
       <%= f.input :city, placeholder: 'Ville', required: true, label: 'Ville' %>
-      <a href="#" class="button-address-more"><%= render "shared/icons/more" %></a>
       <!-- FOR MORE ADDRESS -->
       <div class="address-other-shop">
         <%= f.simple_fields_for :addresses do |address| %>
@@ -37,6 +36,8 @@
               <%= address.check_box :_destroy,  style: 'visibility: hidden', class: "business_addresses_destroy" %>
               <% if address.object.id.present? %>
                 <a href="#" class="button-address-minus"><%= render "shared/icons/minus" %></a>
+              <% else %>
+                <a href="#" class="button-address-more"><%= render "shared/icons/more" %></a>
               <% end %>
             <% end %>
           </div>
