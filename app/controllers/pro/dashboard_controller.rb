@@ -8,6 +8,7 @@ class Pro::DashboardController < Pro::ProController
 
   def profile
     @business = Business.find(params[:business_id])
+    current_business.addresses.build
     authorize @business
   end
 end

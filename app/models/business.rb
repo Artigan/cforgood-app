@@ -64,7 +64,7 @@ class Business < ActiveRecord::Base
          :rememberable, :trackable, :validatable
   belongs_to :business_category
   has_many :addresses, dependent: :destroy
-  accepts_nested_attributes_for :addresses, :allow_destroy => true
+  accepts_nested_attributes_for :addresses, :allow_destroy => true, :reject_if => :all_blank
   has_many :perks, dependent: :destroy
 
   scope :active, -> { where(active: true) }

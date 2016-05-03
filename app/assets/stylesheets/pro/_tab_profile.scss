@@ -282,14 +282,40 @@
             }
           }
 
-          .business_zipcode {
-            width: 45%;
+          .address-other-shop {
+            width: 100%
+          }
+
+          .address-shop {
+            position: relative;
+
+            .button-address-minus {
+              position: absolute;
+              top: 0px;
+            }
+          }
+
+          .business_zipcode,
+          .business_addresses_zipcode {
+            width: 30%;
             margin-right: 5%;
           }
 
-          .business_city {
+          .business_city,
+          .business_addresses_city {
             width: 45%;
             margin-left: 5%;
+          }
+
+          .button-address-more,
+          .button-address-minus {
+            position: absolute;
+            width: 60px;
+            right: -30px;
+
+            svg {
+              width: 50%;
+            }
           }
         }
 
@@ -572,17 +598,20 @@
               }
             }
 
-            .business_street {
+            .business_street,
+            .business_addresses_street {
               width: 48%;
               margin-right: 2%;
             }
 
-            .business_zipcode {
+            .business_zipcode,
+            .business_addresses_zipcode {
               width: 24%;
               margin-right: 1%;
             }
 
-            .business_city {
+            .business_city,
+            .business_addresses_city {
               width: 24%;
               margin-left: 1%;
             }

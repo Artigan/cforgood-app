@@ -25,28 +25,21 @@
       <%= f.input :street, placeholder: 'Rue', required: true, label: 'Adresse' %>
       <%= f.input :zipcode, placeholder: 'Code postal', required: true, label: "Code postal" %>
       <%= f.input :city, placeholder: 'Ville', required: true, label: 'Ville' %>
-      <p><%= f.link_to_add "Add a task", :addresses %></p>
       <a href="#" class="button-address-more"><%= render "shared/icons/more" %></a>
       <!-- FOR MORE ADDRESS -->
-      <div class="address_supp">
-        <%= f.simple_fields_for @business.addresses.shop do |address| %>
-          <!-- <div> -->
-            <% if address.object.present? && !address.object.day.present? %>
-              <%= address.input :active, as: :hidden, checked: true %>
+      <div class="address-other-shop">
+        <%= f.simple_fields_for :addresses do |address| %>
+          <div class="address-shop">
+            <% if !address.object.day.present? %>
               <%= address.input :street, placeholder: 'Rue', label: 'Adresse' %>
               <%= address.input :zipcode, placeholder: 'Code postal', label: 'Code postal' %>
               <%= address.input :city, placeholder: 'Ville', label: 'Ville' %>
-              <%= f.check_box :_destroy %>
-               <a href="#" class="button-address-minus"><%= render "shared/icons/minus" %></a>
+              <%= address.check_box :_destroy,  style: 'visibility: hidden', class: "business_addresses_destroy" %>
+              <% if address.object.id.present? %>
+                <a href="#" class="button-address-minus"><%= render "shared/icons/minus" %></a>
+              <% end %>
             <% end %>
-          <!-- </div> -->
-
-          <%# unless a.object.new_record? %>
-            <!-- <div> -->
-              <%#= a.label :_delete, 'Remove:' %>
-              <%#= a.check_box :_delete %>
-            <!-- </div> -->
-          <%# end %>
+          </div>
         <% end %>
       </div>
 
@@ -98,14 +91,25 @@
       });
 
       // LINK TO NEW SHOP ADDRESS
+      $('.button-address-more').on('click', function(e) {
+        e.preventDefault();
+        // $('.address-shop').clone().appendTo('.address-other-shop').removeClass('hidden');
+      });
 
+      // DESTROY SHOP ADDRESS
+      $('.button-address-minus').on('click', function(e) {
+        e.preventDefault();
+        $(this).prev(".business_addresses_destroy").attr('checked', true);
+        $(this).closest('.address-shop').addClass('hidden');
+      });
 
-      // ACTIVATE OR NOT BUTTON ADDRESS
+      // ACTIVATE OR NOT BUTTON ITINERANT ADDRESS
       $('.business_itinerant').on('change', function(e) {
+        e.preventDefault();
         $(".button-address").toggleClass('hidden');
       });
 
-      // LINK TO ADDRESS
+      // LINK TO ITINERANT ADDRESS
       $(".button-address").on("click", function(e) {
         e.preventDefault();
         $(".address-overlay").removeClass("hidden");

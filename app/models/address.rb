@@ -33,9 +33,9 @@ class Address < ActiveRecord::Base
 
   scope :active, -> { where(active: true) }
   scope :today, -> { where('day= ?', I18n.t(:"date.day_names")[Time.now.wday]) }
-  scope :shop, -> { where('day = ?', " ") }
+  scope :shop, -> { where('day = ?', nil) }
 
-  validates :day, :inclusion=> { :in => I18n.t(:"date.day_names") }
+  validates :day, :inclusion=> { :in => I18n.t(:"date.day_names"), allow_blank: true }
   validate :day_uniqueness, if: :day_changed?
 
   validates :business_id, presence: true
