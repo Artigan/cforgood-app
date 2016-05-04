@@ -67,6 +67,16 @@ class BusinessesController < ApplicationController
 
   def show
     @business = Business.find(params[:id])
+    @perk = @business.perks.find(params[:perk_id])
+    @address = @business.addresses.find(params[:address_id])
+
+    if params[:address_id].to_i > 0
+      longitude = @address.longitude
+      latitude = @address.latitude
+    else
+      longitude = @business.longitude
+      latitude = @business.latitude
+    end
 
     @geojson = {"type" => "FeatureCollection", "features" => []}
 
@@ -74,7 +84,7 @@ class BusinessesController < ApplicationController
       "type": 'Feature',
       "geometry": {
         "type": 'Point',
-        "coordinates": [@business.longitude, @business.latitude],
+        "coordinates": [longitude, latitude],
       },
       "properties": {
         "marker-symbol": @business.business_category.marker_symbol

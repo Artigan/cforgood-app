@@ -14,8 +14,7 @@
     <div class="mobile-menu-overlay hidden"></div>
     <div class="side-menu-overlay hidden"></div>
 
-    <% @business.perks.find(params[:perk_id]).update_nb_view! if user_space? %>
-
+    <% @perk.update_nb_view! if user_space? %>
     <div class="show-mobile">
       <!-- PERK MENU -->
       <div class="switch-tab">
@@ -29,28 +28,28 @@
         <div class="flipper">
           <figure class="front">
           <!-- PERK IMAGE - CHANGE BACKGROUND IMAGE -->
-          <% if @business.perks.find(params[:perk_id]).picture.present? %>
-          <div class="perk-image" style="background-image: url('<%= image_url @business.perks.find(params[:perk_id]).picture %>');">
+          <% if @perk.picture.present? %>
+          <div class="perk-image" style="background-image: url('<%= image_url @perk.picture %>');">
           <% else %>
           <div class="perk-image" style="background-image: url('<%= image_url @business.picture %>');">
           <% end %>
 
           <!-- IF FLASH PERK -->
-          <% if @business.perks.find(params[:perk_id]).flash? %>
-            <% if @business.perks.find(params[:perk_id]).times > 0 %>
-              <span class="flash-notification" style="background-color: <%= @business.business_category.color %>;"><i class="fa fa-flash"></i><%= @business.perks.find(params[:perk_id]).times - Use.where(perk_id: params[:perk_id]).count %> restants</span>
+          <% if @perk.flash? %>
+            <% if @perk.times > 0 %>
+              <span class="flash-notification" style="background-color: <%= @business.business_category.color %>;"><i class="fa fa-flash"></i><%= @perk.times - Use.where(perk_id: params[:perk_id]).count %> restants</span>
             <% end %>
-            <span class="availabilities"><%= render(partial: "components/perk_flash_period", locals: { start_date: @business.perks.find(params[:perk_id]).start_date, end_date: @business.perks.find(params[:perk_id]).end_date }) %></span>
+            <span class="availabilities"><%= render(partial: "components/perk_flash_period", locals: { start_date: @perk.start_date, end_date: @perk.end_date }) %></span>
           <% end %>
-          <h1><%= @business.perks.find(params[:perk_id]).name %></h1>
-          <p><%= @business.perks.find(params[:perk_id]).description %></p>
+          <h1><%= @perk.name %></h1>
+          <p><%= @perk.description %></p>
           <div class="use-perk">
             <%# if current_user.member %>
-              <% if !@business.perks.find(params[:perk_id]).perk_in_time? %>
+              <% if !@perk.perk_in_time? %>
                 <div id="button-used">
                   <button class="empty">Bon plan non disponible</button>
                 </div>
-              <% elsif !@business.perks.find(params[:perk_id]).perk_usable?(current_user) %>
+              <% elsif !@perk.perk_usable?(current_user) %>
                 <div id="button-used">
                   <button class="empty">Bon plan épuisé</button>
                 </div>
@@ -71,7 +70,7 @@
             <span>Rendez-vous chez <%= @business.name %><br><small><%= @business.leader_first_name %> vous accueillera.</small></span>
           </div>
           <div id="map-perk" style="width: 100%;"></div>
-          <span class="business-address"><i class="fa fa-map-marker"></i><%= @business.street %>, <%= @business.zipcode %> <%= @business.city %></span>
+          <span class="business-address"><i class="fa fa-map-marker"></i><%= @address.id.present? ? @address.street : @business.street %>, <%= @address.id.present? ? @address.zipcode : @business.zipcode %> <%= @address.id.present? ? @address.city : @business.city %></span>
         </div>
       </figure> <!-- END FRONT CARD -->
 
@@ -123,28 +122,28 @@
     <!-- COLUMN LEFT -->
     <div class="perk-details">
        <!-- BLOCK PERK -->
-        <% if @business.perks.find(params[:perk_id]).picture.present? %>
-          <div class="perk-image" style="background-image: url('<%= image_url @business.perks.find(params[:perk_id]).picture %>');">
+        <% if @perk.picture.present? %>
+          <div class="perk-image" style="background-image: url('<%= image_url @perk.picture %>');">
         <% else %>
           <div class="perk-image" style="background-image: url('<%= image_url @business.picture %>');">
         <% end %>
 
         <!-- IF FLASH PERK -->
-        <% if @business.perks.find(params[:perk_id]).flash? %>
-          <% if @business.perks.find(params[:perk_id]).times > 0 %>
-            <span class="flash-notification" style="background-color: <%= @business.business_category.color %>;"><i class="fa fa-flash"></i><%= @business.perks.find(params[:perk_id]).times - Use.where(perk_id: params[:perk_id]).count %> restants</span>
+        <% if @perk.flash? %>
+          <% if @perk.times > 0 %>
+            <span class="flash-notification" style="background-color: <%= @business.business_category.color %>;"><i class="fa fa-flash"></i><%= @perk.times - Use.where(perk_id: params[:perk_id]).count %> restants</span>
           <% end %>
-          <span class="availabilities"><%= render(partial: "components/perk_flash_period", locals: { start_date: @business.perks.find(params[:perk_id]).start_date, end_date: @business.perks.find(params[:perk_id]).end_date }) %></span>
+          <span class="availabilities"><%= render(partial: "components/perk_flash_period", locals: { start_date: @perk.start_date, end_date: @perk.end_date }) %></span>
         <% end %>
-        <h1><%= @business.perks.find(params[:perk_id]).name %></h1>
-        <p><%= @business.perks.find(params[:perk_id]).description %></p>
+        <h1><%= @perk.name %></h1>
+        <p><%= @perk.description %></p>
         <div class="use-perk">
           <%# if current_user.member %>
-            <% if !@business.perks.find(params[:perk_id]).perk_in_time? %>
+            <% if !@perk.perk_in_time? %>
               <div id="button-used">
                 <button class="empty">Bon plan non disponible</button>
               </div>
-            <% elsif !@business.perks.find(params[:perk_id]).perk_usable?(current_user) %>
+            <% elsif !@perk.perk_usable?(current_user) %>
               <div id="button-used">
                 <button class="empty">Bon plan épuisé</button>
               </div>
@@ -157,7 +156,7 @@
       <!-- BLOCK MAP -->
       <div class="perk-map">
         <div id="map-perk-desktop" style="width: 100%;"></div>
-        <span class="business-address"><i class="fa fa-map-marker"></i><%= @business.street %>, <%= @business.zipcode %> <%= @business.city %></span>
+        <span class="business-address"><i class="fa fa-map-marker"></i><%= @address.id.present? ? @address.street : @business.street %>, <%= @address.id.present? ? @address.zipcode : @business.zipcode %> <%= @address.id.present? ? @address.city : @business.city %></span>
       </div>
     </div>
 
