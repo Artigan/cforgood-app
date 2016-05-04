@@ -8,7 +8,7 @@ class Pro::RegistrationsController < Devise::RegistrationsController
       current_business.update_without_password(business_params)
     end
     respond_to do |format|
-      format.html {redirect_to :back}
+      format.html {redirect_to pro_business_profile_path(current_business) }
       format.js {}
     end
   end

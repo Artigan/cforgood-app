@@ -5,6 +5,11 @@ if (<%= !current_business.errors.any? %>) {
   // DISCLAIMER - DISPLAYED
   $(".done-overlay").removeClass("hidden");
 
+  // REMOVE DELETED SHOP ADDRESS TO REMOVE FROM ADDRESSES_ATTRIBUTES
+  $('.address-shop.deleted').next('input').remove();
+  $('.address-shop.deleted').remove();
+
+
   window.setTimeout(function(){
     // DISCLAIMER - HIDDEN
     $(".done-overlay").addClass("hidden");
