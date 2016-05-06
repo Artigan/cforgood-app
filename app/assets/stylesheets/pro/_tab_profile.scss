@@ -282,12 +282,45 @@
             }
           }
 
-          .business_zipcode {
+          .address-other-shop {
+            width: 100%;
+            position: relative;
+
+            .button-address-more {
+              position: absolute;
+              bottom: -40px;
+              width: 60px;
+              right: -30px;
+
+              svg {
+                width: 50%;
+              }
+            }
+          }
+
+          .address-shop {
+            position: relative;
+
+            .button-address-minus {
+              position: absolute;
+              top: -10px;
+              width: 60px;
+              right: -30px;
+
+              svg {
+                width: 50%;
+              }
+            }
+          }
+
+          .business_zipcode,
+          .business_addresses_zipcode {
             width: 45%;
             margin-right: 5%;
           }
 
-          .business_city {
+          .business_city,
+          .business_addresses_city {
             width: 45%;
             margin-left: 5%;
           }
@@ -299,7 +332,7 @@
 
         /* PROFILE - ADDRESS *********************************************/
 
-        a.button-address {
+        a.button-itinerant-address {
           position: absolute;
           right: 0;
           margin-top: 10px;
@@ -572,17 +605,20 @@
               }
             }
 
-            .business_street {
+            .business_street,
+            .business_addresses_street {
               width: 48%;
               margin-right: 2%;
             }
 
-            .business_zipcode {
+            .business_zipcode,
+            .business_addresses_zipcode {
               width: 24%;
               margin-right: 1%;
             }
 
-            .business_city {
+            .business_city,
+            .business_addresses_city {
               width: 24%;
               margin-left: 1%;
             }

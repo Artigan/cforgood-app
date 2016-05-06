@@ -63,10 +63,33 @@ class BusinessesController < ApplicationController
 
   def index
     @businesses = Business.active.joins(:perks).active.distinct
+    @addresses_id = []
+    @businesses.each do |business|
+      @addresses_id << [business.id, 0] # BUSINESS MAIN ADDRESS
+      business.addresses.shop.each do |address_shop|
+        @addresses_id << [business.id, address_shop.id]
+      end
+      if business.itinerant
+        business.addresses.active.today.each do |address_itinerant|
+           @addresses_id << [business.id, address_itinerant.id]
+        end
+      end
+    end
+    @addresses_id.delete([]) # REMOVE WHEN NO ACTIVE RECORD ASSOCIATION
   end
 
   def show
     @business = Business.find(params[:id])
+    @perk = @business.perks.find(params[:perk_id])
+
+    if params[:address_id].to_i > 0
+      @address = @business.addresses.find(params[:address_id])
+      longitude = @address.longitude
+      latitude = @address.latitude
+    else
+      longitude = @business.longitude
+      latitude = @business.latitude
+    end
 
     @geojson = {"type" => "FeatureCollection", "features" => []}
 
@@ -74,7 +97,7 @@ class BusinessesController < ApplicationController
       "type": 'Feature',
       "geometry": {
         "type": 'Point',
-        "coordinates": [@business.longitude, @business.latitude],
+        "coordinates": [longitude, latitude],
       },
       "properties": {
         "marker-symbol": @business.business_category.marker_symbol

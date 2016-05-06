@@ -11,8 +11,8 @@
         </div>
         <!-- CTA -->
         <div class="itinary">
-          <%= link_to "http://maps.google.com/maps", class: "", id:"link-map", disabled: true, data: { locale: I18n.locale, destination: { latitude: Perk.find(params[:perk_id]).business.latitude, longitude: Perk.find(params[:perk_id]).business.longitude } }, :target => "_blank" do %>
-            <i class="fa fa-location-arrow"></i><abbr><%= @business.street %><br><%= @business.zipcode %> <%= @business.city %></abbr>
+          <%= link_to "http://maps.google.com/maps", class: "", id:"link-map", disabled: true, data: { locale: I18n.locale, destination: { latitude: latitude, longitude: longitude } }, :target => "_blank" do %>
+            <i class="fa fa-location-arrow"></i><abbr><%= street %>, <%= zipcode %> <%= city %></abbr>
           <% end %>
         </div>
         <div class="container-code">
