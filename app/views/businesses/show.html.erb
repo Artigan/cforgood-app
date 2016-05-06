@@ -70,7 +70,7 @@
             <span>Rendez-vous chez <%= @business.name %><br><small><%= @business.leader_first_name %> vous accueillera.</small></span>
           </div>
           <div id="map-perk" style="width: 100%;"></div>
-          <span class="business-address"><i class="fa fa-map-marker"></i><%= @address.id.present? ? @address.street : @business.street %>, <%= @address.id.present? ? @address.zipcode : @business.zipcode %> <%= @address.id.present? ? @address.city : @business.city %></span>
+          <span class="business-address"><i class="fa fa-map-marker"></i><%= @address.present? ? @address.street : @business.street %>, <%= @address.present? ? @address.zipcode : @business.zipcode %> <%= @address.present? ? @address.city : @business.city %></span>
         </div>
       </figure> <!-- END FRONT CARD -->
 
@@ -156,7 +156,7 @@
       <!-- BLOCK MAP -->
       <div class="perk-map">
         <div id="map-perk-desktop" style="width: 100%;"></div>
-        <span class="business-address"><i class="fa fa-map-marker"></i><%= @address.id.present? ? @address.street : @business.street %>, <%= @address.id.present? ? @address.zipcode : @business.zipcode %> <%= @address.id.present? ? @address.city : @business.city %></span>
+        <span class="business-address"><i class="fa fa-map-marker"></i><%= @address.present? ? @address.street : @business.street %>, <%= @address.present? ? @address.zipcode : @business.zipcode %> <%= @address.present? ? @address.city : @business.city %></span>
       </div>
     </div>
 
@@ -214,15 +214,24 @@
 <% elsif @business.online %>
   <%= render "pro/perks/modals/code_perk_online" %>
 <% elsif device_type == :mobile %>
-  <%= render "pro/perks/modals/code_perk_offline_mobile" %>
+  <% if @address.present? %>
+    <%= render "pro/perks/modals/code_perk_offline_mobile", latitude: @address.latitude, longitude: @address.longitude, street: @address.street, zipcode: @address.zipcode, city: @address.city %>
+  <% else %>
+    <%= render "pro/perks/modals/code_perk_offline_mobile", latitude: @business.latitude, longitude: @business.longiture, street: @business.street, zipcode: @business.zipcode, city: @business.city %>
+  <% end %>
 <% else %>
-  <%= render "pro/perks/modals/code_perk_offline_desktop" %>
+  <% if @address.present? %>
+    <%= render "pro/perks/modals/code_perk_offline_desktop", latitude: @address.latitude, longitude: @address.longitude, street: @address.street, zipcode: @address.zipcode, city: @address.city %>
+  <% else %>
+    <%= render "pro/perks/modals/code_perk_offline_desktop", latitude: @business.latitude, longitude: @business.longiture, street: @business.street, zipcode: @business.zipcode, city: @business.city %>
+  <% end %>
 <% end %>
 
 <% content_for(:after_js) do %>
 
   <%= render 'components/map_perk_show', geojson: @geojson, latitude:  @business.latitude, longitude:  @business.longitude %>
   <%= render 'components/map_perk_show_desktop', geojson: @geojson, latitude:  @business.latitude, longitude:  @business.longitude %>
+
   <script type="text/javascript">setRoutePathFromLocation()</script>
 
   <script>

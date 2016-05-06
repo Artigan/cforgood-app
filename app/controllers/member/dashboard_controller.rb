@@ -18,7 +18,7 @@ class Member::DashboardController < ApplicationController
       end
       # BUSINESS : ITINERANT SHOP
       if business.itinerant && business.addresses.active.today.count > 0
-        if business.addresses.active.today.first.start_time.strftime('%R') <= Time.now.strftime('%R') && business.addresses.active.today.first.end_time.strftime('%R') >= Time.now.strftime('%R')
+        if business.addresses.active.today.in_time
           addresses << [business.addresses.active.today.first.id, business.addresses.active.today.first.longitude, business.addresses.active.today.first.latitude]
         end
       end

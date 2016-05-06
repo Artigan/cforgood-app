@@ -10,7 +10,7 @@
     <div class="business-details">
       <h3><%= business.name %></h3>
       <span><%= business.business_category.name %></span>
-      <span><i class="fa fa-map-marker"></i><%= address > 0 ? business.addresses.find(address).street : business.street %></span>
+      <span><i class="fa fa-map-marker"></i><%= address.present? ? business.addresses.find(address).street : business.street %></span>
     </div>
   </div>
   <div class="map-list-perks">

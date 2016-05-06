@@ -22,7 +22,7 @@
         </div>
         <div class="container-code">
           <p class="box-code-legend">Ce code vous permet de bénéficier de réductions directement sur le site du commerçant :</p>
-          <span class="online-code"><%= @business.perks.find(params[:perk_id]).perk_code.upcase %></span>
+          <span class="online-code"><%= Perk.find(params[:perk_id]).perk_code.upcase %></span>
         </div>
       </figure>
       <!-- BACK CARD -->

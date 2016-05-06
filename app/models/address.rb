@@ -33,6 +33,7 @@ class Address < ActiveRecord::Base
 
   scope :active, -> { where(active: true) }
   scope :today, -> { where('day = ?', I18n.t(:"date.day_names")[Time.now.wday]) }
+  scope :in_time, -> { where("start_time.strftime('%R') <= ? and end_time.strftime('%R') >= ?", Time.now.strftime('%R'), Time.now.strftime('%R')) }
   scope :shop, -> { where(day: nil) }
 
   validates :day, :inclusion=> { :in => I18n.t(:"date.day_names"), allow_blank: true }
