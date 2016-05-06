@@ -217,22 +217,22 @@
   <% if @address.present? %>
     <%= render "pro/perks/modals/code_perk_offline_mobile", latitude: @address.latitude, longitude: @address.longitude, street: @address.street, zipcode: @address.zipcode, city: @address.city %>
   <% else %>
-    <%= render "pro/perks/modals/code_perk_offline_mobile", latitude: @business.latitude, longitude: @business.longiture, street: @business.street, zipcode: @business.zipcode, city: @business.city %>
+    <%= render "pro/perks/modals/code_perk_offline_mobile", latitude: @business.latitude, longitude: @business.longitude, street: @business.street, zipcode: @business.zipcode, city: @business.city %>
   <% end %>
 <% else %>
   <% if @address.present? %>
     <%= render "pro/perks/modals/code_perk_offline_desktop", latitude: @address.latitude, longitude: @address.longitude, street: @address.street, zipcode: @address.zipcode, city: @address.city %>
   <% else %>
-    <%= render "pro/perks/modals/code_perk_offline_desktop", latitude: @business.latitude, longitude: @business.longiture, street: @business.street, zipcode: @business.zipcode, city: @business.city %>
+    <%= render "pro/perks/modals/code_perk_offline_desktop", latitude: @business.latitude, longitude: @business.longitude, street: @business.street, zipcode: @business.zipcode, city: @business.city %>
   <% end %>
 <% end %>
 
 <% content_for(:after_js) do %>
 
-  <%= render 'components/map_perk_show', geojson: @geojson, latitude:  @business.latitude, longitude:  @business.longitude %>
-  <%= render 'components/map_perk_show_desktop', geojson: @geojson, latitude:  @business.latitude, longitude:  @business.longitude %>
-
   <script type="text/javascript">setRoutePathFromLocation()</script>
+
+  <%= render 'components/map_perk_show', geojson: @geojson %>
+  <%= render 'components/map_perk_show_desktop', geojson: @geojson %>
 
   <script>
 
