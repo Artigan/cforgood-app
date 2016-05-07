@@ -4,7 +4,6 @@ class Member::DashboardController < ApplicationController
 
   def dashboard
     @businesses = Business.active.for_map.joins(:perks).merge(Perk.in_time).distinct
-
     @geojson = {"type" => "FeatureCollection", "features" => []}
 
     @businesses.each do |business|
