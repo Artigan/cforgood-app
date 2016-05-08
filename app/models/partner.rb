@@ -21,7 +21,7 @@ class Partner < ActiveRecord::Base
   private
 
   def update_data_intercom
-    if Rails.env.production?
+    # if Rails.env.production?
       # UPDATE CUSTOM ATTRIBUTES ON INTERCOM
       intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
       begin
@@ -30,6 +30,6 @@ class Partner < ActiveRecord::Base
         intercom.users.save(business)
       rescue Intercom::ResourceNotFound
       end
-    end
+    # end
   end
 end

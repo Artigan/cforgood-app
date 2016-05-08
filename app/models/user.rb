@@ -93,7 +93,7 @@ class User < ActiveRecord::Base
 
   before_create :default_cause_id!
   after_create :create_data_intercom, :send_registration_slack, :subscribe_to_newsletter_user
-  after_commit :update_data_intercom if :active_changed?
+  after_commit :update_data_intercom, if: :active_changed?
 
 
   def self.find_for_google_oauth2(access_token, signed_in_resourse=nil)
@@ -248,7 +248,7 @@ class User < ActiveRecord::Base
   end
 
   def create_data_intercom
-    # if Rails.env.production?
+    if Rails.env.production?
       intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
       begin
         user = intercom.users.create(
@@ -263,11 +263,11 @@ class User < ActiveRecord::Base
         intercom.users.save(user)
       rescue Intercom::ResourceNotFound
       end
-    # end
+    end
   end
 
   def update_data_intercom
-    # if Rails.env.production?
+    if Rails.env.production?
       # UPDATE CUSTOM ATTRIBUTES ON INTERCOM
       intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
       begin
@@ -277,5 +277,5 @@ class User < ActiveRecord::Base
       rescue Intercom::ResourceNotFound
       end
     end
-  # end
+  end
 end
