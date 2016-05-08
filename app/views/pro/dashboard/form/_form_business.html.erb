@@ -101,14 +101,12 @@
       // LINK TO NEW SHOP ADDRESS
       $('.button-address-more').on('click', function(e) {
         e.preventDefault();
-        console.log("more");
         $('.address-shop.new.hidden').first().removeClass('hidden');
       });
 
       // DESTROY SHOP ADDRESS
       $('.button-address-minus').on('click', function(e) {
         e.preventDefault();
-        console.log("minus");
         $(this).prev(".business_addresses_destroy").attr('checked', true);
         $(this).closest('.address-shop').addClass('hidden').addClass('deleted');
       });
