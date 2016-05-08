@@ -45,7 +45,7 @@
 #  latitude               :float
 #  longitude              :float
 #  date_partner           :date
-#  code_promo             :string
+#  code_partner           :string
 #  date_support           :date
 #  amount                 :integer
 #
@@ -84,7 +84,7 @@ class User < ActiveRecord::Base
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
 
-  validate :code_promo?, if: :code_promo_changed?
+  validate :code_partner?, if: :code_partner_changed?
   after_validation :date_subscription!, if: :subscription_changed?
   after_validation :member!, if: :date_last_payment_changed?
   after_validation :date_support!, if: :cause_id_changed?
@@ -92,8 +92,8 @@ class User < ActiveRecord::Base
   after_save :trial_done!, if: :subscription_changed?
 
   before_create :default_cause_id!
-  after_create :send_registration_slack, :subscribe_to_newsletter_user
-  after_save :update_data_intercom if :active_changed?
+  after_create :create_data_intercom, :send_registration_slack, :subscribe_to_newsletter_user
+  after_commit :update_data_intercom if :active_changed?
 
 
   def self.find_for_google_oauth2(access_token, signed_in_resourse=nil)
@@ -193,13 +193,13 @@ class User < ActiveRecord::Base
 
   private
 
-  def code_promo?
-    if code_promo.present?
-      if Partner.find_by_code_promo(code_promo.upcase)
-        self.code_promo.upcase!
+  def code_partner?
+    if code_partner.present?
+      if Partner.find_by_code_partner(code_partner.upcase)
+        self.code_partner.upcase!
         self.date_partner = Time.now
       else
-        errors.add(:code_promo, "Code promotionnel invalide")
+        errors.add(:code_partner, "Code promotionnel invalide")
       end
     end
   end
@@ -247,16 +247,35 @@ class User < ActiveRecord::Base
     end
   end
 
-  def update_data_intercom
-    if Rails.env.production?
-      # UPDATE CUSTOM ATTRIBUTES ON INTERCOM
+  def create_data_intercom
+    # if Rails.env.production?
+      intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
       begin
-        intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
+        user = intercom.users.create(
+          :user_id => self.id.to_s,
+          :email => self.email,
+          :name => self.name,
+          :created_at => created_at
+        )
+        user.custom_attributes["user_type"]   = "user"
+        user.custom_attributes["user_active"] = self.active
+        user.custom_attributes["first_name"]  = self.first_name
+        intercom.users.save(user)
+      rescue Intercom::ResourceNotFound
+      end
+    # end
+  end
+
+  def update_data_intercom
+    # if Rails.env.production?
+      # UPDATE CUSTOM ATTRIBUTES ON INTERCOM
+      intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
+      begin
         user = intercom.users.find(:user_id => self.id)
-        user.custom_attributes["user_active"] = true
+        user.custom_attributes["user_active"] = self.active
         intercom.users.save(user)
       rescue Intercom::ResourceNotFound
       end
     end
-  end
+  # end
 end

@@ -3,7 +3,7 @@ ActiveAdmin.register Partner do
     selectable_column
     column :name
     column :email
-    column :code_promo
+    column :code_partner
     column :created_at
     actions
   end
@@ -11,10 +11,10 @@ ActiveAdmin.register Partner do
     f.inputs "Identity" do
       f.input :name
       f.input :email
-      f.input :code_promo
+      f.input :code_partner
     end
     f.actions
   end
 
-permit_params :name, :email, :code_promo
+permit_params :name, :email, :code_partner
 end
