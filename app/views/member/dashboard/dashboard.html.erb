@@ -141,6 +141,9 @@
         $('.search-category').removeClass('is-open-max');
         $('.category-item').removeClass('is-open-min');
       });
+
+      amplitude.setUserId('<%= current_user.id %>');
+      amplitude.logEvent('USER_DASHBOARD');
     });
   </script>
 <% end %>
