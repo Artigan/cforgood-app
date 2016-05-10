@@ -23,14 +23,16 @@ Rails.application.routes.draw do
   # ROOT TO APP CFORGOOD
   resources :businesses, only: [:index, :show]
 
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', passwords: :passwords }
   devise_scope :user do
+    get 'signin',                 to: 'devise/sessions#new' #new signon
+    post 'signin',                to: 'devise/sessions#create' #new signon
     get "member/signup",          to: "devise/registrations#new"
     get "member/signin",          to: "devise/sessions#new"
     get "member/sent_mail",       to: "devise/passwords#sent_mail"
     put "member/update_cause",    to: "member/registrations#update_cause"
     put "member/update_profile",  to: "member/registrations#update_profile"
   end
-  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', passwords: :passwords }
 
   namespace :member do
     resources :users, only: [:show, :update] do

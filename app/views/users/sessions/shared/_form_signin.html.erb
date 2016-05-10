@@ -1,0 +1,29 @@
+ <div class="form-card">
+  <span>Me connecter</span>
+  <!-- SIGNIN FORM -->
+  <div class="subscription-form">
+    <%= simple_form_for(resource, as: resource_name, url: signin_path) do |f| %>
+      <div id="error-code">
+        <%= flash[:alert].humanize unless flash[:alert] == nil %>
+      </div>
+      <%= f.input :email, placeholder: 'john@doe.com', required: false, autofocus: false, :class => "validate", label: "email*" %>
+      <%= f.input :password, placeholder: '********', required: false, :class => "validate", label: "Mot de passe*" %>
+      <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+      <%= f.button :submit, "Connexion", class: "btn btn-connexion", style: "width:100%;" %>
+      <% if devise_mapping.recoverable? && controller_name != 'passwords' %>
+      <%= link_to t(".forgot_your_password", :default => "Mot de passe oublié ?"), new_password_path(resource_name), class: "new-password" %>
+      <% end %>
+    <% end %>
+  </div>
+  <!-- FB & GOOGLE SUBSCRIPTION BUTTONS -->
+  <% if resource_name == :user %>
+    <div class="subscription-network">
+      <span>ou</span>
+      <%= link_to raw("<i class=\"fa fa-facebook\"></i>"), user_omniauth_authorize_path(:facebook), class: "btn-facebook" %>
+      <%#= link_to raw("<i class=\"fa fa-google\"></i>"), user_omniauth_authorize_path(:google_oauth2), class: "btn-google" %>
+    </div>
+  <% end %>
+</div>
+<div class="already-subscribed">
+<span class=""> Pas de compte ? <strong><%= link_to t(".connexion", :default => "Je m'inscris"), new_registration_path(resource_name) %></strong></span>
+</div>
