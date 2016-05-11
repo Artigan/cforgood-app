@@ -101,6 +101,7 @@ GEM
       thor (~> 0.19)
     builder (3.2.2)
     byebug (8.2.2)
+    callsite (0.0.11)
     choice (0.2.0)
     climate_control (0.0.3)
       activesupport (>= 3.0)
@@ -164,6 +165,7 @@ GEM
     gibbon (2.2.3)
       faraday (>= 0.9.1)
       multi_json (>= 1.11.0)
+    git-version-bump (0.15.1)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     groupdate (2.5.2)
@@ -212,6 +214,10 @@ GEM
       activemodel (>= 3.2, < 5)
     mangopay (3.0.20)
       multi_json (>= 1.7.7)
+    meta_request (0.4.0)
+      callsite (~> 0.0, >= 0.0.11)
+      rack-contrib (~> 1.1)
+      railties (>= 3.0.0, < 5.1.0)
     method_source (0.8.2)
     mime-types (2.99)
     mimemagic (0.3.0)
@@ -228,6 +234,7 @@ GEM
     multi_xml (0.5.5)
     multipart-post (2.0.0)
     netrc (0.11.0)
+    newrelic_rpm (3.15.2.317)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     oauth2 (1.1.0)
@@ -275,6 +282,9 @@ GEM
     quiet_assets (1.1.0)
       railties (>= 3.1, < 5.0)
     rack (1.6.4)
+    rack-contrib (1.4.0)
+      git-version-bump (~> 0.15)
+      rack (~> 1.4)
     rack-cors (0.4.0)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -407,8 +417,10 @@ DEPENDENCIES
   letter_opener
   mail_form
   mangopay
+  meta_request
   mobvious
   mobvious-rails
+  newrelic_rpm
   omniauth
   omniauth-facebook
   omniauth-google-oauth2!

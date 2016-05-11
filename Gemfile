@@ -60,6 +60,8 @@ group :development, :test do
   gem "pry-byebug"
   gem "pry-rails"
   gem "letter_opener"
+  gem 'meta_request'
+  gem 'newrelic_rpm'
 end
 
 group :production do
