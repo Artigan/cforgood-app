@@ -2,6 +2,8 @@
 class DeviseController < Devise.parent_controller.constantize
   include Devise::Controllers::ScopedViews
 
+  binding.pry
+
   if respond_to?(:helper)
     helper DeviseHelper
   end
