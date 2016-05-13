@@ -3,14 +3,14 @@
 <% content_for :meta_image %>
 
 <div class="connexion">
-  <span>Connexion</span>
+  <span>Connexions</span>
   <div class="signin-user">
     <!-- SIGNIN FORM USER -->
-    <%= render "users/sessions/shared/form_signin", resource_name: :user %>
+    <%= render "devise/sessions/shared/form_signin", resource_name: :user %>
   </div>
   <div class="signin-business">
     <!-- SIGNIN FORM BUSINESS -->
-    <%= render "users/sessions/shared/form_signin", resource: Business.new, resource_class: Business, resource_name: :business %>
-    <%= binding.pry %>
+    <%= render "devise/sessions/shared/form_signin", resource: Business.new, resource_class: Business, resource_name: :business %>
   </div>
 </div>
+

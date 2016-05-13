@@ -48,7 +48,7 @@ module Cforgoodwebsite
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
 
-    #Mobvious::Manager as Rack middleware : detection device/User-Agent
+    # Mobvious::Manager as Rack middleware : detection device/User-Agent
     config.middleware.use Mobvious::Manager
   end
 end
