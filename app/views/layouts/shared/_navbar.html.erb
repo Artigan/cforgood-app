@@ -178,7 +178,7 @@
             </li>
           <% elsif user_space? %>
             <li>
-              <%= link_to t(".inscription", default: "Inscription"), member_signup_path %>
+              <%= link_to t(".inscription", default: "Inscription"), signup_path %>
             </li>
             <li>
               <%= link_to t(".connexion", default: "Connexion"), signin_path %>
@@ -188,7 +188,7 @@
             </li>
           <% else %>
             <li>
-              <%= link_to t(".inscription", default: "Inscription"), new_business_registration_path %>
+              <%= link_to t(".inscription", default: "Inscription"), signup_path %>
             </li>
             <li>
               <%= link_to t(".connexion", default: "Connexion"), signin_path %>

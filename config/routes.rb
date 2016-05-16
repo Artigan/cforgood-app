@@ -27,7 +27,9 @@ Rails.application.routes.draw do
   devise_scope :user do
     get 'signin',                 to: 'devise/sessions#new'
     post 'signin',                to: 'devise/sessions#create'
-    get "member/signup",          to: "devise/registrations#new"
+    get 'signup',                 to:  'devise/registrations#new'
+    post 'signup',                to: 'devise/registrations#create'
+    # get "member/signup",          to: "devise/registrations#new"
     # get "member/signin",          to: "devise/sessions#new"
     get "member/sent_mail",       to: "devise/passwords#sent_mail"
     put "member/update_cause",    to: "member/registrations#update_cause"
@@ -45,6 +47,8 @@ Rails.application.routes.draw do
 
   devise_for :businesses, path: :pro, controllers: {registrations: :registrations, passwords: :passwords}
   devise_scope :business do
+    get 'signup',               to: 'devise/registrations#new'
+    post 'signup',              to: 'devise/registrations#create'
     get "pro/sent_mail",        to: "pro/passwords#sent_mail"
     put "pro/update_business",  to: "pro/registrations#update_business"
   end

@@ -23,7 +23,7 @@
     background: linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* W3C */
   }
 
-  .signin-back {
+  .sign-back {
     position: absolute;
     display: flex;
     text-align: center;
@@ -42,31 +42,49 @@
     .connect-business {
       display: flex;
       flex-direction: column;
+      align-items: center;
       margin-top: 40px;
 
       span {
-        margin-top: 30px;
+        margin-top: 40px;
         color: #FFF;
         font-size: 14px;
         text-transform: none;
         font-weight: 100;
       }
 
-      .connect-user,
-      .connect-business {
+      i {
+        width: 50px;
+        height: 50px;
+        border: 1px solid #fff;
+        border-radius: 50%;
+        padding-top: 8px;
+      }
+
+      .btn-user,
+      .btn-business {
         position: absolute;
         background: transparent;
         color: #fff;
         border-radius: 3px;
+        margin-top: 40px;
         padding: 5px 20px;
         font-weight: 100;
         text-align: center;
         text-transform: uppercase;
       }
+
+      .btn-user {
+        margin-left: -15px;
+      }
+
+      .btn-business {
+        margin-left: -9px;
+      }
     }
   }
 
-  .signin-box {
+  .sign-box {
     position: absolute;
     background: #FFF;
     max-width: 350px;
@@ -94,6 +112,11 @@
       margin-top: 25px;
       padding: 0 20px;
 
+      i {
+        width: 100%;
+        text-align: center;
+      }
+
       form {
         position: relative;
         width: 100%;
@@ -112,6 +135,10 @@
           font-size: 12px;
           color: #636363;
           font-weight: 600;
+        }
+
+        .form-group {
+          width: 100%;
         }
 
         input,
@@ -160,11 +187,13 @@
         }
 
         .user_remember_me,
+        .business_remember_me,
         .new-password {
           width: 100%;
           text-align: center;
 
-          #user_remember_me {
+          #user_remember_me,
+          #business_remember_me {
             margin-right: 1%;
           }
         }
@@ -190,6 +219,7 @@
   p {
     margin: 10px auto 20px;
     font-size: 0.7em;
+    line-height: 18px;
   }
 
   .subscription-form {
@@ -197,6 +227,7 @@
   }
   .subscription-network {
     margin-top: 15px;
+    padding: 0 20px;
 
     span {
       padding-bottom: 15px;
@@ -250,6 +281,7 @@
   }
 
   .btn-connexion   {
+    width: 100%;
     border-radius: 3px;
     border-color: transparent;
     color: #ffffff;
@@ -271,120 +303,3 @@
 
 }
 
-
-// SIGNIN PAGE - USER & PRO
-
-.signin {
-  .form-card {
-    position: relative;
-    margin: 0 auto;
-    width: 320px;
-    padding-bottom: 40px;
-    box-shadow: none;
-    z-index: 1;
-  }
-
-  .subscription-form {
-    form {
-      width: inherit;
-      input[type="submit"] { min-width: 100%; }
-    }
-    .form-group { width: 100%; }
-    .checkbox, .checkbox label { margin: 0; }
-    .checkbox input { top: 3px; }
-    .checkbox { text-align: center; }
-    .new-password {
-      margin: 10px auto 0;
-      font-size: 0.7em;
-      color: #A5A5A5;
-      text-decoration: underline;
-      width: 100%;
-      text-align: center;
-
-      &:hover { color: #333; }
-    }
-  }
-
-  .subscription-network {
-    padding: 0;
-
-    .btn-google,
-    .btn-facebook   {
-      box-shadow: none;
-      text-shadow: none;
-    }
-  }
-}
-
-// SIGNUP PAGE - USER & PRO
-
-.signup {
-  .form-card {
-    position: relative;
-    margin: 0 auto;
-    width: 600px;
-    padding-bottom: 40px;
-    z-index: 1;
-
-    .subscription-form {
-
-      form {
-        .form-group {
-          margin-bottom: 15px;
-          width: 45%;
-        }
-
-        .form-group:nth-child(odd) { margin-right: 5%; }
-        .form-group:nth-child(even) { margin-left: 5%; }
-
-        input[type="submit"] {
-          margin: 0 auto;
-          width: 50%;
-        }
-
-      }
-    }
-  }
-}
-
-@media only screen and (max-width: 767px) and (orientation : portrait) {
-  .signup {
-    .form-card {
-      width: 320px;
-
-      .subscription-form {
-        form {
-          .form-group {
-            width: 100%;
-          }
-
-          .form-group:nth-child(odd) { margin-right: 0; }
-          .form-group:nth-child(even) { margin-left: 0; }
-
-          input[type="submit"] {
-            width: 100%;
-          }
-        }
-      }
-    }
-  }
-}
-
-@media only screen and (max-width: 480px) and (orientation : portrait) {
-  .connexion {
-    padding: 40px 0 80px;
-    background-position: center center;
-  }
-}
-
-@media only screen and (max-width: 320px) and (orientation : portrait) {
-  .connexion {
-    .form-card {
-      position: relative;
-      margin: 0 auto;
-      width: 280px;
-      padding-bottom: 40px;
-      z-index: 1;
-    }
-  }
-}

@@ -4,32 +4,33 @@
 
 <div class="connexion signin">
   <span>Connexion</span>
-  <div class="signin-back">
-    <!-- SIGN AS USER -->
+  <div class="sign-back">
+    <!-- SIGNIN AS USER -->
     <div class="connect-user">
-      <i><%= render "shared/icons/profile" %></i>
+       <i><%= render "shared/icons/profile" %></i>
       <span>Vous êtes membre ?</span>
-      <button type="button" class="connect-user">Se connecter</button>
+      <button type="button" class="btn-user">Se connecter</button>
     </div>
-    <!-- SIGN AS BUSINESS -->
+    <!-- SIGNIN AS BUSINESS -->
     <div class="connect-business">
       <i><%= render "shared/icons/shop" %></i>
       <span>Vous êtes partenaire ?</span>
-      <button type="button" class="connect-business">Se connecter</button>
+      <button type="button" class="btn-business">Se connecter</button>
     </div>
   </div>
-  <div class="signin-box <%= params[:business].present? ? "translate" : "" %>">
-    <div class="signin-user <%= params[:business].present? ? "hidden" : "" %>">
+  <div class="sign-box signin <%= params[:business].present? ? "translate" : "" %>">
+    <div class="sign-user <%= params[:business].present? ? "hidden" : "" %>">
       <!-- SIGNIN FORM USER -->
       <%= render "devise/sessions/shared/form_signin", resource_name: :user %>
     </div>
-    <div class="signin-business <%= params[:business].present? ? "" : "hidden" %>">
+    <div class="sign-business <%= params[:business].present? ? "" : "hidden" %>">
       <!-- SIGNIN FORM BUSINESS -->
       <%= render "devise/sessions/shared/form_signin", resource_name: :business %>
     </div>
+    <!-- ALREADY SUBSCRIBED -->
     <div class="already-subscribed">
-      <span class=""> Pas de compte ? <strong><%= link_to t(".connexion", :default => "Je m'inscris"), new_registration_path(resource_name) %></strong></span>
-      </div>
+      <span class=""> Pas de compte ? <strong><%= link_to t(".connexion", :default => "Je m'inscris"), signup_path %></strong></span>
+    </div>
   </div>
 </div>
 
@@ -39,16 +40,16 @@
     $(document).ready(function(){
       $('.connect-user').click(function(event) {
         $("#error-code").remove();
-        $('.signin-user').removeClass('hidden');
-        $('.signin-business').addClass('hidden');
-        $('.signin-box').removeClass('translate').css('transition-duration','1s');
+        $('.sign-user').removeClass('hidden');
+        $('.sign-business').addClass('hidden');
+        $('.sign-box').removeClass('translate').css('transition-duration','1s');
       });
 
       $('.connect-business').click(function(event) {
         $("#error-code").remove();
-        $('.signin-business').removeClass('hidden');
-        $('.signin-user').addClass('hidden');
-        $('.signin-box').addClass('translate').css('transition-duration','1s');
+        $('.sign-business').removeClass('hidden');
+        $('.sign-user').addClass('hidden');
+        $('.sign-box').addClass('translate').css('transition-duration','1s');
       });
     });
 
