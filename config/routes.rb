@@ -45,6 +45,8 @@ Rails.application.routes.draw do
     resources :perks, only: [:show]
   end
 
+  get "map", to: "member/dashboard#dashboard"
+
   devise_for :businesses, path: :pro, controllers: {registrations: :registrations, passwords: :passwords}
   devise_scope :business do
     get 'signup',               to: 'devise/registrations#new'
@@ -74,5 +76,10 @@ Rails.application.routes.draw do
 
   resources :perks do
     resources :uses, only: [:create]
+  end
+
+  require "sidekiq/web"
+  authenticate :user, lambda { |u| u.admin } do
+    mount Sidekiq::Web => '/sidekiq'
   end
 end

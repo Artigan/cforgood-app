@@ -1,0 +1,217 @@
+.signup-container {
+  padding: 50px 30px 20px 30px;
+
+
+  .choose-cause,
+  .signup-plan,
+  .signup-payment {
+    width: 100%;
+  }
+
+  .signup-cause {
+
+    .change-cause {
+
+      .causes-carrousel {
+        transform: translateX(-50%);
+        left: 50%;
+      }
+
+      .card-cause span {
+        text-align: left;
+      }
+
+      .slick-arrow,
+      .user-button {
+        margin: 0;
+        border: none;
+        outline: none;
+        font-weight: 600;
+        border-radius: 3px;
+      }
+
+      .slick-arrow {
+        padding: 0;
+        font-size: 0;
+      }
+
+      .user-button {
+        width: 100%;
+        height: 40px;
+        left: 37%;
+        bottom: 156px;
+      }
+
+      .love-you {
+        position: absolute;
+        margin-left: 9px;
+        bottom: 9px;
+        display: flex;
+        align-items: center;
+        background-color: #9FD6AE;
+        padding: 2px 10px;
+        border-radius: 20px;
+        color: #fff;
+        text-transform: uppercase;
+        font-weight: 500;
+        font-size: 10px;
+        line-height: 18px;
+        width: 200px;
+
+        svg {
+          margin-left: 10px;
+        }
+      }
+    }
+
+    .comment-cause {
+      position: absolute;
+      bottom: 75px;
+    }
+
+    .btn-next {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 30px;
+    }
+  }
+
+  .signup-plan {
+    background-color: #fff;
+
+    .offer-index {
+      padding: 30px 20px 20px;
+
+      .offer-extra {
+        padding-top: 0;
+      }
+
+      .offer-price {
+        margin: 0;
+        padding: 0;
+
+        label {
+          position: absolute;
+          top: 70px;
+          width: 100%;
+          left: 0;
+        }
+
+        p {
+          width: 80%;
+          display: flex;
+          float: left;
+          margin-top: 50px;
+          margin-bottom: 0;
+          text-align: left;
+        }
+
+        .output-asso {
+          position: absolute;
+          bottom: 121px;
+          left: 125px;
+
+          &:after {
+          content: " %";
+          }
+        }
+      }
+    }
+
+    .offer-card {
+      height: 320px;
+
+      &.offer-monthly {
+        width: 500px;
+      }
+
+      .offer-extra {
+        height: 60px;
+      }
+    }
+
+    *:focus {
+      outline: 0;
+    }
+
+    #range {
+      position: absolute;
+      top: 130px;
+      display: block;
+      width: 72%;
+      height: 10px;
+      background: linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%);
+      left: 5%;
+      border-radius: 10px;
+    }
+
+    #user_amount {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      bottom: 140px;
+      left: 260px;
+      border: 2px solid #36d3da;
+      border-radius: 50%;
+      font-size: 16px;
+      text-align: center;
+      color: #36d3da;
+      line-height: 2.7em;
+      &:after {
+        content: " €";
+      }
+    }
+
+    input[type="range"] {
+      -webkit-appearance: none;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      position: relative;
+      top: 0px;
+      z-index: 1;
+      width: 25px;
+      height: 25px;
+      border-radius: 40px;
+      background-color: #FFF;
+      border: 2px solid #36d3da;
+    }
+
+    .btn-subscription {
+      padding: 5px;
+      border-radius: 4px;
+      margin-left: 100px;
+    }
+
+    .btn-no-subscription {
+      position: absolute;
+      bottom: 15px;
+      left: 25px;
+    }
+
+    .btn-plan {
+      position: absolute;
+      right: 0;
+      bottom: 15px;
+    }
+  }
+
+  .signup-payment {
+    background-color: #fff;
+
+    #amount_subscription {
+      width: 50%;
+      left: 50%;
+      position: absolute;
+      transform: translateX(-50%);
+
+      &:after {
+        content: " €";
+      }
+    }
+  }
+}
+
+

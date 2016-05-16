@@ -99,6 +99,7 @@ class Business < ActiveRecord::Base
       content_type: /\Aimage\/.*\z/
 
   after_create :create_code_partner, :send_registration_slack, :subscribe_to_newsletter_business
+
   after_save :update_data_intercom, if: :active_changed?
 
   def perks_uses_count

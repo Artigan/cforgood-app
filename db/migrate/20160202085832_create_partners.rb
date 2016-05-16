@@ -3,7 +3,7 @@ class CreatePartners < ActiveRecord::Migration
     create_table :partners do |t|
       t.string :name
       t.string :email
-      t.string :code_promo
+      t.string :code_partner
 
       t.timestamps null: false
     end

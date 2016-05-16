@@ -85,16 +85,18 @@ class User < ActiveRecord::Base
   after_validation :geocode, if: :address_changed?
 
   validate :code_partner?, if: :code_partner_changed?
-  after_validation :date_subscription!, if: :subscription_changed?
-  after_validation :member!, if: :date_last_payment_changed?
-  after_validation :date_support!, if: :cause_id_changed?
-
-  after_save :trial_done!, if: :subscription_changed?
 
   before_create :default_cause_id!
-  after_create :create_data_intercom, :create_data_amplitude, :send_registration_slack, :subscribe_to_newsletter_user
-  after_commit :update_data_intercom, if: :active_changed?
 
+  after_validation :member!, if: :date_last_payment_changed?
+  after_validation :trial_done!, if: :subscription_changed?
+  after_validation :subscription!, if: :subscription_changed?
+
+  after_create :send_registration_slack, :subscribe_to_newsletter_user
+
+  before_save :date_support!, if: :cause_id_changed?
+
+  after_save :update_data_intercom, if: :active_changed?
 
   def self.find_for_google_oauth2(access_token, signed_in_resourse=nil)
     data = access_token.info
@@ -103,7 +105,7 @@ class User < ActiveRecord::Base
     if user
       return user
     else
-    registred_user = User.where(:email => access_token.email).first
+      registred_user = User.where(:email => access_token.email).first
       if registred_user
         return registred_user
       else
@@ -159,7 +161,25 @@ class User < ActiveRecord::Base
     (self.date_last_payment == nil || self.date_last_payment < Time.now.prev_month)
   end
 
-  def date_subscription!
+  def find_name?
+    if self.first_name.present?
+      name = self.first_name
+    elsif self.name.present?
+      name = self.name
+    else
+      name = ""
+    end
+  end
+
+  private
+
+  def subscription!
+    # IF NOT EXIST, CREATE NEW USER NATURAL FOR MANGOPAY
+    if !self.mangopay_id.present?
+      @mangopay_user = MangopayServices.new(self).create_mangopay_natural_user
+      self.mangopay_id = @mangopay_user["Id"]
+    end
+    # UPDATE DATE SUBCRIPTION
     self.date_subscription = Time.now if subscription_was == nil
   end
 
@@ -172,26 +192,14 @@ class User < ActiveRecord::Base
   end
 
   def trial_done?
-    self.subscription != nil && (self.subscription[0] == "T" || self.trial_done == true)
+    self.subscription.present? && (self.subscription[0] == "T" || self.trial_done == true)
   end
 
   def trial_done!
-    if subscription_was != nil && subscription_was[0] == "T" && self.trial_done == false
+    if subscription_was.present? && subscription_was[0] == "T" && self.trial_done == false
       self.update(trial_done: true)
     end
   end
-
-  def find_name?
-    if self.first_name.present?
-      name = self.first_name
-    elsif self.name.present?
-      name = self.name
-    else
-      name = ""
-    end
-  end
-
-  private
 
   def code_partner?
     if code_partner.present?

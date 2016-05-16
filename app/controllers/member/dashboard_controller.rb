@@ -1,6 +1,6 @@
 class Member::DashboardController < ApplicationController
 
-  before_action :authenticate_user!
+  skip_before_action :authenticate_user!, only: [:dashboard]
 
   def dashboard
     @businesses = Business.active.for_map.joins(:perks).merge(Perk.in_time).distinct

@@ -16,6 +16,7 @@
 
     <div id="mixitup" class="container-perk-cards">
       <% @businesses.each do |business| %>
+<<<<<<< HEAD
 
         <% (@addresses_id.select { |address_id| address_id[0] == business.id }).each do |address_id| %>
           <!-- COMPONENT | ADDRESSES -->
@@ -32,6 +33,34 @@
                   <%= image_tag business.leader_picture(:thumb) %>
                 <% else %>
                   <%= image_tag image_url 'default_pic.png' %>
+=======
+        <% business.perks.active.each do |perk| %>
+          <!-- COMPONENT | CARD BON PLAN -->
+          <%= link_to business_path(business, perk_id: perk.id), class: "card-frame mix #{business.business_category_id} #{business.online? ? 'online' : ''}" do %>
+            <!-- CARD HEADER -->
+            <div class="card-header">
+              <div class="card-header-main">
+                <span class="perk-title"><%= business.name %></span>
+              </div>
+              <div class="card-header-leader">
+              <% if business.leader_picture.present? %>
+                <%= image_tag business.leader_picture(:thumb) %>
+              <% else %>
+                <%= image_tag 'default_pic.png' %>
+              <% end %>
+              </div>
+              <div class="card-header-category" style="background-color: <%= business.business_category.color %>;">
+                <%= image_tag business.business_category.picture %>
+                <!-- <div class="category-container" style="background-color: <#= business.business_category.color %>;">
+                </div> -->
+              </div>
+            </div>
+            <!-- CARD BODY -->
+            <div class="card-body" style="background-image: url('<%= image_url business.picture %>');">
+              <div class="business-details">
+                <% if perk.flash? && perk.times > 0 %>
+                  <span style="background-color: <%= business.business_category.color %>;"><i class="fa fa-flash"></i><%= perk.times - Use.where(perk_id: perk.id).count %> restants</span>
+>>>>>>> e9cc743a51eaf3ce20b441c5c09335e64cb78750
                 <% end %>
                 </div>
                 <div class="card-header-category" style="background-color: <%= business.business_category.color %>;">

@@ -21,9 +21,9 @@
           <!-- COMPONENT | CARD BON PLAN -->
           <%= link_to asso_cause_path(cause), class: "card-frame mix #{cause.cause_category_id}" do %>
             <!-- CARD HEADER -->
-            <div class="card-body" style="background-image: url('<%= image_url cause.picture %>');">
+            <div class="card-body" style="background-image: url('<%= cause.picture %>');">
               <div class="disque-item item-category" style="background-color: <%= cause.cause_category.color %>;">
-                <%= image_tag image_url cause.cause_category.picture %>
+                <%= image_tag cause.cause_category.picture %>
               </div>
               <span><%= cause.name %></span>
               <p><%= truncate(cause.description, length: 190) %></p>

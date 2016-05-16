@@ -22,12 +22,12 @@
         <li role="profile">
           <%= link_to "Votre association", "#cause", role: "tab", data_toggle: "tab" %>
         </li>
-        <!-- <li role="profile">
-          <#= link_to "Votre abonnement", "#subscription", role: "tab", data_toggle: "tab" %>
+        <li role="profile">
+          <%= link_to "Votre abonnement", "#subscription", role: "tab", data_toggle: "tab" %>
         </li>
         <li role="profile">
-          <#= link_to "Vos données bancaires", "#payment", role: "tab", data_toggle: "tab", class: "show-payment hidden" %>
-        </li> -->
+          <%= link_to "Vos données bancaires", "#payment", role: "tab", data_toggle: "tab", class: "show-payment hidden" %>
+        </li>
       </ul>
       <!-- Tab panes -->
       <div class="tab-content">
@@ -37,11 +37,11 @@
         <div role="tabpanel" class="tab-pane tab-profile" id="cause">
           <%= render "member/dashboard/shared/form_cause" %>
         </div>
-        <!-- <div role="tabpanel" class="tab-pane tab-profile" id="subscription">
-          <#= render "member/dashboard/shared/form_subscription" %>
+        <div role="tabpanel" class="tab-pane tab-profile" id="subscription">
+          <%= render "member/dashboard/shared/form_subscription" %>
         </div>
-        <div role="tabpanel" class="tab-pane tab-profile" id="payment">
-          <#= render "member/dashboard/shared/form_payment" %> -->
+        <div role="tabpanel" class="tab-pane tab-profile hidden" id="payment">
+          <%= render "member/dashboard/shared/form_payment" %>
         </div>
       </div>
     </div>

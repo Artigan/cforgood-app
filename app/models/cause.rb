@@ -65,9 +65,23 @@ class Cause < ActiveRecord::Base
   # validates :representative_last_name, presence: true
 
   after_create :subscribe_to_newsletter_cause
+  after_save :create_mangopay_data!
   after_save :update_data_intercom
 
   private
+
+  def create_mangopay_data!
+    if !self.mangopay_id.present?
+      # CREATE LEGAL USER
+      @mangopay_user = MangopayServices.new(self).create_mangopay_legal_user
+      self.update_attributes(mangopay_id: @mangopay_user["Id"])
+      #CREATE WALLET
+      if self.mangopay_id.present?
+        @mangopay_wallet = MangopayServices.new(self).create_mangopay_wallet
+        self.update_attributes(wallet_id: @mangopay_wallet["Id"])
+      end
+    end
+  end
 
   def subscribe_to_newsletter_cause
     if Rails.env.production?

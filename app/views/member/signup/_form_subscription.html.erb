@@ -1,28 +1,34 @@
 <div class="signup-plan">
   <span>Choisissez votre abonnement</span>
   <div class="container-fluid">
-    <div class="row">
-      <div class="col-xs-12 col-sm-4 offer-card">
+    <div class="offer-index">
+      <div class="offer-card offer-monthly">
         <div class="offer-title">Mensuel</div>
-        <div class="offer-price">5€/mois</div>
         <div class="offer-extra">Sans engagement de durée</div>
-        <div class="offer-btn">
-          <%= link_to "Essayez", member_update_profile_path("user" => {subscription: "TM"}), method: :put, remote: true, authenticity_token: true, class: "btn btn-green", html: { id: :update_subscription_trial } %>
-          <%= link_to "Souscrivez", member_update_profile_path("user" => {subscription: "M"}), method: :put, remote: true, authenticity_token: true, class: "btn btn-turquoise subscription", html: { id: :update_subscription } %>
+        <!-- RANGE SLIDER FOR PRICE -->
+        <div class="offer-price">
+          <label for="range">Choisissez le montant de votre participation !</label>
+          <input type="range" name="range" id="range" min="1" max="50" value="5"/>
+          <p>Le pourcentage reversée à l'association de votre choix sera de
+            <output class="output-asso">50</output>
+          </p>
         </div>
+        <!-- PARTNER CODE -->
+        <%= simple_form_for(current_user, url: member_update_profile_path, method: :put, remote: true, authenticity_token: true, html: { id: "update_subscription" } ) do |f| %>
+          <div class="code-partner">
+            <%= f.input :code_partner, label: "Code Partenaire", input_html: { value: "" } %>
+
+          </div>
+
+          <div class="offer-btn">
+            <%= f.input :subscription, as: :hidden, input_html: { value: "M" } %>
+            <%= f.input :amount, label: false, input_html: { value: 5 } %>
+            <%= f.submit "Souscrivez", class: "btn-subscription"%>
+          </div>
+          <!-- Current partner code : <%= current_user.code_partner %> -->
+        <% end %>
       </div>
-      <div class="col-xs-12 col-sm-4 offer-card most-popular">
-        <div class="offer-most-popular">Le plus populaire</div>
-        <div class="offer-title">Annuel</div>
-         <div class="offer-price">50€/an</div>
-        <div class="offer-extra"><span>12 Mois </span>de validité</div>
-        <div class="offer-price">50€/an</div>
-        <div class="offer-btn">
-          <%= link_to "Essayez", member_update_profile_path("user" => {subscription: "TA"}), method: :put, remote: true, authenticity_token: true, class: "btn btn-green", html: { id: :update_subscription_trial } %>
-          <%= link_to "Souscrivez", member_update_profile_path("user" => {subscription: "A"}), method: :put, remote: true, authenticity_token: true, class: "btn btn-turquoise subscription", html: { id: :update_subscription } %>
-        </div>
-      </div>
-      <div class="col-xs-12 col-sm-4 offer-card">
+      <div class="offer-card">
         <div class="offer-title">Entreprise</div>
         <div class="offer-extra">Pour vos clients ou salariés</div>
         <div class="offer-price">Nous consulter</div>
@@ -32,24 +38,53 @@
       </div>
     </div>
   </div>
-  <button class="btn-plan">Suivant</button>
+
+  <%= link_to "Je souscris plus tard !", member_user_dashboard_path(current_user), class: "btn btn-no-subscription btn-turquoise" %>
+  <!-- <button class="btn-plan">Suivant</button> -->
 </div>
 
 <% content_for :after_js do %>
 
   <script>
     $(document).ready(function() {
-      $(".btn.subscription").on("click", function(e) {
-        e.preventDefault();
-        $("#update_subscription").submit();
-       });
+      function pourcentAsso(amount) {
+        if (amount <= 5) {
+          var pourcent = ((50 - 30)*((amount-1)/(5-1)))+30;
+        } else if (amount <= 10) {
+          var pourcent = ((70 - 50)*((amount-5)/(10-5)))+50;
+        } else if (amount <= 15) {
+          var pourcent = ((75 - 70)*((amount-10)/(15-10)))+70;
+        } else if (amount <= 20) {
+          var pourcent = ((77.5 - 75)*((amount-15)/(20-15)))+75;
+        } else if (amount <= 25) {
+          var pourcent = ((80 - 77.5)*((amount-20)/(25-20)))+77.5;
+        } else if (amount <= 50) {
+          var pourcent = ((85 - 80)*((amount-25)/(50-25)))+80;
+        }
+        return pourcent;
+      }
 
-      $(".btn-plan").on("click", function(e) {
-        e.preventDefault;
-        $(".signup-plan").addClass("ishidden");
-        $(".signup-payment").addClass("slideup");
-        $("#signup-breadcrumb").addClass("slide-3");
+      $('#range').on('input', function() {
+        $("#user_amount").val(this.value);
+        var pourcent = pourcentAsso(this.value);
+        $('.output-asso').html(pourcent);
       });
+
+      $("#user_amount").on('input', function() {
+        var pourcent = pourcentAsso(this.value);
+        $('.output-asso').html(pourcent);
+        $("#range").val(this.value);
+      });
+
+      $(".btn-subscription").on("click", function() {
+        if ($("#user_code_partner").val() != "") {
+          $("#user_subscription").val('T');
+        } else {
+          $("#user_subscription").val('M');
+        }
+        $("#amount_subscription").html($("#user_amount").val());
+      });
+
     });
   </script>
 

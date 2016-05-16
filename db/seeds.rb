@@ -207,12 +207,14 @@ cause_attributes = [
     zipcode: "33000",
     city: "Bordeaux",
     url: "https://www.cforgood.com",
-    email: "hell@cforgood.com",
+    email: "hello@cforgood.com",
     impact: "CforGood, l’évidence d’aller dans le bon sens.",
     picture: File.new("#{path}cover_cforgood.jpg"),
     cause_category_id: entreprenariat.id,
     facebook: "cforgood",
     twitter: "cforgood",
+    representative_first_name: "Allan",
+    representative_last_name: "Floury",
     logo: File.new("#{path}logo_cforgood.jpg")
   },
   {
@@ -229,6 +231,8 @@ cause_attributes = [
     cause_category_id: environnement.id,
     facebook: "eturecup",
     twitter: "@EtuRecup",
+    representative_first_name: "Disco",
+    representative_last_name: "Soupe",
     logo: File.new("#{path}Rectangle_1___10333370_542988195822175_8954670466005362426_o.jpg")
   },
   {
@@ -246,6 +250,8 @@ cause_attributes = [
     facebook: "MakeSense",
     twitter: "@MakeSenseTwitts",
     instagram: "makesenseorg",
+    representative_first_name: "Make",
+    representative_last_name: "Sens",
     logo: File.new("#{path}Makesense.jpg")
   },
   {
@@ -261,6 +267,8 @@ cause_attributes = [
     picture: File.new("#{path}thumbnail-osons.jpg"),
     cause_category_id: entreprenariat.id,
     facebook: "La-Fabrik-à-Déclik-645183675582256",
+    representative_first_name: "Osons",
+    representative_last_name: "Maintenant",
     logo: File.new("#{path}logo-osons.jpg")
   },
   {
@@ -278,6 +286,8 @@ cause_attributes = [
     twitter: "keepabreastEU",
     instagram: "keepabreasteu",
     description_impact: "Dans le cadre du programme de la Non Toxic Revolution, la fondation Keep A Breast Europe développe les ateliers éducatifs totem : cinq ateliers éducatifs, créatifs et ludiques à destination des 5/11 ans autour de 5 thèmes distincts : la maison, l’alimentation, le corps, le plastique et le bien-être. En partenariat avec l'OCCE 33, le projet a été présenté auprès de 850 écoles publiques élémentaires et maternelles à la rentrée 2015. L'objectif est : - Développer des connaissances dans le domaine de la santé. - Sensibiliser les jeunes à la toxicité potentielle de leur mode de vie et de leur environnement. - Faire acquérir des automatismes dès le plus jeune âge. - Apprendre à être respectueux des autres usagers et de son environnement. Keep A Breast a créé des kits complets comprenant tous les éléments nécessaires à la réalisation de ces 5 ateliers pour une classe de 20 enfants. Chaque kit coute 25 €. ",
+    representative_first_name: "Keep",
+    representative_last_name: "Breast",
     logo: File.new("#{path}52ee24cd4041-logo_keep_a_breast.jpg")
   },
   {
@@ -292,6 +302,8 @@ cause_attributes = [
     facebook: "EcoloInfo",
     twitter: "ecoloinfo",
     description_impact: "Le site nous coûte 1500€ par an (hébergement et webdesign). Plus nous permettrait d'organiser davantage d'événements et d'agrandir notre équipe pour structurer une déclinaison partout en France.",
+    representative_first_name: "Ecolo",
+    representative_last_name: "Info",
     logo: File.new("#{path}logo-ecoloinfo.jpg")
   },
   {
@@ -309,6 +321,8 @@ cause_attributes = [
     facebook: "Disco-Soupe-Bordeaux-558476744185476",
     twitter: "DiscoSoupeBx",
     description_impact: "Nous ne vivons que sur les dons, toute l'équipe est bénévole. Les sous nous permettront d'étoffer notre matériel (marmites, éco-cups, couverts, gants, gel hydro-alcoolique, condiments, plaque de cuisson, gaz, girafe...) pour proposer toujours plus d'événements dans de meilleures conditions !",
+    representative_first_name: "Disco",
+    representative_last_name: "Soupe",
     logo: File.new("#{path}logo-discosoup.jpg")
   },
   {
@@ -324,6 +338,8 @@ cause_attributes = [
     cause_category_id: insertion.id,
     facebook: "entrautres",
     description_impact: "200€ nous permettent de faire vivre cette expérience à un jeune pour le réinsérer ensuite sur le marché du travail.",
+    representative_first_name: "Entr",
+    representative_last_name: "Autres",
     logo: File.new("#{path}logo-entrautres.jpg")
   },
   {
@@ -340,6 +356,8 @@ cause_attributes = [
     facebook: "surfriderfoundationeurope",
     twitter: "surfridereurope",
     instagram: "surfridereurope",
+    representative_first_name: "Surfrider",
+    representative_last_name: "Foundation",
     logo: File.new("#{path}logo-surfriderfoundation.jpg")
   }
   ]

@@ -1,7 +1,7 @@
-<% if user_signed_in? %>
-  <div class="users-sidebar">
-  <!-- USER SIGN IN -->
-    <ul id="sidebar">
+<div class="users-sidebar">
+<!-- USER SIGN IN -->
+  <ul id="sidebar">
+    <% if user_signed_in? %>
       <li class="<%= active_class(member_user_dashboard_path(current_user))%>">
         <%= link_to member_user_dashboard_path(current_user) do %>
           <div class="icon-container">
@@ -11,24 +11,36 @@
           <span class="admin-label">Autour de vous</span>
         <% end %>
       </li>
-      <li class="<%= active_class(businesses_path)%> light">
-        <%= link_to businesses_path do %>
+    <% else %>
+      <li class="<%= active_class(map_path)%>">
+        <%= link_to map_path do %>
           <div class="icon-container">
-            <!-- <#= image_tag('icons/myperks.png', :class => 'admin-icon') %> -->
-            <%= render "shared/icons/perks" %>
+            <!-- <#= image_tag('icons/suivi.png', :class => 'admin-icon') %> -->
+            <%= render "shared/icons/around_me" %>
           </div>
-          <span class="admin-label">Les Bons Plans</span>
+          <span class="admin-label">Autour de vous</span>
         <% end %>
       </li>
-      <li class="<%= active_class(asso_causes_path)%> light">
-        <%= link_to asso_causes_path do %>
-          <div class="icon-container">
-            <!-- <#= image_tag('icons/createperks.png', :class => 'admin-icon') %> -->
-            <%= render "shared/icons/causes" %>
-          </div>
-          <span class="admin-label">Les associations</span>
-        <% end %>
-      </li>
+    <% end %>
+    <li class="<%= active_class(businesses_path)%> light">
+      <%= link_to businesses_path do %>
+        <div class="icon-container">
+          <!-- <#= image_tag('icons/myperks.png', :class => 'admin-icon') %> -->
+          <%= render "shared/icons/perks" %>
+        </div>
+        <span class="admin-label">Les Bons Plans</span>
+      <% end %>
+    </li>
+    <li class="<%= active_class(asso_causes_path)%> light">
+      <%= link_to asso_causes_path do %>
+        <div class="icon-container">
+          <!-- <#= image_tag('icons/createperks.png', :class => 'admin-icon') %> -->
+          <%= render "shared/icons/causes" %>
+        </div>
+        <span class="admin-label">Les associations</span>
+      <% end %>
+    </li>
+    <% if user_signed_in? %>
       <!-- DESKTOP | GO TO PROFILE -->
       <li class="<%= active_class(member_user_profile_path(current_user)) %> light light desktop-profile">
         <%= link_to member_user_profile_path(current_user) do %>
@@ -39,6 +51,7 @@
           <span class="admin-label">Mon profil</span>
         <% end %>
       </li>
+
       <!-- MOBILE | OPEN MENU DROPDOWN -->
       <li id="profile-tab" class="mobile-dropdown">
         <a href="#">
@@ -50,20 +63,18 @@
         </a>
         <ul class="mobile-menu hidden">
           <!-- BUSINESS DETAILS -->
-          <% if user_signed_in? %>
-            <div class="business-details">
-              <% if current_user.picture.present? %>
-                <%= image_tag avatar_url(current_user) %>
-               <% else %>
-                <%= image_tag "default_pic.png" %>
-              <% end %>
-              <% if current_user.last_name != "" && current_user.last_name != nil %>
-                <span><%= current_user.first_name %> <%= current_user.last_name.chars.first + "." %></span>
-              <% elsif current_user.name != "" && current_user.name != nil %>
-                <span><%= current_user.name.split(" ")[0] %></span>
-              <% end %>
-            </div>
-          <% end %>
+          <div class="business-details">
+            <% if current_user.picture.present? %>
+              <%= image_tag avatar_url(current_user) %>
+             <% else %>
+              <%= image_tag "default_pic.png" %>
+            <% end %>
+            <% if current_user.last_name != "" && current_user.last_name != nil %>
+              <span><%= current_user.first_name %> <%= current_user.last_name.chars.first + "." %></span>
+            <% elsif current_user.name != "" && current_user.name != nil %>
+              <span><%= current_user.name.split(" ")[0] %></span>
+            <% end %>
+          </div>
           <!-- OTHER LINKS -->
           <li class="<%= active_class(member_user_profile_path(current_user))%>">
             <%= link_to member_user_profile_path(current_user) do %>
@@ -82,14 +93,17 @@
           </li>
         </ul>
       </li>
-    </ul>
+    <% end %>
+  </ul>
+  <% if user_signed_in? %>
     <div class="signout">
       <%= link_to destroy_user_session_path, method: :delete do %>
         <%= image_tag('icons/signout.png', :class => 'signout-icon') %><%= t ".se_déconnecter", default: "À bientôt" %>
       <% end %>
     </div>
-  </div>
-<% end %>
+  <% end %>
+</div>
+
 
 <% content_for :after_js do %>
   <script>
