@@ -1,6 +1,3 @@
-.connexion-pro { background-image: image-url("cover-business.jpg"); }
-.connexion-user { background-image: image-url("bg-banner-home.jpg"); }
-
 .connexion {
   position: relative;
   padding: 70px 0;
@@ -26,18 +23,69 @@
     background: linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* W3C */
   }
 
+  .signin-back {
+    position: absolute;
+    display: flex;
+    text-align: center;
+    justify-content: space-between;
+    padding: 50px 100px;
+    background: #333;
+    opacity: 0.75;
+    width: 60%;
+    height: 60%;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    z-index: 1;
+
+    .connect-user,
+    .connect-business {
+      display: flex;
+      flex-direction: column;
+      margin-top: 40px;
+
+      span {
+        margin-top: 30px;
+        color: #FFF;
+        font-size: 14px;
+        text-transform: none;
+        font-weight: 100;
+      }
+
+      .connect-user,
+      .connect-business {
+        position: absolute;
+        background: transparent;
+        color: #fff;
+        border-radius: 3px;
+        padding: 5px 20px;
+        font-weight: 100;
+        text-align: center;
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  .signin-box {
+    position: absolute;
+    background: #FFF;
+    max-width: 350px;
+    height: 500px;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-100%) translateY(-50%);
+    z-index: 2;
+  }
+
+  .translate {
+    transform:translate(0, -50%);
+  }
+
   .form-card {
     position: relative;
     padding: 40px 20px;
-    margin: 0 auto;
-    background: #fff;
     border-radius: 3px;
     z-index: 1;
-
-    -webkit-box-shadow: 0px 20px 33px -7px rgba(0,0,0,0.48);
-    -moz-box-shadow: 0px 20px 33px -7px rgba(0,0,0,0.48);
-    -o-box-shadow: 0px 20px 33px -7px rgba(0,0,0,0.48);
-    box-shadow: 0px 20px 33px -7px rgba(0,0,0,0.48);
 
     /* SIGNUP /  SIGNIN FORM */
     .subscription-form {
@@ -103,30 +151,40 @@
           border-radius: 3px;
           color: #fff;
           text-transform: uppercase;
-          font-size: 14px;
-          font-weight: 600;
+          font-size: 16px;
         }
 
         input[type="submit"]:focus,
         input[type="submit"]:active, {
           background-color: #19A2C2;
         }
+
+        .user_remember_me,
+        .new-password {
+          width: 100%;
+          text-align: center;
+
+          #user_remember_me {
+            margin-right: 1%;
+          }
+        }
+
+        .new-password {
+          font-size: 12px;
+          color: #636363;
+        }
       }
-    }
-
-    .signin {
-
-    }
-
-    .signup {
-
     }
   }
 
   span {
-    display: block;
+    position: relative;
+    width: 100%;
     text-transform: uppercase;
+    color: #111;
     font-weight: 600;
+    text-align: center;
+    z-index: 1;
   }
 
   p {
@@ -138,11 +196,7 @@
     margin-top: 30px;
   }
   .subscription-network {
-    padding: 0 20px;
-    margin: 15px 0 0;
-
-    a:nth-child(even) { margin-right: 1%; }
-    a:nth-child(odd) { margin-left: 1%; }
+    margin-top: 15px;
 
     span {
       padding-bottom: 15px;
@@ -171,8 +225,10 @@
   }
 
   .already-subscribed {
-    position: relative;
-    margin-top: 15px;
+    position: absolute;
+    bottom: -30px;
+    margin-left: 40%;
+    transform: translateX(-30%);
     z-index: 1;
 
     span {
@@ -193,38 +249,26 @@
     }
   }
 
-  .btn-google,
-  .btn-facebook   {
-    display: inline-block;
-    width: 48.5%;
-    @media only screen and (max-width:480px){ width: 100% };
-    border-radius: 20px;
-    height: 42px;
-    color: #fff;
-    padding: 10px 70px;
+  .btn-connexion   {
+    border-radius: 3px;
+    border-color: transparent;
+    color: #ffffff;
+    font-size: 12px;
+    background: #36D4DA;
+    padding: 10px 25px;
     text-decoration: none;
-    font-size: 16px;
-    margin-bottom: 10px;
     text-align:center;
-    @include transition(all, 0.2s, ease-in-out);
-
+    text-transform: uppercase;
     a {
       color:white;
       text-decoration: none;
     }
-
-    i:before { margin-right: 10px;}
+    a:hover   {
+      color:white;
+      text-decoration: none;
+    }
   }
 
-  .btn-google {
-    background: #DD4C39;
-    &:hover { background-color: #C53825; }
-  }
-
-  .btn-facebook {
-    background: #47639E;
-    &:hover { background-color: #354F86; }
-  }
 }
 
 
@@ -236,6 +280,7 @@
     margin: 0 auto;
     width: 320px;
     padding-bottom: 40px;
+    box-shadow: none;
     z-index: 1;
   }
 
@@ -245,8 +290,6 @@
       input[type="submit"] { min-width: 100%; }
     }
     .form-group { width: 100%; }
-    .form-group:nth-child(odd) { input { margin-right: 0; } }
-    .form-group:nth-child(even) { input { margin-left: 0; } }
     .checkbox, .checkbox label { margin: 0; }
     .checkbox input { top: 3px; }
     .checkbox { text-align: center; }
@@ -267,13 +310,8 @@
 
     .btn-google,
     .btn-facebook   {
-      width: 40px;
-      height: 40px;
-      padding: 2px 15px;
-      border-radius: 50%;
-      line-height: 40px;
-
-      i:before { margin: 0;}
+      box-shadow: none;
+      text-shadow: none;
     }
   }
 }
