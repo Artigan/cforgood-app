@@ -176,7 +176,11 @@ class User < ActiveRecord::Base
   def subscription!
     # IF NOT EXIST, CREATE NEW USER NATURAL FOR MANGOPAY
     if !self.mangopay_id.present?
-      @mangopay_user = MangopayServices.new(self).create_mangopay_natural_user
+      begin
+        @mangopay_user = MangopayServices.new(self).create_mangopay_natural_user
+      rescue MangoPay::ResponseError => e
+        flash[:alert] = "Erreur lors de la création du compte chez Mangopay"
+      end
       self.mangopay_id = @mangopay_user["Id"]
     end
     # UPDATE DATE SUBCRIPTION

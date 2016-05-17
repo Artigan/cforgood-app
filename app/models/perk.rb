@@ -66,7 +66,7 @@ class Perk < ActiveRecord::Base
 
   after_create :send_registration_slack
   after_create :update_data_intercom
-  after_save :update_data_intercom if :active_changed?
+  after_save :update_data_intercom, if: :active_changed?
   after_destroy :update_data_intercom
 
   def update_nb_view!
