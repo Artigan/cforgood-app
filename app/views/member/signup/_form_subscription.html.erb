@@ -39,7 +39,7 @@
     </div>
   </div>
 
-  <%= link_to "Je souscris plus tard !", member_user_dashboard_path(current_user), class: "btn btn-no-subscription btn-turquoise" %>
+  <%= link_to "Je souscris plus tard !", member_user_dashboard_path(current_user), class: "btn btn-no-subscription" %>
   <!-- <button class="btn-plan">Suivant</button> -->
 </div>
 
@@ -49,17 +49,17 @@
     $(document).ready(function() {
       function pourcentAsso(amount) {
         if (amount <= 5) {
-          var pourcent = ((50 - 30)*((amount-1)/(5-1)))+30;
+          var pourcent = ((50-30)*((amount-1)/(5-1)))+30;
         } else if (amount <= 10) {
-          var pourcent = ((70 - 50)*((amount-5)/(10-5)))+50;
+          var pourcent = ((70-50)*((amount-5)/(10-5)))+50;
         } else if (amount <= 15) {
-          var pourcent = ((75 - 70)*((amount-10)/(15-10)))+70;
+          var pourcent = ((75-70)*((amount-10)/(15-10)))+70;
         } else if (amount <= 20) {
-          var pourcent = ((77.5 - 75)*((amount-15)/(20-15)))+75;
+          var pourcent = ((77.5-75)*((amount-15)/(20-15)))+75;
         } else if (amount <= 25) {
-          var pourcent = ((80 - 77.5)*((amount-20)/(25-20)))+77.5;
+          var pourcent = ((80-77.5)*((amount-20)/(25-20)))+77.5;
         } else if (amount <= 50) {
-          var pourcent = ((85 - 80)*((amount-25)/(50-25)))+80;
+          var pourcent = ((85-80)*((amount-25)/(50-25)))+80;
         }
         return pourcent;
       }

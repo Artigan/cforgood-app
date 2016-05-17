@@ -32,17 +32,17 @@ class MangopayServices
   def create_mangopay_payin(wallet_id)
 
     if @user.amount <= 5
-      percent_asso = ((50 - 30)*((@user.amount-1)/(5-1)))+30;
+      percent_asso = ((50-30)*((@user.amount-1)/(5.0-1.0)))+30;
     elsif @user.amount <= 10
-      percent_asso = ((70 - 50)*((@user.amount-5)/(10-5)))+50;
+      percent_asso = ((70-50)*((@user.amount-5)/(10.0-5.0)))+50;
     elsif @user.amount <= 15
-      percent_asso = ((75 - 70)*((@user.amount-10)/(15-10)))+70;
+      percent_asso = ((75-70)*((@user.amount-10)/(15.0-10.0)))+70;
     elsif @user.amount <= 20
-      percent_asso = ((77.5 - 75)*((@user.amount-15)/(20-15)))+75;
+      percent_asso = ((77.5-75)*((@user.amount-15)/(20.0-15.0)))+75;
     elsif @user.amount <= 25
-      percent_asso = ((80 - 77.5)*((@user.amount-20)/(25-20)))+77.5;
+      percent_asso = ((80-77.5)*((@user.amount-20)/(25.0-20.0)))+77.5;
     elsif @user.amount <= 50
-      percent_asso = ((85 - 80)*((@user.amount-25)/(50-25)))+80;
+      percent_asso = (((85-80)*((@user.amount-25)/(50.0-25.0)))+80);
     end
 
     debited_funds = @user.amount*100

@@ -63,23 +63,15 @@
 
       .btn-user,
       .btn-business {
-        position: absolute;
         background: transparent;
         color: #fff;
         border-radius: 3px;
         margin-top: 40px;
         padding: 5px 20px;
+        font-size: 14px;
         font-weight: 100;
         text-align: center;
         text-transform: uppercase;
-      }
-
-      .btn-user {
-        margin-left: -15px;
-      }
-
-      .btn-business {
-        margin-left: -9px;
       }
     }
   }
