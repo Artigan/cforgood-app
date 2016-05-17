@@ -17,7 +17,6 @@ class MangopayServices
     }
 
     mangopay_user = mangopay_natural_user_create(user_info)
-    # @user.update_attribute(:mangopay_id, mangopay_user["Id"])
   end
 
   def create_mangopay_card_pre_registration

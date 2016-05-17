@@ -116,7 +116,7 @@
           mangoPay.cardRegistration.baseURL   = "<%= ENV['MANGOPAY_API_URL'] %>";
           mangoPay.cardRegistration.clientId  = "<%= ENV['MANGOPAY_CLIENT_ID'] %>";
           var validateCard = mangoPay.cardRegistration._validateCardData(cardData);
-
+          console.log(validateCard);
           if (validateCard) {
             // Register card
             mangoPay.cardRegistration.registerCard(

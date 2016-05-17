@@ -178,10 +178,10 @@ class User < ActiveRecord::Base
     if !self.mangopay_id.present?
       begin
         @mangopay_user = MangopayServices.new(self).create_mangopay_natural_user
+        self.mangopay_id = @mangopay_user["Id"]
       rescue MangoPay::ResponseError => e
-        flash[:alert] = "Erreur lors de la création du compte chez Mangopay"
+        errors.add(:erreur, "lors de la création du compte chez Mangopay")
       end
-      self.mangopay_id = @mangopay_user["Id"]
     end
     # UPDATE DATE SUBCRIPTION
     self.date_subscription = Time.now if subscription_was == nil
