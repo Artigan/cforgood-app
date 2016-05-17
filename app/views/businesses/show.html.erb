@@ -209,11 +209,9 @@
 </div>
 
 <!-- MODAL CODE PERK -->
-<!-- /////  CODE EN COMMENTAIRE LE TEMPS DE LA BETA /////  -->
-<%# if !current_user.member %>
-  <%#= render "pro/perks/modals/code_perk_not_member" %>
-<%# elsif @business.online %>
-<% if Perk.find(params[:perk_id]).perk_detail.name == "email" %>
+<% if !current_user.member %>
+  <%= render "pro/perks/modals/code_perk_not_member" %>
+<% elsif Perk.find(params[:perk_id]).perk_detail.name == "email" %>
   <%= render "pro/perks/modals/code_perk_mailto" %>
 <% elsif @business.online %>
   <%= render "pro/perks/modals/code_perk_online" %>
