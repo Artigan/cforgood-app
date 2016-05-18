@@ -156,15 +156,13 @@ class Business < ActiveRecord::Base
   end
 
   def update_data_intercom
-    if Rails.env.production?
-      # UPDATE CUSTOM ATTRIBUTES ON INTERCOM
-      intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
-      begin
-        user = intercom.users.find(:user_id => 'B'+id.to_s)
-        user.custom_attributes["user_active"] = self.active
-        intercom.users.save(user)
-      rescue Intercom::ResourceNotFound
-      end
+    # UPDATE CUSTOM ATTRIBUTES ON INTERCOM
+    intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
+    begin
+      user = intercom.users.find(:user_id => 'B'+id.to_s)
+      user.custom_attributes["user_active"] = self.active
+      intercom.users.save(user)
+    rescue Intercom::ResourceNotFound
     end
   end
 

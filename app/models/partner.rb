@@ -21,15 +21,18 @@ class Partner < ActiveRecord::Base
   private
 
   def update_data_intercom
-    if Rails.env.production?
-      # UPDATE CUSTOM ATTRIBUTES ON INTERCOM
-      intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
-      begin
+    # UPDATE CUSTOM ATTRIBUTES ON INTERCOM
+    intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
+    binding.pry
+    begin
+      if id = Business.find_by_email(self.email).id
+        business = intercom.users.find(:id => 'B'+id.to_s)
+      else
         business = intercom.users.find(:email => self.email)
-        business.custom_attributes["code_partner"] = self.code_partner
-        intercom.users.save(business)
-      rescue Intercom::ResourceNotFound
       end
+      business.custom_attributes["code_partner"] = self.code_partner
+      intercom.users.save(business)
+    rescue Intercom::ResourceNotFound
     end
   end
 end

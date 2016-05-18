@@ -1,4 +1,4 @@
-<% if Rails.env.production? && business_signed_in? %>
+<% if business_signed_in? %>
   <!-- INTERCOM FOR BUSINESS -->
   <%= intercom_script_tag({
     :app_id => ENV['INTERCOM_API_ID'],

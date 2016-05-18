@@ -88,7 +88,6 @@ class User < ActiveRecord::Base
 
   before_create :default_cause_id!
 
-  after_validation :member!, if: :date_last_payment_changed?
   after_validation :trial_done!, if: :subscription_changed?
   after_validation :subscription!, if: :subscription_changed?
 
@@ -96,7 +95,7 @@ class User < ActiveRecord::Base
 
   before_save :date_support!, if: :cause_id_changed?
 
-  after_save :update_data_intercom, if: :active_changed?
+  after_save :update_data_intercom
 
   def self.find_for_google_oauth2(access_token, signed_in_resourse=nil)
     data = access_token.info
@@ -256,46 +255,46 @@ class User < ActiveRecord::Base
   end
 
   def create_data_intercom
-    if Rails.env.production?
-      intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
-      begin
-        user = intercom.users.create(
-          :user_id => self.id.to_s,
-          :email => self.email,
-          :name => self.name,
-          :created_at => created_at
-        )
-        user.custom_attributes["user_type"]   = "user"
-        user.custom_attributes["user_active"] = self.active
-        user.custom_attributes["first_name"]  = self.first_name
-        intercom.users.save(user)
-      rescue Intercom::ResourceNotFound
-      end
+    intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
+    begin
+      user = intercom.users.create(
+        :user_id => self.id.to_s,
+        :email => self.email,
+        :name => self.name,
+        :created_at => self.created_at
+      )
+      user.custom_attributes["user_type"]   = "user"
+      user.custom_attributes["user_active"] = self.active
+      user.custom_attributes["first_name"]  = self.first_name
+      intercom.users.save(user)
+    rescue Intercom::ResourceNotFound
     end
   end
 
   def create_data_amplitude
-      # Configure your Amplitude API key
-      AmplitudeAPI.api_key = ENV["AMPLITUDE_API_KEY"]
+    # Configure your Amplitude API key
+    AmplitudeAPI.api_key = ENV["AMPLITUDE_API_KEY"]
 
-      event = AmplitudeAPI::Event.new({
-        user_id: self.id,
-        event_type: "SIGNUP_USER",
-        user_properties: {
-          user_type: "user",
-          city: self.city
-        }
-      })
-      AmplitudeAPI.track(event)
+    event = AmplitudeAPI::Event.new({
+      user_id: self.id,
+      event_type: "SIGNUP_USER",
+      user_properties: {
+        user_type: "user",
+        city: self.city
+      }
+    })
+    AmplitudeAPI.track(event)
   end
 
   def update_data_intercom
-    if Rails.env.production?
-      # UPDATE CUSTOM ATTRIBUTES ON INTERCOM
+    # UPDATE CUSTOM ATTRIBUTES ON INTERCOM
+    if active_changed? or cause_id_changed? or member_changed?
       intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
       begin
         user = intercom.users.find(:user_id => self.id)
         user.custom_attributes["user_active"] = self.active
+        user.custom_attributes["user_cause"] = self.cause.name
+        user.custom_attributes["user_member"] = self.member
         intercom.users.save(user)
       rescue Intercom::ResourceNotFound
       end
