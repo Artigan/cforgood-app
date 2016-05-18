@@ -1,6 +1,6 @@
  <div class="form-card">
   <!-- SIGNUP FORM BUSINESS -->
-  <div class="subscription-form business">
+  <div class="subscription-form">
     <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <i><%= render "shared/icons/shop" %></i>
       <div id="error-code">
@@ -14,7 +14,29 @@
 
       <p>En cliquant sur <strong>S'inscrire</strong>, vous acceptez les <a type="href" class="" data-toggle="modal" data-target="#modal-cgu"><strong>CGU</strong></a> et certifiez avoir de plus de 18 ans.</p>
 
-      <%= f.button :submit, "s'inscrire", class: "btn btn-connexion", disabled: false %>
+      <%= f.button :submit, "s'inscrire", class: "btn btn-connexion", disabled: true %>
     <% end %>
   </div>
 </div>
+
+<% content_for :after_js do %>
+
+  <script>
+
+    $(document).ready(function() {
+      $("form#new_business").on("change", function(e) {
+        e.preventDefault();
+        if ($("#business_name").val() != "" &&
+            $("#business_city").val() != "" &&
+            $("#business_business_category_id").val() != "" ) {
+          $("#new_business .btn-connexion").attr("disabled", false);
+        } else {
+        $("#new_business .btn-connexion").attr("disabled", true);
+        }
+      });
+
+    });
+
+  </script>
+
+<% end %>

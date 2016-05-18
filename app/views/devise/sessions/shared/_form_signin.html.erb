@@ -1,6 +1,6 @@
  <div class="form-card">
   <!-- SIGNIN FORM -->
-  <div class="subscription-form #{resource-name}">
+  <div class="subscription-form">
     <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <i><%= render "shared/icons/profile" if resource_name == :user %></i>
       <i><%= render "shared/icons/shop"  if resource_name == :business %></i>
