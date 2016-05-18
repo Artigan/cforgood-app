@@ -174,6 +174,12 @@ class User < ActiveRecord::Base
   private
 
   def subscription!
+    # IF NOT EXIST, CREATE NEW USER NATURAL FOR MANGOPAY
+    if !self.mangopay_id.present?
+      @mangopay_user = MangopayServices.new(self).create_mangopay_natural_user
+      self.mangopay_id = @mangopay_user["Id"]
+    end
+    # UPDATE DATE SUBCRIPTION
     self.date_subscription = Time.now if subscription_was == nil
   end
 

@@ -18,9 +18,12 @@ class ApplicationController < ActionController::Base
         @mangopay_user = MangopayServices.new(current_user).create_mangopay_natural_user
         current_user.update_attribute(:mangopay_id, @mangopay_user["Id"])
       rescue MangoPay::ResponseError => e
-        errors.add(:erreur, "lors de la création du compte chez Mangopay")
       end
-      new_member_signup_path
+      if current_user.mangopay_id.present?
+        new_member_signup_path
+      else
+        member_user_dashboard_path(resource)
+      end
     elsif resource_name == :business
       pro_business_dashboard_path(resource)
     else
@@ -32,7 +35,7 @@ class ApplicationController < ActionController::Base
 
   def set_layout
     if pages_admin?
-      @_action_has_layout=false
+      @_action_has_layout = false
       return
     elsif devise_controller? || user_signed_in?
       self.class.layout "application"
