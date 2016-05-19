@@ -34,7 +34,6 @@
 #  logo_file_size            :integer
 #  logo_updated_at           :datetime
 #  amount_impact             :integer
-#  active                    :boolean          default(FALSE), not null
 #
 # Indexes
 #

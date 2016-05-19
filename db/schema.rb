@@ -39,9 +39,9 @@ ActiveRecord::Schema.define(version: 20160427144201) do
     t.string   "city"
     t.float    "latitude"
     t.float    "longitude"
+    t.boolean  "active",      default: true, null: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
-    t.boolean  "active",      default: true, null: false
     t.datetime "start_time"
     t.datetime "end_time"
   end
@@ -170,6 +170,12 @@ ActiveRecord::Schema.define(version: 20160427144201) do
     t.integer  "nb_month",     default: 1
   end
 
+  create_table "periodicities", force: :cascade do |t|
+    t.string   "period"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "perk_details", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
@@ -249,7 +255,6 @@ ActiveRecord::Schema.define(version: 20160427144201) do
     t.date     "date_partner"
     t.string   "code_partner"
     t.date     "date_support"
-    t.integer  "amount"
   end
 
   add_index "users", ["cause_id"], name: "index_users_on_cause_id", using: :btree
