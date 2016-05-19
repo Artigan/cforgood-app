@@ -91,7 +91,7 @@ class User < ActiveRecord::Base
   after_save :trial_done!, if: :subscription_changed?
 
   before_create :default_cause_id!
-  after_create :create_data_intercom, :send_registration_slack, :subscribe_to_newsletter_user
+  after_create :create_data_intercom, :create_data_amplitude, :send_registration_slack, :subscribe_to_newsletter_user
   after_commit :update_data_intercom, if: :active_changed?
 
 
@@ -263,6 +263,21 @@ class User < ActiveRecord::Base
       rescue Intercom::ResourceNotFound
       end
     end
+  end
+
+  def create_data_amplitude
+      # Configure your Amplitude API key
+      AmplitudeAPI.api_key = ENV["AMPLITUDE_API_KEY"]
+
+      event = AmplitudeAPI::Event.new({
+        user_id: self.id,
+        event_type: "SIGNUP_USER",
+        user_properties: {
+          user_type: "user",
+          city: self.city
+        }
+      })
+      AmplitudeAPI.track(event)
   end
 
   def update_data_intercom
