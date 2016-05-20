@@ -3,6 +3,13 @@
   var geoJson = <%= raw(@geojson.to_json) %>;
   var markers = geoJson;
 
+  var framesPerSecond = 15;
+  var initialOpacity = 1
+  var opacity = initialOpacity;
+  var initialRadius = 8;
+  var radius = initialRadius;
+  var maxRadius = 18;
+
   mapboxgl.accessToken = '<%= ENV['MAPBOXGL_TOKEN'] %>';
 
   function getCookie(cname) {
@@ -82,30 +89,61 @@
       }
     });
 
-    // Add marker for position
-    map.addSource('single-point', {
+    // Add a source and layer displaying a point which will be animated in a circle.
+    map.addSource('point', {
       "type": "geojson",
       "data": {
-        "type": "FeatureCollection",
-        "features": [{
-          "type": "Feature",
-          "geometry": {
-            "type": "Point",
-            "coordinates": [lat, lng]
-          }
-        }]
+        "type": "Point",
+        "coordinates": [
+          lat, lng
+        ]
       }
     });
 
     map.addLayer({
       "id": "point",
-      "source": "single-point",
+      "source": "point",
       "type": "circle",
       "paint": {
-        "circle-radius": 10,
-        "circle-color": "#007cbf"
+        "circle-radius": initialRadius,
+        "circle-radius-transition": {duration: 0},
+        "circle-opacity-transition": {duration: 0},
+        "circle-color": "#32C4CB"
       }
     });
+
+    map.addLayer({
+      "id": "point1",
+      "source": "point",
+      "type": "circle",
+      "paint": {
+        "circle-radius": initialRadius,
+        "circle-color": "#32C4CB"
+      }
+    });
+
+
+    function animateMarker(timestamp) {
+        setTimeout(function(){
+            requestAnimationFrame(animateMarker);
+
+            radius += (maxRadius - radius) / framesPerSecond;
+            opacity -= ( .9 / framesPerSecond );
+
+            if (opacity <= 0) {
+                radius = initialRadius;
+                opacity = initialOpacity;
+            }
+
+            map.setPaintProperty('point', 'circle-radius', radius);
+            map.setPaintProperty('point', 'circle-opacity', opacity);
+
+        }, 1000 / framesPerSecond);
+
+    }
+
+    // Start the animation.
+    animateMarker(0);
   });
 
   // When a click event occurs near a marker icon, open a popup at the location of
