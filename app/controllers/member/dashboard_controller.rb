@@ -3,6 +3,7 @@ class Member::DashboardController < ApplicationController
   skip_before_action :authenticate_user!, only: [:dashboard]
 
   def dashboard
+    binding.pry
     @businesses = Business.active.for_map.joins(:perks).merge(Perk.in_time).distinct
     @geojson = {"type" => "FeatureCollection", "features" => []}
 

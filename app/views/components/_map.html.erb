@@ -5,13 +5,30 @@
 
   mapboxgl.accessToken = '<%= ENV['MAPBOXGL_TOKEN'] %>';
 
-  // if (<%#= current_user.latitude.present? %> && <%#= current_user.longitude.present? %>) {
-    // mapCenter = [<%#= current_user.longitude %>, <%#= current_user.latitude %>];
-  // } else {
-    // mapCenter = [-0.57918, 44.837789];
-    setRoutePathFromLocation();
-    mapCenter = [-0.57, 44.84];
-  // }
+  function getCookie(cname) {
+      var name = cname + "=";
+      var ca = document.cookie.split(';');
+      for(var i = 0; i <ca.length; i++) {
+          var c = ca[i];
+          while (c.charAt(0)==' ') {
+              c = c.substring(1);
+          }
+          if (c.indexOf(name) == 0) {
+              return c.substring(name.length,c.length);
+          }
+      }
+      return "";
+  }
+
+  var coordinates = getCookie("coordinates").split('&');
+  var lng = coordinates[0];
+  var lat = coordinates[1];
+
+  if (lng == null || lat == null) {
+     mapCenter = [-0.57918, 44.837789];
+  } else {
+    mapCenter = [lat, lng];
+  }
 
   var map = new mapboxgl.Map({
     container: 'map-dashboard',
@@ -30,6 +47,7 @@
   var layers = [];
 
   map.on('style.load', function () {
+
     // Add marker data as a new GeoJSON source.
     map.addSource("markers", {
       "type": "geojson",
@@ -61,6 +79,31 @@
         if (layerID.includes("-flash")) {
           map.setLayoutProperty(layerID, 'visibility', 'none');
         }
+      }
+    });
+
+    // Add marker for position
+    map.addSource('single-point', {
+      "type": "geojson",
+      "data": {
+        "type": "FeatureCollection",
+        "features": [{
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [lat, lng]
+          }
+        }]
+      }
+    });
+
+    map.addLayer({
+      "id": "point",
+      "source": "single-point",
+      "type": "circle",
+      "paint": {
+        "circle-radius": 10,
+        "circle-color": "#007cbf"
       }
     });
   });
