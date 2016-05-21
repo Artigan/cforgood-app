@@ -12,15 +12,17 @@
       <%= f.input :password, placeholder: '********', required: true, label: false %>
       <%= f.input :city, placeholder: 'Honolulu', required: true, label: false %>
 
-      <p>En cliquant sur <strong>S'inscrire</strong> ou <strong>Facebook</strong> vous acceptez les <a type="href" class="" data-toggle="modal" data-target="#modal-cgu"><strong>CGU</strong></a> et certifiez avoir de plus de 18 ans.</p>
+      <div class="subscribe-disclaimer">
+        <p>En cliquant sur <strong>S'inscrire</strong> ou <strong>Facebook</strong> vous acceptez les <a type="href" class="" data-toggle="modal" data-target="#modal-cgu"><strong>CGU</strong></a> et certifiez avoir de plus de 18 ans.</p>
+      </div>
 
-      <%= f.button :submit, "S'inscrire", class: "btn btn-connexion" , disabled: true %>
+      <%= f.button :submit, "S'inscrire", class: "btn btn-connexion hint--top", :"data-hint" => "En cliquant sur S'inscrire ou Facebook vous acceptez les CGU et certifiez avoir de plus de 18 ans.", disabled: true %>
     <% end %>
   </div>
   <!-- FB & GOOGLE SUBSCRIPTION BUTTONS -->
   <div class="subscription-network">
     <span>ou</span>
-    <%= link_to raw("Se connecter avec Facebook"), user_omniauth_authorize_path(:facebook), class: "btn btn-connexion" %>
+    <%= link_to raw("<i class='fa fa-facebook' aria-hidden='true'></i>Se connecter avec Facebook"), user_omniauth_authorize_path(:facebook), class: "btn btn-connexion" %>
     <%#= link_to raw("<i class=\"fa fa-google\">Google</i>"), user_omniauth_authorize_path(:google_oauth2), class: "btn-google" %>
   </div>
 </div>

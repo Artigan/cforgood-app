@@ -39,9 +39,9 @@ ActiveRecord::Schema.define(version: 20160517203055) do
     t.string   "city"
     t.float    "latitude"
     t.float    "longitude"
+    t.boolean  "active",      default: true, null: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
-    t.boolean  "active",      default: true, null: false
     t.datetime "start_time"
     t.datetime "end_time"
   end
@@ -168,6 +168,12 @@ ActiveRecord::Schema.define(version: 20160517203055) do
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
     t.integer  "nb_month",     default: 1
+  end
+
+  create_table "periodicities", force: :cascade do |t|
+    t.string   "period"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "perk_details", force: :cascade do |t|

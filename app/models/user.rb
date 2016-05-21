@@ -38,7 +38,7 @@
 #  trial_done             :boolean          default(FALSE), not null
 #  date_subscription      :datetime
 #  date_last_payment      :datetime
-#  active                 :boolean          default(TRUE), not null
+#  active                 :boolean          default(FALSE), not null
 #  street                 :string
 #  zipcode                :string
 #  city                   :string
@@ -47,7 +47,6 @@
 #  date_partner           :date
 #  code_partner           :string
 #  date_support           :date
-#  amount                 :integer
 #
 # Indexes
 #
