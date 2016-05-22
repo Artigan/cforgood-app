@@ -426,3 +426,31 @@
   }
 }
 
+/* NEW PASSWORD ***********************/
+
+.new-password-container {
+  display: flex;
+  flex-direction: column;
+  margin: 10% auto 0 auto;
+  width: 350px;
+  background-color: #fff;
+
+  span {
+    margin-bottom: 20px;
+  }
+
+  .subscription-form{
+    .user_email,
+    .business_email {
+      &:after {
+        top: 35px !important;
+      }
+    }
+  }
+
+  input[type="submit"] {
+    margin-top: 20px;
+    width: 100%;
+  }
+}
+
