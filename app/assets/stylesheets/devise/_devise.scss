@@ -8,6 +8,11 @@
   background-attachment: fixed;
   background-position: bottom;
 
+  @media (max-width: 767px) {
+    height: 100vh;
+    overflow: hidden;
+  }
+
   &:after {
     content: "";
     position: absolute;
@@ -40,6 +45,17 @@
     transform: translateX(-50%) translateY(-50%);
     z-index: 1;
 
+    @media (max-width: 767px) {
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+      justify-content: space-around;
+      border: none;
+      box-shadow: none;
+      box-sizing: border-box;
+      background: none;
+    }
+
     @media (min-width: 768px) and (max-width: 1024px) {
       width: 75%;
       height: 50%;
@@ -51,6 +67,12 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
+
+      @media (max-width: 767px) {
+        padding: 30px 20px;
+        background: #fff;
+        border-radius: 2px;
+      }
 
       span {
         margin-top: 15px;
@@ -90,6 +112,10 @@
           background: $turquoise;
           color: #fff;
         }
+
+        @media (max-width: 767px) {
+          width: 100%;
+        }
       }
     }
   }
@@ -100,15 +126,42 @@
     min-height: 530px;
     top: 50%;
     left: 50%;
-    transform: translateX(-100%) translateY(-50%);
     background: #fff;
     box-shadow: 0 1px 2px rgba(0,0,0,0.2);
     border-radius: 2px;
     z-index: 2;
+    @include transition(all 0.3s ease-in-out);
+
+    @media (max-width: 767px) {
+      max-width: 100%;
+      height: 100%;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      transform: translateY(100%) translateX(0%);
+      overflow-y: scroll;
+    }
+
+    @media (min-width: 768px) {
+      transform: translateX(-100%) translateY(-50%);
+    }
   }
 
   .translate {
-    transform:translate(0, -50%);
+    @media (max-width: 767px) {
+      transform: translateY(0%) translateX(0%);
+    }
+
+    @media (min-width: 768px) {
+      transform: translateY(-50%) translateX(0%);
+    }
+  }
+
+  .close-sign-box {
+    @media (min-width: 768px) {
+      display: none;
+    }
   }
 
   .form-card {
@@ -133,6 +186,12 @@
         border-radius: 50%;
         background: #fff;
         transform: translateX(-50%);
+
+        @media (max-width: 767px) {
+          position: relative;
+          margin-bottom: 60px;
+          top: 20px;
+        }
       }
 
       form {
