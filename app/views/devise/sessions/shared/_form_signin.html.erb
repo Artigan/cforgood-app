@@ -2,15 +2,18 @@
   <!-- SIGNIN FORM -->
   <div class="subscription-form">
     <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <i><%= render "shared/icons/profile" if resource_name == :user %></i>
-      <i><%= render "shared/icons/shop"  if resource_name == :business %></i>
+      <% if resource_name == :user %>
+        <i><%= render "shared/icons/profile" %></i>
+      <% else %>
+        <i><%= render "shared/icons/shop" %></i>
+      <% end %>
       <div id="error-code">
         <%= flash[:alert].humanize unless flash[:alert] == nil %>
       </div>
       <%= f.input :email, placeholder: 'john@doe.com', required: false, autofocus: false, :class => "validate", label: false %>
       <%= f.input :password, placeholder: '********', required: false, :class => "validate", label: false %>
       <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-      <%= f.button :submit, "Se connecter", class: "btn btn-connexion" %>
+      <%= f.button :submit, "Se connecter", class: "btn btn-connexion", disabled: true %>
       <% if devise_mapping.recoverable? && controller_name != 'passwords' %>
       <%= link_to t(".forgot_your_password", :default => "Mot de passe oublié ?"), new_password_path(resource_name), class: "new-password" %>
       <% end %>
@@ -20,8 +23,34 @@
   <% if resource_name == :user %>
     <div class="subscription-network">
       <span>ou</span>
-      <%= link_to raw("Se connecter avec Facebook"), user_omniauth_authorize_path(:facebook), class: "btn btn-connexion" %>
+      <%= link_to raw("<i class='fa fa-facebook' aria-hidden='true'></i>Se connecter avec Facebook"), user_omniauth_authorize_path(:facebook), class: "btn btn-connexion" %>
       <%#= link_to raw("<i class=\"fa fa-google\"></i>"), user_omniauth_authorize_path(:google_oauth2), class: "btn-google" %>
     </div>
   <% end %>
 </div>
+
+<% content_for :after_js do %>
+  <script>
+    $(document).ready(function() {
+      $("form#new_user").on("change", function(e) {
+        e.preventDefault();
+        if ($("#user_email").val() != "" &&
+            $("#user_password").val() != "" ) {
+          $("#new_user .btn-connexion").attr("disabled", false);
+        } else {
+        $("#new_user .btn-connexion").attr("disabled", true);
+        }
+      });
+
+      $("form#new_business").on("change", function(e) {
+        e.preventDefault();
+        if ($("#business_email").val() != "" &&
+            $("#business_password").val() != "" ) {
+          $("#new_business .btn-connexion").attr("disabled", false);
+        } else {
+        $("#new_business .btn-connexion").attr("disabled", true);
+        }
+      });
+    });
+  </script>
+<% end %>

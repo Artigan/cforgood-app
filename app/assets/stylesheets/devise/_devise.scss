@@ -28,7 +28,7 @@
     display: flex;
     text-align: center;
     justify-content: space-between;
-    padding: 50px 100px;
+    padding: 10%;
     background: rgba(255,255,255,0.7);
     box-shadow: 0 1px 2px rgba(0,0,0,0.07);
     border: 2px solid #fff;
@@ -39,6 +39,10 @@
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
     z-index: 1;
+
+    @media (min-width: 768px) and (max-width: 1024px) {
+      width: 75%;
+    }
 
     .connect-user,
     .connect-business {
@@ -219,11 +223,15 @@
         .user_last_name,
         .user_email,
         .user_password,
-        .user_city {
+        .user_city,
+        .business_name,
+        .business_email,
+        .business_password,
+        .business_city,
+        .business_business_category_id {
           position: relative;
 
           &:after {
-            content: '\f007';
             font-family: FontAwesome;
             position: absolute;
             top: 10px;
@@ -232,7 +240,8 @@
           }
         }
 
-        .user_first_name {
+        .user_first_name,
+        .business_name {
           &:after {
             content: '\f007';
             font-size: 13px;
@@ -246,22 +255,31 @@
           }
         }
 
-        .user_email {
+        .user_email,
+        .business_email {
           &:after {
             content: '\f0e0';
             font-size: 13px;
           }
         }
 
-        .user_password {
+        .user_password,
+        .business_password {
           &:after {
             content: '\f023';
           }
         }
 
-        .user_city {
+        .user_city,
+        .business_city {
           &:after {
             content: '\f041';
+          }
+        }
+
+        .business_business_category_id {
+          &:after {
+            content: '\f0d7';
           }
         }
 
@@ -278,8 +296,13 @@
         }
 
         .new-password {
-          font-size: 12px;
-          color: #636363;
+          font-size: 10px;
+          color: #bfbfbf;
+
+          &:hover {
+            color: #333;
+            text-decoration: underline;
+          }
         }
       }
     }
@@ -389,6 +412,17 @@
       text-decoration: none;
     }
   }
+}
 
+.signin {
+  .sign-back {
+    padding: 5% 10%;
+    height: 50%;
+  }
+
+  .sign-box {
+    max-width: 350px;
+    min-height: 395px;
+  }
 }
 
