@@ -28,13 +28,13 @@
   }
 
   var coordinates = getCookie("coordinates").split('&');
-  var lng = coordinates[0];
-  var lat = coordinates[1];
+  var lat = coordinates[0];
+  var lng = coordinates[1];
 
-  if (lng == null || lat == null) {
+  if (lat == null || lng == null) {
      mapCenter = [-0.57918, 44.837789];
   } else {
-    mapCenter = [lat, lng];
+    mapCenter = [lng, lat];
   }
 
   var map = new mapboxgl.Map({
@@ -95,7 +95,7 @@
       "data": {
         "type": "Point",
         "coordinates": [
-          lat, lng
+          lng, lat
         ]
       }
     });

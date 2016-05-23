@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160517203055) do
+ActiveRecord::Schema.define(version: 20160523083428) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -170,6 +170,15 @@ ActiveRecord::Schema.define(version: 20160517203055) do
     t.integer  "nb_month",     default: 1
   end
 
+  create_table "payments", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "cause_id"
+    t.integer "amount"
+  end
+
+  add_index "payments", ["cause_id"], name: "index_payments_on_cause_id", using: :btree
+  add_index "payments", ["user_id"], name: "index_payments_on_user_id", using: :btree
+
   create_table "perk_details", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
@@ -267,6 +276,8 @@ ActiveRecord::Schema.define(version: 20160517203055) do
   add_index "uses", ["user_id"], name: "index_uses_on_user_id", using: :btree
 
   add_foreign_key "addresses", "businesses"
+  add_foreign_key "payments", "causes"
+  add_foreign_key "payments", "users"
   add_foreign_key "perks", "businesses"
   add_foreign_key "users", "causes"
   add_foreign_key "uses", "perks"
