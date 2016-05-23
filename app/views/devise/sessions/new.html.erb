@@ -19,6 +19,7 @@
     </div>
   </div>
   <div class="sign-box signin <%= params[:business].present? ? "translate" : "" %>">
+    <div class="close-sign-box"></div>
     <div class="sign-user <%= params[:business].present? ? "hidden" : "" %>">
       <!-- SIGNIN FORM USER -->
       <%= render "devise/sessions/shared/form_signin", resource_name: :user %>
@@ -38,18 +39,22 @@
   <script>
 
     $(document).ready(function(){
+      $('.close-sign-box').click(function(event) {
+        $('.sign-box').toggleClass('translate');
+      });
+
       $('.connect-user').click(function(event) {
         $("#error-code").remove();
         $('.sign-user').removeClass('hidden');
         $('.sign-business').addClass('hidden');
-        $('.sign-box').removeClass('translate').css('transition-duration','1s');
+        $('.sign-box').toggleClass('translate');
       });
 
       $('.connect-business').click(function(event) {
         $("#error-code").remove();
         $('.sign-business').removeClass('hidden');
         $('.sign-user').addClass('hidden');
-        $('.sign-box').addClass('translate').css('transition-duration','1s');
+        $('.sign-box').toggleClass('translate');
       });
     });
 
