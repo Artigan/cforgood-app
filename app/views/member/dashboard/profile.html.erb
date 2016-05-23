@@ -28,6 +28,11 @@
         <li role="profile">
           <%= link_to "Vos données bancaires", "#payment", role: "tab", data_toggle: "tab", class: "show-payment hidden" %>
         </li>
+        <% if @payments.present? %>
+          <li role="profile">
+            <%= link_to "Vos paiements", "#list-payments", role: "tab", data_toggle: "tab" %>
+          </li>
+        <% end %>
       </ul>
       <!-- Tab panes -->
       <div class="tab-content">
@@ -43,6 +48,11 @@
         <div role="tabpanel" class="tab-pane tab-profile hidden" id="payment">
           <%= render "member/dashboard/shared/form_payment" %>
         </div>
+        <% if @payments.present? %>
+          <div role="tabpanel" class="tab-pane tab-profile" id="list-payments">
+            <%= render "member/dashboard/shared/list_payments" %>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>

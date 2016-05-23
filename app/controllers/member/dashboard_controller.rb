@@ -61,4 +61,10 @@ class Member::DashboardController < ApplicationController
       format.json{render json: @geojson}
     end
   end
+
+  def profile
+    @payments = Payment.where(user_id: current_user.id)
+  end
+
+
 end

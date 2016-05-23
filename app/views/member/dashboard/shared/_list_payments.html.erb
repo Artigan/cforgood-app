@@ -1,0 +1,22 @@
+<!-- LIST PAYMENTS-->
+<div class="form-edit-container">
+  <div class="form-edit">
+    <div class="row">
+      <div class="dashboard-title">
+        <span>Vos paiements</span>
+      </div>
+      <div class="col-xs-12 col-sm-8 col-sm-offset-2 form-card form-payment">
+        <ul>
+          <% @payments.each do |payment| %>
+            <li><%= payment.created_at %></li>
+            <li><%= payment.cause.name %></li>
+            <li><%= payment.amount %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
