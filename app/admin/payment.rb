@@ -8,4 +8,14 @@ ActiveAdmin.register Payment do
     column :created_at
     actions
   end
+  form do |f|
+    f.inputs "Identity" do
+      f.input :user_id
+      f.input :cause_id
+      f.input :amount
+    end
+    f.actions
+  end
+
+permit_params :user_id, :cause_id, :amount
 end
