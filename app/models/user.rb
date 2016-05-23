@@ -69,6 +69,7 @@ class User < ActiveRecord::Base
 
   belongs_to :cause
   has_many :uses
+  has_many :payments, dependent: :destroy
 
   validates :email, presence: true, uniqueness: true
   # validates :first_name, presence: true
@@ -156,8 +157,12 @@ class User < ActiveRecord::Base
   end
 
   def should_payin?
+    @partner = Partner.find_by_code_partner(self.code_partner)
+    nb_month = 1
+    nb_month = @partner.month  if @parner.present?
+
     self.subscription != nil && self.subscription[0] != "T" &&
-    (self.date_last_payment == nil || self.date_last_payment < Time.now.prev_month)
+    (self.date_last_payment == nil || self.date_last_payment < Time.now + nb_month.month)
   end
 
   def find_name?
@@ -170,6 +175,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def member!
+    self.member = true
+  end
+
   private
 
   def subscription!
@@ -180,10 +189,6 @@ class User < ActiveRecord::Base
     end
     # UPDATE DATE SUBCRIPTION
     self.date_subscription = Time.now if subscription_was == nil
-  end
-
-  def member!
-    self.member = true
   end
 
   def date_support!
