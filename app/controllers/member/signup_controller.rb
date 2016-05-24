@@ -10,7 +10,7 @@ class Member::SignupController < ApplicationController
         wallet_id = ENV['MANGOPAY_CFORGOOD_WALLET_ID'] unless wallet_id
         result = MangopayServices.new(current_user).create_mangopay_payin(wallet_id)
         if result["ResultMessage"] == "Success"
-          @payment = current_user.payments.new(cause_id: current_user.cause_id, amount: current_user.amount)
+          @payment = current_user.payments.new(cause_id: current_user.cause_id, amount: current_user.amount, done: true)
           if @payment.save
             current_user.member!
             current_user.update_attribute("date_last_payment", Time.now)

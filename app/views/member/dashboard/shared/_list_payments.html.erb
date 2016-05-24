@@ -11,7 +11,6 @@
             <td><%= I18n.l payment.created_at.to_date, format: :short %> <%= payment.created_at.year %></td>
             <td><%= payment.cause.name %></td>
             <td><%= payment.amount %> €</td>
-            <td><%= payment.amount %> €</td>
             <% if payment.done %>
               <td class="done"><%= image_tag "icons/check_OK.png" %></td>
             <% else %>
