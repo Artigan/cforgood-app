@@ -22,7 +22,7 @@
 
           <div class="offer-btn">
             <%= f.input :subscription, as: :hidden, input_html: { value: "M" } %>
-            <%= f.input :amount, label: false, input_html: { value: 5 } %>
+            <%= f.input :amount, label: false, input_html: { value: f.object.amount || 5 } %>
             <%= f.submit "Souscrivez", class: "btn-subscription"%>
           </div>
           <!-- Current partner code : <%= current_user.code_partner %> -->
@@ -47,6 +47,13 @@
 
   <script>
     $(document).ready(function() {
+
+      var value = parseInt($("#user_amount").val());
+      var pourcent = pourcentAsso(parseInt(value));
+      $('.output-asso').html(pourcent);
+      $("#range").val(value);
+
+
       function pourcentAsso(amount) {
         if (amount <= 5) {
           var pourcent = ((50-30)*((amount-1)/(5-1)))+30;
