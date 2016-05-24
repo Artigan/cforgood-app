@@ -1,19 +1,25 @@
 <!-- LIST PAYMENTS-->
-<div class="form-edit-container">
+<div class="list-payments">
   <div class="form-edit">
     <div class="row">
       <div class="dashboard-title">
-        <span>Vos paiements</span>
+        <span class="tab-subtitle">Encore merci pour votre engagement !</span>
       </div>
-      <div class="col-xs-12 col-sm-8 col-sm-offset-2 form-card form-payment">
-        <ul>
-          <% @payments.each do |payment| %>
-            <li><%= payment.created_at %></li>
-            <li><%= payment.cause.name %></li>
-            <li><%= payment.amount %></li>
-          <% end %>
-        </ul>
-      </div>
+      <table>
+        <% @payments.each do |payment| %>
+          <tr>
+            <td><%= I18n.l payment.created_at.to_date, format: :short %> <%= payment.created_at.year %></td>
+            <td><%= payment.cause.name %></td>
+            <td><%= payment.amount %> €</td>
+            <td><%= payment.amount %> €</td>
+            <% if payment.done %>
+              <td class="done"><%= image_tag "icons/check_OK.png" %></td>
+            <% else %>
+              <td class="done"><%= image_tag "icons/check_KO.png" %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </table>
     </div>
   </div>
 </div>

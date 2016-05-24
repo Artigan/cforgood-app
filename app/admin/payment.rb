@@ -5,6 +5,7 @@ ActiveAdmin.register Payment do
     column :user_id
     column :cause_id
     column :amount_id
+    column :done
     column :created_at
     actions
   end
@@ -14,8 +15,11 @@ ActiveAdmin.register Payment do
       f.input :cause_id
       f.input :amount
     end
+    f.inputs "Admin" do
+      f.input :done
+    end
     f.actions
   end
 
-permit_params :user_id, :cause_id, :amount
+permit_params :user_id, :cause_id, :amount, :done
 end
