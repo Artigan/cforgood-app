@@ -2,33 +2,35 @@
 <div class="signup-cause">
   <div class="choose-cause  ">
     <div class="change-cause">
-      <span>Choississez votre cause</span>
-        <div class="causes-carrousel">
+      <span>Choississez l'association que vous souhaitez soutenir</span>
+      <div class="causes-carrousel">
         <!-- Random Causes cards -->
         <% Cause.all.each do |cause| %>
           <% if cause.id != current_user.cause_id && cause.id != ENV['CAUSE_ID_CFORGOOD'].to_i %>
             <div id="<%= cause.id %>" class="cause-presentation">
               <!-- CARD CAUSE -->
               <%= render(partial: 'components/card_cause', locals: { cause: cause }) %>
-               <div class="love-you hidden">Vous soutenez cette association <%= render 'shared/icons/heart' %></div>
+               <div class="love-you hidden"> <%= render 'shared/icons/heart' %>Vous soutenez cette association</div>
             </div>
           <% end %>
         <% end %>
       </div>
       <%= simple_form_for(current_user, url: member_update_cause_path, remote: true, authenticity_token: true, html: { method: :put, id: :update_cause_id }) do |f| %>
-      <%= f.input :cause_id, as: :hidden %>
-      <%= f.submit "Soutenir cette cause", class: "user-button" %>
+        <%= f.input :cause_id, as: :hidden %>
+        <%= f.submit "Soutenir cette cause", class: "user-button" %>
       <% end %>
+      <p class="comment-cause">Sans choix de votre part, c'est CforGood qui bénificiera de votre soutien. Vous pourrez toujours modifier votre choix depuis votre profile.</p>
+      <button class="signup-next">Suivant</button>
     </div>
   </div>
-  <button class="btn-next">Suivant</button>
-  <p class="comment-cause">Sans choix de votre part, c'est CforGood qui bénificiera de votre soutien. Vous pourrez toujours modifier votre choix dans votre profile.</p>
 </div>
 
 <% content_for :after_js do %>
 
   <script>
     $(document).ready(function() {
+
+      $('#intercom-container').css('display: none !important;');
 
       $(".user-button").on("click", function(e) {
         e.preventDefault;
@@ -37,7 +39,7 @@
         $(".love-it").addClass('hidden').removeClass('love-it');
       });
 
-      $(".btn-next").on("click", function(e) {
+      $(".signup-next").on("click", function(e) {
         e.preventDefault;
         $(".choose-cause").addClass("ishidden");
         $(".signup-plan").addClass("slideup");
