@@ -38,7 +38,6 @@
     background-color: #fff;
 
     .offer-index {
-      padding: 30px 20px 20px;
 
       .offer-extra {
         padding-top: 0;
@@ -59,18 +58,25 @@
           width: 80%;
           display: flex;
           float: left;
-          margin-top: 50px;
           margin-bottom: 0;
           text-align: left;
         }
 
         .output-asso {
-          position: absolute;
-          bottom: 121px;
-          left: 125px;
+          font-size: 26px;
+          font-weight: 600;
 
           &:after {
-          content: " %";
+            content: " %";
+          }
+        }
+
+        .output-fiscal {
+          font-size: 26px;
+          font-weight: 600;
+
+          &:after {
+            content: " €";
           }
         }
       }
@@ -78,10 +84,6 @@
 
     .offer-card {
       height: 320px;
-
-      &.offer-monthly {
-        width: 500px;
-      }
 
       .offer-extra {
         height: 60px;
@@ -93,30 +95,46 @@
     }
 
     #range {
-      position: absolute;
-      top: 130px;
       display: block;
-      width: 72%;
+      margin: 30px auto 0;
+      width: 80%;
       height: 10px;
       background: linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%);
       left: 5%;
       border-radius: 10px;
     }
 
-    #user_amount {
-      position: absolute;
-      width: 60px;
-      height: 60px;
-      bottom: 140px;
-      left: 260px;
-      border: 2px solid #36d3da;
-      border-radius: 50%;
-      font-size: 16px;
-      text-align: center;
-      color: #36d3da;
-      line-height: 2.7em;
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    .user_amount {
       &:after {
         content: " €";
+        position: absolute;
+        width: 60px;
+        height: 60px;
+        bottom: 283px;
+        left: -16px;
+        font-size: 2em;
+        text-align: center;
+        color: #36d3da;
+      }
+
+      #user_amount {
+        position: absolute;
+        width: 60px;
+        height: 60px;
+        bottom: 302px;
+        left: -42px;
+        font-size: 2em;
+        text-align: center;
+        color: #36d3da;
+        -webkit-appearance: none;
+        border: none;
+        box-shadow: none;
       }
     }
 
@@ -137,39 +155,39 @@
     }
 
     .btn-subscription {
-      padding: 5px;
-      border-radius: 4px;
-      margin-left: 100px;
+      padding: 10px 20px;
+      margin: 25px 0 0;
+      width: 100%;
+      border-radius: 2px;
+      max-width: 100%;
+      font-weight: 600;
+      border: none;
     }
 
     .btn-no-subscription {
-      bottom: 15px;
+      position: absolute;
       left: 25px;
-      color: #000;
-      font-size: 14px;
+      color: $grey;
+      font-size: 0.7em;
       font-weight: 200;
+      bottom: 10px;
+      text-decoration: underline;
+      left: 50%;
+      transform: translateX(-50%);
+
+      @media (max-width: 767px) {
+        bottom: -8px;
+      }
+
+      &:hover {
+        color: #333;
+      }
     }
 
     .btn-plan {
       position: absolute;
       right: 0;
       bottom: 15px;
-    }
-  }
-
-  .signup-payment {
-    background-color: #fff;
-
-    #amount_subscription {
-      position: absolute;
-      width: 50%;
-      top: 10%;
-      left: 50%;
-      transform: translateX(-50%);
-
-      &:after {
-        content: " €";
-      }
     }
   }
 }

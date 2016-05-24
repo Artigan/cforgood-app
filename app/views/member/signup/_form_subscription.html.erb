@@ -1,37 +1,45 @@
 <div class="signup-plan">
-  <span>Choisissez votre abonnement</span>
+  <span>Choisissez le montant de votre participation</span>
   <div class="container-fluid">
     <div class="offer-index">
-      <div class="offer-card offer-monthly">
-        <div class="offer-title">Mensuel</div>
-        <div class="offer-extra">Sans engagement de durée</div>
+      <div class="offer-card">
         <!-- RANGE SLIDER FOR PRICE -->
         <div class="offer-price">
-          <label for="range">Choisissez le montant de votre participation !</label>
           <input type="range" name="range" id="range" min="1" max="50" value="5"/>
-          <p>Le pourcentage reversée à l'association de votre choix sera de
-            <output class="output-asso">50</output>
-          </p>
+          <div class="offer-details">
+            <div class="offer-detail">
+              <output class="output-asso">50</output>
+              <p>Reversé à l'association de votre choix</p>
+            </div>
+            <div class="offer-detail">
+              <output class="output-fiscal">50</output>
+              <p>Coût réel de votre don après déduction fiscale</p>
+            </div>
+          </div>
+        </div>
+        <div class="offer-description">
+          <h5>Abonnement mensuel <strong>libre</strong> sans engagement</h5>
+          <p>Vous pouvez le modifier ou l'annuler à tout moment depuis votre profil</p>
         </div>
         <!-- PARTNER CODE -->
         <%= simple_form_for(current_user, url: member_update_profile_path, method: :put, remote: true, authenticity_token: true, html: { id: "update_subscription" } ) do |f| %>
           <div class="code-partner">
             <%= f.input :code_partner, label: "Code Partenaire", input_html: { value: "" } %>
-
           </div>
 
           <div class="offer-btn">
             <%= f.input :subscription, as: :hidden, input_html: { value: "M" } %>
             <%= f.input :amount, label: false, input_html: { value: 5 } %>
-            <%= f.submit "Souscrivez", class: "btn-subscription"%>
           </div>
+
+          <%= f.submit "Je rejoins la révolution positive", class: "btn-subscription"%>
           <!-- Current partner code : <%= current_user.code_partner %> -->
         <% end %>
       </div>
     </div>
   </div>
 
-  <%= link_to "Je souscris plus tard !", member_user_dashboard_path(current_user), class: "btn btn-no-subscription" %>
+  <%= link_to "Je la rejoindrai plus tard", member_user_dashboard_path(current_user), class: "btn btn-no-subscription" %>
   <!-- <button class="btn-plan">Suivant</button> -->
 </div>
 
@@ -60,11 +68,13 @@
         $("#user_amount").val(this.value);
         var pourcent = pourcentAsso(this.value);
         $('.output-asso').html(pourcent);
+        $('.output-fiscal').html(pourcent);
       });
 
       $("#user_amount").on('input', function() {
         var pourcent = pourcentAsso(this.value);
         $('.output-asso').html(pourcent);
+        $('.output-fiscal').html(pourcent);
         $("#range").val(this.value);
       });
 

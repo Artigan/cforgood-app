@@ -8,11 +8,30 @@
   background-repeat: no-repeat;
   height: 100%;
   width: 100%;
+
+  &:before {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    z-index: 0;
+    opacity: 0.65;
+
+    background: -webkit-linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* Chrome 10+, Saf5.1+ */
+    background: -moz-linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* FF3.6+ */
+    background: -ms-linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* IE10 */
+    background: -o-linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* Opera 11.10+ */
+    background: linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* W3C */
+  }
 }
 
 .signup-container {
   position: relative;
-  padding: 20px;
+  padding: 20px 20px 10px;
   margin-top: 70px;
   width: 560px;
   height: 100%;
@@ -82,6 +101,10 @@
     position: relative;
     height: 520px;
     overflow: hidden;
+
+    @media (max-width: 767px) {
+      height: 535px;
+    }
   }
 
   .choose-cause,
@@ -282,18 +305,8 @@
       font-size: 0.9em;
       padding: 10px;
       margin: 0;
-      right: 0;
+      right: 50px;
       bottom: 0;
-
-      @media (max-width: 320px) {
-        right: -15px;
-        bottom: 5px;
-      }
-
-      @media (min-width: 321px) and (max-width: 767px) {
-        position: fixed;
-        bottom: 20px;
-      }
 
       &:after {
         content:"\f105";
@@ -309,6 +322,22 @@
         transform: translateY(-50%);
         height: 100%;
         width: 20px;
+      }
+
+      @media (max-width: 320px) {
+        right: -15px;
+        bottom: 0;
+
+        &:after {
+          right: 15px;
+        }
+      }
+
+      @media (min-width: 321px) and (max-width: 767px) {
+        position: fixed;
+        padding: 5px;
+        bottom: 5px;
+        right: -20px;
       }
     }
 
@@ -363,6 +392,24 @@
 
 /* FORM - PRICING PLAN ********************************************************/
 .signup-plan {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+
+  @media (max-width: 767px) {
+    min-width: 100% !important;
+    min-height: 100%;
+  }
+
+  span {
+    display: block;
+    margin-bottom: 20px;
+    max-width: 335px;
+    text-transform: uppercase;
+    font-weight: 600;
+    text-align: center;
+  }
 
   .subscription-title {
     text-transform: uppercase;
@@ -371,50 +418,143 @@
   }
 
   .offer-index {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    align-content: space-between;
-    padding: 64px 20px 20px;
-    width: 100%;
-    background-color: #fff;
-    border-radius: 10px;
 
     .offer-card {
       display: flex;
       flex-direction: column;
+      align-items: center;
       box-sizing: border-box;
-      width: 150px;
+      width: 100%;
       position: relative;
       padding: 20px;
       margin: 1%;
       margin-bottom: 5px;
       background-color: #fff;
       border-radius: 4px;
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07);
 
-      -webkit-transition: all 0.3s;
-      -moz-transition: all 0.3s;
-      transition: all 0.3s;
-
-      &:hover { box-shadow: 0px 7px 16px rgba(0, 0, 0, 0.2); }
+      @media (max-width: 767px) {
+        padding: 20px 0;
+      }
     }
 
-    .offer-title {
-      text-transform: uppercase;
-    }
+    .offer-description {
+      position: relative;
+      margin-top: 20px;
+      text-align: center;
 
-    .offer-extra {
-      height: 80px;
-      padding-top: 20px;
-      font-size: 9px;
-      font-weight: 200;
+      &:before,
+      &:after {
+        position: absolute;
+        top: 10px;
+        font-size: 48px;
+        font-weight: 100;
+        color: $turquoise;
+
+        @media (max-width: 320px) {
+          display: none;
+        }
+      }
+
+      &:before {
+        content: "[";
+        left: -28px;
+
+        @media (max-width: 767px) {
+          left: -20px;
+        }
+      }
+
+      &:after {
+        content: "]";
+        right: -28px;
+
+        @media (max-width: 767px) {
+          right: -20px;
+        }
+      }
+
+      h5 {
+        margin-bottom: 0;
+
+        @media (max-width: 320px) {
+          font-size: 11px;
+        }
+
+        @media (min-width: 321px) and (max-width: 767px) {
+          font-size: 12px;
+        }
+      }
+
+      p {
+        font-size: 9px;
+        font-weight: 200;
+
+        @media (max-width: 320px) {
+          font-size: 8px;
+        }
+      }
     }
 
     .offer-price {
       margin-bottom: 50px;
       padding-bottom: 30px;
+      height: 230px;
+
+      .offer-details {
+        display: flex;
+        padding-top: 25px;
+
+        &:after {
+          content: "";
+          height: 29%;
+          width: 1px;
+          background-color: $turquoise;
+          position: absolute;
+          top: 93px;
+          bottom: 0;
+          left: 50%;
+          transform: translateX(-50%);
+        }
+
+        .offer-detail {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: 50%;
+
+          p {
+            font-style: italic;
+            opacity: 0.6;
+            font-size: 0.8em;
+            text-align: center;
+            line-height: 1.6em;
+            margin-top: 10px;
+
+            @media (max-width: 320px) {
+              font-size: 0.7em;
+            }
+          }
+        }
+      }
+    }
+
+    .user_code_partner {
+      display: flex;
+      justify-content: center;
+
+      .control-label {
+        text-transform: uppercase;
+        margin-right: 10px;
+        font-size: 0.7em;
+        font-style: normal;
+        opacity: 0.7;
+      }
+
+      .form-control {
+        width: 40%;
+        height: 26px;
+        border-radius: 2px;
+      }
     }
 
     .offer-most-popular {
@@ -434,9 +574,12 @@
     }
 
     .offer-btn {
+      display: flex;
       position: absolute;
-      left: 4px;
-      bottom: 15px;
+      position: absolute;
+      left: 50%;
+      bottom: -30px;
+      transform: translateX(-50%);
 
       .btn {
         margin: 3px;
@@ -446,24 +589,126 @@
 }
 
 .signup-payment {
+  display: flex;
+  justify-content: center;
 
-  .subscription-form form input {
-    width: 100%;
+  @media (max-width: 767px) {
+    min-width: 100% !important;
   }
 
-  ul {
-    list-style: none;
-    text-align: center;
-    margin-top: 5px;
-  }
+  .payment-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 335px;
 
-  li {
-    display: inline-block;
-    padding: 5px;
-  }
+    span {
+      display: block;
+      max-width: 335px;
+      text-transform: uppercase;
+      font-weight: 600;
+      text-align: center;
+    }
 
-  img {
-    height: 20px;
+    i {
+      margin-bottom: 20px;
+      font-size: 14px;
+
+      @media (max-width: 320px) {
+        margin: 10px 0 10px;
+        width: 83%;
+        text-align: center;
+      }
+
+      #amount_subscription {
+        display: inline;
+        position: relative;
+        width: auto;
+        top: 0;
+        left: 0;
+
+        &:after {
+          content: " €";
+        }
+      }
+    }
+
+    .subscription-form {
+      width: 100%;
+
+      .form-group {
+        margin-bottom: 5px;
+
+        .control-label {
+          margin: 0;
+          color: #333;
+          font-weight: 600;
+          font-size: 0.7em;
+          text-transform: uppercase;
+        }
+
+        .form-control {
+          border-radius: 2px;
+        }
+      }
+
+      input[type="submit"] {
+        padding: 10px 20px;
+        margin: 25px 0 0;
+        width: 100%;
+        border-radius: 2px;
+        max-width: 100%;
+        font-weight: 600;
+        border: none;
+      }
+    }
+
+    .subscription-form form input {
+      width: 100%;
+    }
+
+    .card-authorized {
+      margin-top: 20px;
+
+      ul {
+        &:before,
+        &:after {
+          display: none;
+        }
+
+        li {
+          border: none;
+        }
+      }
+    }
+
+    img {
+      height: 20px;
+    }
+
+    .mangopay-disclaimer {
+      padding: 10px 0;
+
+      a {
+        font-size: 12px;
+        color: $grey;
+        text-decoration: underline;
+
+        &:hover {
+          color: #333;
+        }
+      }
+
+      @media (max-width: 320px) {
+        img {
+          height: 12px;
+        }
+
+        a {
+          font-size: 8px;
+        }
+      }
+    }
   }
 }
 
