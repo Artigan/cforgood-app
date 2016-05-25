@@ -356,8 +356,15 @@
       width: 335px;
 
       .slick-slide {
+        position: relative;
         outline: none;
         width: 335px !important;
+      }
+
+      .love-you {
+        position: absolute;
+        width: 335px;
+        top: -30px;
       }
 
       @media (max-width: 320px) {
