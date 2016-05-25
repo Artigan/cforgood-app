@@ -182,6 +182,12 @@ ActiveRecord::Schema.define(version: 20160524114222) do
   add_index "payments", ["cause_id"], name: "index_payments_on_cause_id", using: :btree
   add_index "payments", ["user_id"], name: "index_payments_on_user_id", using: :btree
 
+  create_table "periodicities", force: :cascade do |t|
+    t.string   "period"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "perk_details", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
