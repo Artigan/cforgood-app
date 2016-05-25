@@ -14,23 +14,36 @@
     <!-- UPDATE PROFILE CONFIRMATION -->
     <%= render "member/dashboard/shared/updated" %>
     <div class="tab-container user-container ">
+      <span class="user-title"><%= render "components/svg/logo_thumb" %>Mon Profil</span>
       <!-- Nav tabs -->
       <ul id="menu" class="nav nav-tabs">
         <li role="profile" class="active">
-          <%= link_to "Vos informations", "#profile", role: "tab", data_toggle: "tab" %>
+          <%= link_to "#profile", role: "tab", data_toggle: "tab" do %>
+            <i class="fa fa-user" aria-hidden="true"></i>
+            <span>Vos informations</span>
+          <% end %>
         </li>
         <li role="profile">
-          <%= link_to "Votre association", "#cause", role: "tab", data_toggle: "tab" %>
+          <%= link_to "#cause", role: "tab", data_toggle: "tab" do %>
+            <i class="fa fa-heart" aria-hidden="true"></i>
+            <span>Votre association</span>
+          <% end %>
         </li>
         <li role="profile">
-          <%= link_to "Votre abonnement", "#subscription", role: "tab", data_toggle: "tab" %>
+          <%= link_to "#subscription", role: "tab", data_toggle: "tab" do %>
+            <i class="fa fa-credit-card" aria-hidden="true"></i>
+            <span>Votre abonnement</span>
+          <% end %>
         </li>
         <li role="profile">
           <%= link_to "Vos données bancaires", "#payment", role: "tab", data_toggle: "tab", class: "show-payment hidden" %>
         </li>
         <% if @payments.present? %>
           <li role="profile">
-            <%= link_to "Vos contributions", "#list-payments", role: "tab", data_toggle: "tab" %>
+            <%= link_to "#list-payments", role: "tab", data_toggle: "tab" do %>
+              <i class="fa fa-list" aria-hidden="true"></i>
+              <span>Vos contributions</span>
+            <% end %>
           </li>
         <% end %>
       </ul>
@@ -39,7 +52,7 @@
         <div role="tabpanel" class="tab-pane tab-profile active" id="profile">
           <%= render "member/dashboard/shared/form_user" %>
         </div>
-        <div role="tabpanel" class="tab-pane tab-profile" id="cause">
+        <div role="tabpanel" class="tab-pane tab-profile tab-cause" id="cause">
           <%= render "member/dashboard/shared/form_cause" %>
         </div>
         <div role="tabpanel" class="tab-pane tab-profile" id="subscription">
@@ -49,7 +62,7 @@
           <%= render "member/dashboard/shared/form_payment" %>
         </div>
         <% if @payments.present? %>
-          <div role="tabpanel" class="tab-pane tab-profile" id="list-payments">
+          <div role="tabpanel" class="tab-pane tab-profile tab-contribution" id="list-payments">
             <%= render "member/dashboard/shared/list_payments" %>
           </div>
         <% end %>

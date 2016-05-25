@@ -3,14 +3,14 @@
 .admin {
   .dashboard {
     .tab-container {
-      padding: 0 20px 90px;
+      padding: 20px 0 90px;
 
       .nav-tabs {
         width: 100%;
         border: none;
 
         li {
-          width: 50%;
+          width: 25%;
           margin-bottom: -1px;
           border: none;
           text-align: center;
@@ -330,40 +330,6 @@
           width: 37%;
         }
 
-        /* PROFILE - USER PAYMENTS ****************************************/
-        .list-payments {
-
-          .tab-subtitle {
-            margin: 0 0 20px;
-            text-transform: uppercase;
-            font-size: 12px;
-            color: #636363;
-            font-weight: 600;
-          }
-
-          table {
-            margin: auto;
-
-            td {
-              padding: 10px;
-              border: solid 1px #FFF;
-              font-size: 14px;
-              color: #636363;
-
-              &.done {
-                width: 35px;
-              }
-
-              img {
-                width: 100%;
-              }
-            }
-
-            tr:nth-child(even) { background: #E1E1E1; }
-            tr:nth-child(odd) { background: #F1F1F1; }
-          }
-        }
-
         /* PROFILE - ADDRESS *********************************************/
 
         a.button-itinerant-address {
@@ -569,7 +535,7 @@
         padding: 20px;
 
         .nav-tabs {
-          width: 50%;
+          max-width: 760px;
         }
 
         .tab-content {

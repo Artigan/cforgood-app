@@ -8,9 +8,9 @@
       <table>
         <% @payments.each do |payment| %>
           <tr>
-            <td><%= I18n.l payment.created_at.to_date, format: :short %> <%= payment.created_at.year %></td>
-            <td><%= payment.cause.name %></td>
-            <td><%= payment.amount %> €</td>
+            <td class="contribution-date"><%= I18n.l payment.created_at.to_date, format: :short %> <%= payment.created_at.year %></td>
+            <td class="contribution-cause"><%= payment.cause.name %></td>
+            <td class="contribution-amount"><%= payment.amount %> €</td>
             <% if payment.done %>
               <td class="done"><%= image_tag "icons/check_OK.png" %></td>
             <% else %>
