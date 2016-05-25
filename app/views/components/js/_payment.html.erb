@@ -71,16 +71,13 @@
               $("#card_id").val(res.CardId);
               $("#create_account").submit();
               $("#loading-indicator").hide();
-              $(".modal-title").html("INFORMATION");
-              $("#detail-modal-body").html("Vos informations bancaires ont été correctement enregistrées");
-              $("#modal-payment").modal('show');
+              $(".signup-done-overlay.ok").removeClass('hidden');
               // Success, you can use res.CardId now that points to registered card
             },
             function(res) {
               $("#loading-indicator").hide();
-              $(".modal-title").html("ERREUR");
-              $("#detail-modal-body").html("Une erreur s'est produite lors de l'enregistrement de votre carte : " + res.ResultMessage);
-              $("#modal-payment").modal('show');
+              $(".error-message").html(res.ResultMessage);
+              $(".signup-done-overlay.ko").removeClass('hidden');
               // Handle error, see res.ResultCode and res.ResultMessage
             }
           );

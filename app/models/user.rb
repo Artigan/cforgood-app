@@ -160,9 +160,8 @@ class User < ActiveRecord::Base
     @partner = Partner.find_by_code_partner(self.code_partner)
     nb_month = 1
     nb_month = @partner.month  if @parner.present?
-
-    self.subscription != nil && self.subscription[0] != "T" &&
-    (self.date_last_payment == nil || self.date_last_payment < Time.now + nb_month.month)
+    self.subscription != nil && self.subscription != "T" &&
+    (self.date_last_payment == nil || self.date_last_payment < Time.now - nb_month.month)
   end
 
   def find_name?
