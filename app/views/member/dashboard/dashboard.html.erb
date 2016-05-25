@@ -88,6 +88,7 @@
 
       // TOOGLE FLASH PERKS LAYER ON MAP
       $('.in-central-city').click(function(event) {
+        $('.mapboxgl-popup').addClass('hidden');
         $('.flash').toggleClass('is-running');
         setLayerVisibilty();
       });
@@ -142,8 +143,8 @@
         $('.category-item').removeClass('is-open-min');
       });
 
-      amplitude.setUserId('<%= current_user.id %>');
-      amplitude.logEvent('USER_DASHBOARD');
+      // amplitude.setUserId('<%#= current_user.id %>');
+      // amplitude.logEvent('USER_DASHBOARD');
     });
   </script>
 <% end %>

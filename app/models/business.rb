@@ -77,8 +77,8 @@ class Business < ActiveRecord::Base
   validates :url, format: { with: /\Ahttps?:\/\/[\S]+/, message: "Votre URL doit commencer par http:// ou https://" }, allow_blank: true
 
   geocoded_by :address
-  after_validation :geocode if :address_changed?
-  before_save :controle_geocode! if :address_changed?
+  after_validation :geocode, if: :address_changed?
+  before_save :controle_geocode!, if: :address_changed?
 
   has_attached_file :picture,
       styles: { medium: "300x300#", thumb: "100x100#" }
@@ -100,7 +100,7 @@ class Business < ActiveRecord::Base
 
   after_create :create_code_partner, :send_registration_slack, :subscribe_to_newsletter_business
 
-  after_save :update_data_intercom, if: :active_changed?
+  after_save :update_data_intercom
 
   def perks_uses_count
     perks.reduce(0) { |sum, perk| sum + perk.uses.count }
@@ -129,17 +129,7 @@ class Business < ActiveRecord::Base
   # end
 
   def create_code_partner
-    partner = Partner.new
-    partner.name       = self.name
-    partner.email      = self.email
-    code = self.name.upcase.gsub(/[^a-zA-Z]/, '').strip
-    i = 0
-    while Partner.find_by_code_partner(code)
-       code += i.to_s
-       i += 1
-    end
-    partner.code_partner = code
-    partner.save
+    Partner.new.create_code_partner(self.name, self.email)
   end
 
   def send_registration_slack
@@ -156,13 +146,16 @@ class Business < ActiveRecord::Base
   end
 
   def update_data_intercom
-    # UPDATE CUSTOM ATTRIBUTES ON INTERCOM
-    intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
-    begin
-      user = intercom.users.find(:user_id => 'B'+id.to_s)
-      user.custom_attributes["user_active"] = self.active
-      intercom.users.save(user)
-    rescue Intercom::ResourceNotFound
+    if active_changed? or leader_first_name_changed?
+      # UPDATE CUSTOM ATTRIBUTES ON INTERCOM
+      intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
+      begin
+        user = intercom.users.find(:user_id => 'B'+id.to_s)
+        user.custom_attributes["user_active"] = self.active
+        user.custom_attributes["first_name"] =  self.leader_first_name
+        intercom.users.save(user)
+      rescue Intercom::ResourceNotFound
+      end
     end
   end
 

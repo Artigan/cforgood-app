@@ -9,18 +9,21 @@ if (<%= !current_user.errors.any? %>) {
 
   } else {
 
-    // DISCLAIMER - DISPLAYED
-    $(".done-overlay").removeClass("hidden");
+    if (<%= current_user.subscription.present? && !current_user.card_id.present? %>) {
+      $("#payment").removeClass('hidden');
+      $("#menu a.show-payment").tab('show');
+    } else {
+     // DISCLAIMER - DISPLAYED
+      $(".done-overlay").removeClass("hidden");
 
-    window.setTimeout(function(){
-      // DISCLAIMER - HIDDEN
-      $(".done-overlay").addClass("hidden");
-      // window.location.href = "<%#= pro_business_dashboard_path(current_business) %>";
-    }, 3000);
+      window.setTimeout(function(){
+        // DISCLAIMER - HIDDEN
+        $(".done-overlay").addClass("hidden");
+      }, 3000);
+    }
   }
 
 } else {
-
   if (<%= request.env["HTTP_REFERER"].include?("signup") %>) {
     $(document).find(".signup-plan").prepend('<%= j render("components/error_messages", resource: current_user, formats: [:html]) %>');
   } else {
