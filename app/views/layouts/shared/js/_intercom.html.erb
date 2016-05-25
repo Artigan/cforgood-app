@@ -1,5 +1,5 @@
-<!-- INTERCOM FOR BUSINESS -->
-<% if Rails.env.production? && business_signed_in? %>
+<% if business_signed_in? %>
+  <!-- INTERCOM FOR BUSINESS -->
   <%= intercom_script_tag({
     :app_id => ENV['INTERCOM_API_ID'],
     :user_id => 'B'+current_business.id.to_s,
@@ -11,7 +11,8 @@
       'user_active' => current_business.active,
       'first_name' => current_business.leader_first_name,
       'perks_all' => current_business.perks.count,
-      'perks_active' => current_business.perks.active.count
+      'perks_active' => current_business.perks.active.count,
+      'code_partner' => Partner.find_by_email(current_business.email).code_partner
     }
   }) %>
 <% end %>

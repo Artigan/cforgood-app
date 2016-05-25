@@ -1,0 +1,66 @@
+<% content_for :meta_title, "Connexion - CforGood" %>
+<% content_for :meta_description %>
+<% content_for :meta_image %>
+
+<div class="connexion signin" style="background-image: url(<%= image_url('default-meta-image.jpg') %>);">
+  <span class="sign-title">Connexion</span>
+  <div class="sign-back">
+    <!-- SIGNIN AS USER -->
+    <div class="connect-user">
+      <i><%= render "shared/icons/profile" %></i>
+      <span>Vous êtes membre ?</span>
+      <p>Lorem ipsum de la blablatière</p>
+      <button type="button" class="btn-user">Se connecter</button>
+    </div>
+    <!-- SIGNIN AS BUSINESS -->
+    <div class="connect-business">
+      <i><%= render "shared/icons/shop" %></i>
+      <span>Vous êtes partenaire ?</span>
+      <p>Lorem ipsum de la blablatière</p>
+      <button type="button" class="btn-business">Se connecter</button>
+    </div>
+  </div>
+  <div class="sign-box signin <%= params[:business].present? ? "translate" : "" %>">
+    <div class="close-sign-box"></div>
+    <div class="sign-user <%= params[:business].present? ? "hidden" : "" %>">
+      <!-- SIGNIN FORM USER -->
+      <%= render "devise/sessions/shared/form_signin", resource_name: :user %>
+    </div>
+    <div class="sign-business <%= params[:business].present? ? "" : "hidden" %>">
+      <!-- SIGNIN FORM BUSINESS -->
+      <%= render "devise/sessions/shared/form_signin", resource_name: :business %>
+    </div>
+    <!-- ALREADY SUBSCRIBED -->
+    <div class="already-subscribed">
+      <span class=""> Pas de compte ? <strong><%= link_to t(".connexion", :default => "Je m'inscris"), signup_path %></strong></span>
+    </div>
+  </div>
+</div>
+
+<% content_for :after_js do %>
+  <script>
+
+    $(document).ready(function(){
+      $('.close-sign-box').click(function(event) {
+        $('.sign-box').toggleClass('translate');
+      });
+
+      $('.connect-user').click(function(event) {
+        $("#error-code").remove();
+        $('.sign-user').removeClass('hidden');
+        $('.sign-business').addClass('hidden');
+        $('.sign-box').toggleClass('translate');
+      });
+
+      $('.connect-business').click(function(event) {
+        $("#error-code").remove();
+        $('.sign-business').removeClass('hidden');
+        $('.sign-user').addClass('hidden');
+        $('.sign-box').toggleClass('translate');
+      });
+    });
+
+  </script>
+<% end %>
+
+

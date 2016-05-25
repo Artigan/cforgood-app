@@ -1,6 +1,7 @@
 ActiveAdmin.register Partner do
   index do
     selectable_column
+    column :id
     column :name
     column :email
     column :code_partner

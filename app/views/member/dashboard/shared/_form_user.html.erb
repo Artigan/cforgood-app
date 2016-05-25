@@ -7,7 +7,7 @@
         <label>Photo</label>
         <div class="picture-container">
           <% if current_user.picture? %>
-            <%= image_tag current_user.picture.url(:thumb), class: 'user-picture' %>
+            <%= image_tag current_user.picture(:thumb), class: 'user-picture' %>
           <% else %>
             <div class="picture-none">
               <%= render 'shared/icons/profile' %>

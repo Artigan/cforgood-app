@@ -1,0 +1,51 @@
+ <div class="form-card">
+  <!-- SIGNUP FORM USER -->
+  <div class="subscription-form">
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <i><%= render "shared/icons/profile" %></i>
+      <div id="error-code">
+        <%= flash[:alert].humanize unless flash[:alert] == nil %>
+      </div>
+      <%= f.input :first_name, placeholder: 'John', required: true, label: false %>
+      <%= f.input :last_name, placeholder: 'Doe', required: true, label: false %>
+      <%= f.input :email, placeholder: 'john@doe.com', required: true, label: false %>
+      <%= f.input :password, placeholder: '********', required: true, label: false %>
+      <%= f.input :city, placeholder: 'Honolulu', required: true, label: false %>
+
+      <div class="subscribe-disclaimer">
+        <p>En cliquant sur <strong>S'inscrire</strong> ou <strong>Facebook</strong> vous acceptez les <a type="href" class="" data-toggle="modal" data-target="#modal-cgu"><strong>CGU</strong></a> et certifiez avoir de plus de 18 ans.</p>
+      </div>
+
+      <%= f.button :submit, "S'inscrire", class: "btn btn-connexion hint--top", :"data-hint" => "En cliquant sur S'inscrire ou Facebook vous acceptez les CGU et certifiez avoir de plus de 18 ans.", disabled: true %>
+    <% end %>
+  </div>
+  <!-- FB & GOOGLE SUBSCRIPTION BUTTONS -->
+  <div class="subscription-network">
+    <span>ou</span>
+    <%= link_to raw("<i class='fa fa-facebook' aria-hidden='true'></i>Se connecter avec Facebook"), user_omniauth_authorize_path(:facebook), class: "btn btn-connexion" %>
+    <%#= link_to raw("<i class=\"fa fa-google\">Google</i>"), user_omniauth_authorize_path(:google_oauth2), class: "btn-google" %>
+  </div>
+</div>
+
+<% content_for :after_js do %>
+
+  <script>
+
+    $(document).ready(function() {
+
+      $("form#new_user").on("change", function(e) {
+        e.preventDefault();
+        if ($("#user_first_name").val() != "" &&
+            $("#user_last_name").val() != "" &&
+            $("#user_city").val() != "" ) {
+          $("#new_user .btn-connexion").attr("disabled", false);
+        } else {
+        $("#new_user .btn-connexion").attr("disabled", true);
+        }
+      });
+
+    });
+
+  </script>
+
+<% end %>

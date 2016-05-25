@@ -4,16 +4,17 @@ function setRoutePathFromLocation() {
   }
 }
 
-// function setBusinessesAroundMe() {
-//   if(navigator.geolocation) {
-//     navigator.geolocation.watchPosition(watchPosition, geolocErrors, { maximumAge: 0, enableHighAccuracy: true});
-//   }
-// }
+function getGeolocation() {
+  if(navigator.geolocation) {
+    navigator.geolocation.watchPosition(watchPosition, geolocErrors, { maximumAge: 0, enableHighAccuracy: true});
+  }
+}
 
-// function watchPosition(position) {
-//   var lat = position.coords.latitude
-//   var lng = position.coords.longitude
-// }
+function watchPosition(position) {
+  var lat = position.coords.latitude;
+  var lng = position.coords.longitude;
+  document.cookie = "coordinates=" + lat + "&" + lng + ";";
+}
 
 function getPosition(position) {
   var lat = position.coords.latitude

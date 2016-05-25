@@ -13,35 +13,7 @@
   </div> -->
 <%# end %>
 
-<% if user_space? %>
-  <% if user_signed_in? %>
-    <% if landing_page? %>
-      <nav id="navbar" class="navbar nav nav-user flash" role="navigation">
-    <% else %>
-      <nav id="navbar" class="navbar nav nav-user" role="navigation">
-    <% end %>
-  <% else %>
-    <% if landing_page? %>
-      <nav id="navbar" class="navbar nav flash" role="navigation">
-    <% else %>
-     <nav id="navbar" class="navbar nav" role="navigation">
-    <% end %>
-  <% end %>
-<% else %>
-  <% if business_signed_in? %>
-    <% if landing_page? %>
-      <nav id="navbar" class="navbar nav nav-business flash" role="navigation">
-    <% else %>
-      <nav id="navbar" class="navbar nav nav-business" role="navigation">
-    <% end %>
-  <% else %>
-    <% if landing_page? %>
-      <nav id="navbar" class="navbar nav flash" role="navigation">
-    <% else %>
-      <nav id="navbar" class="navbar nav" role="navigation">
-    <% end %>
-  <% end %>
-<% end %>
+<nav id="navbar" class="navbar nav <%= navbar_classes %>" role="navigation">
   <!-- ICON RESPONSIVE MENU -->
   <a href="#" class="menu-toggle">
     <div id="menu-icon">
@@ -52,19 +24,16 @@
     </div>
   </a>
   <!-- BRAND LOGO -->
-  <% if user_space? %>
-    <% if user_signed_in? %>
-      <%= link_to(image_tag("cforgood_logo.png"), member_user_dashboard_path(current_user), class: "logo") %>
-    <% else %>
-      <%= link_to(image_tag("logo-white.png"), root_path, class: "logo") %>
-    <% end %>
-  <% else %>
-  <% if business_signed_in? %>
-      <%= link_to(image_tag("cforgood_logo.png"), pro_business_dashboard_path(current_business), class: "logo") %>
-    <% else %>
-      <%= link_to(image_tag("logo-white.png"), root_path, class: "logo") %>
-    <% end %>
+
+  <!-- LOGO -->
+  <%= link_to root_path do %>
+    <div class="logo-desktop">
+      <%= render "components/svg/logo" %>
+    </div>
   <% end %>
+
+  <!-- <#= link_to image_tag(navbar_logo), navbar_logo_link, class: "logo" #> -->
+
   <!-- MENU ITEMS -->
   <div class="link-container">
     <!-- PRO SIGN IN -->
@@ -81,13 +50,13 @@
       </div>
       <ul>
         <li class="visible-xs">
-        <%= link_to landing_business_path do %>
-          <i class="fa fa-home"></i> <%= t(".how_it_works", default: "Accueil") %>
-        <% end %>
+          <%= link_to landing_business_path do %>
+            <i class="fa fa-home"></i> <%= t(".how_it_works", default: "Accueil") %>
+          <% end %>
         </li>
         <li>
           <%= link_to faq_connect_path do %>
-          <i class="fa fa-dot-circle-o"></i> <%= t(".how_it_works", default: "Aide et conseils") %>
+            <i class="fa fa-dot-circle-o"></i> <%= t(".how_it_works", default: "Aide et conseils") %>
           <% end %>
         </li>
         <li class="hidden-xs">
@@ -111,7 +80,7 @@
             <% end %>
           <% end%>
         </li>
-
+      </ul>
     <!-- USER SIGN IN -->
     <% else %>
       <% if user_signed_in? && user_space? %>
@@ -178,20 +147,20 @@
             </li>
           <% elsif user_space? %>
             <li>
-              <%= link_to t(".inscription", default: "Inscription"), member_signup_path %>
+              <%= link_to t(".inscription", default: "Inscription"), signup_path %>
             </li>
             <li>
-              <%= link_to t(".connexion", default: "Connexion"), member_signin_path %>
+              <%= link_to t(".connexion", default: "Connexion"), signin_path %>
             </li>
-            <li>
-              <%= link_to t(".espace_pro", default: "Espace Partenaire"), landing_business_path %>
-            </li>
+            <!-- <li>
+              <#= link_to t(".espace_pro", default: "Espace Partenaire"), landing_business_path #>
+            </li> -->
           <% else %>
             <li>
-              <%= link_to t(".inscription", default: "Inscription"), new_business_registration_path %>
+              <%= link_to t(".inscription", default: "Inscription"), signup_path %>
             </li>
             <li>
-              <%= link_to t(".connexion", default: "Connexion"), new_business_session_path %>
+              <%= link_to t(".connexion", default: "Connexion"), signin_path %>
             </li>
           <% end %>
         </ul>

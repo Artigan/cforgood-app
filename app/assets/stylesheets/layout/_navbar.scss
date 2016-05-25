@@ -24,7 +24,6 @@
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
-  justify-content: space-between;
   box-sizing: border-box;
 
   -webkit-transition: all 0.5s ease-in-out;
@@ -84,7 +83,7 @@
   }
 }
 
-@media only screen and (max-width:768px){
+@media only screen and (max-width:767px){
 
   .mobile-hidden {
     display: none;
@@ -265,6 +264,20 @@
 .nav-user {
   background: #fff;
   border-bottom: 3px solid #71bbc6;
+
+  .logo-desktop {
+    svg {
+      position: relative;
+      top: 3px;
+      height: 25px;
+    }
+  }
+
+  .link-container {
+    position: absolute;
+    top: 8px;
+    right: 20px;
+  }
 
   ul {
     a,

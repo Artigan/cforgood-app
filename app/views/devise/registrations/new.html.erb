@@ -1,0 +1,81 @@
+<% content_for :meta_title, "Inscription - CforGood" %>
+<% content_for :meta_description %>
+<% content_for :meta_image %>
+
+<div class="connexion signup" style="background-image: url(<%= image_url('default-meta-image.jpg') %>);">
+  <span class="sign-title">Inscription</span>
+  <div class="sign-back">
+    <!-- SIGNUP AS USER -->
+    <div class="connect-user">
+      <i><%= render "shared/icons/profile" %></i>
+      <span>Vous êtes membre ?</span>
+      <p>Lorem ipsum de la blablatière</p>
+      <button type="button" class="btn-user">S'inscrire</button>
+    </div>
+    <!-- SIGNUP AS BUSINESS -->
+    <div class="connect-business">
+      <i><%= render "shared/icons/shop" %></i>
+      <span>Vous êtes partenaire ?</span>
+      <p>Lorem ipsum de la blablatière</p>
+      <button type="button" class="btn-business">S'inscrire</button>
+    </div>
+  </div>
+  <div class="sign-box signup <%= params[:business].present? ? "translate" : "" %>">
+    <div class="close-sign-box"></div>
+    <div class="sign-user <%= params[:business].present? ? "hidden" : "" %>">
+      <!-- SIGNUP FORM USER -->
+       <% if params[:business].present? %>
+        <% resource_user = User.new %>
+        <% resource_business = resource %>
+      <% elsif params[:user].present? %>
+        <% resource_user = resource %>
+        <% resource_business = Business.new %>
+      <% else %>
+        <% resource_user = User.new %>
+        <% resource_business = Business.new %>
+      <% end %>
+      <%= render "devise/registrations/shared/form_signup_user", resource: resource_user, resource_name: :user %>
+    </div>
+    <div class="sign-business <%= params[:business].present? ? "" : "hidden" %>">
+      <!-- SIGNUP FORM BUSINESS -->
+      <%= render "devise/registrations/shared/form_signup_business", resource: resource_business, resource_name: :business %>
+    </div>
+    <!-- ALREADY SUBSCRIBED -->
+    <div class="already-subscribed">
+      <span class=""> Déjà membre ? <strong><%= link_to t(".connexion", :default => "Connexion"), signin_path %></strong></span>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL CGU CFORGOOD -->
+<%= render "components/modals/signup_cgu" %>
+
+<% content_for :after_js do %>
+
+  <script>
+
+    $(document).ready(function() {
+
+      $('.close-sign-box').click(function(event) {
+        $('.sign-box').toggleClass('translate');
+      });
+
+      $('.connect-user').click(function(event) {
+        $("#error-code").remove();
+        $('.sign-user').removeClass('hidden');
+        $('.sign-business').addClass('hidden');
+        $('.sign-box').toggleClass('translate');
+      });
+
+      $('.connect-business').click(function(event) {
+        $("#error-code").remove();
+        $('.sign-business').removeClass('hidden');
+        $('.sign-user').addClass('hidden');
+        $('.sign-box').toggleClass('translate');
+      });
+
+    });
+
+  </script>
+
+<% end %>

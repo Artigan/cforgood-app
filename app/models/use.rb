@@ -28,23 +28,21 @@ class Use < ActiveRecord::Base
   private
 
   def create_event_intercom
-    if Rails.env.production?
-      @user = User.find(user_id)
-      @perk = Perk.find(perk_id)
-      intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
-      begin
-        intercom.events.create(
-          event_name: "use-perk",
-          created_at: Time.now.to_i,
-          user_id: @user.id,
-          email: @user.email,
-          metadata: {
-            business_name:  @perk.business.name,
-            perk_name: @perk.name
-          }
-        )
-      rescue Intercom::ResourceNotFound
-      end
+    @user = User.find(user_id)
+    @perk = Perk.find(perk_id)
+    intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
+    begin
+      intercom.events.create(
+        event_name: "use-perk",
+        created_at: Time.now.to_i,
+        user_id: @user.id,
+        email: @user.email,
+        metadata: {
+          business_name:  @perk.business.name,
+          perk_name: @perk.name
+        }
+      )
+    rescue Intercom::ResourceNotFound
     end
   end
 end

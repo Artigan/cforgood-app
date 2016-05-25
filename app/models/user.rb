@@ -38,15 +38,16 @@
 #  trial_done             :boolean          default(FALSE), not null
 #  date_subscription      :datetime
 #  date_last_payment      :datetime
-#  active                 :boolean          default(FALSE), not null
+#  active                 :boolean          default(TRUE), not null
 #  street                 :string
 #  zipcode                :string
 #  city                   :string
 #  latitude               :float
 #  longitude              :float
 #  date_partner           :date
-#  code_promo             :string
+#  code_partner           :string
 #  date_support           :date
+#  amount                 :integer
 #
 # Indexes
 #
@@ -68,6 +69,7 @@ class User < ActiveRecord::Base
 
   belongs_to :cause
   has_many :uses
+  has_many :payments, dependent: :destroy
 
   validates :email, presence: true, uniqueness: true
   # validates :first_name, presence: true
@@ -84,16 +86,17 @@ class User < ActiveRecord::Base
   after_validation :geocode, if: :address_changed?
 
   validate :code_partner?, if: :code_partner_changed?
-  after_validation :date_subscription!, if: :subscription_changed?
-  after_validation :member!, if: :date_last_payment_changed?
-  after_validation :date_support!, if: :cause_id_changed?
-
-  after_save :trial_done!, if: :subscription_changed?
 
   before_create :default_cause_id!
-  after_create :create_data_intercom, :create_data_amplitude, :send_registration_slack, :subscribe_to_newsletter_user
-  after_commit :update_data_intercom, if: :active_changed?
 
+  after_validation :trial_done!, if: :subscription_changed?
+  after_validation :subscription!, if: :subscription_changed?
+
+  after_create :send_registration_slack, :subscribe_to_newsletter_user
+
+  before_save :date_support!, if: :cause_id_changed?
+
+  after_save :update_data_intercom
 
   def self.find_for_google_oauth2(access_token, signed_in_resourse=nil)
     data = access_token.info
@@ -102,7 +105,7 @@ class User < ActiveRecord::Base
     if user
       return user
     else
-    registred_user = User.where(:email => access_token.email).first
+      registred_user = User.where(:email => access_token.email).first
       if registred_user
         return registred_user
       else
@@ -154,30 +157,12 @@ class User < ActiveRecord::Base
   end
 
   def should_payin?
+    @partner = Partner.find_by_code_partner(self.code_partner)
+    nb_month = 1
+    nb_month = @partner.month  if @parner.present?
+
     self.subscription != nil && self.subscription[0] != "T" &&
-    (self.date_last_payment == nil || self.date_last_payment < Time.now.prev_month)
-  end
-
-  def date_subscription!
-    self.date_subscription = Time.now if subscription_was == nil
-  end
-
-  def member!
-    self.member = true
-  end
-
-  def date_support!
-    self.date_support = Time.now
-  end
-
-  def trial_done?
-    self.subscription != nil && (self.subscription[0] == "T" || self.trial_done == true)
-  end
-
-  def trial_done!
-    if subscription_was != nil && subscription_was[0] == "T" && self.trial_done == false
-      self.update(trial_done: true)
-    end
+    (self.date_last_payment == nil || self.date_last_payment < Time.now + nb_month.month)
   end
 
   def find_name?
@@ -190,7 +175,35 @@ class User < ActiveRecord::Base
     end
   end
 
+  def member!
+    self.member = true
+  end
+
   private
+
+  def subscription!
+    # IF NOT EXIST, CREATE NEW USER NATURAL FOR MANGOPAY
+    if !self.mangopay_id.present?
+      @mangopay_user = MangopayServices.new(self).create_mangopay_natural_user
+      self.mangopay_id = @mangopay_user["Id"]
+    end
+    # UPDATE DATE SUBCRIPTION
+    self.date_subscription = Time.now if subscription_was == nil
+  end
+
+  def date_support!
+    self.date_support = Time.now
+  end
+
+  def trial_done?
+    self.subscription.present? && (self.subscription[0] == "T" || self.trial_done == true)
+  end
+
+  def trial_done!
+    if subscription_was.present? && subscription_was[0] == "T" && self.trial_done == false
+      self.update(trial_done: true)
+    end
+  end
 
   def code_partner?
     if code_partner.present?
@@ -247,46 +260,46 @@ class User < ActiveRecord::Base
   end
 
   def create_data_intercom
-    if Rails.env.production?
-      intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
-      begin
-        user = intercom.users.create(
-          :user_id => self.id.to_s,
-          :email => self.email,
-          :name => self.name,
-          :created_at => created_at
-        )
-        user.custom_attributes["user_type"]   = "user"
-        user.custom_attributes["user_active"] = self.active
-        user.custom_attributes["first_name"]  = self.first_name
-        intercom.users.save(user)
-      rescue Intercom::ResourceNotFound
-      end
+    intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
+    begin
+      user = intercom.users.create(
+        :user_id => self.id.to_s,
+        :email => self.email,
+        :name => self.name,
+        :created_at => self.created_at
+      )
+      user.custom_attributes["user_type"]   = "user"
+      user.custom_attributes["user_active"] = self.active
+      user.custom_attributes["first_name"]  = self.first_name
+      intercom.users.save(user)
+    rescue Intercom::ResourceNotFound
     end
   end
 
   def create_data_amplitude
-      # Configure your Amplitude API key
-      AmplitudeAPI.api_key = ENV["AMPLITUDE_API_KEY"]
+    # Configure your Amplitude API key
+    AmplitudeAPI.api_key = ENV["AMPLITUDE_API_KEY"]
 
-      event = AmplitudeAPI::Event.new({
-        user_id: self.id,
-        event_type: "SIGNUP_USER",
-        user_properties: {
-          user_type: "user",
-          city: self.city
-        }
-      })
-      AmplitudeAPI.track(event)
+    event = AmplitudeAPI::Event.new({
+      user_id: self.id,
+      event_type: "SIGNUP_USER",
+      user_properties: {
+        user_type: "user",
+        city: self.city
+      }
+    })
+    AmplitudeAPI.track(event)
   end
 
   def update_data_intercom
-    if Rails.env.production?
-      # UPDATE CUSTOM ATTRIBUTES ON INTERCOM
+    # UPDATE CUSTOM ATTRIBUTES ON INTERCOM
+    if active_changed? or cause_id_changed? or member_changed?
       intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
       begin
         user = intercom.users.find(:user_id => self.id)
         user.custom_attributes["user_active"] = self.active
+        user.custom_attributes["user_cause"] = self.cause.name
+        user.custom_attributes["user_member"] = self.member
         intercom.users.save(user)
       rescue Intercom::ResourceNotFound
       end

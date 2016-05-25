@@ -1,5 +1,5 @@
-<div class="connexion connexion-pro signin">
-  <div class="form-card">
+<div class="connexion connexion-pro signin" style="background-image: url(<%= image_url('cover-business.jpg') %>);">
+  <div class="form-card new-password-container">
     <span>Réinitialiser<br>mon mot de passe</span>
     <div class="subscription-form">
       <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
@@ -8,8 +8,8 @@
         <%= f.button :submit, "Réinitialiser le mot de passe" %>
       <% end %>
     </div>
-  </div>
-  <div class="col-xs-12 already-subscribed">
-    <span class=""> Pas de compte ? <strong><%= link_to t(".connexion", :default => "Je m'inscris"), new_registration_path(resource_name) %></strong></span>
+    <div class="already-subscribed">
+      <span> Pas de compte ? <strong><%= link_to t(".connexion", :default => "Je m'inscris"), new_registration_path(resource_name) %></strong></span>
+    </div>
   </div>
 </div>

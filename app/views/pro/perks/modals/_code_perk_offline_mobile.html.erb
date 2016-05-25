@@ -31,7 +31,7 @@
       <figure class="back">
         <div class="member-card">
           <div class="validation-date">
-            <span>Le <%= DateTime.now.strftime('%d %b. %Y') %></span>
+            <span>Le <%= I18n.l DateTime.now.to_date, format: :short %> <%= DateTime.now.year %></span>
           </div>
 
           <div class="logo">

@@ -6,7 +6,7 @@
 <% end %>
 
 <div class="container-fluid admin">
-  <% if !current_user.active %>
+  <% if user_signed_in? and !current_user.active %>
     <div class="done-overlay waiting connexion-user">
       <div class="done-container">
         <div class="wrapper">
@@ -88,6 +88,7 @@
 
       // TOOGLE FLASH PERKS LAYER ON MAP
       $('.in-central-city').click(function(event) {
+        $('.mapboxgl-popup').addClass('hidden');
         $('.flash').toggleClass('is-running');
         setLayerVisibilty();
       });
@@ -142,8 +143,8 @@
         $('.category-item').removeClass('is-open-min');
       });
 
-      amplitude.setUserId('<%= current_user.id %>');
-      amplitude.logEvent('USER_DASHBOARD');
+      // amplitude.setUserId('<%#= current_user.id %>');
+      // amplitude.logEvent('USER_DASHBOARD');
     });
   </script>
 <% end %>

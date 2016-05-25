@@ -2,8 +2,16 @@ class PagesController < ApplicationController
 
   before_action :redirect_to_dasboard!
 
+  skip_before_action :authenticate_user!, only: [:home, :newsletter, :landing_business, :landing_cause]
+
   def home
     @businesses = Business.active.joins(:perks).active.distinct
+  end
+
+  def landing_business
+  end
+
+  def landing_cause
   end
 
   def newsletter

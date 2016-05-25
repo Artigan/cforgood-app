@@ -36,7 +36,10 @@ module ApplicationHelper
   end
 
   def signup_or_signin_page?
+    request.path == "/" ||
     request.path == "/users" ||
+    request.path == "/signin" ||
+    request.path == "/signup" ||
     request.path == "/member/signin" ||
     request.path == "/users/sign_in" ||
     request.path == "/member/signup" ||
@@ -52,4 +55,40 @@ module ApplicationHelper
       items.to_s.rjust(2, '0')
     end
   end
+
+  def navbar_classes
+    classes = []
+    classes << "flash" if landing_page?
+    classes << "nav-user" if user_space? && user_signed_in?
+    classes << "nav-business" if !user_space? && business_signed_in?
+
+    return classes.join(' ')
+  end
+
+  def pages_controller?
+    controller_name == "pages"
+  end
+
+  def devise_or_pages_controller?
+    devise_controller? || controller_name == "pages"
+  end
+
+  def navbar_logo
+    if devise_or_pages_controller?
+      "logo-white.png"
+    else
+      "cforgood_logo.png"
+    end
+  end
+
+  def navbar_logo_link
+    if user_signed_in?
+      member_user_dashboard_path(current_user)
+    elsif business_signed_in?
+      pro_business_dashboard_path(current_business)
+    else
+      root_path
+    end
+  end
+
 end

@@ -8,3 +8,29 @@
   font-size: 12px !important;
   font-weight: 100 !important;
 }
+.alert {
+  background: transparent;
+  border-color: transparent;
+  color: orange;
+  text-align: left;
+}
+
+#error_explanation {
+
+  li.alert-message {
+    border: none;
+    color: orange;
+    font-size: 12px;
+    font-weight: 100;
+  }
+
+  ul {
+    width: 100%;
+    list-style: none;
+
+    &::before,
+    &::after {
+      border: none;
+    }
+  }
+}

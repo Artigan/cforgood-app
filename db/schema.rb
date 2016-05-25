@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160427144201) do
+ActiveRecord::Schema.define(version: 20160524114222) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -170,6 +170,18 @@ ActiveRecord::Schema.define(version: 20160427144201) do
     t.integer  "nb_month",     default: 1
   end
 
+  create_table "payments", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "cause_id"
+    t.integer  "amount"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "done",       default: false, null: false
+  end
+
+  add_index "payments", ["cause_id"], name: "index_payments_on_cause_id", using: :btree
+  add_index "payments", ["user_id"], name: "index_payments_on_user_id", using: :btree
+
   create_table "periodicities", force: :cascade do |t|
     t.string   "period"
     t.datetime "created_at", null: false
@@ -246,7 +258,7 @@ ActiveRecord::Schema.define(version: 20160427144201) do
     t.boolean  "trial_done",             default: false, null: false
     t.datetime "date_subscription"
     t.datetime "date_last_payment"
-    t.boolean  "active",                 default: false, null: false
+    t.boolean  "active",                 default: true,  null: false
     t.string   "street"
     t.string   "zipcode"
     t.string   "city"
@@ -255,6 +267,7 @@ ActiveRecord::Schema.define(version: 20160427144201) do
     t.date     "date_partner"
     t.string   "code_partner"
     t.date     "date_support"
+    t.integer  "amount"
   end
 
   add_index "users", ["cause_id"], name: "index_users_on_cause_id", using: :btree
@@ -272,6 +285,8 @@ ActiveRecord::Schema.define(version: 20160427144201) do
   add_index "uses", ["user_id"], name: "index_uses_on_user_id", using: :btree
 
   add_foreign_key "addresses", "businesses"
+  add_foreign_key "payments", "causes"
+  add_foreign_key "payments", "users"
   add_foreign_key "perks", "businesses"
   add_foreign_key "users", "causes"
   add_foreign_key "uses", "perks"

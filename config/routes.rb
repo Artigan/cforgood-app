@@ -23,14 +23,18 @@ Rails.application.routes.draw do
   # ROOT TO APP CFORGOOD
   resources :businesses, only: [:index, :show]
 
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', passwords: :passwords }
   devise_scope :user do
-    get "member/signup",          to: "devise/registrations#new"
-    get "member/signin",          to: "devise/sessions#new"
+    get 'signin',                 to: 'devise/sessions#new'
+    post 'signin',                to: 'devise/sessions#create'
+    get 'signup',                 to:  'devise/registrations#new'
+    post 'signup',                to: 'devise/registrations#create'
+    # get "member/signup",          to: "devise/registrations#new"
+    # get "member/signin",          to: "devise/sessions#new"
     get "member/sent_mail",       to: "devise/passwords#sent_mail"
     put "member/update_cause",    to: "member/registrations#update_cause"
     put "member/update_profile",  to: "member/registrations#update_profile"
   end
-  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', passwords: :passwords }
 
   namespace :member do
     resources :users, only: [:show, :update] do
@@ -41,8 +45,12 @@ Rails.application.routes.draw do
     resources :perks, only: [:show]
   end
 
+  get "map", to: "member/dashboard#dashboard"
+
   devise_for :businesses, path: :pro, controllers: {registrations: :registrations, passwords: :passwords}
   devise_scope :business do
+    get 'signup',               to: 'devise/registrations#new'
+    post 'signup',              to: 'devise/registrations#create'
     get "pro/sent_mail",        to: "pro/passwords#sent_mail"
     put "pro/update_business",  to: "pro/registrations#update_business"
   end
@@ -68,5 +76,10 @@ Rails.application.routes.draw do
 
   resources :perks do
     resources :uses, only: [:create]
+  end
+
+  require "sidekiq/web"
+  authenticate :user, lambda { |u| u.admin } do
+    mount Sidekiq::Web => '/sidekiq'
   end
 end

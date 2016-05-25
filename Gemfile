@@ -21,6 +21,9 @@ gem 'omniauth-google-oauth2', git: 'https://github.com/zquestz/omniauth-google-o
 gem 'mangopay'
 gem 'intercom', "~> 3.4.0"
 gem "intercom-rails"
+gem 'sidekiq'
+gem 'sinatra'  # Dependency of sidekiq
+gem 'sidekiq-failures'
 
 gem "paperclip"
 gem "aws-sdk", "< 2.0"
@@ -60,6 +63,8 @@ group :development, :test do
   gem "pry-byebug"
   gem "pry-rails"
   gem "letter_opener"
+  gem 'meta_request'
+  gem 'newrelic_rpm'
 end
 
 group :production do

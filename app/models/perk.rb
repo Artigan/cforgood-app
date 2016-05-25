@@ -66,7 +66,7 @@ class Perk < ActiveRecord::Base
 
   after_create :send_registration_slack
   after_create :update_data_intercom
-  after_save :update_data_intercom if :active_changed?
+  after_save :update_data_intercom, if: :active_changed?
   after_destroy :update_data_intercom
 
   def update_nb_view!
@@ -142,16 +142,22 @@ class Perk < ActiveRecord::Base
   end
 
   def update_data_intercom
-    if Rails.env.production?
-      # UPDATE CUSTOM ATTRIBUTES ON INTERCOM
-      intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
-      begin
-        user = intercom.users.find(:user_id => 'B'+self.business_id.to_s)
-        user.custom_attributes[:perks_all] = Business.find(self.business_id).perks.count
-        user.custom_attributes[:perks_active] = Business.find(self.business_id).perks.active.count
-        intercom.users.save(user)
-      rescue Intercom::ResourceNotFound
-      end
+    # UPDATE CUSTOM ATTRIBUTES ON INTERCOM
+    intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
+    begin
+      user = intercom.users.find(:user_id => 'B'+self.business_id.to_s)
+      user.custom_attributes[:perks_all] = Business.find(self.business_id).perks.count
+      user.custom_attributes[:perks_active] = Business.find(self.business_id).perks.active.count
+      intercom.users.save(user)
+    rescue Intercom::ResourceNotFound
+    end
+  end
+
+  def active?
+    if flash
+      end_date < DateTime.now
+    else
+      active
     end
   end
 end
