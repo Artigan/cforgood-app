@@ -3,9 +3,14 @@ class Member::DashboardController < ApplicationController
   skip_before_action :authenticate_user!, only: [:dashboard]
 
   def dashboard
-    coordinates = cookies[:coordinates].split('&')
-    lat = coordinates[0]
-    lng = coordinates[1]
+    if cookies[:coordinates].present?
+      coordinates = cookies[:coordinates].split('&')
+      lat = coordinates[0]
+      lng = coordinates[1]
+    else
+      lat = 44.837789
+      lng = -0.57918
+    end
     # @businesses = Business.near([lat, lng], 10).active.for_map.joins(:perks).merge(Perk.in_time).distinct
     @businesses = Business.active.for_map.joins(:perks).merge(Perk.in_time).distinct
     @geojson = {"type" => "FeatureCollection", "features" => []}
