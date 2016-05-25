@@ -396,10 +396,32 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
+  background-color: #fff;
 
   @media (max-width: 767px) {
     min-width: 100% !important;
     min-height: 100%;
+  }
+
+  /* SLIDER - FREE PRICING SELECTOR *******************************/
+  #range {
+    display: block;
+    margin: 30px auto 0;
+    width: 80%;
+    height: 10px;
+    background: linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%);
+    left: 5%;
+    border-radius: 10px;
+  }
+
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+  }
+
+  *:focus {
+    outline: 0;
   }
 
   span {
@@ -424,16 +446,27 @@
       flex-direction: column;
       align-items: center;
       box-sizing: border-box;
-      width: 100%;
-      position: relative;
       padding: 20px;
       margin: 1%;
+      width: 100%;
+      height: 320px;
+      position: relative;
       margin-bottom: 5px;
       background-color: #fff;
       border-radius: 4px;
 
       @media (max-width: 767px) {
         padding: 20px 0;
+      }
+
+      .btn-subscription {
+        padding: 10px 20px;
+        margin: 25px 0 0;
+        width: 100%;
+        border-radius: 2px;
+        max-width: 100%;
+        font-weight: 600;
+        border: none;
       }
     }
 
@@ -496,9 +529,11 @@
     }
 
     .offer-price {
-      margin-bottom: 50px;
-      padding-bottom: 30px;
+      margin-bottom: 0 0 50px;
+      padding-bottom: 0 0 30px;
       height: 230px;
+
+
 
       .offer-details {
         display: flex;
@@ -522,13 +557,33 @@
           align-items: center;
           width: 50%;
 
+          .output-asso {
+            font-size: 26px;
+            font-weight: 600;
+
+            &:after {
+              content: " %";
+            }
+          }
+
+          .output-fiscal {
+            font-size: 26px;
+            font-weight: 600;
+
+            &:after {
+              content: " €";
+            }
+          }
+
           p {
+            display: flex;
+            margin: 10px 0 0;
+            width: 80%;
             font-style: italic;
             opacity: 0.6;
             font-size: 0.8em;
             text-align: center;
             line-height: 1.6em;
-            margin-top: 10px;
 
             @media (max-width: 320px) {
               font-size: 0.7em;
@@ -536,6 +591,50 @@
           }
         }
       }
+    }
+
+    .user_amount {
+      &:after {
+        content: " €";
+        position: absolute;
+        width: 60px;
+        height: 60px;
+        bottom: 283px;
+        left: -16px;
+        font-size: 2em;
+        text-align: center;
+        color: #36d3da;
+      }
+
+      #user_amount {
+        position: absolute;
+        width: 60px;
+        height: 60px;
+        bottom: 302px;
+        left: -42px;
+        font-size: 2em;
+        text-align: center;
+        color: #36d3da;
+        -webkit-appearance: none;
+        border: none;
+        box-shadow: none;
+      }
+    }
+
+    input[type="range"] {
+      -webkit-appearance: none;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      position: relative;
+      top: 0px;
+      z-index: 1;
+      width: 25px;
+      height: 25px;
+      border-radius: 40px;
+      background-color: #FFF;
+      border: 2px solid #36d3da;
     }
 
     .user_code_partner {
@@ -556,34 +655,38 @@
         border-radius: 2px;
       }
     }
+  }
 
-    .offer-most-popular {
-      position: absolute;
-      width: 90%;
-      text-align: center;
-      text-transform: uppercase;
-      font-size: 10px;
-      font-weight: 200;
-      color: #fff;
-      background-color: $turquoise;
-      border-radius: 4px;
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-      padding: 0 4px;
-      top: -15px;
-      left: 8px;
+  .btn-no-subscription {
+    position: absolute;
+    left: 25px;
+    color: $grey;
+    font-size: 0.7em;
+    font-weight: 200;
+    bottom: 10px;
+    text-decoration: underline;
+    left: 50%;
+    transform: translateX(-50%);
+
+    @media (max-width: 767px) {
+      bottom: -8px;
     }
 
-    .offer-btn {
-      display: flex;
-      position: absolute;
-      position: absolute;
-      left: 50%;
-      bottom: -30px;
-      transform: translateX(-50%);
+    &:hover {
+      color: #333;
+    }
+  }
 
-      .btn {
-        margin: 3px;
-      }
+  .offer-btn {
+    display: flex;
+    position: absolute;
+    position: absolute;
+    left: 50%;
+    bottom: -30px;
+    transform: translateX(-50%);
+
+    .btn {
+      margin: 3px;
     }
   }
 }

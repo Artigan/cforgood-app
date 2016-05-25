@@ -1,10 +1,47 @@
 <!-- FORM SUBSCRIPTION -->
 <div class="form-edit-container offer-form">
+  <div class="signup-plan">
+    <span>Changer le montant de ma participation</span>
+    <div class="container-fluid">
+      <div class="offer-index">
+        <div class="offer-card">
+          <!-- RANGE SLIDER FOR PRICE -->
+          <div class="offer-price">
+            <input type="range" name="range" id="range" min="1" max="50" value="5"/>
+            <div class="offer-details">
+              <div class="offer-detail">
+                <output class="output-asso">50</output>
+                <p>Reversé à l'association de votre choix</p>
+              </div>
+              <div class="offer-detail">
+                <output class="output-fiscal">50</output>
+                <p>Coût réel de votre don après déduction fiscale</p>
+              </div>
+            </div>
+          </div>
+          <div class="offer-description">
+            <h5>Abonnement mensuel <strong>libre</strong> sans engagement</h5>
+            <p>Vous pouvez le modifier ou l'annuler à tout moment depuis votre profil</p>
+          </div>
+          <!-- PARTNER CODE -->
+          <%= simple_form_for(current_user, url: member_update_profile_path, method: :put, remote: true, authenticity_token: true, html: { id: "update_subscription" } ) do |f| %>
+            <div class="code-partner">
+              <%= f.input :code_partner, label: "Code Partenaire", input_html: { value: "" } %>
+            </div>
 
-  <%= render "member/signup/form_subscription" %>
+            <div class="offer-btn">
+              <%= f.input :subscription, as: :hidden, input_html: { value: "M" } %>
+              <%= f.input :amount, label: false, input_html: { value: f.object.amount || 5 } %>
+            </div>
 
-  <div>
-    <%= link_to "Changez vos données bancaires ?", "#payment", role: "tab", data_toggle: "tab", class: "show-payment" %>
+            <%= f.submit "Sauvegarder", class: "btn-subscription"%>
+            <!-- Current partner code : <%= current_user.code_partner %> -->
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <%= link_to "Je me désabonne", member_user_dashboard_path(current_user), class: "btn btn-no-subscription" %>
+    <%= link_to "Mettre à jour mes données bancaires", "#payment", role: "tab", data_toggle: "tab", class: "show-payment btn btn-no-subscription" %>
   </div>
 </div>
 
@@ -12,10 +49,58 @@
 
   <script>
     $(document).ready(function() {
+
+      var value = parseInt($("#user_amount").val());
+      var pourcent = pourcentAsso(parseInt(value));
+      $('.output-asso').html(pourcent);
+      $("#range").val(value);
+
+
+      function pourcentAsso(amount) {
+        if (amount <= 5) {
+          var pourcent = ((50-30)*((amount-1)/(5-1)))+30;
+        } else if (amount <= 10) {
+          var pourcent = ((70-50)*((amount-5)/(10-5)))+50;
+        } else if (amount <= 15) {
+          var pourcent = ((75-70)*((amount-10)/(15-10)))+70;
+        } else if (amount <= 20) {
+          var pourcent = ((77.5-75)*((amount-15)/(20-15)))+75;
+        } else if (amount <= 25) {
+          var pourcent = ((80-77.5)*((amount-20)/(25-20)))+77.5;
+        } else if (amount <= 50) {
+          var pourcent = ((85-80)*((amount-25)/(50-25)))+80;
+        }
+        return pourcent;
+      }
+
+      $('#range').on('input', function() {
+        $("#user_amount").val(this.value);
+        var pourcent = pourcentAsso(this.value);
+        $('.output-asso').html(pourcent);
+        $('.output-fiscal').html(pourcent);
+      });
+
+      $("#user_amount").on('input', function() {
+        var pourcent = pourcentAsso(this.value);
+        $('.output-asso').html(pourcent);
+        $('.output-fiscal').html(pourcent);
+        $("#range").val(this.value);
+      });
+
+      $(".btn-subscription").on("click", function() {
+        if ($("#user_code_partner").val() != "") {
+          $("#user_subscription").val('T');
+        } else {
+          $("#user_subscription").val('M');
+        }
+        $("#amount_subscription").html($("#user_amount").val());
+      });
+
       $(".btn.subscription").on("click", function(e) {
         e.preventDefault();
         $("#update_subscription").submit();
       });
+
       $(".show-payment").on("click", function(e) {
         e.preventDefault();
         $("#payment").removeClass('hidden');

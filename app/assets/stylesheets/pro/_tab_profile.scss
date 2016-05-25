@@ -3,7 +3,7 @@
 .admin {
   .dashboard {
     .tab-container {
-      padding: 20px 0 90px;
+      padding: 20px 0 0;
 
       .nav-tabs {
         width: 100%;
@@ -47,9 +47,13 @@
       }
 
       .tab-content {
-        padding: 20px;
+        padding: 20px 20px 120px;
         width: 100%;
         background-color: #fff;
+
+        @media (min-width: 768px) {
+          padding: 20px;
+        }
 
         .form-group {
           width: 100%;
