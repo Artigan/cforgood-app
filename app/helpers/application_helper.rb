@@ -36,6 +36,7 @@ module ApplicationHelper
   end
 
   def signup_or_signin_page?
+    request.path == "/" ||
     request.path == "/users" ||
     request.path == "/signin" ||
     request.path == "/signup" ||

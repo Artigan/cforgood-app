@@ -23,7 +23,6 @@ class Partner < ActiveRecord::Base
   def update_data_intercom
     # UPDATE CUSTOM ATTRIBUTES ON INTERCOM
     intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
-    binding.pry
     begin
       if id = Business.find_by_email(self.email).id
         business = intercom.users.find(:id => 'B'+id.to_s)
