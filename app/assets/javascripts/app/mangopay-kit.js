@@ -6,7 +6,6 @@ var mangoPay = {
      */
     cardRegistration: {
 
-
         /**
          * MangoPay API base URL. The default value uses sandbox envronment.
          *
@@ -20,7 +19,7 @@ var mangoPay = {
          *
          * Set it to your Client ID you use for MangoPay API
          */
-        clientId : "",
+        clientId : "<%= ENV['MANGOPAY_CLIENT_ID'] %>",
 
 
         /**
