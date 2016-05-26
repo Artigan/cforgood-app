@@ -2,7 +2,7 @@
 <div class="signup-cause">
   <div class="choose-cause">
     <div class="change-cause">
-      <span>Choississez l'association que vous souhaitez soutenir</span>
+      <span>Choisissez l'association que vous souhaitez soutenir</span>
       <div class="causes-carrousel">
         <!-- Random Causes cards -->
         <% Cause.all.each do |cause| %>
@@ -19,7 +19,7 @@
         <%= f.input :cause_id, as: :hidden %>
         <%= f.submit "Soutenir cette cause", class: "user-button" %>
       <% end %>
-      <p class="comment-cause">Sans choix de votre part, c'est CforGood qui bénificiera de votre soutien. Vous pourrez toujours modifier votre choix depuis votre profile.</p>
+      <p class="comment-cause">Sans choix de votre part, c'est CforGood qui bénificiera de votre soutien. Vous pourrez toujours modifier votre choix depuis votre profil.</p>
       <button class="signup-next">Suivant</button>
     </div>
   </div>

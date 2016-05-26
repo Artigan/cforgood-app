@@ -1,0 +1,65 @@
+<script>
+
+  $(document).ready(function() {
+
+    function afterFiscal(amount, pourcent) {
+      var amountAsso = amount*(pourcent/100).toFixed(2);
+      var amountCforgood = amount - amountAsso;
+      var amountAfter = ((amountAsso * 0.34) + amountCforgood).toFixed(2);
+      return amountAfter;
+    }
+
+    function pourcentAsso(amount) {
+      if (amount <= 5) {
+        var pourcent = ((50-30.0)*((amount-1)/(5-1)))+30;
+      } else if (amount <= 10) {
+        var pourcent = ((70-50.0)*((amount-5)/(10-5)))+50;
+      } else if (amount <= 15) {
+        var pourcent = ((75-70.0)*((amount-10)/(15-10)))+70;
+      } else if (amount <= 20) {
+        var pourcent = ((77.5-75)*((amount-15)/(20-15)))+75;
+      } else if (amount <= 25) {
+        var pourcent = ((80-77.5)*((amount-20)/(25-20)))+77.5;
+      } else if (amount <= 50) {
+        var pourcent = ((85-80.0)*((amount-25)/(50-25)))+80;
+      }
+      return pourcent;
+    }
+
+    var value = parseInt($("#user_amount").val());
+    var pourcent = pourcentAsso(value);
+    var outputFiscal = afterFiscal(value, pourcent);
+    $('.output-asso').html(pourcent);
+    $("#range").val(value);
+    $('.output-fiscal').html(outputFiscal);
+
+    $('#range').on('input', function() {
+      var value = parseInt(this.value);
+      var pourcent = pourcentAsso(value);
+      var outputFiscal = afterFiscal(value, pourcent);
+      $("#user_amount").val(value);
+      $('.output-asso').html(pourcent);
+      $('.output-fiscal').html(outputFiscal);
+    });
+
+    $("#user_amount").on('input', function() {
+      var value = parseInt(this.value);
+      var pourcent = pourcentAsso(value);
+      var outputFiscal = afterFiscal(value, pourcent);
+      $('.output-asso').html(pourcent);
+      $('.output-fiscal').html(outputFiscal);
+      $("#range").val(value);
+    });
+
+    $(".btn-subscription").on("click", function() {
+      if ($("#user_code_partner").val() != "") {
+        $("#user_subscription").val('T');
+      } else {
+        $("#user_subscription").val('M');
+      }
+      $("#amount_subscription").html($("#user_amount").val());
+    });
+
+  });
+
+</script>
