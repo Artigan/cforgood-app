@@ -136,12 +136,21 @@
         @media (max-width: 767px) {
           position: absolute;
           width: inherit;
-          top: 10px;
+          top: 7px;
           left: 70px;
+          font-size: 10px;
         }
       }
 
       p {
+        max-width: 220px;
+
+        @media (min-width: 320px) and (max-width: 767px) {
+          max-width: 160px;
+          text-align: left;
+          line-height: 15px;
+        }
+
         @media (max-width: 767px) {
           position: absolute;
           margin: 0;
@@ -187,9 +196,9 @@
     }
 
     .connect-user {
-       @media (max-width: 767px) {
+      @media (max-width: 767px) {
         margin-top: 70px;
-       }
+      }
     }
   }
 
