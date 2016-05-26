@@ -12,7 +12,7 @@ var mangoPay = {
          *
          * Set it to https://api.mangopay.com to enable production environment
          */
-        baseURL: "https://api.sandbox.mangopay.com",
+        baseURL: "<%= ENV['MANGOPAY_API_URL'] %>",
 
 
         /**
