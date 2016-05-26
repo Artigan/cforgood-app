@@ -1,5 +1,6 @@
 <% if business_signed_in? %>
   <!-- INTERCOM FOR BUSINESS -->
+  <% code_partner = Partner.find_by_email(current_business.email).code_partner if Partner.find_by_email(current_business.email) %>
   <%= intercom_script_tag({
     :app_id => ENV['INTERCOM_API_ID'],
     :user_id => 'B'+current_business.id.to_s,
@@ -13,7 +14,7 @@
       'first_name' => current_business.leader_first_name,
       'perks_all' => current_business.perks.count,
       'perks_active' => current_business.perks.active.count,
-      'code_partner' => Partner.find_by_email(current_business.email).code_partner
+      'code_partner' => code_partner
     }
   }) %>
 
