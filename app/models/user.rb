@@ -258,23 +258,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  def create_data_intercom
-    intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
-    begin
-      user = intercom.users.create(
-        :user_id => self.id.to_s,
-        :email => self.email,
-        :name => self.name,
-        :created_at => self.created_at
-      )
-      user.custom_attributes["user_type"]   = "user"
-      user.custom_attributes["user_active"] = self.active
-      user.custom_attributes["first_name"]  = self.first_name
-      intercom.users.save(user)
-    rescue Intercom::ResourceNotFound
-    end
-  end
-
   def create_data_amplitude
     # Configure your Amplitude API key
     AmplitudeAPI.api_key = ENV["AMPLITUDE_API_KEY"]
