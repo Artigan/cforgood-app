@@ -2,7 +2,7 @@
 <div class="signup-cause">
   <div class="choose-cause">
     <div class="change-cause">
-      <span>Choississez l'association que vous souhaitez soutenir</span>
+      <span>Choisissez l'association que vous souhaitez soutenir</span>
       <div class="causes-carrousel">
         <!-- Random Causes cards -->
         <% Cause.all.each do |cause| %>
@@ -19,7 +19,7 @@
         <%= f.input :cause_id, as: :hidden %>
         <%= f.submit "Soutenir cette cause", class: "user-button" %>
       <% end %>
-      <p class="comment-cause">Sans choix de votre part, c'est CforGood qui bénificiera de votre soutien. Vous pourrez toujours modifier votre choix depuis votre profile.</p>
+      <p class="comment-cause">Sans choix de votre part, c'est CforGood qui bénificiera de votre soutien. Vous pourrez toujours modifier votre choix depuis votre profil.</p>
       <button class="signup-next">Suivant</button>
     </div>
   </div>
@@ -29,8 +29,6 @@
 
   <script>
     $(document).ready(function() {
-
-      $('#intercom-container').css('display: none !important;');
 
       $(".user-button").on("click", function(e) {
         e.preventDefault;
@@ -45,6 +43,7 @@
         $(".signup-plan").addClass("slideup");
         $("#signup-breadcrumb").addClass("slide-2");
       });
+
     });
   </script>
 

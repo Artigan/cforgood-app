@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
 
   # ROOT TO LANDING WEBSITE
-  root to: "pages#home"
+  root  to: redirect("http://cforgood.github.io/landings/")
   get 'about',                    to: 'pages#about'
   get 'notre_charte',             to: 'pages#charte'
   get 'cgu',                      to: 'pages#cgu'
@@ -25,12 +25,11 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', passwords: :passwords }
   devise_scope :user do
+    # root "devise/registrations#new"
     get 'signin',                 to: 'devise/sessions#new'
     post 'signin',                to: 'devise/sessions#create'
-    get 'signup',                 to:  'devise/registrations#new'
+    get 'signup',                 to: 'devise/registrations#new'
     post 'signup',                to: 'devise/registrations#create'
-    # get "member/signup",          to: "devise/registrations#new"
-    # get "member/signin",          to: "devise/sessions#new"
     get "member/sent_mail",       to: "devise/passwords#sent_mail"
     put "member/update_cause",    to: "member/registrations#update_cause"
     put "member/update_profile",  to: "member/registrations#update_profile"

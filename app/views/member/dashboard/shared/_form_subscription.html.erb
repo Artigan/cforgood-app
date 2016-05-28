@@ -1,7 +1,11 @@
 <!-- FORM SUBSCRIPTION -->
 <div class="form-edit-container offer-form">
   <div class="signup-plan">
-    <span>Changer le montant de ma participation</span>
+    <% if current_user.member && current_user.subscription == "M" %>
+      <span>Changer le montant de ma participation</span>
+    <% else %>
+      <span>Choisir le montant de ma participation</span>
+    <% end %>
     <div class="container-fluid">
       <div class="offer-index">
         <div class="offer-card">
@@ -47,66 +51,20 @@
 
 <% content_for :after_js do %>
 
+  <%= render 'components/js/subscription' %>
+
   <script>
+
     $(document).ready(function() {
-
-      var value = parseInt($("#user_amount").val());
-      var pourcent = pourcentAsso(parseInt(value));
-      $('.output-asso').html(pourcent);
-      $("#range").val(value);
-
-
-      function pourcentAsso(amount) {
-        if (amount <= 5) {
-          var pourcent = ((50-30)*((amount-1)/(5-1)))+30;
-        } else if (amount <= 10) {
-          var pourcent = ((70-50)*((amount-5)/(10-5)))+50;
-        } else if (amount <= 15) {
-          var pourcent = ((75-70)*((amount-10)/(15-10)))+70;
-        } else if (amount <= 20) {
-          var pourcent = ((77.5-75)*((amount-15)/(20-15)))+75;
-        } else if (amount <= 25) {
-          var pourcent = ((80-77.5)*((amount-20)/(25-20)))+77.5;
-        } else if (amount <= 50) {
-          var pourcent = ((85-80)*((amount-25)/(50-25)))+80;
-        }
-        return pourcent;
-      }
-
-      $('#range').on('input', function() {
-        $("#user_amount").val(this.value);
-        var pourcent = pourcentAsso(this.value);
-        $('.output-asso').html(pourcent);
-        $('.output-fiscal').html(pourcent);
-      });
-
-      $("#user_amount").on('input', function() {
-        var pourcent = pourcentAsso(this.value);
-        $('.output-asso').html(pourcent);
-        $('.output-fiscal').html(pourcent);
-        $("#range").val(this.value);
-      });
-
-      $(".btn-subscription").on("click", function() {
-        if ($("#user_code_partner").val() != "") {
-          $("#user_subscription").val('T');
-        } else {
-          $("#user_subscription").val('M');
-        }
-        $("#amount_subscription").html($("#user_amount").val());
-      });
-
-      $(".btn.subscription").on("click", function(e) {
-        e.preventDefault();
-        $("#update_subscription").submit();
-      });
 
       $(".show-payment").on("click", function(e) {
         e.preventDefault();
         $("#payment").removeClass('hidden');
         $("#menu a.show-payment").tab('show');
       });
+
     });
+
   </script>
 
 <% end %>
