@@ -20,6 +20,7 @@
         <div class="offer-description">
           <h5>Abonnement mensuel <strong>libre</strong> sans engagement</h5>
           <p>Vous pouvez le modifier ou l'annuler à tout moment depuis votre profil</p>
+          <p class="comment">Attention, nous sommes encore essentiellement sur Bordeaux, mais ça bouge ! :)</p>
         </div>
         <!-- PARTNER CODE -->
         <%= simple_form_for(current_user, url: member_update_profile_path, method: :put, remote: true, authenticity_token: true, html: { id: "update_subscription" } ) do |f| %>
@@ -38,7 +39,6 @@
       </div>
     </div>
   </div>
-
   <%= link_to "Je la rejoindrai plus tard", member_user_dashboard_path(current_user), class: "btn btn-no-subscription" %>
 </div>
 
