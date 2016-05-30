@@ -26,10 +26,24 @@
   <!-- BRAND LOGO -->
 
   <!-- LOGO -->
-  <%= link_to root_path do %>
-    <div class="logo-desktop">
-      <%= render "components/svg/logo" %>
-    </div>
+  <% if user_signed_in? %>
+    <%= link_to member_user_dashboard_path(current_user) do %>
+      <div class="logo-desktop">
+        <%= render "components/svg/logo" %>
+      </div>
+    <% end %>
+  <% elsif business_signed_in? %>
+    <%= link_to pro_business_dashboard_path(current_business) do %>
+      <div class="logo-desktop">
+        <%= render "components/svg/logo" %>
+      </div>
+    <% end %>
+  <% else %>
+    <%= link_to root_path do %>
+      <div class="logo-desktop">
+        <%= render "components/svg/logo" %>
+      </div>
+    <% end %>
   <% end %>
 
   <!-- <#= link_to image_tag(navbar_logo), navbar_logo_link, class: "logo" #> -->
