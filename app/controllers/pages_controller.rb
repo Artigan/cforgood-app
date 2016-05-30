@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
 
-  before_action :redirect_to_dasboard!
+  before_action :redirect_to_dashboard!
 
   skip_before_action :authenticate_user!, only: [:home, :newsletter, :landing_business, :landing_cause]
 
@@ -24,7 +24,7 @@ class PagesController < ApplicationController
 
   private
 
-  def redirect_to_dasboard!
+  def redirect_to_dashboard!
     if request['action'] != "faq_connect"
       return redirect_to(member_user_dashboard_path(current_user)) if user_signed_in?
       return redirect_to(pro_business_dashboard_path(current_business)) if business_signed_in?

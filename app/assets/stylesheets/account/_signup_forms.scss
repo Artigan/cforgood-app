@@ -468,7 +468,6 @@
 
       .btn-subscription {
         padding: 10px 20px;
-        margin: 25px 0 0;
         width: 100%;
         border-radius: 2px;
         max-width: 100%;
@@ -479,8 +478,12 @@
 
     .offer-description {
       position: relative;
-      margin-top: 20px;
+      margin-top: 15px;
       text-align: center;
+
+      @media (max-width: 767px) {
+        margin-top: 0;
+      }
 
       &:before,
       &:after {
@@ -493,6 +496,7 @@
         @media (max-width: 320px) {
           display: none;
         }
+
       }
 
       &:before {
@@ -526,11 +530,24 @@
       }
 
       p {
+        margin-bottom: 0;
         font-size: 9px;
         font-weight: 200;
 
         @media (max-width: 320px) {
           font-size: 8px;
+        }
+      }
+
+      .comment {
+        margin-bottom: 5px;
+        line-height: 14px;
+        font-size: 10px;
+        font-weight: 400;
+        color: $turquoise;
+
+        @media (max-width: 766px) {
+          max-width: 280px;
         }
       }
     }
@@ -544,7 +561,7 @@
 
       .offer-details {
         display: flex;
-        padding-top: 25px;
+        padding-top: 20px;
 
         &:after {
           content: "";
@@ -552,7 +569,7 @@
           width: 1px;
           background-color: $turquoise;
           position: absolute;
-          top: 93px;
+          top: 87px;
           bottom: 0;
           left: 50%;
           transform: translateX(-50%);
@@ -584,7 +601,6 @@
 
           p {
             display: flex;
-            margin: 10px 0 0;
             width: 80%;
             font-style: italic;
             opacity: 0.6;
@@ -647,6 +663,7 @@
     .user_code_partner {
       display: flex;
       justify-content: center;
+      margin-top: 10px;
 
       .control-label {
         text-transform: uppercase;
