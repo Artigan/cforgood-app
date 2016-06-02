@@ -2,7 +2,7 @@ $(".alert").remove();
 
 if (<%= !current_user.errors.any? %>) {
 
-  if (<%= request.env["HTTP_REFERER"].include?("signup") %>) {
+  if (<%= request.env["HTTP_REFERER"].include?("subscribe") %>) {
     $(".signup-plan").addClass("ishidden");
     $(".signup-payment").addClass("slideup");
     $("#signup-breadcrumb").addClass("slide-3");

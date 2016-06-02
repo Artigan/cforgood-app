@@ -33,6 +33,7 @@ Rails.application.routes.draw do
     get "member/sent_mail",       to: "devise/passwords#sent_mail"
     put "member/update_cause",    to: "member/registrations#update_cause"
     put "member/update_profile",  to: "member/registrations#update_profile"
+    put "member/stop_subscription", to: "member/registrations#stop_subscription"
   end
 
   namespace :member do
@@ -40,7 +41,7 @@ Rails.application.routes.draw do
       get "dashboard", to: "dashboard#dashboard"
       get "profile", to: "dashboard#profile"
     end
-    resources :signup, only: [:new, :create]
+    resources :subscribe, only: [:new, :create, :update]
     resources :perks, only: [:show]
   end
 

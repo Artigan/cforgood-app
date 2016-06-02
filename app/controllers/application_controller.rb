@@ -13,21 +13,19 @@ class ApplicationController < ActionController::Base
   protected
 
   def after_sign_in_path_for(resource)
-    if resource.sign_in_count == 1 && resource_name != :business
-      begin
-        @mangopay_user = MangopayServices.new(current_user).create_mangopay_natural_user
-        current_user.update_attribute(:mangopay_id, @mangopay_user["Id"])
-      rescue MangoPay::ResponseError => e
-      end
-      if current_user.mangopay_id.present?
-        new_member_signup_path
+    if resource.class.name == "Business"
+      pro_business_dashboard_path(resource)
+    else
+      if !current_user.mangopay_id.present?
+        begin
+          @mangopay_user = MangopayServices.new(current_user).create_mangopay_natural_user
+          current_user.update_attribute(:mangopay_id, @mangopay_user["Id"])
+        rescue MangoPay::ResponseError => e
+        end
+        new_member_subscribe_path
       else
         member_user_dashboard_path(resource)
       end
-    elsif resource_name == :business
-      pro_business_dashboard_path(resource)
-    else
-      member_user_dashboard_path(resource)
     end
   end
 

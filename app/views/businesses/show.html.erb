@@ -57,7 +57,7 @@
                  <button type="button" class="use-button" style="background-color: <%= @business.business_category.color %>;">J'en profite</button>
               <% end %>
             <% else %>
-              <%= link_to "J'en profite", new_member_signup_path, class: "btn btn-primary btn-block" %>
+              <%= link_to "J'en profite", new_member_subscribe_path, class: "btn btn-primary btn-block" %>
             <% end %>
           </div>
         </div>
@@ -153,7 +153,7 @@
                <button type="button" class="use-button" style="background-color: <%= @business.business_category.color %>;">J'en profite</button>
             <% end %>
           <% else %>
-            <%= link_to "J'en profite", new_member_signup_path, class: "btn btn-primary btn-block" %>
+            <%= link_to "J'en profite", new_member_subscribe_path, class: "btn btn-primary btn-block" %>
           <% end %>
         </div>
       </div>

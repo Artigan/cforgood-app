@@ -1,0 +1,26 @@
+$(".alert").remove();
+
+if (<%= !current_user.errors.any? %>) {
+
+  if (<%= current_user.subscription.present? && !current_user.card_id.present? %>) {
+    $("#payment").removeClass('hidden');
+    $("#menu a.show-payment").tab('show');
+  } else {
+    // DISCLAIMER - DISPLAYED
+    $(".done-overlay").removeClass("hidden");
+    $('.btn-subscription').val('Sauvegarder');
+
+    if (<%= current_user.member %>) {
+      $(".stop-subscription").removeClass("disabled");
+    }
+    window.setTimeout(function(){
+      // DISCLAIMER - HIDDEN
+      $(".done-overlay").addClass("hidden");
+    }, 3000);
+  }
+
+} else {
+
+  $(document).find("form").prepend('<%= j render("components/error_messages", resource: current_user, formats: [:html]) %>');
+
+}
