@@ -48,6 +48,7 @@
 #  code_partner           :string
 #  date_support           :date
 #  amount                 :integer
+#  date_stop_subscription :datetime
 #
 # Indexes
 #
@@ -159,7 +160,7 @@ class User < ActiveRecord::Base
   def should_payin?
     @partner = Partner.find_by_code_partner(self.code_partner)
     nb_month = 1
-    nb_month = @partner.month  if @parner.present?
+    nb_month = @partner.month  if @partner.present?
     self.subscription != nil && self.subscription != "T" &&
     (self.date_last_payment == nil || self.date_last_payment < Time.now - nb_month.month)
   end

@@ -12,7 +12,9 @@ class Member::SubscribeController < ApplicationController
 
   def update
     current_user.update_without_password(user_params)
-    execute_payin
+    if current_user.card_id
+      execute_payin
+    end
   end
 
   private

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160602090128) do
+ActiveRecord::Schema.define(version: 20160602235110) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -157,6 +157,7 @@ ActiveRecord::Schema.define(version: 20160602090128) do
     t.datetime "logo_updated_at"
     t.integer  "amount_impact"
     t.boolean  "active",                    default: false, null: false
+    t.string   "link_video"
   end
 
   add_index "causes", ["cause_category_id"], name: "index_causes_on_cause_category_id", using: :btree

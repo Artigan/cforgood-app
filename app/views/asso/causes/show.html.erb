@@ -44,6 +44,14 @@
           <h2>En savoir plus</h2>
           <p><%= @cause.description %></p>
         </div>
+        <!-- BLOCK VIDEO -->
+        <% if @cause.link_video.present? %>
+          <div class="col-md-5">
+            <div class="embed-container video-mobile">
+              <iframe class="border-video" width="500" height="285" src="<%= @cause.link_video.gsub("watch?v=", "v/") %>" frameborder="0"></iframe>
+            </div>
+          </div>
+        <% end %>
         <div class="cause-info">
           <h2>Information</h2>
           <!-- LINKS | SOCIAL NETWORKS -->
