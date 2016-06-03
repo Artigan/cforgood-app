@@ -44,5 +44,4 @@ ActiveAdmin.register Cause do
   permit_params :name, :email, :cause_category_id, :impact, :url, :latitude, :longitude, :description, :amount_impact, :description_impact, :street, :zipcode, :city, :telephone, :facebook, :twitter, :instagram, :picture, :logo, :active, :representative_first_name,
  :representative_last_name, :link_video
 
-
 end
