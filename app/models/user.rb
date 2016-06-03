@@ -158,11 +158,13 @@ class User < ActiveRecord::Base
   end
 
   def should_payin?
-    @partner = Partner.find_by_code_partner(self.code_partner)
-    nb_month = 1
-    nb_month = @partner.month  if @partner.present?
-    self.subscription != nil && self.subscription != "T" &&
-    (self.date_last_payment == nil || self.date_last_payment < Time.now - nb_month.month)
+    if self.subscription == "T"
+      nb_month = Partner.find_by_code_partner(self.code_partner).nb_month
+    else
+      nb_month = 1
+    end
+    ((self.subscription != "T" && (!self.date_last_payment.present? || self.date_last_payment < Time.now - nb_month.month)) ||
+    (self.subscription == "T" && self.date_subscription < Time.now - nb_month.month))
   end
 
   def find_name?
@@ -184,6 +186,7 @@ class User < ActiveRecord::Base
   def stop_subscription!
     self.member = false
     self.date_stop_subscription = Time.now
+    self.subscription = nil
     self.save
     # SEND EVENT TO INTERCOM
     intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
@@ -206,23 +209,18 @@ class User < ActiveRecord::Base
       @mangopay_user = MangopayServices.new(self).create_mangopay_natural_user
       self.mangopay_id = @mangopay_user["Id"]
     end
-    # IF RE-SUBSCRIPTION
-
-
     # UPDATE DATE SUBCRIPTION
     self.date_subscription = Time.now if subscription_was == nil
+    # MEMBER TRUE IF TRIAL
+    self.member = true if subscription == "T"
   end
 
   def date_support!
     self.date_support = Time.now
   end
 
-  def trial_done?
-    self.subscription.present? && (self.subscription[0] == "T" || self.trial_done == true)
-  end
-
   def trial_done!
-    if subscription_was.present? && subscription_was[0] == "T" && self.trial_done == false
+    if subscription_was.present? && subscription_was == "T" && self.trial_done == false
       self.update(trial_done: true)
     end
   end
