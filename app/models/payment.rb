@@ -54,7 +54,7 @@ class Payment < ActiveRecord::Base
   end
 
   def send_payment_slack
-    # if Rails.env.production?
+    if Rails.env.production?
       notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_USER_URL']
 
       if @user.last_name.present?
@@ -69,6 +69,6 @@ class Payment < ActiveRecord::Base
 
       notifier.ping message
 
-    # end
+    end
   end
 end
