@@ -1,7 +1,7 @@
 <!-- FORM SUBSCRIPTION -->
 <div class="form-edit-container offer-form">
   <div class="signup-plan">
-    <% if current_user.member && current_user.subscription == "M" %>
+    <% if current_user.member %>
       <span>Changer le montant de ma participation</span>
     <% else %>
       <span>Choisir le montant de ma participation</span>
@@ -28,26 +28,36 @@
             <p>Vous pouvez le modifier ou l'annuler à tout moment depuis votre profil</p>
           </div>
           <!-- PARTNER CODE -->
-          <%= simple_form_for(current_user, url: member_update_profile_path, method: :put, remote: true, authenticity_token: true, html: { id: "update_subscription" } ) do |f| %>
+          <%= simple_form_for(current_user, url: member_subscribe_path(current_user), method: :put, remote: true, authenticity_token: true, html: { id: "update_subscription" } ) do |f| %>
             <div class="code-partner">
-              <%= f.input :code_partner, label: "Code Partenaire", input_html: { value: "" } %>
+              <%= f.input :code_partner, label: "Code Partenaire", input_html: { value: current_user.subscription == 'T' ? f.object.code_partner : "", disabled: current_user.subscription == 'T' ? true : false } %>
             </div>
 
             <div class="offer-btn">
-              <%= f.input :subscription, as: :hidden, input_html: { value: "M" } %>
+              <%= f.input :subscription, as: :hidden, input_html: { value: f.object.subscription || "M" } %>
               <%= f.input :amount, label: false, input_html: { value: f.object.amount || 5 } %>
             </div>
-
-            <%= f.submit "Sauvegarder", class: "btn-subscription"%>
-            <!-- Current partner code : <%= current_user.code_partner %> -->
+            <% if current_user.member %>
+              <%= f.submit "Sauvegarder", class: "btn-subscription"%>
+            <% elsif current_user.date_stop_subscription.present? %>
+              <%= f.submit "Me réabonner", class: "btn-subscription"%>
+            <% else %>
+              <%= f.submit "M'abonner", class: "btn-subscription"%>
+            <% end %>
           <% end %>
         </div>
       </div>
     </div>
-    <%= link_to "Je me désabonne", member_user_dashboard_path(current_user), class: "btn btn-no-subscription" %>
+    <% if current_user.member %>
+      <%= link_to "Je me désabonne", "#", class: "btn btn-no-subscription stop-subscription" %>
+    <% else %>
+      <%= link_to "Je me désabonne", "#", class: "btn btn-no-subscription stop-subscription disabled" %>
+    <% end %>
     <%= link_to "Mettre à jour mes données bancaires", "#payment", role: "tab", data_toggle: "tab", class: "show-payment btn btn-no-subscription" %>
   </div>
 </div>
+
+<%= render 'components/popups/stop_subscription_validation' %>
 
 <% content_for :after_js do %>
 
@@ -61,6 +71,11 @@
         e.preventDefault();
         $("#payment").removeClass('hidden');
         $("#menu a.show-payment").tab('show');
+      });
+
+      $(".stop-subscription").on("click", function(e) {
+        e.preventDefault();
+        $(".popup-stop-confirmation").removeClass('hidden');
       });
 
     });

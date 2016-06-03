@@ -48,6 +48,7 @@
 #  code_partner           :string
 #  date_support           :date
 #  amount                 :integer
+#  date_stop_subscription :datetime
 #
 # Indexes
 #
@@ -96,7 +97,7 @@ class User < ActiveRecord::Base
 
   before_save :date_support!, if: :cause_id_changed?
 
-  after_save :update_data_intercom
+  after_commit :update_data_intercom
 
   def self.find_for_google_oauth2(access_token, signed_in_resourse=nil)
     data = access_token.info
@@ -159,7 +160,7 @@ class User < ActiveRecord::Base
   def should_payin?
     @partner = Partner.find_by_code_partner(self.code_partner)
     nb_month = 1
-    nb_month = @partner.month  if @parner.present?
+    nb_month = @partner.month  if @partner.present?
     self.subscription != nil && self.subscription != "T" &&
     (self.date_last_payment == nil || self.date_last_payment < Time.now - nb_month.month)
   end
@@ -176,6 +177,25 @@ class User < ActiveRecord::Base
 
   def member!
     self.member = true
+    self.date_stop_subscription = nil
+    self.save
+  end
+
+  def stop_subscription!
+    self.member = false
+    self.date_stop_subscription = Time.now
+    self.save
+    # SEND EVENT TO INTERCOM
+    intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
+    begin
+      intercom.events.create(
+        event_name: "stop-subscription",
+        created_at: Time.now.to_i,
+        user_id: self.id,
+        email: self.email
+      )
+    rescue Intercom::ResourceNotFound
+    end
   end
 
   private
@@ -186,6 +206,9 @@ class User < ActiveRecord::Base
       @mangopay_user = MangopayServices.new(self).create_mangopay_natural_user
       self.mangopay_id = @mangopay_user["Id"]
     end
+    # IF RE-SUBSCRIPTION
+
+
     # UPDATE DATE SUBCRIPTION
     self.date_subscription = Time.now if subscription_was == nil
   end

@@ -57,7 +57,7 @@
                  <button type="button" class="use-button" style="background-color: <%= @business.business_category.color %>;">J'en profite</button>
               <% end %>
             <% else %>
-              <%= link_to "J'en profite", member_signup_path, class: "btn btn-primary btn-block" %>
+              <%= link_to "J'en profite", new_member_subscribe_path, class: "btn btn-primary btn-block" %>
             <% end %>
           </div>
         </div>
@@ -153,7 +153,7 @@
                <button type="button" class="use-button" style="background-color: <%= @business.business_category.color %>;">J'en profite</button>
             <% end %>
           <% else %>
-            <%= link_to "J'en profite", member_signup_path, class: "btn btn-primary btn-block" %>
+            <%= link_to "J'en profite", new_member_subscribe_path, class: "btn btn-primary btn-block" %>
           <% end %>
         </div>
       </div>
@@ -209,7 +209,7 @@
 </div>
 
 <!-- MODAL CODE PERK -->
-<% if !current_user.member %>
+<% if user_signed_in? && !current_user.member %>
   <%= render "pro/perks/modals/code_perk_not_member" %>
 <% elsif Perk.find(params[:perk_id]).perk_detail.name == "email" %>
   <%= render "pro/perks/modals/code_perk_mailto" %>

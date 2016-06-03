@@ -21,6 +21,14 @@ class Member::RegistrationsController < Devise::RegistrationsController
     end
   end
 
+  def stop_subscription
+    current_user.stop_subscription!
+    respond_to do |format|
+      format.html {redirect_to :back}
+      format.js {}
+    end
+  end
+
   private
 
   def user_params

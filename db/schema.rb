@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160524114222) do
+ActiveRecord::Schema.define(version: 20160602235110) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,9 +39,9 @@ ActiveRecord::Schema.define(version: 20160524114222) do
     t.string   "city"
     t.float    "latitude"
     t.float    "longitude"
-    t.boolean  "active",      default: true, null: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+    t.boolean  "active",      default: true, null: false
     t.datetime "start_time"
     t.datetime "end_time"
   end
@@ -157,6 +157,7 @@ ActiveRecord::Schema.define(version: 20160524114222) do
     t.datetime "logo_updated_at"
     t.integer  "amount_impact"
     t.boolean  "active",                    default: false, null: false
+    t.string   "link_video"
   end
 
   add_index "causes", ["cause_category_id"], name: "index_causes_on_cause_category_id", using: :btree
@@ -181,12 +182,6 @@ ActiveRecord::Schema.define(version: 20160524114222) do
 
   add_index "payments", ["cause_id"], name: "index_payments_on_cause_id", using: :btree
   add_index "payments", ["user_id"], name: "index_payments_on_user_id", using: :btree
-
-  create_table "periodicities", force: :cascade do |t|
-    t.string   "period"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "perk_details", force: :cascade do |t|
     t.string   "name"
@@ -268,6 +263,7 @@ ActiveRecord::Schema.define(version: 20160524114222) do
     t.string   "code_partner"
     t.date     "date_support"
     t.integer  "amount"
+    t.datetime "date_stop_subscription"
   end
 
   add_index "users", ["cause_id"], name: "index_users_on_cause_id", using: :btree
