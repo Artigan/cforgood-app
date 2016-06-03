@@ -29,7 +29,7 @@ class Payment < ActiveRecord::Base
   validates :cause_id, presence: true
   validates :amount, presence: true
 
-  after_create :create_event_intercom
+  after_create :create_event_intercom, :send_payment_slack
 
   private
 
@@ -51,5 +51,24 @@ class Payment < ActiveRecord::Base
       rescue Intercom::ResourceNotFound
       end
     end
+  end
+
+  def send_payment_slack
+    # if Rails.env.production?
+      notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_USER_URL']
+
+      if @user.last_name.present?
+        message = "#{@user.first_name} #{@user.last_name}"
+      elsif name.present?
+        message = "#{@user.name}"
+      else
+        massage = "#{@user.email}"
+      end
+
+      message = message + " a souscrit une participation de " + @user.amount.to_s + "€."
+
+      notifier.ping message
+
+    # end
   end
 end
