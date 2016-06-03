@@ -43,15 +43,15 @@
           <!-- BUSINESS | DESCRIPTION -->
           <h2>En savoir plus</h2>
           <p><%= @cause.description %></p>
-        </div>
-        <!-- BLOCK VIDEO -->
-        <% if @cause.link_video.present? %>
-          <div class="col-md-5">
-            <div class="embed-container video-mobile">
-              <iframe class="border-video" width="500" height="285" src="<%= @cause.link_video.gsub("watch?v=", "v/") %>" frameborder="0"></iframe>
+          <!-- BLOCK VIDEO -->
+          <% if @cause.link_video.present? %>
+            <div class="cause-video">
+              <div class="embed-container video-mobile">
+                <%= content_tag(:iframe, nil, src: "#{@cause.link_video}", allowfullscreen: "allowfullscreen") %>
+              </div>
             </div>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
         <div class="cause-info">
           <h2>Information</h2>
           <!-- LINKS | SOCIAL NETWORKS -->
