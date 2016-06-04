@@ -30,7 +30,7 @@
           <!-- PARTNER CODE -->
           <%= simple_form_for(current_user, url: member_subscribe_path(current_user), method: :put, remote: true, authenticity_token: true, html: { id: "update_subscription" } ) do |f| %>
             <div class="code-partner">
-              <%= f.input :code_partner, label: "Code Partenaire", input_html: { value: current_user.subscription == 'T' && !current_user.trial ? f.object.code_partner : "", disabled: current_user.subscription == 'T' || current_user.trial_done ? true : false } %>
+              <%= f.input :code_partner, label: "Code Partenaire", input_html: { value: current_user.subscription == 'T' && !current_user.trial_done ? f.object.code_partner : "", disabled: current_user.subscription == 'T' || current_user.trial_done ? true : false } %>
             </div>
 
             <div class="offer-btn">
