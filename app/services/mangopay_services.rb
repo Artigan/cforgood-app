@@ -57,7 +57,8 @@ class MangopayServices
       CreditedWalletId: wallet_id,
       CardId: @user.card_id,
       SecureMode:"DEFAULT",
-      SecureModeReturnURL:"https://www.cforgood.com"
+      SecureModeReturnURL:"https://www.cforgood.com",
+      StatementDescriptor: "CFORGOOD"
     }
 
     mangopay_payin_card_direct(payin_info)

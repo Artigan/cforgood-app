@@ -22,7 +22,7 @@
     <div class="col-xs-12 col-sm-6 content-legal">
         <%= simple_form_for @contact_form do |f| %>
         <%= f.input :name, :label => false, :placeholder => "Nom", :required => true %>
-        <%= f.input :email, :label => false, :placeholder => "Email", :as => :email, :required => true %>
+        <%= f.input :email, :label => false, :placeholder => "Adresse email", :as => :email, :required => true %>
         <%= f.input :message, :label => false, :placeholder => "Message", :as => :text, :input_html => { :rows => 7 , :style => 'width: 100%'}, :required => true %>
 
         <!-- <%#= f.input :nickname, :hint => 'Leave this field blank!' %> -->

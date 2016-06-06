@@ -6,11 +6,11 @@
       <div id="error-code">
         <%= flash[:alert].humanize unless flash[:alert] == nil %>
       </div>
-      <%= f.input :first_name, placeholder: 'John', required: true, label: false %>
-      <%= f.input :last_name, placeholder: 'Doe', required: true, label: false %>
-      <%= f.input :email, placeholder: 'john@doe.com', required: true, label: false %>
+      <%= f.input :first_name, placeholder: 'Prénom', required: true, label: false %>
+      <%= f.input :last_name, placeholder: 'Nom', required: true, label: false %>
+      <%= f.input :email, placeholder: 'Adresse email', required: true, label: false %>
       <%= f.input :password, placeholder: '********', required: true, label: false %>
-      <%= f.input :city, placeholder: 'Honolulu', required: true, label: false %>
+      <%= f.input :city, placeholder: 'Ville', required: true, label: false %>
 
       <div class="subscribe-disclaimer">
         <p>En cliquant sur <strong>S'inscrire</strong> ou <strong>Facebook</strong> vous acceptez les <a type="href" class="" data-toggle="modal" data-target="#modal-cgu"><strong>CGU</strong></a> et certifiez avoir de plus de 18 ans.</p>
