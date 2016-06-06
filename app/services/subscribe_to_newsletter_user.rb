@@ -22,7 +22,7 @@ class SubscribeToNewsletterUser
         }
       )
     rescue Gibbon::MailChimpError => exception
-      Rails.logger.error("Erreur lors insciption MAILCHIMP_LIST_USER #{exception.status_code} : #{exception.detail}")
+      Rails.logger.error("Erreur lors inscription MAILCHIMP_LIST_USER #{exception.status_code} : #{exception.detail}")
     end
   end
 end
