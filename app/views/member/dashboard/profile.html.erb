@@ -20,19 +20,20 @@
         <li role="profile" class="active">
           <%= link_to "#profile", role: "tab", data_toggle: "tab" do %>
             <i class="fa fa-user" aria-hidden="true"></i>
-            <span>Vos informations</span>
+            <span>Mes informations</span>
           <% end %>
         </li>
         <li role="profile">
           <%= link_to "#cause", role: "tab", data_toggle: "tab" do %>
+          <%= link_to "#cause", role: "tab", data_toggle: "tab" do %>
             <i class="fa fa-heart" aria-hidden="true"></i>
-            <span>Votre association</span>
+            <span>Mon association</span>
           <% end %>
         </li>
         <li role="profile">
           <%= link_to "#subscription", role: "tab", data_toggle: "tab" do %>
             <i class="fa fa-credit-card" aria-hidden="true"></i>
-            <span>Votre abonnement</span>
+            <span>Mon abonnement</span>
           <% end %>
         </li>
         <li role="profile">
@@ -42,7 +43,7 @@
           <li role="profile">
             <%= link_to "#list-payments", role: "tab", data_toggle: "tab" do %>
               <i class="fa fa-list" aria-hidden="true"></i>
-              <span>Vos contributions</span>
+              <span>Mes contributions</span>
             <% end %>
           </li>
         <% end %>

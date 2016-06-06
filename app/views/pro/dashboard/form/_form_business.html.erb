@@ -19,7 +19,7 @@
         <%= f.input :picture, as: :file, required: false, label: 'Sélectionner une nouvelle image' %>
       </div>
       <div class="col-1">
-        <%= f.input :name, placeholder: 'Nom', required: true, label: "Nom de l'établissement" %>
+        <%= f.input :name, placeholder: 'Nom commerce', required: true, label: "Nom de l'établissement" %>
         <%= f.input :description, as: :text, placeholder: 'Visible sur vos bons plans', :input_html => { :rows => 6, maxlength: 330 }, required: true, label: "Présenter votre commerce" %>
       </div>
       <%= f.input :street, placeholder: 'Rue', required: true, label: 'Adresse principale' %>
