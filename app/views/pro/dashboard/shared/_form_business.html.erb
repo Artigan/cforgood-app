@@ -36,8 +36,8 @@
         <% else %>
           <a href="#" class="button-address hidden"><%= render "shared/icons/address" %></a>
         <% end %>
-        <%= f.input :url, placeholder: 'www.johndoe.com', label: 'Site web' %>
-        <%= f.input :email, placeholder: 'contact@johndoe.com', required: true, label: "Email" %>
+        <%= f.input :url, placeholder: 'Site web', label: 'Site web' %>
+        <%= f.input :email, placeholder: 'Adresse email', required: true, label: "Email" %>
         <%= f.input :telephone, placeholder: 'Téléphone', required: true, label: 'Téléphone' %>
         <%= f.input :facebook, placeholder: 'lapagedejohndoe', label: 'Facebook' %>
         <%= f.input :twitter, placeholder: 'johndoe', label: 'Twitter' %>

@@ -16,12 +16,12 @@
         <%= f.input :leader_picture, as: :file, required: false, label: 'Sélectionner une nouvelle image' %>
       </div>
       <div class="col-1">
-        <%= f.input :leader_first_name, placeholder: 'John', required: true, label: 'Prénom', class: "inline-input" %>
-        <%= f.input :leader_last_name, placeholder: 'Doe', required: true, label: 'Nom', class: "inline-input" %>
+        <%= f.input :leader_first_name, placeholder: 'Prénom', required: true, label: 'Prénom', class: "inline-input" %>
+        <%= f.input :leader_last_name, placeholder: 'Nom', required: true, label: 'Nom', class: "inline-input" %>
         <%= f.input :leader_description, as: :text, :input_html => { :rows => 6, maxlength: 330 }, placeholder: 'Visible sur vos bons plans', required: true, label: 'Bio' %>
       </div>
       <%= f.input :leader_phone, placeholder: '05 56 01 01 01', required: true, label: 'Ligne personnelle', class: "inline-input" %>
-      <%= f.input :leader_email, placeholder: 'john@doe.com', required: true, label: 'Email personnel', class: "inline-input" %>
+      <%= f.input :leader_email, placeholder: 'Adresse email', required: true, label: 'Email personnel', class: "inline-input" %>
       <%= f.input :password, placeholder: '********', required: true, label: "Nouveau mot de passe" %>
       <div class="col-2">
         <%= f.button :submit, "Sauvegarder" %>

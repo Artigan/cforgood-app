@@ -3,7 +3,7 @@
     <span>Réinitialiser<br>mon mot de passe</span>
     <div class="subscription-form">
       <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-        <%= f.input :email, placeholder: 'john@doe.com', required: true, :class => "validate", label: 'Votre email' %>
+        <%= f.input :email, placeholder: 'Adresse email', required: true, :class => "validate", label: 'Votre email' %>
         <%= f.button :submit, "Réinitialiser le mot de passe" %>
       <% end %>
     </div>
