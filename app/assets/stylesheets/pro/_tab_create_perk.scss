@@ -628,7 +628,8 @@
         opacity: 1;
       }
 
-      .card-invisible {
+      .card-invisible,
+      .card-indispo {
         opacity: 0.3;
         pointer-events: none;
         cursor: default;
