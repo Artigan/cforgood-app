@@ -78,7 +78,7 @@
               <a class="perk-delete-button perk-deletion" id="perk_<%= perk.id %>"><i class="fa fa-trash-o"></i></a>
             <% end %>
             <div class="hidden">
-              <%= simple_form_for :perk, url:  pro_perk_path(perk), method: :delete, html: { id: "delete_perk_#{perk.id}" } do |f| %>
+              <%= simple_form_for :perk, url: pro_perk_path(perk), method: :delete, html: { id: "delete_perk_#{perk.id}" } do |f| %>
                 <%= f.submit "", :style => "display: none;" %>
               <% end %>
             </div>
@@ -94,19 +94,30 @@
 </div>
 
 <%= render 'pro/perks/form/delete_confirmation' %>
+<%= render 'pro/perks/form/last_perk_deleted' %>
+<%= render 'pro/perks/form/last_perk_desactivated' %>
 
 <% content_for :after_js do %>
   <script>
     $(document).ready(function() {
-      $(':checkbox').change(function() {
+      $(':checkbox').change(function(e) {
+        e.preventDefault();
         var updatePerk = "update_perk_" + ($(this).val("form").attr('id'))
-        $('#' + updatePerk).submit();
+        if (<%= current_business.perks.active.count == 1 %>) {
+          $(".last-perk-desactivated").toggleClass("hidden");
+        } else {
+          $('#' + updatePerk).submit();
+        }
       });
 
       $(".perk-delete-button").on("click", function() {
         var deletePerk = "delete_" + ($(this).val("div").attr('id'));
         $(".business-button").addClass(deletePerk);
-        $(".popup-overlay").toggleClass("hidden");
+        if (<%= current_business.perks.active.count == 1 %>) {
+          $(".last-perk-deleted").toggleClass("hidden");
+        } else {
+          $(".delete-confirmation").toggleClass("hidden");
+        }
       });
 
     });
