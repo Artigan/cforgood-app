@@ -25,14 +25,13 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', passwords: :passwords }
   devise_scope :user do
-    # root "devise/registrations#new"
-    get 'signin',                 to: 'devise/sessions#new'
-    post 'signin',                to: 'devise/sessions#create'
-    get 'signup',                 to: 'devise/registrations#new'
-    post 'signup',                to: 'devise/registrations#create'
-    get "member/sent_mail",       to: "devise/passwords#sent_mail"
-    put "member/update_cause",    to: "member/registrations#update_cause"
-    put "member/update_profile",  to: "member/registrations#update_profile"
+    get 'signin',                   to: 'devise/sessions#new'
+    post 'signin',                  to: 'devise/sessions#create'
+    get 'signup',                   to: 'devise/registrations#new'
+    post 'signup',                  to: 'devise/registrations#create'
+    get "member/sent_mail",         to: "devise/passwords#sent_mail"
+    put "member/update_cause",      to: "member/registrations#update_cause"
+    put "member/update_profile",    to: "member/registrations#update_profile"
     put "member/stop_subscription", to: "member/registrations#stop_subscription"
   end
 
@@ -47,7 +46,7 @@ Rails.application.routes.draw do
 
   get "map", to: "member/dashboard#dashboard"
 
-  devise_for :businesses, path: :pro, controllers: {registrations: :registrations, passwords: :passwords}
+  devise_for :businesses, path: :pro, controllers: { passwords: :passwords }
   devise_scope :business do
     get "pro/sent_mail",        to: "pro/passwords#sent_mail"
     put "pro/update_business",  to: "pro/registrations#update_business"

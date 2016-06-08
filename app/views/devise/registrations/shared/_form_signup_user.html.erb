@@ -16,7 +16,7 @@
         <p>En cliquant sur <strong>S'inscrire</strong> ou <strong>Facebook</strong> vous acceptez les <a type="href" class="" data-toggle="modal" data-target="#modal-cgu"><strong>CGU</strong></a> et certifiez avoir de plus de 18 ans.</p>
       </div>
 
-      <%= f.button :submit, "S'inscrire", class: "btn btn-connexion hint--top", :"data-hint" => "En cliquant sur S'inscrire ou Facebook vous acceptez les CGU et certifiez avoir de plus de 18 ans.", disabled: true %>
+      <%= f.button :submit, "S'inscrire", class: "btn btn-connexion hint--top", :"data-hint" => "En cliquant sur S'inscrire ou Facebook vous acceptez les CGU et certifiez avoir de plus de 18 ans." %>
     <% end %>
   </div>
   <!-- FB & GOOGLE SUBSCRIPTION BUTTONS -->
@@ -33,14 +33,18 @@
 
     $(document).ready(function() {
 
-      $("form#new_user").on("change", function(e) {
-        e.preventDefault();
-        if ($("#user_first_name").val() != "" &&
-            $("#user_last_name").val() != "" &&
-            $("#user_city").val() != "" ) {
-          $("#new_user .btn-connexion").attr("disabled", false);
-        } else {
-        $("#new_user .btn-connexion").attr("disabled", true);
+      $("#new_user").validate({
+        lang: 'fr',
+        rules: {
+          first_name: {
+            required: true,
+          },
+          last_name: {
+            required: true,
+          },
+          city: {
+            required: true
+          }
         }
       });
 
@@ -49,3 +53,5 @@
   </script>
 
 <% end %>
+
+
