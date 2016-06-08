@@ -6,14 +6,14 @@
   <span class="sign-title">Connexion</span>
   <div class="sign-back">
     <!-- SIGNIN AS USER -->
-    <div class="connect-user">
+    <div class="connect-user" style="<%= device_type == :mobile || params[:business].present? ? 'visibility: visible;' : 'visibility: hidden;' %>">
       <i><%= render "shared/icons/profile" %></i>
       <span>Je suis membre ?</span>
       <p>Vous êtes un particulier et souhaitez agir à votre échelle.</p>
       <button type="button" class="btn-user">Se connecter</button>
     </div>
     <!-- SIGNIN AS BUSINESS -->
-    <div class="connect-business">
+    <div class="connect-business" style="visibility: visible;">
       <i><%= render "shared/icons/shop" %></i>
       <span>Je suis partenaire ?</span>
       <p>Vous êtes un commerce avec une démarche responsable.</p>
@@ -41,12 +41,32 @@
   <script>
 
     $(document).ready(function(){
+
+       $("#new_business").validate({
+        lang: 'fr',
+        rules: {
+          first_name: {
+            required: true,
+          },
+          last_name: {
+            required: true,
+          },
+          city: {
+            required: true
+          }
+        }
+      });
+
       $('.close-sign-box').click(function(event) {
         $('.sign-box').toggleClass('translate');
       });
 
       $('.connect-user').click(function(event) {
         $("#error-code").remove();
+        if (<%= device_type != :mobile %>) {
+          $('.connect-user').attr('style', 'visibility: hidden');
+          $('.connect-business').attr('style', 'visibility: visible');
+        }
         $('.sign-user').removeClass('hidden');
         $('.sign-business').addClass('hidden');
         $('.sign-box').toggleClass('translate');
@@ -54,10 +74,15 @@
 
       $('.connect-business').click(function(event) {
         $("#error-code").remove();
+        if (<%= device_type != :mobile %>) {
+          $('.connect-business').attr('style', 'visibility: hidden');
+          $('.connect-user').attr('style', 'visibility: visible');
+        }
         $('.sign-business').removeClass('hidden');
         $('.sign-user').addClass('hidden');
         $('.sign-box').toggleClass('translate');
       });
+
     });
 
   </script>

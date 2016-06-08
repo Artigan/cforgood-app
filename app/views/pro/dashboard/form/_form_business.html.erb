@@ -54,9 +54,9 @@
       <div class="select-wrapper">
         <%= f.input :business_category_id, required: true, label: 'Activité', collection: BusinessCategory.all %>
       </div>
-      <%= f.input :shop, label: "Avez-vous une boutique physique ?", as: :radio_buttons, collection: [['Oui', true ], ['Non', false ]], checked: current_business.shop || false  %>
-      <%= f.input :online, label: "Avez-vous une e-boutique ?", as: :radio_buttons, collection: [['Oui', true ], ['Non', false ]], checked: current_business.online || false  %>
-      <%= f.input :itinerant, label: "Etes-vous itinérant ?", as: :radio_buttons, collection: [['Oui', true ], ['Non', false ]], checked: current_business.itinerant || false  %>
+      <%= f.input :shop, label: "Es-tu une boutique physique ?", as: :radio_buttons, collection: [['Oui', true ], ['Non', false ]], checked: current_business.shop || false  %>
+      <%= f.input :online, label: "Es-tu une e-boutique ?", as: :radio_buttons, collection: [['Oui', true ], ['Non', false ]], checked: current_business.online || false  %>
+      <%= f.input :itinerant, label: "Es-tu itinérant ?", as: :radio_buttons, collection: [['Oui', true ], ['Non', false ]], checked: current_business.itinerant || false  %>
       <% if current_business.itinerant %>
         <a href="#" class="button-itinerant-address"><%= render "shared/icons/address" %></a>
       <% else %>
