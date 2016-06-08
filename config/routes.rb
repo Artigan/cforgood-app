@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   # ROOT TO APP CFORGOOD
   resources :businesses, only: [:index, :show]
 
-  devise_for :users, controllers: {omniauth_callbacks: 'users/omniauth_callbacks', passwords: :passwords }
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', passwords: :passwords }
   devise_scope :user do
     get 'signin',                   to: 'devise/sessions#new'
     post 'signin',                  to: 'devise/sessions#create'
@@ -46,7 +46,7 @@ Rails.application.routes.draw do
 
   get "map", to: "member/dashboard#dashboard"
 
-  devise_for :businesses, path: :pro, controllers: {passwords: :passwords}
+  devise_for :businesses, path: :pro, controllers: { passwords: :passwords }
   devise_scope :business do
     get "pro/sent_mail",        to: "pro/passwords#sent_mail"
     put "pro/update_business",  to: "pro/registrations#update_business"
