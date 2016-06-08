@@ -3,13 +3,16 @@
   text-align: center;
 }
 
-#error-code, span.help-block {
+#error-code, span.help-block, label.error {
+  text-transform: none !important;
   color: orange !important;
-  font-size: 12px !important;
-  font-weight: 100 !important;
+  font-size: 8px !important;
+  font-weight: 600 !important;
 }
+
 .alert {
-  position: absolute;
+  position:
+  absolute;
   background: transparent;
   border-color: transparent;
   color: orange;

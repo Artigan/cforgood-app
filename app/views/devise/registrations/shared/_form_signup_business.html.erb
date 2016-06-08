@@ -14,7 +14,7 @@
 
       <p>En cliquant sur <strong>S'inscrire</strong>, vous acceptez les <a type="href" class="" data-toggle="modal" data-target="#modal-cgu"><strong>CGU</strong></a> et certifiez avoir de plus de 18 ans.</p>
 
-      <%= f.button :submit, "s'inscrire", class: "btn btn-connexion", disabled: true %>
+      <%= f.button :submit, "s'inscrire", class: "btn btn-connexion" %>
     <% end %>
   </div>
 </div>
@@ -24,14 +24,16 @@
   <script>
 
     $(document).ready(function() {
-      $("form#new_business").on("change", function(e) {
-        e.preventDefault();
-        if ($("#business_name").val() != "" &&
-            $("#business_city").val() != "" &&
-            $("#business_business_category_id").val() != "" ) {
-          $("#new_business .btn-connexion").attr("disabled", false);
-        } else {
-        $("#new_business .btn-connexion").attr("disabled", true);
+
+      $("#new_business").validate({
+        lang: 'fr',
+        rules: {
+          name: {
+            required: true,
+          },
+          city: {
+            required: true,
+          }
         }
       });
 
@@ -40,3 +42,6 @@
   </script>
 
 <% end %>
+
+
+
