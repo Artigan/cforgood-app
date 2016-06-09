@@ -164,7 +164,7 @@
               z-index: 15;
               margin-top: 10px;
 
-              button {
+              button, .btn-use-button {
                 padding: 10px 20px;
                 margin: 0;
                 width: 100%;
@@ -177,6 +177,11 @@
                 font-size: 16px;
                 font-weight: 600;
                 outline: none;
+              }
+
+              .btn-use-button {
+                text-shadow: none;
+                background-color: #36d3da;
               }
 
               .empty {
@@ -514,7 +519,7 @@
             bottom: 20px;
             z-index: 15;
 
-            button {
+            button, .btn-use-button {
               padding: 10px 20px;
               margin: 0;
               width: 100%;
@@ -527,6 +532,11 @@
               font-size: 16px;
               font-weight: 600;
               outline: none;
+            }
+
+           .btn-use-button {
+              text-shadow: none;
+              background-color: #36d3da;
             }
 
             .empty {
