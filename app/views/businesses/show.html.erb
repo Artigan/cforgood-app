@@ -57,7 +57,7 @@
                  <button type="button" class="use-button" style="background-color: <%= @business.business_category.color %>;">J'en profite</button>
               <% end %>
             <% else %>
-              <%= link_to "J'en profite", new_member_subscribe_path, class: "btn btn-primary btn-block" %>
+              <%= link_to "J'en profite", new_member_subscribe_path, class: "btn btn-turquoise btn-block" %>
             <% end %>
           </div>
         </div>
@@ -153,7 +153,7 @@
                <button type="button" class="use-button" style="background-color: <%= @business.business_category.color %>;">J'en profite</button>
             <% end %>
           <% else %>
-            <%= link_to "J'en profite", new_member_subscribe_path, class: "btn btn-primary btn-block" %>
+            <%= link_to "J'en profite", new_member_subscribe_path, class: "btn btn-turquoise btn-block" %>
           <% end %>
         </div>
       </div>
@@ -209,23 +209,25 @@
 </div>
 
 <!-- MODAL CODE PERK -->
-<% if user_signed_in? && !current_user.member %>
-  <%= render "pro/perks/modals/code_perk_not_member" %>
-<% elsif Perk.find(params[:perk_id]).perk_detail.name == "email" %>
-  <%= render "pro/perks/modals/code_perk_mailto" %>
-<% elsif @business.online %>
-  <%= render "pro/perks/modals/code_perk_online" %>
-<% elsif device_type == :mobile %>
-  <% if @address.present? %>
-    <%= render "pro/perks/modals/code_perk_offline_mobile", latitude: @address.latitude, longitude: @address.longitude, street: @address.street, zipcode: @address.zipcode, city: @address.city %>
+<% if user_signed_in? %>
+  <% if !current_user.member %>
+    <%= render "pro/perks/modals/code_perk_not_member" %>
+  <% elsif Perk.find(params[:perk_id]).perk_detail.name == "email" %>
+    <%= render "pro/perks/modals/code_perk_mailto" %>
+  <% elsif @business.online %>
+    <%= render "pro/perks/modals/code_perk_online" %>
+  <% elsif device_type == :mobile %>
+    <% if @address.present? %>
+      <%= render "pro/perks/modals/code_perk_offline_mobile", latitude: @address.latitude, longitude: @address.longitude, street: @address.street, zipcode: @address.zipcode, city: @address.city %>
+    <% else %>
+      <%= render "pro/perks/modals/code_perk_offline_mobile", latitude: @business.latitude, longitude: @business.longitude, street: @business.street, zipcode: @business.zipcode, city: @business.city %>
+    <% end %>
   <% else %>
-    <%= render "pro/perks/modals/code_perk_offline_mobile", latitude: @business.latitude, longitude: @business.longitude, street: @business.street, zipcode: @business.zipcode, city: @business.city %>
-  <% end %>
-<% else %>
-  <% if @address.present? %>
-    <%= render "pro/perks/modals/code_perk_offline_desktop", latitude: @address.latitude, longitude: @address.longitude, street: @address.street, zipcode: @address.zipcode, city: @address.city %>
-  <% else %>
-    <%= render "pro/perks/modals/code_perk_offline_desktop", latitude: @business.latitude, longitude: @business.longitude, street: @business.street, zipcode: @business.zipcode, city: @business.city %>
+    <% if @address.present? %>
+      <%= render "pro/perks/modals/code_perk_offline_desktop", latitude: @address.latitude, longitude: @address.longitude, street: @address.street, zipcode: @address.zipcode, city: @address.city %>
+    <% else %>
+      <%= render "pro/perks/modals/code_perk_offline_desktop", latitude: @business.latitude, longitude: @business.longitude, street: @business.street, zipcode: @business.zipcode, city: @business.city %>
+    <% end %>
   <% end %>
 <% end %>
 
