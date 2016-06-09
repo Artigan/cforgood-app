@@ -24,6 +24,7 @@ gem "intercom-rails"
 gem 'sidekiq'
 gem 'sinatra'  # Dependency of sidekiq
 gem 'sidekiq-failures'
+gem 'possibly'
 
 gem "paperclip"
 gem "aws-sdk", "< 2.0"
