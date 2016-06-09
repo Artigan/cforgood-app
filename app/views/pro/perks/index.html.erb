@@ -102,8 +102,10 @@
     $(document).ready(function() {
       $(':checkbox').change(function(e) {
         e.preventDefault();
-        var updatePerk = "update_perk_" + ($(this).val("form").attr('id'))
-        if (<%= current_business.perks.active.count == 1 %>) {
+        var idPerk = $(this).val("form").attr('id');
+        var updatePerk = "update_perk_" + idPerk;
+        if ($('#' + idPerk).attr('checked') == 'checked' && <%= current_business.perks.active.count == 1 %>) {
+          $('.id-perk').html(updatePerk);
           $(".last-perk-desactivated").toggleClass("hidden");
         } else {
           $('#' + updatePerk).submit();

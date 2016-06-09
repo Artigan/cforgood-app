@@ -7,6 +7,7 @@
     </div>
     <span>Hey !</span>
     <p>Si tu désactives ce bon plan, tu ne seras plus visible sur la carte !!! </p>
+    <p class="id-perk hidden"></p>
     <button type="submit" id="valid-submit" class="business-button">Valider</button>
   </div>
 </div>
@@ -17,12 +18,13 @@
 
       $(".last-perk-desactivated .close-popup").click(function (e) {
         e.preventDefault();
-        $(".last-perk-desactivated").toggleClass('hidden');
+        location.reload();
       });
 
       $("#valid-submit").on("click", function (e) {
         e.preventDefault();
-        $('#' + updatePerk).submit();
+        var updateForm = $('.id-perk').html();
+        $('#' + updateForm).submit();
       });
 
     });
