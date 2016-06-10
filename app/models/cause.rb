@@ -35,7 +35,6 @@
 #  logo_updated_at           :datetime
 #  amount_impact             :integer
 #  active                    :boolean          default(FALSE), not null
-#  link_video                :string
 #
 # Indexes
 #
