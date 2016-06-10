@@ -6,6 +6,14 @@
 #error-code, span.help-block, label.error {
   text-transform: none !important;
   color: orange !important;
+}
+
+#error-code {
+  font-size: 10px !important;
+  font-weight: 200 !important;
+}
+
+span.help-block, label.error {
   font-size: 8px !important;
   font-weight: 600 !important;
 }
