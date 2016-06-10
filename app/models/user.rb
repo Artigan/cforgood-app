@@ -48,7 +48,6 @@
 #  code_partner           :string
 #  date_support           :date
 #  amount                 :integer
-#  date_stop_subscription :datetime
 #
 # Indexes
 #

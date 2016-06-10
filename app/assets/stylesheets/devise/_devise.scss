@@ -322,7 +322,14 @@
         }
 
         .form-group {
+          position: relative;
           width: 100%;
+          height: 36px;
+
+          label.error {
+            position: absolute;
+            bottom: -21px;
+          }
         }
 
         input,

@@ -39,9 +39,9 @@ ActiveRecord::Schema.define(version: 20160602235110) do
     t.string   "city"
     t.float    "latitude"
     t.float    "longitude"
+    t.boolean  "active",      default: true, null: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
-    t.boolean  "active",      default: true, null: false
     t.datetime "start_time"
     t.datetime "end_time"
   end
@@ -182,6 +182,12 @@ ActiveRecord::Schema.define(version: 20160602235110) do
 
   add_index "payments", ["cause_id"], name: "index_payments_on_cause_id", using: :btree
   add_index "payments", ["user_id"], name: "index_payments_on_user_id", using: :btree
+
+  create_table "periodicities", force: :cascade do |t|
+    t.string   "period"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "perk_details", force: :cascade do |t|
     t.string   "name"
