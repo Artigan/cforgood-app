@@ -1,6 +1,11 @@
 #error-code {
   margin-top: 15px 0 5px;
   text-align: center;
+
+  @media only screen and (max-width:768px){
+    position: absolute;
+    top: 25%;
+  }
 }
 
 #error-code, span.help-block, label.error {
