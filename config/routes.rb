@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   # ROOT TO APP CFORGOOD
   resources :businesses, only: [:index, :show]
 
-  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', passwords: :passwords }
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', passwords: :passwords }, path: '', path_names: {:sign_in => 'signin', :sign_up => 'signup'}
   devise_scope :user do
     get 'signin',                   to: 'devise/sessions#new'
     post 'signin',                  to: 'devise/sessions#create'

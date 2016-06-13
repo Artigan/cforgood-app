@@ -137,7 +137,7 @@ class User < ActiveRecord::Base
           name: access_token.extra.raw_info.name,
           first_name: access_token.extra.raw_info.first_name,
           last_name: access_token.extra.raw_info.last_name,
-          city: Maybe(access_token.extra.raw_info.location.name).split(",").first,
+          city: access_token.extra.raw_info.location.name.present? ? access_token.extra.raw_info.location.name.split(",").first : nil ,
           provider: access_token.provider,
           email: data.email,
           uid: access_token.uid,

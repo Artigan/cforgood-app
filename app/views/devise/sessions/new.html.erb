@@ -13,14 +13,14 @@
       <button type="button" class="btn-user">Se connecter</button>
     </div>
     <!-- SIGNIN AS BUSINESS -->
-    <div class="connect-business" style="visibility: visible;">
+    <div class="connect-business" style="<%= device_type == :mobile || !params[:business].present? ? 'visibility: visible;' : 'visibility: hidden;' %>">
       <i><%= render "shared/icons/shop" %></i>
       <span>Je suis partenaire ?</span>
       <p>Vous êtes un commerce avec une démarche responsable.</p>
       <button type="button" class="btn-business">Se connecter</button>
     </div>
   </div>
-  <div class="sign-box signin <%= params[:business].present? ? "translate" : "" %>">
+  <div class="sign-box signin <%= params[:business].present? || ( device_type == :mobile && ( flash[:alert].present? || resource.errors.any? ) ) ? "translate" : "" %>">
     <div class="close-sign-box"></div>
     <div class="sign-user <%= params[:business].present? ? "hidden" : "" %>">
       <!-- SIGNIN FORM USER -->
@@ -41,21 +41,6 @@
   <script>
 
     $(document).ready(function(){
-
-       $("#new_business").validate({
-        lang: 'fr',
-        rules: {
-          first_name: {
-            required: true,
-          },
-          last_name: {
-            required: true,
-          },
-          city: {
-            required: true
-          }
-        }
-      });
 
       $('.close-sign-box').click(function(event) {
         $('.sign-box').toggleClass('translate');
