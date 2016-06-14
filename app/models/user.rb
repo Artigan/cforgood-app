@@ -92,7 +92,7 @@ class User < ActiveRecord::Base
   after_validation :trial_done!, if: :subscription_changed?
   after_validation :subscription!, if: :subscription_changed?
 
-  after_create :send_registration_slack, :subscribe_to_newsletter_user
+  after_create :send_registration_slack, :subscribe_to_newsletter_user, :create_event_amplitude
 
   before_save :date_support!, if: :cause_id_changed?
 
@@ -278,7 +278,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  def create_data_amplitude
+  def create_event_amplitude
     # Configure your Amplitude API key
     AmplitudeAPI.api_key = ENV["AMPLITUDE_API_KEY"]
 

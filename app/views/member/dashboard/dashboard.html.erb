@@ -159,7 +159,7 @@
       if (<%= user_signed_in? %>) {
         amplitude.setUserId('<%= current_user.id %>');
       }
-        amplitude.logEvent('USER_DASHBOARD');
+      amplitude.logEvent('USER_DASHBOARD');
 
     });
   </script>

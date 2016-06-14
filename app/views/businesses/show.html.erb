@@ -250,12 +250,16 @@
         amplitude.logEvent('USER_C_BENEFIT');
       });
 
+      $(".btn-use-button").click(function() {
+        // EVENT AMPLITUDE USER_C_BENEFIT
+        amplitude.logEvent('USER_C_BENEFIT');
+      });
+
       $(".close-button").click(function() {
         $('.use-overlay').addClass('hidden');
       });
 
-      // EVENT AMPLITUDE USER_PERK
-      amplitude.logEvent('USER_PERK');
+      amplitude.logEvent('USER_SHOW_PERK');
 
     });
 
