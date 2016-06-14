@@ -81,6 +81,13 @@
         $('.search-category').removeClass('is-open-max');
         $('.category-item').removeClass('is-open-min');
       });
+
+      // EVENT AMPLITUDE USER_ALL_PERKS + USER_C_BUSINESS_ALLPERKS
+      amplitude.logEvent('USER_ALL_PERKS');
+      $('.card-frame').click(function(event) {
+        amplitude.logEvent('USER_C_BUSINESS_ALLPERKS');
+      });
+
     });
 
     var buttonFilter = {

@@ -87,6 +87,12 @@
         $('.search-category').removeClass('is-open-max');
         $('.category-item').removeClass('is-open-min');
       });
+
+      // EVENT AMPLITUDE USER_ALL_CAUSES + USER_C_CAUSE_ALLCAUSES
+      amplitude.logEvent('USER_ALL_CAUSES');
+      $('.card-frame').click(function(event) {
+        amplitude.logEvent('USER_C_CAUSE_ALLCAUSES');
+      });
     });
   </script>
 <% end %>

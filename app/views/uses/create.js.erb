@@ -5,6 +5,8 @@
   <% else %>
     // REDIRECTION TO MEMBER
     $('.flipper-mobile').toggleClass('flipped');
+    // EVENT AMPLITUDE : USER_PERK_VALIDATED - CARD-MEMBER
+    amplitude.logEvent('USER_PERK_VALIDATED');
   <% end %>
 <% else %>
   $("#error-code").html("");
