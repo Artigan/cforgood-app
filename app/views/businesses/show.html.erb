@@ -246,11 +246,20 @@
 
       $(".use-button").click(function() {
         $('.use-overlay').removeClass('hidden');
+        // EVENT AMPLITUDE USER_C_BENEFIT
+        amplitude.logEvent('USER_C_BENEFIT');
+      });
+
+      $(".btn-use-button").click(function() {
+        // EVENT AMPLITUDE USER_C_BENEFIT
+        amplitude.logEvent('USER_C_BENEFIT');
       });
 
       $(".close-button").click(function() {
         $('.use-overlay').addClass('hidden');
       });
+
+      amplitude.logEvent('USER_SHOW_PERK');
 
     });
 

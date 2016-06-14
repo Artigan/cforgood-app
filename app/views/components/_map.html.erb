@@ -175,6 +175,9 @@
       .setLngLat(feature.geometry.coordinates)
       .setHTML(feature.properties.description)
       .addTo(map);
+
+    // EVENT AMPLITUDE : USER_C_BUSINESS_MAP
+    amplitude.logEvent('USER_C_BUSINESS_MAP');
   });
 
   // Use the same approach as above to indicate that the symbols are clickable
