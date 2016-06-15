@@ -156,9 +156,6 @@
       });
 
       // EVENT AMPLITUDE : USER_DASHBOARD
-      if (<%= user_signed_in? %>) {
-        amplitude.setUserId('<%= current_user.id %>');
-      }
       amplitude.logEvent('USER_DASHBOARD');
 
     });
