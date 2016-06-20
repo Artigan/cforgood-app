@@ -71,6 +71,10 @@ class User < ActiveRecord::Base
   has_many :uses
   has_many :payments, dependent: :destroy
 
+  scope :member, -> { where(member: true) }
+  scope :member_should_payin, -> { where('users.member = ? and users.subscription = ? and users.date_last_payment > ?', true, true, Time.now - 1.month) }
+
+
   validates :email, presence: true, uniqueness: true
   # validates :first_name, presence: true
   # validates :last_name, presence: true
