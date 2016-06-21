@@ -42,7 +42,7 @@
         <div class="cause-details">
           <!-- BUSINESS | DESCRIPTION -->
           <h2>En savoir plus</h2>
-          <p><%= @cause.description %></p>
+          <p><%= simple_format(@cause.description) %></p>
           <!-- BLOCK VIDEO -->
           <% if @cause.link_video.present? %>
             <div class="cause-video">
