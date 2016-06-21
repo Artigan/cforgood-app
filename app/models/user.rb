@@ -44,10 +44,11 @@
 #  city                   :string
 #  latitude               :float
 #  longitude              :float
-#  date_partner           :date
+#  date_end_partner       :date
 #  code_partner           :string
 #  date_support           :date
 #  amount                 :integer
+#  date_stop_subscription :datetime
 #
 # Indexes
 #
@@ -70,6 +71,10 @@ class User < ActiveRecord::Base
   belongs_to :cause
   has_many :uses
   has_many :payments, dependent: :destroy
+
+  scope :member, -> { where(member: true) }
+  scope :member_should_payin, -> { where('users.member = ? and users.subscription = ? and users.date_last_payment <= ?', true, "M", Time.now - 1.month) }
+  scope :member_on_trial_should_payin, -> { where('users.member = ? and users.subscription = ? and users.date_end_partner <= ?', true, "T", Time.now) }
 
   validates :email, presence: true, uniqueness: true
   # validates :first_name, presence: true
@@ -157,13 +162,8 @@ class User < ActiveRecord::Base
   end
 
   def should_payin?
-    if self.subscription == "T"
-      nb_month = Partner.find_by_code_partner(self.code_partner).nb_month
-    else
-      nb_month = 1
-    end
-    ((self.subscription != "T" && (!self.date_last_payment.present? || self.date_last_payment < Time.now - nb_month.month)) ||
-    (self.subscription == "T" && self.date_subscription < Time.now - nb_month.month))
+    ((self.subscription != "T" && (!self.date_last_payment.present? || self.date_last_payment < Time.now - 1.month)) ||
+    (self.subscription == "T" && self.date_end_partner < Time.now))
   end
 
   def find_name?
@@ -228,7 +228,7 @@ class User < ActiveRecord::Base
     if code_partner.present?
       if Partner.find_by_code_partner(code_partner.upcase)
         self.code_partner.upcase!
-        self.date_partner = Time.now
+        self.date_end_partner = Time.now + Partner.find_by_code_partner(self.code_partner).nb_month.month
       else
         errors.add(:code_partner, "Code promotionnel invalide")
       end
