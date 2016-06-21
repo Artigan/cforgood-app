@@ -7,6 +7,21 @@
 <title><%= meta_title %></title>
 <meta name="description" content="<%= meta_description %>">
 
+<!-- OneSignal -->
+
+<link rel="manifest" href="/manifest.json">
+<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async></script>
+<script>
+  var OneSignal = OneSignal || [];
+  OneSignal.push(["init", {
+    appId: "35ad906a-551b-4399-82a8-071c457cc45e",
+    autoRegister: false,
+    notifyButton: {
+      enable: true /* Set to false to hide */
+    }
+  }]);
+</script>
+
 <!-- Favicons -->
 <link rel="apple-touch-icon" sizes="57x57" href="<%= image_path 'favicons/apple-touch-icon-57x57.png' %>">
 <link rel="apple-touch-icon" sizes="60x60" href="<%= image_path 'favicons/apple-touch-icon-60x60.png' %>">
