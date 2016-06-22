@@ -25,6 +25,8 @@ class Payment < ActiveRecord::Base
   belongs_to :user
   belongs_to :cause
 
+  scope :valid_payment, -> { where(done: true) }
+
   validates :user_id, presence: true
   validates :cause_id, presence: true
   validates :amount, presence: true
@@ -35,7 +37,7 @@ class Payment < ActiveRecord::Base
 
   def create_event_intercom
     @user = User.find(user_id)
-    if @user.payments.count <= 1
+    if @user.payments.valid_payment.count <= 1
       intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
       begin
         intercom.events.create(
