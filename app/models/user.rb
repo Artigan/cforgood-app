@@ -94,10 +94,10 @@ class User < ActiveRecord::Base
 
   before_create :default_cause_id!
 
-  after_validation :trial_done!, if: :subscription_changed?
-  after_validation :subscription!, if: :subscription_changed?
-
   after_create :send_registration_slack, :subscribe_to_newsletter_user, :create_event_amplitude
+
+  before_save :trial_done!, if: :subscription_changed?
+  before_save :subscription!, if: :subscription_changed?
 
   before_save :date_support!, if: :cause_id_changed?
 

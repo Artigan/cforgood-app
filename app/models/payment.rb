@@ -37,7 +37,7 @@ class Payment < ActiveRecord::Base
 
   def create_event_intercom
     @user = User.find(user_id)
-    if @user.payments.valid_payment.count <= 1
+    if @user.payments.valid_payment.count <= 1 && self.done == true
       intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
       begin
         intercom.events.create(

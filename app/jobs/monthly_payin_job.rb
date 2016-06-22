@@ -33,7 +33,7 @@ class MonthlyPayinJob < ActiveJob::Base
     end
 
     puts ""
-    puts "Nb user on trial J-7 : #{@user_trial_J_7.count}"
+    puts "Nb user on trial J-7 : #{@user_trial_J_7.size}"
     puts "Nb event for trial J-7 : #{nb_events_trial_J_7}"
     puts "-----------------------------------------"
     puts ""
@@ -62,7 +62,7 @@ class MonthlyPayinJob < ActiveJob::Base
     end
 
     puts ""
-    puts "Nb user on trial J-3 : #{@user_trial_J_3.count}"
+    puts "Nb user on trial J-3 : #{@user_trial_J_3.size}"
     puts "Nb event for trial J-3 : #{nb_events_trial_J_3}"
     puts "-----------------------------------------"
     puts ""
@@ -79,11 +79,14 @@ class MonthlyPayinJob < ActiveJob::Base
     @user_trial_J_0.each do |user|
       if user.card_id.present?
         if monthly_payin(user)
+          #CHANGE SUBSCRIPTION : TRIAL IS DONE !
+          user.update_attribute("subscription", "M")
           nb_payin_trial_OK += 1
         else
           nb_payin_trial_KO += 1
         end
       else
+        user.update_attribute(member: false)
         begin
           intercom.events.create(
             event_name: "TRIAL-J-0",
@@ -98,34 +101,35 @@ class MonthlyPayinJob < ActiveJob::Base
     end
 
     puts ""
-    puts "Nb user on trial J-0 : #{@user_trial_J_0.count}"
+    puts "Nb user on trial J-0 : #{@user_trial_J_0.size}"
     puts "Nb payin OK trial J-0 : #{nb_payin_trial_OK}"
     puts "Nb payin KO trial J-0 : #{nb_payin_trial_KO}"
     puts "Nb event for trial J-0 : #{nb_events_trial_J_0}"
     puts "-----------------------------------------"
     puts ""
 
-    # puts "-----------------------------------------"
-    # puts "MONTHLY MEMBER"
-    # puts "-----------------------------------------"
+    puts "-----------------------------------------"
+    puts "MONTHLY MEMBER"
+    puts "-----------------------------------------"
 
-    # @user_member_should_payin = User.member_should_payin
-    # nb_member_payin_OK = 0
-    # nb_member_payin_KO = 0
+    @user_member_should_payin = User.member_should_payin
+    nb_member_payin_OK = 0
+    nb_member_payin_KO = 0
 
-    # @user_member_should_payin.each do |user|
-    #   if monthly_payin(user)
-    #     nb_member_payin_OK += 1
-    #   else
-    #     nb_member_payin_KO += 1
-    #   end
-    # end
+    @user_member_should_payin.each do |user|
+      if monthly_payin(user)
+        nb_member_payin_OK += 1
+      else
+        nb_member_payin_KO += 1
+      end
+    end
 
-    # puts "Nb member should payin : " + @user_member_should_payin.count
-    # puts "Nb payin OK trial J-0 : " + nb_member_payin_OK
-    # puts "Nb payin KO trial J-0 : " + nb_member_payin_KO
-    # puts "-----------------------------------------"
-    # puts ""
+    puts ""
+    puts "Nb member should payin : #{@user_member_should_payin.size}"
+    puts "Nb payin OK trial J-0 : #{nb_member_payin_OK}"
+    puts "Nb payin KO trial J-0 : #{nb_member_payin_KO}"
+    puts "-----------------------------------------"
+    puts ""
 
   end
 
@@ -134,8 +138,16 @@ class MonthlyPayinJob < ActiveJob::Base
   def monthly_payin(user)
     wallet_id = Cause.find_by_id(user.cause_id).wallet_id if user.cause_id
     wallet_id = ENV['MANGOPAY_CFORGOOD_WALLET_ID'] unless wallet_id
+
     result = MangopayServices.new(user).create_mangopay_payin(wallet_id)
-    binding.pry
+
+    if result["ResultMessage"] != "Success"
+      puts ""
+      puts "-----------------------------------------"
+      puts "User_id #{user.id} error : #{result}"
+      puts "-----------------------------------------"
+    end
+
     @payment = user.payments.new(cause_id: user.cause_id, amount: user.amount, done: result["ResultMessage"] == "Success" ? true : false)
     @payment.save
 

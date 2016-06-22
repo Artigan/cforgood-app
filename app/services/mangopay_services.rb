@@ -60,11 +60,8 @@ class MangopayServices
       SecureModeReturnURL:"https://www.cforgood.com",
       StatementDescriptor: "CFORGOOD"
     }
-    begin
-      mangopay_payin_card_direct(payin_info)
-    rescue MangoPay::ResponseError => e
-      binding.pry
-    end
+
+    mangopay_payin_card_direct(payin_info)
 
   end
 
