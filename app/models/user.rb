@@ -73,7 +73,7 @@ class User < ActiveRecord::Base
   has_many :payments, dependent: :destroy
 
   scope :member, -> { where(member: true) }
-  scope :member_should_payin, -> { where('users.member = ? and users.subscription = ? and users.date_last_payment <= ?', true, "M", Time.now - 1.month) }
+  scope :member_should_payin, lambda {|day| where('users.member = ? and users.subscription = ? and users.date_last_payment between ? and ?', true, "M", (Time.now - 1.month - day.day).beginning_of_day,  (Time.now - 1.month - day.day).end_of_day) }
   scope :member_on_trial_should_payin, lambda {|day| where('users.member = ? and users.subscription = ? and users.date_end_partner = ?', true, "T", Time.now - day.day) }
 
   validates :email, presence: true, uniqueness: true
@@ -295,13 +295,28 @@ class User < ActiveRecord::Base
 
   def update_data_intercom
     # UPDATE CUSTOM ATTRIBUTES ON INTERCOM
-    if active_changed? or cause_id_changed? or member_changed?
-      intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
+
+    intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
+    begin
+      user = intercom.users.find(:user_id => self.id)
+      user.custom_attributes["user_active"] = self.active
+      user.custom_attributes["user_cause"] = self.cause.name
+      user.custom_attributes["user_member"] = self.member
+      intercom.users.save(user)
+    rescue Intercom::ResourceNotFound
       begin
-        user = intercom.users.find(:user_id => self.id)
-        user.custom_attributes["user_active"] = self.active
-        user.custom_attributes["user_cause"] = self.cause.name
-        user.custom_attributes["user_member"] = self.member
+        user = intercom.users.create(
+          :user_id => self.id,
+          :email => self.email,
+          :name => self.name,
+          :created_at => created_at,
+          :custom_data => {
+            'user_type' => 'user',
+            'user_active' => self.active,
+            'first_name' => self.first_name,
+            'user_cause' => self.cause.name,
+            'user_member' => self.member
+          })
         intercom.users.save(user)
       rescue Intercom::ResourceNotFound
       end

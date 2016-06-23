@@ -9,11 +9,8 @@ class DailyControlFlashJob < ActiveJob::Base
 
     @perks = Perk.active.where('flash = ? and end_date < ?', true, Time.now)
 
-    if @perks.present?
-      puts "nb perks in: #{@perks.count}"
-    else
-      puts "nb perks in: 0"
-    end
+
+    puts "Nb perks in | #{@perks.size}"
     puts "-----------------------------------------"
 
     nb_perk_inactivated = 0
@@ -21,12 +18,12 @@ class DailyControlFlashJob < ActiveJob::Base
     @perks.each do |perk|
       if perk.update(active: false)
         nb_perk_inactivated += 1
-        puts "perk: #{perk.id} - business: #{perk.business.name} (#{perk.business_id}) - inactive"
+        puts "perk | #{perk.id} | business | #{perk.business_id} | #{perk.business.name} | inactive"
       end
     end
 
     puts "-----------------------------------------"
-    puts "nb perks updated: #{nb_perk_inactivated}"
+    puts "Nb perks updated | #{nb_perk_inactivated}"
     puts "-----------------------------------------"
   end
 end
