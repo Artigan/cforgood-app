@@ -53,7 +53,11 @@
     <% else %>
       <%= link_to "Je me désabonne", "#", class: "btn btn-no-subscription stop-subscription disabled" %>
     <% end %>
-    <%= link_to "Mettre à jour mes données bancaires", "#payment", role: "tab", data_toggle: "tab", class: "show-payment btn btn-no-subscription" %>
+    <% if current_user.amount.present? %>
+      <%= link_to "Mettre à jour mes données bancaires", "#payment", role: "tab", data_toggle: "tab", class: "show-payment btn btn-no-subscription" %>
+    <% else %>
+      <%= link_to "Mettre à jour mes données bancaires", "#payment", role: "tab", data_toggle: "tab", class: "show-payment btn btn-no-subscription disabled" %>
+    <% end %>
   </div>
 </div>
 

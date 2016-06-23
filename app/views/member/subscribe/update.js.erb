@@ -9,6 +9,7 @@ if (<%= !current_user.errors.any? %>) {
     // DISCLAIMER - DISPLAYED
     $(".done-overlay").removeClass("hidden");
     $('.btn-subscription').val('Sauvegarder');
+    $('.show-payment.btn').removeClass("disabled");
 
     if (<%= current_user.member %>) {
       $(".stop-subscription").removeClass("disabled");

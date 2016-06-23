@@ -44,10 +44,11 @@
 #  city                   :string
 #  latitude               :float
 #  longitude              :float
-#  date_partner           :date
+#  date_end_partner       :date
 #  code_partner           :string
 #  date_support           :date
 #  amount                 :integer
+#  date_stop_subscription :datetime
 #
 # Indexes
 #
@@ -71,6 +72,10 @@ class User < ActiveRecord::Base
   has_many :uses
   has_many :payments, dependent: :destroy
 
+  scope :member, -> { where(member: true) }
+  scope :member_should_payin, lambda {|day| where('users.member = ? and users.subscription = ? and users.date_last_payment between ? and ?', true, "M", (Time.now - 1.month - day.day).beginning_of_day,  (Time.now - 1.month - day.day).end_of_day) }
+  scope :member_on_trial_should_payin, lambda {|day| where('users.member = ? and users.subscription = ? and users.date_end_partner = ?', true, "T", Time.now - day.day) }
+
   validates :email, presence: true, uniqueness: true
   # validates :first_name, presence: true
   # validates :last_name, presence: true
@@ -89,10 +94,10 @@ class User < ActiveRecord::Base
 
   before_create :default_cause_id!
 
-  after_validation :trial_done!, if: :subscription_changed?
-  after_validation :subscription!, if: :subscription_changed?
-
   after_create :send_registration_slack, :subscribe_to_newsletter_user, :create_event_amplitude
+
+  before_save :trial_done!, if: :subscription_changed?
+  before_save :subscription!, if: :subscription_changed?
 
   before_save :date_support!, if: :cause_id_changed?
 
@@ -157,13 +162,8 @@ class User < ActiveRecord::Base
   end
 
   def should_payin?
-    if self.subscription == "T"
-      nb_month = Partner.find_by_code_partner(self.code_partner).nb_month
-    else
-      nb_month = 1
-    end
-    ((self.subscription != "T" && (!self.date_last_payment.present? || self.date_last_payment < Time.now - nb_month.month)) ||
-    (self.subscription == "T" && self.date_subscription < Time.now - nb_month.month))
+    ((self.subscription != "T" && (!self.date_last_payment.present? || self.date_last_payment < Time.now - 1.month)) ||
+    (self.subscription == "T" && self.date_end_partner < Time.now))
   end
 
   def find_name?
@@ -228,7 +228,7 @@ class User < ActiveRecord::Base
     if code_partner.present?
       if Partner.find_by_code_partner(code_partner.upcase)
         self.code_partner.upcase!
-        self.date_partner = Time.now
+        self.date_end_partner = Time.now + Partner.find_by_code_partner(self.code_partner).nb_month.month
       else
         errors.add(:code_partner, "Code promotionnel invalide")
       end
@@ -295,13 +295,28 @@ class User < ActiveRecord::Base
 
   def update_data_intercom
     # UPDATE CUSTOM ATTRIBUTES ON INTERCOM
-    if active_changed? or cause_id_changed? or member_changed?
-      intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
+
+    intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
+    begin
+      user = intercom.users.find(:user_id => self.id)
+      user.custom_attributes["user_active"] = self.active
+      user.custom_attributes["user_cause"] = self.cause.name
+      user.custom_attributes["user_member"] = self.member
+      intercom.users.save(user)
+    rescue Intercom::ResourceNotFound
       begin
-        user = intercom.users.find(:user_id => self.id)
-        user.custom_attributes["user_active"] = self.active
-        user.custom_attributes["user_cause"] = self.cause.name
-        user.custom_attributes["user_member"] = self.member
+        user = intercom.users.create(
+          :user_id => self.id,
+          :email => self.email,
+          :name => self.name,
+          :created_at => created_at,
+          :custom_data => {
+            'user_type' => 'user',
+            'user_active' => self.active,
+            'first_name' => self.first_name,
+            'user_cause' => self.cause.name,
+            'user_member' => self.member
+          })
         intercom.users.save(user)
       rescue Intercom::ResourceNotFound
       end

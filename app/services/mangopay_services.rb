@@ -62,6 +62,7 @@ class MangopayServices
     }
 
     mangopay_payin_card_direct(payin_info)
+
   end
 
 
@@ -101,7 +102,11 @@ class MangopayServices
   end
 
   def mangopay_payin_card_direct(payin_info)
-    MangoPay::PayIn::Card::Direct.create(payin_info)
+    begin
+      MangoPay::PayIn::Card::Direct.create(payin_info)
+    rescue MangoPay::ResponseError => e
+      return e.message
+    end
   end
 
   def mangopay_legal_user_create(legal_user_info)

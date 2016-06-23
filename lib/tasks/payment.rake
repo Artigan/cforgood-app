@@ -1,15 +1,15 @@
-namespace :perk do
+namespace :payment do
 
-  desc "Control flash in time"
-  task daily_control_flash: :environment do
+  desc "Control monthly payment"
+  task monthly_payin: :environment do
     puts "----------------------------------------"
-    puts "TASK PERK_IN_TIME STARTING"
+    puts "TASK MONTHLY_PAYIN STARTING"
     puts "----------------------------------------"
 
-    DailyControlFlashJob.perform_later
+    MonthlyPayinJob.perform_later
 
     puts "----------------------------------------"
-    puts "TASK PERK_IN_TIME DONE"
+    puts "TASK MONTHLY_PAYIN DONE"
     puts "----------------------------------------"
   end
 
