@@ -3,13 +3,14 @@ class Member::DashboardController < ApplicationController
   skip_before_action :authenticate_user!, only: [:dashboard]
 
   def dashboard
-    if cookies[:coordinates].present?
+    # Patch during VIDEO && SALON
+    if  current_user.email == "allan.floury@gmail.com" || current_user.email == "frederique.petris@gmail.com" || !cookies[:coordinates].present?
+      lat = 44.837789
+      lng = -0.57918
+    else
       coordinates = cookies[:coordinates].split('&')
       lat = coordinates[0]
       lng = coordinates[1]
-    else
-      lat = 44.837789
-      lng = -0.57918
     end
     @businesses_around = Business.near([lat, lng], 10).active.for_map.joins(:perks).merge(Perk.in_time).distinct.size
     @businesses = Business.active.for_map.joins(:perks).merge(Perk.in_time).distinct

@@ -245,6 +245,11 @@
     $(document).ready(function() {
 
       $(".use-button").click(function() {
+        // Patch during VIDEO && SALON
+        if ($('div').hasClass('member-card') && (<%= current_user.email == "allan.floury@gmail.com" || current_user.email == "frederique.petris@gmail.com" %>)) {
+         $('.flipper-mobile').toggleClass('flipped');
+        }
+        // END Patch during VIDEO && SALON
         $('.use-overlay').removeClass('hidden');
         // EVENT AMPLITUDE USER_C_BENEFIT
         amplitude.logEvent('USER_C_BENEFIT');
