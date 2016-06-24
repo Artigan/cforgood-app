@@ -299,8 +299,8 @@ class User < ActiveRecord::Base
     intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
     begin
       user = intercom.users.find(:user_id => self.id)
-      user.custom_attributes["user_type" = 'user',
-      user.custom_attributes["first_name" = self.first_name,
+      user.custom_attributes["user_type"] = 'user'
+      user.custom_attributes["first_name"] = self.first_name
       user.custom_attributes["user_active"] = self.active
       user.custom_attributes["user_cause"] = self.cause.name
       user.custom_attributes["user_member"] = self.member
