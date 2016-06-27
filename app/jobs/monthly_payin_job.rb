@@ -134,8 +134,8 @@ class MonthlyPayinJob < ActiveJob::Base
 
     puts ""
     puts "Nb members should payin | #{@user_member_should_payin.size}"
-    puts "Nb payin OK trial J-0 | #{nb_member_payin_OK}"
-    puts "Nb payin KO trial J-0 | #{nb_member_payin_KO}"
+    puts "Nb payin OK J-0 | #{nb_member_payin_OK}"
+    puts "Nb payin KO J-0 | #{nb_member_payin_KO}"
     puts "-----------------------------------------"
     puts ""
 
