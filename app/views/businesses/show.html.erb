@@ -246,7 +246,7 @@
 
       $(".use-button").click(function() {
         // Patch during VIDEO && SALON
-        if ($('div').hasClass('member-card') && (<%= current_user.email == "allan.floury@gmail.com" || current_user.email == "frederique.petris@gmail.com" %>)) {
+        if ($('div').hasClass('member-card') && (<%= current_user.present? && (current_user.email == "allan.floury@gmail.com" || current_user.email == "frederique.petris@gmail.com" )%>)) {
          $('.flipper-mobile').toggleClass('flipped');
         }
         // END Patch during VIDEO && SALON
