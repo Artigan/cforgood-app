@@ -26,7 +26,7 @@ class MonthlyPayinJob < ActiveJob::Base
             user_id: user.id,
             email: user.email
           )
-        rescue Intercom::ResourceNotFound
+        rescue Intercom::IntercomError => e
         end
         nb_events_trial_J_7 += 1
         puts "MEMBER ON TRIAL J-7 | event intercom | #{user.id} | #{user.email}"
@@ -56,7 +56,7 @@ class MonthlyPayinJob < ActiveJob::Base
             user_id: user.id,
             email: user.email
           )
-        rescue Intercom::ResourceNotFound
+        rescue Intercom::IntercomError => e
         end
         nb_events_trial_J_3 += 1
         puts "MEMBER ON TRIAL J-3 | event intercom | #{user.id} | #{user.email}"
@@ -99,7 +99,7 @@ class MonthlyPayinJob < ActiveJob::Base
             user_id: user.id,
             email: user.email
           )
-        rescue Intercom::ResourceNotFound
+        rescue Intercom::IntercomError => e
         end
         nb_events_trial_J_0 += 1
         puts "MEMBER ON TRIAL J-0 | event intercom + member inactivate | #{user.id} | #{user.email}"
@@ -156,7 +156,7 @@ class MonthlyPayinJob < ActiveJob::Base
           user_id: user.id,
           email: user.email
         )
-      rescue Intercom::ResourceNotFound
+      rescue Intercom::IntercomError => e
       end
       nb_events_member_J_7 += 1
       puts "MONTHLY MEMBER J+7 | event intercom + member inactivate | #{user.id} | #{user.email}"
@@ -199,7 +199,7 @@ class MonthlyPayinJob < ActiveJob::Base
           user_id: user.id,
           email: user.email
         )
-      rescue Intercom::ResourceNotFound
+      rescue Intercom::IntercomError => e
       end
       return false
     end

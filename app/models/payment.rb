@@ -50,7 +50,7 @@ class Payment < ActiveRecord::Base
             cause_id: @user.cause.name
           }
         )
-      rescue Intercom::ResourceNotFound
+      rescue Intercom::IntercomError => e
       end
     end
   end

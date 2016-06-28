@@ -42,7 +42,7 @@ class Use < ActiveRecord::Base
           perk_name: @perk.name
         }
       )
-    rescue Intercom::ResourceNotFound
+    rescue Intercom::IntercomError => e
     end
   end
 end
