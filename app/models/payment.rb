@@ -50,27 +50,28 @@ class Payment < ActiveRecord::Base
             cause_id: @user.cause.name
           }
         )
-      rescue Intercom::ResourceNotFound
+      rescue Intercom::IntercomError => e
       end
     end
   end
 
   def send_payment_slack
     if Rails.env.production?
-      notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_USER_URL']
+      if @user.payments.valid_payment.count <= 1 && self.done == true
+        notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_USER_URL']
 
-      if @user.last_name.present?
-        message = "#{@user.first_name} #{@user.last_name}"
-      elsif name.present?
-        message = "#{@user.name}"
-      else
-        massage = "#{@user.email}"
+        if @user.last_name.present?
+          message = "#{@user.first_name} #{@user.last_name}"
+        elsif name.present?
+          message = "#{@user.name}"
+        else
+          massage = "#{@user.email}"
+        end
+
+        message = message + " a souscrit une participation de " + @user.amount.to_s + "€."
+
+        notifier.ping message
       end
-
-      message = message + " a souscrit une participation de " + @user.amount.to_s + "€."
-
-      notifier.ping message
-
     end
   end
 end
