@@ -196,7 +196,7 @@ class User < ActiveRecord::Base
         user_id: self.id,
         email: self.email
       )
-    rescue Intercom::ResourceNotFound
+    rescue Intercom::IntercomError => e
     end
   end
 
@@ -305,7 +305,7 @@ class User < ActiveRecord::Base
       user.custom_attributes["user_cause"] = self.cause.name
       user.custom_attributes["user_member"] = self.member
       intercom.users.save(user)
-    rescue Intercom::ResourceNotFound
+    rescue Intercom::IntercomError => e
       begin
         user = intercom.users.create(
           :user_id => self.id,
@@ -320,7 +320,7 @@ class User < ActiveRecord::Base
             'user_member' => self.member
           })
         intercom.users.save(user)
-      rescue Intercom::ResourceNotFound
+      rescue Intercom::IntercomError => e
       end
     end
   end

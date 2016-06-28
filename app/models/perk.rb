@@ -150,7 +150,7 @@ class Perk < ActiveRecord::Base
       user.custom_attributes[:perks_all] = Business.find(self.business_id).perks.count
       user.custom_attributes[:perks_active] = Business.find(self.business_id).perks.active.count
       intercom.users.save(user)
-    rescue Intercom::ResourceNotFound
+    rescue Intercom::IntercomError => e
     end
   end
 

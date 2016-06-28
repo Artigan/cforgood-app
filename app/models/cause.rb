@@ -104,7 +104,7 @@ class Cause < ActiveRecord::Base
       user.custom_attributes["user_active"] = active
       user.custom_attributes["first_name"]  = representative_first_name
       intercom.users.save(user)
-    rescue Intercom::ResourceNotFound
+    rescue Intercom::IntercomError => e
     end
   end
 end
