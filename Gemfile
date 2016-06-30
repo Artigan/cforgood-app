@@ -28,6 +28,8 @@ gem 'possibly'
 
 gem "paperclip"
 gem "aws-sdk", "< 2.0"
+gem 'carrierwave'
+gem "cloudinary"
 gem 'remotipart', '~> 1.2'
 gem "gibbon"
 gem 'postmark-rails', '~> 0.12.0'

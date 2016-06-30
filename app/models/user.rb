@@ -81,6 +81,7 @@ class User < ActiveRecord::Base
   # validates :last_name, presence: true
   # validates :city, presence: true
 
+  # mount_uploader :picture, PhotoUploader
   has_attached_file :picture,
     styles: { medium: "300x300#", thumb: "100x100#" }
 
