@@ -4,7 +4,7 @@ class Member::DashboardController < ApplicationController
 
   def dashboard
     # Patch during VIDEO && SALON
-    if ( current_user.present? && ( current_user.email == "allan.floury@gmail.com" || current_user.email == "frederique.petris@gmail.com" )) || !cookies[:coordinates].present?
+    if (current_user.present? && (current_user.email == "allan.floury@gmail.com" || current_user.email == "frederique.petris@gmail.com" )) || !cookies[:coordinates].present?
       lat = 44.837789
       lng = -0.57918
     else
