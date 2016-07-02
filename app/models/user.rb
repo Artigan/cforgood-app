@@ -74,7 +74,7 @@ class User < ActiveRecord::Base
 
   scope :member, -> { where(member: true) }
   scope :member_should_payin, lambda {|day| where('users.member = ? and users.subscription = ? and users.date_last_payment between ? and ?', true, "M", (Time.now - 1.month - day.day).beginning_of_day,  (Time.now - 1.month - day.day).end_of_day) }
-  scope :member_on_trial_should_payin, lambda {|day| where('users.member = ? and users.subscription = ? and users.date_end_partner = ?', true, "T", Time.now - day.day) }
+  scope :member_on_trial_should_payin, lambda {|day| where('users.member = ? and users.subscription = ? and users.date_end_partner = ?', true, "T", Time.now + day.day) }
 
   validates :email, presence: true, uniqueness: true
   # validates :first_name, presence: true
