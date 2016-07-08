@@ -7,8 +7,8 @@
         <label>Photo</label>
         <div class="picture-container">
           <% if current_user.picture? %>
-            <%= image_tag current_user.picture(:thumb), class: 'user-picture' %>
-            <%= cl_image_tag(current_user.picture(:thumb), width: 100, height: 100, class: 'user-picture')  %>
+            <%#= image_tag current_user.picture(:thumb), class: 'user-picture' %>
+            <%= cl_image_tag current_user.picture.url(:avatar), class: 'user-picture'  %>
 
           <% else %>
             <div class="picture-none">
@@ -17,6 +17,7 @@
           <% end %>
         </div>
         <%= f.input :picture, as: :file, required: false, label: 'Sélectionner une nouvelle image' %>
+        <%= f.input :picture_cache, as: :hidden %>
       </div>
 
       <div class="col-1">

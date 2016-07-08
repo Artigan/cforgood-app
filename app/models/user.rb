@@ -49,6 +49,7 @@
 #  date_support           :date
 #  amount                 :integer
 #  date_stop_subscription :datetime
+#  picture                :string
 #
 # Indexes
 #
@@ -81,12 +82,12 @@ class User < ActiveRecord::Base
   # validates :last_name, presence: true
   # validates :city, presence: true
 
-  # mount_uploader :picture, PhotoUploader
-  has_attached_file :picture,
-    styles: { medium: "300x300#", thumb: "100x100#" }
+  mount_uploader :picture, PictureUploader
+  # has_attached_file :picture,
+  #   styles: { medium: "300x300#", thumb: "100x100#" }
 
-  validates_attachment_content_type :picture,
-    content_type: /\Aimage\/.*\z/
+  # validates_attachment_content_type :picture,
+  #   content_type: /\Aimage\/.*\z/
 
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
