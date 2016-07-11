@@ -8,7 +8,6 @@ class PictureUploader < CarrierWave::Uploader::Base
       {:width => 1200, :height => 1200, :crop => :limit},
     ]
 
-    binding.pry
 
   version :standard do |variable|
     resize_to_fit(800, 600)
