@@ -8,9 +8,10 @@ class MigrationCloudinaryJob < ActiveJob::Base
     puts "-----------------------------------------"
 
     user_picture = 0
-    c = User.where('picture_file_name IS NOT NULL').each do |user|
-      Cloudinary::Uploader.upload(user.picture.url,
-        public_id: "#{Rails.env}/user/picture_file_name.to_s",
+    User.where('picture_file_name IS NOT NULL').each do |user|
+      c = Cloudinary::Uploader.upload(user.picture.url,
+        folder: "#{Rails.env}/user/",
+        # public_id: "#{Rails.env}/user/picture_file_name.to_s",
         crop: :limit, width: 2000, height: 2000
       )
       # Cloudinary::Uploader.upload(user.picture.url,
@@ -21,8 +22,8 @@ class MigrationCloudinaryJob < ActiveJob::Base
       #   eager: { width: 100, height: 100, dpr: 2.0,
       #            crop: :fill, gravity: :face })
 
-      puts c
-      # user.picture_cloud =
+      user.picture_cloud = c.public_id
+      user.save
       user_picture += 1
     end
 

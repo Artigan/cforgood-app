@@ -25,9 +25,4 @@ class PictureUploader < CarrierWave::Uploader::Base
     cloudinary_transformation :width => 100, :height => 100, :crop => :thumb, :gravity => :face, dpr: 2.0
   end
 
-  def public_id
-    binding.pry
-    return Rails.env + "/" + model.class.to_s
-  end
-
 end

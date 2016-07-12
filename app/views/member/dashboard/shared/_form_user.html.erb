@@ -8,15 +8,15 @@
         <div class="picture-container">
           <% if current_user.picture? %>
             <%#= image_tag current_user.picture(:thumb), class: 'user-picture'  %>
-            <%= cl_image_tag current_user.picture_cloud(:thumb), class: 'user-picture'  %>
+            <%= cl_image_tag current_user.picture_cloud.url(:thumb), class: 'user-picture'  %>
           <% else %>
             <div class="picture-none">
               <%= render 'shared/icons/profile' %>
             </div>
           <% end %>
-        </div>
-        <%= f.input :picture, as: :file, required: false, label: 'Sélectionner une nouvelle image' %>
-        <%#= f.input :picture_cache, as: :hidden %>
+        </div>,
+        <%= f.input :picture_cloud, required: false, label: 'Sélectionner une nouvelle image' %>
+        <%= f.input :picture_cloud_cache, as: :hidden %>
       </div>
 
       <div class="col-1">
