@@ -9,18 +9,17 @@ class MigrationCloudinaryJob < ActiveJob::Base
 
     user_picture = 0
     User.where('picture_file_name IS NOT NULL').each do |user|
-      # Cloudinary::Uploader.upload(user.picture.url,
-      #   folder: "user",
-      #   public_id: "/picture/#{user.picture_file_name.to_s}",
-      #   crop: :limit, width: 1200, height: 1200
-      # )
       Cloudinary::Uploader.upload(user.picture.url,
-        crop: :limit, width: 600, height: 600,
-        folder: "user",
-        tag: "picture",
-        public_id: "#{user.picture_file_name.to_s}",
-        eager: { width: 100, height: 100, dpr: 2.0,
-                 crop: :fill, gravity: :face })
+        public_id: "#{Rails.env}/user/#{user.id.to_s}/#{user.picture_file_name.to_s}",
+        crop: :limit, width: 2000, height: 2000
+      )
+      # Cloudinary::Uploader.upload(user.picture.url,
+      #   crop: :limit, width: 600, height: 600,
+      #   folder: "user",
+      #   tag: "picture",
+      #   public_id: "#{user.picture_file_name.to_s}",
+      #   eager: { width: 100, height: 100, dpr: 2.0,
+      #            crop: :fill, gravity: :face })
       user_picture += 1
     end
 

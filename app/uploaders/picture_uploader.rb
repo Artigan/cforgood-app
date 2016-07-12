@@ -3,11 +3,11 @@ class PictureUploader < CarrierWave::Uploader::Base
   include Cloudinary::CarrierWave
 
   process eager: true # Force version generation at upload time
-  process convert: 'jpg'
+  # process convert: 'jpg'
   cloudinary_transformation :transformation => [
-      {:width => 1200, :height => 1200, :crop => :limit},
+      {:width => 2000, :height => 2000, :crop => :limit, },
+      :use_filename => true
     ]
-
 
   version :standard do |variable|
     resize_to_fit(800, 600)
@@ -22,7 +22,12 @@ class PictureUploader < CarrierWave::Uploader::Base
   end
 
   version :avatar do |variable|
-    cloudinary_transformation :width => 100, :height => 100, :crop => :thumb, :gravity => :face
+    cloudinary_transformation :width => 100, :height => 100, :crop => :thumb, :gravity => :face, dpr: 2.0
+  end
+
+  def public_id
+    binding.pry
+    return rails.env + "/" + model.short_name
   end
 
 end

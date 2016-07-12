@@ -7,9 +7,8 @@
         <label>Photo</label>
         <div class="picture-container">
           <% if current_user.picture? %>
-            <%#= image_tag current_user.picture(:thumb), class: 'user-picture' %>
-            <%= cl_image_tag current_user.picture.url(:avatar), class: 'user-picture'  %>
-
+            <%#= image_tag current_user.picture(:thumb), class: 'user-picture'  %>
+            <%= cl_image_tag current_user.picture_cloud(:thumb), class: 'user-picture'  %>
           <% else %>
             <div class="picture-none">
               <%= render 'shared/icons/profile' %>
@@ -17,7 +16,7 @@
           <% end %>
         </div>
         <%= f.input :picture, as: :file, required: false, label: 'Sélectionner une nouvelle image' %>
-        <%= f.input :picture_cache, as: :hidden %>
+        <%#= f.input :picture_cache, as: :hidden %>
       </div>
 
       <div class="col-1">
@@ -66,11 +65,8 @@
       });
 
       $('.cloudinary-fileupload').bind('fileuploadprogress', function(e, data) {
-      $('.progress_bar').css('width', Math.round((data.loaded * 100.0) / data.total) + '%');
+        $('.progress_bar').css('width', Math.round((data.loaded * 100.0) / data.total) + '%');
       });
-
-
-
     });
   </script>
 <% end %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160708072424) do
+ActiveRecord::Schema.define(version: 20160712085543) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,22 @@ ActiveRecord::Schema.define(version: 20160708072424) do
   end
 
   add_index "addresses", ["business_id"], name: "index_addresses_on_business_id", using: :btree
+
+  create_table "attachinary_files", force: :cascade do |t|
+    t.integer  "attachinariable_id"
+    t.string   "attachinariable_type"
+    t.string   "scope"
+    t.string   "public_id"
+    t.string   "version"
+    t.integer  "width"
+    t.integer  "height"
+    t.string   "format"
+    t.string   "resource_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "attachinary_files", ["attachinariable_type", "attachinariable_id", "scope"], name: "by_scoped_parent", using: :btree
 
   create_table "business_categories", force: :cascade do |t|
     t.string   "name"
@@ -264,7 +280,7 @@ ActiveRecord::Schema.define(version: 20160708072424) do
     t.date     "date_support"
     t.integer  "amount"
     t.datetime "date_stop_subscription"
-    t.string   "picture"
+    t.string   "picture_cloud"
   end
 
   add_index "users", ["cause_id"], name: "index_users_on_cause_id", using: :btree
