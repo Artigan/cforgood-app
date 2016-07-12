@@ -27,7 +27,7 @@ class PictureUploader < CarrierWave::Uploader::Base
 
   def public_id
     binding.pry
-    return rails.env + "/" + model.short_name
+    return Rails.env + "/" + model.class.to_s
   end
 
 end
