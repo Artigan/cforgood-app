@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160712085543) do
+ActiveRecord::Schema.define(version: 20160713080229) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(version: 20160712085543) do
     t.datetime "picture_updated_at"
     t.string   "color"
     t.string   "marker_symbol"
+    t.string   "picture_cloud"
   end
 
   create_table "businesses", force: :cascade do |t|
@@ -123,6 +124,9 @@ ActiveRecord::Schema.define(version: 20160712085543) do
     t.datetime "logo_updated_at"
     t.boolean  "shop",                        default: true,  null: false
     t.boolean  "itinerant",                   default: false, null: false
+    t.string   "picture_cloud"
+    t.string   "leader_picture_cloud"
+    t.string   "logo_cloud"
   end
 
   add_index "businesses", ["business_category_id"], name: "index_businesses_on_business_category_id", using: :btree
@@ -138,6 +142,7 @@ ActiveRecord::Schema.define(version: 20160712085543) do
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
     t.string   "color"
+    t.string   "picture_cloud"
   end
 
   create_table "causes", force: :cascade do |t|
@@ -174,6 +179,8 @@ ActiveRecord::Schema.define(version: 20160712085543) do
     t.integer  "amount_impact"
     t.boolean  "active",                    default: false, null: false
     t.string   "link_video"
+    t.string   "picture_cloud"
+    t.string   "logo_cloud"
   end
 
   add_index "causes", ["cause_category_id"], name: "index_causes_on_cause_category_id", using: :btree
@@ -228,6 +235,7 @@ ActiveRecord::Schema.define(version: 20160712085543) do
     t.integer  "perk_detail_id"
     t.boolean  "deleted",              default: false, null: false
     t.boolean  "all_day",              default: false, null: false
+    t.string   "picture_cloud"
   end
 
   add_index "perks", ["business_id"], name: "index_perks_on_business_id", using: :btree
