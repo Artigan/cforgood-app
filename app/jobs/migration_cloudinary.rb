@@ -7,103 +7,112 @@ class MigrationCloudinaryJob < ActiveJob::Base
     puts "MIGRATION FROM S3 TO CLOUDINARY"
     puts "-----------------------------------------"
 
+    User.update_all(picture: nil)
     user_picture = 0
-    User.where('picture_file_name IS NOT NULL').each do |user|
-      c = Cloudinary::Uploader.upload(user.picture.url,
-        crop: :limit, width: 2000, height: 2000
-      )
+    User.where('s3_picture_file_name IS NOT NULL').each do |user|
+      url = user.s3_picture.url.gsub("users/s3_", "users/")
+      c = Cloudinary::Uploader.upload(url, crop: :limit, width: 2000, height: 2000, folder: Rails.env)
       result = c["url"].split("http://res.cloudinary.com/dktivbech/")
-      user.picture_cloud = result[1]
-      user.save
-      user_picture += 1
+      user.picture = result[1]
+      if user.save
+        user_picture += 1
+      end
     end
 
+    Business.update_all(picture: nil)
     business_picture = 0
-    Business.where('picture_file_name IS NOT NULL').each do |business|
-      c = Cloudinary::Uploader.upload(business.picture.url,
-        crop: :limit, width: 2000, height: 2000
-      )
+    Business.where('s3_picture_file_name IS NOT NULL').each do |business|
+      url = business.s3_picture.url.gsub("businesses/s3_", "businesses/")
+      c = Cloudinary::Uploader.upload(url, crop: :limit, width: 2000, height: 2000, folder: Rails.env)
       result = c["url"].split("http://res.cloudinary.com/dktivbech/")
-      business.picture_cloud = result[1]
-      business.save
-      business_picture += 1
+      business.picture = result[1]
+      if business.save
+        business_picture += 1
+      end
     end
 
+    Business.update_all(leader_picture: nil)
     business_leader_picture = 0
-    Business.where('leader_picture_file_name IS NOT NULL').each do |business|
-      c = Cloudinary::Uploader.upload(business.leader_picture.url,
-        crop: :limit, width: 2000, height: 2000
-      )
+    Business.where('s3_leader_picture_file_name IS NOT NULL').each do |business|
+      url = business.s3_leader_picture.url.gsub("businesses/s3_", "businesses/")
+      c = Cloudinary::Uploader.upload(url, crop: :limit, width: 2000, height: 2000, folder: Rails.env)
       result = c["url"].split("http://res.cloudinary.com/dktivbech/")
-      business.leader_picture_cloud = result[1]
-      business.save
-      business_leader_picture += 1
+      business.leader_picture = result[1]
+      if business.save
+        business_leader_picture += 1
+      end
     end
 
+    Business.update_all(logo: nil)
     business_logo = 0
-    Business.where('logo_file_name IS NOT NULL').each do |business|
-      c = Cloudinary::Uploader.upload(business.logo.url,
-        crop: :limit, width: 2000, height: 2000
-      )
+    Business.where('s3_logo_file_name IS NOT NULL').each do |business|
+      url = business.s3_logo.url.gsub("businesses/s3_", "businesses/")
+      c = Cloudinary::Uploader.upload(url, crop: :limit, width: 2000, height: 2000, folder: Rails.env)
       result = c["url"].split("http://res.cloudinary.com/dktivbech/")
-      business.logo_cloud = result[1]
-      business.save
-      business_logo += 1
+      business.logo = result[1]
+      if business.save
+        business_logo += 1
+      end
     end
 
+    BusinessCategory.update_all(picture: nil)
     business_category_picture = 0
-    BusinessCategory.where('picture_file_name IS NOT NULL').each do |business_category|
-      c = Cloudinary::Uploader.upload(business_category.picture.url,
-        crop: :limit, width: 2000, height: 2000
-      )
+    BusinessCategory.where('s3_picture_file_name IS NOT NULL').each do |business_category|
+      url = business_category.s3_picture.url.gsub("business_categories/s3_", "business_categories/")
+      c = Cloudinary::Uploader.upload(url, crop: :limit, width: 2000, height: 2000, folder: Rails.env)
       result = c["url"].split("http://res.cloudinary.com/dktivbech/")
-      business_category.picture_cloud = result[1]
-      business_category.save
-      business_category_picture += 1
+      business_category.picture = result[1]
+      if business_category.save
+        business_category_picture += 1
+      end
      end
 
+    Cause.update_all(picture: nil)
     cause_picture = 0
-    Cause.where('picture_file_name IS NOT NULL').each do |cause|
-      c = Cloudinary::Uploader.upload(cause.picture.url,
-        crop: :limit, width: 2000, height: 2000
-      )
+    Cause.where('s3_picture_file_name IS NOT NULL').each do |cause|
+      url = cause.s3_picture.url.gsub("causes/s3_", "causes/")
+      c = Cloudinary::Uploader.upload(url, crop: :limit, width: 2000, height: 2000, folder: Rails.env)
       result = c["url"].split("http://res.cloudinary.com/dktivbech/")
-      cause.picture_cloud = result[1]
-      cause.save
-      cause_picture += 1
+      cause.picture = result[1]
+      if cause.save
+        cause_picture += 1
+      end
     end
 
+    Cause.update_all(logo: nil)
     cause_logo = 0
-    Cause.where('logo_file_name IS NOT NULL').each do |cause|
-      c = Cloudinary::Uploader.upload(cause.logo.url,
-        crop: :limit, width: 2000, height: 2000
-      )
+    Cause.where('s3_logo_file_name IS NOT NULL').each do |cause|
+      url = cause.s3_logo.url.gsub("causes/s3_", "causes/")
+      c = Cloudinary::Uploader.upload(url, crop: :limit, width: 2000, height: 2000, folder: Rails.env)
       result = c["url"].split("http://res.cloudinary.com/dktivbech/")
-      cause.logo_cloud = result[1]
-      cause.save
-      cause_logo += 1
+      cause.logo = result[1]
+      if cause.save
+        cause_logo += 1
+      end
     end
 
+    CauseCategory.update_all(picture: nil)
     cause_category_picture = 0
-    CauseCategory.where('picture_file_name IS NOT NULL').each do |cause_category|
-      c = Cloudinary::Uploader.upload(cause_category.picture.url,
-        crop: :limit, width: 2000, height: 2000
-      )
+    CauseCategory.where('s3_picture_file_name IS NOT NULL').each do |cause_category|
+      url = cause_category.s3_picture.url.gsub("cause_categories/s3_", "cause_categories/")
+      c = Cloudinary::Uploader.upload(url, crop: :limit, width: 2000, height: 2000, folder: Rails.env)
       result = c["url"].split("http://res.cloudinary.com/dktivbech/")
-      cause_category.picture_cloud = result[1]
-      cause_category.save
-      cause_category_picture += 1
+      cause_category.picture = result[1]
+      if cause_category.save
+        cause_category_picture += 1
+      end
     end
 
+    Perk.update_all(picture: nil)
     perk_picture = 0
-    Perk.where('picture_file_name IS NOT NULL').each do |perk|
-      c = Cloudinary::Uploader.upload(perk.picture.url,
-        crop: :limit, width: 2000, height: 2000
-      )
+    Perk.where('s3_picture_file_name IS NOT NULL').each do |perk|
+      url = perk.s3_picture.url.gsub("perks/s3_", "perks/")
+      c = Cloudinary::Uploader.upload(url, crop: :limit, width: 2000, height: 2000, folder: Rails.env)
       result = c["url"].split("http://res.cloudinary.com/dktivbech/")
-      perk.picture_cloud = result[1]
-      perk.save
-      perk_picture += 1
+      perk.picture = result[1]
+      if perk.save
+        perk_picture += 1
+      end
     end
 
     puts "Nb user_picture read: #{user_picture}"

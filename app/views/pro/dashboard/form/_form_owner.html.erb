@@ -6,7 +6,7 @@
         <label>Photo</label>
         <div class="picture-container">
           <% if current_business.leader_picture? %>
-            <%= image_tag current_business.leader_picture.url(:thumb), class: 'picture-owner' %>
+            <%= image_tag current_business.leader_picture.url(:avatar), class: 'picture-owner' %>
           <% else %>
             <div class="picture-none">
               <%= render 'shared/icons/profile' %>

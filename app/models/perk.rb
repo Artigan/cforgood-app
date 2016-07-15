@@ -2,28 +2,29 @@
 #
 # Table name: perks
 #
-#  id                   :integer          not null, primary key
-#  name                 :string
-#  business_id          :integer
-#  description          :text
-#  times                :integer          default(0)
-#  start_date           :datetime
-#  end_date             :datetime
-#  active               :boolean          default(TRUE), not null
-#  perk_code            :string
-#  created_at           :datetime         not null
-#  updated_at           :datetime         not null
-#  nb_views             :integer          default(0)
-#  appel                :boolean          default(FALSE), not null
-#  durable              :boolean          default(FALSE), not null
-#  flash                :boolean          default(FALSE), not null
-#  picture_file_name    :string
-#  picture_content_type :string
-#  picture_file_size    :integer
-#  picture_updated_at   :datetime
-#  perk_detail_id       :integer
-#  deleted              :boolean          default(FALSE), not null
-#  all_day              :boolean          default(FALSE), not null
+#  id                      :integer          not null, primary key
+#  name                    :string
+#  business_id             :integer
+#  description             :text
+#  times                   :integer          default(0)
+#  start_date              :datetime
+#  end_date                :datetime
+#  active                  :boolean          default(TRUE), not null
+#  perk_code               :string
+#  created_at              :datetime         not null
+#  updated_at              :datetime         not null
+#  nb_views                :integer          default(0)
+#  appel                   :boolean          default(FALSE), not null
+#  durable                 :boolean          default(FALSE), not null
+#  flash                   :boolean          default(FALSE), not null
+#  s3_picture_file_name    :string
+#  s3_picture_content_type :string
+#  s3_picture_file_size    :integer
+#  s3_picture_updated_at   :datetime
+#  perk_detail_id          :integer
+#  deleted                 :boolean          default(FALSE), not null
+#  all_day                 :boolean          default(FALSE), not null
+#  picture                 :string
 #
 # Indexes
 #
@@ -59,10 +60,14 @@ class Perk < ActiveRecord::Base
   validates :perk_code, length: { in: 5..15 }, format: { with: /\A[A-Za-z0-9]+\z/, message: "Le code du bon plan ne peut contenir que des lettres et des chiffres" }
   validate :perk_code_uniqueness, if: :perk_code_changed?
 
-  has_attached_file :picture,
+  validates_size_of :picture, maximum: 2.megabytes,
+    message: "Cette image dépasse 2 MG !", if: :picture_changed?
+  mount_uploader :picture, PictureUploader
+
+  has_attached_file :s3_picture,
     styles: { medium: "300x300#", thumb: "100x100#" }
 
-  validates_attachment_content_type :picture,
+  validates_attachment_content_type :s3_picture,
     content_type: /\Aimage\/.*\z/
 
   after_create :send_registration_slack

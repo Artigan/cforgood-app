@@ -29,19 +29,19 @@
                 </div>
                 <div class="card-header-leader">
                 <% if business.leader_picture.present? %>
-                  <%= image_tag business.leader_picture(:thumb) %>
+                  <%= image_tag business.leader_picture.url(:avatar) %>
                 <% else %>
                   <%= image_tag image_url 'default_pic.png' %>
                 <% end %>
                 </div>
                 <div class="card-header-category" style="background-color: <%= business.business_category.color %>;">
-                  <%= image_tag image_url business.business_category.picture %>
+                  <%= image_tag business.business_category.picture %>
                   <!-- <div class="category-container" style="background-color: <#= business.business_category.color %>;">
                   </div> -->
                 </div>
               </div>
               <!-- CARD BODY -->
-              <div class="card-body" style="background-image: url('<%= perk.picture.present? ? perk.picture : business.picture %>');">
+              <div class="card-body" style="background-image: url('<%= perk.picture.present? ? perk.picture.url(:card) : business.picture.url(:card) %>');">
                 <div class="business-details">
                   <% if perk.flash? && perk.times > 0 %>
                     <span style="background-color: <%= business.business_category.color %>;"><i class="fa fa-flash"></i><%= perk.times - Use.where(perk_id: perk.id).count  %> restants</span>

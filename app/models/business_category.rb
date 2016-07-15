@@ -2,24 +2,29 @@
 #
 # Table name: business_categories
 #
-#  id                   :integer          not null, primary key
-#  name                 :string
-#  created_at           :datetime         not null
-#  updated_at           :datetime         not null
-#  picture_file_name    :string
-#  picture_content_type :string
-#  picture_file_size    :integer
-#  picture_updated_at   :datetime
-#  color                :string
-#  marker_symbol        :string
+#  id                      :integer          not null, primary key
+#  name                    :string
+#  created_at              :datetime         not null
+#  updated_at              :datetime         not null
+#  s3_picture_file_name    :string
+#  s3_picture_content_type :string
+#  s3_picture_file_size    :integer
+#  s3_picture_updated_at   :datetime
+#  color                   :string
+#  marker_symbol           :string
+#  picture                 :string
 #
 
 class BusinessCategory < ActiveRecord::Base
   has_many :businesses
 
-  has_attached_file :picture,
+  validates_size_of :picture, maximum: 1.megabytes,
+    message: "Cette image dépasse 1 MG !", if: :picture_changed?
+  mount_uploader :picture, PictureUploader
+
+  has_attached_file :s3_picture,
     styles: { medium: "300x300>", thumb: "100x100>" }
 
-  validates_attachment_content_type :picture,
+  validates_attachment_content_type :s3_picture,
     content_type: /\Aimage\/.*\z/
 end

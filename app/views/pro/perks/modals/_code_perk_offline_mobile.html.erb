@@ -39,7 +39,7 @@
           </div>
 
           <div class="member-info">
-            <%= image_tag (current_user.picture? ? current_user.picture(:thumb) : "profile.png"), class: "img-circle user"%>
+            <%= image_tag (current_user.picture? ? current_user.picture.url(:avatar) : "profile.png"), class: "img-circle user"%>
             <% if current_user.name.present? %>
               <span class="user"><%= current_user.name %></span>
             <% else %>
