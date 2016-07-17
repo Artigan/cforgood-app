@@ -14,10 +14,10 @@
 #  created_at                :datetime         not null
 #  updated_at                :datetime         not null
 #  impact                    :string
-#  picture_file_name         :string
-#  picture_content_type      :string
-#  picture_file_size         :integer
-#  picture_updated_at        :datetime
+#  s3_picture_file_name      :string
+#  s3_picture_content_type   :string
+#  s3_picture_file_size      :integer
+#  s3_picture_updated_at     :datetime
 #  cause_category_id         :integer
 #  facebook                  :string
 #  twitter                   :string
@@ -29,13 +29,15 @@
 #  wallet_id                 :string
 #  representative_first_name :string
 #  representative_last_name  :string
-#  logo_file_name            :string
-#  logo_content_type         :string
-#  logo_file_size            :integer
-#  logo_updated_at           :datetime
+#  s3_logo_file_name         :string
+#  s3_logo_content_type      :string
+#  s3_logo_file_size         :integer
+#  s3_logo_updated_at        :datetime
 #  amount_impact             :integer
 #  active                    :boolean          default(FALSE), not null
 #  link_video                :string
+#  picture                   :string
+#  logo                      :string
 #
 # Indexes
 #
@@ -47,16 +49,24 @@ class Cause < ActiveRecord::Base
   has_many :users
   has_many :payments
 
-  has_attached_file :picture,
+  validates_size_of :picture, maximum: 2.megabytes,
+    message: "Cette image dépasse 2 MG !", if: :picture_changed?
+  # mount_uploader :picture, PictureUploader
+
+  validates_size_of :logo, maximum: 1.megabytes,
+    message: "Cette image dépasse 1 MG !", if: :logo_changed?
+  # mount_uploader :logo, PictureUploader
+
+  has_attached_file :s3_picture,
     styles: { medium: "300x300>", small: "200x200", thumb: "100x100>" }
 
-  validates_attachment_content_type :picture,
+  validates_attachment_content_type :s3_picture,
     content_type: /\Aimage\/.*\z/
 
-  has_attached_file :logo,
+  has_attached_file :s3_logo,
     styles: { medium: "300x300>", thumb: "100x100>" }
 
-  validates_attachment_content_type :logo,
+  validates_attachment_content_type :s3_logo,
     content_type: /\Aimage\/.*\z/
 
   validates :name, presence: true

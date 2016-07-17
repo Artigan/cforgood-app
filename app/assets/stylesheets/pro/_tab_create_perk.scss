@@ -276,6 +276,12 @@
         }
       }
     }
+
+    .card-indispo {
+      opacity: 0.3;
+      pointer-events: none;
+      cursor: default;
+    }
   }
 
   /* FORM - CREATE PERK *****************************************************/
@@ -628,8 +634,7 @@
         opacity: 1;
       }
 
-      .card-invisible,
-      .card-indispo {
+      .card-invisible {
         opacity: 0.3;
         pointer-events: none;
         cursor: default;

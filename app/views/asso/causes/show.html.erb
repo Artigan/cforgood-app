@@ -13,7 +13,7 @@
     <div class="mobile-menu-overlay hidden"></div>
 
     <div id="<%= @cause.id %>" class="cause-container">
-      <div class="cause-header" style="background-image: url('<%= @cause.picture %>');">
+      <div class="cause-header" style="background-image: url('<%= device_type == :mobile ? @cause.picture.url(:card) : @cause.picture %>');">
         <img class="cause-logo" src="<%= @cause.logo %>" style="border: 3px solid <%= @cause.cause_category.color %>;">
         <h1><%= @cause.name %></h1>
         <!-- CTA -->

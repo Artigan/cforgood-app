@@ -21,12 +21,12 @@ Consultez vos chiffres
     <div class="data-container">
       <div id="welcome-desktop">
         <!-- DESKTOP VIEW | CARDS -->
-        <div class="business-into" style="background-image: url('<%= current_business.picture.present? ? current_business.picture : image_url('cover-business.jpg') %>');">
+        <div class="business-into" style="background-image: url('<%= current_business.picture.present? ? current_business.picture.url(:card) : image_url('cover-business.jpg') %>');">
           <% if !current_business.active %>
             <span class="business-message">Votre compte sera bientôt activé !</span>
           <% end %>
           <% if @business.leader_picture.present? %>
-            <%= image_tag current_business.leader_picture(:thumb), class: 'business-owner' %>
+            <%= image_tag current_business.leader_picture.url(:avatar), class: 'business-owner' %>
           <% else %>
             <%= image_tag 'default_pic.png', class: 'business-owner' %>
           <% end %>
@@ -209,9 +209,9 @@ Consultez vos chiffres
           <%= image_tag('logopouce.png', class: '') %>
           <span>Bienvenue <%= current_business.name %></span>
         </div>
-        <div class="business-into" style="background-image: url('<%= current_business.picture %>');">
+        <div class="business-into" style="background-image: url('<%= current_business.picture.url(:card) %>');">
           <% if @business.leader_picture.present? %>
-            <%= image_tag current_business.leader_picture(:thumb), class: 'business-owner' %>
+            <%= image_tag current_business.leader_picture.url(:avatar), class: 'business-owner' %>
           <% else %>
             <%= image_tag 'default_pic.png', class: 'business-owner' %>
           <% end %>

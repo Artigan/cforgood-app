@@ -26,9 +26,9 @@
           <figure class="front">
           <!-- PERK IMAGE - CHANGE BACKGROUND IMAGE -->
           <% if @perk.picture.present? %>
-          <div class="perk-image" style="background-image: url('<%= image_url @perk.picture %>');">
+          <div class="perk-image" style="background-image: url('<%= @perk.picture.url(:card) %>');">
           <% else %>
-          <div class="perk-image" style="background-image: url('<%= image_url @business.picture %>');">
+          <div class="perk-image" style="background-image: url('<%= @business.picture.url(:card) %>');">
           <% end %>
 
           <!-- IF FLASH PERK -->
@@ -62,7 +62,7 @@
         <div class="perk-owner">
           <div class="owner-details">
             <% if @business.leader_picture.present? %>
-              <%= image_tag @business.leader_picture(:thumb) %>
+              <%= image_tag @business.leader_picture.url(:avatar) %>
             <% else %>
               <%= image_tag image_url 'default_pic.png' %>
             <% end %>
@@ -76,10 +76,10 @@
       <figure class="back"><!-- BACK CARD -->
         <div class="business-card">
           <!-- BACKGROUND IMAGE -->
-          <div class="perk-image" style="background-image: url('<%= image_url @business.picture %>');">
+          <div class="perk-image" style="background-image: url('<%= @business.picture.url(:card) %>');">
             <% if @business.leader_picture.present? %>
 
-              <%= image_tag @business.leader_picture(:thumb) %>
+              <%= image_tag @business.leader_picture.url(:avatar) %>
             <% else %>
               <%= image_tag image_url 'default_pic.png' %>
             <% end %>
@@ -122,9 +122,9 @@
     <div class="perk-details">
        <!-- BLOCK PERK -->
         <% if @perk.picture.present? %>
-          <div class="perk-image" style="background-image: url('<%= image_url @perk.picture %>');">
+          <div class="perk-image" style="background-image: url('<%= @perk.picture %>');">
         <% else %>
-          <div class="perk-image" style="background-image: url('<%= image_url @business.picture %>');">
+          <div class="perk-image" style="background-image: url('<%= @business.picture %>');">
         <% end %>
 
         <!-- IF FLASH PERK -->
@@ -165,9 +165,9 @@
     <div class="business-details">
 
       <div class="business-misc">
-        <div class="perk-image" style="background-image: url('<%= image_url @business.picture %>');">
+        <div class="perk-image" style="background-image: url('<%= @business.picture %>');">
           <% if @business.leader_picture.present? %>
-            <%= image_tag @business.leader_picture(:thumb) %>
+            <%= image_tag @business.leader_picture.url(:avatar) %>
           <% else %>
             <%= image_tag image_url 'default_pic.png' %>
           <% end %>

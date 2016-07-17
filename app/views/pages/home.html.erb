@@ -96,7 +96,7 @@
           <% if business.perks.active.first != nil %>
           <div class="col-xs-12 col-sm-3">
             <div class="perk-card">
-              <%= image_tag business.picture(:medium) %>
+              <%= image_tag business.picture.url(:card) %>
               <div class="box-shadow">
                 <span><%= business.business_category.name%></span>
                 <h3 class="business-name"><%= business.name%></h3>

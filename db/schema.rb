@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160621114909) do
+ActiveRecord::Schema.define(version: 20160714170919) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,16 +48,33 @@ ActiveRecord::Schema.define(version: 20160621114909) do
 
   add_index "addresses", ["business_id"], name: "index_addresses_on_business_id", using: :btree
 
+  create_table "attachinary_files", force: :cascade do |t|
+    t.integer  "attachinariable_id"
+    t.string   "attachinariable_type"
+    t.string   "scope"
+    t.string   "public_id"
+    t.string   "version"
+    t.integer  "width"
+    t.integer  "height"
+    t.string   "format"
+    t.string   "resource_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "attachinary_files", ["attachinariable_type", "attachinariable_id", "scope"], name: "by_scoped_parent", using: :btree
+
   create_table "business_categories", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
-    t.string   "picture_file_name"
-    t.string   "picture_content_type"
-    t.integer  "picture_file_size"
-    t.datetime "picture_updated_at"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.string   "s3_picture_file_name"
+    t.string   "s3_picture_content_type"
+    t.integer  "s3_picture_file_size"
+    t.datetime "s3_picture_updated_at"
     t.string   "color"
     t.string   "marker_symbol"
+    t.string   "picture"
   end
 
   create_table "businesses", force: :cascade do |t|
@@ -68,45 +85,48 @@ ActiveRecord::Schema.define(version: 20160621114909) do
     t.string   "url"
     t.string   "telephone"
     t.string   "email"
-    t.datetime "created_at",                                  null: false
-    t.datetime "updated_at",                                  null: false
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
     t.text     "description"
-    t.string   "picture_file_name"
-    t.string   "picture_content_type"
-    t.integer  "picture_file_size"
-    t.datetime "picture_updated_at"
+    t.string   "s3_picture_file_name"
+    t.string   "s3_picture_content_type"
+    t.integer  "s3_picture_file_size"
+    t.datetime "s3_picture_updated_at"
     t.integer  "business_category_id"
     t.float    "latitude"
     t.float    "longitude"
     t.string   "facebook"
     t.string   "twitter"
     t.string   "instagram"
-    t.string   "encrypted_password",          default: "",    null: false
+    t.string   "encrypted_password",             default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",               default: 0,     null: false
+    t.integer  "sign_in_count",                  default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
-    t.string   "leader_picture_file_name"
-    t.string   "leader_picture_content_type"
-    t.integer  "leader_picture_file_size"
-    t.datetime "leader_picture_updated_at"
+    t.string   "s3_leader_picture_file_name"
+    t.string   "s3_leader_picture_content_type"
+    t.integer  "s3_leader_picture_file_size"
+    t.datetime "s3_leader_picture_updated_at"
     t.string   "leader_first_name"
     t.string   "leader_last_name"
     t.text     "leader_description"
-    t.boolean  "active",                      default: false, null: false
-    t.boolean  "online",                      default: false, null: false
+    t.boolean  "active",                         default: false, null: false
+    t.boolean  "online",                         default: false, null: false
     t.string   "leader_phone"
     t.string   "leader_email"
-    t.string   "logo_file_name"
-    t.string   "logo_content_type"
-    t.integer  "logo_file_size"
-    t.datetime "logo_updated_at"
-    t.boolean  "shop",                        default: true,  null: false
-    t.boolean  "itinerant",                   default: false, null: false
+    t.string   "s3_logo_file_name"
+    t.string   "s3_logo_content_type"
+    t.integer  "s3_logo_file_size"
+    t.datetime "s3_logo_updated_at"
+    t.boolean  "shop",                           default: true,  null: false
+    t.boolean  "itinerant",                      default: false, null: false
+    t.string   "picture"
+    t.string   "leader_picture"
+    t.string   "logo"
   end
 
   add_index "businesses", ["business_category_id"], name: "index_businesses_on_business_category_id", using: :btree
@@ -115,13 +135,14 @@ ActiveRecord::Schema.define(version: 20160621114909) do
 
   create_table "cause_categories", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
-    t.string   "picture_file_name"
-    t.string   "picture_content_type"
-    t.integer  "picture_file_size"
-    t.datetime "picture_updated_at"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.string   "s3_picture_file_name"
+    t.string   "s3_picture_content_type"
+    t.integer  "s3_picture_file_size"
+    t.datetime "s3_picture_updated_at"
     t.string   "color"
+    t.string   "picture"
   end
 
   create_table "causes", force: :cascade do |t|
@@ -136,10 +157,10 @@ ActiveRecord::Schema.define(version: 20160621114909) do
     t.datetime "created_at",                                null: false
     t.datetime "updated_at",                                null: false
     t.string   "impact"
-    t.string   "picture_file_name"
-    t.string   "picture_content_type"
-    t.integer  "picture_file_size"
-    t.datetime "picture_updated_at"
+    t.string   "s3_picture_file_name"
+    t.string   "s3_picture_content_type"
+    t.integer  "s3_picture_file_size"
+    t.datetime "s3_picture_updated_at"
     t.integer  "cause_category_id"
     t.string   "facebook"
     t.string   "twitter"
@@ -151,13 +172,15 @@ ActiveRecord::Schema.define(version: 20160621114909) do
     t.string   "wallet_id"
     t.string   "representative_first_name"
     t.string   "representative_last_name"
-    t.string   "logo_file_name"
-    t.string   "logo_content_type"
-    t.integer  "logo_file_size"
-    t.datetime "logo_updated_at"
+    t.string   "s3_logo_file_name"
+    t.string   "s3_logo_content_type"
+    t.integer  "s3_logo_file_size"
+    t.datetime "s3_logo_updated_at"
     t.integer  "amount_impact"
     t.boolean  "active",                    default: false, null: false
     t.string   "link_video"
+    t.string   "picture"
+    t.string   "logo"
   end
 
   add_index "causes", ["cause_category_id"], name: "index_causes_on_cause_category_id", using: :btree
@@ -194,42 +217,43 @@ ActiveRecord::Schema.define(version: 20160621114909) do
     t.string   "name"
     t.integer  "business_id"
     t.text     "description"
-    t.integer  "times",                default: 0
+    t.integer  "times",                   default: 0
     t.datetime "start_date"
     t.datetime "end_date"
-    t.boolean  "active",               default: true,  null: false
+    t.boolean  "active",                  default: true,  null: false
     t.string   "perk_code"
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
-    t.integer  "nb_views",             default: 0
-    t.boolean  "appel",                default: false, null: false
-    t.boolean  "durable",              default: false, null: false
-    t.boolean  "flash",                default: false, null: false
-    t.string   "picture_file_name"
-    t.string   "picture_content_type"
-    t.integer  "picture_file_size"
-    t.datetime "picture_updated_at"
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+    t.integer  "nb_views",                default: 0
+    t.boolean  "appel",                   default: false, null: false
+    t.boolean  "durable",                 default: false, null: false
+    t.boolean  "flash",                   default: false, null: false
+    t.string   "s3_picture_file_name"
+    t.string   "s3_picture_content_type"
+    t.integer  "s3_picture_file_size"
+    t.datetime "s3_picture_updated_at"
     t.integer  "perk_detail_id"
-    t.boolean  "deleted",              default: false, null: false
-    t.boolean  "all_day",              default: false, null: false
+    t.boolean  "deleted",                 default: false, null: false
+    t.boolean  "all_day",                 default: false, null: false
+    t.string   "picture"
   end
 
   add_index "perks", ["business_id"], name: "index_perks_on_business_id", using: :btree
   add_index "perks", ["perk_detail_id"], name: "index_perks_on_perk_detail_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "",    null: false
-    t.string   "encrypted_password",     default: "",    null: false
+    t.string   "email",                   default: "",    null: false
+    t.string   "encrypted_password",      default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,     null: false
+    t.integer  "sign_in_count",           default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
     t.string   "first_name"
     t.string   "last_name"
     t.string   "provider"
@@ -237,23 +261,23 @@ ActiveRecord::Schema.define(version: 20160621114909) do
     t.string   "name"
     t.string   "token"
     t.datetime "token_expiry"
-    t.boolean  "admin",                  default: false, null: false
-    t.string   "picture_file_name"
-    t.string   "picture_content_type"
-    t.integer  "picture_file_size"
-    t.datetime "picture_updated_at"
+    t.boolean  "admin",                   default: false, null: false
+    t.string   "s3_picture_file_name"
+    t.string   "s3_picture_content_type"
+    t.integer  "s3_picture_file_size"
+    t.datetime "s3_picture_updated_at"
     t.datetime "birthday"
     t.string   "nationality"
     t.string   "country_of_residence"
     t.string   "mangopay_id"
     t.string   "card_id"
     t.integer  "cause_id"
-    t.boolean  "member",                 default: false, null: false
+    t.boolean  "member",                  default: false, null: false
     t.string   "subscription"
-    t.boolean  "trial_done",             default: false, null: false
+    t.boolean  "trial_done",              default: false, null: false
     t.datetime "date_subscription"
     t.datetime "date_last_payment"
-    t.boolean  "active",                 default: true,  null: false
+    t.boolean  "active",                  default: true,  null: false
     t.string   "street"
     t.string   "zipcode"
     t.string   "city"
@@ -264,6 +288,7 @@ ActiveRecord::Schema.define(version: 20160621114909) do
     t.date     "date_support"
     t.integer  "amount"
     t.datetime "date_stop_subscription"
+    t.string   "picture"
   end
 
   add_index "users", ["cause_id"], name: "index_users_on_cause_id", using: :btree
