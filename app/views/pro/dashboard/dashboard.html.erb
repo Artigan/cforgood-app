@@ -26,7 +26,7 @@ Consultez vos chiffres
             <span class="business-message">Votre compte sera bientôt activé !</span>
           <% end %>
           <% if @business.leader_picture.present? %>
-            <%= image_tag current_business.leader_picture(:avatar), class: 'business-owner' %>
+            <%= image_tag current_business.leader_picture.url(:avatar), class: 'business-owner' %>
           <% else %>
             <%= image_tag 'default_pic.png', class: 'business-owner' %>
           <% end %>
@@ -211,7 +211,7 @@ Consultez vos chiffres
         </div>
         <div class="business-into" style="background-image: url('<%= current_business.picture.url(:card) %>');">
           <% if @business.leader_picture.present? %>
-            <%= image_tag current_business.leader_picture(:avatar), class: 'business-owner' %>
+            <%= image_tag current_business.leader_picture.url(:avatar), class: 'business-owner' %>
           <% else %>
             <%= image_tag 'default_pic.png', class: 'business-owner' %>
           <% end %>
