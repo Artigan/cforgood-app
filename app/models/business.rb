@@ -85,15 +85,15 @@ class Business < ActiveRecord::Base
 
   validates_size_of :picture, maximum: 2.megabytes,
     message: "Cette image dépasse 2 MG !", if: :picture_changed?
-  # mount_uploader :picture, PictureUploader
+  mount_uploader :picture, PictureUploader
 
   validates_size_of :leader_picture, maximum: 1.megabytes,
     message: "Cette image dépasse 1 MG !", if: :leader_picture_changed?
-  # mount_uploader :leader_picture, PictureUploader
+  mount_uploader :leader_picture, PictureUploader
 
   validates_size_of :logo, maximum: 1.megabytes,
     message: "Cette image dépasse 1 MG !", if: :logo_changed?
-  # mount_uploader :logo, PictureUploader
+  mount_uploader :logo, PictureUploader
 
   has_attached_file :s3_picture,
       styles: { medium: "300x300#", thumb: "100x100#" }
