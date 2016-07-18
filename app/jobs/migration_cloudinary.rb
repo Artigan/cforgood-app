@@ -39,7 +39,6 @@ class MigrationCloudinaryJob < ActiveJob::Base
         errors << business.id + "|Business|picture|" + url
       end
     end
-    end
 
     Business.update_all(leader_picture: nil)
     business_leader_picture = 0
