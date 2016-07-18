@@ -20,7 +20,7 @@ class MigrationCloudinaryJob < ActiveJob::Base
           user_picture += 1
         end
       rescue Exception => e
-        errors << user.id + "|User|picture|" + url
+        errors << user.id.to_s + "|User|picture|" + url  + "|" + e
       end
     end
 
@@ -36,7 +36,7 @@ class MigrationCloudinaryJob < ActiveJob::Base
           business_picture += 1
         end
       rescue Exception => e
-        errors << business.id + "|Business|picture|" + url
+        errors << business.id.to_s + "|Business|picture|" + url + "|" + e
       end
     end
 
@@ -52,7 +52,7 @@ class MigrationCloudinaryJob < ActiveJob::Base
           business_leader_picture += 1
         end
       rescue Exception => e
-        errors << business.id + "|Business|leader_picture|" + url
+        errors << business.id.to_s + "|Business|leader_picture|" + url + "|" + e
       end
     end
 
@@ -68,7 +68,7 @@ class MigrationCloudinaryJob < ActiveJob::Base
           business_logo += 1
         end
       rescue Exception => e
-        errors << business.id + "|Business|logo|" + url
+        errors << business.id.to_s + "|Business|logo|" + url + "|" + e
       end
     end
 
@@ -84,7 +84,7 @@ class MigrationCloudinaryJob < ActiveJob::Base
           business_category_picture += 1
         end
       rescue Exception => e
-        errors << business_category.id + "|BusinessCategory|picture|" + url
+        errors << business_category.id.to_s + "|BusinessCategory|picture|" + url + "|" + e
       end
      end
 
@@ -100,7 +100,7 @@ class MigrationCloudinaryJob < ActiveJob::Base
           cause_picture += 1
         end
       rescue Exception => e
-        errors << cause.id + "|Cause|picture|" + url
+        errors << cause.id.to_s + "|Cause|picture|" + url + "|" + e
       end
     end
 
@@ -116,7 +116,7 @@ class MigrationCloudinaryJob < ActiveJob::Base
           cause_logo += 1
         end
       rescue Exception => e
-        errors << cause.id + "|Cause|logo|" + url
+        errors << cause.id.to_s + "|Cause|logo|" + url + "|" + e
       end
     end
 
@@ -132,7 +132,7 @@ class MigrationCloudinaryJob < ActiveJob::Base
           cause_category_picture += 1
         end
       rescue Exception => e
-        errors << cause_category.id + "|CauseCategory|picture|" + url
+        errors << cause_category.id.to_s + "|CauseCategory|picture|" + url + "|" + e
       end
     end
 
@@ -148,7 +148,7 @@ class MigrationCloudinaryJob < ActiveJob::Base
           perk_picture += 1
         end
       rescue Exception => e
-        errors << perk.id + "|Perk|picture|" + url
+        errors << perk.id.to_s + "|Perk|picture|" + url + "|" + e
       end
     end
 
