@@ -10,6 +10,7 @@ class MigrationCloudinaryJob < ActiveJob::Base
     errors = []
 
     User.update_all(picture: nil)
+    user_picture = 0
     User.where('s3_picture_file_name IS NOT NULL').each do |user|
       url = user.s3_picture.url.gsub("users/s3_", "users/")
       begin
