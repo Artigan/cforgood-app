@@ -25,6 +25,7 @@ gem 'sidekiq'
 gem 'sinatra'  # Dependency of sidekiq
 gem 'sidekiq-failures'
 gem 'possibly'
+gem 'turnout'
 
 gem "paperclip"
 gem "aws-sdk", "< 2.0"
