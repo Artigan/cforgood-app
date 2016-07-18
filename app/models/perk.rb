@@ -62,7 +62,7 @@ class Perk < ActiveRecord::Base
 
   validates_size_of :picture, maximum: 2.megabytes,
     message: "Cette image dépasse 2 MG !", if: :picture_changed?
-  # mount_uploader :picture, PictureUploader
+  mount_uploader :picture, PictureUploader
 
   has_attached_file :s3_picture,
     styles: { medium: "300x300#", thumb: "100x100#" }
