@@ -29,7 +29,7 @@
     <div class="select-wrapper">
       <%= f.input :perk_detail_id, label: false, collection: PerkDetail.all,  label_method: :description, selected: f.object.perk_detail_id || PerkDetail.find_by_name('carte').id %>
     </div>
-    <% if action == 'create' %>
+    <% if action == 'create' && current_business.online %>
       <label class="hint--top-right" data-hint="Choisissez le code d'accès du bon plan">Code d'accès *</label>
       <%= f.input :perk_code, label: false, placeholder: "De 5 à 15 lettres ou chiffres", input_html: { minlenght: 5, maxlength: 15 } %>
     <% end %>
@@ -71,7 +71,7 @@
     <div class="select-wrapper">
       <%= f.input :perk_detail_id, label: false, collection: PerkDetail.all, label_method: :description, selected: f.object.perk_detail_id || PerkDetail.find_by_name('carte').id %>
     </div>
-    <% if action == 'create' %>
+    <% if action == 'create' && current_business.online %>
       <label class="hint--top-right" data-hint="Choisissez le code d'accès du bon plan">Code d'accès *</label>
       <%= f.input :perk_code, label: false, placeholder: "De 5 à 15 lettres ou chiffres", input_html: { minlenght: 5, maxlength: 15 } %>
     <% end %>
@@ -125,7 +125,7 @@
       <button id="quantity-plus" type="button"><i class="fa fa-plus"></i></button>
       <button id="quantity-minus" type="button"><i class="fa fa-minus"></i></button>
     </div>
-    <% if action == 'create' %>
+    <% if action == 'create' && current_business.online %>
       <label class="hint--top-right" data-hint="Choisissez le code d'accès du bon plan">Code d'accès *</label>
       <%= f.input :perk_code, label: false, placeholder: "De 5 à 15 lettres ou chiffres", input_html: { minlenght: 5, maxlength: 15 } %>
     <% end %>
