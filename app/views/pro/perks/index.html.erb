@@ -42,7 +42,14 @@
                 <% if perk.flash %>
                   <i class="fa fa-bolt pro-card-perk-flash"></i>
                 <% end %>
-                <span class="perk-code">Code client : <%= perk.perk_code %></span>
+                <% if current_business.online %>
+                  <span class="perk-code">Code client : <%= perk.perk_code %></span>
+                <% end %>
+                <% if device_type != :mobile %>
+                  <%= link_to business_path(current_business, perk_id: perk.id), target: "_blank", class: "perk-preview" do %>
+                    <i class="fa fa-eye"></i>
+                  <% end %>
+                <% end %>
               </div>
 
               <div class="perk-content">
@@ -73,7 +80,10 @@
             <%= link_to 'Modifier', edit_pro_perk_path(perk), class: "perk-status"  %>
             <!-- PERK DELETION -->
             <% if device_type == :mobile %>
-              <a class="perk-delete-button perk-deletion-mobile" id="perk_<%= perk.id %>">Supprimer</a>
+              <div class="container perk-actions">
+                <%= link_to "Aperçu", business_path(current_business, perk_id: perk.id), target: "_blank" %>
+                <a class="perk-delete-button perk-deletion-mobile" id="perk_<%= perk.id %>">Supprimer</a>
+              </div>
             <% else %>
               <a class="perk-delete-button perk-deletion" id="perk_<%= perk.id %>"><i class="fa fa-trash-o"></i></a>
             <% end %>
