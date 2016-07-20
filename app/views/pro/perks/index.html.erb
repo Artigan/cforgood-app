@@ -19,16 +19,6 @@
       <% else %>
         <% @perks.reverse.each do |perk| %>
           <div class="admin-perk-card">
-            <!-- PERK ACTIVATION -->
-            <div class="perk-activation">
-              <span>Désactiver / Activer</span>
-              <input class="tgl tgl-light" id="<%= perk.id %>" type="checkbox" <%= 'checked="checked"' if perk.active %>>
-              <label class="tgl-btn" for="<%= perk.id %>"></label>
-              <%= simple_form_for :perk, url: pro_business_perk_path(current_business, perk.id), method: :patch, html: { id: "update_perk_#{perk.id}", class: "hidden" } do |f| %>
-                <%= f.input :active, as: :hidden, input_html: { value: !perk.active } %>
-                <%= f.submit "", :style => "display: none;" %>
-              <% end %>
-            </div>
             <!-- PERK MAIN INFOS -->
             <div class="perk-details">
               <div class="perk-title">
@@ -42,7 +32,12 @@
                 <% if perk.flash %>
                   <i class="fa fa-bolt pro-card-perk-flash"></i>
                 <% end %>
-                <% if current_business.online %>
+                <!-- CREATION DATE -->
+                <div class="perk-creation-date">
+                  <span>Créé : <em>le <%= perk.created_at.strftime("%d %b %Y") %></em></span>
+                </div>
+                <!-- PERK CODE -->
+                <% if PerkDetail.find(perk.perk_detail_id).name != "carte" %>
                   <span class="perk-code">Code client : <%= perk.perk_code %></span>
                 <% end %>
               </div>
@@ -61,7 +56,7 @@
                     <span><i class="fa fa-calendar-check-o"></i><%= render(partial: "components/perk_flash_period", locals: { start_date: perk.start_date, end_date: perk.end_date }) %></span>
                   <% end %>
                 </div>
-
+                <!-- PERK STATS -->
                 <div class="perk-stats">
                   <ul>
                     <li>Vues <strong><%= perk.nb_views %></strong></li>
@@ -71,15 +66,22 @@
                 </div>
               </div>
             </div>
-            <!-- DATE CREATION -->
-            <div class="perk-creation-date">
-              <span>Créé : <em>le <%= perk.created_at.strftime("%d %b %Y") %></em></span>
-            </div>
-            <div class="container perk-actions">
-              <!-- DATE PREVIEW -->
-              <%= link_to business_path(current_business, perk_id: perk.id), target: "_blank", class: "perk-preview" do %>
-                <i class="fa fa-eye"></i>
+            <!-- PERK ACTIVATION -->
+            <div class="perk-activation">
+              <span>Désactiver / Activer</span>
+              <input class="tgl tgl-light" id="<%= perk.id %>" type="checkbox" <%= 'checked="checked"' if perk.active %>>
+              <label class="tgl-btn" for="<%= perk.id %>"></label>
+              <%= simple_form_for :perk, url: pro_business_perk_path(current_business, perk.id), method: :patch, html: { id: "update_perk_#{perk.id}", class: "hidden" } do |f| %>
+                <%= f.input :active, as: :hidden, input_html: { value: !perk.active } %>
+                <%= f.submit "", :style => "display: none;" %>
               <% end %>
+            </div>
+            <div class="perk-actions">
+              <!-- DATE PREVIEW -->
+              <iframe src="<%= link_to business_path(current_business, perk_id: perk.id) %>"> <i class="fa fa-eye"></i></iframe>
+              <%#= link_to business_path(current_business, perk_id: perk.id), target: "_blank", class: "perk-preview" do %>
+                <!-- <i class="fa fa-eye"></i> -->
+              <%# end %>
               <!-- PERK EDIT -->
               <%= link_to edit_pro_perk_path(perk), class: "perk-status" do %>
                 <i class="fa fa-pencil"></i>

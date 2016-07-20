@@ -232,10 +232,6 @@
             color: #fff;
             transition: all 0.3s;
 
-            &.perk-status {
-              // background-color: #9FD6AE;
-            }
-
             &:hover, a:focus, a:active {
               background-color: #8BBD99;
               color: #fff;
@@ -245,6 +241,15 @@
 
         .perk-creation-date {
           display: none;
+          @media only screen and (min-width:1090px) {
+            display: block;
+            position: absolute;
+            top: 13px;
+            right: 20px;
+            color: #fff;
+            font-size: 12px;
+            font-weight: 200;
+          }
         }
       }
     }
@@ -326,10 +331,10 @@
 
           .perk-actions {
             position: absolute;
-            bottom: 0;
+            padding: 10px 0px 0;
+            width: 30%;
+            bottom: -20px;
             right: 0;
-            width: 13%;
-            margin: 0;
 
             a {
               margin: 0;
@@ -339,6 +344,10 @@
               &.perk-deletion {
                 border-radius: 0 0 3px 0;
               }
+
+              &.perk-preview {
+                border-radius: 3px 0 0 0;
+              }
             }
           }
         }
@@ -347,29 +356,6 @@
   }
 }
 
-@media only screen and (min-width:1090px){
-  .admin {
-    .dashboard {
-      .admin-perks {
-        .admin-perk-card {
-          .perk-creation-date {
-            display: block;
-            position: absolute;
-            bottom: 0;
-            right: 135px;
-            background-color: #9FD6AE;
-            color: #fff;
-            padding: 10px 20px;
-            width: 180px;
-            border-radius: 3px 0 0 0;
-            font-size: 12px;
-            text-align: center;
-          }
-        }
-      }
-    }
-  }
-}
 
 .last-perk-deleted, .last-perk-desactivated {
   .wrapper {
