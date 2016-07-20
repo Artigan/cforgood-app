@@ -45,11 +45,6 @@
                 <% if current_business.online %>
                   <span class="perk-code">Code client : <%= perk.perk_code %></span>
                 <% end %>
-                <% if device_type != :mobile %>
-                  <%= link_to business_path(current_business, perk_id: perk.id), target: "_blank", class: "perk-preview" do %>
-                    <i class="fa fa-eye"></i>
-                  <% end %>
-                <% end %>
               </div>
 
               <div class="perk-content">
@@ -76,25 +71,26 @@
                 </div>
               </div>
             </div>
-            <!-- PERK EDIT -->
-            <%= link_to 'Modifier', edit_pro_perk_path(perk), class: "perk-status"  %>
-            <!-- PERK DELETION -->
-            <% if device_type == :mobile %>
-              <div class="container perk-actions">
-                <%= link_to "Aperçu", business_path(current_business, perk_id: perk.id), target: "_blank" %>
-                <a class="perk-delete-button perk-deletion-mobile" id="perk_<%= perk.id %>">Supprimer</a>
-              </div>
-            <% else %>
-              <a class="perk-delete-button perk-deletion" id="perk_<%= perk.id %>"><i class="fa fa-trash-o"></i></a>
-            <% end %>
-            <div class="hidden">
-              <%= simple_form_for :perk, url: pro_perk_path(perk), method: :delete, html: { id: "delete_perk_#{perk.id}" } do |f| %>
-                <%= f.submit "", :style => "display: none;" %>
-              <% end %>
-            </div>
             <!-- DATE CREATION -->
             <div class="perk-creation-date">
               <span>Créé : <em>le <%= perk.created_at.strftime("%d %b %Y") %></em></span>
+            </div>
+            <div class="container perk-actions">
+              <!-- DATE PREVIEW -->
+              <%= link_to business_path(current_business, perk_id: perk.id), target: "_blank", class: "perk-preview" do %>
+                <i class="fa fa-eye"></i>
+              <% end %>
+              <!-- PERK EDIT -->
+              <%= link_to edit_pro_perk_path(perk), class: "perk-status" do %>
+                <i class="fa fa-pencil"></i>
+              <% end %>
+              <!-- PERK DELETION -->
+              <a class="perk-delete-button perk-deletion" id="perk_<%= perk.id %>"><i class="fa fa-trash-o"></i></a>
+              <div class="hidden">
+                <%= simple_form_for :perk, url: pro_perk_path(perk), method: :delete, html: { id: "delete_perk_#{perk.id}" } do |f| %>
+                <%= f.submit "", :style => "display: none;" %>
+                <% end %>
+              </div>
             </div>
           </div>
         <% end %>

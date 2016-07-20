@@ -214,45 +214,32 @@
           }
         }
 
-        .perk-status, {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          order: 3;
-          padding: 10px;
-          margin: 0 auto 10px;
-          width: 90%;
-          border-radius: 3px;
-          background-color: #E1E1E1;
-          text-transform: uppercase;
-          font-size: 14px;
-          color: #fff;
-
-          -webkit-transition: all 0.3s;
-          -moz-transition: all 0.3s;
-          transition: all 0.3s;
-
-          &:hover, a:focus, a:active {
-            background-color: #8BBD99;
-            color: #fff;
-          }
-        }
-
         .perk-actions {
           display: flex;
-          justify-content: space-between;
           width: 90%;
           order: 4;
           margin: 0 auto 20px;
 
           a {
-            width: 50%;
-            font-size: 12px;
-            color: #636363;
-          }
+            width: 33.3333%;
+            padding: 10px;
+            margin: 0 1px 10px;
+            border-radius: 3px;
+            background-color: #E1E1E1;
+            text-transform: uppercase;
+            text-align: center;
+            font-size: 18px;
+            color: #fff;
+            transition: all 0.3s;
 
-          .perk-deletion-mobile {
-            text-align: right;
+            &.perk-status {
+              // background-color: #9FD6AE;
+            }
+
+            &:hover, a:focus, a:active {
+              background-color: #8BBD99;
+              color: #fff;
+            }
           }
         }
 
@@ -337,34 +324,21 @@
             width: 70%;
           }
 
-          .perk-status {
+          .perk-actions {
             position: absolute;
-            bottom: -20px;
-            right: 46px;
-            width: 87px;
-            margin-bottom: 20px;
-            border-radius: 0;
-            text-transform: none;
-          }
-
-          .perk-deletion {
-            position: absolute;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 10px;
             bottom: 0;
             right: 0;
-            width: 45px;
-            height: 44px;
-            border-radius: 0 0 3px 0;
-            background-color: #E1E1E1;
-            font-size: 14px;
-            color: #fff;
+            width: 13%;
+            margin: 0;
 
-            &:hover, a:focus, a:active {
-              background-color: #8BBD99;
-              color: #fff;
+            a {
+              margin: 0;
+              border-radius: 0;
+              border-left: 1px solid #fff;
+
+              &.perk-deletion {
+                border-radius: 0 0 3px 0;
+              }
             }
           }
         }
