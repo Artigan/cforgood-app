@@ -532,14 +532,15 @@
             display: flex;
 
             .fa {
-              padding: 2px 2px;
+              padding-top: 4px;
               margin-right: 20px;
-              width: 22px;
-              height: 22px;
+              width: 25px;
+              height: 25px;
               font-size: 15px;
-              color: #636363;
-              border: 1px solid #636363;
+              color: #fff;
+              background-color: #9FD6AE;
               border-radius: 50%;
+              text-align: center;
             }
 
             span {
