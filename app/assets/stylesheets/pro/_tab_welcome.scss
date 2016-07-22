@@ -515,6 +515,38 @@
                 }
               }
             }
+
+            .fa {
+              position: absolute;
+              right: 22px;
+              top: 50%;
+              transform: translateY(-50%);
+              color: #636363;
+            }
+          }
+
+          .perk-preview {
+            position: absolute;
+            top: 10px;
+            right: 60px;
+            display: flex;
+
+            .fa {
+              padding: 2px 2px;
+              margin-right: 20px;
+              width: 22px;
+              height: 22px;
+              font-size: 15px;
+              color: #636363;
+              border: 1px solid #636363;
+              border-radius: 50%;
+            }
+
+            span {
+              margin-left: 30px;
+              font-size: 10px;
+              font-weight: 400;
+            }
           }
         }
       }

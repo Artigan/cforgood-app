@@ -77,11 +77,10 @@
               <% end %>
             </div>
             <div class="perk-actions">
-              <!-- DATE PREVIEW -->
-              <iframe src="<%= link_to business_path(current_business, perk_id: perk.id) %>"> <i class="fa fa-eye"></i></iframe>
-              <%#= link_to business_path(current_business, perk_id: perk.id), target: "_blank", class: "perk-preview" do %>
-                <!-- <i class="fa fa-eye"></i> -->
-              <%# end %>
+              <!-- PERK PREVIEW -->
+              <%= link_to business_path(current_business, perk_id: perk.id), target: "_blank", class: "perk-preview" do %>
+                <i class="fa fa-eye"></i>
+              <% end %>
               <!-- PERK EDIT -->
               <%= link_to edit_pro_perk_path(perk), class: "perk-status" do %>
                 <i class="fa fa-pencil"></i>
