@@ -72,7 +72,7 @@ Rails.application.routes.draw do
   end
 
   resources :perks do
-    resources :uses, only: [:create]
+    resources :uses, only: [:create, :update]
   end
 
   require "sidekiq/web"

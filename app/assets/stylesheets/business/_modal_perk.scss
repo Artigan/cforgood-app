@@ -143,18 +143,6 @@
           }
         }
 
-        .btn-show-card {
-          margin: 25px 0 0 0;
-          padding: 11px 20px;
-          border-radius: 3px;
-          color: #fff;
-          text-transform: uppercase;
-          background: #9FD6AE;
-          border: none;
-          font-size: 14px;
-          font-weight: 600;
-        }
-
         .container-code {
           text-align: center;
 
@@ -199,6 +187,16 @@
             outline: none;
             @include transition(all, 0.3s, ease-in-out);
           }
+
+          input.btn-show-card {
+            border-radius: 3px;
+          }
+
+          .show-card {
+            display: block;
+            margin-top: 25px;
+            border-radius: 3px;
+          }
         }
 
         /* IF USER IS NOT A MEMBER*/
@@ -231,18 +229,23 @@
         z-index: 500;
         transform: rotateX( 180deg );
 
-        .container-query {
+        .container-query,
+        .container-query-feedback {
           display: flex;
           flex-direction: column;
           position: relative;
           text-align: center;
           color: #636363;
-          padding: 50px 20px 50px;
           background-color: #fff;
           border-radius: 3px;
           @include transition(all, 0.3s, ease-in-out);
 
-          .container-answer {
+          p {
+            font-size: 13px;
+          }
+
+          .container-answer,
+          .container-answer-feedback  {
             display: flex;
             align-self: center;
             margin-top: 20px;
@@ -256,6 +259,19 @@
               }
             }
           }
+
+          .container-answer-feedback {
+            margin-top: 0;
+          }
+        }
+
+        .container-query {
+          padding: 50px 20px 50px;
+        }
+
+        .container-query-feedback {
+          margin-top: 25px;
+          padding: 20px;
         }
       }
     }

@@ -9,18 +9,25 @@
         <div class="wrapper">
           <%= render "shared/icons/hand_perk" %>
         </div>
-        <!-- CTA -->
+        <!-- ITINARY -->
         <div class="itinary">
           <%= link_to "http://maps.google.com/maps", class: "", id:"link-map", disabled: true, data: { locale: I18n.locale, destination: { latitude: latitude, longitude: longitude } }, :target => "_blank" do %>
             <i class="fa fa-location-arrow"></i><abbr><%= street %>, <%= zipcode %> <%= city %></abbr>
           <% end %>
         </div>
-        <!-- INPUT CODE PERK -->
-        <button type="button" class="btn-show-card">J'accède à ma carte</button>
-       </figure>
+        <!-- SHOW MEMBER CARD -->
+        <div class="container-code">
+          <div class="show-card">
+            <%= simple_form_for(:code, url: perk_uses_path(params[:perk_id]), method: :post, remote: true, authenticity_token: true, html: { id: :create_use }) do |f| %>
+              <%= f.submit "J'accède à ma carte", class: "btn-show-card" %>
+            <% end %>
+          </div>
+        </div>
+      </figure>
 
       <!-- BACK CARD -->
       <figure class="back">
+        <!-- MEMBER CARD -->
         <div class="member-card">
           <div class="validation-date">
             <span>Le <%= I18n.l DateTime.now.to_date, format: :short %> <%= DateTime.now.year %></span>
@@ -43,21 +50,30 @@
             <% end %>
           </div>
         </div>
+
+        <!-- FEEDBACK USE -->
+        <div class="container-query-feedback">
+          <p>Avez-vous appréciez ce bon plan ?</p>
+          <div class="container-answer-feedback">
+            <div class="answer-yes">
+              <%= simple_form_for :feedback, url: perk_use_path(params[:perk_id]), method: :put, remote: true, authenticity_token: true, html: { id: :update_use } do |f| %>
+              <%= f.input :id, as: :hidden %>
+                <%#= f.input :like, as: :hidden, input_html: { value: true } %>
+                <%#= f.input :feedback, as: :hidden, input_html: { value: true } %>
+                <button type:"submit"><%= render "shared/icons/heart_like" %></button>
+              <% end %>
+            </div>
+            <div class="answer-no">
+              <%= simple_form_for :feedback,  url: perk_use_path(params[:perk_id]), method: :put, remote: true, authenticity_token: true do |f| %>
+                 <%= f.input :id, as: :hidden %>
+                <%#= f.input :unlike, as: :hidden, input_html: { value: true } %>
+                <%#= f.input :feedback, as: :hidden, input_html: { value: true } %>
+                <button type:"submit"> <%= render "shared/icons/heart_unlike" %></button>
+              <% end %>
+            </div>
+          </div>
+        </div>
       </figure>
     </div>
   </div>
 </div>
-
-
-<% content_for :after_js do %>
-  <script>
-    $(document).ready(function(){
-
-      $('.btn-show-card').click(function(event) {
-        $('.flipper-mobile').toggleClass('flipped');
-      });
-
-    });
-  </script>
-<% end %>
-

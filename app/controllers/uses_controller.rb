@@ -21,27 +21,32 @@
 
 class UsesController < ApplicationController
 
-  before_action :find_perk
+  before_action :find_use, only: [:edit, :update]
+  before_action :find_perk, only: [:create]
 
   def create
     @use = current_user.uses.new(perk_id: params[:perk_id])
-    # Control perk_code exist
-    if Perk.find(params[:perk_id]).perk_code == params[:code][:perk_code].squish.upcase
-      @perk_exist = true
-    else
-      @perk_exist = false
-    end
     respond_to do |format|
-      if @perk_exist
-        if @use.save
-          format.html { redirect_to business_path(@perk.business_id, perk_id: @perk.id ) }
-          format.js {}
-        else
-          format.html { render :new }
-          format.js {}
-        end
+      if @use.save
+        format.html { redirect_to business_path(@perk.business_id, perk_id: @perk.id ) }
+        format.js {}
       else
         format.html { render :new }
+        format.js {}
+      end
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    respond_to do |format|
+      if @use.update(feedback_params)
+        format.html { redirect_to pro_business_perks_path(current_business) }
+        format.js {}
+      else
+        format.html { render :edit }
         format.js {}
       end
     end
@@ -51,6 +56,14 @@ class UsesController < ApplicationController
 
   def find_perk
     @perk = Perk.find(params[:perk_id])
+  end
+
+  def find_use
+    @use = Use.find(params[:id])
+  end
+
+  def feedback_params
+    params.require(:feedback).permit(:id, :perk_id)
   end
 
 end
