@@ -55,22 +55,6 @@
         <div class="container-query-feedback">
           <p>Avez-vous appréciez ce bon plan ?</p>
           <div class="container-answer-feedback">
-            <div class="answer-yes">
-              <%= simple_form_for :feedback, url: perk_use_path(params[:perk_id]), method: :put, remote: true, authenticity_token: true, html: { id: :update_use } do |f| %>
-              <%= f.input :id, as: :hidden %>
-                <%#= f.input :like, as: :hidden, input_html: { value: true } %>
-                <%#= f.input :feedback, as: :hidden, input_html: { value: true } %>
-                <button type:"submit"><%= render "shared/icons/heart_like" %></button>
-              <% end %>
-            </div>
-            <div class="answer-no">
-              <%= simple_form_for :feedback,  url: perk_use_path(params[:perk_id]), method: :put, remote: true, authenticity_token: true do |f| %>
-                 <%= f.input :id, as: :hidden %>
-                <%#= f.input :unlike, as: :hidden, input_html: { value: true } %>
-                <%#= f.input :feedback, as: :hidden, input_html: { value: true } %>
-                <button type:"submit"> <%= render "shared/icons/heart_unlike" %></button>
-              <% end %>
-            </div>
           </div>
         </div>
       </figure>

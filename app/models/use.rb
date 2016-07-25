@@ -7,6 +7,9 @@
 #  perk_id    :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  feedback   :boolean          default(FALSE)
+#  like       :boolean          default(FALSE)
+#  unlike     :boolean          default(FALSE)
 #
 # Indexes
 #

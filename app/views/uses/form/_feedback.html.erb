@@ -1,0 +1,14 @@
+<div class="answer-yes">
+  <%= simple_form_for :feedback, url: perk_use_path(params[:perk_id], params[:id]), method: :put do |f| %>
+    <%= f.input :feedback, as: :hidden, input_html: { value: true } %>
+    <%= f.input :like, as: :hidden, input_html: { value: true } %>
+    <button type:"submit"><%= render "shared/icons/heart_like" %></button>
+  <% end %>
+</div>
+<div class="answer-no">
+  <%= simple_form_for :feedback,  url: perk_use_path(params[:perk_id], params[:id]), method: :put do |f| %>
+    <%= f.input :feedback, as: :hidden, input_html: { value: true } %>
+    <%= f.input :unlike, as: :hidden, input_html: { value: true } %>
+    <button type:"submit"> <%= render "shared/icons/heart_unlike" %></button>
+  <% end %>
+</div>

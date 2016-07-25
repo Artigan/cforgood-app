@@ -7,6 +7,9 @@
 #  perk_id    :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  feedback   :boolean          default(FALSE)
+#  like       :boolean          default(FALSE)
+#  unlike     :boolean          default(FALSE)
 #
 # Indexes
 #
@@ -26,30 +29,13 @@ class UsesController < ApplicationController
 
   def create
     @use = current_user.uses.new(perk_id: params[:perk_id])
-    respond_to do |format|
-      if @use.save
-        format.html { redirect_to business_path(@perk.business_id, perk_id: @perk.id ) }
-        format.js {}
-      else
-        format.html { render :new }
-        format.js {}
-      end
-    end
-  end
-
-  def edit
+    @use.save
+    respond_to :js
   end
 
   def update
-    respond_to do |format|
-      if @use.update(feedback_params)
-        format.html { redirect_to pro_business_perks_path(current_business) }
-        format.js {}
-      else
-        format.html { render :edit }
-        format.js {}
-      end
-    end
+    @use.update(feedback_params)
+    redirect_to member_user_dashboard_path(current_user)
   end
 
   private
@@ -63,7 +49,7 @@ class UsesController < ApplicationController
   end
 
   def feedback_params
-    params.require(:feedback).permit(:id, :perk_id)
+    params.require(:feedback).permit(:id, :perk_id, :feedback, :like, :unlike)
   end
 
 end
