@@ -28,6 +28,9 @@ class Use < ActiveRecord::Base
 
   after_create :create_event_intercom
 
+  scope :without_feedback, -> { where(feedback: false) }
+  scope :used, -> { where('feedback = ? or (feedback = ? and unused = ?)', false, true, false) }
+
   private
 
   def create_event_intercom
@@ -41,7 +44,7 @@ class Use < ActiveRecord::Base
         user_id: @user.id,
         email: @user.email,
         metadata: {
-          business_name:  @perk.business.name,
+          business_name: @perk.business.name,
           perk_name: @perk.name
         }
       )

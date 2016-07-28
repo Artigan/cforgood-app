@@ -28,14 +28,17 @@ class UsesController < ApplicationController
   before_action :find_perk, only: [:create]
 
   def create
-    @use = current_user.uses.new(perk_id: params[:perk_id])
+    @use = current_user.uses.new(use_params)
     @use.save
     respond_to :js
   end
 
   def update
-    @use.update(feedback_params)
-    redirect_to member_user_dashboard_path(current_user)
+    @use.update(use_params)
+    respond_to do |format|
+      format.html {redirect_to member_user_dashboard_path(current_user)}
+      format.js {}
+    end
   end
 
   private
@@ -48,8 +51,8 @@ class UsesController < ApplicationController
     @use = Use.find(params[:id])
   end
 
-  def feedback_params
-    params.require(:feedback).permit(:id, :perk_id, :feedback, :like, :unlike)
+  def use_params
+    params.require(:use).permit(:id, :perk_id, :feedback, :like, :unlike, :unused)
   end
 
 end

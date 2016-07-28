@@ -34,7 +34,7 @@
           <!-- IF FLASH PERK -->
           <% if @perk.flash? %>
             <% if @perk.times > 0 %>
-              <span class="flash-notification" style="background-color: <%= @business.business_category.color %>;"><i class="fa fa-flash"></i><%= @perk.times - Use.where(perk_id: params[:perk_id]).count %> restants</span>
+              <span class="flash-notification" style="background-color: <%= @business.business_category.color %>;"><i class="fa fa-flash"></i><%= @perk.times - Use.used.where(perk_id: params[:perk_id]).count %> restants</span>
             <% end %>
             <span class="availabilities"><%= render(partial: "components/perk_flash_period", locals: { start_date: @perk.start_date, end_date: @perk.end_date }) %></span>
           <% end %>
@@ -130,7 +130,7 @@
         <!-- IF FLASH PERK -->
         <% if @perk.flash? %>
           <% if @perk.times > 0 %>
-            <span class="flash-notification" style="background-color: <%= @business.business_category.color %>;"><i class="fa fa-flash"></i><%= @perk.times - Use.where(perk_id: params[:perk_id]).count %> restants</span>
+            <span class="flash-notification" style="background-color: <%= @business.business_category.color %>;"><i class="fa fa-flash"></i><%= @perk.times - Use.used.where(perk_id: params[:perk_id]).count %> restants</span>
           <% end %>
           <span class="availabilities"><%= render(partial: "components/perk_flash_period", locals: { start_date: @perk.start_date, end_date: @perk.end_date }) %></span>
         <% end %>
