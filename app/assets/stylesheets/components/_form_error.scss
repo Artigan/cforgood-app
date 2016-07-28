@@ -25,8 +25,7 @@ span.help-block, label.error {
 }
 
 .alert {
-  position:
-  absolute;
+  position: absolute;
   background: transparent;
   border-color: transparent;
   color: orange;
@@ -34,6 +33,7 @@ span.help-block, label.error {
 }
 
 #error_explanation {
+  z-index: 500;
 
   li.alert-message {
     border: none;
