@@ -21,7 +21,7 @@
 <% end %>
 
 <% if user_signed_in? && !signup_or_signin_page? %>
-  <!-- INTERCOM FOR BUSINESS -->
+  <!-- INTERCOM FOR USER -->
   <%= intercom_script_tag({
     :app_id => ENV['INTERCOM_API_ID'],
     :user_id => current_user.id,

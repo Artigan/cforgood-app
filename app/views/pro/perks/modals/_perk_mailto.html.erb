@@ -18,6 +18,11 @@
             <i class="fa fa-envelope"></i><abbr>Ecrivez-nous !</abbr>
           </a>
         </div>
+        <div class="container-legend">
+          <% if @perk.appel %>
+            <p>Attention, ce bon plan n'est valable qu'une seule fois !</p>
+          <% end %>
+        </div>
         <%= simple_form_for :use, url: perk_uses_path(params[:perk_id], online: true), method: :post, remote: true, authenticity_token: true, html: { id: :create_use } do |f| %>
           <%= f.input :perk_id, as: :hidden, input_html: {value: params[:perk_id]} %>
           <%= f.submit "J'utilise", class: "btn-create-use", :style => "display: none;" %>
