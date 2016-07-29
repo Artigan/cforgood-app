@@ -10,6 +10,10 @@
   </div>
   <%= simple_form_for([:pro, @business, @perk], remote: true) do |f| %>
     <%= f.error_notification %>
+    <label class="hint--top-right" data-hint="Sélectionnez le moyen d'activation">Utilisation *</label>
+    <div class="select-wrapper" id="detail-appel">
+      <%= f.input :perk_detail_id, label: false, collection: PerkDetail.all, label_method: :description, selected: f.object.perk_detail_id || PerkDetail.find_by_name('carte').id, class: "detail-appel" %>
+    </div>
     <label class="hint--top-right" data-hint="Quelque chose de court et engageant">Nom du bon plan *</label>
     <%= f.input :name, label: false, placeholder: "I feel good", required: true, input_html: {maxlength: 35} %>
     <div class="photo-perk">
@@ -25,14 +29,10 @@
     </div>
     <label class="hint--top-right" data-hint="Précisez le contenu de votre offre">Description *</label>
     <%= f.input :description, label: false, placeholder: "Dites-nous tout...", required: true, :input_html => { :rows => 3, maxlength: 220 } %>
-    <label class="hint--top-right" data-hint="Sélectionnez le moyen d'activation">Utilisation *</label>
-    <div class="select-wrapper">
-      <%= f.input :perk_detail_id, label: false, collection: PerkDetail.all,  label_method: :description, selected: f.object.perk_detail_id || PerkDetail.find_by_name('carte').id %>
-    </div>
-    <% if action == 'create' %>
+    <div class="<%= action == 'create' || PerkDetail.find(f.object.perk_detail_id).name == "carte" ? 'detail-appel hidden' : 'detail-appel' %>">
       <label class="hint--top-right" data-hint="Choisissez le code d'accès du bon plan">Code d'accès *</label>
       <%= f.input :perk_code, label: false, placeholder: "De 5 à 15 lettres ou chiffres", input_html: { minlenght: 5, maxlength: 15 } %>
-    <% end %>
+    </div>
     <%= f.input :appel, as: :hidden %>
     <%= f.input :durable, as: :hidden %>
     <%= f.input :flash, as: :hidden %>
@@ -52,6 +52,10 @@
   </div>
   <%= simple_form_for([:pro, @business, @perk], remote: true) do |f| %>
     <%= f.error_notification %>
+    <label class="hint--top-right" data-hint="Sélectionnez le moyen d'activation">Utilisation *</label>
+    <div class="select-wrapper" id="detail-durable">
+      <%= f.input :perk_detail_id, label: false, collection: PerkDetail.all, label_method: :description, selected: f.object.perk_detail_id || PerkDetail.find_by_name('carte').id %>
+    </div>
     <label class="hint--top-right" data-hint="Quelque chose de court et engageant">Nom du bon plan *</label>
     <%= f.input :name, label: false, placeholder: "I feel good", required: true , input_html: {maxlength: 35} %>
     <div class="photo-perk">
@@ -67,14 +71,10 @@
     </div>
     <label class="hint--top-right" data-hint="Précisez le contenu de votre offre">Description *</label>
     <%= f.input :description, label: false, placeholder: "Dites-nous tout...", required: true, :input_html => { :rows => 3, maxlength: 220 } %>
-    <label class="hint--top-right" data-hint="Sélectionnez le moyen d'activation">Utilisation *</label>
-    <div class="select-wrapper">
-      <%= f.input :perk_detail_id, label: false, collection: PerkDetail.all, label_method: :description, selected: f.object.perk_detail_id || PerkDetail.find_by_name('carte').id %>
-    </div>
-    <% if action == 'create' %>
+    <div class="<%= action == 'create' || PerkDetail.find(f.object.perk_detail_id).name == "carte" ? 'detail-durable hidden' : 'detail-durable' %>">
       <label class="hint--top-right" data-hint="Choisissez le code d'accès du bon plan">Code d'accès *</label>
       <%= f.input :perk_code, label: false, placeholder: "De 5 à 15 lettres ou chiffres", input_html: { minlenght: 5, maxlength: 15 } %>
-    <% end %>
+    </div>
     <%= f.input :appel, as: :hidden %>
     <%= f.input :durable, as: :hidden %>
     <%= f.input :flash, as: :hidden %>
@@ -94,6 +94,10 @@
   </div>
   <%= simple_form_for([:pro, @business, @perk], remote: true) do |f| %>
     <%= f.error_notification %>
+    <label class="hint--top-right" data-hint="Sélectionnez le moyen d'activation">Utilisation *</label>
+    <div class="select-wrapper" id="detail-flash">
+      <%= f.input :perk_detail_id, label: false, collection: PerkDetail.all, label_method: :description, selected: f.object.perk_detail_id || PerkDetail.find_by_name('carte').id %>
+    </div>
     <label class="hint--top-right" data-hint="Quelque chose de court et engageant">Nom du bon plan *</label>
     <%= f.input :name, label: false, placeholder: "I feel good", required: true , input_html: {maxlength: 35} %>
     <div class="photo-perk">
@@ -109,10 +113,6 @@
     </div>
     <label class="hint--top-right" data-hint="Précisez le contenu de votre offre">Description *</label>
     <%= f.input :description, label: false, placeholder: "Dites-nous tout...", required: true, :input_html => { :rows => 3, maxlength: 220 } %>
-    <label class="hint--top-right" data-hint="Sélectionnez le moyen d'activation">Utilisation *</label>
-    <div class="select-wrapper">
-      <%= f.input :perk_detail_id, label: false, collection: PerkDetail.all, label_method: :description, selected: f.object.perk_detail_id || PerkDetail.find_by_name('carte').id %>
-    </div>
     <label class="hint--top-right" data-hint="Déterminez une période de disponibilité">Période *</label>
     <%= f.input :start_date_date, as: :string, label: false, placeholder: "Début", input_html: {"data-provide" => "datepicker", "data-date-language" => "fr", value: f.object.start_date.try(:strftime, '%d/%m/%Y') } %>
     <%= f.input :start_date_hour, collection: pad0(0..23), label: false, selected: pad0(f.object.start_date_hour || 00) %>
@@ -125,10 +125,10 @@
       <button id="quantity-plus" type="button"><i class="fa fa-plus"></i></button>
       <button id="quantity-minus" type="button"><i class="fa fa-minus"></i></button>
     </div>
-    <% if action == 'create' %>
+    <div class="<%= action == 'create' || PerkDetail.find(f.object.perk_detail_id).name == "carte" ? 'detail-flash hidden' : 'detail-flash' %>">
       <label class="hint--top-right" data-hint="Choisissez le code d'accès du bon plan">Code d'accès *</label>
       <%= f.input :perk_code, label: false, placeholder: "De 5 à 15 lettres ou chiffres", input_html: { minlenght: 5, maxlength: 15 } %>
-    <% end %>
+    </div>
     <%= f.input :appel, as: :hidden %>
     <%= f.input :durable, as: :hidden %>
     <%= f.input :flash, as: :hidden %>
@@ -136,6 +136,9 @@
   <% end %>
 </div>
 
+<% PerkDetail.all.each do |perk_detail| %>
+  <div class="list-perk-detail hidden"><%= perk_detail.name %></div>
+<% end %>
 
 <% content_for :after_js do %>
 
@@ -185,6 +188,21 @@
           $(fieldId).val(0);
         }
       });
+
+      // CODE PERK DEPENDS ON PERK_DETAIL
+      $('.select-wrapper .form-control').on("change", function(e) {
+        e.preventDefault;
+        var detailId = $(this).val() - 1;
+        var classDetailId = $(this).closest('.select-wrapper').attr('id');
+        var detailName = $('.list-perk-detail')[detailId].innerHTML;
+        if(detailName == "email" || detailName == "online") {
+          $("."+classDetailId).removeClass('hidden');
+        }
+        else if (!$("."+classDetailId).hasClass('hidden')) {
+          $("."+classDetailId).addClass('hidden');
+        }
+      });
+
 
       // SUPPLY BOOLEAN FIELDS
       $(".type-card").on("click", function(e) {

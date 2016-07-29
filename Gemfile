@@ -50,6 +50,7 @@ gem 'mobvious'
 gem 'mobvious-rails'
 gem 'slack-notifier'
 gem 'amplitude-api'
+gem 'listjs-rails'
 
 gem 'bootstrap-datepicker-rails'
 gem "time_splitter"

@@ -34,7 +34,7 @@
           <!-- IF FLASH PERK -->
           <% if @perk.flash? %>
             <% if @perk.times > 0 %>
-              <span class="flash-notification" style="background-color: <%= @business.business_category.color %>;"><i class="fa fa-flash"></i><%= @perk.times - Use.where(perk_id: params[:perk_id]).count %> restants</span>
+              <span class="flash-notification" style="background-color: <%= @business.business_category.color %>;"><i class="fa fa-flash"></i><%= @perk.times - Use.used.where(perk_id: params[:perk_id]).count %> restants</span>
             <% end %>
             <span class="availabilities"><%= render(partial: "components/perk_flash_period", locals: { start_date: @perk.start_date, end_date: @perk.end_date }) %></span>
           <% end %>
@@ -130,7 +130,7 @@
         <!-- IF FLASH PERK -->
         <% if @perk.flash? %>
           <% if @perk.times > 0 %>
-            <span class="flash-notification" style="background-color: <%= @business.business_category.color %>;"><i class="fa fa-flash"></i><%= @perk.times - Use.where(perk_id: params[:perk_id]).count %> restants</span>
+            <span class="flash-notification" style="background-color: <%= @business.business_category.color %>;"><i class="fa fa-flash"></i><%= @perk.times - Use.used.where(perk_id: params[:perk_id]).count %> restants</span>
           <% end %>
           <span class="availabilities"><%= render(partial: "components/perk_flash_period", locals: { start_date: @perk.start_date, end_date: @perk.end_date }) %></span>
         <% end %>
@@ -208,22 +208,22 @@
 <!-- MODAL CODE PERK -->
 <% if user_signed_in? %>
   <% if !current_user.member %>
-    <%= render "pro/perks/modals/code_perk_not_member" %>
+    <%= render "pro/perks/modals/perk_not_member" %>
   <% elsif Perk.find(params[:perk_id]).perk_detail.name == "email" %>
-    <%= render "pro/perks/modals/code_perk_mailto" %>
+    <%= render "pro/perks/modals/perk_mailto" %>
   <% elsif @business.online %>
-    <%= render "pro/perks/modals/code_perk_online" %>
+    <%= render "pro/perks/modals/perk_online" %>
   <% elsif device_type == :mobile %>
     <% if @address.present? %>
-      <%= render "pro/perks/modals/code_perk_offline_mobile", latitude: @address.latitude, longitude: @address.longitude, street: @address.street, zipcode: @address.zipcode, city: @address.city %>
+      <%= render "pro/perks/modals/perk_offline_mobile", latitude: @address.latitude, longitude: @address.longitude, street: @address.street, zipcode: @address.zipcode, city: @address.city %>
     <% else %>
-      <%= render "pro/perks/modals/code_perk_offline_mobile", latitude: @business.latitude, longitude: @business.longitude, street: @business.street, zipcode: @business.zipcode, city: @business.city %>
+      <%= render "pro/perks/modals/perk_offline_mobile", latitude: @business.latitude, longitude: @business.longitude, street: @business.street, zipcode: @business.zipcode, city: @business.city %>
     <% end %>
   <% else %>
     <% if @address.present? %>
-      <%= render "pro/perks/modals/code_perk_offline_desktop", latitude: @address.latitude, longitude: @address.longitude, street: @address.street, zipcode: @address.zipcode, city: @address.city %>
+      <%= render "pro/perks/modals/perk_offline_desktop", latitude: @address.latitude, longitude: @address.longitude, street: @address.street, zipcode: @address.zipcode, city: @address.city %>
     <% else %>
-      <%= render "pro/perks/modals/code_perk_offline_desktop", latitude: @business.latitude, longitude: @business.longitude, street: @business.street, zipcode: @business.zipcode, city: @business.city %>
+      <%= render "pro/perks/modals/perk_offline_desktop", latitude: @business.latitude, longitude: @business.longitude, street: @business.street, zipcode: @business.zipcode, city: @business.city %>
     <% end %>
   <% end %>
 <% end %>
@@ -245,11 +245,6 @@
     $(document).ready(function() {
 
       $(".use-button").click(function() {
-        // Patch during VIDEO && SALON
-        if ($('div').hasClass('member-card') && (<%= current_user.present? && (current_user.email == "allan.floury@gmail.com" || current_user.email == "frederique.petris@gmail.com" )%>)) {
-         $('.flipper-mobile').toggleClass('flipped');
-        }
-        // END Patch during VIDEO && SALON
         $('.use-overlay').removeClass('hidden');
         // EVENT AMPLITUDE USER_C_BENEFIT
         amplitude.logEvent('USER_C_BENEFIT');

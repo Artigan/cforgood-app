@@ -14,6 +14,9 @@
 //= require vendor/slick.js
 //= require app/slick.js
 
+//= require list
+//= require list.fuzzysearch
+
 //= require_tree ./app
 
 // Please do not put any code in here. Create a new .js file in

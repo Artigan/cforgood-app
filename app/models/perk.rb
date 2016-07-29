@@ -57,7 +57,7 @@ class Perk < ActiveRecord::Base
   validates :times, numericality: { only_integer: true, greater_than_or_equal_to: 0 }, allow_nil: true
   validate :dates_required_if_flash
   validate :start_date_cannot_be_greater_than_end_date
-  validates :perk_code, length: { in: 5..15 }, format: { with: /\A[A-Za-z0-9]+\z/, message: "Le code du bon plan ne peut contenir que des lettres et des chiffres" }
+  validates :perk_code, length: { in: 5..15 }, format: { with: /\A[A-Za-z0-9]+\z/, message: "Le code du bon plan ne peut contenir que des lettres et des chiffres" }, if: :perk_code_needed?
   validate :perk_code_uniqueness, if: :perk_code_changed?
 
   validates_size_of :picture, maximum: 2.megabytes,
@@ -83,15 +83,15 @@ class Perk < ActiveRecord::Base
     if self.durable
       true
     elsif self.appel
-      user.uses.where(perk_id: self.id).count == 0
+      user.uses.used.where(perk_id: self.id).count == 0
     elsif self.flash
-      self.times == 0 || Use.where(perk_id: self.id).count < self.times
+      self.times == 0 || Use.used.where(perk_id: self.id).count < self.times
     end
   end
 
   def perk_in_time?
     if self.flash
-      (self.start_date <= Time.now && self.end_date >= Time.now) && (self.times == 0 || Use.where(perk_id: self.id).count < self.times)
+      (self.start_date <= Time.now && self.end_date >= Time.now) && (self.times == 0 || Use.used.where(perk_id: self.id).count < self.times)
     else
       true
     end
@@ -102,6 +102,11 @@ class Perk < ActiveRecord::Base
   end
 
   private
+
+  def perk_code_needed?
+    name = PerkDetail.find(self.perk_detail_id).name
+    name == "online" || name == "email"
+  end
 
   def dates_required_if_flash
     if flash

@@ -309,6 +309,8 @@ class User < ActiveRecord::Base
       user.custom_attributes["user_active"] = self.active
       user.custom_attributes["user_cause"] = self.cause.name
       user.custom_attributes["user_member"] = self.member
+      user.custom_attributes['code_partner'] = self.code_partner
+      user.custom_attributes['date_end_trial'] = self.date_end_partner
       intercom.users.save(user)
     rescue Intercom::IntercomError => e
       begin
@@ -322,7 +324,9 @@ class User < ActiveRecord::Base
             'user_active' => self.active,
             'first_name' => self.first_name,
             'user_cause' => self.cause.name,
-            'user_member' => self.member
+            'user_member' => self.member,
+            'code_partner' => self.code_partner,
+            'date_end_trial' => self.date_end_partner
           })
         intercom.users.save(user)
       rescue Intercom::IntercomError => e

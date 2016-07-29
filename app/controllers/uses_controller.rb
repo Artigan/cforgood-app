@@ -7,6 +7,10 @@
 #  perk_id    :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  feedback   :boolean          default(FALSE)
+#  like       :boolean          default(FALSE)
+#  unlike     :boolean          default(FALSE)
+#  unused     :boolean          default(FALSE)
 #
 # Indexes
 #
@@ -21,29 +25,20 @@
 
 class UsesController < ApplicationController
 
-  before_action :find_perk
+  before_action :find_use, only: [:edit, :update]
+  before_action :find_perk, only: [:create]
 
   def create
-    @use = current_user.uses.new(perk_id: params[:perk_id])
-    # Control perk_code exist
-    if Perk.find(params[:perk_id]).perk_code == params[:code][:perk_code].squish.upcase
-      @perk_exist = true
-    else
-      @perk_exist = false
-    end
+    @use = current_user.uses.new(use_params)
+    @use.save
+    respond_to :js
+  end
+
+  def update
+    @use.update(use_params)
     respond_to do |format|
-      if @perk_exist
-        if @use.save
-          format.html { redirect_to business_path(@perk.business_id, perk_id: @perk.id ) }
-          format.js {}
-        else
-          format.html { render :new }
-          format.js {}
-        end
-      else
-        format.html { render :new }
-        format.js {}
-      end
+      format.html {redirect_to member_user_dashboard_path(current_user)}
+      format.js {}
     end
   end
 
@@ -51,6 +46,14 @@ class UsesController < ApplicationController
 
   def find_perk
     @perk = Perk.find(params[:perk_id])
+  end
+
+  def find_use
+    @use = Use.find(params[:id])
+  end
+
+  def use_params
+    params.require(:use).permit(:id, :perk_id, :feedback, :like, :unlike, :unused)
   end
 
 end
