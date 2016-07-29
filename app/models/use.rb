@@ -10,6 +10,7 @@
 #  feedback   :boolean          default(FALSE)
 #  like       :boolean          default(FALSE)
 #  unlike     :boolean          default(FALSE)
+#  unused     :boolean          default(FALSE)
 #
 # Indexes
 #
@@ -30,6 +31,7 @@ class Use < ActiveRecord::Base
 
   scope :without_feedback, -> { where(feedback: false) }
   scope :used, -> { where('feedback = ? or (feedback = ? and unused = ?)', false, true, false) }
+  scope :liked, -> { where(like: true) }
 
   private
 

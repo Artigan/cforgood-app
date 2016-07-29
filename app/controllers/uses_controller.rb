@@ -10,6 +10,7 @@
 #  feedback   :boolean          default(FALSE)
 #  like       :boolean          default(FALSE)
 #  unlike     :boolean          default(FALSE)
+#  unused     :boolean          default(FALSE)
 #
 # Indexes
 #

@@ -15,17 +15,29 @@
     <%= render "components/menu/index_search_category" %>
 
     <div id="mixitup" class="container-perk-cards">
-      <% @businesses.each do |business| %>
+      <!-- <div id="perks-list"> -->
 
+          <!-- <input class="search" placeholder="Search" /> -->
+
+        <!-- <ul class="list"> -->
+      <% @businesses.each do |business| %>
         <% (@addresses_id.select { |address_id| address_id[0] == business.id }).each do |address_id| %>
           <!-- COMPONENT | ADDRESSES -->
           <% business.perks.active.each do |perk| %>
+                  <!-- <li> -->
             <!-- COMPONENT | CARD BON PLAN -->
             <%= link_to business_path(business, perk_id: perk.id, address_id: address_id[1]), class: "card-frame mix #{business.business_category_id} #{business.online? ? 'online' : ''}" do %>
               <!-- CARD HEADER -->
               <div class="card-header">
                 <div class="card-header-main">
                   <span class="perk-title"><%= business.name %></span>
+                  <% liked = Use.liked.where(perk_id: perk.id).count %>
+                  <% if liked > 0 %>
+                  <div class="perk-liked">
+                    <%= render 'shared/icons/heart_like' %>
+                    <span><%= liked %></span>
+                  </div>
+                  <% end %>
                 </div>
                 <div class="card-header-leader">
                 <% if business.leader_picture.present? %>
@@ -46,7 +58,7 @@
                   <% if perk.flash? && perk.times > 0 %>
                     <span style="background-color: <%= business.business_category.color %>;"><i class="fa fa-flash"></i><%= perk.times - Use.used.where(perk_id: perk.id).count  %> restants</span>
                   <% end %>
-                  <h3><%= perk.name %></h3>
+                  <h3 class="perk-name"><%= perk.name %></h3>
                 </div>
               </div>
             <% end %>
@@ -54,8 +66,10 @@
           <% end %>
           <!-- END | ADDRESSES -->
         <% end %>
-
+      <!-- </li> -->
       <% end %>
+    <!-- </ul> -->
+  <!-- </div> -->
     </div>
 
   <!-- END | DASHBOARD PERKS -->
@@ -187,6 +201,17 @@
         }
       });
     });
+
+    // var monkeyList = new List('perks-list', {
+    //   valueNames: ['perk-name'],
+    //   plugins: [ ListFuzzySearch() ]
+    // });
+
+    var options = {
+      valueNames: [ 'perk-name' ]
+    };
+
+    var perksList = new List('perks-list', options);
 
   </script>
 <% end %>
