@@ -1,6 +1,6 @@
 <!-- begin Wootric code -->
 <script type="text/javascript">
- wootric_survey_immediately = true; // Shows survey immediately for testing purposes.  TODO: Comment out for production.
+ wootric_survey_immediately = false; // Shows survey immediately for testing purposes.  TODO: Comment out for production.
  window.wootricSettings = {
     email: "<%=  user_signed_in? ? current_user.email : current_business.email %>",// TODO: The current logged in user's email address.
     created_at: <%= user_signed_in? ? current_user.created_at.to_i : current_business.created_at.to_i %>, // TODO: The current logged in user's sign-up date as a 10 digit Unix timestamp in seconds.
