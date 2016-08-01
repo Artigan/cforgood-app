@@ -306,6 +306,7 @@ class User < ActiveRecord::Base
       user = intercom.users.find(:user_id => self.id)
       user.custom_attributes["user_type"] = 'user'
       user.custom_attributes["first_name"] = self.first_name
+      user.custom_attributes['city'] = self.city
       user.custom_attributes["user_active"] = self.active
       user.custom_attributes["user_cause"] = self.cause.name
       user.custom_attributes["user_member"] = self.member
@@ -321,8 +322,9 @@ class User < ActiveRecord::Base
           :created_at => created_at,
           :custom_data => {
             'user_type' => 'user',
-            'user_active' => self.active,
             'first_name' => self.first_name,
+            'city' => self.city,
+            'user_active' => self.active,
             'user_cause' => self.cause.name,
             'user_member' => self.member,
             'code_partner' => self.code_partner,

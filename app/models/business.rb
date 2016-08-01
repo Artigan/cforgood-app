@@ -161,13 +161,14 @@ class Business < ActiveRecord::Base
   end
 
   def update_data_intercom
-    if active_changed? or leader_first_name_changed?
+    if active_changed? or leader_first_name_changed? or city_changed?
       # UPDATE CUSTOM ATTRIBUTES ON INTERCOM
       intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
       begin
         user = intercom.users.find(:user_id => 'B'+id.to_s)
         user.custom_attributes["user_active"] = self.active
-        user.custom_attributes["first_name"] =  self.leader_first_name
+        user.custom_attributes["first_name"] = self.leader_first_name
+        user.custom_attributes["city"] = self.city
         intercom.users.save(user)
       rescue Intercom::IntercomError => e
       end
