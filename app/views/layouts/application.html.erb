@@ -9,7 +9,9 @@
     <% if signup_or_signin_page? %>
       <%= render "layouts/shared/navbar_logout" %>
     <% else %>
-      <%= render "layouts/shared/navbar" %>
+      <div class="mobile-hidden">
+        <%= render "layouts/shared/navbar" %>
+      </div>
     <% end %>
 
     <div id="menu-overlay">
