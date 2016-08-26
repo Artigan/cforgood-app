@@ -7,7 +7,7 @@ class Member::SubscribeController < ApplicationController
       current_user.update_attribute("card_id", params[:card][:id])
       execute_payin
     end
-    redirect_to member_user_dashboard_path(current_user)
+    respond_to :js
   end
 
   def update
@@ -29,14 +29,15 @@ class Member::SubscribeController < ApplicationController
         if @payment.save
           current_user.member!
           current_user.update(subscription: "M", date_last_payment: Time.now)
-          flash[:success] = "Vos données bancaires ont bien été enregistrées"
+          flash[:success] = "Votre paiement a été pris en compte."
         else
-          flash[:alert] = "Erreur lors de l'enregistrement de votre paiement"
+          flash[:alert] = "Erreur lors de l'enregistrement de votre paiement."
         end
       else
         flash[:alert] = result["ResultMessage"]
       end
     elsif current_user.subscription.present?
+      flash[:success] = "Vos données bancaires ont bien été enregistrées."
       current_user.member!
     end
   end

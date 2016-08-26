@@ -3,16 +3,15 @@ class MonthlyPayinJob < ActiveJob::Base
 
   def perform
 
-    puts "-----------------------------------------"
-    puts "MONTHLY PAYIN JOB"
-    puts "-----------------------------------------"
-    puts ""
+    report = []
+    report << "-----------------------------------------"
 
     intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
 
-    puts "-----------------------------------------"
-    puts "MEMBER ON TRIAL J-7"
-    puts "-----------------------------------------"
+
+    # Traitment members on trial at J-7
+    report << "MEMBER ON TRIAL J-7"
+    report << "-----------------------------------------"
 
     @user_trial_J_7 = User.member_on_trial_should_payin(7)
     nb_events_trial_J_7 = 0
@@ -29,20 +28,19 @@ class MonthlyPayinJob < ActiveJob::Base
         rescue Intercom::IntercomError => e
         end
         nb_events_trial_J_7 += 1
-        puts "MEMBER ON TRIAL J-7 | event intercom | #{user.id} | #{user.email}"
+        report << "MEMBER ON TRIAL J-7 | event intercom | #{user.id} | #{user.email}"
       end
     end
 
-    puts ""
-    puts "Nb users on trial J-7 | #{@user_trial_J_7.size}"
-    puts "Nb events for trial J-7 | #{nb_events_trial_J_7}"
-    puts "-----------------------------------------"
-    puts ""
+    report << "-----------------------------------------" if @user_trial_J_7.present?
+    report << "Nb users on trial J-7 | #{@user_trial_J_7.size}"
+    report << "Nb events for trial J-7 | #{nb_events_trial_J_7}"
+    report << "-----------------------------------------"
 
 
-    puts "-----------------------------------------"
-    puts "MEMBER ON TRIAL J-3"
-    puts "-----------------------------------------"
+    # Traitment members on trial at J-3
+    report << "MEMBER ON TRIAL J-3"
+    report << "-----------------------------------------"
 
     @user_trial_J_3 = User.member_on_trial_should_payin(3)
     nb_events_trial_J_3 = 0
@@ -59,19 +57,19 @@ class MonthlyPayinJob < ActiveJob::Base
         rescue Intercom::IntercomError => e
         end
         nb_events_trial_J_3 += 1
-        puts "MEMBER ON TRIAL J-3 | event intercom | #{user.id} | #{user.email}"
+        report << "MEMBER ON TRIAL J-3 | event intercom | #{user.id} | #{user.email}"
       end
     end
 
-    puts ""
-    puts "Nb users on trial J-3 | #{@user_trial_J_3.size}"
-    puts "Nb events for trial J-3 | #{nb_events_trial_J_3}"
-    puts "-----------------------------------------"
-    puts ""
+    report << "-----------------------------------------" if @user_trial_J_3.present?
+    report << "Nb users on trial J-3 | #{@user_trial_J_3.size}"
+    report << "Nb events for trial J-3 | #{nb_events_trial_J_3}"
+    report << "-----------------------------------------"
 
-    puts "-----------------------------------------"
-    puts "MEMBER ON TRIAL J-0"
-    puts "-----------------------------------------"
+
+    # Traitment members on trial at J-0
+    report << "MEMBER ON TRIAL J-0"
+    report << "-----------------------------------------"
 
     @user_trial_J_0 = User.member_on_trial_should_payin(0)
     nb_payin_trial_OK = 0
@@ -81,14 +79,14 @@ class MonthlyPayinJob < ActiveJob::Base
     @user_trial_J_0.each do |user|
       if user.card_id.present?
         if monthly_payin(user)
-          # CHANGE SUBSCRIPTION : TRIAL IS DONE !
+          # Change subscription: Trial is done !
           user.update(subscription: "M")
           nb_payin_trial_OK += 1
-          puts "MEMBER ON TRIAL J-0 | subscription OK | #{user.id} | #{user.email}"
+          report << "MEMBER ON TRIAL J-0 | subscription OK | #{user.id} | #{user.email}"
         else
           user.update(member: false)
           nb_payin_trial_KO += 1
-          puts "MEMBER ON TRIAL J-0 | subscription KO + member inactivate | #{user.id} | #{user.email}"
+          report << "MEMBER ON TRIAL J-0 | subscription KO + member inactivate | #{user.id} | #{user.email}"
         end
       else
         user.update(member: false)
@@ -102,50 +100,72 @@ class MonthlyPayinJob < ActiveJob::Base
         rescue Intercom::IntercomError => e
         end
         nb_events_trial_J_0 += 1
-        puts "MEMBER ON TRIAL J-0 | event intercom + member inactivate | #{user.id} | #{user.email}"
+        report << "MEMBER ON TRIAL J-0 | event intercom + member inactivate | #{user.id} | #{user.email}"
       end
     end
 
-    puts ""
-    puts "Nb users on trial J-0 | #{@user_trial_J_0.size}"
-    puts "Nb payin OK trial J-0 | #{nb_payin_trial_OK}"
-    puts "Nb payin KO trial J-0 | #{nb_payin_trial_KO}"
-    puts "Nb events for trial J-0 | #{nb_events_trial_J_0}"
-    puts "-----------------------------------------"
-    puts ""
+    report << "-----------------------------------------" if @user_trial_J_0.present?
+    report << "Nb users on trial J-0 | #{@user_trial_J_0.size}"
+    report << "Nb payin OK trial J-0 | #{nb_payin_trial_OK}"
+    report << "Nb payin KO trial J-0 | #{nb_payin_trial_KO}"
+    report << "Nb events for trial J-0 | #{nb_events_trial_J_0}"
+    report << "-----------------------------------------"
 
-    puts "-----------------------------------------"
-    puts "MONTHLY MEMBER"
-    puts "-----------------------------------------"
+
+    # Traitment members should PAYIN
+    report << "MONTHLY MEMBER J-0"
+    report << "-----------------------------------------"
 
     @user_member_should_payin = User.member_should_payin(0)
     nb_member_payin_OK = 0
     nb_member_payin_KO = 0
 
+
+    # if last day of month and previous month is longer
+    if Time.now.end_of_day == Time.now.end_of_month && Time.now.prev_month.day > Time.now.end_of_month.day
+      index = Time.now.end_of_month.day - Time.now.prev_month.day
+
+      (1..index).each do |i|
+        @user_member_should_payin << User.member_should_payin(-i)
+      end
+
+      @user_member_should_payin = @user_member_should_payin.reject(&:empty?)
+    end
+
     @user_member_should_payin.each do |user|
       if monthly_payin(user)
         nb_member_payin_OK += 1
-        puts "MONTHLY MEMBER | payin OK | #{user.id} | #{user.email}"
+        report << "MONTHLY MEMBER | payin OK | #{user.id} | #{user.email}"
       else
         nb_member_payin_KO += 1
-        puts "MONTHLY MEMBER | payin KO | #{user.id} | #{user.email}"
+        report << "MONTHLY MEMBER | payin KO | #{user.id} | #{user.email}"
       end
     end
 
-    puts ""
-    puts "Nb members should payin | #{@user_member_should_payin.size}"
-    puts "Nb payin OK J-0 | #{nb_member_payin_OK}"
-    puts "Nb payin KO J-0 | #{nb_member_payin_KO}"
-    puts "-----------------------------------------"
-    puts ""
+    report << "-----------------------------------------" if @user_member_should_payin.present?
+    report << "Nb members should payin | #{@user_member_should_payin.size}"
+    report << "Nb payin OK J-0 | #{nb_member_payin_OK}"
+    report << "Nb payin KO J-0 | #{nb_member_payin_KO}"
+    report << "-----------------------------------------"
 
-    puts "-----------------------------------------"
-    puts "MONTHLY MEMBER J+7"
-    puts "-----------------------------------------"
+
+    # Traitment members should have PAYIN J+7
+    report << "MONTHLY MEMBER J+7"
+    report << "-----------------------------------------"
 
     @user_member_should_payin_J_7 = User.member_should_payin(7)
     nb_events_member_J_7 = 0
 
+    # if last day of month and previous month is longer
+    if Time.now.end_of_day == Time.now.end_of_month && Time.now.prev_month.day > Time.now.end_of_month.day
+      index = Time.now.end_of_month.day - Time.now.prev_month.day
+
+      (1..index).each do |i|
+        @user_member_should_payin_J_7 << User.member_should_payin_J_7(7-i)
+      end
+
+      @user_member_should_payin_J_7 = @user_member_should_payin_J_7.reject(&:empty?)
+    end
 
     @user_member_should_payin_J_7.each do |user|
       user.update_attribute('member', false)
@@ -159,14 +179,35 @@ class MonthlyPayinJob < ActiveJob::Base
       rescue Intercom::IntercomError => e
       end
       nb_events_member_J_7 += 1
-      puts "MONTHLY MEMBER J+7 | event intercom + member inactivate | #{user.id} | #{user.email}"
+      report << "MONTHLY MEMBER J+7 | event intercom + member inactivate | #{user.id} | #{user.email}"
     end
 
-    puts ""
-    puts "Nb members should payin J+7 | #{@user_member_should_payin_J_7.size}"
-    puts "Nb events for payin J+7 | #{nb_events_member_J_7}"
+    report << "-----------------------------------------" if @user_member_should_payin_J_7.present?
+    report << "Nb members should payin J+7 | #{@user_member_should_payin_J_7.size}"
+    report << "Nb events for payin J+7 | #{nb_events_member_J_7}"
+    report << "-----------------------------------------"
+
+
+    # Report : Edit + Send to slack
+    puts "-----------------------------------------"
+    puts "Report MONTHLY PAYIN JOB"
     puts "-----------------------------------------"
     puts ""
+
+    fields = []
+    report.each do |line|
+      puts line
+      fields << { "value": line }
+    end
+
+    notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_JOB_URL']
+    attachment = {
+      fallback: "Report MONTHLY PAYIN JOB",
+      fields: fields,
+      color: "good"
+    }
+    notifier.ping "Report MONTHLY PAYIN JOB", attachments: [attachment]
+
 
   end
 
@@ -179,9 +220,9 @@ class MonthlyPayinJob < ActiveJob::Base
     result = MangopayServices.new(user).create_mangopay_payin(wallet_id)
 
     if result["ResultMessage"] != "Success"
-      puts "-----------------------------------------"
-      puts "ERROR PAYMENT | event payment | #{user.id} | #{user.email} | #{result}"
-      puts "-----------------------------------------"
+      report << "-----------------------------------------"
+      report << "ERROR PAYMENT | event payment | #{user.id} | #{user.email} | #{result}"
+      report << "-----------------------------------------"
     end
 
     @payment = user.payments.new(cause_id: user.cause_id, amount: user.amount, done: result["ResultMessage"] == "Success" ? true : false)

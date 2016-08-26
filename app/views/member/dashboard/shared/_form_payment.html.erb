@@ -24,9 +24,9 @@
             <input type="submit" value="Validez"  id="create-card" class="btn btn-default">
           </form>
           <div class="hidden">
-            <%= simple_form_for :card, url: member_subscribe_index_path, html: { id: :create_account } do |f| %>
+            <%= simple_form_for :card, url: member_subscribe_index_path, remote: true, method: :post, authenticity_token: true do |f| %>
               <%= f.input :id, as: :hidden %>
-              <%= f.submit "", :style => "display: none;" %>
+              <%= f.submit "", class: "btn-create-card", :style => "display: none;" %>
             <% end %>
           </div>
         </div>
