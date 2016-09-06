@@ -71,7 +71,7 @@ class Perk < ActiveRecord::Base
     content_type: /\Aimage\/.*\z/
 
   after_create :send_registration_slack
-  after_create :update_data_intercom
+  after_create :update_data_intercom, :send_push_notification
   after_save :update_data_intercom, if: :active_changed?
   after_destroy :update_data_intercom
 
@@ -162,6 +162,22 @@ class Perk < ActiveRecord::Base
       intercom.users.save(user)
     rescue Intercom::IntercomError => e
     end
+  end
+
+  def send_push_notification
+    params = {
+          app_id: ENV['ONESIGNAL_APP_ID'],
+          contents:  {"en" => "#{self.business.name} a créer un nouveau bon plan : #{self.name}"},
+          included_segments: ["test"]}
+    uri = URI.parse('https://onesignal.com/api/v1')
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+
+    request = Net::HTTP::Get.new(uri.path,
+                                 'Content-Type'  => 'application/json',
+                                 'Authorization' => ENV['ONESIGNAL_API_KEY'])
+     response = http.request(request)
+     puts response.body
   end
 
   def active?
