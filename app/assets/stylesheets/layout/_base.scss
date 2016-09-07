@@ -71,7 +71,11 @@ section {
     bottom: 80px !important;
   }
 
- iframe.intercom-launcher-frame {
+  #intercom-container .intercom-launcher-frame {
+    bottom: 80px !important;
+  }
+
+  #intercom-container.intercom-launcher-frame {
     bottom: 80px !important;
   }
 }
