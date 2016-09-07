@@ -70,8 +70,7 @@ class Perk < ActiveRecord::Base
   validates_attachment_content_type :s3_picture,
     content_type: /\Aimage\/.*\z/
 
-  after_create :send_registration_slack
-  after_create :update_data_intercom, :send_push_notification
+  after_create :send_registration_slack, :update_data_intercom, :send_push_notification
   after_save :update_data_intercom, if: :active_changed?
   after_destroy :update_data_intercom
 
@@ -169,6 +168,7 @@ class Perk < ActiveRecord::Base
           app_id: ENV['ONESIGNAL_APP_ID'],
           contents:  {"en" => "#{self.business.name} a créer un nouveau bon plan : #{self.name}"},
           included_segments: ["test"]}
+    puts
     uri = URI.parse('https://onesignal.com/api/v1')
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
