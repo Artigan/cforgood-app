@@ -67,7 +67,11 @@ section {
       padding: 0 20px;
   }
 
-  #intercom-launcher, .intercom-launcher-frame {
+  #intercom-launcher {
+    bottom: 80px !important;
+  }
+
+  &.intercom-launcher-frame {
     bottom: 80px !important;
   }
 }
