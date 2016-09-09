@@ -62,7 +62,7 @@ class Member::DashboardController < ApplicationController
       end
     end
 
-    @uses_without_feedback = Use.without_feedback
+    @uses_without_feedback = current_user.uses.without_feedback
 
     respond_to do |format|
       format.html
