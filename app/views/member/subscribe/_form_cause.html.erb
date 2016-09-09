@@ -5,7 +5,7 @@
       <span>Choisissez l'association que vous souhaitez soutenir</span>
       <div class="causes-carrousel">
         <!-- Random Causes cards -->
-        <% Cause.all.each do |cause| %>
+        <% @cause.each do |cause| %>
           <% if cause.id != current_user.cause_id && cause.id != ENV['CAUSE_ID_CFORGOOD'].to_i %>
             <div id="<%= cause.id %>" class="cause-presentation">
               <!-- CARD CAUSE -->

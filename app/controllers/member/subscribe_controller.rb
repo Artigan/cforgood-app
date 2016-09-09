@@ -2,6 +2,11 @@ class Member::SubscribeController < ApplicationController
 
   before_action :authenticate_user!
 
+
+  def new
+    @cause = Cause.all.includes(:cause_category)
+  end
+
   def create
     if current_user.mangopay_id
       current_user.update_attribute("card_id", params[:card][:id])

@@ -74,7 +74,8 @@ class Member::DashboardController < ApplicationController
   end
 
   def profile
-    @payments = Payment.where(user_id: current_user.id)
+    @cause = Cause.all.includes(:cause_category)
+    @payments = Payment.where(user_id: current_user.id).includes(:cause)
   end
 
 
