@@ -63,7 +63,6 @@ class Member::DashboardController < ApplicationController
     end
 
     @uses_without_feedback = []
-    binding.pry
     if current_user.present?
       @uses_without_feedback = current_user.uses.without_feedback
     end
