@@ -65,7 +65,7 @@ class BusinessesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    @businesses = Business.active.joins(:perks).active.distinct
+    @businesses = Business.active.joins(:perks).active.distinct.includes(:business_category)
     @addresses_id = []
     @businesses.each do |business|
       @addresses_id << [business.id, 0] # BUSINESS MAIN ADDRESS

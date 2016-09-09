@@ -13,7 +13,7 @@ class Member::DashboardController < ApplicationController
       lng = coordinates[1]
     end
     @businesses_around = Business.near([lat, lng], 10).active.for_map.joins(:perks).merge(Perk.in_time).distinct.size
-    @businesses = Business.active.for_map.joins(:perks).merge(Perk.in_time).distinct
+    @businesses = Business.active.for_map.joins(:perks).merge(Perk.in_time).distinct.includes(:business_category)
     @geojson = {"type" => "FeatureCollection", "features" => []}
 
     @businesses.each do |business|

@@ -51,6 +51,7 @@ gem 'mobvious-rails'
 gem 'slack-notifier'
 gem 'amplitude-api'
 gem 'listjs-rails'
+gem 'newrelic_rpm'
 
 gem 'bootstrap-datepicker-rails'
 gem "time_splitter"
@@ -69,7 +70,7 @@ group :development, :test do
   gem "pry-rails"
   gem "letter_opener"
   gem 'meta_request'
-  gem 'newrelic_rpm'
+  gem 'bullet'
 end
 
 group :production do
