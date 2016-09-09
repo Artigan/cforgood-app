@@ -3,7 +3,7 @@ class Asso::CausesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    @causes = Cause.all
+    @causes = Cause.all.includes(:cause_category)
   end
 
   def show
