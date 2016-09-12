@@ -231,9 +231,14 @@ class User < ActiveRecord::Base
 
   def code_partner?
     if code_partner.present?
-      if Partner.find_by_code_partner(code_partner.upcase)
-        self.code_partner.upcase!
-        self.date_end_partner = Time.now + Partner.find_by_code_partner(self.code_partner).nb_month.month
+      if @partner = Partner.find_by_code_partner(code_partner.upcase)
+        nb_used = User.where(code_partner: code_partner.upcase).count
+        if @partner.times == 0 || nb_used < @partner.times
+          self.code_partner.upcase!
+          self.date_end_partner = Time.now + Partner.find_by_code_partner(self.code_partner).nb_month.month
+        else
+          errors.add(:code_partner, "Code promotionnel invalide")
+        end
       else
         errors.add(:code_partner, "Code promotionnel invalide")
       end

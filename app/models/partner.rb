@@ -9,6 +9,7 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  nb_month     :integer          default(1)
+#  times        :integer          default(0)
 #
 
 class Partner < ActiveRecord::Base
