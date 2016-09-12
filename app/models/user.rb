@@ -268,7 +268,7 @@ class User < ActiveRecord::Base
       elsif name.present?
         message = "#{name}"
       else
-        massage = "#{email}"
+        message = "#{email}"
       end
 
       if city.present?
