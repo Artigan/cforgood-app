@@ -38,7 +38,11 @@
               <%= f.input :amount, label: false, input_html: { value: f.object.amount || 5 } %>
             </div>
             <% if current_user.member %>
-              <%= f.submit "Sauvegarder", class: "btn-subscription"%>
+              <% if current_user.subscription == 'T' %>
+                <%= f.submit "M'abonner", class: "btn-subscription"%>
+              <% else %>
+                <%= f.submit "Sauvegarder", class: "btn-subscription"%>
+              <% end %>
             <% elsif current_user.date_stop_subscription.present? %>
               <%= f.submit "Me réabonner", class: "btn-subscription"%>
             <% else %>

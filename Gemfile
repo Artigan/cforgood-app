@@ -51,7 +51,8 @@ gem 'mobvious-rails'
 gem 'slack-notifier'
 gem 'amplitude-api'
 gem 'listjs-rails'
-gem 'newrelic_rpm'
+# gem 'newrelic_rpm'
+gem 'one_signal'
 
 gem 'bootstrap-datepicker-rails'
 gem "time_splitter"

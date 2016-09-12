@@ -2,7 +2,7 @@ $(".alert").remove();
 
 if (<%= !current_user.errors.any? %>) {
 
-  if (<%= current_user.subscription == "M" && !current_user.card_id.present? %>) {
+  if (<%= !current_user.card_id.present? %>) {
     $("#payment").removeClass('hidden');
     $("#menu a.show-payment").tab('show');
   } else {

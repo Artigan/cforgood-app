@@ -65,7 +65,7 @@ class Payment < ActiveRecord::Base
         elsif name.present?
           message = "#{@user.name}"
         else
-          massage = "#{@user.email}"
+          message = "#{@user.email}"
         end
 
         message = message + " a souscrit une participation de " + @user.amount.to_s + "€."
