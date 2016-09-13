@@ -20,6 +20,8 @@ if (<%= !current_user.errors.any? %>) {
     }, 3000);
   }
 
+
+
 } else {
 
   $(document).find("form").prepend('<%= j render("components/error_messages", resource: current_user, formats: [:html]) %>');

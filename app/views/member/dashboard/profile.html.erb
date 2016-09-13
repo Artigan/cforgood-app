@@ -76,12 +76,27 @@
   <script>
 
     $(document).ready(function() {
+
+      function eventAmplitude() {
+        if ($('#menu li.active a').attr('href') == '#profile') {
+          // EVENT AMPLITUDE USER_PROFIL_MYINFO
+          amplitude.logEvent('USER_PROFIL_MYINFO');
+        } else if ($('#menu li.active a').attr('href') == '#cause') {
+          // EVENT AMPLITUDE USER_PROFIL_MYCAUSE
+          amplitude.logEvent('USER_PROFIL_MYCAUSE');
+        } else if ($('#menu li.active a').attr('href') == '#subscription') {
+          // EVENT AMPLITUDE USER_PROFIL_MYSUBSCRIPTION
+          amplitude.logEvent('USER_PROFIL_MYSUBSCRIPTION');
+        }
+      }
+
       $("#menu a").click(function (e) {
-        e.preventDefault()
+        e.preventDefault();
         $(".alert").remove();
         $(this).tab('show');
         $("#menu a.show-payment").addClass('hidden');
-        $("#menu a.show-payment").tab('hide');
+        // $("#menu a.show-payment").tab('hide');
+        eventAmplitude();
       });
 
       // store the currently selected tab in the hash value
@@ -92,10 +107,14 @@
 
       // on load of the page: switch to the currently selected tab
       var hash = window.location.hash;
-      $('#menu a[href="' + hash + '"]').tab('show');
+      if (hash != "#payment") {
+        $('#menu a[href="' + hash + '"]').tab('show');
+      }
 
       // EVENT AMPLITUDE USER_PROFILE
       amplitude.logEvent('USER_PROFILE');
+
+      eventAmplitude();
 
     });
 

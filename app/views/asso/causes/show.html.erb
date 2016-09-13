@@ -129,6 +129,9 @@
           $("#user_cause_id").val(causeId);
           var causeName = "<%= @cause.name %>";
           $('.cause-confirmation span.cause-name').html(causeName);
+
+          // EVENT AMPLITUDE : USER_C_CAUSE_SUPPORT
+          amplitude.logEvent('USER_C_CAUSE_SUPPORT');
         });
       });
     </script>

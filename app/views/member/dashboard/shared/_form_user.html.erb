@@ -35,7 +35,7 @@
       </div>
 
       <div class="col-2">
-        <%= f.button :submit, "Sauvegarder", class: "btn btn-turquoise" %>
+        <%= f.button :submit, "Sauvegarder", class: "btn btn-turquoise valid-profile" %>
       </div>
     <% end %>
   </div>
@@ -61,6 +61,11 @@
         var newFile = document.querySelector('#form_profile_user input[type=file]').files[0];
         $(".user_picture").children().html(newFile.name);
         readURL(newFile);
+      });
+
+      $(".valid-profile").on("click", function() {
+        // EVENT AMPLITUDE : USER_C_PROFIL_MYINFO_SAVED
+        amplitude.logEvent('USER_C_PROFIL_MYINFO_SAVED');
       });
     });
   </script>
