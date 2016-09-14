@@ -3,6 +3,7 @@ class Member::DashboardController < ApplicationController
   skip_before_action :authenticate_user!, only: [:dashboard]
 
   def dashboard
+    byebug
     # Patch during VIDEO && SALON
     if (current_user.present? && current_user.email == "allan.floury@gmail.com") || !cookies[:coordinates].present?
       lat = 44.837789

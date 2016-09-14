@@ -16,7 +16,6 @@ class ApplicationController < ActionController::Base
 
     cookies[:user_cforgood] = {
       value: 'login',
-      path: ''
       domain: '.cforgood.com'
     }
 
