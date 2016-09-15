@@ -82,6 +82,16 @@
         };
       };
     });
+
+    $(".btn-create-card").on("click", function() {
+      <% if controller_path == "member/dashboard" %>
+        // EVENT AMPLITUDE : USER_C_PROFIL_MYSUBSCRIPTION_VALIDATED
+        amplitude.logEvent('USER_C_PROFIL_MYSUBSCRIPTION_VALIDATED');
+      <% else %>
+        // EVENT AMPLITUDE : USER_C_SIGNUP3_VALIDATED
+        amplitude.logEvent('USER_C_SIGNUP3_VALIDATED');
+      <% end %>
+    });
   });
 
 </script>

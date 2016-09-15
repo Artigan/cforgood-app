@@ -6,6 +6,7 @@ ActiveAdmin.register Partner do
     column :email
     column :code_partner
     column :nb_month
+    column :times
     column :created_at
     actions
   end

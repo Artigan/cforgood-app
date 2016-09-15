@@ -13,7 +13,12 @@ class ApplicationController < ActionController::Base
   protected
 
   def after_sign_in_path_for(resource)
-    cookies[:user_cforgood] = "login"
+
+    cookies[:user_cforgood] = {
+      value: 'login',
+      domain: ENV['COOKIES_DOMAIN']
+    }
+
     if resource.class.name == "Business"
       pro_business_dashboard_path(resource)
     else
@@ -31,7 +36,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_out_path_for(resource_or_scope)
-    cookies.delete :user_cforgood
+    cookies.delete(:user_cforgood, domain: ENV['COOKIES_DOMAIN'])
     root_path
   end
 

@@ -168,35 +168,14 @@ class Perk < ActiveRecord::Base
 
   def send_push_notification
 
-    # params = {
-    #       app_id: ENV['ONESIGNAL_APP_ID'],
-    #       contents:  {"en" => "#{self.business.name} a créer un nouveau bon plan : #{self.name}"},
-    #       included_segments: ["test"]}
+    params = {
+      app_id: ENV['ONESIGNAL_APP_ID'],
+      contents: {"en" => "#{self.business.name} a créer un nouveau bon plan : #{self.name}"},
+      included_segments: ["All"]
+    }
 
+    # OneSignal::Notification.create(params: params)
 
-    # # configure OneSignal
-    # OneSignal::OneSignal.api_key = ENV['ONESIGNAL_APP_ID']
-    # OneSignal::OneSignal.user_auth_key = ENV['ONESIGNAL_API_KEY']
-
-    # begin
-    #   response = OneSignal::Notification.create(params: params)
-    #   notification_id = JSON.parse(response.body)["id"]
-    # rescue OneSignal::OneSignalError => e
-    #   puts "--- OneSignalError  :"
-    #   puts "-- message : #{e.message}"
-    #   puts "-- status : #{e.http_status}"
-    #   puts "-- body : #{e.http_body}"
-    # end
-
-    # uri = URI.parse('https://onesignal.com/api/v1')
-    # http = Net::HTTP.new(uri.host, uri.port)
-    # http.use_ssl = true
-
-    # request = Net::HTTP::Get.new(uri.path,
-    #                              'Content-Type'  => 'application/json',
-    #                              'Authorization' => ENV['ONESIGNAL_API_KEY'])
-    #  response = http.request(request)
-    #  puts response.body
   end
 
   def active?
