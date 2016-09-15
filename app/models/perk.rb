@@ -174,7 +174,7 @@ class Perk < ActiveRecord::Base
       included_segments: ["All"]
     }
 
-    OneSignal::Notification.create(params: params)
+    # OneSignal::Notification.create(params: params)
 
   end
 

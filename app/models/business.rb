@@ -69,6 +69,8 @@ class Business < ActiveRecord::Base
   has_many :addresses, dependent: :destroy
   accepts_nested_attributes_for :addresses, :allow_destroy => true, :reject_if => :all_blank
   has_many :perks, dependent: :destroy
+  has_many :perks_in_time, -> { in_time }, class_name: "Perk"
+
 
   scope :active, -> { where(active: true) }
   scope :for_map, -> { where('businesses.shop = ? or businesses.itinerant = ?', true, true) }
