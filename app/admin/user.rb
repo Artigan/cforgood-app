@@ -7,8 +7,9 @@ ActiveAdmin.register User do
     column :last_name
     column :city
     column :created_at
-    column :admin
     column :active
+    column :admin
+    column :ambassador
     actions
   end
   form do |f|
@@ -27,8 +28,9 @@ ActiveAdmin.register User do
       f.input :admin
       f.input :member
       f.input :active
+      f.input :ambassador
     end
     f.actions
   end
-  permit_params :first_name, :last_name, :name, :email, :street, :zipcode, :city, :picture, :admin, :member, :active, :password, :cause_id
+  permit_params :first_name, :last_name, :name, :email, :street, :zipcode, :city, :picture, :admin, :member, :active, :password, :cause_id, :ambassador
 end
