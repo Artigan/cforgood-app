@@ -55,8 +55,8 @@
       if ($("#user_code_partner").val() != "") {
         $("#user_subscription").val('T');
         <% if controller_path == "member/dashboard" %>
-          // EVENT AMPLITUDE : USER_PROFIL_MYSUBSCRIPTION_CODE
-          amplitude.logEvent('USER_PROFIL_MYSUBSCRIPTION_CODE');
+          // EVENT AMPLITUDE : USER_PROFILE_MYSUBSCRIPTION_CODE
+          amplitude.logEvent('USER_PROFILE_MYSUBSCRIPTION_CODE');
         <% else %>
           // EVENT AMPLITUDE : USER_C_SIGNUP2_CODE
           amplitude.logEvent('USER_C_SIGNUP2_CODE');
@@ -67,8 +67,8 @@
       $("#amount_subscription").html($("#user_amount").val());
 
       <% if controller_path == "member/dashboard" %>
-        // EVENT AMPLITUDE : USER_C_PROFIL_MYSUBSCRIPTION_OK
-        amplitude.logEvent('USER_C_PROFIL_MYSUBSCRIPTION_OK');
+        // EVENT AMPLITUDE : USER_C_PROFILE_MYSUBSCRIPTION_OK
+        amplitude.logEvent('USER_C_PROFILE_MYSUBSCRIPTION_OK');
       <% else %>
         // EVENT AMPLITUDE : USER_C_SIGNUP2_OK
         amplitude.logEvent('USER_C_SIGNUP2_OK');
@@ -77,8 +77,8 @@
 
     $(".btn-no-subscription").on("click", function() {
       <% if controller_path == "member/dashboard" %>
-        // EVENT AMPLITUDE : USER_C_PROFIL_MYSUBSCRIPTION_KO
-        amplitude.logEvent('USER_C_PROFIL_MYSUBSCRIPTION_KO');
+        // EVENT AMPLITUDE : USER_C_PROFILE_MYSUBSCRIPTION_KO
+        amplitude.logEvent('USER_C_PROFILE_MYSUBSCRIPTION_KO');
       <% else %>
         // EVENT AMPLITUDE : USER_C_SIGNUP2_KO
         amplitude.logEvent('USER_C_SIGNUP2_KO');
