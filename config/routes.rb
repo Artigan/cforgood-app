@@ -39,6 +39,7 @@ Rails.application.routes.draw do
     resources :users, only: [:show, :update] do
       get "dashboard", to: "dashboard#dashboard"
       get "profile", to: "dashboard#profile"
+      get "ambassador", to: "dashboard#ambassador"
     end
     resources :subscribe, only: [:new, :create, :update]
     resources :perks, only: [:show]
