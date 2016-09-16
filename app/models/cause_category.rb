@@ -2,16 +2,12 @@
 #
 # Table name: cause_categories
 #
-#  id                      :integer          not null, primary key
-#  name                    :string
-#  created_at              :datetime         not null
-#  updated_at              :datetime         not null
-#  s3_picture_file_name    :string
-#  s3_picture_content_type :string
-#  s3_picture_file_size    :integer
-#  s3_picture_updated_at   :datetime
-#  color                   :string
-#  picture                 :string
+#  id         :integer          not null, primary key
+#  name       :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  color      :string
+#  picture    :string
 #
 
 class CauseCategory < ActiveRecord::Base

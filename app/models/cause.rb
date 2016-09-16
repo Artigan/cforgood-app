@@ -14,10 +14,6 @@
 #  created_at                :datetime         not null
 #  updated_at                :datetime         not null
 #  impact                    :string
-#  s3_picture_file_name      :string
-#  s3_picture_content_type   :string
-#  s3_picture_file_size      :integer
-#  s3_picture_updated_at     :datetime
 #  cause_category_id         :integer
 #  facebook                  :string
 #  twitter                   :string
@@ -29,10 +25,6 @@
 #  wallet_id                 :string
 #  representative_first_name :string
 #  representative_last_name  :string
-#  s3_logo_file_name         :string
-#  s3_logo_content_type      :string
-#  s3_logo_file_size         :integer
-#  s3_logo_updated_at        :datetime
 #  amount_impact             :integer
 #  active                    :boolean          default(FALSE), not null
 #  link_video                :string
