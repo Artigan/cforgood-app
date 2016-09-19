@@ -112,7 +112,6 @@
                 Bienvenue,<br> <%= current_user.name.split(" ")[0] %>
               <% end %>
             </span>
-            <i class="fa fa-angle-down"></i>
           </div>
           <ul>
             <li class="visible-xs">
@@ -133,11 +132,7 @@
                   <% else %>
                     <%= image_tag "default_pic.png", class: "img-circle" %>
                   <% end %>
-                  <% if current_user.last_name != "" && current_user.last_name != nil %>
-                    <span class="user-name"><%= current_user.first_name %> <%= current_user.last_name.chars.first + "." %></span>
-                  <% elsif current_user.name != "" && current_user.name != nil %>
-                    <span class="user-name"><%= current_user.name.split(" ")[0]  %></span>
-                  <% end %>
+                  <i class="fa fa-angle-down"></i>
                 </a>
                 <!-- DESKTOP | OPEN MENU DROPDOWN -->
                 <% if device_type != :mobile %>
