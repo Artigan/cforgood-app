@@ -2,56 +2,44 @@
 #
 # Table name: businesses
 #
-#  id                             :integer          not null, primary key
-#  name                           :string
-#  street                         :string
-#  zipcode                        :string
-#  city                           :string
-#  url                            :string
-#  telephone                      :string
-#  email                          :string
-#  created_at                     :datetime         not null
-#  updated_at                     :datetime         not null
-#  description                    :text
-#  s3_picture_file_name           :string
-#  s3_picture_content_type        :string
-#  s3_picture_file_size           :integer
-#  s3_picture_updated_at          :datetime
-#  business_category_id           :integer
-#  latitude                       :float
-#  longitude                      :float
-#  facebook                       :string
-#  twitter                        :string
-#  instagram                      :string
-#  encrypted_password             :string           default(""), not null
-#  reset_password_token           :string
-#  reset_password_sent_at         :datetime
-#  remember_created_at            :datetime
-#  sign_in_count                  :integer          default(0), not null
-#  current_sign_in_at             :datetime
-#  last_sign_in_at                :datetime
-#  current_sign_in_ip             :inet
-#  last_sign_in_ip                :inet
-#  s3_leader_picture_file_name    :string
-#  s3_leader_picture_content_type :string
-#  s3_leader_picture_file_size    :integer
-#  s3_leader_picture_updated_at   :datetime
-#  leader_first_name              :string
-#  leader_last_name               :string
-#  leader_description             :text
-#  active                         :boolean          default(FALSE), not null
-#  online                         :boolean          default(FALSE), not null
-#  leader_phone                   :string
-#  leader_email                   :string
-#  s3_logo_file_name              :string
-#  s3_logo_content_type           :string
-#  s3_logo_file_size              :integer
-#  s3_logo_updated_at             :datetime
-#  shop                           :boolean          default(TRUE), not null
-#  itinerant                      :boolean          default(FALSE), not null
-#  picture                        :string
-#  leader_picture                 :string
-#  logo                           :string
+#  id                     :integer          not null, primary key
+#  name                   :string
+#  street                 :string
+#  zipcode                :string
+#  city                   :string
+#  url                    :string
+#  telephone              :string
+#  email                  :string
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#  description            :text
+#  business_category_id   :integer
+#  latitude               :float
+#  longitude              :float
+#  facebook               :string
+#  twitter                :string
+#  instagram              :string
+#  encrypted_password     :string           default(""), not null
+#  reset_password_token   :string
+#  reset_password_sent_at :datetime
+#  remember_created_at    :datetime
+#  sign_in_count          :integer          default(0), not null
+#  current_sign_in_at     :datetime
+#  last_sign_in_at        :datetime
+#  current_sign_in_ip     :inet
+#  last_sign_in_ip        :inet
+#  leader_first_name      :string
+#  leader_last_name       :string
+#  leader_description     :text
+#  active                 :boolean          default(FALSE), not null
+#  online                 :boolean          default(FALSE), not null
+#  leader_phone           :string
+#  leader_email           :string
+#  shop                   :boolean          default(TRUE), not null
+#  itinerant              :boolean          default(FALSE), not null
+#  picture                :string
+#  leader_picture         :string
+#  logo                   :string
 #
 # Indexes
 #
@@ -96,24 +84,6 @@ class Business < ActiveRecord::Base
   validates_size_of :logo, maximum: 1.megabytes,
     message: "Cette image dépasse 1 MG !", if: :logo_changed?
   mount_uploader :logo, PictureUploader
-
-  has_attached_file :s3_picture,
-      styles: { medium: "300x300#", thumb: "100x100#" }
-
-  validates_attachment_content_type :s3_picture,
-      content_type: /\Aimage\/.*\z/
-
-  has_attached_file :s3_leader_picture,
-      styles: { medium: "300x300#", thumb: "100x100#" }
-
-  validates_attachment_content_type :s3_leader_picture,
-      content_type: /\Aimage\/.*\z/
-
-  has_attached_file :s3_logo,
-      styles: { medium: "300x300#", thumb: "100x100#" }
-
-  validates_attachment_content_type :s3_logo,
-      content_type: /\Aimage\/.*\z/
 
   after_create :create_code_partner, :send_registration_slack, :subscribe_to_newsletter_business
 
