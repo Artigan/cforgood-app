@@ -54,15 +54,21 @@ class Business < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :recoverable,
          :rememberable, :trackable, :validatable
   belongs_to :business_category
+
   has_many :addresses, dependent: :destroy
   accepts_nested_attributes_for :addresses, :allow_destroy => true, :reject_if => :all_blank
+  # has_many :addresses_shop, -> { shop }, class_name: "Address"
+  # has_many :addresses_itinerant, -> { today }, class_name: "Address"
+  has_many :addresses_for_map, -> { for_map_load }, class_name: "Address"
+
   has_many :perks, dependent: :destroy
   has_many :perks_in_time, -> { in_time }, class_name: "Perk"
-
+  has_many :perks_flash_in_time, -> { flash_in_time }, class_name: "Perk"
 
   scope :active, -> { where(active: true) }
   scope :for_map, -> { where('businesses.shop = ? or businesses.itinerant = ?', true, true) }
-
+  scope :shop, -> { where(shop: true) }
+  scope :itinerant, -> { where(itinerant: true) }
 
   validates :email, presence: true, uniqueness: true
   validates :business_category_id, presence: true
