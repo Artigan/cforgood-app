@@ -53,18 +53,6 @@ class Cause < ActiveRecord::Base
     message: "Cette image dépasse 1 MG !", if: :logo_changed?
   mount_uploader :logo, PictureUploader
 
-  has_attached_file :s3_picture,
-    styles: { medium: "300x300>", small: "200x200", thumb: "100x100>" }
-
-  validates_attachment_content_type :s3_picture,
-    content_type: /\Aimage\/.*\z/
-
-  has_attached_file :s3_logo,
-    styles: { medium: "300x300>", thumb: "100x100>" }
-
-  validates_attachment_content_type :s3_logo,
-    content_type: /\Aimage\/.*\z/
-
   validates :name, presence: true
   validates :email, presence: true
   validates :url, format: { with: /\Ahttps?:\/\/[\S]+/, message: "Votre URL doit commencer par http:// ou https://" }, allow_blank: true

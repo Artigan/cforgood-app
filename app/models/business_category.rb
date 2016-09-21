@@ -18,9 +18,4 @@ class BusinessCategory < ActiveRecord::Base
     message: "Cette image dépasse 1 MG !", if: :picture_changed?
   mount_uploader :picture, PictureUploader
 
-  has_attached_file :s3_picture,
-    styles: { medium: "300x300>", thumb: "100x100>" }
-
-  validates_attachment_content_type :s3_picture,
-    content_type: /\Aimage\/.*\z/
 end

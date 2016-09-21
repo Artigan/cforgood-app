@@ -63,12 +63,6 @@ class Perk < ActiveRecord::Base
     message: "Cette image dépasse 2 MG !", if: :picture_changed?
   mount_uploader :picture, PictureUploader
 
-  has_attached_file :s3_picture,
-    styles: { medium: "300x300#", thumb: "100x100#" }
-
-  validates_attachment_content_type :s3_picture,
-    content_type: /\Aimage\/.*\z/
-
   after_create :send_registration_slack, :update_data_intercom, :send_push_notification
   after_save :update_data_intercom, if: :active_changed?
   after_destroy :update_data_intercom

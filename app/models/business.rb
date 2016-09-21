@@ -85,24 +85,6 @@ class Business < ActiveRecord::Base
     message: "Cette image dépasse 1 MG !", if: :logo_changed?
   mount_uploader :logo, PictureUploader
 
-  has_attached_file :s3_picture,
-      styles: { medium: "300x300#", thumb: "100x100#" }
-
-  validates_attachment_content_type :s3_picture,
-      content_type: /\Aimage\/.*\z/
-
-  has_attached_file :s3_leader_picture,
-      styles: { medium: "300x300#", thumb: "100x100#" }
-
-  validates_attachment_content_type :s3_leader_picture,
-      content_type: /\Aimage\/.*\z/
-
-  has_attached_file :s3_logo,
-      styles: { medium: "300x300#", thumb: "100x100#" }
-
-  validates_attachment_content_type :s3_logo,
-      content_type: /\Aimage\/.*\z/
-
   after_create :create_code_partner, :send_registration_slack, :subscribe_to_newsletter_business
 
   after_save :update_data_intercom
