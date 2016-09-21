@@ -2,54 +2,51 @@
 #
 # Table name: users
 #
-#  id                      :integer          not null, primary key
-#  email                   :string           default(""), not null
-#  encrypted_password      :string           default(""), not null
-#  reset_password_token    :string
-#  reset_password_sent_at  :datetime
-#  remember_created_at     :datetime
-#  sign_in_count           :integer          default(0), not null
-#  current_sign_in_at      :datetime
-#  last_sign_in_at         :datetime
-#  current_sign_in_ip      :inet
-#  last_sign_in_ip         :inet
-#  created_at              :datetime         not null
-#  updated_at              :datetime         not null
-#  first_name              :string
-#  last_name               :string
-#  provider                :string
-#  uid                     :string
-#  name                    :string
-#  token                   :string
-#  token_expiry            :datetime
-#  admin                   :boolean          default(FALSE), not null
-#  s3_picture_file_name    :string
-#  s3_picture_content_type :string
-#  s3_picture_file_size    :integer
-#  s3_picture_updated_at   :datetime
-#  birthday                :datetime
-#  nationality             :string
-#  country_of_residence    :string
-#  mangopay_id             :string
-#  card_id                 :string
-#  cause_id                :integer
-#  member                  :boolean          default(FALSE), not null
-#  subscription            :string
-#  trial_done              :boolean          default(FALSE), not null
-#  date_subscription       :datetime
-#  date_last_payment       :datetime
-#  active                  :boolean          default(TRUE), not null
-#  street                  :string
-#  zipcode                 :string
-#  city                    :string
-#  latitude                :float
-#  longitude               :float
-#  date_end_partner        :date
-#  code_partner            :string
-#  date_support            :date
-#  amount                  :integer
-#  date_stop_subscription  :datetime
-#  picture                 :string
+#  id                     :integer          not null, primary key
+#  email                  :string           default(""), not null
+#  encrypted_password     :string           default(""), not null
+#  reset_password_token   :string
+#  reset_password_sent_at :datetime
+#  remember_created_at    :datetime
+#  sign_in_count          :integer          default(0), not null
+#  current_sign_in_at     :datetime
+#  last_sign_in_at        :datetime
+#  current_sign_in_ip     :inet
+#  last_sign_in_ip        :inet
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#  first_name             :string
+#  last_name              :string
+#  provider               :string
+#  uid                    :string
+#  name                   :string
+#  token                  :string
+#  token_expiry           :datetime
+#  admin                  :boolean          default(FALSE), not null
+#  birthday               :datetime
+#  nationality            :string
+#  country_of_residence   :string
+#  mangopay_id            :string
+#  card_id                :string
+#  cause_id               :integer
+#  member                 :boolean          default(FALSE), not null
+#  subscription           :string
+#  trial_done             :boolean          default(FALSE), not null
+#  date_subscription      :datetime
+#  date_last_payment      :datetime
+#  active                 :boolean          default(TRUE), not null
+#  street                 :string
+#  zipcode                :string
+#  city                   :string
+#  latitude               :float
+#  longitude              :float
+#  date_end_partner       :date
+#  code_partner           :string
+#  date_support           :date
+#  amount                 :integer
+#  date_stop_subscription :datetime
+#  picture                :string
+#  ambassador             :boolean          default(FALSE)
 #
 # Indexes
 #
@@ -85,12 +82,6 @@ class User < ActiveRecord::Base
   validates_size_of :picture, maximum: 2.megabytes,
     message: "Cette image dépasse 2 MG !", if: :picture_changed?
   mount_uploader :picture, PictureUploader
-
-  has_attached_file :s3_picture,
-    styles: { medium: "300x300#", thumb: "100x100#" }
-
-  validates_attachment_content_type :s3_picture,
-    content_type: /\Aimage\/.*\z/
 
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
