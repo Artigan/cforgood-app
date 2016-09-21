@@ -2,29 +2,25 @@
 #
 # Table name: perks
 #
-#  id                      :integer          not null, primary key
-#  name                    :string
-#  business_id             :integer
-#  description             :text
-#  times                   :integer          default(0)
-#  start_date              :datetime
-#  end_date                :datetime
-#  active                  :boolean          default(TRUE), not null
-#  perk_code               :string
-#  created_at              :datetime         not null
-#  updated_at              :datetime         not null
-#  nb_views                :integer          default(0)
-#  appel                   :boolean          default(FALSE), not null
-#  durable                 :boolean          default(FALSE), not null
-#  flash                   :boolean          default(FALSE), not null
-#  s3_picture_file_name    :string
-#  s3_picture_content_type :string
-#  s3_picture_file_size    :integer
-#  s3_picture_updated_at   :datetime
-#  perk_detail_id          :integer
-#  deleted                 :boolean          default(FALSE), not null
-#  all_day                 :boolean          default(FALSE), not null
-#  picture                 :string
+#  id             :integer          not null, primary key
+#  name           :string
+#  business_id    :integer
+#  description    :text
+#  times          :integer          default(0)
+#  start_date     :datetime
+#  end_date       :datetime
+#  active         :boolean          default(TRUE), not null
+#  perk_code      :string
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  nb_views       :integer          default(0)
+#  appel          :boolean          default(FALSE), not null
+#  durable        :boolean          default(FALSE), not null
+#  flash          :boolean          default(FALSE), not null
+#  perk_detail_id :integer
+#  deleted        :boolean          default(FALSE), not null
+#  all_day        :boolean          default(FALSE), not null
+#  picture        :string
 #
 # Indexes
 #
@@ -45,6 +41,7 @@ class Perk < ActiveRecord::Base
   belongs_to :perk_detail
 
   scope :active, -> { where(active: true) }
+  scope :flash, -> { where(flash: true) }
   scope :undeleted, -> { where(deleted: false) }
   scope :permanent, -> { where('perks.active = ? and (perks.durable = ? or perks.appel = ?)', true, true, true) }
   scope :in_time, -> { where('perks.active = ? and (perks.durable = ? or perks.appel = ? or (perks.flash = ? and perks.start_date <= ? and perks.end_date >= ?))', true, true, true, true, Time.now, Time.now) }
@@ -66,12 +63,6 @@ class Perk < ActiveRecord::Base
   validates_size_of :picture, maximum: 2.megabytes,
     message: "Cette image dépasse 2 MG !", if: :picture_changed?
   mount_uploader :picture, PictureUploader
-
-  has_attached_file :s3_picture,
-    styles: { medium: "300x300#", thumb: "100x100#" }
-
-  validates_attachment_content_type :s3_picture,
-    content_type: /\Aimage\/.*\z/
 
   after_create :send_registration_slack, :update_data_intercom, :send_push_notification
   after_save :update_data_intercom, if: :active_changed?

@@ -40,6 +40,10 @@ class Payment < ActiveRecord::Base
     if @user.payments.valid_payment.count <= 1 && self.done == true
       intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
       begin
+        user = intercom.users.find(:user_id => @user.id)
+        user.custom_attributes["first_payment"] = Time.now.to_date
+        intercom.users.save(user)
+
         intercom.events.create(
           event_name: "first-payment",
           created_at: Time.now.to_i,
@@ -51,6 +55,7 @@ class Payment < ActiveRecord::Base
           }
         )
       rescue Intercom::IntercomError => e
+        puts e
       end
     end
   end

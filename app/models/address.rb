@@ -32,9 +32,10 @@ class Address < ActiveRecord::Base
   split_accessor :start_time, :end_time
 
   scope :active, -> { where(active: true) }
-  scope :today, -> { where('day = ?', I18n.t("date.day_names")[Time.now.wday]) }
+  scope :for_map_load, -> { where("(businesses.shop = ? and (day is null or day = ?)) or (businesses.itinerant = ? and addresses.active = ? and addresses.day = ?)", true, "", true, true, I18n.t("date.day_names")[Time.now.wday]) }
+  scope :today, -> { where('addresses.active = ? and addresses.day = ?', true, I18n.t("date.day_names")[Time.now.wday]) }
   scope :in_time, -> { where("start_time.strftime('%R') <= ? and end_time.strftime('%R') >= ?", Time.now.strftime('%R'), Time.now.strftime('%R')) }
-  scope :shop, -> { where('day is null or day = ?', "")  }
+  scope :shop, -> { where('day is null or day = ?', "") }
 
   validates :day, :inclusion=> { :in => I18n.t("date.day_names"), allow_blank: true }
   validate :day_uniqueness, if: :day_changed?
