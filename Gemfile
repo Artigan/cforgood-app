@@ -26,8 +26,8 @@ gem 'sinatra'  # Dependency of sidekiq
 gem 'sidekiq-failures'
 gem 'possibly'
 gem 'turnout'
+gem 'scout_apm'
 
-gem "paperclip"
 gem "aws-sdk", "< 2.0"
 gem 'carrierwave'
 gem "cloudinary"
