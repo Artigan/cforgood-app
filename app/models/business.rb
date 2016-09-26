@@ -2,53 +2,44 @@
 #
 # Table name: businesses
 #
-#  id                          :integer          not null, primary key
-#  name                        :string
-#  street                      :string
-#  zipcode                     :string
-#  city                        :string
-#  url                         :string
-#  telephone                   :string
-#  email                       :string
-#  created_at                  :datetime         not null
-#  updated_at                  :datetime         not null
-#  description                 :text
-#  picture_file_name           :string
-#  picture_content_type        :string
-#  picture_file_size           :integer
-#  picture_updated_at          :datetime
-#  business_category_id        :integer
-#  latitude                    :float
-#  longitude                   :float
-#  facebook                    :string
-#  twitter                     :string
-#  instagram                   :string
-#  encrypted_password          :string           default(""), not null
-#  reset_password_token        :string
-#  reset_password_sent_at      :datetime
-#  remember_created_at         :datetime
-#  sign_in_count               :integer          default(0), not null
-#  current_sign_in_at          :datetime
-#  last_sign_in_at             :datetime
-#  current_sign_in_ip          :inet
-#  last_sign_in_ip             :inet
-#  leader_picture_file_name    :string
-#  leader_picture_content_type :string
-#  leader_picture_file_size    :integer
-#  leader_picture_updated_at   :datetime
-#  leader_first_name           :string
-#  leader_last_name            :string
-#  leader_description          :text
-#  active                      :boolean          default(FALSE), not null
-#  online                      :boolean          default(FALSE), not null
-#  leader_phone                :string
-#  leader_email                :string
-#  logo_file_name              :string
-#  logo_content_type           :string
-#  logo_file_size              :integer
-#  logo_updated_at             :datetime
-#  shop                        :boolean          default(TRUE), not null
-#  itinerant                   :boolean          default(FALSE), not null
+#  id                     :integer          not null, primary key
+#  name                   :string
+#  street                 :string
+#  zipcode                :string
+#  city                   :string
+#  url                    :string
+#  telephone              :string
+#  email                  :string
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#  description            :text
+#  business_category_id   :integer
+#  latitude               :float
+#  longitude              :float
+#  facebook               :string
+#  twitter                :string
+#  instagram              :string
+#  encrypted_password     :string           default(""), not null
+#  reset_password_token   :string
+#  reset_password_sent_at :datetime
+#  remember_created_at    :datetime
+#  sign_in_count          :integer          default(0), not null
+#  current_sign_in_at     :datetime
+#  last_sign_in_at        :datetime
+#  current_sign_in_ip     :inet
+#  last_sign_in_ip        :inet
+#  leader_first_name      :string
+#  leader_last_name       :string
+#  leader_description     :text
+#  active                 :boolean          default(FALSE), not null
+#  online                 :boolean          default(FALSE), not null
+#  leader_phone           :string
+#  leader_email           :string
+#  shop                   :boolean          default(TRUE), not null
+#  itinerant              :boolean          default(FALSE), not null
+#  picture                :string
+#  leader_picture         :string
+#  logo                   :string
 #
 # Indexes
 #
@@ -63,13 +54,21 @@ class Business < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :recoverable,
          :rememberable, :trackable, :validatable
   belongs_to :business_category
+
   has_many :addresses, dependent: :destroy
   accepts_nested_attributes_for :addresses, :allow_destroy => true, :reject_if => :all_blank
+  # has_many :addresses_shop, -> { shop }, class_name: "Address"
+  # has_many :addresses_itinerant, -> { today }, class_name: "Address"
+  has_many :addresses_for_map, -> { for_map_load }, class_name: "Address"
+
   has_many :perks, dependent: :destroy
+  has_many :perks_in_time, -> { in_time }, class_name: "Perk"
+  has_many :perks_flash_in_time, -> { flash_in_time }, class_name: "Perk"
 
   scope :active, -> { where(active: true) }
   scope :for_map, -> { where('businesses.shop = ? or businesses.itinerant = ?', true, true) }
-
+  scope :shop, -> { where(shop: true) }
+  scope :itinerant, -> { where(itinerant: true) }
 
   validates :email, presence: true, uniqueness: true
   validates :business_category_id, presence: true
@@ -80,23 +79,17 @@ class Business < ActiveRecord::Base
   after_validation :geocode, if: :address_changed?
   before_save :controle_geocode!, if: :address_changed?
 
-  has_attached_file :picture,
-      styles: { medium: "300x300#", thumb: "100x100#" }
+  validates_size_of :picture, maximum: 2.megabytes,
+    message: "Cette image dépasse 2 MG !", if: :picture_changed?
+  mount_uploader :picture, PictureUploader
 
-  validates_attachment_content_type :picture,
-      content_type: /\Aimage\/.*\z/
+  validates_size_of :leader_picture, maximum: 1.megabytes,
+    message: "Cette image dépasse 1 MG !", if: :leader_picture_changed?
+  mount_uploader :leader_picture, PictureUploader
 
-  has_attached_file :leader_picture,
-      styles: { medium: "300x300#", thumb: "100x100#" }
-
-  validates_attachment_content_type :leader_picture,
-      content_type: /\Aimage\/.*\z/
-
-  has_attached_file :logo,
-      styles: { medium: "300x300#", thumb: "100x100#" }
-
-  validates_attachment_content_type :logo,
-      content_type: /\Aimage\/.*\z/
+  validates_size_of :logo, maximum: 1.megabytes,
+    message: "Cette image dépasse 1 MG !", if: :logo_changed?
+  mount_uploader :logo, PictureUploader
 
   after_create :create_code_partner, :send_registration_slack, :subscribe_to_newsletter_business
 
@@ -146,15 +139,16 @@ class Business < ActiveRecord::Base
   end
 
   def update_data_intercom
-    if active_changed? or leader_first_name_changed?
+    if active_changed? or leader_first_name_changed? or city_changed?
       # UPDATE CUSTOM ATTRIBUTES ON INTERCOM
       intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
       begin
         user = intercom.users.find(:user_id => 'B'+id.to_s)
         user.custom_attributes["user_active"] = self.active
-        user.custom_attributes["first_name"] =  self.leader_first_name
+        user.custom_attributes["first_name"] = self.leader_first_name
+        user.custom_attributes["city"] = self.city
         intercom.users.save(user)
-      rescue Intercom::ResourceNotFound
+      rescue Intercom::IntercomError => e
       end
     end
   end

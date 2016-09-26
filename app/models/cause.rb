@@ -14,10 +14,6 @@
 #  created_at                :datetime         not null
 #  updated_at                :datetime         not null
 #  impact                    :string
-#  picture_file_name         :string
-#  picture_content_type      :string
-#  picture_file_size         :integer
-#  picture_updated_at        :datetime
 #  cause_category_id         :integer
 #  facebook                  :string
 #  twitter                   :string
@@ -29,12 +25,15 @@
 #  wallet_id                 :string
 #  representative_first_name :string
 #  representative_last_name  :string
-#  logo_file_name            :string
-#  logo_content_type         :string
-#  logo_file_size            :integer
-#  logo_updated_at           :datetime
 #  amount_impact             :integer
 #  active                    :boolean          default(FALSE), not null
+#  link_video                :string
+#  picture                   :string
+#  logo                      :string
+#  mailing                   :boolean          default(TRUE)
+#  tax_receipt               :boolean          default(TRUE)
+#  followers                 :string
+#  heard                     :string
 #
 # Indexes
 #
@@ -46,17 +45,13 @@ class Cause < ActiveRecord::Base
   has_many :users
   has_many :payments
 
-  has_attached_file :picture,
-    styles: { medium: "300x300>", small: "200x200", thumb: "100x100>" }
+  validates_size_of :picture, maximum: 2.megabytes,
+    message: "Cette image dépasse 2 MG !", if: :picture_changed?
+  mount_uploader :picture, PictureUploader
 
-  validates_attachment_content_type :picture,
-    content_type: /\Aimage\/.*\z/
-
-  has_attached_file :logo,
-    styles: { medium: "300x300>", thumb: "100x100>" }
-
-  validates_attachment_content_type :logo,
-    content_type: /\Aimage\/.*\z/
+  validates_size_of :logo, maximum: 1.megabytes,
+    message: "Cette image dépasse 1 MG !", if: :logo_changed?
+  mount_uploader :logo, PictureUploader
 
   validates :name, presence: true
   validates :email, presence: true
@@ -103,7 +98,7 @@ class Cause < ActiveRecord::Base
       user.custom_attributes["user_active"] = active
       user.custom_attributes["first_name"]  = representative_first_name
       intercom.users.save(user)
-    rescue Intercom::ResourceNotFound
+    rescue Intercom::IntercomError => e
     end
   end
 end

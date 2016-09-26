@@ -23,10 +23,6 @@
 #  token                  :string
 #  token_expiry           :datetime
 #  admin                  :boolean          default(FALSE), not null
-#  picture_file_name      :string
-#  picture_content_type   :string
-#  picture_file_size      :integer
-#  picture_updated_at     :datetime
 #  birthday               :datetime
 #  nationality            :string
 #  country_of_residence   :string
@@ -44,10 +40,13 @@
 #  city                   :string
 #  latitude               :float
 #  longitude              :float
-#  date_partner           :date
+#  date_end_partner       :date
 #  code_partner           :string
 #  date_support           :date
 #  amount                 :integer
+#  date_stop_subscription :datetime
+#  picture                :string
+#  ambassador             :boolean          default(FALSE)
 #
 # Indexes
 #
@@ -71,16 +70,18 @@ class User < ActiveRecord::Base
   has_many :uses
   has_many :payments, dependent: :destroy
 
+  scope :member, -> { where(member: true) }
+  scope :member_should_payin, lambda {|day| where('users.member = ? and users.subscription = ? and users.date_last_payment between ? and ?', true, "M", (Time.now - 1.month - day.day).beginning_of_day,  (Time.now - 1.month - day.day).end_of_day) }
+  scope :member_on_trial_should_payin, lambda {|day| where('users.member = ? and users.subscription = ? and users.date_end_partner = ?', true, "T", Time.now + day.day) }
+
   validates :email, presence: true, uniqueness: true
   # validates :first_name, presence: true
   # validates :last_name, presence: true
   # validates :city, presence: true
 
-  has_attached_file :picture,
-    styles: { medium: "300x300#", thumb: "100x100#" }
-
-  validates_attachment_content_type :picture,
-    content_type: /\Aimage\/.*\z/
+  validates_size_of :picture, maximum: 2.megabytes,
+    message: "Cette image dépasse 2 MG !", if: :picture_changed?
+  mount_uploader :picture, PictureUploader
 
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
@@ -89,10 +90,10 @@ class User < ActiveRecord::Base
 
   before_create :default_cause_id!
 
-  after_validation :trial_done!, if: :subscription_changed?
-  after_validation :subscription!, if: :subscription_changed?
-
   after_create :send_registration_slack, :subscribe_to_newsletter_user, :create_event_amplitude
+
+  before_save :trial_done!, if: :subscription_changed?
+  before_save :subscription!, if: :subscription_changed?
 
   before_save :date_support!, if: :cause_id_changed?
 
@@ -157,13 +158,8 @@ class User < ActiveRecord::Base
   end
 
   def should_payin?
-    if self.subscription == "T"
-      nb_month = Partner.find_by_code_partner(self.code_partner).nb_month
-    else
-      nb_month = 1
-    end
-    ((self.subscription != "T" && (!self.date_last_payment.present? || self.date_last_payment < Time.now - nb_month.month)) ||
-    (self.subscription == "T" && self.date_subscription < Time.now - nb_month.month))
+    ((self.subscription != "T" && (!self.date_last_payment.present? || self.date_last_payment < Time.now - 1.month)) ||
+    (self.subscription == "T" && self.date_end_partner < Time.now))
   end
 
   def find_name?
@@ -196,7 +192,7 @@ class User < ActiveRecord::Base
         user_id: self.id,
         email: self.email
       )
-    rescue Intercom::ResourceNotFound
+    rescue Intercom::IntercomError => e
     end
   end
 
@@ -226,9 +222,14 @@ class User < ActiveRecord::Base
 
   def code_partner?
     if code_partner.present?
-      if Partner.find_by_code_partner(code_partner.upcase)
-        self.code_partner.upcase!
-        self.date_partner = Time.now
+      if @partner = Partner.find_by_code_partner(code_partner.upcase)
+        nb_used = User.where(code_partner: code_partner.upcase).count
+        if @partner.times == 0 || nb_used < @partner.times
+          self.code_partner.upcase!
+          self.date_end_partner = Time.now + Partner.find_by_code_partner(self.code_partner).nb_month.month
+        else
+          errors.add(:code_partner, "Code promotionnel invalide")
+        end
       else
         errors.add(:code_partner, "Code promotionnel invalide")
       end
@@ -258,7 +259,7 @@ class User < ActiveRecord::Base
       elsif name.present?
         message = "#{name}"
       else
-        massage = "#{email}"
+        message = "#{email}"
       end
 
       if city.present?
@@ -295,15 +296,38 @@ class User < ActiveRecord::Base
 
   def update_data_intercom
     # UPDATE CUSTOM ATTRIBUTES ON INTERCOM
-    if active_changed? or cause_id_changed? or member_changed?
-      intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
+
+    intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
+    begin
+      user = intercom.users.find(:user_id => self.id)
+      user.custom_attributes["user_type"] = 'user'
+      user.custom_attributes["first_name"] = self.first_name
+      user.custom_attributes['city'] = self.city
+      user.custom_attributes["user_active"] = self.active
+      user.custom_attributes["user_cause"] = self.cause.name
+      user.custom_attributes["user_member"] = self.member
+      user.custom_attributes['code_partner'] = self.code_partner
+      user.custom_attributes['date_end_trial'] = self.date_end_partner
+      intercom.users.save(user)
+    rescue Intercom::IntercomError => e
       begin
-        user = intercom.users.find(:user_id => self.id)
-        user.custom_attributes["user_active"] = self.active
-        user.custom_attributes["user_cause"] = self.cause.name
-        user.custom_attributes["user_member"] = self.member
+        user = intercom.users.create(
+          :user_id => self.id,
+          :email => self.email,
+          :name => self.name,
+          :created_at => created_at,
+          :custom_data => {
+            'user_type' => 'user',
+            'first_name' => self.first_name,
+            'city' => self.city,
+            'user_active' => self.active,
+            'user_cause' => self.cause.name,
+            'user_member' => self.member,
+            'code_partner' => self.code_partner,
+            'date_end_trial' => self.date_end_partner
+          })
         intercom.users.save(user)
-      rescue Intercom::ResourceNotFound
+      rescue Intercom::IntercomError => e
       end
     end
   end

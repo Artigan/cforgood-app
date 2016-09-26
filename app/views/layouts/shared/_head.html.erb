@@ -7,6 +7,23 @@
 <title><%= meta_title %></title>
 <meta name="description" content="<%= meta_description %>">
 
+<!-- OneSignal -->
+
+<link rel="manifest" href="/manifest.json">
+<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async></script>
+<script>
+  var OneSignal = OneSignal || [];
+  OneSignal.push(["init", {
+    appId: "<%= ENV['ONESIGNAL_APP_ID'] %>",
+    safari_web_id: "<%= ENV['ONESIGNAL_SAFARI_WEB_ID'] %>",
+    subdomainName: 'cforgood',
+    autoRegister: true,
+    notifyButton: {
+      enable: false/* Set to false to hide */
+    }
+  }]);
+</script>
+
 <!-- Favicons -->
 <link rel="apple-touch-icon" sizes="57x57" href="<%= image_path 'favicons/apple-touch-icon-57x57.png' %>">
 <link rel="apple-touch-icon" sizes="60x60" href="<%= image_path 'favicons/apple-touch-icon-60x60.png' %>">
@@ -60,7 +77,7 @@
 <!-- MailChimp -->
 <link href="//cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
 <!-- Mapbox GL -->
-<link href='https://api.mapbox.com/mapbox-gl-js/v0.20.0/mapbox-gl.css' rel='stylesheet' />
+<link href='https://api.mapbox.com/mapbox-gl-js/v0.21.0/mapbox-gl.css' rel='stylesheet' />
 
 <!-- Script for google analytics necessary in HEAD section -->
 <%= render "layouts/shared/js/google_analytics" %>
@@ -68,5 +85,13 @@
 <!-- Script for AMPLITUDE -->
 <%= render "layouts/shared/js/amplitude" %>
 
+<!-- Hotjar Tracking Code -->
+<%= render "layouts/shared/js/hotjar" %>
+
 <%= stylesheet_link_tag :application, media: "all" %>
 <%= csrf_meta_tags %>
+
+<!-- Wootric : survey -->
+<%# if user_signed_in? || business_signed_in? %>
+  <%#= render "layouts/shared/js/wootric" %>
+<%# end %>

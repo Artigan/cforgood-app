@@ -21,12 +21,12 @@ Consultez vos chiffres
     <div class="data-container">
       <div id="welcome-desktop">
         <!-- DESKTOP VIEW | CARDS -->
-        <div class="business-into" style="background-image: url('<%= current_business.picture.present? ? current_business.picture : image_url('cover-business.jpg') %>');">
+        <div class="business-into" style="background-image: url('<%= current_business.picture.present? ? current_business.picture.url(:card) : image_url('cover-business.jpg') %>');">
           <% if !current_business.active %>
             <span class="business-message">Votre compte sera bientôt activé !</span>
           <% end %>
           <% if @business.leader_picture.present? %>
-            <%= image_tag current_business.leader_picture(:thumb), class: 'business-owner' %>
+            <%= image_tag current_business.leader_picture.url(:avatar), class: 'business-owner' %>
           <% else %>
             <%= image_tag 'default_pic.png', class: 'business-owner' %>
           <% end %>
@@ -184,19 +184,28 @@ Consultez vos chiffres
         <% else %>
           <ul>
             <% @business.perks.active.last(3).each do |perk| %>
-              <%= link_to edit_pro_perk_path(perk), class: "" do %>
               <li class="perk-item">
                 <div class="perk-show">
-                  <span><%= perk.name %></span>
-                  <ul class="perk-stats">
-                    <li>Vues :<strong><%= perk.nb_views %></strong></li>
-                    <li>Utilisations :<strong><%= perk.uses.count %></strong></li>
-                    <li>Clients :<strong><%= perk.uses.select(:user_id).distinct.count %></strong></li>
-                  </ul>
+                  <%= link_to edit_pro_perk_path(perk), class: "" do %>
+                    <div class="perk-show-title">
+                      <span><%= perk.name %></span>
+                    </div>
+                    <ul class="perk-stats">
+                      <li>Vues :<strong><%= perk.nb_views %></strong></li>
+                      <li>Utilisations :<strong><%= perk.uses.count %></strong></li>
+                      <li>Clients :<strong><%= perk.uses.select(:user_id).distinct.count %></strong></li>
+                    </ul>
+                    <i class="fa fa-angle-right"></i>
+                  <% end %>
                 </div>
-                <i class="fa fa-angle-right"></i>
-                </li>
-              <% end %>
+                <!-- PERK PREVIEW -->
+                <div class="perk-preview">
+                  <%= link_to business_path(current_business, perk_id: perk.id), target: "_blank" do %>
+                    <i class="fa fa-eye"></i>
+                    <span>Aperçu</span>
+                  <% end %>
+                </div>
+              </li>
             <% end %>
           </ul>
         <% end %>
@@ -209,9 +218,9 @@ Consultez vos chiffres
           <%= image_tag('logopouce.png', class: '') %>
           <span>Bienvenue <%= current_business.name %></span>
         </div>
-        <div class="business-into" style="background-image: url('<%= current_business.picture %>');">
+        <div class="business-into" style="background-image: url('<%= current_business.picture.url(:card) %>');">
           <% if @business.leader_picture.present? %>
-            <%= image_tag current_business.leader_picture(:thumb), class: 'business-owner' %>
+            <%= image_tag current_business.leader_picture.url(:avatar), class: 'business-owner' %>
           <% else %>
             <%= image_tag 'default_pic.png', class: 'business-owner' %>
           <% end %>
@@ -305,9 +314,11 @@ Consultez vos chiffres
   <script>
 
     $(document).ready(function() {
+
       $(".close-button").click(function() {
         $('.done-overlay').addClass('hidden');
       });
+
     });
 
   </script>

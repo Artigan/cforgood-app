@@ -1,5 +1,5 @@
 <!-- COMPONENT | CARD CAUSE -->
-<div class="card-cause" style="background-image: url('<%= cause.picture %>');">
+<div class="card-cause" style="background-image: url('<%= cause.picture.url(:card) %>');">
   <div class="disque-item item-category" style="background-color: <%= cause.cause_category.color %>;">
     <%= image_tag cause.cause_category.picture %>
   </div>

@@ -21,7 +21,7 @@
           <!-- COMPONENT | CARD BON PLAN -->
           <%= link_to asso_cause_path(cause), class: "card-frame mix #{cause.cause_category_id}" do %>
             <!-- CARD HEADER -->
-            <div class="card-body" style="background-image: url('<%= cause.picture %>');">
+            <div class="card-body" style="background-image: url('<%= cause.picture.url(:card) %>');">
               <div class="disque-item item-category" style="background-color: <%= cause.cause_category.color %>;">
                 <%= image_tag cause.cause_category.picture %>
               </div>

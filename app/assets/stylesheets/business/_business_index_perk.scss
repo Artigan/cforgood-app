@@ -60,6 +60,29 @@
               max-width: 35px;
             }
           }
+
+          .perk-liked {
+            position: relative;
+            width: 45px;
+            height: 45px;
+            left: 2px;
+
+            svg {
+              position: absolute;
+              height: 25px;
+              left: -8px;
+              top: 4px;
+            }
+
+            span {
+              position: absolute;
+              top: 4px;
+              left: 30%;
+              transform: translateX(-50%);
+              color: #fff;
+              font-size: 11px;
+            }
+          }
         }
 
         .card-header-category,

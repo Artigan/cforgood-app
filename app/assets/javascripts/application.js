@@ -1,7 +1,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.remotipart
-//= require bootstrap-sprockets
+//= require bootstrap
 //= require underscore
 
 //= require navbar
@@ -13,6 +13,9 @@
 
 //= require vendor/slick.js
 //= require app/slick.js
+
+//= require list
+//= require list.fuzzysearch
 
 //= require_tree ./app
 

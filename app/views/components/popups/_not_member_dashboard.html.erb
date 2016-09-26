@@ -13,9 +13,22 @@
         <div class="container-code gentleman">
           <span>Oh deer...</span>
           <p>Tu es bien inscrit, mais pas encore membre, alors pour finaliser ton inscription et soutenir l'association de ton choix</p>
-          <%= link_to "Clique ici !", member_user_profile_path(current_user, anchor: 'subscription'), class: "button-gentleman" %>
+          <%= link_to "Clique ici !", member_user_profile_path(current_user, anchor: 'subscription'), class: "button-gentleman not-member" %>
         </div>
       </figure>
     </div>
   </div>
 </div>
+
+<% content_for :after_js do %>
+  <script>
+    $(document).ready(function() {
+
+      $(".button-gentleman.not-member").on("click", function() {
+        // EVENT AMPLITUDE : USER_C_SIGNUP_POPUP_DASHBOARD
+        amplitude.logEvent('USER_C_SIGNUP_POPUP_DASHBOARD');
+      });
+
+    });
+  </script>
+<% end %>

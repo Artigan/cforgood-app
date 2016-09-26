@@ -1,6 +1,6 @@
 namespace :perk do
 
-  desc "Control flask in time"
+  desc "Control flash in time"
   task daily_control_flash: :environment do
     puts "----------------------------------------"
     puts "TASK PERK_IN_TIME STARTING"

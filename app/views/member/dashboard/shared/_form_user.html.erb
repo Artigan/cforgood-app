@@ -1,20 +1,21 @@
 <div class="form-edit-container">
   <div class="form-edit">
-    <%= simple_form_for(current_user, url: member_update_profile_path, method: :put, remote: true, authenticity_token: true, html: { id: :form_profile_user }) do |f| %>
+    <%= simple_form_for(current_user, url: member_update_profile_path, method: :put, remote: true, authenticity_token: true, html: { id: :form_profile_user, folder: "User" }) do |f| %>
       <%= f.error_notification %>
 
       <div class="col-1">
         <label>Photo</label>
         <div class="picture-container">
           <% if current_user.picture? %>
-            <%= image_tag current_user.picture(:thumb), class: 'user-picture' %>
+            <%= image_tag current_user.picture.url(:avatar), class: 'user-picture'  %>
           <% else %>
             <div class="picture-none">
               <%= render 'shared/icons/profile' %>
             </div>
           <% end %>
         </div>
-        <%= f.input :picture, as: :file, required: false, label: 'Sélectionner une nouvelle image' %>
+        <%= f.input :picture, label: 'Sélectionner une nouvelle image'%>
+        <%= f.input :picture_cache, as: :hidden %>
       </div>
 
       <div class="col-1">
@@ -34,7 +35,7 @@
       </div>
 
       <div class="col-2">
-        <%= f.button :submit, "Sauvegarder", class: "btn btn-turquoise" %>
+        <%= f.button :submit, "Sauvegarder", class: "btn btn-turquoise valid-profile" %>
       </div>
     <% end %>
   </div>
@@ -60,6 +61,11 @@
         var newFile = document.querySelector('#form_profile_user input[type=file]').files[0];
         $(".user_picture").children().html(newFile.name);
         readURL(newFile);
+      });
+
+      $(".valid-profile").on("click", function() {
+        // EVENT AMPLITUDE : USER_C_PROFILE_MYINFO_SAVED
+        amplitude.logEvent('USER_C_PROFILE_MYINFO_SAVED');
       });
     });
   </script>

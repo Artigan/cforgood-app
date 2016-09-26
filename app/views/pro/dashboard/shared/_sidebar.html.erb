@@ -68,7 +68,7 @@
           </li>
           <li>
             <%= link_to destroy_user_session_path, method: :delete do %>
-              <i class="fa fa-power-off"></i>Se déconnecter
+              <i class="fa fa-power-off sign-out"></i>Se déconnecter
             <% end %>
           </li>
         </ul>
@@ -76,7 +76,7 @@
     </ul>
     <div class="signout">
       <%= link_to destroy_user_session_path, method: :delete do %>
-        <%= image_tag('icons/signout.png', :class => 'signout-icon') %><%= t ".se_déconnecter", default: "À bientôt" %>
+        <%= image_tag('icons/signout.png', :class => 'signout-icon sign-out') %><%= t ".se_déconnecter", default: "À bientôt" %>
       <% end %>
     </div>
   </div>

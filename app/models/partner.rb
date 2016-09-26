@@ -9,6 +9,7 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  nb_month     :integer          default(1)
+#  times        :integer          default(0)
 #
 
 class Partner < ActiveRecord::Base
@@ -54,7 +55,7 @@ class Partner < ActiveRecord::Base
           business = intercom.users.find(:user_id => 'B'+@business.id.to_s)
           business.custom_attributes["code_partner"] =  self.code_partner
           intercom.users.save(business)
-        rescue Intercom::ResourceNotFound
+        rescue Intercom::IntercomError => e
         end
       end
     end

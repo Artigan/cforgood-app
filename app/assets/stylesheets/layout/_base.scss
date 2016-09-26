@@ -67,7 +67,7 @@ section {
       padding: 0 20px;
   }
 
-  #intercom-launcher {
-    bottom: 80px !important;
+  iframe .intercom-launcher-frame {
+    transform: translateY(-100px);
   }
 }

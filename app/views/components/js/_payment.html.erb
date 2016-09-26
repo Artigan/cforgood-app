@@ -69,9 +69,7 @@
             cardData,
             function(res) {
               $("#card_id").val(res.CardId);
-              $("#create_account").submit();
-              $("#loading-indicator").hide();
-              $(".signup-done-overlay.ok").removeClass('hidden');
+              $(".btn-create-card").click();
               // Success, you can use res.CardId now that points to registered card
             },
             function(res) {
@@ -83,6 +81,16 @@
           );
         };
       };
+    });
+
+    $(".btn-create-card").on("click", function() {
+      <% if controller_path == "member/dashboard" %>
+        // EVENT AMPLITUDE : USER_C_PROFILE_MYSUBSCRIPTION_VALIDATED
+        amplitude.logEvent('USER_C_PROFILE_MYSUBSCRIPTION_VALIDATED');
+      <% else %>
+        // EVENT AMPLITUDE : USER_C_SIGNUP3_VALIDATED
+        amplitude.logEvent('USER_C_SIGNUP3_VALIDATED');
+      <% end %>
     });
   });
 

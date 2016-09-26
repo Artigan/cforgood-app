@@ -2,28 +2,25 @@
 #
 # Table name: perks
 #
-#  id                   :integer          not null, primary key
-#  name                 :string
-#  business_id          :integer
-#  description          :text
-#  times                :integer          default(0)
-#  start_date           :datetime
-#  end_date             :datetime
-#  active               :boolean          default(TRUE), not null
-#  perk_code            :string
-#  created_at           :datetime         not null
-#  updated_at           :datetime         not null
-#  nb_views             :integer          default(0)
-#  appel                :boolean          default(FALSE), not null
-#  durable              :boolean          default(FALSE), not null
-#  flash                :boolean          default(FALSE), not null
-#  picture_file_name    :string
-#  picture_content_type :string
-#  picture_file_size    :integer
-#  picture_updated_at   :datetime
-#  perk_detail_id       :integer
-#  deleted              :boolean          default(FALSE), not null
-#  all_day              :boolean          default(FALSE), not null
+#  id             :integer          not null, primary key
+#  name           :string
+#  business_id    :integer
+#  description    :text
+#  times          :integer          default(0)
+#  start_date     :datetime
+#  end_date       :datetime
+#  active         :boolean          default(TRUE), not null
+#  perk_code      :string
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  nb_views       :integer          default(0)
+#  appel          :boolean          default(FALSE), not null
+#  durable        :boolean          default(FALSE), not null
+#  flash          :boolean          default(FALSE), not null
+#  perk_detail_id :integer
+#  deleted        :boolean          default(FALSE), not null
+#  all_day        :boolean          default(FALSE), not null
+#  picture        :string
 #
 # Indexes
 #
@@ -36,11 +33,15 @@
 #
 
 class Perk < ActiveRecord::Base
+
+  require 'one_signal'
+
   belongs_to :business
   has_many :uses, dependent: :destroy
   belongs_to :perk_detail
 
   scope :active, -> { where(active: true) }
+  scope :flash, -> { where(flash: true) }
   scope :undeleted, -> { where(deleted: false) }
   scope :permanent, -> { where('perks.active = ? and (perks.durable = ? or perks.appel = ?)', true, true, true) }
   scope :in_time, -> { where('perks.active = ? and (perks.durable = ? or perks.appel = ? or (perks.flash = ? and perks.start_date <= ? and perks.end_date >= ?))', true, true, true, true, Time.now, Time.now) }
@@ -56,17 +57,14 @@ class Perk < ActiveRecord::Base
   validates :times, numericality: { only_integer: true, greater_than_or_equal_to: 0 }, allow_nil: true
   validate :dates_required_if_flash
   validate :start_date_cannot_be_greater_than_end_date
-  validates :perk_code, length: { in: 5..15 }, format: { with: /\A[A-Za-z0-9]+\z/, message: "Le code du bon plan ne peut contenir que des lettres et des chiffres" }
+  validates :perk_code, length: { in: 5..15 }, format: { with: /\A[A-Za-z0-9]+\z/, message: "Le code du bon plan ne peut contenir que des lettres et des chiffres" }, if: :perk_code_needed?
   validate :perk_code_uniqueness, if: :perk_code_changed?
 
-  has_attached_file :picture,
-    styles: { medium: "300x300#", thumb: "100x100#" }
+  validates_size_of :picture, maximum: 2.megabytes,
+    message: "Cette image dépasse 2 MG !", if: :picture_changed?
+  mount_uploader :picture, PictureUploader
 
-  validates_attachment_content_type :picture,
-    content_type: /\Aimage\/.*\z/
-
-  after_create :send_registration_slack
-  after_create :update_data_intercom
+  after_create :send_registration_slack, :update_data_intercom, :send_push_notification
   after_save :update_data_intercom, if: :active_changed?
   after_destroy :update_data_intercom
 
@@ -78,15 +76,15 @@ class Perk < ActiveRecord::Base
     if self.durable
       true
     elsif self.appel
-      user.uses.where(perk_id: self.id).count == 0
+      user.uses.used.where(perk_id: self.id).count == 0
     elsif self.flash
-      self.times == 0 || Use.where(perk_id: self.id).count < self.times
+      self.times == 0 || Use.used.where(perk_id: self.id).count < self.times
     end
   end
 
   def perk_in_time?
     if self.flash
-      (self.start_date <= Time.now && self.end_date >= Time.now) && (self.times == 0 || Use.where(perk_id: self.id).count < self.times)
+      (self.start_date <= Time.now && self.end_date >= Time.now) && (self.times == 0 || Use.used.where(perk_id: self.id).count < self.times)
     else
       true
     end
@@ -97,6 +95,11 @@ class Perk < ActiveRecord::Base
   end
 
   private
+
+  def perk_code_needed?
+    name = PerkDetail.find(self.perk_detail_id).name
+    name == "online" || name == "email"
+  end
 
   def dates_required_if_flash
     if flash
@@ -150,8 +153,20 @@ class Perk < ActiveRecord::Base
       user.custom_attributes[:perks_all] = Business.find(self.business_id).perks.count
       user.custom_attributes[:perks_active] = Business.find(self.business_id).perks.active.count
       intercom.users.save(user)
-    rescue Intercom::ResourceNotFound
+    rescue Intercom::IntercomError => e
     end
+  end
+
+  def send_push_notification
+
+    params = {
+      app_id: ENV['ONESIGNAL_APP_ID'],
+      contents: {"en" => "#{self.business.name} a créer un nouveau bon plan : #{self.name}"},
+      included_segments: ["All"]
+    }
+
+    # OneSignal::Notification.create(params: params)
+
   end
 
   def active?

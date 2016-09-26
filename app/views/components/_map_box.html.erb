@@ -1,7 +1,7 @@
 <div class="map-box">
   <div class="box-header">
     <% if business.picture.present? %>
-      <%= image_tag business.picture(:medium) %>
+      <%= image_tag business.picture.url(:thumb) %>
     <% else %>
       <div class="box-header-img" style="background-color: <%= business.business_category.color %>;">
         <%= image_tag business.business_category.picture %>
@@ -10,18 +10,18 @@
     <div class="business-details">
       <h3><%= business.name %></h3>
       <span><%= business.business_category.name %></span>
-      <span><i class="fa fa-map-marker"></i><%= address > 0 ? business.addresses.find(address).street : business.street %></span>
+      <span><i class="fa fa-map-marker"></i><%= street %></span>
     </div>
   </div>
   <div class="map-list-perks">
     <div class="map-perks">
       <ul>
-      <% business.perks.in_time.each do |perk| %>
+      <% business.perks_in_time.each do |perk| %>
         <% if !flash || (flash && perk.flash) %>
           <li style="box-shadow: inset -35px 0 0 0 <%= business.business_category.color %>;">
             <%= link_to business_path(perk.business_id, perk_id: perk.id, address_id: address), class: "see-perk" do %>
               <% if perk.picture.present? %>
-                <%= image_tag perk.picture(:medium) %>
+                <%= image_tag perk.picture.url(:thumb) %>
               <% end %>
               <span><%= perk.name %></span>
               <i class="fa fa-angle-right"></i>

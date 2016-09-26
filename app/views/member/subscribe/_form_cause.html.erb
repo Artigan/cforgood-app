@@ -5,7 +5,7 @@
       <span>Choisissez l'association que vous souhaitez soutenir</span>
       <div class="causes-carrousel">
         <!-- Random Causes cards -->
-        <% Cause.all.each do |cause| %>
+        <% @cause.each do |cause| %>
           <% if cause.id != current_user.cause_id && cause.id != ENV['CAUSE_ID_CFORGOOD'].to_i %>
             <div id="<%= cause.id %>" class="cause-presentation">
               <!-- CARD CAUSE -->
@@ -35,6 +35,9 @@
         var causeId = $('.cause-presentation.slick-active').val('div').attr('id');
         $("#user_cause_id").val(causeId);
         $(".love-it").addClass('hidden').removeClass('love-it');
+
+        // EVENT AMPLITUDE : USER_C_SIGNUP1_SUPPORTCAUSE
+        amplitude.logEvent('USER_C_SIGNUP1_SUPPORTCAUSE');
       });
 
       $(".signup-next").on("click", function(e) {
@@ -42,6 +45,9 @@
         $(".choose-cause").addClass("ishidden");
         $(".signup-plan").addClass("slideup");
         $("#signup-breadcrumb").addClass("slide-2");
+
+        // EVENT AMPLITUDE : USER_C_SIGNUP1_NEXT
+        amplitude.logEvent('USER_C_SIGNUP1_NEXT');
       });
 
     });

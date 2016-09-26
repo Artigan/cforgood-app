@@ -3,30 +3,45 @@ class DailyControlFlashJob < ActiveJob::Base
 
   def perform
 
-    puts "-----------------------------------------"
-    puts "DAILY CONTROL FLASH JOB"
-    puts "-----------------------------------------"
+    report = []
+    report << "-----------------------------------------"
 
+    # Select all flash perks not in time
     @perks = Perk.active.where('flash = ? and end_date < ?', true, Time.now)
 
-    if @perks.present?
-      puts "nb perks in: #{@perks.count}"
-    else
-      puts "nb perks in: 0"
-    end
-    puts "-----------------------------------------"
+    report << "Nb perks read | #{@perks.size}"
+    report << "-----------------------------------------"
 
     nb_perk_inactivated = 0
 
+    # Inactive all selected perks
     @perks.each do |perk|
       if perk.update(active: false)
         nb_perk_inactivated += 1
-        puts "perk: #{perk.id} - business: #{perk.business.name} (#{perk.business_id}) - inactive"
+        report << "Perk | #{perk.id} | Business | #{perk.business_id} | #{perk.business.name} | inactive"
       end
     end
 
+    report << "-----------------------------------------" if @perks.present?
+    report << "Nb perks updated | #{nb_perk_inactivated}"
+    report << "-----------------------------------------"
+
+    # Edit report + Send to slack
     puts "-----------------------------------------"
-    puts "nb perks updated: #{nb_perk_inactivated}"
-    puts "-----------------------------------------"
+    puts "Report DAILY CONTROL FLASH JOB"
+    fields = []
+    report.each do |line|
+      puts line
+      fields << { "value": line }
+    end
+
+    notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_JOB_URL']
+    attachment = {
+      fallback: "Report DAILY CONTROL FLASH JOB",
+      fields: fields,
+      color: "good"
+    }
+    notifier.ping "Report DAILY CONTROL FLASH JOB", attachments: [attachment]
+
   end
 end

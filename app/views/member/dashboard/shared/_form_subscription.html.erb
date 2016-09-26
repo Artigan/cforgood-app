@@ -38,7 +38,11 @@
               <%= f.input :amount, label: false, input_html: { value: f.object.amount || 5 } %>
             </div>
             <% if current_user.member %>
-              <%= f.submit "Sauvegarder", class: "btn-subscription"%>
+              <% if current_user.subscription == 'T' %>
+                <%= f.submit "M'abonner", class: "btn-subscription"%>
+              <% else %>
+                <%= f.submit "Sauvegarder", class: "btn-subscription"%>
+              <% end %>
             <% elsif current_user.date_stop_subscription.present? %>
               <%= f.submit "Me réabonner", class: "btn-subscription"%>
             <% else %>
@@ -53,7 +57,11 @@
     <% else %>
       <%= link_to "Je me désabonne", "#", class: "btn btn-no-subscription stop-subscription disabled" %>
     <% end %>
-    <%= link_to "Mettre à jour mes données bancaires", "#payment", role: "tab", data_toggle: "tab", class: "show-payment btn btn-no-subscription" %>
+    <% if current_user.amount.present? %>
+      <%= link_to "Mettre à jour mes données bancaires", "#payment", role: "tab", data_toggle: "tab", class: "show-payment btn btn-no-subscription" %>
+    <% else %>
+      <%= link_to "Mettre à jour mes données bancaires", "#payment", role: "tab", data_toggle: "tab", class: "show-payment btn btn-no-subscription disabled" %>
+    <% end %>
   </div>
 </div>
 

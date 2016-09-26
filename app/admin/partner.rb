@@ -6,6 +6,7 @@ ActiveAdmin.register Partner do
     column :email
     column :code_partner
     column :nb_month
+    column :times
     column :created_at
     actions
   end
@@ -15,9 +16,10 @@ ActiveAdmin.register Partner do
       f.input :email
       f.input :code_partner
       f.input :nb_month
+      f.input :times
     end
     f.actions
   end
 
-permit_params :name, :email, :code_partner, :nb_month
+permit_params :name, :email, :code_partner, :nb_month, :times
 end
