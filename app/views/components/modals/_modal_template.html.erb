@@ -1,38 +1,12 @@
-<div id="animatedModal">
+<div id="<%= id %>" class="modal-animated hidden">
   <!--THIS IS IMPORTANT! to close the modal, the class name has to match the name given on the ID -->
-  <div  id="button-close-modal" class="close-animatedModal">
+  <div class="button-close <%= id %>" >
     <%= image_tag 'icons/close.svg' %>
   </div>
 
   <div class="modal-content">
     <div class="video-container">
-      <iframe id="playerid" width="560" height="315" src="<%= source %>" frameborder="0" allowfullscreen></iframe>
+      <iframe src="<%= source %>" style="<%= style %>"></iframe>
     </div>
   </div>
 </div>
-
-
-<% content_for :after_js do %>
-
-  <script>
-
-    $(document).ready(function() {
-
-      $("#modal-video").animatedModal({
-        animatedIn:'zoomIn',
-        animatedOut:'zoomOut',
-        color:'#000000'
-      });
-
-      var url = $(".video-container").find("iframe").attr('src');
-
-      $('.close-animatedModal').click(function() {
-        $(".video-container").fadeOut().find("iframe").attr("src", "");
-        $(".video-container").fadeIn().find("iframe").attr('src', url);
-      });
-
-    });
-
-  </script>
-
-<% end %>

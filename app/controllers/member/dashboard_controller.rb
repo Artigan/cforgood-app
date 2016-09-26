@@ -79,7 +79,6 @@ class Member::DashboardController < ApplicationController
   end
 
   def ambassador
-    # byebug
   end
 
 end

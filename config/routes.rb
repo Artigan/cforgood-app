@@ -42,6 +42,7 @@ Rails.application.routes.draw do
       get "ambassador", to: "dashboard#ambassador"
     end
     resources :subscribe, only: [:new, :create, :update]
+    resources :prospects, only: [:new, :create, :update]
     resources :perks, only: [:show]
   end
 
