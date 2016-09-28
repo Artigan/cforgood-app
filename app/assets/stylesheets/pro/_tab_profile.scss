@@ -296,13 +296,15 @@
             position: relative;
 
             .button-address-more {
-              position: absolute;
-              bottom: -40px;
-              width: 60px;
-              right: -30px;
+             float: right;
+
+              &.on-left {
+                transform: translateY(-24px) translateX(-10px);
+              }
 
               svg {
-                width: 50%;
+                width: 30px;
+                height: 30px;
               }
             }
           }
@@ -311,13 +313,11 @@
             position: relative;
 
             .button-address-minus {
-              position: absolute;
-              top: -10px;
-              width: 60px;
-              right: -30px;
+              float: right;
 
               svg {
-                width: 50%;
+                width: 30px;
+                height: 30px;
               }
             }
           }

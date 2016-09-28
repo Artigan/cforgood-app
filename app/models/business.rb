@@ -147,6 +147,7 @@ class Business < ActiveRecord::Base
         user.custom_attributes["user_active"] = self.active
         user.custom_attributes["first_name"] = self.leader_first_name
         user.custom_attributes["city"] = self.city
+        user.custom_attributes["zipcode"] = self.zipcode
         intercom.users.save(user)
       rescue Intercom::IntercomError => e
       end

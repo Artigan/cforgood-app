@@ -101,6 +101,9 @@
       // LINK TO NEW SHOP ADDRESS
       $('.button-address-more').on('click', function(e) {
         e.preventDefault();
+       if (!$(this).hasClass('on-left')) {
+          $(this).addClass('on-left');
+        }
         $('.address-shop.new.hidden').first().removeClass('hidden');
       });
 
@@ -109,6 +112,9 @@
         e.preventDefault();
         $(this).prev(".business_addresses_destroy").attr('checked', true);
         $(this).closest('.address-shop').addClass('hidden').addClass('deleted');
+        if ($('.address-shop.hidden').length == 5) {
+          $('.button-address-more').removeClass('on-left');
+        }
       });
 
       // ACTIVATE OR NOT BUTTON ITINERANT ADDRESS
@@ -132,6 +138,7 @@
           }
         }
       });
+
       placesAutocomplete.on('change', function resultSelected(e) {
         document.querySelector('#business_city').value = e.suggestion.city || '';
         document.querySelector('#business_zipcode').value = e.suggestion.postcode || '';

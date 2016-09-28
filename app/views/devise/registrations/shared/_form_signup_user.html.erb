@@ -11,12 +11,13 @@
       <%= f.input :email, placeholder: 'Adresse email', required: true, label: false %>
       <%= f.input :password, placeholder: '********', required: true, label: false %>
       <%= f.input :city, placeholder: 'Ville', required: true, label: false %>
+      <%= f.input :zipcode, as: :hidden %>
 
       <div class="subscribe-disclaimer">
         <p>En cliquant sur <strong>S'inscrire</strong> ou <strong>Facebook</strong> vous acceptez les <a type="href" class="" data-toggle="modal" data-target="#modal-cgu"><strong>CGU</strong></a> et certifiez avoir de plus de 18 ans.</p>
       </div>
 
-      <%= f.button :submit, "S'inscrire", class: "btn btn-connexion hint--top", :"data-hint" => "En cliquant sur S'inscrire ou Facebook vous acceptez les CGU et certifiez avoir de plus de 18 ans." %>
+      <%= f.button :submit, "S'inscrire", class: "btn btn-connexion hint--top btn-user-connexion", :"data-hint" => "En cliquant sur S'inscrire ou Facebook vous acceptez les CGU et certifiez avoir de plus de 18 ans." %>
     <% end %>
   </div>
   <!-- FB & GOOGLE SUBSCRIPTION BUTTONS -->
@@ -33,6 +34,21 @@
 
     $(document).ready(function() {
 
+      var placesAutocomplete = places({
+        container: document.querySelector('#user_city'),
+        type: 'city',
+        aroundLatLngViaIP: false,
+        templates: {
+          value: function(suggestion) {
+            return suggestion.name;
+          }
+        }
+      });
+
+      placesAutocomplete.on('change', function resultSelected(e) {
+        document.querySelector('#user_zipcode').value = e.suggestion.postcode || '';
+      });
+
       $("#new_user").validate({
         lang: 'fr',
         rules: {
@@ -48,11 +64,15 @@
         }
       });
 
+      $('.btn-user-connexion').on('click', function(e) {
+        if ( $('#user_zipcode').val() == "" || $('#user_zipcode').val() == null ) {
+          e.preventDefault();
+          $("#error-code").html('Sélectionnez une ville existante !');
+        }
+      });
     });
 
-  </script>
-
-  <script src="https://maps.googleapis.com/maps/api/js?libraries=places&amp;key=<%= ENV['GOOGLE_API_KEY'] %>"></script>
+</script>
 
 <% end %>
 
