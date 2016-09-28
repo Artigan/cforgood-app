@@ -56,12 +56,14 @@
       </div>
       <%= f.input :shop, label: "Es-tu une boutique physique ?", as: :radio_buttons, collection: [['Oui', true ], ['Non', false ]], checked: current_business.shop || false  %>
       <%= f.input :online, label: "Es-tu une e-boutique ?", as: :radio_buttons, collection: [['Oui', true ], ['Non', false ]], checked: current_business.online || false  %>
-      <%= f.input :itinerant, label: "Es-tu itinérant ?", as: :radio_buttons, collection: [['Oui', true ], ['Non', false ]], checked: current_business.itinerant || false  %>
-      <% if current_business.itinerant %>
-        <a href="#" class="button-itinerant-address"><%= render "shared/icons/address" %></a>
-      <% else %>
-        <a href="#" class="button-itinerant-address hidden"><%= render "shared/icons/address" %></a>
-      <% end %>
+      <div class="business_itinerant_select">
+        <%= f.input :itinerant, label: "Es-tu itinérant ?", as: :radio_buttons, collection: [['Oui', true ], ['Non', false ]], checked: current_business.itinerant || false  %>
+        <% if current_business.itinerant %>
+          <a href="#" class="button-itinerant-address"><%= render "shared/icons/address" %></a>
+        <% else %>
+          <a href="#" class="button-itinerant-address hidden"><%= render "shared/icons/address" %></a>
+        <% end %>
+      </div>
       <%= f.input :url, placeholder: 'Site web', label: 'Site web' %>
       <%= f.input :email, placeholder: 'Adresse email', required: true, label: "Email" %>
       <%= f.input :telephone, placeholder: 'Téléphone', required: true, label: 'Téléphone' %>
