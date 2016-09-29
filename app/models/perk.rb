@@ -161,11 +161,22 @@ class Perk < ActiveRecord::Base
 
     params = {
       app_id: ENV['ONESIGNAL_APP_ID'],
-      contents: {"en" => "#{self.business.name} a créer un nouveau bon plan : #{self.name}"},
-      included_segments: ["All"]
+      # template_id: '033eae5c-aa46-4e41-a3f7-f6cd4211a9fc',
+      headings: {"en" => "Un tout nouveau bon plan CforGood 😊👏"},
+      contents: {"en" => "#{self.business.name} a créer un nouveau bon plan : #{self.name} 😍👍"},
+      included_segments: ["All"],
+      chrome_web_icon: 'https://www.cforgood.com/images/favicons/favicon-194x194.png'
     }
 
-    # OneSignal::Notification.create(params: params)
+    begin
+      response = OneSignal::Notification.create(params: params)
+      notification_id = JSON.parse(response.body)["id"]
+      rescue OneSignal::OneSignalError => e
+        puts "--- OneSignalError  :"
+        puts "-- message : #{e.message}"
+        puts "-- status : #{e.http_status}"
+        puts "-- body : #{e.http_body}"
+      end
 
   end
 
