@@ -57,7 +57,7 @@ class Business < ActiveRecord::Base
 
   has_many :addresses, dependent: :destroy
   accepts_nested_attributes_for :addresses, :allow_destroy => true, :reject_if => :all_blank
-  # has_many :addresses_shop, -> { shop }, class_name: "Address"
+  has_many :addresses_shop, -> { shop }, class_name: "Address"
   # has_many :addresses_itinerant, -> { today }, class_name: "Address"
   has_many :addresses_for_map, -> { for_map_load }, class_name: "Address"
 
