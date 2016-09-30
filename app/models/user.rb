@@ -194,6 +194,24 @@ class User < ActiveRecord::Base
       )
     rescue Intercom::IntercomError => e
     end
+    #SEND EVENT TO SLACK
+    if Rails.env.production?
+
+      notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_USER_URL']
+
+      if self.last_name.present?
+        message = "#{self.first_name} #{self.last_name}"
+      elsif name.present?
+        message = "#{self.name}"
+      else
+        message = "#{self.email}"
+      end
+
+      message = message + " a résilié son abonnement de " + self.amount.to_s + "€."
+
+      notifier.ping message
+
+    end
   end
 
   private
