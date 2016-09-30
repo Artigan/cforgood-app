@@ -171,12 +171,12 @@ class Perk < ActiveRecord::Base
     begin
       response = OneSignal::Notification.create(params: params)
       notification_id = JSON.parse(response.body)["id"]
-      rescue OneSignal::OneSignalError => e
-        puts "--- OneSignalError  :"
-        puts "-- message : #{e.message}"
-        puts "-- status : #{e.http_status}"
-        puts "-- body : #{e.http_body}"
-      end
+    rescue OneSignal::OneSignalError => e
+      puts "--- OneSignalError  :"
+      puts "-- message : #{e.message}"
+      puts "-- status : #{e.http_status}"
+      puts "-- body : #{e.http_body}"
+    end
 
   end
 

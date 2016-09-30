@@ -222,10 +222,8 @@ class User < ActiveRecord::Base
       @mangopay_user = MangopayServices.new(self).create_mangopay_natural_user
       self.mangopay_id = @mangopay_user["Id"]
     end
-    # UPDATE DATE SUBCRIPTION
     self.date_subscription = Time.now if subscription_was == nil
-    # MEMBER TRUE IF TRIAL
-    self.member = true if subscription == "T"
+    self.member = true
   end
 
   def date_support!
