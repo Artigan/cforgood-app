@@ -2,25 +2,27 @@
 #
 # Table name: perks
 #
-#  id             :integer          not null, primary key
-#  name           :string
-#  business_id    :integer
-#  description    :text
-#  times          :integer          default(0)
-#  start_date     :datetime
-#  end_date       :datetime
-#  active         :boolean          default(TRUE), not null
-#  perk_code      :string
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
-#  nb_views       :integer          default(0)
-#  appel          :boolean          default(FALSE), not null
-#  durable        :boolean          default(FALSE), not null
-#  flash          :boolean          default(FALSE), not null
-#  perk_detail_id :integer
-#  deleted        :boolean          default(FALSE), not null
-#  all_day        :boolean          default(FALSE), not null
-#  picture        :string
+#  id                :integer          not null, primary key
+#  name              :string
+#  business_id       :integer
+#  description       :text
+#  times             :integer          default(0)
+#  start_date        :datetime
+#  end_date          :datetime
+#  active            :boolean          default(TRUE), not null
+#  perk_code         :string
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  nb_views          :integer          default(0)
+#  appel             :boolean          default(FALSE), not null
+#  durable           :boolean          default(FALSE), not null
+#  flash             :boolean          default(FALSE), not null
+#  perk_detail_id    :integer
+#  deleted           :boolean          default(FALSE), not null
+#  all_day           :boolean          default(FALSE), not null
+#  picture           :string
+#  text_notification :string
+#  send_notification :boolean          default(FALSE)
 #
 # Indexes
 #
@@ -165,7 +167,7 @@ class Perk < ActiveRecord::Base
       headings: {"en" => "Un tout nouveau bon plan CforGood 😊👏"},
       contents: {"en" => "#{self.business.name} a créer un nouveau bon plan : #{self.name} 😍👍"},
       included_segments: ["All"],
-      chrome_web_icon: 'https://www.cforgood.com/images/favicons/favicon-194x194.png'
+      chrome_web_icon: @perk.picture.url(:thumb)
     }
 
     begin
