@@ -27,8 +27,12 @@ ActiveAdmin.register Perk do
       f.input :durable
       f.input :flash
     end
+    f.inputs "Notification" do
+      f.input :text_notification
+      f.input :send_notification
+    end
     f.actions
   end
 
-  permit_params :name, :business_id, :description, :perk_detail_id, :times , :start_date, :end_date, :all_day, :perk_code, :active, :appel, :durable, :flash, :picture
+  permit_params :name, :business_id, :description, :perk_detail_id, :times , :start_date, :end_date, :all_day, :perk_code, :active, :appel, :durable, :flash, :picture, :text_notification, :send_notification
 end

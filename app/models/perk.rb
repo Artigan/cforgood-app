@@ -66,8 +66,9 @@ class Perk < ActiveRecord::Base
     message: "Cette image dépasse 2 MG !", if: :picture_changed?
   mount_uploader :picture, PictureUploader
 
-  after_create :send_registration_slack, :update_data_intercom, :send_push_notification
+  after_create :send_registration_slack, :update_data_intercom
   after_save :update_data_intercom, if: :active_changed?
+  after_save :send_push_notification, if: :send_notification_changed?
   after_destroy :update_data_intercom
 
   def update_nb_view!
@@ -161,26 +162,28 @@ class Perk < ActiveRecord::Base
 
   def send_push_notification
 
-    params = {
-      app_id: ENV['ONESIGNAL_APP_ID'],
-      # template_id: '033eae5c-aa46-4e41-a3f7-f6cd4211a9fc',
-      headings: {"en" => "Un tout nouveau bon plan CforGood 😊👏"},
-      contents: {"en" => "#{self.business.name} a créer un nouveau bon plan : #{self.name} 😍👍"},
-      included_segments: ["All"],
-      chrome_web_icon: @perk.picture.url(:thumb)
-    }
+    if send_notification_changed? && send_notification
+      params = {
+        app_id: ENV['ONESIGNAL_APP_ID'],
+        # template_id: '033eae5c-aa46-4e41-a3f7-f6cd4211a9fc',
+        headings: {"en" => "Un tout nouveau bon plan pour #{self.business.name} 😊👏"},
+        contents: {"en" => "#{self.text_notification}"},
+        # included_segments: ["All"],
+        included_segments: ["test"],
+        chrome_web_icon: self.picture.url(:thumb)
+      }
 
-    begin
-      response = OneSignal::Notification.create(params: params)
-      notification_id = JSON.parse(response.body)["id"]
-    rescue OneSignal::OneSignalError => e
-      puts "--- OneSignalError  :"
-      puts "-- message : #{e.message}"
-      puts "-- status : #{e.http_status}"
-      puts "-- body : #{e.http_body}"
+      begin
+        response = OneSignal::Notification.create(params: params)
+        notification_id = JSON.parse(response.body)["id"]
+      rescue OneSignal::OneSignalError => e
+        puts "--- OneSignalError  :"
+        puts "-- message : #{e.message}"
+        puts "-- status : #{e.http_status}"
+        puts "-- body : #{e.http_body}"
+      end
     end
-
-  end
+   end
 
   def active?
     if flash
