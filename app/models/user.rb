@@ -194,6 +194,24 @@ class User < ActiveRecord::Base
       )
     rescue Intercom::IntercomError => e
     end
+    #SEND EVENT TO SLACK
+    if Rails.env.production?
+
+      notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_USER_URL']
+
+      if self.last_name.present?
+        message = "#{self.first_name} #{self.last_name}"
+      elsif name.present?
+        message = "#{self.name}"
+      else
+        message = "#{self.email}"
+      end
+
+      message = message + " a résilié son abonnement de " + self.amount.to_s + "€."
+
+      notifier.ping message
+
+    end
   end
 
   private
@@ -204,10 +222,8 @@ class User < ActiveRecord::Base
       @mangopay_user = MangopayServices.new(self).create_mangopay_natural_user
       self.mangopay_id = @mangopay_user["Id"]
     end
-    # UPDATE DATE SUBCRIPTION
     self.date_subscription = Time.now if subscription_was == nil
-    # MEMBER TRUE IF TRIAL
-    self.member = true if subscription == "T"
+    self.member = true
   end
 
   def date_support!
