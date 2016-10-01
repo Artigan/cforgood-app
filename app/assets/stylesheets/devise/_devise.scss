@@ -454,12 +454,12 @@
           }
         }
 
-        .user_city,
-        .business_city {
-          &:after {
-            content: '\f041';
-          }
-        }
+        // .user_city,
+        // .business_city {
+        //   &:after {
+        //     content: '\f041';
+        //   }
+        // }
 
         .business_business_category_id {
           &:after {

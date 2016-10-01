@@ -57,7 +57,7 @@ class Business < ActiveRecord::Base
 
   has_many :addresses, dependent: :destroy
   accepts_nested_attributes_for :addresses, :allow_destroy => true, :reject_if => :all_blank
-  # has_many :addresses_shop, -> { shop }, class_name: "Address"
+  has_many :addresses_shop, -> { shop }, class_name: "Address"
   # has_many :addresses_itinerant, -> { today }, class_name: "Address"
   has_many :addresses_for_map, -> { for_map_load }, class_name: "Address"
 
@@ -147,6 +147,7 @@ class Business < ActiveRecord::Base
         user.custom_attributes["user_active"] = self.active
         user.custom_attributes["first_name"] = self.leader_first_name
         user.custom_attributes["city"] = self.city
+        user.custom_attributes["zipcode"] = self.zipcode
         intercom.users.save(user)
       rescue Intercom::IntercomError => e
       end

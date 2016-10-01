@@ -319,6 +319,7 @@ class User < ActiveRecord::Base
       user.custom_attributes["user_type"] = 'user'
       user.custom_attributes["first_name"] = self.first_name
       user.custom_attributes['city'] = self.city
+      user.custom_attributes['zipcode'] = self.zipcode
       user.custom_attributes["user_active"] = self.active
       user.custom_attributes["user_cause"] = self.cause.name
       user.custom_attributes["user_member"] = self.member
@@ -336,6 +337,7 @@ class User < ActiveRecord::Base
             'user_type' => 'user',
             'first_name' => self.first_name,
             'city' => self.city,
+            'zipcode' => self.zipcode,
             'user_active' => self.active,
             'user_cause' => self.cause.name,
             'user_member' => self.member,
