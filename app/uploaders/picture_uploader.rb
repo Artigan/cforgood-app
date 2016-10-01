@@ -3,6 +3,8 @@ class PictureUploader < CarrierWave::Uploader::Base
   include Cloudinary::CarrierWave
 
   process eager: true # Force version generation at upload time
+  process convert: 'jpg'
+
   cloudinary_transformation :transformation => [{:width => 2000, :height => 2000, :crop => :limit, :folder => Rails.env}]
 
   version :medium do |variable|
