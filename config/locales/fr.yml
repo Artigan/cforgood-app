@@ -4,3 +4,10 @@ fr:
     attributes:
       business:
         remember_me: Se souvenir de moi
+fr:
+  views:
+    pagination:
+      next: Suivant
+      last: Dernier
+      first: Début
+      previous: Précédent
