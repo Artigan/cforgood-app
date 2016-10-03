@@ -16,6 +16,6 @@ class BusinessCategory < ActiveRecord::Base
 
   validates_size_of :picture, maximum: 1.megabytes,
     message: "Cette image dépasse 1 MG !", if: :picture_changed?
-  mount_uploader :picture, PictureUploader
+  mount_uploader :picture, IconUploader
 
 end
