@@ -92,6 +92,16 @@
         amplitude.logEvent('USER_C_SIGNUP3_VALIDATED');
       <% end %>
     });
+
+    $(".btn-no-bank-details").on("click", function() {
+      <% if controller_path == "member/dashboard" %>
+        // EVENT AMPLITUDE : USER_C_PROFILE_MYSUBSCRIPTION_KO
+        amplitude.logEvent('USER_C_PROFILE_MYBANK_DETAILS_LATER');
+      <% else %>
+        // EVENT AMPLITUDE : USER_C_SIGNUP2_KO
+        amplitude.logEvent('USER_C_SIGNUP3_LATER');
+      <% end %>
+    });
   });
 
 </script>

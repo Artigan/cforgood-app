@@ -189,19 +189,11 @@
     }
 
     .btn-no-subscription {
-      bottom: 0px;
-
-      @media (max-width: 320px) {
-        bottom: -75px
-      }
+      margin-top: 115px;
     }
 
     .show-payment {
-      bottom: 25px;
-
-      @media (max-width: 320px) {
-        bottom: -100px
-      }
+      margin-top: 90px;
     }
 
     .code-partner {
@@ -249,8 +241,15 @@
   }
 
   .mangopay-disclaimer {
-    margin-top: 40px;
+    margin-bottom: 50px;
+    @media (max-width: 320px)  { margin-bottom: 0; }
   }
+
+  .btn-no-bank-details {
+    bottom: 0px;
+    @media (max-width: 320px)  { margin-bottom: -30px; }
+  }
+
 
   /* PROFILE - USER PAYMENTS ****************************************/
   .list-payments {
