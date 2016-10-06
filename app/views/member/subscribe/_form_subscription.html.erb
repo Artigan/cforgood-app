@@ -39,7 +39,9 @@
       </div>
     </div>
   </div>
-  <%= link_to "Je la rejoindrai plus tard", member_user_dashboard_path(current_user), class: "btn btn-no-subscription" %>
+  <div class="no-subscription">
+      <%= link_to "Je la rejoindrai plus tard", member_user_dashboard_path(current_user), class: "btn btn-no-subscription" %>
+  </div>
 </div>
 
 <% content_for :after_js do %>

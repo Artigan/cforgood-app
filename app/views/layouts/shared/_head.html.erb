@@ -13,7 +13,7 @@
 <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async></script>
 <script>
   var OneSignal = OneSignal || [];
-  OneSignal.push(["init", {
+  response = OneSignal.push(["init", {
     appId: "<%= ENV['ONESIGNAL_APP_ID'] %>",
     safari_web_id: "<%= ENV['ONESIGNAL_SAFARI_WEB_ID'] %>",
     subdomainName: 'cforgood',
@@ -22,6 +22,7 @@
       enable: false/* Set to false to hide */
     }
   }]);
+  console.log("onesignalId :" + response);
 </script>
 
 <!-- Favicons -->
@@ -80,8 +81,6 @@
 <link href='https://api.mapbox.com/mapbox-gl-js/v0.21.0/mapbox-gl.css' rel='stylesheet' />
 <!-- AnimatedModal -->
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.min.css">
-
-
 
 <!-- Script for google analytics necessary in HEAD section -->
 <%= render "layouts/shared/js/google_analytics" %>

@@ -2,25 +2,27 @@
 #
 # Table name: perks
 #
-#  id             :integer          not null, primary key
-#  name           :string
-#  business_id    :integer
-#  description    :text
-#  times          :integer          default(0)
-#  start_date     :datetime
-#  end_date       :datetime
-#  active         :boolean          default(TRUE), not null
-#  perk_code      :string
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
-#  nb_views       :integer          default(0)
-#  appel          :boolean          default(FALSE), not null
-#  durable        :boolean          default(FALSE), not null
-#  flash          :boolean          default(FALSE), not null
-#  perk_detail_id :integer
-#  deleted        :boolean          default(FALSE), not null
-#  all_day        :boolean          default(FALSE), not null
-#  picture        :string
+#  id                :integer          not null, primary key
+#  name              :string
+#  business_id       :integer
+#  description       :text
+#  times             :integer          default(0)
+#  start_date        :datetime
+#  end_date          :datetime
+#  active            :boolean          default(TRUE), not null
+#  perk_code         :string
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  nb_views          :integer          default(0)
+#  appel             :boolean          default(FALSE), not null
+#  durable           :boolean          default(FALSE), not null
+#  flash             :boolean          default(FALSE), not null
+#  perk_detail_id    :integer
+#  deleted           :boolean          default(FALSE), not null
+#  all_day           :boolean          default(FALSE), not null
+#  picture           :string
+#  text_notification :string
+#  send_notification :boolean          default(FALSE)
 #
 # Indexes
 #
@@ -41,6 +43,7 @@ class Perk < ActiveRecord::Base
   belongs_to :perk_detail
 
   scope :active, -> { where(active: true) }
+  scope :flash, -> { where(flash: true) }
   scope :undeleted, -> { where(deleted: false) }
   scope :permanent, -> { where('perks.active = ? and (perks.durable = ? or perks.appel = ?)', true, true, true) }
   scope :in_time, -> { where('perks.active = ? and (perks.durable = ? or perks.appel = ? or (perks.flash = ? and perks.start_date <= ? and perks.end_date >= ?))', true, true, true, true, Time.now, Time.now) }
@@ -63,8 +66,9 @@ class Perk < ActiveRecord::Base
     message: "Cette image dépasse 2 MG !", if: :picture_changed?
   mount_uploader :picture, PictureUploader
 
-  after_create :send_registration_slack, :update_data_intercom, :send_push_notification
+  after_create :send_registration_slack, :update_data_intercom
   after_save :update_data_intercom, if: :active_changed?
+  after_save :send_push_notification, if: :send_notification_changed?
   after_destroy :update_data_intercom
 
   def update_nb_view!
@@ -158,15 +162,28 @@ class Perk < ActiveRecord::Base
 
   def send_push_notification
 
-    params = {
-      app_id: ENV['ONESIGNAL_APP_ID'],
-      contents: {"en" => "#{self.business.name} a créer un nouveau bon plan : #{self.name}"},
-      included_segments: ["All"]
-    }
+    if send_notification_changed? && send_notification
+      params = {
+        app_id: ENV['ONESIGNAL_APP_ID'],
+        # template_id: '033eae5c-aa46-4e41-a3f7-f6cd4211a9fc',
+        headings: {"en" => "Un tout nouveau bon plan pour #{self.business.name} 😊👏"},
+        contents: {"en" => "#{self.text_notification}"},
+        # included_segments: ["All"],
+        included_segments: ["test"],
+        chrome_web_icon: self.picture.url(:thumb)
+      }
 
-    # OneSignal::Notification.create(params: params)
-
-  end
+      begin
+        response = OneSignal::Notification.create(params: params)
+        notification_id = JSON.parse(response.body)["id"]
+      rescue OneSignal::OneSignalError => e
+        puts "--- OneSignalError  :"
+        puts "-- message : #{e.message}"
+        puts "-- status : #{e.http_status}"
+        puts "-- body : #{e.http_body}"
+      end
+    end
+   end
 
   def active?
     if flash

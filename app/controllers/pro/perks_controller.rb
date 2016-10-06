@@ -43,7 +43,7 @@ class Pro::PerksController < Pro::ProController
   end
 
   def destroy
-    if @perk.nb_views > 0 || @perk.uses.count > 0
+    if @perk.nb_views > 0 || @perk.uses.count > 0 || @perk.created_at < Date.today
       @perk.deleted!
     else
       @perk.destroy

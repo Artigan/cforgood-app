@@ -32,3 +32,29 @@
     float: left;
   }
 }
+
+/* ALGOLIA ********************************************************************/
+
+.algolia-places {
+
+  .ap-input {
+    font-weight: 400;
+  }
+
+  .ap-input-icon svg {
+    width: 10px;
+    opacity: 0.8;
+  }
+
+  .ap-with-places span {
+    display: inline;
+    font-size: 14px;
+  }
+
+}
+
+.subscription-form .ap-input-icon {
+  top: 8px;
+  right: 0;
+}
+

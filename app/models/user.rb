@@ -195,6 +195,24 @@ class User < ActiveRecord::Base
       )
     rescue Intercom::IntercomError => e
     end
+    #SEND EVENT TO SLACK
+    if Rails.env.production?
+
+      notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_USER_URL']
+
+      if self.last_name.present?
+        message = "#{self.first_name} #{self.last_name}"
+      elsif name.present?
+        message = "#{self.name}"
+      else
+        message = "#{self.email}"
+      end
+
+      message = message + " a résilié son abonnement de " + self.amount.to_s + "€."
+
+      notifier.ping message
+
+    end
   end
 
   private
@@ -205,9 +223,7 @@ class User < ActiveRecord::Base
       @mangopay_user = MangopayServices.new(self).create_mangopay_natural_user
       self.mangopay_id = @mangopay_user["Id"]
     end
-    # UPDATE DATE SUBCRIPTION
     self.date_subscription = Time.now if subscription_was == nil
-    # MEMBER TRUE IF TRIAL
     self.member = true if subscription == "T"
   end
 
@@ -304,6 +320,7 @@ class User < ActiveRecord::Base
       user.custom_attributes["user_type"] = 'user'
       user.custom_attributes["first_name"] = self.first_name
       user.custom_attributes['city'] = self.city
+      user.custom_attributes['zipcode'] = self.zipcode
       user.custom_attributes["user_active"] = self.active
       user.custom_attributes["user_cause"] = self.cause.name
       user.custom_attributes["user_member"] = self.member
@@ -321,6 +338,7 @@ class User < ActiveRecord::Base
             'user_type' => 'user',
             'first_name' => self.first_name,
             'city' => self.city,
+            'zipcode' => self.zipcode,
             'user_active' => self.active,
             'user_cause' => self.cause.name,
             'user_member' => self.member,

@@ -66,7 +66,7 @@
             <% else %>
               <%= image_tag image_url 'default_pic.png' %>
             <% end %>
-            <span>Rendez-vous chez <%= @business.name %><br><small><%= @business.leader_first_name %> vous accueillera.</small></span>
+            <span>Rendez-vous chez <%= @business.name %></span>
           </div>
           <div id="map-perk" style="width: 100%;"></div>
           <span class="business-address"><i class="fa fa-map-marker"></i><%= @address.present? ? @address.street : @business.street %>, <%= @address.present? ? @address.zipcode : @business.zipcode %> <%= @address.present? ? @address.city : @business.city %></span>

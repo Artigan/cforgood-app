@@ -51,7 +51,8 @@ class Cause < ActiveRecord::Base
 
   validates_size_of :logo, maximum: 1.megabytes,
     message: "Cette image dépasse 1 MG !", if: :logo_changed?
-  mount_uploader :logo, PictureUploader
+  mount_uploader :logo, IconUploader
+
 
   validates :name, presence: true
   validates :email, presence: true

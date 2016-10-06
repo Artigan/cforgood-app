@@ -681,20 +681,23 @@
     }
   }
 
+  .no-subscription {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    @media (min-width: 321px) and (max-width: 767px) { margin-top: 20px; }
+  }
+
   .btn-no-subscription {
     position: absolute;
     left: 25px;
+    margin-top: 40px;
     color: $grey;
     font-size: 0.7em;
     font-weight: 200;
-    bottom: 10px;
     text-decoration: underline;
     left: 50%;
     transform: translateX(-50%);
-
-    @media (max-width: 767px) {
-      bottom: -8px;
-    }
 
     &:hover {
       color: #333;
@@ -703,7 +706,6 @@
 
   .offer-btn {
     display: flex;
-    position: absolute;
     position: absolute;
     left: 50%;
     bottom: -30px;
@@ -795,9 +797,12 @@
     }
 
     .card-authorized {
-      margin-top: 20px;
+      margin-top: 25px;
+
+      @media (max-width: 320px) { margin-top: 5px; }
 
       ul {
+        margin-bottom: 10px;
         &:before,
         &:after {
           display: none;
@@ -814,7 +819,6 @@
     }
 
     .mangopay-disclaimer {
-      padding: 10px 0;
 
       a {
         font-size: 12px;
@@ -834,6 +838,26 @@
         a {
           font-size: 8px;
         }
+      }
+    }
+
+    .btn-no-bank-details {
+      position: absolute;
+      left: 25px;
+      bottom: 15px;
+      padding: 0;
+      color: $grey;
+      font-size: 0.7em;
+      font-weight: 200;
+      text-decoration: underline;
+      left: 50%;
+      transform: translateX(-50%);
+
+      @media (max-width: 767px) { bottom: 10px; }
+      @media (max-width: 320px) { bottom: 0; }
+
+      &:hover {
+        color: #333;
       }
     }
   }

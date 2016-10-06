@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160925220555) do
+ActiveRecord::Schema.define(version: 20160930160440) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -209,6 +209,8 @@ ActiveRecord::Schema.define(version: 20160925220555) do
     t.boolean  "deleted",        default: false, null: false
     t.boolean  "all_day",        default: false, null: false
     t.string   "picture"
+    t.string   "text_notification"
+    t.boolean  "send_notification", default: false
   end
 
   add_index "perks", ["business_id"], name: "index_perks_on_business_id", using: :btree

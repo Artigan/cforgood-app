@@ -63,9 +63,25 @@
         readURL(newFile);
       });
 
+      var placesAutocomplete = places({
+        container: document.querySelector('#user_street'),
+        type: 'address',
+        aroundLatLngViaIP: false,
+        templates: {
+          value: function(suggestion) {
+            return suggestion.name;
+          }
+        }
+      });
+
+      placesAutocomplete.on('change', function resultSelected(e) {
+        document.querySelector('#user_city').value = e.suggestion.city || '';
+        document.querySelector('#user_zipcode').value = e.suggestion.postcode || '';
+      });
+
       $(".valid-profile").on("click", function() {
-        // EVENT AMPLITUDE : USER_C_PROFIL_MYINFO_SAVED
-        amplitude.logEvent('USER_C_PROFIL_MYINFO_SAVED');
+        // EVENT AMPLITUDE : USER_C_PROFILE_MYINFO_SAVED
+        amplitude.logEvent('USER_C_PROFILE_MYINFO_SAVED');
       });
     });
   </script>
