@@ -12,10 +12,21 @@
       <%= f.input :city, placeholder: 'Ville', label: false %>
       <%= f.input :leader_name, placeholder: 'Nom du gérant (falcultatif)', label: false %>
       <%= f.input :email, placeholder: 'Email (falcultatif)', label: false %>
-      <%= f.radio_button :canvassed, true, :checked => true %>
-      <%= label :canvassed_email, 'Commerce déjà démarché (géniale, tu déchires !)' %>
-      <%= f.radio_button :canvassed, false %>
-      <%= label :canvassed_sms, 'Pas encore démarché. (N’hésite pas à lui en toucher deux mots !)' %>
+
+      <div class="bigtest">
+
+        <div class="grostest">
+          <%= f.radio_button :canvassed, true, :checked => true %>
+          <%= label :canvassed_email, 'Commerce déjà démarché (géniale, tu déchires !)' %>
+        </div>
+
+        <div class="grostest">
+          <%= f.radio_button :canvassed, false %>
+          <%= label :canvassed_sms, 'Pas encore démarché. (N’hésite pas à lui en toucher deux mots !)' %>
+        </div>
+
+      </div>
+
       <%= f.button :submit, "Validez", class: "btn-new"  %>
     <% end %>
   <!-- </div> -->
