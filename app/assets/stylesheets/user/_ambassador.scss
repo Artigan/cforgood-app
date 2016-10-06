@@ -55,6 +55,14 @@
       font-size: 12px;
       line-height: 1.5em;
     }
+
+    p {
+      padding: 0 40px;
+    }
+
+    p.testimonial {
+      font-style : italic;
+    }
   }
 
   &.true {
@@ -232,7 +240,7 @@
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
 
     &:hover {
-      background-color: #656565;
+      color: #656565;
     }
   }
 
