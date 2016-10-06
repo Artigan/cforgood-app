@@ -223,7 +223,7 @@ class User < ActiveRecord::Base
       self.mangopay_id = @mangopay_user["Id"]
     end
     self.date_subscription = Time.now if subscription_was == nil
-    self.member = true
+    self.member = true if subscription == "T"
   end
 
   def date_support!
