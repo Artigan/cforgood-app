@@ -111,6 +111,7 @@
               <% elsif current_user.name != "" && current_user.name != nil %>
                 Bienvenue,<br> <%= current_user.name.split(" ")[0] %>
               <% end %>
+            </span>
           </div>
           <ul>
             <li class="visible-xs">
@@ -118,24 +119,24 @@
                 <i class="fa fa-home"></i> <%= t(".how_it_works", default: "Accueil") %>
               <% end %>
             </li>
-            <li>
-              <%= link_to faq_connect_path do %>
-                <i class="fa fa-dot-circle-o"></i> <%= t(".how_it_works", default: "Aide et conseils") %>
-              <% end %>
-            </li>
-            <li>
+            <!-- <li> -->
+              <%#= link_to faq_connect_path do %>
+                <!-- <i class="fa fa-dot-circle-o"></i> <%#= t(".how_it_works", default: "Aide et conseils") %> -->
+              <%# end %>
+            <!-- </li> -->
+            <li class="user-profile-navbar mobile-dropdown">
               <% if current_user.active %>
-                <%= link_to member_user_profile_path(current_user) do %>
+                <a href="#">
                   <% if current_user.picture.present? %>
                     <%= image_tag avatar_url(current_user), class: "img-circle" %>
                   <% else %>
                     <%= image_tag "default_pic.png", class: "img-circle" %>
                   <% end %>
-                  <% if current_user.last_name != "" && current_user.last_name != nil %>
-                    <span class="user-name"><%= current_user.first_name %> <%= current_user.last_name.chars.first + "." %></span>
-                  <% elsif current_user.name != "" && current_user.name != nil %>
-                    <span class="user-name"><%= current_user.name.split(" ")[0]  %></span>
-                  <% end %>
+                  <i class="fa fa-angle-down"></i>
+                </a>
+                <!-- DESKTOP | OPEN MENU DROPDOWN -->
+                <% if device_type != :mobile %>
+                  <%= render "components/navbar_dropdown_profile" %>
                 <% end %>
               <% else %>
                 <%= link_to member_user_dashboard_path(current_user) do %>

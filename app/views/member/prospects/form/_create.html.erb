@@ -1,0 +1,49 @@
+<div class="form-create-prospect half-modal hidden">
+  <!-- <div class="half-modal"> -->
+    <div class="button-close-create">
+      <%= image_tag 'icons/close.svg' %>
+    </div>
+    <!-- Form create Prospect -->
+    <span class="titre-info">Déclaration d'un commerce</span>
+    <%= simple_form_for [:member, prospect], remote: true, method: :post do |f| %>
+      <%= f.input :name, placeholder: 'Nom du commerce', label: false %>
+      <%= f.input :street, placeholder: 'Rue', label: false %>
+      <%= f.input :zipcode, placeholder: 'Code postal', label: false %>
+      <%= f.input :city, placeholder: 'Ville', label: false %>
+      <%= f.input :leader_name, placeholder: 'Nom du gérant (falcultatif)', label: false %>
+      <%= f.input :email, placeholder: 'Email (falcultatif)', label: false %>
+
+      <div class="bigtest">
+
+        <div class="grostest">
+          <%= f.radio_button :canvassed, true, :checked => true %>
+          <%= label :canvassed_email, 'Commerce déjà démarché (géniale, tu déchires !)' %>
+        </div>
+
+        <div class="grostest">
+          <%= f.radio_button :canvassed, false %>
+          <%= label :canvassed_sms, 'Pas encore démarché. (N’hésite pas à lui en toucher deux mots !)' %>
+        </div>
+
+      </div>
+
+      <%= f.button :submit, "Validez", class: "btn-new"  %>
+    <% end %>
+  <!-- </div> -->
+</div>
+
+<% content_for :after_js do %>
+
+  <script>
+
+    $(document).ready(function() {
+
+      $('.button-close-create').click(function() {
+        $(".form-create-prospect").addClass('hidden');
+      });
+    });
+
+  </script>
+
+<% end %>
+

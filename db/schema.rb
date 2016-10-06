@@ -194,20 +194,20 @@ ActiveRecord::Schema.define(version: 20160930160440) do
     t.string   "name"
     t.integer  "business_id"
     t.text     "description"
-    t.integer  "times",             default: 0
+    t.integer  "times",          default: 0
     t.datetime "start_date"
     t.datetime "end_date"
-    t.boolean  "active",            default: true,  null: false
+    t.boolean  "active",         default: true,  null: false
     t.string   "perk_code"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
-    t.integer  "nb_views",          default: 0
-    t.boolean  "appel",             default: false, null: false
-    t.boolean  "durable",           default: false, null: false
-    t.boolean  "flash",             default: false, null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "nb_views",       default: 0
+    t.boolean  "appel",          default: false, null: false
+    t.boolean  "durable",        default: false, null: false
+    t.boolean  "flash",          default: false, null: false
     t.integer  "perk_detail_id"
-    t.boolean  "deleted",           default: false, null: false
-    t.boolean  "all_day",           default: false, null: false
+    t.boolean  "deleted",        default: false, null: false
+    t.boolean  "all_day",        default: false, null: false
     t.string   "picture"
     t.string   "text_notification"
     t.boolean  "send_notification", default: false

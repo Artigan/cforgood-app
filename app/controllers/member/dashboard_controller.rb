@@ -82,4 +82,7 @@ class Member::DashboardController < ApplicationController
     @payments = Payment.where(user_id: current_user.id).includes(:cause)
   end
 
+  def ambassador
+  end
+
 end
