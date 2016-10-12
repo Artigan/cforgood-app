@@ -1,4 +1,4 @@
-<div class="form-create-prospect half-modal hidden">
+<div id="<%= prospect.id == nil ? 1 : prospect.id + 1 %>" class="form-create-prospect half-modal hidden">
   <!-- <div class="half-modal"> -->
     <div class="button-close-create">
       <%= image_tag 'icons/close.svg' %>
@@ -36,12 +36,11 @@
 
   <script>
 
-    $(document).ready(function() {
-
-      $('.button-close-create').click(function() {
-        $(".form-create-prospect").addClass('hidden');
-      });
-    });
+    // $(document).ready(function() {
+    //   $('.button-close-create').click(function() {
+    //     $(".form-create-prospect").addClass('hidden');
+    //   });
+    // });
 
   </script>
 
