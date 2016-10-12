@@ -32,7 +32,7 @@
 
       On vous promet une aventure folle pleine de rencontres bienveillantes, de bonnes idées, de surprises, de challenges et d'événements enthousiasmants !</p>
       <!-- <span class="label-info">Demande en cours de modération</span> -->
-      <a class="button-link" href="https://cforgood1.typeform.com/to/iZ5QFx" data-mode="1" target="_blank">Devenir Ambassadeur</a>
+      <a class="button-link" href="https://cforgood1.typeform.com/to/erHCLs" data-mode="1" target="_blank">Devenir Ambassadeur</a>
     <% else %>
       <!-- AMBASSADOR -->
       <div class="ambassasor-container">
@@ -79,7 +79,7 @@
           </div>
           <div class="pitch-video">
             <div class="embed-container video">
-              <iframe class="border-video" width="500" height="285" src="https://www.youtube.com/embed/4tYrdTm6lwQ?controls=0&rel=0&showinfo=0" frameborder="0"></iframe>
+              <iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fcforgood%2Fvideos%2F627492804100252%2F&show_text=0&width=560&autoplay=1" width="560" height="315" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allowFullScreen="true"></iframe>
             </div>
           </div>
         </div>
@@ -88,39 +88,39 @@
           <h3>Vos outils</h3>
           <ul>
             <li>
-              <button class='button-link-square modal-presentation'>
+              <button class='button-link-square modal-presentation button-modal'>
                 <%= render 'shared/icons/view_headline' %>
               </button>
               <p>Présentation</p>
             </li>
             <li>
-              <button class='button-link-square modal-community'>
+              <button class='button-link-square modal-community button-modal'>
                 <%= render 'shared/icons/location_city' %>
               </button>
               <p>Lancer la communauté dans ma ville</p>
             </li>
             <li>
-             <button class='button-link-square modal-prospection'>
+             <button class='button-link-square modal-prospection button-modal'>
                 <%= render 'shared/icons/turned_in_not' %>
               </button>
               <p>Guide de prospection</p>
             </li>
             <li>
-              <button class='button-link-square modal-questions'>
+              <button class='button-link-square modal-questions button-modal'>
                 <%= render 'shared/icons/highlight' %>
               </button>
               <p>Foires aux questions</p>
             </li>
             <li>
-              <button class='button-link-square modal-ideas'>
+              <button class='button-link-square modal-ideas button-modal'>
                 <%= render 'shared/icons/plus_one' %>
               </button>
               <p>Boîte à idées</p>
             </li>
             <li>
-              <button class='button-link-square modal-kit'>
+              <a class="button-link-square" href="//bit.ly/kit_ambassadeur_cforgood" data-mode="1" target="_blank">
                 <%= render 'shared/icons/plus' %>
-              </button>
+              </a>
               <p>Kit Ambassadeur</p>
             </li>
           </ul>
@@ -130,15 +130,14 @@
   </div>
 </div>
 
-<%= render partial: 'components/modals/modal_template', locals: {id: "see-more", source: "http://bit.ly/2dvcJcm", style:"width:100%; height:600px; border:0;"} %>
-<%= render partial: 'components/modals/modal_template', locals: {id: "modal-presentation", source: "http://bit.ly/commerçant_cforgood", style:"width:100%; height:600px; border:0;"} %>
-<%= render partial: 'components/modals/modal_template', locals: {id: "modal-community", source: " http://bit.ly/nouvelle_ville", style:"width:100%; height:600px; border:0;"} %>
-<%= render partial: 'components/modals/modal_template', locals: {id: "modal-prospection", source: "http://bit.ly/guide_prospection", style:"width:100%; height:600px; border:0;"} %>
-<%= render partial: 'components/modals/modal_template', locals: {id: "modal-questions", source: "http://bit.ly/FAQ_cforgood", style:"width:100%; height:600px; border:0;"} %>
-<%= render partial: 'components/modals/modal_template', locals: {id: "modal-ideas", source: "http://bit.ly/boite_idée", style:"width:100%; height:600px; border:0;"} %>
-<%= render partial: 'components/modals/modal_template', locals: {id: "modal-kit", source: "http://bit.ly/2cW8KBQ", style:"width:100%; height:600px; border:0;"} %>
+<%= render partial: 'components/modals/modal_template', locals: {id: "see-more", source: "//bit.ly/2dvcJcm", style:"width:100%; height:600px; border:0;"} %>
+<%= render partial: 'components/modals/modal_template', locals: {id: "modal-presentation", source: "//bit.ly/Presentation_commerçant_CforGood", style:"width:100%; height:600px; border:0;"} %>
+<%= render partial: 'components/modals/modal_template', locals: {id: "modal-community", source: "//bit.ly/nouvelle_ville", style:"width:100%; height:600px; border:0;"} %>
+<%= render partial: 'components/modals/modal_template', locals: {id: "modal-prospection", source: "//bit.ly/guide_prospection", style:"width:100%; height:600px; border:0;"} %>
+<%= render partial: 'components/modals/modal_template', locals: {id: "modal-questions", source: "//bit.ly/FAQ_cforgood", style:"width:100%; height:600px; border:0;"} %>
+<%= render partial: 'components/modals/modal_template', locals: {id: "modal-ideas", source: "//bit.ly/boite_idée", style:"width:100%; height:600px; border:0;"} %>
 
-<%= render(partial: 'member/prospects/form/create', locals: { prospect: Prospect.new }) %>
+<%= render(partial: 'member/prospects/form/create', locals: {prospect: Prospect.new }) %>
 
 <% content_for :after_js do %>
 
@@ -146,7 +145,7 @@
 
     $(document).ready(function() {
 
-      $(".button-link-square").click(function() {
+      $(".button-modal").click(function() {
         var idModal = $(this).attr('class').split(" ")[1];
         $("#"+idModal).removeClass('hidden');
       });
@@ -163,6 +162,12 @@
 
       $('.button-link.form').click(function() {
         $(".form-create-prospect").removeClass('hidden');
+      });
+
+      $('.button-close-create').click(function() {
+        console.log($('.button-close-create'));
+        console.log($(".form-create-prospect"));
+        $(".form-create-prospect").addClass('hidden');
       });
 
     });
