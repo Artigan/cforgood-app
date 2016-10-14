@@ -12,7 +12,13 @@
       <div class="offer-card">
         <!-- RANGE SLIDER FOR PRICE -->
         <div class="offer-price">
-          <input type="range" name="range" id="range" min="1" max="50" value="5"/>
+          <input type="range" name="range" id="range" class="monthly" min="1" max="50" value="5"/>
+          <!-- <input type="range" name="range" id="range-yearly" class="yearly" value="50"/> -->
+<!--           <p>
+            <label for="amount">Donation amount ($50 increments):</label>
+            <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+          </p>
+          <div id="slider"></div> -->
           <div class="offer-details">
             <div class="offer-detail">
               <output class="output-asso">50</output>
@@ -25,7 +31,8 @@
           </div>
         </div>
         <div class="offer-description">
-          <h5>Abonnement mensuel <strong>libre</strong> sans engagement</h5>
+          <h5 class="yearly">Abonnement mensuel <strong>libre</strong> sans engagement</h5>
+          <h5 class="monthly hidden">Abonnement mensuel <strong>libre</strong> sans engagement</h5>
           <p>Vous pouvez le modifier ou l'annuler à tout moment depuis votre profil</p>
           <p class="comment">Attention, nous sommes encore essentiellement sur Bordeaux, mais ça bouge ! :)</p>
         </div>
