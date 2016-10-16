@@ -688,7 +688,6 @@
   .btn-no-subscription {
     position: absolute;
     left: 25px;
-    top: 40px;
     color: $grey;
     font-size: 0.7em;
     font-weight: 200;
@@ -699,6 +698,10 @@
     &:hover {
       color: #333;
     }
+
+   &.after {
+    top: 40px;
+   }
   }
 
   .offer-btn {
