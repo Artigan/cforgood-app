@@ -4,18 +4,15 @@
 //= require bootstrap
 //= require underscore
 
-//= require navbar
 //= require bootstrap-datepicker/core
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.fr.js
-//= require app/bases
-//= require scrollReveal
 //= require mobvious-rails
-
-//= require vendor/slick.js
-//= require app/slick.js
 
 //= require list
 //= require list.fuzzysearch
+
+//= require vendor/scrollReveal
+//= require vendor/slick
 
 //= require_tree ./app
 

@@ -243,6 +243,9 @@
       height: 100vh;
       background-color: #f1f1f1;
       overflow-y: scroll;
+      .ambassador {
+        background-color: #fff;
+      }
 
       .mobile-title {
         display: none;

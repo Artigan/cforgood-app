@@ -168,8 +168,7 @@ class Perk < ActiveRecord::Base
         # template_id: '033eae5c-aa46-4e41-a3f7-f6cd4211a9fc',
         headings: {"en" => "Un tout nouveau bon plan pour #{self.business.name} 😊👏"},
         contents: {"en" => "#{self.text_notification}"},
-        # included_segments: ["All"],
-        included_segments: ["test"],
+        included_segments: ["All"],
         chrome_web_icon: self.picture.url(:thumb)
       }
 

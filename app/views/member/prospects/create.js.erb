@@ -1,0 +1,12 @@
+if (<%= !@prospect.errors.any? %>) {
+
+  //Init new form create prospect
+  $('.form-create-prospect').remove();
+  $(document).find('#menu-overlay').append('<%= j render(partial: 'member/prospects/form/create', locals: { prospect: Prospect.new }, formats: [:html]) %>');
+
+} else {
+
+  $(".alert").remove();
+  $(document).find('form').prepend('<%= j render("components/error_messages", resource: @prospect, formats: [:html]) %>');
+
+}

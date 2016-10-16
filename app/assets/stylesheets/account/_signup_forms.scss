@@ -629,9 +629,6 @@
     .offer-price {
       margin-bottom: 0 0 50px;
       padding-bottom: 0 0 30px;
-      height: 230px;
-
-
 
       .offer-details {
         display: flex;
@@ -765,7 +762,6 @@
   .btn-no-subscription {
     position: absolute;
     left: 25px;
-    margin-top: 40px;
     color: $grey;
     font-size: 0.7em;
     font-weight: 200;
@@ -776,6 +772,10 @@
     &:hover {
       color: #333;
     }
+
+   &.after {
+    top: 40px;
+   }
   }
 
   .offer-btn {

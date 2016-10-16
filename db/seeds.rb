@@ -1,7 +1,7 @@
 
 
 # Chemin pour les images
-path = "/Users/Didi/Desktop/projets/CforGood/Seeds/"
+path = "/Users/louloubis/Documents/Seeds/"
 
 
 #----------------------------------------------------
