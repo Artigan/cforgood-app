@@ -23,7 +23,7 @@
 #  fk_rails_4208a7b971  (user_id => users.id)
 #
 
-class Prospect < ActiveRecord::Base
+class Prospect < ApplicationRecord
   belongs_to :user
 
   validates :name, presence: true

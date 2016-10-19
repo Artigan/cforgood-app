@@ -9,6 +9,6 @@
 #  updated_at  :datetime         not null
 #
 
-class PerkDetail < ActiveRecord::Base
+class PerkDetail < ApplicationRecord
   has_many :perks
 end

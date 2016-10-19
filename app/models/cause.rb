@@ -40,7 +40,7 @@
 #  index_causes_on_cause_category_id  (cause_category_id)
 #
 
-class Cause < ActiveRecord::Base
+class Cause < ApplicationRecord
   belongs_to :cause_category
   has_many :users
   has_many :payments
