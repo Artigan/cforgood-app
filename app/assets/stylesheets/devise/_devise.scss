@@ -408,10 +408,12 @@
         .user_last_name,
         .user_email,
         .user_password,
+        .user_password_confirmation,
         .user_city,
         .business_name,
         .business_email,
         .business_password,
+        .business_password_confirmation,
         .business_city,
         .business_business_category_id {
           position: relative;
@@ -449,7 +451,9 @@
         }
 
         .user_password,
-        .business_password {
+        .user_password_confirmation,
+        .business_password,
+        .business_password_confirmation  {
           &:after {
             content: '\f023';
           }
@@ -489,6 +493,10 @@
             text-decoration: underline;
           }
         }
+      }
+
+      .btn-new-password {
+        margin-bottom: 30px
       }
     }
   }
@@ -580,6 +588,23 @@
           }
         }
       }
+    }
+  }
+
+  .renawal-password {
+    .user_password::after,
+    .business_password::after,
+    .user_password_confirmation::after,
+    .business_password_confirmation::after {
+      top:35px !important;
+    }
+
+    .form-group {
+      margin-bottom: 40px;
+    }
+
+    input[type="submit"] {
+      margin-bottom: 30px;
     }
   }
 
