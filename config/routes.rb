@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  mount ForestLiana::Engine => '/forest'
+  # mount ForestLiana::Engine => '/forest'
   ActiveAdmin.routes(self)
 
   # ROOT TO LANDING WEBSITE
@@ -81,4 +81,5 @@ Rails.application.routes.draw do
   authenticate :user, lambda { |u| u.admin } do
     mount Sidekiq::Web => '/sidekiq'
   end
+
 end
