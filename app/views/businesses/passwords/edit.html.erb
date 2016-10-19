@@ -1,5 +1,5 @@
-<div class="connexion signin connexion-pro">
-  <div class="form-card">
+<div class="connexion signin connexion-pro" style="background-image: url(<%= image_url('default-meta-image.jpg') %>);">
+  <div class="form-card new-password-container">
     <span>Changer<br>mon mot de passe</span>
     <div class="subscription-form">
       <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
