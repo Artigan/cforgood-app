@@ -7,6 +7,6 @@ class Asso::CausesController < ApplicationController
   end
 
   def show
-    @cause  = Cause.find(params[:id])
+    @cause  = Cause.joins(:cause_category).find(params[:id])
   end
 end
