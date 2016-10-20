@@ -25,7 +25,7 @@
               <% elsif business.picture.present?  %>
                 <%= image_tag business.picture.url(:thumb) %>
               <% else %>
-                <%= image_url 'cover-business.jpg' %>
+                <%= image_tag 'cover-business.jpg' %>
               <% end %>
               <span><%= perk.name %></span>
               <i class="fa fa-angle-right"></i>
