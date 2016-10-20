@@ -23,7 +23,7 @@
 #  fk_rails_b60db94a9d  (user_id => users.id)
 #
 
-class Use < ActiveRecord::Base
+class Use < ApplicationRecord
   belongs_to :user
   belongs_to :perk
 

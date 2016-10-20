@@ -23,7 +23,7 @@
   <% if resource_name == :user %>
     <div class="subscription-network">
       <span>ou</span>
-      <%= link_to raw("<i class='fa fa-facebook' aria-hidden='true'></i>Se connecter avec Facebook"), user_omniauth_authorize_path(:facebook), class: "btn btn-connexion" %>
+      <%= link_to raw("<i class='fa fa-facebook' aria-hidden='true'></i>Se connecter avec Facebook"), user_facebook_omniauth_authorize_path, class: "btn btn-connexion" %>
       <%#= link_to raw("<i class=\"fa fa-google\"></i>"), user_omniauth_authorize_path(:google_oauth2), class: "btn-google" %>
     </div>
   <% end %>

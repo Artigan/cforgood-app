@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  mount ForestLiana::Engine => '/forest'
+  # mount ForestLiana::Engine => '/forest'
   ActiveAdmin.routes(self)
 
   # ROOT TO LANDING WEBSITE
@@ -50,7 +50,7 @@ Rails.application.routes.draw do
 
   devise_for :businesses, path: :pro, controllers: { passwords: :passwords }
   devise_scope :business do
-    get "pro/sent_mail",        to: "pro/passwords#sent_mail"
+    get "pro/sent_mail",        to: "devise/passwords#sent_mail"
     put "pro/update_business",  to: "pro/registrations#update_business"
   end
 
@@ -81,4 +81,5 @@ Rails.application.routes.draw do
   authenticate :user, lambda { |u| u.admin } do
     mount Sidekiq::Web => '/sidekiq'
   end
+
 end

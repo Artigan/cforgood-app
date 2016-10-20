@@ -34,7 +34,7 @@
 #  fk_rails_5797f2b98a  (business_id => businesses.id)
 #
 
-class Perk < ActiveRecord::Base
+class Perk < ApplicationRecord
 
   require 'one_signal'
 

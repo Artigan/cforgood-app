@@ -12,7 +12,7 @@
 #  times        :integer          default(0)
 #
 
-class Partner < ActiveRecord::Base
+class Partner < ApplicationRecord
   validates :name, presence: true
   validates :email, presence: true
   validates :code_partner, presence: true, uniqueness: true

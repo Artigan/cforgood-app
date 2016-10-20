@@ -11,7 +11,7 @@
 #  picture       :string
 #
 
-class BusinessCategory < ActiveRecord::Base
+class BusinessCategory < ApplicationRecord
   has_many :businesses
 
   validates_size_of :picture, maximum: 1.megabytes,
