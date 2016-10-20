@@ -575,7 +575,11 @@
     @media (max-width: 767px) {
       position: relative;
       font-size: 0.7em;
+    }
+  }
 
+  .sign-box .already-subscribed {
+    @media (max-width: 767px) {
       span {
         color: #bfbfbf;
 
