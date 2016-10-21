@@ -25,7 +25,7 @@
 #  fk_rails_493c8e25df  (business_id => businesses.id)
 #
 
-class Address < ActiveRecord::Base
+class Address < ApplicationRecord
   belongs_to :business
 
   extend TimeSplitter::Accessors

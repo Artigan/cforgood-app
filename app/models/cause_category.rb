@@ -10,7 +10,7 @@
 #  picture    :string
 #
 
-class CauseCategory < ActiveRecord::Base
+class CauseCategory < ApplicationRecord
   has_many :causes
 
   validates_size_of :picture, maximum: 1.megabytes,

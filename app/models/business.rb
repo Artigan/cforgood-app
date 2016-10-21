@@ -48,7 +48,7 @@
 #  index_businesses_on_reset_password_token  (reset_password_token) UNIQUE
 #
 
-class Business < ActiveRecord::Base
+class Business < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable,

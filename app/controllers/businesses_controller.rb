@@ -70,7 +70,7 @@ class BusinessesController < ApplicationController
   end
 
   def show
-    @business = Business.find(params[:id])
+    @business = Business.joins(:business_category).find(params[:id])
     @perk = @business.perks.find(params[:perk_id])
 
     if params[:address_id].to_i > 0

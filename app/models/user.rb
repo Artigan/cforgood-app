@@ -59,7 +59,7 @@
 #  fk_rails_130d5504e9  (cause_id => causes.id)
 #
 
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable,

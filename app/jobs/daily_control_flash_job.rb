@@ -1,4 +1,4 @@
-class DailyControlFlashJob < ActiveJob::Base
+class DailyControlFlashJob < ApplicationJob
   queue_as :default
 
   def perform

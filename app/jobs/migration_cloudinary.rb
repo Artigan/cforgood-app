@@ -1,4 +1,4 @@
-class MigrationCloudinaryJob < ActiveJob::Base
+class MigrationCloudinaryJob < ApplicationJob
   queue_as :default
 
   def perform

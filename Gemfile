@@ -3,9 +3,9 @@ source 'https://rails-assets.org' do
   gem "rails-assets-underscore"
 end
 
-ruby "2.2.3"
+ruby "2.3.1"
 
-gem "rails", "4.2.3"
+gem 'rails', '~> 5.0.0.beta1'
 gem "pg"
 gem "figaro"
 gem "simple_form"
@@ -22,7 +22,7 @@ gem 'mangopay', '~> 3.0', '>= 3.0.23'
 gem 'intercom', "~> 3.4.0"
 gem "intercom-rails"
 gem 'sidekiq'
-gem 'sinatra'  # Dependency of sidekiq
+gem 'sinatra', github: 'sinatra/sinatra', branch: 'master'  # Dependency of sidekiq
 gem 'sidekiq-failures'
 gem 'possibly'
 gem 'turnout'
@@ -43,7 +43,7 @@ gem "bootstrap-sass"
 gem "font-awesome-sass"
 gem "autoprefixer-rails"
 gem "geocoder"
-gem 'forest_liana'
+# gem 'forest_liana'
 gem "underscore-rails"
 gem "rails-erd"
 gem 'mobvious'

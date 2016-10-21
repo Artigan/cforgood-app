@@ -149,7 +149,7 @@ ActiveAdmin.setup do |config|
   # You can add before, after and around filters to all of your
   # Active Admin resources and pages from here.
   #
-  config.before_filter :set_layout
+  config.before_action :set_layout
 
   # == Localize Date/Time Format
   #

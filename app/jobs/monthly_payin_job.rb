@@ -1,4 +1,4 @@
-class MonthlyPayinJob < ActiveJob::Base
+class MonthlyPayinJob < ApplicationJob
   queue_as :default
 
   def perform

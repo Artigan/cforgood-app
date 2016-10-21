@@ -21,7 +21,7 @@
 #  fk_rails_de053cb0c6  (cause_id => causes.id)
 #
 
-class Payment < ActiveRecord::Base
+class Payment < ApplicationRecord
   belongs_to :user
   belongs_to :cause
 
