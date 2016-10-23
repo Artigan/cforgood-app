@@ -206,7 +206,7 @@ class MonthlyPayinJob < ApplicationJob
       fields: fields,
       color: "good"
     }
-    # notifier.ping "Report MONTHLY PAYIN JOB", attachments: [attachment]
+    notifier.ping "Report MONTHLY PAYIN JOB", attachments: [attachment]
 
 
   end
