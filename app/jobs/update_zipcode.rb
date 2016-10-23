@@ -23,6 +23,7 @@ class UpdateZipcode < ApplicationJob
         report << "ERROR | #{row["Id"]} not found"
         next
       end
+      user.zipcode = row["Zipcode"]
       if user.save
         nb_update_ok += 1
       else

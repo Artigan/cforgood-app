@@ -230,7 +230,7 @@ class MonthlyPayinJob < ApplicationJob
         else
           message = "#{user.email}"
         end
-        message = "#{message} : *erreur lors du paiement* : #{result}"
+        message = "#{user.id} | #{user.email} | *erreur lors du paiement* | #{result['ResultCode']} | #{result['ResultMessage']}"
         notifier.ping message
       end
     end
