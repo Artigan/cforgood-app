@@ -11,7 +11,7 @@ class UpdateZipcode < ApplicationJob
     nb_update_ko = 0
 
     # Read CSV file
-    csv_file = File.read('/Users/Didi/Documents/Projets/CforGood/fichier UTF8/update_zipcode.csv')
+    csv_file = File.read('data/update_zipcode.csv')
 
     csv = CSV.parse(csv_file, headers: true, col_sep: ';' )
     csv.each do |row|
