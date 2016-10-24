@@ -73,7 +73,7 @@ class Payment < ApplicationRecord
           message = "#{@user.email}"
         end
 
-        message = message + " a souscrit une participation de " + @user.amount.to_s + "€. | " + @user.email + " | "
+        message = message + " a souscrit une participation de " + @user.amount.to_s + "€. |" + @user.email + "|"
 
         notifier.ping message
       end
