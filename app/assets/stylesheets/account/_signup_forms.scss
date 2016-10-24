@@ -290,12 +290,6 @@
       }
     }
 
-    .btn-next {
-      position: fixed;
-      right: 10px;
-      bottom: 20px;
-    }
-
     .signup-next {
       position: absolute;
       background-color: transparent;
@@ -565,13 +559,56 @@
         padding: 20px 0;
       }
 
-      .btn-subscription {
-        padding: 10px 20px;
-        width: 100%;
-        border-radius: 2px;
-        max-width: 100%;
-        font-weight: 600;
+      .signup-next, .signup-prev {
+        position: absolute;
+        background-color: transparent;
         border: none;
+        color: #36d3da;
+        font-weight: 600;
+        font-size: 0.9em;
+        padding: 10px;
+        margin: 0;
+        bottom: -30px;
+      }
+
+      .signup-next {
+        right: 0px;
+
+        &:after {
+          content:"\f105";
+          font-family: FontAwesome;
+          position: absolute;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          right: 40px;
+          top: 50%;
+          transform: translateY(-50%);
+          color: $turquoise;
+          font-size: 20px;
+          height: 100%;
+          width: 20px;
+        }
+      }
+
+      .signup-prev {
+        left: 0px;
+
+        &:after {
+          content:"\f104";
+          font-family: FontAwesome;
+          position: absolute;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          left: 40px;
+          top: 50%;
+          transform: translateY(-50%);
+          color: $turquoise;
+          font-size: 20px;
+          height: 100%;
+          width: 20px;
+        }
       }
     }
 
@@ -786,14 +823,10 @@
   }
 
   .btn-no-subscription {
-    position: absolute;
-    left: 25px;
     color: $grey;
     font-size: 0.7em;
     font-weight: 200;
     text-decoration: underline;
-    left: 50%;
-    transform: translateX(-50%);
 
     &:hover {
       color: #333;

@@ -1,7 +1,6 @@
 $(".alert").remove();
 
 if (<%= !current_user.errors.any? %>) {
-
   if (<%= !current_user.card_id.present? %>) {
     $("#payment").removeClass('hidden');
     $("#menu a.show-payment").tab('show');
@@ -19,8 +18,6 @@ if (<%= !current_user.errors.any? %>) {
       $(".done-overlay").addClass("hidden");
     }, 3000);
   }
-
-
 
 } else {
 
