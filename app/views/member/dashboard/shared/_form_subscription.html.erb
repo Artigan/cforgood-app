@@ -6,12 +6,22 @@
     <% else %>
       <span>Choisir le montant de ma participation</span>
     <% end %>
+    <div class="switch">
+      <input id="monthly" type="radio" <%= current_user.subscription == "M" ? checked="checked" : "" %>>
+      <label for="monthly" class="subscription-monthly">Mensuel</label>
+      <input id="yearly" type="radio" <%= current_user.subscription != "M" ? checked="checked"  : "" %>>
+      <label for="yearly" class="subscription-yearly">Annuel <span>2 mois gratuits</span></label>
+      <span class="slide-button"></span>
+    </div>
     <div class="container-fluid">
       <div class="offer-index">
         <div class="offer-card">
           <!-- RANGE SLIDER FOR PRICE -->
           <div class="offer-price">
-            <input type="range" name="range" id="range" min="1" max="50" value="5"/>
+            <!-- Slider Monthly -->
+            <input type="range" name="range" id="range" class="<%= current_user.subscription == 'M' ? 'monthly' : 'monthly hidden' %>" min="1" max="50" value="5"/>
+            <!-- Slider Yearly -->
+            <div id="slider" class="<%= current_user.subscription != 'M' ? 'yearly' : 'yearly hidden' %>"></div>
             <div class="offer-details">
               <div class="offer-detail">
                 <output class="output-asso">50</output>
@@ -24,7 +34,7 @@
             </div>
           </div>
           <div class="offer-description">
-            <h5>Abonnement mensuel <strong>libre</strong> sans engagement</h5>
+            <h5>Abonnement <strong>libre</strong> sans engagement</h5>
             <p>Vous pouvez le modifier ou l'annuler à tout moment depuis votre profil</p>
           </div>
           <!-- PARTNER CODE -->

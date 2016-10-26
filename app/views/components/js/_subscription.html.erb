@@ -118,24 +118,21 @@
       $('#slider').removeClass('hidden');
     });
 
-
     $(".signup-plan .signup-prev").on("click", function(e) {
-        e.preventDefault;
-        $(".signup-plan").removeClass("slideup").addClass("ishidden");
-        $(".choose-cause").removeClass("ishidden").addClass("slidedown");
-        $("#signup-breadcrumb").removeClass("slide-2");
-
-        // EVENT AMPLITUDE : USER_C_SIGNUP1_NEXT
-        amplitude.logEvent('USER_C_SIGNUP2_PREV');
-      });
-
-    $(".signup-plan .signup-next").on("click", function(e) {
       e.preventDefault;
+      $(".signup-plan").removeClass("slideup").addClass("ishidden");
+      $(".choose-cause").removeClass("ishidden").addClass("slidedown");
+      $("#signup-breadcrumb").removeClass("slide-2");
+
+      // EVENT AMPLITUDE : USER_C_SIGNUP1_NEXT
+      amplitude.logEvent('USER_C_SIGNUP2_PREV');
+    });
+
+    $(".signup-plan .signup-next").on("click", function() {
       $(".btn-subscription").click();
     });
 
-    $(".signup-plan .signup-next").on("click", function(e) {
-      e.preventDefault();
+    $(".btn-subscription").on("click", function() {
       if ($("#user_code_partner").val() != "") {
         $("#user_subscription").val('T');
         <% if controller_path == "member/dashboard" %>
@@ -149,6 +146,8 @@
         $("#user_subscription").val(subscription == 'monthly' ? 'M' : 'Y');
       }
       $("#amount_subscription").html($("#user_amount").val());
+      $("#label_subscription").html(subscription == 'monthly' ? 'mois' : 'an');
+
 
 
       <% if controller_path == "member/dashboard" %>
@@ -158,8 +157,6 @@
         // EVENT AMPLITUDE : USER_C_SIGNUP2_OK
         amplitude.logEvent('USER_C_SIGNUP2_OK');
       <% end %>
-
-      $('#update_subscription').submit();
     });
 
     $(".btn-no-subscription").on("click", function() {

@@ -181,15 +181,27 @@
     }
 
     .offer-description {
-       @media (min-width: 320px)  { margin-top: 20px !important; }
+       @media (min-width: 321px)  { margin-top: 20px !important; }
     }
 
     .btn-subscription {
       margin-top: 25px;
     }
 
+    .no-subscription {
+      position: inherit;
+    }
+
     .btn-no-subscription {
-      margin-top: 115px;
+      bottom: 60px;
+      @media (max-width: 767px)  { bottom: 0  ;}
+      @media (max-width: 320px)  { bottom: -15vh;}
+    }
+
+    .stop-subscription {
+      bottom: 35px;
+      @media (max-width: 767px)  { bottom: -4vh;}
+      @media (max-width: 320px)  { bottom: -20vh;}
     }
 
     .show-payment {
@@ -213,13 +225,13 @@
     #user_amount {
       position: relative !important;
       bottom: 270px !important;
-      left: -23px !important;
+      left: -60px !important;
     }
 
     .user_amount {
       &:after {
         bottom: 266px !important;
-        left: 11px !important;
+        left: 70px !important;
       }
     }
   }
@@ -246,8 +258,13 @@
   }
 
   .btn-no-bank-details {
-    bottom: 0px;
-    @media (max-width: 320px)  { margin-bottom: -30px; }
+    right: inherit !important;
+    bottom: 0 !important;
+    @media (max-width: 320px)  { bottom: -30px !important; }
+  }
+
+  .signup-prev {
+    display: none;
   }
 
 

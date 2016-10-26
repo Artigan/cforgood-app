@@ -28,8 +28,7 @@
           </div>
         </div>
         <div class="offer-description">
-          <h5 class="yearly">Abonnement <strong>libre</strong> sans engagement</h5>
-          <h5 class="monthly hidden">Abonnement <strong>libre</strong> sans engagement</h5>
+          <h5>Abonnement <strong>libre</strong> sans engagement</h5>
           <p>Vous pouvez le modifier ou l'annuler à tout moment depuis votre profil</p>
           <p class="comment">Attention, nous sommes encore essentiellement sur Bordeaux, mais ça bouge ! :)</p>
         </div>
@@ -46,12 +45,12 @@
 
           <%= f.submit "", class: "btn-subscription", :style => "display: none;"%>
         <% end %>
-        <button class="signup-next">Suivant</button>
-        <%= link_to "Je m'abonnerai plus tard", member_user_dashboard_path(current_user), class: "btn btn-no-subscription after" %>
-        <button class="signup-prev">Retour</button>
       </div>
     </div>
   </div>
+  <button class="signup-next">Suivant</button>
+  <%= link_to "Je m'abonnerai plus tard", member_user_dashboard_path(current_user), class: "btn btn-no-subscription after" %>
+  <button class="signup-prev">Retour</button>
 </div>
 
 <% content_for :after_js do %>

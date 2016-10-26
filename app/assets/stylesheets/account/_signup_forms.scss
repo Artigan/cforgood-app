@@ -103,7 +103,7 @@
     overflow: hidden;
 
     @media (max-width: 767px) {
-      height: 535px;
+      height: 100vh;
     }
   }
 
@@ -114,6 +114,10 @@
     min-width: 520px;
     min-height: 475px;
     @include transition(all, 0.4s, ease-in-out);
+
+    @media (max-width: 767px) {
+      min-height: 100vh;
+    }
   }
 
   .signup-plan,
@@ -142,9 +146,9 @@
     background-color: grey;
   }
 
-  button:hover,
-  button:focus,
-  button:active,
+  // button:hover,
+  // button:focus,
+  // button:active,
   input[type="submit"]:hover,
   input[type="submit"]:focus,
   input[type="submit"]:active {
@@ -320,7 +324,7 @@
 
       @media (max-width: 320px) {
         right: -15px;
-        bottom: 0;
+        bottom: 14vh;
 
         &:after {
           right: 15px;
@@ -503,7 +507,7 @@
     .ui-slider-handle {
       height: 25px;
       width: 25px;
-      top: -0.42em;
+      top: -0.43em;
       background: #FFF;
       border: 2px solid $turquoise;
       border-radius: 50%;
@@ -539,6 +543,73 @@
     text-align: center;
   }
 
+  .signup-next, .signup-prev {
+    position: absolute;
+    background-color: transparent;
+    border: none;
+    color: #36d3da;
+    font-weight: 600;
+    font-size: 0.9em;
+    padding: 10px;
+    margin: 0;
+    bottom: 0;
+
+    @media (max-width: 767px) { bottom: 12vh; }
+    @media (max-width: 320px) { bottom: 14vh; }
+  }
+
+  .signup-next {
+    right: 0px;
+
+    @media (max-width: 767px) { right: -25px; }
+
+    &:after {
+      content:"\f105";
+      font-family: FontAwesome;
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      right: 40px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: $turquoise;
+      font-size: 20px;
+      height: 100%;
+      width: 20px;
+
+      @media (max-width: 767px) { right: 30px; }
+      @media (max-width: 320px) { right: 20px; }
+    }
+  }
+
+  .signup-prev {
+    left: 0px;
+
+    @media (max-width: 767px) {
+      left: -25px;
+    }
+
+    &:after {
+      content:"\f104";
+      font-family: FontAwesome;
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      left: 40px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: $turquoise;
+      font-size: 20px;
+      height: 100%;
+      width: 20px;
+
+      @media (max-width: 767px) { left: 30px; }
+      @media (max-width: 320px) { left: 20px; }
+    }
+  }
+
   .offer-index {
 
     .offer-card {
@@ -557,58 +628,6 @@
 
       @media (max-width: 767px) {
         padding: 20px 0;
-      }
-
-      .signup-next, .signup-prev {
-        position: absolute;
-        background-color: transparent;
-        border: none;
-        color: #36d3da;
-        font-weight: 600;
-        font-size: 0.9em;
-        padding: 10px;
-        margin: 0;
-        bottom: -30px;
-      }
-
-      .signup-next {
-        right: 0px;
-
-        &:after {
-          content:"\f105";
-          font-family: FontAwesome;
-          position: absolute;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          right: 40px;
-          top: 50%;
-          transform: translateY(-50%);
-          color: $turquoise;
-          font-size: 20px;
-          height: 100%;
-          width: 20px;
-        }
-      }
-
-      .signup-prev {
-        left: 0px;
-
-        &:after {
-          content:"\f104";
-          font-family: FontAwesome;
-          position: absolute;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          left: 40px;
-          top: 50%;
-          transform: translateY(-50%);
-          color: $turquoise;
-          font-size: 20px;
-          height: 100%;
-          width: 20px;
-        }
       }
     }
 
@@ -632,7 +651,6 @@
         @media (max-width: 320px) {
           display: none;
         }
-
       }
 
       &:before {
@@ -823,18 +841,19 @@
   }
 
   .btn-no-subscription {
+    position: absolute;
     color: $grey;
     font-size: 0.7em;
     font-weight: 200;
     text-decoration: underline;
+    bottom: 7px;
+
+    @media (max-width: 767px) { bottom: 20vh; }
 
     &:hover {
       color: #333;
     }
 
-   &.after {
-    top: 40px;
-   }
   }
 
   .offer-btn {
@@ -870,6 +889,26 @@
       text-transform: uppercase;
       font-weight: 600;
       text-align: center;
+    }
+
+    .text-subscription {
+      display: inline-block;
+      text-transform: none;
+      font-weight: 400;
+    }
+
+    #label_subscription {
+      display: inline-block;
+      text-transform: none;
+      font-weight: 100;
+    }
+
+    .message-subscription {
+      font-size: 11px;
+      line-height: 14px;
+      font-weight: 400;
+      text-transform: none;
+      color: $turquoise;
     }
 
     i {
@@ -974,20 +1013,59 @@
       }
     }
 
+    .signup-prev {
+      position: absolute;
+      background-color: transparent;
+      border: none;
+      color: #36d3da;
+      font-weight: 600;
+      font-size: 0.9em;
+      padding: 10px;
+      margin: 0;
+      left: 0px;
+      bottom: 0px;
+
+      @media (max-width: 767px) {
+        left: -25px;
+        bottom: 12vh;
+      }
+      @media (max-width: 320px) { bottom: 14vh; }
+
+      &:after {
+        content:"\f104";
+        font-family: FontAwesome;
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        left: 40px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: $turquoise;
+        font-size: 20px;
+        height: 100%;
+        width: 20px;
+
+        @media (max-width: 767px) { left: 30px; }
+        @media (max-width: 320px) { left: 20px; }
+      }
+    }
+
     .btn-no-bank-details {
       position: absolute;
-      left: 25px;
+      right: 40px;
       bottom: 15px;
       padding: 0;
       color: $grey;
       font-size: 0.7em;
       font-weight: 200;
       text-decoration: underline;
-      left: 50%;
-      transform: translateX(-50%);
 
-      @media (max-width: 767px) { bottom: 10px; }
-      @media (max-width: 320px) { bottom: 0; }
+      @media (max-width: 767px) { bottom: 20vh; }
+      @media (max-width: 320px) {
+        bottom: 17vh;
+        right: 0;
+      }
 
       &:hover {
         color: #333;

@@ -1,15 +1,18 @@
 $(".alert").remove();
 
 if (<%= !current_user.errors.any? %>) {
-
   if (<%= request.env["HTTP_REFERER"].include?("subscribe") %>) {
-    // if (<%#= current_user.subscription == "M"  %>) {
       $(".signup-plan").addClass("ishidden");
+      $(".signup-payment").removeClass("ishidden");
       $(".signup-payment").addClass("slideup");
       $("#signup-breadcrumb").addClass("slide-3");
-    // } else {
-    //   window.location.href = "<%#= member_user_dashboard_path(current_user) %>";
-    // }
+      if (<%= current_user.subscription == 'T'%>) {
+        $('.message-subscription').removeClass('hidden');
+      }
+      if ($(window).width() <= 320) {
+        $('.text-subscription').html('Participation :');
+        $('.btn-no-bank-details').html('Je renseignerai plus tard');
+      }
   } else {
     if (<%= current_user.subscription == "M" && !current_user.card_id.present? %>) {
       $("#payment").removeClass('hidden');

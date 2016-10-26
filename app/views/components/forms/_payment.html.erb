@@ -1,7 +1,12 @@
 <div class="signup-payment">
   <div class="payment-container">
     <span>Renseignez vos données bancaires</span>
-    <i>Montant de la participation choisi : <span id="amount_subscription"><%= current_user.amount %></span> / mois</i>
+    <i>
+      <span class="text-subscription">Montant de la participation choisi : </span>
+      <span id="amount_subscription"><%= current_user.amount %></span> /
+      <span id="label_subscription"><%= current_user.subscription == "M" ? "mois" : "an" %></span>
+    </i>
+    <span class="message-subscription hidden">PAS DE PANIQUE ! Le prélèvement ne se fera qu'à la fin de la période d'essai.</span>
     <div class="subscription-form">
       <form id="form-card-creation">
         <div class="form-group">
@@ -37,6 +42,7 @@
       <%=link_to " Informations légales", "https://www.mangopay.com/terms/Mangopay_Terms-FR.pdf", target: "_blank" %>
     </div>
     <%= link_to "Je renseignerai plus tard mes données bancaires ", member_user_dashboard_path(current_user), class: "btn btn-no-bank-details" %>
+    <button class="signup-prev">Retour</button>
   </div>
 </div>
 <div>
