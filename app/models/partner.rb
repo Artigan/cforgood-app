@@ -2,14 +2,16 @@
 #
 # Table name: partners
 #
-#  id           :integer          not null, primary key
-#  name         :string
-#  email        :string
-#  code_partner :string
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#  nb_month     :integer          default(1)
-#  times        :integer          default(0)
+#  id             :integer          not null, primary key
+#  name           :string
+#  email          :string
+#  code_partner   :string
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  nb_month       :integer          default(1)
+#  times          :integer          default(0)
+#  promo          :boolean          default(FALSE)
+#  date_end_promo :date
 #
 
 class Partner < ApplicationRecord
@@ -18,14 +20,15 @@ class Partner < ApplicationRecord
   validates :code_partner, presence: true, uniqueness: true
 
   validate :control_code_partner, if: :code_partner_changed?
-  after_save :update_data_intercom
 
-  def create_code_partner(name, email)
+  def create_code_partner_business(name, email)
     self.name  = name
     self.email = email
     code = transco_code_partner(name)
     self.code_partner = code
-    self.save
+    if self.save
+      update_data_intercom_business
+    end
   end
 
   private
@@ -46,7 +49,7 @@ class Partner < ApplicationRecord
     end
   end
 
-  def update_data_intercom
+  def update_data_intercom_business
     if code_partner_changed? and code_partner_was.present?
       # UPDATE CUSTOM ATTRIBUTES ON INTERCOM
       if @business = Business.find_by_email(self.email)

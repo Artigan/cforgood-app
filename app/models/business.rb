@@ -122,7 +122,7 @@ class Business < ApplicationRecord
   # end
 
   def create_code_partner
-    Partner.new.create_code_partner(self.name, self.email)
+    Partner.new.create_code_partner_business(self.name, self.email)
   end
 
   def send_registration_slack

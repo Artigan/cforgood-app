@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160930160440) do
+ActiveRecord::Schema.define(version: 20161026134657) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,11 +24,10 @@ ActiveRecord::Schema.define(version: 20160930160440) do
     t.string   "author_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
+    t.index ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
+    t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
   end
-
-  add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
-  add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
-  add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
 
   create_table "addresses", force: :cascade do |t|
     t.integer  "business_id"
@@ -44,9 +42,8 @@ ActiveRecord::Schema.define(version: 20160930160440) do
     t.boolean  "active",      default: true, null: false
     t.datetime "start_time"
     t.datetime "end_time"
+    t.index ["business_id"], name: "index_addresses_on_business_id", using: :btree
   end
-
-  add_index "addresses", ["business_id"], name: "index_addresses_on_business_id", using: :btree
 
   create_table "attachinary_files", force: :cascade do |t|
     t.integer  "attachinariable_id"
@@ -60,9 +57,8 @@ ActiveRecord::Schema.define(version: 20160930160440) do
     t.string   "resource_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["attachinariable_type", "attachinariable_id", "scope"], name: "by_scoped_parent", using: :btree
   end
-
-  add_index "attachinary_files", ["attachinariable_type", "attachinariable_id", "scope"], name: "by_scoped_parent", using: :btree
 
   create_table "business_categories", force: :cascade do |t|
     t.string   "name"
@@ -111,11 +107,10 @@ ActiveRecord::Schema.define(version: 20160930160440) do
     t.string   "picture"
     t.string   "leader_picture"
     t.string   "logo"
+    t.index ["business_category_id"], name: "index_businesses_on_business_category_id", using: :btree
+    t.index ["email"], name: "index_businesses_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_businesses_on_reset_password_token", unique: true, using: :btree
   end
-
-  add_index "businesses", ["business_category_id"], name: "index_businesses_on_business_category_id", using: :btree
-  add_index "businesses", ["email"], name: "index_businesses_on_email", unique: true, using: :btree
-  add_index "businesses", ["reset_password_token"], name: "index_businesses_on_reset_password_token", unique: true, using: :btree
 
   create_table "cause_categories", force: :cascade do |t|
     t.string   "name"
@@ -157,18 +152,19 @@ ActiveRecord::Schema.define(version: 20160930160440) do
     t.boolean  "tax_receipt",               default: true
     t.string   "followers"
     t.string   "heard"
+    t.index ["cause_category_id"], name: "index_causes_on_cause_category_id", using: :btree
   end
-
-  add_index "causes", ["cause_category_id"], name: "index_causes_on_cause_category_id", using: :btree
 
   create_table "partners", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
     t.string   "code_partner"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-    t.integer  "nb_month",     default: 1
-    t.integer  "times",        default: 0
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "nb_month",       default: 1
+    t.integer  "times",          default: 0
+    t.boolean  "promo",          default: false
+    t.date     "date_end_promo"
   end
 
   create_table "payments", force: :cascade do |t|
@@ -178,10 +174,9 @@ ActiveRecord::Schema.define(version: 20160930160440) do
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.boolean  "done",       default: false, null: false
+    t.index ["cause_id"], name: "index_payments_on_cause_id", using: :btree
+    t.index ["user_id"], name: "index_payments_on_user_id", using: :btree
   end
-
-  add_index "payments", ["cause_id"], name: "index_payments_on_cause_id", using: :btree
-  add_index "payments", ["user_id"], name: "index_payments_on_user_id", using: :btree
 
   create_table "perk_details", force: :cascade do |t|
     t.string   "name"
@@ -194,27 +189,37 @@ ActiveRecord::Schema.define(version: 20160930160440) do
     t.string   "name"
     t.integer  "business_id"
     t.text     "description"
-    t.integer  "times",          default: 0
+    t.integer  "times",             default: 0
     t.datetime "start_date"
     t.datetime "end_date"
-    t.boolean  "active",         default: true,  null: false
+    t.boolean  "active",            default: true,  null: false
     t.string   "perk_code"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-    t.integer  "nb_views",       default: 0
-    t.boolean  "appel",          default: false, null: false
-    t.boolean  "durable",        default: false, null: false
-    t.boolean  "flash",          default: false, null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.integer  "nb_views",          default: 0
+    t.boolean  "appel",             default: false, null: false
+    t.boolean  "durable",           default: false, null: false
+    t.boolean  "flash",             default: false, null: false
     t.integer  "perk_detail_id"
-    t.boolean  "deleted",        default: false, null: false
-    t.boolean  "all_day",        default: false, null: false
+    t.boolean  "deleted",           default: false, null: false
+    t.boolean  "all_day",           default: false, null: false
     t.string   "picture"
     t.string   "text_notification"
     t.boolean  "send_notification", default: false
+    t.index ["business_id"], name: "index_perks_on_business_id", using: :btree
+    t.index ["perk_detail_id"], name: "index_perks_on_perk_detail_id", using: :btree
   end
 
-  add_index "perks", ["business_id"], name: "index_perks_on_business_id", using: :btree
-  add_index "perks", ["perk_detail_id"], name: "index_perks_on_perk_detail_id", using: :btree
+  create_table "plans", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "subscription"
+    t.integer  "amount"
+    t.string   "code_partner"
+    t.date     "date_end_partner"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["user_id"], name: "index_plans_on_user_id", using: :btree
+  end
 
   create_table "prospects", force: :cascade do |t|
     t.integer  "user_id"
@@ -227,9 +232,8 @@ ActiveRecord::Schema.define(version: 20160930160440) do
     t.boolean  "canvassed",   default: true, null: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+    t.index ["user_id"], name: "index_prospects_on_user_id", using: :btree
   end
-
-  add_index "prospects", ["user_id"], name: "index_prospects_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false
@@ -276,11 +280,10 @@ ActiveRecord::Schema.define(version: 20160930160440) do
     t.datetime "date_stop_subscription"
     t.string   "picture"
     t.boolean  "ambassador",             default: false
+    t.index ["cause_id"], name: "index_users_on_cause_id", using: :btree
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
-
-  add_index "users", ["cause_id"], name: "index_users_on_cause_id", using: :btree
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "uses", force: :cascade do |t|
     t.integer  "user_id"
@@ -291,15 +294,15 @@ ActiveRecord::Schema.define(version: 20160930160440) do
     t.boolean  "like",       default: false
     t.boolean  "unlike",     default: false
     t.boolean  "unused",     default: false
+    t.index ["perk_id"], name: "index_uses_on_perk_id", using: :btree
+    t.index ["user_id"], name: "index_uses_on_user_id", using: :btree
   end
-
-  add_index "uses", ["perk_id"], name: "index_uses_on_perk_id", using: :btree
-  add_index "uses", ["user_id"], name: "index_uses_on_user_id", using: :btree
 
   add_foreign_key "addresses", "businesses"
   add_foreign_key "payments", "causes"
   add_foreign_key "payments", "users"
   add_foreign_key "perks", "businesses"
+  add_foreign_key "plans", "users"
   add_foreign_key "prospects", "users"
   add_foreign_key "users", "causes"
   add_foreign_key "uses", "perks"
