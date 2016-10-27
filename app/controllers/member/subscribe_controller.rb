@@ -33,7 +33,7 @@ class Member::SubscribeController < ApplicationController
         @payment = current_user.payments.new(cause_id: current_user.cause_id, amount: current_user.amount, done: true)
         if @payment.save
           current_user.member!
-          current_user.update(subscription: "M", date_last_payment: Time.now)
+          current_user.update(date_last_payment: Time.now)
           flash[:success] = "Votre paiement a été pris en compte."
         else
           flash[:alert] = "Erreur lors de l'enregistrement de votre paiement."

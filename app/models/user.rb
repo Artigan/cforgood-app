@@ -93,7 +93,7 @@ class User < ApplicationRecord
 
   after_create :send_registration_slack, :subscribe_to_newsletter_user, :create_event_amplitude
 
-  before_save :trial_done!, if: :subscription_changed?
+  # before_save :trial_done!, if: :subscription_changed?
   before_save :subscription!, if: :subscription_changed?
 
   before_save :date_support!, if: :cause_id_changed?
@@ -159,7 +159,8 @@ class User < ApplicationRecord
   end
 
   def should_payin?
-    ((self.subscription != "T" && (!self.date_last_payment.present? || self.date_last_payment < Time.now - 1.month)) ||
+    ((self.subscription == "M" && (!self.date_last_payment.present? || self.date_last_payment < Time.now - 1.month)) ||
+    (self.subscription == "Y" && (!self.date_last_payment.present? || self.date_last_payment < Time.now - 12.month)) ||
     (self.subscription == "T" && self.date_end_partner < Time.now))
   end
 
@@ -183,6 +184,8 @@ class User < ApplicationRecord
     self.member = false
     self.date_stop_subscription = Time.now
     self.subscription = nil
+    self.code_partner = nil
+    self.date_end_partner = nil
     self.save
     # SEND EVENT TO INTERCOM
     intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
@@ -231,16 +234,16 @@ class User < ApplicationRecord
     self.date_support = Time.now
   end
 
-  def trial_done!
-    if subscription_was.present? && subscription_was == "T" && self.trial_done == false
-      self.update(trial_done: true)
-    end
-  end
+  # def trial_done!
+  #   if subscription_was.present? && subscription_was == "T" && self.trial_done == false
+  #     self.update(trial_done: true)
+  #   end
+  # end
 
   def code_partner?
     if code_partner.present?
-      if @partner = Partner.find_by_code_partner(code_partner.upcase)
-        nb_used = User.where(code_partner: code_partner.upcase).count
+      if @partner = Partner.find_by_code_partner(code_partner.upcase) && User.plans.where(code_partner: code_partner.upcase).count == 0
+        nb_used = User.where(code_partner: code_partner.upcase).count + Plan.where(code_partner: code_partner.upcase).count
         if @partner.times == 0 || nb_used < @partner.times
           self.code_partner.upcase!
           self.date_end_partner = Time.now + Partner.find_by_code_partner(self.code_partner).nb_month.month
