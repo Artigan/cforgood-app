@@ -100,6 +100,7 @@ class Cause < ApplicationRecord
       user.custom_attributes["first_name"]  = representative_first_name
       intercom.users.save(user)
     rescue Intercom::IntercomError => e
+      puts e
     end
   end
 end

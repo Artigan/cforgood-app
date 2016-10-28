@@ -51,6 +51,7 @@ class Use < ApplicationRecord
         }
       )
     rescue Intercom::IntercomError => e
+      puts e
     end
   end
 end

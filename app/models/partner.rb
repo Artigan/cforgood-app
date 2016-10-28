@@ -56,6 +56,7 @@ class Partner < ApplicationRecord
           business.custom_attributes["code_partner"] =  self.code_partner
           intercom.users.save(business)
         rescue Intercom::IntercomError => e
+          puts e
         end
       end
     end

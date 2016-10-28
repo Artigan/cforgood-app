@@ -194,6 +194,7 @@ class User < ApplicationRecord
         email: self.email
       )
     rescue Intercom::IntercomError => e
+      puts e
     end
     #SEND EVENT TO SLACK
     if Rails.env.production?
@@ -347,6 +348,7 @@ class User < ApplicationRecord
           })
         intercom.users.save(user)
       rescue Intercom::IntercomError => e
+        puts e
       end
     end
   end
