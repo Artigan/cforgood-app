@@ -327,6 +327,7 @@ class User < ApplicationRecord
       user.custom_attributes["user_member"] = self.member
       user.custom_attributes['code_partner'] = self.code_partner
       user.custom_attributes['date_end_trial'] = self.date_end_partner
+      user.custom_attributes['ambassador'] = self.ambassador
       intercom.users.save(user)
     rescue Intercom::IntercomError => e
       begin
@@ -344,7 +345,8 @@ class User < ApplicationRecord
             'user_cause' => self.cause.name,
             'user_member' => self.member,
             'code_partner' => self.code_partner,
-            'date_end_trial' => self.date_end_partner
+            'date_end_trial' => self.date_end_partner,
+            'ambassador' => self.ambassador
           })
         intercom.users.save(user)
       rescue Intercom::IntercomError => e
