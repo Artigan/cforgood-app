@@ -98,7 +98,10 @@ class User < ApplicationRecord
 
   before_save :date_support!, if: :cause_id_changed?
 
+  after_save :send_code_partner_slack, if: :code_partner_changed?
+
   after_commit :update_data_intercom
+
 
   def self.find_for_google_oauth2(access_token, signed_in_resourse=nil)
     data = access_token.info
@@ -135,7 +138,6 @@ class User < ApplicationRecord
       if registred_user
         return registred_user
       else
-        binding.pry
         user = User.create(
           name: access_token.extra.raw_info.name || data.email,
           first_name: access_token.extra.raw_info.first_name,
@@ -164,14 +166,8 @@ class User < ApplicationRecord
     (self.subscription == "T" && self.date_end_partner < Time.now))
   end
 
-  def find_name?
-    if self.first_name.present?
-      name = self.first_name
-    elsif self.name.present?
-      name = self.name
-    else
-      name = ""
-    end
+  def find_name_or_email?
+    self.first_name + " " + self.last_name || self.name || self.email
   end
 
   def member!
@@ -197,23 +193,15 @@ class User < ApplicationRecord
     rescue Intercom::IntercomError => e
       puts e
     end
+
     #SEND EVENT TO SLACK
+    message =  find_name_or_email? + " a résilié son abonnement de " + self.amount.to_s + "€."
+
     if Rails.env.production?
-
       notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_USER_URL']
-
-      if self.last_name.present?
-        message = "#{self.first_name} #{self.last_name}"
-      elsif name.present?
-        message = "#{self.name}"
-      else
-        message = "#{self.email}"
-      end
-
-      message = message + " a résilié son abonnement de " + self.amount.to_s + "€."
-
       notifier.ping message
-
+    else
+      puts message
     end
   end
 
@@ -270,26 +258,34 @@ class User < ApplicationRecord
   end
 
   def send_registration_slack
+
+    message = find_name_or_email?
+    message += ", *#{city}*," if city.present?
+    message += " a rejoint la communauté !"
+
     if Rails.env.production?
       notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_USER_URL']
-
-      if last_name.present?
-        message = "#{first_name} #{last_name}"
-      elsif name.present?
-        message = "#{name}"
-      else
-        message = "#{email}"
-      end
-
-      if city.present?
-        message = message + ", *#{city}*,"
-      end
-
-      message = message + " a rejoint la communauté !"
-
       notifier.ping message
+    else
+      puts message
+    end
+  end
+
+  def send_code_partner_slack
+
+    if self.code_partner.present?
+
+      message = find_name_or_email? + " a utilisé le code partenaire : #{self.code_partner}"
+
+      if Rails.env.production?
+        notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_USER_URL']
+        notifier.ping message
+      else
+        puts message
+      end
 
     end
+
   end
 
   def subscribe_to_newsletter_user

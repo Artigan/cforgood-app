@@ -42,14 +42,7 @@ class Member::SubscribeController < ApplicationController
         flash[:alert] = result["ResultMessage"]
         if Rails.env.production?
           notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_USER_URL']
-          if current_user.last_name.present?
-            message = "#{current_user.first_name} #{current_user.last_name}"
-          elsif name.present?
-            message = "#{current_user.name}"
-          else
-            message = "#{current_user.email}"
-          end
-          message = message + ": *erreur lors du paiement* :" + result["ResultMessage"]
+          message = current_user.find_name_or_email? + ": *erreur lors du paiement* :" + result["ResultMessage"]
           notifier.ping message
         end
       end
