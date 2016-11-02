@@ -130,10 +130,7 @@ class Perk < ApplicationRecord
   def send_registration_slack
     if Rails.env.production?
       notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_PERK_URL']
-      type_perk = "*BIENVENUE*" if self.appel
-      type_perk = "*DURABLE*" if self.durable
-      type_perk = "*FLASH*" if self.flash
-      message = "#{self.business.name} a créé un nouveau bon plan " + type_perk + " : #{name} : #{description}"
+      message = "#{self.business.name} a créé un nouveau bon plan *" + perk_type(self.appel, self.durable, self.flash) + "* : #{name} : #{description}"
       notifier.ping message
     end
   end
@@ -160,7 +157,28 @@ class Perk < ApplicationRecord
       user.custom_attributes[:perks_all] = Business.find(self.business_id).perks.count
       user.custom_attributes[:perks_active] = Business.find(self.business_id).perks.active.count
       intercom.users.save(user)
+
+      # if :after_create
+      #    intercom.events.create(
+      #     event_name: "new-perk",
+      #     created_at: Time.now.to_i,
+      #     user_id: 'B'+self.business_id.to_s,
+      #     email: self.business.email,
+      #     metadata: {
+      #       perk_id: self.id,
+      #       perk_type: perk_type(self.appel, self.durable, self.flash),
+      #       title: self.name,
+      #       description: self.description,
+      #       picture_url: self.picture.url,
+      #       start_date: self.start_date,
+      #       end_date: self.end_date,
+      #       times: self.times
+      #     }
+      #   )
+      #  end
+
     rescue Intercom::IntercomError => e
+      puts e
     end
   end
 
@@ -195,4 +213,13 @@ class Perk < ApplicationRecord
       active
     end
   end
+
+  protected
+
+  def perk_type(appel, durable, flash)
+      return "BIENVENUE" if self.appel
+      return "DURABLE" if self.durable
+      return "FLASH" if self.flash
+  end
+
 end
