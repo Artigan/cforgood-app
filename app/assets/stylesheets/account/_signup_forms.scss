@@ -419,6 +419,27 @@
     width: 40px;
     margin: 0 auto 20px;
 
+    @media (min-width: 321px) and (max-width: 767px) { margin-top: 20px; }
+
+    .yearly-benefit {
+      display: flex;
+
+      @media (max-width: 767px) {
+        flex-direction: column;
+        transform: translateY(-20px);
+
+        span {
+          margin-bottom: 0;
+        }
+      }
+
+      @media (max-width: 320px) {
+        margin-top: 10px;
+        transform: translateY(-17px);
+      }
+    }
+
+
     input {
       cursor: pointer;
       opacity: 0;
@@ -455,6 +476,9 @@
         margin-left: 10px;
         font-weight: 600;
         line-height: 12px;
+
+        &.more {
+          line-height: 21px;}
       }
     }
 
@@ -489,6 +513,12 @@
       & ~ .slide-button {
         left: 2px;
       }
+    }
+
+    img {
+      width: 50px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+      margin-left: 10px;
     }
   }
 
@@ -625,10 +655,14 @@
       margin-bottom: 5px;
       background-color: #fff;
       border-radius: 4px;
+      z-index: -1;
 
       @media (max-width: 767px) {
+        margin-top: 40px;
         padding: 20px 0;
       }
+
+      @media (max-width: 320px) { margin-top: 0; }
     }
 
     .offer-description {

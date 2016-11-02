@@ -4,7 +4,13 @@
       <input id="monthly" type="radio" <%= current_user.subscription == "M" ? checked="checked" : "" %>>
       <label for="monthly" class="subscription-monthly">Mensuel</label>
       <input id="yearly" type="radio" <%= current_user.subscription != "M" ? checked="checked"  : "" %>>
-      <label for="yearly" class="subscription-yearly">Annuel <span>2 mois gratuits</span></label>
+      <label for="yearly" class="subscription-yearly">Annuel
+        <div class="yearly-benefit">
+          <span>2 mois gratuits</span>
+          <span class="more">+</span>
+          <i><%= image_tag("macarte_miniature.png") %></i>
+        </div>
+      </label>
       <span class="slide-button"></span>
     </div>
   <div class="container-fluid">
