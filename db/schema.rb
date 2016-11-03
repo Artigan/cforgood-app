@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161026134657) do
+ActiveRecord::Schema.define(version: 20161103100413) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -107,6 +107,8 @@ ActiveRecord::Schema.define(version: 20161026134657) do
     t.string   "picture"
     t.string   "leader_picture"
     t.string   "logo"
+    t.boolean  "supervisor",             default: false
+    t.integer  "supervisor_id"
     t.index ["business_category_id"], name: "index_businesses_on_business_category_id", using: :btree
     t.index ["email"], name: "index_businesses_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_businesses_on_reset_password_token", unique: true, using: :btree
@@ -235,6 +237,22 @@ ActiveRecord::Schema.define(version: 20161026134657) do
     t.index ["user_id"], name: "index_prospects_on_user_id", using: :btree
   end
 
+  create_table "user_histories", force: :cascade do |t|
+    t.integer  "user_id"
+    t.boolean  "member",                 default: false, null: false
+    t.string   "subscription"
+    t.datetime "date_stop_subscription"
+    t.integer  "amount"
+    t.string   "code_partner"
+    t.date     "date_end_partner"
+    t.integer  "cause_id"
+    t.boolean  "ambassador",             default: false, null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.index ["cause_id"], name: "index_user_histories_on_cause_id", using: :btree
+    t.index ["user_id"], name: "index_user_histories_on_user_id", using: :btree
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false
     t.string   "encrypted_password",     default: "",    null: false
@@ -304,6 +322,8 @@ ActiveRecord::Schema.define(version: 20161026134657) do
   add_foreign_key "perks", "businesses"
   add_foreign_key "plans", "users"
   add_foreign_key "prospects", "users"
+  add_foreign_key "user_histories", "causes"
+  add_foreign_key "user_histories", "users"
   add_foreign_key "users", "causes"
   add_foreign_key "uses", "perks"
   add_foreign_key "uses", "users"

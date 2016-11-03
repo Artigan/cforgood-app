@@ -44,6 +44,7 @@ class Cause < ApplicationRecord
   belongs_to :cause_category
   has_many :users
   has_many :payments
+  has_many :user_histories
 
   validates_size_of :picture, maximum: 2.megabytes,
     message: "Cette image dépasse 2 MG !", if: :picture_changed?

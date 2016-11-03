@@ -70,6 +70,7 @@ class User < ApplicationRecord
   has_many :uses
   has_many :payments, dependent: :destroy
   has_many :prospects
+  has_many :user_histories
 
   scope :member, -> { where(member: true) }
   scope :member_should_payin, lambda {|day| where('users.member = ? and users.subscription = ? and users.date_last_payment between ? and ?', true, "M", (Time.now - 1.month - day.day).beginning_of_day,  (Time.now - 1.month - day.day).end_of_day) }
@@ -97,6 +98,8 @@ class User < ApplicationRecord
   before_save :subscription!, if: :subscription_changed?
 
   before_save :date_support!, if: :cause_id_changed?
+
+  after_save :save_history
 
   after_commit :update_data_intercom
 
@@ -234,16 +237,10 @@ class User < ApplicationRecord
     self.date_support = Time.now
   end
 
-  # def trial_done!
-  #   if subscription_was.present? && subscription_was == "T" && self.trial_done == false
-  #     self.update(trial_done: true)
-  #   end
-  # end
-
   def code_partner?
     if code_partner.present?
-      if @partner = Partner.find_by_code_partner(code_partner.upcase) && User.plans.where(code_partner: code_partner.upcase).count == 0
-        nb_used = User.where(code_partner: code_partner.upcase).count + Plan.where(code_partner: code_partner.upcase).count
+      if @partner = Partner.find_by_code_partner(code_partner.upcase)
+        nb_used = UserHistory.where(code_partner: code_partner.upcase).count
         if @partner.times == 0 || nb_used < @partner.times
           self.code_partner.upcase!
           self.date_end_partner = Time.now + Partner.find_by_code_partner(self.code_partner).nb_month.month
@@ -353,4 +350,19 @@ class User < ApplicationRecord
       end
     end
   end
+
+  def save_history
+    if member_changed? || subscription_changed? || date_stop_subscription_changed? || amount_changed? || code_partner_changed? || date_end_partner_changed? || cause_id_changed? || ambassador_changed?
+      history_params = { member: self.member,
+                         subscription: self.subscription,
+                         date_stop_subscription: self.date_stop_subscription,
+                         amount: self.amount,
+                         code_partner: self.code_partner,
+                         date_end_partner: self.date_end_partner,
+                         cause_id: self.cause_id,
+                         ambassador: self.ambassador }
+      self.user_histories.new.create_history(history_params)
+    end
+  end
+
 end
