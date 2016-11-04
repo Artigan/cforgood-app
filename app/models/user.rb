@@ -74,7 +74,7 @@ class User < ApplicationRecord
 
   scope :member, -> { where(member: true) }
   scope :member_should_payin, lambda {|day| where('users.member = ? and users.subscription = ? and users.date_last_payment between ? and ?', true, "M", (Time.now - 1.month - day.day).beginning_of_day,  (Time.now - 1.month - day.day).end_of_day) }
-  scope :member_on_trial_should_payin, lambda {|day| where('users.member = ? and users.subscription = ? and users.date_end_partner = ?', true, "T", Time.now + day.day) }
+  scope :member_on_trial_should_payin, lambda {|day| where('users.member = ? and users.code_partner.present? and users.date_end_partner = ?', true, Time.now + day.day) }
 
   validates :email, presence: true, uniqueness: true
   # validates :first_name, presence: true
@@ -162,9 +162,9 @@ class User < ApplicationRecord
   end
 
   def should_payin?
-    ((self.subscription == "M" && (!self.date_last_payment.present? || self.date_last_payment < Time.now - 1.month)) ||
-    (self.subscription == "Y" && (!self.date_last_payment.present? || self.date_last_payment < Time.now - 12.month)) ||
-    (self.subscription == "T" && self.date_end_partner < Time.now))
+    ( !self.code_partner.present? && ( self.subscription == "M" && ( !self.date_last_payment.present? || ( self.date_last_payment < Time.now - 1.month ) ) ) ||
+    ( self.subscription == "Y" && ( !self.date_last_payment.present? || ( self.date_last_payment < Time.now - 12.month ) ) ) ||
+    ( self.code_partner.present? && self.date_end_partner < Time.now ) )
   end
 
   def find_name?
@@ -230,7 +230,7 @@ class User < ApplicationRecord
       self.mangopay_id = @mangopay_user["Id"]
     end
     self.date_subscription = Time.now if subscription_was == nil
-    self.member = true if subscription == "T"
+    self.member = true if code_partner.present?
   end
 
   def date_support!
@@ -243,7 +243,13 @@ class User < ApplicationRecord
         nb_used = UserHistory.where(code_partner: code_partner.upcase).count
         if @partner.times == 0 || nb_used < @partner.times
           self.code_partner.upcase!
-          self.date_end_partner = Time.now + Partner.find_by_code_partner(self.code_partner).nb_month.month
+          if date_last_payment.present? && ( ( subscription == "M" && date_last_payment + 1.month > Time.now ) || ( subscription == "Y" && date_last_payment + 1.year > Time.now ) )
+            start_date = date_last_payment + 1.month if subscription == "M"
+            start_date = date_last_payment + 1.year if subscription == "Y"
+          else
+            start_date = Time.now
+          end
+          self.date_end_partner = start_date + Partner.find_by_code_partner(self.code_partner).nb_month.month
         else
           errors.add(:code_partner, "Code promotionnel invalide")
         end

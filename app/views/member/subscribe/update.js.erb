@@ -7,12 +7,20 @@ if (<%= !current_user.errors.any? %>) {
   } else {
     // DISCLAIMER - DISPLAYED
     $(".done-overlay").removeClass("hidden");
-    $('.btn-subscription').val('Sauvegarder');
     $('.show-payment.btn').removeClass("disabled");
 
     if (<%= current_user.member %>) {
       $(".stop-subscription").removeClass("disabled");
     }
+
+    if (<%= current_user.code_partner.present? %>) {
+      $("#user_code_partner").attr("disabled", "disabled");
+      $("input.btn-subscription").attr('value', "M'abonner");
+    } else {
+      $("#user_code_partner").val("").removeAttr('disabled');
+      $("input.btn-subscription").val("Sauvegarder");
+    }
+
     window.setTimeout(function(){
       // DISCLAIMER - HIDDEN
       $(".done-overlay").addClass("hidden");
