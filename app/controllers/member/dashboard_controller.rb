@@ -4,14 +4,14 @@ class Member::DashboardController < ApplicationController
 
   def dashboard
     # Patch during VIDEO && SALON
-    # if (current_user.present? && current_user.email == "allan.floury@gmail.com") || !cookies[:coordinates].present?
+    if (current_user.present? && current_user.email == "allan.floury@gmail.com") || !cookies[:coordinates].present?
       lat = 44.837789
       lng = -0.57918
-    # else
-    #   coordinates = cookies[:coordinates].split('&')
-    #   lat = coordinates[0]
-    #   lng = coordinates[1]
-    # end
+    else
+      coordinates = cookies[:coordinates].split('&')
+      lat = coordinates[0]
+      lng = coordinates[1]
+    end
     @businesses_around = Business.near([lat, lng], 10).active.for_map.joins(:perks).merge(Perk.in_time).distinct.size
     @businesses = Business.active.for_map.joins(:perks).merge(Perk.in_time).distinct.includes(:business_category).eager_load(:perks_in_time, :addresses_for_map)
     @geojson = {"type" => "FeatureCollection", "features" => []}
