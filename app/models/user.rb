@@ -100,6 +100,7 @@ class User < ApplicationRecord
   before_save :date_support!, if: :cause_id_changed?
 
   after_save :save_history
+  after_save :create_partner_for_third_use_code_partner, if: :code_partner_changed?
 
   after_commit :update_data_intercom
 
@@ -162,7 +163,6 @@ class User < ApplicationRecord
   end
 
   def should_payin?
-    binding.pry
     ( !self.code_partner.present? && ( ( self.subscription == "M" && ( !self.date_last_payment.present? || ( self.date_last_payment < Time.now - 1.month ) ) ) ||
     ( self.subscription == "Y" && ( !self.date_last_payment.present? || ( self.date_last_payment < Time.now - 12.month ) ) ) ) ||
     ( self.code_partner.present? && self.date_end_partner < Time.now ) )
@@ -188,6 +188,8 @@ class User < ApplicationRecord
     self.member = false
     self.date_stop_subscription = Time.now
     self.subscription = nil
+    self.amount = nil
+    self.date_last_payment = nil
     self.code_partner = nil
     self.date_end_partner = nil
     self.save
@@ -240,22 +242,35 @@ class User < ApplicationRecord
 
   def code_partner?
     if code_partner.present?
-      if @partner = Partner.find_by_code_partner(code_partner.upcase)
-        nb_used = UserHistory.where(code_partner: code_partner.upcase).count
-        if @partner.times == 0 || nb_used < @partner.times
-          self.code_partner.upcase!
-          if date_last_payment.present? && ( ( subscription == "M" && date_last_payment + 1.month > Time.now ) || ( subscription == "Y" && date_last_payment + 1.year > Time.now ) )
+      if !@partner = Partner.find_by_code_partner(code_partner.upcase)
+        # Code_partner not exist
+        errors.add(:code_partner, "Code promotionnel inconnu")
+      elsif @partner.promo && ( ( @partner.date_start_promo.present? && @partner.date_start_promo > Time.now ) || ( @partner.date_end_promo.present? && @partner.date_end_promo < Time.now ) )
+        # Code_partner out of date (except for user)
+        errors.add(:code_partner, "Code promotionnel non disponible à ce jour")
+      elsif @partner.times != 0 && UserHistory.where(code_partner: code_partner.upcase).select(:user_id).distinct.count >= @partner.times
+        # Control use count
+        errors.add(:code_partner, "Code promotionnel épuisé")
+      elsif @partner.shared && @partner.user_id == id
+        # Code_partner to shared (except for user)
+        errors.add(:code_partner, "Code promotionnel réservé aux autres utilisateurs")
+      elsif @partner.exclusive && @partner.user_id != id
+        # Code_partner exclusive (only for user)
+        errors.add(:code_partner, "Code promotionnel exclusif non autorisé")
+      elsif self.user_histories.where(code_partner: code_partner.upcase).count != 0
+        # Control already use
+        errors.add(:code_partner, "Code promotionnel déjà utilisé")
+      else
+        # Code_parner valid
+        self.code_partner.upcase!
+        # Trial start after pay period if exist
+        if date_last_payment.present? && ( ( subscription == "M" && date_last_payment + 1.month > Time.now ) || ( subscription == "Y" && date_last_payment + 1.year > Time.now ) )
             start_date = date_last_payment + 1.month if subscription == "M"
             start_date = date_last_payment + 1.year if subscription == "Y"
-          else
-            start_date = Time.now
-          end
-          self.date_end_partner = start_date + Partner.find_by_code_partner(self.code_partner).nb_month.month
         else
-          errors.add(:code_partner, "Code promotionnel invalide")
+          start_date = Time.now
         end
-      else
-        errors.add(:code_partner, "Code promotionnel invalide")
+        self.date_end_partner = start_date + Partner.find_by_code_partner(self.code_partner).nb_month.month
       end
     end
   end
@@ -369,6 +384,36 @@ class User < ApplicationRecord
                          cause_id: self.cause_id,
                          ambassador: self.ambassador }
       self.user_histories.new.create_history(history_params)
+    end
+  end
+
+
+  def create_partner_for_third_use_code_partner
+    if code_partner.present?
+      @partner = Partner.find_by_code_partner(code_partner)
+      if @partner.shared && UserHistory.where(code_partner: self.code_partner).select(:user_id).distinct.count == 3
+        @user = User.find(@partner.user_id)
+        code_partner = "3CP" + @user.id.to_s
+        Partner.new.create_code_partner_user(@user, code_partner, true, false)
+        create_event_intercom(@user, code_partner)
+      end
+    end
+  end
+
+  def create_event_intercom(user, code_partner)
+    intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
+    begin
+      intercom.events.create(
+        event_name: "third-use-code-partner",
+        created_at: Time.now.to_i,
+        user_id: user.id,
+        email: user.email,
+        metadata: {
+          code_partner: code_partner
+        }
+      )
+    rescue Intercom::IntercomError => e
+      puts e
     end
   end
 

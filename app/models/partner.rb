@@ -2,16 +2,24 @@
 #
 # Table name: partners
 #
-#  id             :integer          not null, primary key
-#  name           :string
-#  email          :string
-#  code_partner   :string
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
-#  nb_month       :integer          default(1)
-#  times          :integer          default(0)
-#  promo          :boolean          default(FALSE)
-#  date_end_promo :date
+#  id               :integer          not null, primary key
+#  name             :string
+#  email            :string
+#  code_partner     :string
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  nb_month         :integer          default(1)
+#  times            :integer          default(0)
+#  promo            :boolean          default(FALSE)
+#  date_start_promo :date
+#  date_end_promo   :date
+#  user_id          :integer
+#  exclusive        :boolean          default(FALSE), not null
+#  shared           :boolean          default(FALSE), not null
+#
+# Indexes
+#
+#  index_partners_on_user_id  (user_id)
 #
 
 class Partner < ApplicationRecord
@@ -29,6 +37,17 @@ class Partner < ApplicationRecord
     if self.save
       update_data_intercom_business
     end
+  end
+
+  def create_code_partner_user(user, code, exclusive, shared)
+    self.name  = user.name || user.first_name
+    self.email = user.email
+    self.code_partner = code
+    self.promo = true
+    self.user_id = user.id
+    self.exclusive = exclusive
+    self.shared = shared
+    self.save
   end
 
   private
@@ -59,8 +78,10 @@ class Partner < ApplicationRecord
           business.custom_attributes["code_partner"] =  self.code_partner
           intercom.users.save(business)
         rescue Intercom::IntercomError => e
+          puts e
         end
       end
     end
   end
+
 end

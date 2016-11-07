@@ -7,7 +7,7 @@ ActiveAdmin.register Partner do
     column :code_partner
     column :nb_month
     column :times
-    column :created_at
+    column :promo
     actions
   end
   form do |f|
@@ -17,9 +17,15 @@ ActiveAdmin.register Partner do
       f.input :code_partner
       f.input :nb_month
       f.input :times
+      f.input :promo
+      f.input :date_start_promo
+      f.input :date_end_promo
+      f.input :user_id
+      f.input :exclusive
+      f.input :shared
     end
     f.actions
   end
 
-permit_params :name, :email, :code_partner, :nb_month, :times
+permit_params :name, :email, :code_partner, :nb_month, :times, :promo, :date_start_promo, :date_end_promo, :user_id, :exclusive, :shared
 end

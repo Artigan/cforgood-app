@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161103100413) do
+ActiveRecord::Schema.define(version: 20161107103136) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -161,12 +161,17 @@ ActiveRecord::Schema.define(version: 20161103100413) do
     t.string   "name"
     t.string   "email"
     t.string   "code_partner"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-    t.integer  "nb_month",       default: 1
-    t.integer  "times",          default: 0
-    t.boolean  "promo",          default: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.integer  "nb_month",         default: 1
+    t.integer  "times",            default: 0
+    t.boolean  "promo",            default: false
+    t.date     "date_start_promo"
     t.date     "date_end_promo"
+    t.integer  "user_id"
+    t.boolean  "exclusive",        default: false, null: false
+    t.boolean  "shared",           default: false, null: false
+    t.index ["user_id"], name: "index_partners_on_user_id", using: :btree
   end
 
   create_table "payments", force: :cascade do |t|

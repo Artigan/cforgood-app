@@ -26,7 +26,6 @@ class Member::SubscribeController < ApplicationController
   private
 
   def execute_payin
-    binding.pry
     if current_user.should_payin? || ( params['commit'] == "M'abonner" && current_user.code_partner.present? )
       wallet_id = Cause.find_by_id(current_user.cause_id).wallet_id if current_user.cause_id
       wallet_id = ENV['MANGOPAY_CFORGOOD_WALLET_ID'] unless wallet_id
