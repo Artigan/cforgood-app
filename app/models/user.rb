@@ -94,8 +94,8 @@ class User < ApplicationRecord
 
   after_create :send_registration_slack, :subscribe_to_newsletter_user, :create_event_amplitude
 
-  # before_save :trial_done!, if: :subscription_changed?
   before_save :subscription!, if: :subscription_changed?
+  before_save :subscription!, if: :code_partner_changed?
 
   before_save :date_support!, if: :cause_id_changed?
 
@@ -162,8 +162,9 @@ class User < ApplicationRecord
   end
 
   def should_payin?
-    ( !self.code_partner.present? && ( self.subscription == "M" && ( !self.date_last_payment.present? || ( self.date_last_payment < Time.now - 1.month ) ) ) ||
-    ( self.subscription == "Y" && ( !self.date_last_payment.present? || ( self.date_last_payment < Time.now - 12.month ) ) ) ||
+    binding.pry
+    ( !self.code_partner.present? && ( ( self.subscription == "M" && ( !self.date_last_payment.present? || ( self.date_last_payment < Time.now - 1.month ) ) ) ||
+    ( self.subscription == "Y" && ( !self.date_last_payment.present? || ( self.date_last_payment < Time.now - 12.month ) ) ) ) ||
     ( self.code_partner.present? && self.date_end_partner < Time.now ) )
   end
 
@@ -358,7 +359,7 @@ class User < ApplicationRecord
   end
 
   def save_history
-    if member_changed? || subscription_changed? || date_stop_subscription_changed? || amount_changed? || code_partner_changed? || date_end_partner_changed? || cause_id_changed? || ambassador_changed?
+    if member_changed? || subscription_changed? || date_stop_subscription_changed? || amount_changed? || ( code_partner_changed? && ( code_partner_was.present? || code_partner.present? ) )  || date_end_partner_changed? || cause_id_changed? || ambassador_changed?
       history_params = { member: self.member,
                          subscription: self.subscription,
                          date_stop_subscription: self.date_stop_subscription,

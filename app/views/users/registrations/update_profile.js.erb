@@ -14,6 +14,7 @@ if (<%= !current_user.errors.any? %>) {
         $('.btn-no-bank-details').html('Je renseignerai plus tard');
       }
   } else {
+    console.log("update_profile.js");
     if (<%= !current_user.code_partner.present? && !current_user.card_id.present? %>) {
       $("#payment").removeClass('hidden');
       $("#menu a.show-payment").tab('show');

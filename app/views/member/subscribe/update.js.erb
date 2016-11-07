@@ -5,21 +5,23 @@ if (<%= !current_user.errors.any? %>) {
     $("#payment").removeClass('hidden');
     $("#menu a.show-payment").tab('show');
   } else {
-    // DISCLAIMER - DISPLAYED
-    $(".done-overlay").removeClass("hidden");
-    $('.show-payment.btn').removeClass("disabled");
-
     if (<%= current_user.member %>) {
       $(".stop-subscription").removeClass("disabled");
     }
 
     if (<%= current_user.code_partner.present? %>) {
+      console.log("code_partner update.js");
+      $(".btn-subscription").val("M'abonner");
       $("#user_code_partner").attr("disabled", "disabled");
-      $("input.btn-subscription").attr('value', "M'abonner");
     } else {
+      console.log("NO code_partner update.js");
+      $(".btn-subscription").val("Sauvegarder");
       $("#user_code_partner").val("").removeAttr('disabled');
-      $("input.btn-subscription").val("Sauvegarder");
     }
+
+    // DISCLAIMER - DISPLAYED
+    $(".done-overlay").removeClass("hidden");
+    $('.show-payment.btn').removeClass("disabled");
 
     window.setTimeout(function(){
       // DISCLAIMER - HIDDEN
