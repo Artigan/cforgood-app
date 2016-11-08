@@ -246,7 +246,7 @@ class User < ApplicationRecord
         # Code_partner not exist
         errors.add(:code_partner, "Code promotionnel inconnu")
       elsif @partner.promo && ( ( @partner.date_start_promo.present? && @partner.date_start_promo > Time.now ) || ( @partner.date_end_promo.present? && @partner.date_end_promo < Time.now ) )
-        # Code_partner out of date (except for user)
+        # Code_partner out of date
         errors.add(:code_partner, "Code promotionnel non disponible à ce jour")
       elsif @partner.times != 0 && UserHistory.where(code_partner: code_partner.upcase).select(:user_id).distinct.count >= @partner.times
         # Control use count
@@ -261,7 +261,7 @@ class User < ApplicationRecord
         # Control already use
         errors.add(:code_partner, "Code promotionnel déjà utilisé")
       else
-        # Code_parner valid
+        # Code_partner valid
         self.code_partner.upcase!
         # Trial start after pay period if exist
         if date_last_payment.present? && ( ( subscription == "M" && date_last_payment + 1.month > Time.now ) || ( subscription == "Y" && date_last_payment + 1.year > Time.now ) )

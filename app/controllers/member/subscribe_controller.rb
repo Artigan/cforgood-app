@@ -8,6 +8,7 @@ class Member::SubscribeController < ApplicationController
   end
 
   def create
+    binding.pry
     if current_user.mangopay_id
       current_user.update_attribute("card_id", params[:card][:id])
       execute_payin
@@ -16,6 +17,7 @@ class Member::SubscribeController < ApplicationController
   end
 
   def update
+    binding.pry
     if current_user.update_without_password(user_params)
       if current_user.card_id
         execute_payin
@@ -26,7 +28,7 @@ class Member::SubscribeController < ApplicationController
   private
 
   def execute_payin
-    if current_user.should_payin? || ( params['commit'] == "M'abonner" && current_user.code_partner.present? )
+    if current_user.should_payin? || ( params['commit'] == "M'abonner" || params['commit'] == "Me réabonner" )
       wallet_id = Cause.find_by_id(current_user.cause_id).wallet_id if current_user.cause_id
       wallet_id = ENV['MANGOPAY_CFORGOOD_WALLET_ID'] unless wallet_id
       result = MangopayServices.new(current_user).create_mangopay_payin(wallet_id)
