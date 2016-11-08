@@ -47,6 +47,7 @@ class Member::SubscribeController < ApplicationController
           notifier.ping message
         else
           puts message
+        end
       end
     elsif current_user.subscription.present?
       flash[:success] = "Vos données bancaires ont bien été enregistrées."
