@@ -30,6 +30,7 @@ class Member::SubscribeController < ApplicationController
       wallet_id = Cause.find_by_id(current_user.cause_id).wallet_id if current_user.cause_id
       wallet_id = ENV['MANGOPAY_CFORGOOD_WALLET_ID'] unless wallet_id
       result = MangopayServices.new(current_user).create_mangopay_payin(wallet_id)
+      binding.pry
       if result["ResultMessage"] == "Success"
         @payment = current_user.payments.new(cause_id: current_user.cause_id, amount: current_user.amount, done: true)
         if @payment.save
@@ -41,7 +42,7 @@ class Member::SubscribeController < ApplicationController
         end
       else
         flash[:alert] = result["ResultMessage"]
-        message = current_user.find_name_or_email? + ": *erreur lors du paiement* :" + result["ResultMessage"]
+        message = current_user.find_name_or_email? + ": *erreur lors du paiement* :" + (result["ResultMessage"] || "")
         if Rails.env.production?
           notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_USER_URL']
           notifier.ping message
