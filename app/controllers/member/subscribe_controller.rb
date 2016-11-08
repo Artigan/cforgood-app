@@ -8,7 +8,6 @@ class Member::SubscribeController < ApplicationController
   end
 
   def create
-    binding.pry
     if current_user.mangopay_id
       current_user.update_attribute("card_id", params[:card][:id])
       execute_payin
@@ -17,7 +16,6 @@ class Member::SubscribeController < ApplicationController
   end
 
   def update
-    binding.pry
     if current_user.update_without_password(user_params)
       if current_user.card_id
         execute_payin
