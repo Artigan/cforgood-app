@@ -111,7 +111,7 @@
 
     $('#yearly').on('click', function() {
       subscription = 'yearly';
-      changeValues(50, 'subscription');
+      changeValues(50, subscription);
       $('#monthly').attr('checked', false);
       $('#yearly').attr('checked', true);
       $('#range').addClass('hidden');
