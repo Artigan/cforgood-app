@@ -8,7 +8,8 @@
   <div class="type-reminder">
     <span>Offre valable 1x par nouveau client</span>
   </div>
-  <%= simple_form_for([:pro, @business, @perk], remote: true) do |f| %>
+   <% #binding.pry %>
+  <%= simple_form_for([:pro, @business, @perk], remote: false) do |f| %>
     <%= f.error_notification %>
     <label class="hint--top-right" data-hint="Sélectionnez le moyen d'activation">Utilisation *</label>
     <div class="select-wrapper" id="detail-appel">

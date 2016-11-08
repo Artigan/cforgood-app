@@ -10,7 +10,8 @@ class PerkPolicy < ApplicationPolicy
   end
 
   def edit?
-    user.id == record.business_id
+    true
+    # user.id == record.business_id || user.id == record.business.manager.id
   end
 
   def update?

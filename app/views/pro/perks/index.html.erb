@@ -71,7 +71,7 @@
               <span>Désactiver / Activer</span>
               <input class="tgl tgl-light" id="<%= perk.id %>" type="checkbox" <%= 'checked="checked"' if perk.active %>>
               <label class="tgl-btn" for="<%= perk.id %>"></label>
-              <%= simple_form_for :perk, url: pro_business_perk_path(current_business, perk.id), method: :patch, html: { id: "update_perk_#{perk.id}", class: "hidden" } do |f| %>
+              <%= simple_form_for :perk, url: pro_perk_path(perk.id), method: :patch, html: { id: "update_perk_#{perk.id}", class: "hidden" } do |f| %>
                 <%= f.input :active, as: :hidden, input_html: { value: !perk.active } %>
                 <%= f.submit "", :style => "display: none;" %>
               <% end %>
