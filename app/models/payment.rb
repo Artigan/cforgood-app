@@ -61,22 +61,19 @@ class Payment < ApplicationRecord
   end
 
   def send_payment_slack
-    if Rails.env.production?
-      if @user.payments.valid_payment.count <= 1 && self.done == true
+
+    if @user.payments.valid_payment.count <= 1 && self.done == true
+
+      message = @user.find_name_or_email? + " a souscrit une participation de " + @user.amount.to_s + "€. |" + @user.email + "|"
+
+      if Rails.env.production?
         notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_USER_URL']
-
-        if @user.last_name.present?
-          message = "#{@user.first_name} #{@user.last_name}"
-        elsif name.present?
-          message = "#{@user.name}"
-        else
-          message = "#{@user.email}"
-        end
-
-        message = message + " a souscrit une participation de " + @user.amount.to_s + "€."
-
         notifier.ping message
+      else
+        puts message
       end
+
     end
   end
+
 end

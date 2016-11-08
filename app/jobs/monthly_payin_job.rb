@@ -220,9 +220,19 @@ class MonthlyPayinJob < ApplicationJob
     result = MangopayServices.new(user).create_mangopay_payin(wallet_id)
 
     if result["ResultMessage"] != "Success"
-      report << "-----------------------------------------"
-      report << "ERROR PAYMENT | event payment | #{user.id} | #{user.email} | #{result}"
-      report << "-----------------------------------------"
+      # Message on slack
+      if Rails.env.production?
+        notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_USER_URL']
+        if user.last_name.present?
+          message = "#{user.first_name} #{user.last_name}"
+        elsif name.present?
+          message = "#{user.name}"
+        else
+          message = "#{user.email}"
+        end
+        message = "#{user.id} | #{user.email} | *erreur lors du paiement* | #{result['ResultCode']} | #{result['ResultMessage']}"
+        notifier.ping message
+      end
     end
 
     @payment = user.payments.new(cause_id: user.cause_id, amount: user.amount, done: result["ResultMessage"] == "Success" ? true : false)
@@ -246,4 +256,4 @@ class MonthlyPayinJob < ApplicationJob
     end
   end
 
- end
+end

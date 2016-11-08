@@ -40,7 +40,7 @@ class Partner < ApplicationRecord
   end
 
   def create_code_partner_user(user, code, exclusive, shared)
-    self.name  = user.name || user.first_name
+    self.name  = user.find_name_or_email?
     self.email = user.email
     self.code_partner = code
     self.promo = true

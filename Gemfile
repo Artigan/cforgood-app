@@ -33,7 +33,7 @@ gem 'carrierwave'
 gem "cloudinary"
 gem 'remotipart', '~> 1.2'
 gem "gibbon"
-gem 'postmark-rails', '~> 0.12.0'
+gem 'postmark-rails', '~> 0.14.0'
 gem 'activeadmin', github: 'activeadmin'
 
 gem "jquery-rails"
@@ -60,7 +60,7 @@ gem "rails-i18n"
 gem "devise-i18n"
 gem "devise-i18n-views"
 
-group :development, :test do
+group :development, :staging do
   gem "spring"
   gem "annotate"
   gem "binding_of_caller"

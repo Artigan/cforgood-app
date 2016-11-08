@@ -99,10 +99,12 @@ class User < ApplicationRecord
 
   before_save :date_support!, if: :cause_id_changed?
 
-  after_save :save_history
   after_save :create_partner_for_third_use_code_partner, if: :code_partner_changed?
+  after_save :send_code_partner_slack, if: :code_partner_changed?
+  after_save :save_history
 
   after_commit :update_data_intercom
+
 
   def self.find_for_google_oauth2(access_token, signed_in_resourse=nil)
     data = access_token.info
@@ -140,10 +142,10 @@ class User < ApplicationRecord
         return registred_user
       else
         user = User.create(
-          name: access_token.extra.raw_info.name,
+          name: access_token.extra.raw_info.name || data.email,
           first_name: access_token.extra.raw_info.first_name,
           last_name: access_token.extra.raw_info.last_name,
-          city: access_token.extra.raw_info.location.name.present? ? access_token.extra.raw_info.location.name.split(",").first : nil ,
+          city: access_token.extra.raw_info.location.name.present? ? access_token.extra.raw_info.location.name.split(",").first : nil,
           provider: access_token.provider,
           email: data.email,
           uid: access_token.uid,
@@ -168,14 +170,8 @@ class User < ApplicationRecord
     ( self.code_partner.present? && self.date_end_partner < Time.now ) )
   end
 
-  def find_name?
-    if self.first_name.present?
-      name = self.first_name
-    elsif self.name.present?
-      name = self.name
-    else
-      name = ""
-    end
+  def find_name_or_email?
+    self.first_name + " " + self.last_name || self.name || self.email
   end
 
   def member!
@@ -203,24 +199,17 @@ class User < ApplicationRecord
         email: self.email
       )
     rescue Intercom::IntercomError => e
+      puts e
     end
+
     #SEND EVENT TO SLACK
+    message =  find_name_or_email? + " a résilié son abonnement de " + self.amount.to_s + "€."
+
     if Rails.env.production?
-
       notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_USER_URL']
-
-      if self.last_name.present?
-        message = "#{self.first_name} #{self.last_name}"
-      elsif name.present?
-        message = "#{self.name}"
-      else
-        message = "#{self.email}"
-      end
-
-      message = message + " a résilié son abonnement de " + self.amount.to_s + "€."
-
       notifier.ping message
-
+    else
+      puts message
     end
   end
 
@@ -290,26 +279,34 @@ class User < ApplicationRecord
   end
 
   def send_registration_slack
+
+    message = find_name_or_email?
+    message += ", *#{city}*," if city.present?
+    message += " a rejoint la communauté !"
+
     if Rails.env.production?
       notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_USER_URL']
-
-      if last_name.present?
-        message = "#{first_name} #{last_name}"
-      elsif name.present?
-        message = "#{name}"
-      else
-        message = "#{email}"
-      end
-
-      if city.present?
-        message = message + ", *#{city}*,"
-      end
-
-      message = message + " a rejoint la communauté !"
-
       notifier.ping message
+    else
+      puts message
+    end
+  end
+
+  def send_code_partner_slack
+
+    if self.code_partner.present?
+
+      message = find_name_or_email? + " a utilisé le code partenaire : #{self.code_partner}"
+
+      if Rails.env.production?
+        notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_USER_URL']
+        notifier.ping message
+      else
+        puts message
+      end
 
     end
+
   end
 
   def subscribe_to_newsletter_user
@@ -348,6 +345,7 @@ class User < ApplicationRecord
       user.custom_attributes["user_member"] = self.member
       user.custom_attributes['code_partner'] = self.code_partner
       user.custom_attributes['date_end_trial'] = self.date_end_partner
+      user.custom_attributes['ambassador'] = self.ambassador
       intercom.users.save(user)
     rescue Intercom::IntercomError => e
       begin
@@ -365,10 +363,12 @@ class User < ApplicationRecord
             'user_cause' => self.cause.name,
             'user_member' => self.member,
             'code_partner' => self.code_partner,
-            'date_end_trial' => self.date_end_partner
+            'date_end_trial' => self.date_end_partner,
+            'ambassador' => self.ambassador
           })
         intercom.users.save(user)
       rescue Intercom::IntercomError => e
+        puts e
       end
     end
   end
