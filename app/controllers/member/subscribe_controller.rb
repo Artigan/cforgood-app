@@ -8,7 +8,6 @@ class Member::SubscribeController < ApplicationController
   end
 
   def create
-    binding.pry
     if current_user.mangopay_id
       current_user.update_attribute("card_id", params[:card][:id])
       execute_payin
@@ -17,7 +16,6 @@ class Member::SubscribeController < ApplicationController
   end
 
   def update
-    binding.pry
     if current_user.update_without_password(user_params)
       if current_user.card_id
         execute_payin
@@ -43,10 +41,12 @@ class Member::SubscribeController < ApplicationController
         end
       else
         flash[:alert] = result["ResultMessage"]
+        message = current_user.find_name_or_email? + ": *erreur lors du paiement* :" + result["ResultMessage"]
         if Rails.env.production?
           notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_USER_URL']
-          message = current_user.find_name_or_email? + ": *erreur lors du paiement* :" + result["ResultMessage"]
           notifier.ping message
+        else
+          puts message
         end
       end
     elsif current_user.subscription.present?

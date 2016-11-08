@@ -20,8 +20,8 @@ ActiveRecord::Schema.define(version: 20161107103136) do
     t.text     "body"
     t.string   "resource_id",   null: false
     t.string   "resource_type", null: false
-    t.integer  "author_id"
     t.string   "author_type"
+    t.integer  "author_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
@@ -37,27 +37,12 @@ ActiveRecord::Schema.define(version: 20161107103136) do
     t.string   "city"
     t.float    "latitude"
     t.float    "longitude"
+    t.boolean  "active",      default: true, null: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
-    t.boolean  "active",      default: true, null: false
     t.datetime "start_time"
     t.datetime "end_time"
     t.index ["business_id"], name: "index_addresses_on_business_id", using: :btree
-  end
-
-  create_table "attachinary_files", force: :cascade do |t|
-    t.integer  "attachinariable_id"
-    t.string   "attachinariable_type"
-    t.string   "scope"
-    t.string   "public_id"
-    t.string   "version"
-    t.integer  "width"
-    t.integer  "height"
-    t.string   "format"
-    t.string   "resource_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["attachinariable_type", "attachinariable_id", "scope"], name: "by_scoped_parent", using: :btree
   end
 
   create_table "business_categories", force: :cascade do |t|
@@ -107,8 +92,6 @@ ActiveRecord::Schema.define(version: 20161107103136) do
     t.string   "picture"
     t.string   "leader_picture"
     t.string   "logo"
-    t.boolean  "supervisor",             default: false
-    t.integer  "supervisor_id"
     t.index ["business_category_id"], name: "index_businesses_on_business_category_id", using: :btree
     t.index ["email"], name: "index_businesses_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_businesses_on_reset_password_token", unique: true, using: :btree
@@ -150,10 +133,6 @@ ActiveRecord::Schema.define(version: 20161107103136) do
     t.string   "link_video"
     t.string   "picture"
     t.string   "logo"
-    t.boolean  "mailing",                   default: true
-    t.boolean  "tax_receipt",               default: true
-    t.string   "followers"
-    t.string   "heard"
     t.index ["cause_category_id"], name: "index_causes_on_cause_category_id", using: :btree
   end
 
@@ -215,17 +194,6 @@ ActiveRecord::Schema.define(version: 20161107103136) do
     t.boolean  "send_notification", default: false
     t.index ["business_id"], name: "index_perks_on_business_id", using: :btree
     t.index ["perk_detail_id"], name: "index_perks_on_perk_detail_id", using: :btree
-  end
-
-  create_table "plans", force: :cascade do |t|
-    t.integer  "user_id"
-    t.string   "subscription"
-    t.integer  "amount"
-    t.string   "code_partner"
-    t.date     "date_end_partner"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.index ["user_id"], name: "index_plans_on_user_id", using: :btree
   end
 
   create_table "prospects", force: :cascade do |t|
@@ -325,7 +293,6 @@ ActiveRecord::Schema.define(version: 20161107103136) do
   add_foreign_key "payments", "causes"
   add_foreign_key "payments", "users"
   add_foreign_key "perks", "businesses"
-  add_foreign_key "plans", "users"
   add_foreign_key "prospects", "users"
   add_foreign_key "user_histories", "causes"
   add_foreign_key "user_histories", "users"
