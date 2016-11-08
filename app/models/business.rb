@@ -40,6 +40,8 @@
 #  picture                :string
 #  leader_picture         :string
 #  logo                   :string
+#  supervisor             :boolean          default(FALSE)
+#  supervisor_id          :integer
 #
 # Indexes
 #
@@ -122,7 +124,7 @@ class Business < ApplicationRecord
   # end
 
   def create_code_partner
-    Partner.new.create_code_partner(self.name, self.email)
+    Partner.new.create_code_partner_business(self.name, self.email)
   end
 
   def send_registration_slack
@@ -139,7 +141,7 @@ class Business < ApplicationRecord
   end
 
   def update_data_intercom
-    if active_changed? or leader_first_name_changed? or city_changed?
+    if active_changed? or leader_first_name_changed? or city_changed? or picture_changed?
       # UPDATE CUSTOM ATTRIBUTES ON INTERCOM
       intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
       begin
@@ -148,8 +150,10 @@ class Business < ApplicationRecord
         user.custom_attributes["first_name"] = self.leader_first_name
         user.custom_attributes["city"] = self.city
         user.custom_attributes["zipcode"] = self.zipcode
+        # user.custom_attributes["picture_url"] = self.picture.url
         intercom.users.save(user)
       rescue Intercom::IntercomError => e
+        puts e
       end
     end
   end

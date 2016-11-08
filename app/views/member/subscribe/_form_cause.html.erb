@@ -40,10 +40,10 @@
         amplitude.logEvent('USER_C_SIGNUP1_SUPPORTCAUSE');
       });
 
-      $(".signup-next").on("click", function(e) {
+      $(".signup-cause .signup-next").on("click", function(e) {
         e.preventDefault;
         $(".choose-cause").addClass("ishidden");
-        $(".signup-plan").addClass("slideup");
+        $(".signup-plan").removeClass("ishidden").addClass("slideup");
         $("#signup-breadcrumb").addClass("slide-2");
 
         // EVENT AMPLITUDE : USER_C_SIGNUP1_NEXT

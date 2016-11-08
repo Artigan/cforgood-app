@@ -70,10 +70,11 @@ class User < ApplicationRecord
   has_many :uses
   has_many :payments, dependent: :destroy
   has_many :prospects
+  has_many :user_histories
 
   scope :member, -> { where(member: true) }
   scope :member_should_payin, lambda {|day| where('users.member = ? and users.subscription = ? and users.date_last_payment between ? and ?', true, "M", (Time.now - 1.month - day.day).beginning_of_day,  (Time.now - 1.month - day.day).end_of_day) }
-  scope :member_on_trial_should_payin, lambda {|day| where('users.member = ? and users.subscription = ? and users.date_end_partner = ?', true, "T", Time.now + day.day) }
+  scope :member_on_trial_should_payin, lambda {|day| where('users.member = ? and users.code_partner.present? and users.date_end_partner = ?', true, Time.now + day.day) }
 
   validates :email, presence: true, uniqueness: true
   # validates :first_name, presence: true
@@ -93,12 +94,17 @@ class User < ApplicationRecord
 
   after_create :send_registration_slack, :subscribe_to_newsletter_user, :create_event_amplitude
 
-  before_save :trial_done!, if: :subscription_changed?
   before_save :subscription!, if: :subscription_changed?
+  before_save :subscription!, if: :code_partner_changed?
 
   before_save :date_support!, if: :cause_id_changed?
 
+  after_save :create_partner_for_third_use_code_partner, if: :code_partner_changed?
+  after_save :send_code_partner_slack, if: :code_partner_changed?
+  after_save :save_history
+
   after_commit :update_data_intercom
+
 
   def self.find_for_google_oauth2(access_token, signed_in_resourse=nil)
     data = access_token.info
@@ -136,10 +142,10 @@ class User < ApplicationRecord
         return registred_user
       else
         user = User.create(
-          name: access_token.extra.raw_info.name,
+          name: access_token.extra.raw_info.name || data.email,
           first_name: access_token.extra.raw_info.first_name,
           last_name: access_token.extra.raw_info.last_name,
-          city: access_token.extra.raw_info.location.name.present? ? access_token.extra.raw_info.location.name.split(",").first : nil ,
+          city: access_token.extra.raw_info.location.name.present? ? access_token.extra.raw_info.location.name.split(",").first : nil,
           provider: access_token.provider,
           email: data.email,
           uid: access_token.uid,
@@ -159,18 +165,13 @@ class User < ApplicationRecord
   end
 
   def should_payin?
-    ((self.subscription != "T" && (!self.date_last_payment.present? || self.date_last_payment < Time.now - 1.month)) ||
-    (self.subscription == "T" && self.date_end_partner < Time.now))
+    ( !self.code_partner.present? && ( ( self.subscription == "M" && ( !self.date_last_payment.present? || ( self.date_last_payment < Time.now - 1.month ) ) ) ||
+    ( self.subscription == "Y" && ( !self.date_last_payment.present? || ( self.date_last_payment < Time.now - 12.month ) ) ) ) ||
+    ( self.code_partner.present? && self.date_end_partner < Time.now ) )
   end
 
-  def find_name?
-    if self.first_name.present?
-      name = self.first_name
-    elsif self.name.present?
-      name = self.name
-    else
-      name = ""
-    end
+  def find_name_or_email?
+    self.first_name + " " + self.last_name || self.name || self.email
   end
 
   def member!
@@ -183,6 +184,10 @@ class User < ApplicationRecord
     self.member = false
     self.date_stop_subscription = Time.now
     self.subscription = nil
+    self.amount = nil
+    self.date_last_payment = nil
+    self.code_partner = nil
+    self.date_end_partner = nil
     self.save
     # SEND EVENT TO INTERCOM
     intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
@@ -194,24 +199,17 @@ class User < ApplicationRecord
         email: self.email
       )
     rescue Intercom::IntercomError => e
+      puts e
     end
+
     #SEND EVENT TO SLACK
+    message =  find_name_or_email? + " a résilié son abonnement de " + self.amount.to_s + "€."
+
     if Rails.env.production?
-
       notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_USER_URL']
-
-      if self.last_name.present?
-        message = "#{self.first_name} #{self.last_name}"
-      elsif name.present?
-        message = "#{self.name}"
-      else
-        message = "#{self.email}"
-      end
-
-      message = message + " a résilié son abonnement de " + self.amount.to_s + "€."
-
       notifier.ping message
-
+    else
+      puts message
     end
   end
 
@@ -224,31 +222,44 @@ class User < ApplicationRecord
       self.mangopay_id = @mangopay_user["Id"]
     end
     self.date_subscription = Time.now if subscription_was == nil
-    self.member = true if subscription == "T"
+    self.member = true if code_partner.present?
   end
 
   def date_support!
     self.date_support = Time.now
   end
 
-  def trial_done!
-    if subscription_was.present? && subscription_was == "T" && self.trial_done == false
-      self.update(trial_done: true)
-    end
-  end
-
   def code_partner?
     if code_partner.present?
-      if @partner = Partner.find_by_code_partner(code_partner.upcase)
-        nb_used = User.where(code_partner: code_partner.upcase).count
-        if @partner.times == 0 || nb_used < @partner.times
-          self.code_partner.upcase!
-          self.date_end_partner = Time.now + Partner.find_by_code_partner(self.code_partner).nb_month.month
-        else
-          errors.add(:code_partner, "Code promotionnel invalide")
-        end
+      if !@partner = Partner.find_by_code_partner(code_partner.upcase)
+        # Code_partner not exist
+        errors.add(:code_partner, "Code promotionnel inconnu")
+      elsif @partner.promo && ( ( @partner.date_start_promo.present? && @partner.date_start_promo > Time.now ) || ( @partner.date_end_promo.present? && @partner.date_end_promo < Time.now ) )
+        # Code_partner out of date
+        errors.add(:code_partner, "Code promotionnel non disponible à ce jour")
+      elsif @partner.times != 0 && UserHistory.where(code_partner: code_partner.upcase).select(:user_id).distinct.count >= @partner.times
+        # Control use count
+        errors.add(:code_partner, "Code promotionnel épuisé")
+      elsif @partner.shared && @partner.user_id == id
+        # Code_partner to shared (except for user)
+        errors.add(:code_partner, "Code promotionnel réservé aux autres utilisateurs")
+      elsif @partner.exclusive && @partner.user_id != id
+        # Code_partner exclusive (only for user)
+        errors.add(:code_partner, "Code promotionnel exclusif non autorisé")
+      elsif self.user_histories.where(code_partner: code_partner.upcase).count != 0
+        # Control already use
+        errors.add(:code_partner, "Code promotionnel déjà utilisé")
       else
-        errors.add(:code_partner, "Code promotionnel invalide")
+        # Code_partner valid
+        self.code_partner.upcase!
+        # Trial start after pay period if exist
+        if date_last_payment.present? && ( ( subscription == "M" && date_last_payment + 1.month > Time.now ) || ( subscription == "Y" && date_last_payment + 1.year > Time.now ) )
+            start_date = date_last_payment + 1.month if subscription == "M"
+            start_date = date_last_payment + 1.year if subscription == "Y"
+        else
+          start_date = Time.now
+        end
+        self.date_end_partner = start_date + Partner.find_by_code_partner(self.code_partner).nb_month.month
       end
     end
   end
@@ -268,26 +279,34 @@ class User < ApplicationRecord
   end
 
   def send_registration_slack
+
+    message = find_name_or_email?
+    message += ", *#{city}*," if city.present?
+    message += " a rejoint la communauté !"
+
     if Rails.env.production?
       notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_USER_URL']
-
-      if last_name.present?
-        message = "#{first_name} #{last_name}"
-      elsif name.present?
-        message = "#{name}"
-      else
-        message = "#{email}"
-      end
-
-      if city.present?
-        message = message + ", *#{city}*,"
-      end
-
-      message = message + " a rejoint la communauté !"
-
       notifier.ping message
+    else
+      puts message
+    end
+  end
+
+  def send_code_partner_slack
+
+    if self.code_partner.present?
+
+      message = find_name_or_email? + " a utilisé le code partenaire : #{self.code_partner}"
+
+      if Rails.env.production?
+        notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_USER_URL']
+        notifier.ping message
+      else
+        puts message
+      end
 
     end
+
   end
 
   def subscribe_to_newsletter_user
@@ -326,6 +345,7 @@ class User < ApplicationRecord
       user.custom_attributes["user_member"] = self.member
       user.custom_attributes['code_partner'] = self.code_partner
       user.custom_attributes['date_end_trial'] = self.date_end_partner
+      user.custom_attributes['ambassador'] = self.ambassador
       intercom.users.save(user)
     rescue Intercom::IntercomError => e
       begin
@@ -343,11 +363,58 @@ class User < ApplicationRecord
             'user_cause' => self.cause.name,
             'user_member' => self.member,
             'code_partner' => self.code_partner,
-            'date_end_trial' => self.date_end_partner
+            'date_end_trial' => self.date_end_partner,
+            'ambassador' => self.ambassador
           })
         intercom.users.save(user)
       rescue Intercom::IntercomError => e
+        puts e
       end
     end
   end
+
+  def save_history
+    if member_changed? || subscription_changed? || date_stop_subscription_changed? || amount_changed? || ( code_partner_changed? && ( code_partner_was.present? || code_partner.present? ) )  || date_end_partner_changed? || cause_id_changed? || ambassador_changed?
+      history_params = { member: self.member,
+                         subscription: self.subscription,
+                         date_stop_subscription: self.date_stop_subscription,
+                         amount: self.amount,
+                         code_partner: self.code_partner,
+                         date_end_partner: self.date_end_partner,
+                         cause_id: self.cause_id,
+                         ambassador: self.ambassador }
+      self.user_histories.new.create_history(history_params)
+    end
+  end
+
+
+  def create_partner_for_third_use_code_partner
+    if code_partner.present?
+      @partner = Partner.find_by_code_partner(code_partner)
+      if @partner.shared && UserHistory.where(code_partner: self.code_partner).select(:user_id).distinct.count == 3
+        @user = User.find(@partner.user_id)
+        code_partner = "3CP" + @user.id.to_s
+        Partner.new.create_code_partner_user(@user, code_partner, true, false)
+        create_event_intercom(@user, code_partner)
+      end
+    end
+  end
+
+  def create_event_intercom(user, code_partner)
+    intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
+    begin
+      intercom.events.create(
+        event_name: "third-use-code-partner",
+        created_at: Time.now.to_i,
+        user_id: user.id,
+        email: user.email,
+        metadata: {
+          code_partner: code_partner
+        }
+      )
+    rescue Intercom::IntercomError => e
+      puts e
+    end
+  end
+
 end

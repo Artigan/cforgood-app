@@ -27,7 +27,7 @@ class Use < ApplicationRecord
   belongs_to :user
   belongs_to :perk
 
-  after_create :create_event_intercom
+  after_create :create_code_partner_for_first_use_perk
 
   scope :without_feedback, -> { where(feedback: false) }
   scope :used, -> { where('feedback = ? or (feedback = ? and unused = ?)', false, true, false) }
@@ -35,22 +35,34 @@ class Use < ApplicationRecord
 
   private
 
-  def create_event_intercom
+  def create_code_partner_for_first_use_perk
     @user = User.find(user_id)
+    if @user.uses.count == 1
+      code_partner = "1BP" + user.id.to_s
+      Partner.new.create_code_partner_user(user, code_partner, false, true)
+      create_event_intercom("first-use-perk", @user, code_partner)
+    else
+      create_event_intercom("use-perk", @user, "")
+    end
+  end
+
+  def create_event_intercom(event_name, user, code_partner)
     @perk = Perk.find(perk_id)
     intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
     begin
       intercom.events.create(
-        event_name: "use-perk",
+        event_name: event_name,
         created_at: Time.now.to_i,
-        user_id: @user.id,
-        email: @user.email,
+        user_id: user.id,
+        email: user.email,
         metadata: {
           business_name: @perk.business.name,
-          perk_name: @perk.name
+          perk_name: @perk.name,
+          code_partner: code_partner
         }
       )
     rescue Intercom::IntercomError => e
+      puts e
     end
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160930160440) do
+ActiveRecord::Schema.define(version: 20161107103136) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,21 @@ ActiveRecord::Schema.define(version: 20160930160440) do
     t.datetime "start_time"
     t.datetime "end_time"
     t.index ["business_id"], name: "index_addresses_on_business_id", using: :btree
+  end
+
+  create_table "attachinary_files", force: :cascade do |t|
+    t.integer  "attachinariable_id"
+    t.string   "attachinariable_type"
+    t.string   "scope"
+    t.string   "public_id"
+    t.string   "version"
+    t.integer  "width"
+    t.integer  "height"
+    t.string   "format"
+    t.string   "resource_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["attachinariable_type", "attachinariable_id", "scope"], name: "by_scoped_parent", using: :btree
   end
 
   create_table "business_categories", force: :cascade do |t|
@@ -140,10 +155,17 @@ ActiveRecord::Schema.define(version: 20160930160440) do
     t.string   "name"
     t.string   "email"
     t.string   "code_partner"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-    t.integer  "nb_month",     default: 1
-    t.integer  "times",        default: 0
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.integer  "nb_month",         default: 1
+    t.integer  "times",            default: 0
+    t.boolean  "promo",            default: false
+    t.date     "date_start_promo"
+    t.date     "date_end_promo"
+    t.integer  "user_id"
+    t.boolean  "exclusive",        default: false, null: false
+    t.boolean  "shared",           default: false, null: false
+    t.index ["user_id"], name: "index_partners_on_user_id", using: :btree
   end
 
   create_table "payments", force: :cascade do |t|
@@ -201,6 +223,22 @@ ActiveRecord::Schema.define(version: 20160930160440) do
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.index ["user_id"], name: "index_prospects_on_user_id", using: :btree
+  end
+
+  create_table "user_histories", force: :cascade do |t|
+    t.integer  "user_id"
+    t.boolean  "member",                 default: false, null: false
+    t.string   "subscription"
+    t.datetime "date_stop_subscription"
+    t.integer  "amount"
+    t.string   "code_partner"
+    t.date     "date_end_partner"
+    t.integer  "cause_id"
+    t.boolean  "ambassador",             default: false, null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.index ["cause_id"], name: "index_user_histories_on_cause_id", using: :btree
+    t.index ["user_id"], name: "index_user_histories_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -270,7 +308,10 @@ ActiveRecord::Schema.define(version: 20160930160440) do
   add_foreign_key "payments", "causes"
   add_foreign_key "payments", "users"
   add_foreign_key "perks", "businesses"
+  add_foreign_key "plans", "users"
   add_foreign_key "prospects", "users"
+  add_foreign_key "user_histories", "causes"
+  add_foreign_key "user_histories", "users"
   add_foreign_key "users", "causes"
   add_foreign_key "uses", "perks"
   add_foreign_key "uses", "users"

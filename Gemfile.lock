@@ -443,7 +443,7 @@ DEPENDENCIES
   letter_opener
   listjs-rails
   mail_form
-  mangopay
+  mangopay (~> 3.0, >= 3.0.23)
   meta_request
   mobvious
   mobvious-rails

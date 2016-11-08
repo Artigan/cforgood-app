@@ -16,7 +16,6 @@
   response = OneSignal.push(["init", {
     appId: "<%= ENV['ONESIGNAL_APP_ID'] %>",
     safari_web_id: "<%= ENV['ONESIGNAL_SAFARI_WEB_ID'] %>",
-    subdomainName: 'cforgood',
     autoRegister: true,
     notifyButton: {
       enable: false/* Set to false to hide */
@@ -78,8 +77,13 @@
 <link href="//cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
 <!-- Mapbox GL -->
 <link href='https://api.mapbox.com/mapbox-gl-js/v0.21.0/mapbox-gl.css' rel='stylesheet' />
+
+<!-- Jquery -->
+<link href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" >
+
 <!-- AnimatedModal -->
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.min.css">
+
 
 <!-- Script for google analytics necessary in HEAD section -->
 <%= render "layouts/shared/js/google_analytics" %>

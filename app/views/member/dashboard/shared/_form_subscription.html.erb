@@ -6,12 +6,28 @@
     <% else %>
       <span>Choisir le montant de ma participation</span>
     <% end %>
+    <div class="switch">
+      <input id="monthly" type="radio" <%= current_user.subscription == "M" ? checked="checked" : "" %>>
+      <label for="monthly" class="subscription-monthly">Mensuel</label>
+      <input id="yearly" type="radio" <%= current_user.subscription != "M" ? checked="checked"  : "" %>>
+      <label for="yearly" class="subscription-yearly">Annuel
+        <div class="yearly-benefit">
+          <span>2 mois gratuits</span>
+          <span class="more">+</span>
+          <i><%= image_tag("macarte_miniature.png") %></i>
+        </div>
+      </label>
+      <span class="slide-button"></span>
+    </div>
     <div class="container-fluid">
       <div class="offer-index">
         <div class="offer-card">
           <!-- RANGE SLIDER FOR PRICE -->
           <div class="offer-price">
-            <input type="range" name="range" id="range" min="1" max="50" value="5"/>
+            <!-- Slider Monthly -->
+            <input type="range" name="range" id="range" class="<%= current_user.subscription == 'M' ? 'monthly' : 'monthly hidden' %>" min="1" max="50" value="5"/>
+            <!-- Slider Yearly -->
+            <div id="slider" class="<%= current_user.subscription != 'M' ? 'yearly' : 'yearly hidden' %>"></div>
             <div class="offer-details">
               <div class="offer-detail">
                 <output class="output-asso">50</output>
@@ -24,21 +40,21 @@
             </div>
           </div>
           <div class="offer-description">
-            <h5>Abonnement mensuel <strong>libre</strong> sans engagement</h5>
+            <h5>Abonnement <strong>libre</strong> sans engagement</h5>
             <p>Vous pouvez le modifier ou l'annuler à tout moment depuis votre profil</p>
           </div>
           <!-- PARTNER CODE -->
           <%= simple_form_for(current_user, url: member_subscribe_path(current_user), method: :put, remote: true, authenticity_token: true, html: { id: "update_subscription" } ) do |f| %>
             <div class="code-partner">
-              <%= f.input :code_partner, label: "Code Partenaire", input_html: { value: current_user.subscription == 'T' && !current_user.trial_done ? f.object.code_partner : "", disabled: current_user.subscription == 'T' || current_user.trial_done ? true : false } %>
+              <%= f.input :code_partner, label: "Code Partenaire", input_html: { value: current_user.code_partner.present? ? f.object.code_partner : "", disabled: current_user.code_partner.present? ? true : false } %>
             </div>
 
             <div class="offer-btn">
-              <%= f.input :subscription, as: :hidden, input_html: { value: f.object.subscription || "M" } %>
-              <%= f.input :amount, label: false, input_html: { value: f.object.amount || 5 } %>
+              <%= f.input :subscription, as: :hidden, input_html: { value: f.object.subscription || "Y" } %>
+              <%= f.input :amount, label: false, input_html: { value: f.object.amount || 50 } %>
             </div>
             <% if current_user.member %>
-              <% if current_user.subscription == 'T' %>
+              <% if current_user.code_partner.present? %>
                 <%= f.submit "M'abonner", class: "btn-subscription"%>
               <% else %>
                 <%= f.submit "Sauvegarder", class: "btn-subscription"%>
