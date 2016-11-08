@@ -52,11 +52,8 @@
       $('.output-fiscal').html(outputFiscal);
 
       if (subscription == 'monthly') {
-        console.log('#range + #' + subscription)
         $('#range').val(amount.toString());
       } else {
-        console.log('#range + #' + subscription)
-        console.log('value : ' + amount);
         index = valMap.indexOf(amount);
         $("#slider").slider({
           max: valMap.length - 1,
@@ -94,19 +91,16 @@
 
 
     $('#range').on('input', function() {
-      console.log('#range');
       var value = parseInt(this.value);
       changeValues(value, subscription);
     });
 
     $('#user_amount').on('input', function() {
-      console.log('#user_amount');
       var value = parseInt(this.value);
       changeValues(value, subscription);
     });
 
     $('#monthly').on('click', function() {
-      console.log('1#' + subscription);
       subscription = 'monthly';
       changeValues(5, subscription);
       $('#yearly').attr('checked', false);
@@ -116,7 +110,6 @@
     });
 
     $('#yearly').on('click', function() {
-      console.log('1#' + subscription);
       subscription = 'yearly';
       changeValues(50, 'subscription');
       $('#monthly').attr('checked', false);
