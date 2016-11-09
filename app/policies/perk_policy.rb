@@ -1,7 +1,11 @@
 class PerkPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope.where(business_id: user.perks.select(:business_id))
+      if user.supervisor
+        scope.where(business: user.businesses_perks)
+      else
+        scope.where(business: user)
+      end
     end
   end
 

@@ -69,7 +69,7 @@ class Business < ApplicationRecord
 
   belongs_to :manager, class_name: 'Business', foreign_key: 'supervisor_id'
   has_many :businesses, class_name: 'Business', foreign_key: 'supervisor_id'
-
+  has_many :businesses_perks, through: :businesses, source: :perks
 
   scope :active, -> { where(active: true) }
   scope :for_map, -> { where('businesses.shop = ? or businesses.itinerant = ?', true, true) }
