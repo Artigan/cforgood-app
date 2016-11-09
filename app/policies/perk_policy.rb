@@ -2,7 +2,7 @@ class PerkPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       if user.supervisor
-        scope.where(business: user.businesses_perks)
+        scope.where(business: user.businesses)
       else
         scope.where(business: user)
       end
