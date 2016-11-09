@@ -7,7 +7,6 @@ class Pro::PerksController < Pro::ProController
   skip_after_action :verify_policy_scoped
 
   def index
-    # @perks = policy_scope(Perk).undeleted
     if session[:impersonate_id]
       @perks = Perk.where(business_id: session[:impersonate_id]).undeleted
     else
