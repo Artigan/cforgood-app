@@ -117,6 +117,11 @@ class Business < ApplicationRecord
     street_changed? || zipcode_changed? || city_changed?
   end
 
+  def supervising?(id)
+    return false unless id.present?
+    Business.find(id).manager == self
+  end
+
   private
 
   def address

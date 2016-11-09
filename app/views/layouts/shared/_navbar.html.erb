@@ -47,7 +47,15 @@
       <% end %>
     <% end %>
 
-    <!-- <#= link_to image_tag(navbar_logo), navbar_logo_link, class: "logo" #> -->
+    <!-- MENU ITEMS -->
+    <% if business_signed_in? && pro_space? && current_business.supervisor %>
+      <div class="impersonate_business">
+        <%= form_tag pro_business_dashboard_path(current_business), method: :get, class: "form-inline" do %>
+          <%= select_tag :impersonate_id, options_from_collection_for_select(current_business.businesses, :id, :name, selected: session[:impersonate_id]), prompt: "Sélectionner un commerce" %>
+          <%= submit_tag "Valider", class: "" %>
+        <% end %>
+      </div>
+    <% end %>
 
     <!-- MENU ITEMS -->
     <div class="link-container">
