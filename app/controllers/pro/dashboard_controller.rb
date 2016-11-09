@@ -1,14 +1,17 @@
 class Pro::DashboardController < Pro::ProController
+  
+  skip_after_action :verify_authorized, only: :set_impersonation
 
-  def dashboard
+  def set_impersonation
     if current_business.supervising?(params[:impersonate_id])
       session[:impersonate_id] = params[:impersonate_id]
     else
       session[:impersonate_id] = nil
     end
-    Rails.logger.info("*" * 15)
-    Rails.logger.info(session[:impersonate_id])
-    Rails.logger.info("*" * 15)
+    redirect_to :back
+  end
+
+  def dashboard
     @business = Business.find(params[:business_id])
     @perks = @business.perks
     authorize @business

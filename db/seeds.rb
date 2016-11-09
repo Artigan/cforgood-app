@@ -1,7 +1,7 @@
 
-
+# !!! Need to download Seeds Folder to Users/$YOUR_USERNAME/Documents !!!
 # Chemin pour les images
-path = "/Users/louloubis/Documents/Seeds/"
+# path = "/Users/$YOUR_USERNAME/Documents/Seeds/"
 
 
 #----------------------------------------------------
@@ -1473,4 +1473,3 @@ perks_attributes.each do |params|
     Perk.create(params)
 end
 puts "--------END BUSINESS-----------"
-

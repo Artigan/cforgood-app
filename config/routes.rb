@@ -59,6 +59,7 @@ Rails.application.routes.draw do
       resources :addresses
       resources :perks, only: [:index, :new, :create]
       get 'dashboard',  to: 'dashboard#dashboard'
+      post 'impersonation', to: 'dashboard#set_impersonation'
       get "profile",    to: "dashboard#profile"
 
     end

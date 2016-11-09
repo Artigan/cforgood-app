@@ -1,14 +1,18 @@
 class Pro::PerksController < Pro::ProController
 
   before_action :find_perk, only: [:edit, :update, :destroy]
-  before_action :find_business, only: [:index, :new, :create, :destroy, :update]
+  before_action :find_business, only: [:index, :new, :create]
 
   skip_after_action :verify_authorized
   skip_after_action :verify_policy_scoped
 
   def index
     # @perks = policy_scope(Perk).undeleted
-    @perks = Perk.where(business_id: session[:impersonate_id]) || current_business.perks.undeleted
+    if session[:impersonate_id]
+      @perks = Perk.where(business_id: session[:impersonate_id]).undeleted
+    else
+      @perks = policy_scope(Perk).undeleted
+    end
   end
 
   def new
@@ -63,8 +67,8 @@ class Pro::PerksController < Pro::ProController
   end
 
   def find_business
-    # @business = Business.find(params[:business_id])
-    @business = Business.find(48)
+    id = session[:impersonate_id] || params[:business_id]
+    @business = Business.find(id)
   end
 
   def perk_params
