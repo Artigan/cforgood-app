@@ -10,26 +10,30 @@
       <%= image_tag('logopouce.png', class: '') %>
       <span>Mes informations personnelles</span>
     </div>
-    <div class="tab-container">
-      <!-- Nav tabs -->
-      <ul id="menu" class="nav nav-tabs">
-        <li role="profile" class="active">
-          <%= link_to "Mes informations", "#business", role: "tab", data_toggle: "tab" %>
-        </li>
-        <li role="profile">
-          <%= link_to "Mon commerce", "#shop", role: "tab", data_toggle: "tab" %>
-        </li>
-      </ul>
-      <!-- Tab panes -->
-      <div class="tab-content">
-        <div role="tabpanel" class="tab-pane active" id="business">
-          <%= render "pro/dashboard/form/form_owner" %>
-        </div>
-        <div role="tabpanel" class="tab-pane" id="shop">
-          <%= render "pro/dashboard/form/form_business" %>
+    <% if current_business.supervisor && !current_impersonation %>
+      <%= render 'components/popups/supervisor_without_impersonate' %>
+    <% else %>
+      <div class="tab-container">
+        <!-- Nav tabs -->
+        <ul id="menu" class="nav nav-tabs">
+          <li role="profile" class="active">
+            <%= link_to "Mes informations", "#business", role: "tab", data_toggle: "tab" %>
+          </li>
+          <li role="profile">
+            <%= link_to "Mon commerce", "#shop", role: "tab", data_toggle: "tab" %>
+          </li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div role="tabpanel" class="tab-pane active" id="business">
+            <%= render "pro/dashboard/form/form_owner" %>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="shop">
+            <%= render "pro/dashboard/form/form_business" %>
+          </div>
         </div>
       </div>
-    </div>
+    <% end %>
   </div>
 </div>
 

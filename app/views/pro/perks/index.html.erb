@@ -14,7 +14,9 @@
     <div class="admin-perks">
       <%= image_tag('logopouce.png', class: 'logo-title') %>
       <span class="view-title">Mes bons plans</span>
-      <% if @perks.count == 0 %>
+      <% if current_business.supervisor && !current_impersonation %>
+        <%= render 'components/popups/supervisor_without_impersonate' %>
+      <% elsif @perks.count == 0 %>
         <%= render 'components/popups/empty_perks_index' %>
       <% else %>
         <% @perks.reverse.each do |perk| %>
@@ -78,7 +80,7 @@
             </div>
             <div class="perk-actions">
               <!-- PERK PREVIEW -->
-              <%= link_to business_path(current_business, perk_id: perk.id), target: "_blank", class: "perk-preview" do %>
+              <%= link_to business_path(@business, perk_id: perk.id), target: "_blank", class: "perk-preview" do %>
                 <i class="fa fa-eye"></i>
               <% end %>
               <!-- PERK EDIT -->
@@ -132,4 +134,3 @@
     });
   </script>
 <% end %>
-

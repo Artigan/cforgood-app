@@ -10,9 +10,13 @@ Créez un nouveau Bon Plan
   <%= render "pro/dashboard/shared/sidebar" %>
   <!-- Content - Statistics -->
   <div class="dashboard">
-    <div class="dashboard-overlay hidden"></div>
-    <div class="form-perk-container">
-      <%= render 'pro/perks/form/create' %>
-    </div>
+    <% if current_business.supervisor && !current_impersonation %>
+      <%= render 'components/popups/supervisor_without_impersonate' %>
+    <% else %>
+      <div class="dashboard-overlay hidden"></div>
+      <div class="form-perk-container">
+        <%= render 'pro/perks/form/create' %>
+      </div>
+    <% end %>  
   </div>
 </div>
