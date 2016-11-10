@@ -18,10 +18,18 @@ class BusinessPolicy < ApplicationPolicy
   end
 
   def dashboard?
-    user == record
+    if user.supervisor
+      user == record.manager || user == record
+    else
+      user == record
+    end
   end
 
   def profile?
-    user == record
+    if user.supervisor
+      user == record.manager || user == record
+    else
+      user == record
+    end
   end
 end
