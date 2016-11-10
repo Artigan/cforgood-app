@@ -4,7 +4,13 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
 
   # ROOT TO LANDING WEBSITE
-  root  to: redirect("http://cforgood.github.io/landings/")
+  if Rails.env.development?
+    devise_scope :user do
+      root to: 'devise/sessions#new'
+    end
+  else
+    root to: redirect("http://cforgood.github.io/landings/")
+  end
   get 'about',                    to: 'pages#about'
   get 'notre_charte',             to: 'pages#charte'
   get 'cgu',                      to: 'pages#cgu'
@@ -55,7 +61,7 @@ Rails.application.routes.draw do
   end
 
   namespace :pro do
-    resources :businesses, only: [:show, :update] do
+    resources :businesses, only: [:show, :update, :new, :create] do
       resources :addresses
       resources :perks, only: [:index, :new, :create]
       get 'dashboard',  to: 'dashboard#dashboard'

@@ -55,6 +55,9 @@
           <%= submit_tag "Valider", class: "" %>
         <% end %>
       </div>
+      <div>
+        <%= link_to "Créer un commerce", new_pro_business_path, class: "btn btn-primary" %>
+      </div>
     <% end %>
     <% if current_impersonation %>
       <div class="btn btn-success">

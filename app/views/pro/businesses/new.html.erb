@@ -1,0 +1,25 @@
+<div class="container-fluid admin">
+  <!-- Sub Menu Sidebar -->
+  <%= render "pro/dashboard/shared/sidebar" %>
+  <!-- Content - Statistics -->
+  <div class="dashboard">
+    <%= @error %>
+    <div class="mobile-menu-overlay hidden"></div>
+    <div class="mobile-title">
+      <%= image_tag('logopouce.png', class: '') %>
+      <span>Création d'un nouveau commerce</span>
+    </div>
+    <div class="container text-center" style="padding-top: 30px;">
+      <%= simple_form_for(@business, url: pro_businesses_path) do |f| %>
+        <%= f.error_notification %>
+        <%= f.input :name, placeholder: 'Nom commerce', required: true, label: "Nom du commerce" %>
+        <%= f.input :email, placeholder: 'Adresse email', required: true, label: "Email du commerce" %>
+        <%= f.input :city, placeholder: 'Ville', required: true, label: 'Ville' %>
+        <%= f.input :zipcode, as: :hidden %>
+
+        <%= f.input :business_category_id, required: true, label: 'Activité', collection: BusinessCategory.all %>
+        <%= f.button :submit, "Créer le commerce" %>
+      <% end %>
+    </div>
+  </div>
+</div>
