@@ -22,4 +22,19 @@
 #
 
 class BusinessHour < ApplicationRecord
+  belongs_to :business
+
+  extend TimeSplitter::Accessors
+  split_accessor :am_start_at, :am_end_at, :pm_start_at, :pm_end_at
+
+  def open?(time)
+    # false if time is "inside" any of the closed_time_blocks
+    # else is true if inside any of the open_time_blocks
+    # else is false
+  end
+
+  def closed?(time)
+    !open?
+  end
+
 end

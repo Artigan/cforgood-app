@@ -1,0 +1,40 @@
+<div class="form-edit-container">
+  <div class="form-edit">
+    <%= simple_form_for(@business, remote: true) do |f| %>
+      <%= f.error_notification %>
+      <div class="col-1">
+        <% I18n.t("date.day_names").each do |day| %>
+          <span class="day"><%= day %></span>
+          <!-- FORM HOUR -->
+          <div class="form-hour" id="<%= day %>">
+            <table>
+              <%= fields_for :business_hours, (@business.business_hours.find_by_day(day) || @business.business_hours.new) do |business_hour| %>
+                <tr>
+                  <td><%= business_hour.select :am_start_at_hour, label: "De", collection: pad0(0..23), selected: pad0(business_hour.object.am_start_at_hour) %></td>
+                  <td><%= business_hour.text_field :am_start_at_min, label: ":", collection: pad0([0, 15, 30, 45]), selected: pad0(business_hour.object.am_start_at_min) %></td>
+                  <td><%= business_hour.text_field :am_end_at_hour, label: "à", collection: pad0(0..23), selected: pad0(business_hour.object.am_start_at_hour) %> </td>
+                  <td><%= business_hour.text_field :am_end_at_min, label: ":", collection: pad0([0, 15, 30, 45]), selected: pad0(business_hour.object.am_start_at_min) %> </td>
+                  <td><%= business_hour.text_field :pm_start_at_hour, label: "De", collection: pad0(0..23), selected: pad0(business_hour.object.pm_start_at_hour) %></td>
+                  <td><%= business_hour.text_field :pm_start_at_min, label: ":", collection: pad0([0, 15, 30, 45]), selected: pad0(business_hour.object.pm_start_at_min) %></td>
+                  <td><%= business_hour.text_field :pm_end_at_hour, label: "à", collection: pad0(0..23), selected: pad0(business_hour.object.pm_end_at_hour) %> </td>
+                  <td><%= business_hour.text_field :pm_end_at_min, label: ":", collection: pad0([0, 15, 30, 45]), selected: pad0(business_hour.object.pm_end_at_min) %> </td>
+                </tr>
+              <% end %>
+            </table>
+          </div>
+        <% end %>
+      </div>
+      <div class="col-2">
+        <%= f.button :submit, "Sauvegarder" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<% content_for :after_js do %>
+  <script>
+    $(document).ready(function() {
+
+    });
+  </script>
+<% end %>
