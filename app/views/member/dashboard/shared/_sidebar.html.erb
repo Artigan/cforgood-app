@@ -1,7 +1,7 @@
 
 
 
-<div class="leftmenu-v2">
+<div class="leftmenu-v2 hidden-xs">
 
   <!-- USER SIGN IN -->
   <% if user_signed_in? %>
@@ -63,7 +63,7 @@
   <% if user_signed_in? %>
     <div class="signout">
       <%= link_to destroy_user_session_path, method: :delete do %>
-        <%= image_tag('icons/signout.png', :class => 'signout-icon sign-out') %><%= t ".se_déconnecter", default: "À bientôt" %>
+        <%= image_tag('', :class => 'signout-icon sign-out') %><%= t ".se_déconnecter", default: "À bientôt" %>
       <% end %>
     </div>
   <% end %>
@@ -74,19 +74,6 @@
 
 
 
-
-<% if user_signed_in? %>
-      <!-- MOBILE | OPEN MENU DROPDOWN -->
-      <li id="profile-tab" class="mobile-dropdown">
-        <a href="#">
-          <div class="icon-container">
-            <%= render "shared/icons/profile" %>
-          </div>
-          <span class="admin-label">Mon profil</span>
-        </a>
-        <%= render "components/navbar_dropdown_profile" %>
-      </li>
-<% end %>
 
 
 
