@@ -60,13 +60,7 @@
 
   <% end %>
 
-  <% if user_signed_in? %>
-    <div class="signout">
-      <%= link_to destroy_user_session_path, method: :delete do %>
-        <%= image_tag('', :class => 'signout-icon sign-out') %><%= t ".se_déconnecter", default: "À bientôt" %>
-      <% end %>
-    </div>
-  <% end %>
+
 
 </div>
 
