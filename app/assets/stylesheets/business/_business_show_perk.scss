@@ -1304,6 +1304,7 @@
   border-radius: 30px;
   font-size: 12px;
   cursor: pointer;
+  margin-bottom: 50px;
 }
 
 
@@ -1380,5 +1381,36 @@
 @media all and (min-width: 768px) {
   .fixed-bottom-container-button {
     display: none;
+  }
+}
+
+
+
+
+.perk-modal-mobile {
+  position: fixed;
+  height: 100%;
+  overflow-y: scroll;
+  width: 100%;
+  z-index: 5555;
+  top: 50px;
+  left: 0;
+  background-color: white;
+  padding-left: 8%;
+  padding-right: 8%;
+  padding-bottom: 25px;
+}
+
+
+.perk-modal-close-mobile {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  font-size: 22px;
+  color: rgba(55,55,55,0.6);
+  transition: 0.5s ease;
+  cursor: pointer;
+  &:hover {
+    color: rgba(55,55,55,0.9);
   }
 }
