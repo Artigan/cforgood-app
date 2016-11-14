@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
 
-    cookies[:user_cforgood] = {
+    cookies.permanent[:user_cforgood] = {
       value: 'login',
       domain: ENV['COOKIES_DOMAIN']
     }
