@@ -512,7 +512,6 @@
   margin-left: 30px;
   width: 35px;
   border-radius: 50%;
-  background-image: url("http://www.lovemarks.com/wp-content/uploads/Lovemark-KellySlater-Standard-600x600.jpg");
   background-size: cover;
   background-position: center center;
   &:hover {
@@ -557,7 +556,7 @@
   font-size: 11px;
   color: rgba(55,55,55,0.5) !important;
   opacity: 0;
-  margin-right: 20px;
+  margin-left: 20px;
 }
 
 
@@ -565,6 +564,7 @@
 
 .droptext-opacity {
   font-size: 13px;
+  margin-left: 20px;
   transition: 0.4s ease;
   color: rgba(55,55,55,0.3) !important;
   &:hover {
@@ -646,7 +646,7 @@
   height: 30px;
   padding-left: 20px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
 }
 
