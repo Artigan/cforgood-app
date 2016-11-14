@@ -36,7 +36,7 @@
 <div class="fullpage">
 
   <div class="fullpage-left-item">
-    <div class="colored-banner">
+    <div class="colored-banner" style="background-color: <%= @business.business_category.color %>;">
       <div class="banner-business-name">
         <div><%= @business.name %></div>
       </div>
@@ -53,11 +53,11 @@
       <div class="card-abs-banner">
           <div class="card-photo" style="background-image: url('<%= @business.picture %>');"></div>
         <div class="card-bottom-links">
-          <div class="card-bottom-left-item">
+          <div class="card-bottom-left-item" style="background-color: <%= @business.business_category.color %>;">
             <div class="card-red-heart">
               <i class="fa fa-heart" aria-hidden="true"></i>
             </div>
-            <div class="firstblock-text"><%= "63 personnes aiment #{@business.name}" %></div>
+            <div class="firstblock-text"><%= "63 personnes" %></div>
           </div>
           <div class="card-bottom-right-item">
             <div class="cbri-firstblock">
@@ -74,8 +74,8 @@
       </div>
     </div>
     <div class="fullpage-left-item-bottom">
-      <div class="flib-header">
-        <div>LEURS ENGAGEMENTS</div>
+      <div class="">
+        <div class="title-sub">Leurs engagements</div>
       </div>
       <div class="flib-engages">
         <div class="flib-engages-item">
@@ -91,8 +91,8 @@
           <div class="flib-text">Circuit court</div>
         </div>
       </div>
-      <div class="flib-header">
-        <div>EN QUELQUES MOTS</div>
+      <div class="">
+        <div class="title-sub">En quelques mots</div>
       </div>
       <% if @business.description.present? %>
         <div class="business-desc">
@@ -101,26 +101,27 @@
       <% else %>
         <div class="business-desc">Profil en construction</div>
       <% end %>
-      <div class="flib-header">
-        <div>DETAILS</div>
+      <div class="">
+        <div class="title-sub">Informations</div>
       </div>
     </div>
   </div>
 
   <div class="fullpage-right-item hidden-xs">
     <div class="fri-header">
-      <div>NOS BONS PLANS</div>
+      <div class="biz-avatar" style="background-image: url('<%= @business.business_category.picture %>');"></div>
+      <div class="title-sub" style="margin-bottom: 0px;">Nos bons plans</div>
     </div>
     <div class="perk-card-container">
       <div class="perk-card">
-        <div class="perk-card-left-item">
+        <div class="perk-card-left-item" style="background-color: <%= @business.business_category.color %>;">
           <div class="perk-card-absolute-photo"></div>
         </div>
         <div class="perk-card-right-item">
 
           <div class="pcri-container">
             <div class="pcri-item">
-              <div class="pcri-item-tooltip">
+              <div class="pcri-item-tooltip" style="background-color: <%= @business.business_category.color %>;">
                 <div>OFFERT</div>
               </div>
             </div>
@@ -192,5 +193,19 @@
 
 
 
+
+</div>
+
+
+
+
+<div class="fixed-bottom-container-button">
+
+  <div class="fixed-bottom-perk-link visible-xs" style="border-top: 2px solid <%= @business.business_category.color %> ;">
+
+    <div class="see-perk-button" style="background-color: <%= @business.business_category.color %>;">Voir nos bons plans</div>
+
+
+  </div>
 
 </div>
