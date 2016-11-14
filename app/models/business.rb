@@ -40,8 +40,6 @@
 #  picture                :string
 #  leader_picture         :string
 #  logo                   :string
-#  supervisor             :boolean          default(FALSE)
-#  supervisor_id          :integer
 #
 # Indexes
 #
