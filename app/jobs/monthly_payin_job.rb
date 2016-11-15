@@ -26,6 +26,7 @@ class MonthlyPayinJob < ApplicationJob
             email: user.email
           )
         rescue Intercom::IntercomError => e
+          puts e
         end
         nb_events_trial_J_7 += 1
         report << "MEMBER ON TRIAL J-7 | event intercom | #{user.id} | #{user.email}"
@@ -55,6 +56,7 @@ class MonthlyPayinJob < ApplicationJob
             email: user.email
           )
         rescue Intercom::IntercomError => e
+          puts e
         end
         nb_events_trial_J_3 += 1
         report << "MEMBER ON TRIAL J-3 | event intercom | #{user.id} | #{user.email}"
@@ -98,6 +100,7 @@ class MonthlyPayinJob < ApplicationJob
             email: user.email
           )
         rescue Intercom::IntercomError => e
+          puts e
         end
         nb_events_trial_J_0 += 1
         report << "MEMBER ON TRIAL J-0 | event intercom + member inactivate | #{user.id} | #{user.email}"
@@ -177,6 +180,7 @@ class MonthlyPayinJob < ApplicationJob
           email: user.email
         )
       rescue Intercom::IntercomError => e
+        puts e
       end
       nb_events_member_J_7 += 1
       report << "MONTHLY MEMBER J+7 | event intercom + member inactivate | #{user.id} | #{user.email}"
@@ -220,18 +224,13 @@ class MonthlyPayinJob < ApplicationJob
     result = MangopayServices.new(user).create_mangopay_payin(wallet_id)
 
     if result["ResultMessage"] != "Success"
+      message = "#{user.id} | #{user.email} | *erreur lors du paiement* | #{result['ResultCode']} | #{result['ResultMessage']}"
       # Message on slack
       if Rails.env.production?
         notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_USER_URL']
-        if user.last_name.present?
-          message = "#{user.first_name} #{user.last_name}"
-        elsif name.present?
-          message = "#{user.name}"
-        else
-          message = "#{user.email}"
-        end
-        message = "#{user.id} | #{user.email} | *erreur lors du paiement* | #{result['ResultCode']} | #{result['ResultMessage']}"
         notifier.ping message
+      else
+        puts message
       end
     end
 
@@ -239,7 +238,7 @@ class MonthlyPayinJob < ApplicationJob
     @payment.save
 
     if @payment.done
-      user.update_attribute("date_last_payment", Time.now)
+      user.update(date_last_payment: Time.now, code_partner: nil, date_end_partner: nil)
       return true
     else
       intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
