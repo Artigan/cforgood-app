@@ -180,6 +180,15 @@ class User < ApplicationRecord
     self.save
   end
 
+  def trial_done?
+    if self.code_partner.present? && !self.trial_done
+      self.trial_done = true
+      return self.save
+    end
+    return false
+  end
+
+
   def stop_subscription!
     self.member = false
     self.date_stop_subscription = Time.now
