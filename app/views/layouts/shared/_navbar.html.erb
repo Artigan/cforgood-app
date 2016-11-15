@@ -19,41 +19,28 @@
 
 
 
-    <div class="dropdown" id="button-dropdown-navbar">
+    <div class="dropdown">
 
       <% if current_user.picture.present? %>
-        <div class="avatar-navbar dropdown-toggle" data-toggle="dropdown" style="background-image: url(<%= avatar_url(current_user) %>);"><div class="caret"></div>
+        <div class="avatar-navbar" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><div class="caret" style="background-image: url(<%= avatar_url(current_user) %>);"></div>
         </div>
       <% else %>
-        <%= image_tag "default_pic.png", class: "img-circle", size: "12x12" %>
+        <%= image_tag "default_pic.png", class: "img-circle" %>
       <% end %>
 
 
-
-
-
-
-
-
-
-
-
-
-      <ul class="dropdown-menu dropdown-menu-right">
+      <ul class="dropdown-menu dropdown-menu-right" id="dropdownMenu1">
 
         <div class="drop-header-container">
-          <% if user_signed_in? %>
-            <%= link_to member_user_profile_path(current_user) do %>
-              <div class="droptext-bold"><%= current_user.first_name %>&nbsp;<%= current_user.last_name %></div>
-            <% end %>
-          <% else %>
+          <%= link_to member_user_dashboard_path(current_user) do %>
+            <a href="#" class="droptext-bold"><%= current_user.first_name %></a>
           <% end %>
           <div class="droptext-thin">Mon profil</div>
         </div>
 
         <li role="separator" class="divider"></li>
-        <li><div class="droptext-opacity">Aide et conseils</div></li>
-        <li><div class="droptext-opacity">Déconnexion</div></li>
+        <li><a href="#" class="droptext-opacity">Aide et conseils</a></li>
+        <li><a href="#" class="droptext-opacity">Déconnexion</a></li>
       </ul>
     </div>
 
