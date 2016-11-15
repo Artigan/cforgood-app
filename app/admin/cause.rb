@@ -34,6 +34,8 @@ ActiveAdmin.register Cause do
       f.input :picture, :as => :file
       f.input :logo, :as => :file
       f.input :link_video
+      f.input :like
+      f.input :unlike
     end
     f.inputs "Admin" do
       f.input :active
@@ -42,6 +44,6 @@ ActiveAdmin.register Cause do
   end
 
   permit_params :name, :email, :cause_category_id, :impact, :url, :latitude, :longitude, :description, :amount_impact, :description_impact, :street, :zipcode, :city, :telephone, :facebook, :twitter, :instagram, :picture, :logo, :active, :representative_first_name,
- :representative_last_name, :link_video
+ :representative_last_name, :link_video, :like, :unlike
 
 end
