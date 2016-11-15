@@ -7,7 +7,7 @@ if (<%= !current_user.errors.any? %>) {
       $(".signup-payment").addClass("slideup");
       $("#signup-breadcrumb").addClass("slide-3");
       if (<%= current_user.code_partner.present? %>) {
-        $('.days').html("<%= (current_user.date_end_partner - Date.today).to_i %>");
+        $('.days').html("<%= current_user.date_end_partner.present? ? (current_user.date_end_partner - Date.today).to_i  : "" %>");
         $('.message-subscription').removeClass('hidden');
       }
       if ($(window).width() <= 320) {
