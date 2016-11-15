@@ -1,76 +1,91 @@
-
-
-
-<div class="leftmenu-v2 hidden-xs">
-
-  <!-- USER SIGN IN -->
-  <% if user_signed_in? %>
-
-    <div class="leftmenu-v2-item <%= active_class(member_user_dashboard_path(current_user))%>">
-      <%= link_to member_user_dashboard_path(current_user) do %>
-        <div class="left-menu-svg-container" style="background-image: url(<%= asset_path "autourdemoi.svg" %>)"></div>
-        <div class="left-menu-text">Autour de moi</div>
+<div class="users-sidebar">
+  <ul id="sidebar">
+    <!-- USER SIGN IN -->
+    <% if user_signed_in? %>
+      <li class="<%= active_class(member_user_dashboard_path(current_user))%>">
+        <%= link_to member_user_dashboard_path(current_user) do %>
+          <div class="icon-container">
+            <%= render "shared/icons/around_me" %>
+          </div>
+          <span class="admin-label">Autour de moi</span>
+        <% end %>
+      </li>
+      <li class="<%= active_class(businesses_path)%> light">
+        <%= link_to businesses_path do %>
+          <div class="icon-container">
+            <%= render "shared/icons/perks" %>
+          </div>
+          <span class="admin-label">Les Bons Plans</span>
+        <% end %>
+      </li>
+      <li class="<%= active_class(asso_causes_path)%> light">
+        <%= link_to asso_causes_path do %>
+          <div class="icon-container">
+            <%= render "shared/icons/causes" %>
+          </div>
+          <span class="admin-label">Les associations</span>
+        <% end %>
+      </li>
+      <% if device_type != :mobile %>
+        <li class="<%= active_class(member_user_ambassador_path(current_user)) %> light ">
+          <%= link_to member_user_ambassador_path(current_user) do %>
+            <div class="icon-container">
+              <%= render "shared/icons/ambassador" %>
+            </div>
+            <span class="admin-label">Espace ambassadeur</span>
+          <% end %>
+        </li>
       <% end %>
-    </div>
-
-    <div class="leftmenu-v2-item <%= active_class(businesses_path) %>">
-      <%= link_to businesses_path do %>
-        <div class="left-menu-svg-container" style="background-image: url(<%= asset_path "bonplan.svg" %>)"></div>
-        <div class="left-menu-text">Bons plans</div>
-      <% end %>
-    </div>
-
-    <div class="leftmenu-v2-item <%= active_class(asso_causes_path) %>">
-      <%= link_to asso_causes_path do %>
-        <div class="left-menu-svg-container" style="background-image: url(<%= asset_path "association.svg" %>)"></div>
-        <div class="left-menu-text">Associations</div>
-      <% end %>
-    </div>
-
-    <div class="leftmenu-v2-item <%= active_class(member_user_ambassador_path(current_user)) %>">
-      <%= link_to member_user_ambassador_path(current_user) do %>
-        <div class="left-menu-svg-container" style="background-image: url(<%= asset_path "ambassadeur.svg" %>)"></div>
-        <div class="left-menu-text">Ambassadeur</div>
-      <% end %>
-    </div>
 
     <!-- USER NOT SIGN IN -->
-  <% else %>
+    <% else %>
+      <li class="<%= active_class(map_path)%>">
+        <%= link_to map_path do %>
+          <div class="icon-container">
+            <%= render "shared/icons/around_me" %>
+          </div>
+          <span class="admin-label">Autour de moi</span>
+        <% end %>
+      </li>
+      <li class="<%= active_class(businesses_path)%> light">
+        <%= link_to new_member_subscribe_path do %>
+          <div class="icon-container">
+            <%= render "shared/icons/perks" %>
+          </div>
+          <span class="admin-label">Les Bons Plans</span>
+        <% end %>
+      </li>
+      <li class="<%= active_class(asso_causes_path)%> light">
+        <%= link_to new_member_subscribe_path do %>
+          <div class="icon-container">
+            <%= render "shared/icons/causes" %>
+          </div>
+          <span class="admin-label">Les associations</span>
+        <% end %>
+      </li>
+    <% end %>
 
-    <div class="leftmenu-v2-item <%= active_class(map_path) %>">
-      <%= link_to map_path do %>
-        <div class="left-menu-svg-container" style="background-image: url(<%= asset_path "autourdemoi.svg" %>)"></div>
-        <div class="left-menu-text">Autour de moi</div>
+    <% if user_signed_in? %>
+      <!-- MOBILE | OPEN MENU DROPDOWN -->
+      <li id="profile-tab" class="mobile-dropdown">
+        <a href="#">
+          <div class="icon-container">
+            <%= render "shared/icons/profile" %>
+          </div>
+          <span class="admin-label">Mon profil</span>
+        </a>
+        <%= render "components/navbar_dropdown_profile" %>
+      </li>
+    <% end %>
+  </ul>
+  <% if user_signed_in? %>
+    <div class="signout">
+      <%= link_to destroy_user_session_path, method: :delete do %>
+        <%= image_tag('icons/signout.png', :class => 'signout-icon sign-out') %><%= t ".se_déconnecter", default: "À bientôt" %>
       <% end %>
     </div>
-
-    <div class="leftmenu-v2-item <%= active_class(businesses_path) %>">
-      <%= link_to new_member_subscribe_path do %>
-        <div class="left-menu-svg-container" style="background-image: url(<%= asset_path "bonplan.svg" %>)"></div>
-        <div class="left-menu-text">Bon plans</div>
-      <% end %>
-    </div>
-
-    <div class="leftmenu-v2-item <%= active_class(asso_causes_path) %>">
-      <%= link_to new_member_subscribe_path do %>
-        <div class="left-menu-svg-container" style="background-image: url(<%= asset_path "association.svg" %>)"></div>
-        <div class="left-menu-text">Associations</div>
-      <% end %>
-    </div>
-
   <% end %>
-
-
-
 </div>
-
-
-
-
-
-
-
-
 
 
 <% content_for :after_js do %>
@@ -88,6 +103,3 @@
     });
   </script>
 <% end %>
-
-
-

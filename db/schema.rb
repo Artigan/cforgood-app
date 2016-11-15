@@ -45,6 +45,21 @@ ActiveRecord::Schema.define(version: 20161107103136) do
     t.index ["business_id"], name: "index_addresses_on_business_id", using: :btree
   end
 
+  create_table "attachinary_files", force: :cascade do |t|
+    t.integer  "attachinariable_id"
+    t.string   "attachinariable_type"
+    t.string   "scope"
+    t.string   "public_id"
+    t.string   "version"
+    t.integer  "width"
+    t.integer  "height"
+    t.string   "format"
+    t.string   "resource_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["attachinariable_type", "attachinariable_id", "scope"], name: "by_scoped_parent", using: :btree
+  end
+
   create_table "business_categories", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at",    null: false
@@ -293,6 +308,7 @@ ActiveRecord::Schema.define(version: 20161107103136) do
   add_foreign_key "payments", "causes"
   add_foreign_key "payments", "users"
   add_foreign_key "perks", "businesses"
+  add_foreign_key "plans", "users"
   add_foreign_key "prospects", "users"
   add_foreign_key "user_histories", "causes"
   add_foreign_key "user_histories", "users"

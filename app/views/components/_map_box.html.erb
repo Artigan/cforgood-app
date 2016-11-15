@@ -1,4 +1,4 @@
-<!-- <div class="map-box">
+<div class="map-box">
   <div class="box-header">
     <% if business.picture.present? %>
       <%= image_tag business.picture.url(:thumb) %>
@@ -36,72 +36,5 @@
       </ul>
     </div>
   </div>
-</div> -->
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="mapboxv2">
-
-
-
-
-
-      <% business.perks_in_time.each do |perk| %>
-        <% if !flash || (flash && perk.flash) %>
-
-            <%= link_to business_path(perk.business_id, perk_id: perk.id, address_id: address), class: "link-business-plus" do %>
-              <i class="fa fa-plus"></i>
-            <% end %>
-
-        <% end %>
-      <% end %>
-
-
-
-
-
-
-
-
-  <div class="mv2-photo" style="background-image: url('<%= business.picture.url(:thumb) %>');"></div>
-
-  <div class="mv2-content">
-
-    <div class="mv2-content-top">
-      <div class="mv2-content-top-top">
-        <div class="mv2-content-top-top-text"><%= business.name %></div>
-      </div>
-      <div class="mv2-content-top-bottom">
-        <div class="mv2-content-top-bottom-text"><%= business.business_category.name %></div>
-      </div>
-    </div>
-
-    <div class="mv2-content-bottom">
-
-      <div class="mv2-content-bottom-left">
-        <div class="available-perk-text">2 bons plans disponibles</div>
-      </div>
-
-      <div class="mv2-content-bottom-right">
-        <div class="asso-card-red-heart-v2">
-            <i class="fa fa-heart" aria-hidden="true"></i>
-        </div>
-        <div class="asso-firstblock-text-v2">63</div>
-      </div>
-
-    </div>
-
-  </div>
-
-
 </div>
 
