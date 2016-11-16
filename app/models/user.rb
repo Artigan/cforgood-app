@@ -211,7 +211,7 @@ class User < ApplicationRecord
     end
 
     #SEND EVENT TO SLACK
-    message =  find_name_or_email? + " a résilié son abonnement de " + self.amount.to_s + "€."
+    message =  find_name_or_email? + " a résilié son abonnement. |" + self.email + "|"
 
     if Rails.env.production?
       notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_USER_URL']
