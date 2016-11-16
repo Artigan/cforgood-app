@@ -25,6 +25,9 @@
     <% if user_signed_in? %>
       <% if !current_user.member %>
         <%= render 'components/popups/not_member_dashboard' %>
+      <% elsif current_user.trial_done? %>
+        <!-- POPUP TRIAL -->
+        <%= render 'components/popups/welcome_member_trial' %>
       <% elsif @businesses_around == 0 %>
         <%= render 'components/popups/no_perks_dashboard' %>
       <% end %>
@@ -57,11 +60,6 @@
       <!-- POPUP PERKS WITHOUT FEEDBACK -->
       <% @uses_without_feedback.each do |use| %>
         <%= render(partial: 'uses/form/feedback_dashboard', locals: { use: use }) %>
-      <% end %>
-
-      <!-- POPUP TRIAL -->
-      <% if current_user.trial_done? %>
-        <%= render 'components/popups/welcome_member_trial' %>
       <% end %>
     </div>
   <% end %>
