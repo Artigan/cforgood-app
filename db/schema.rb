@@ -236,31 +236,6 @@ ActiveRecord::Schema.define(version: 20161115224729) do
     t.index ["perk_detail_id"], name: "index_perks_on_perk_detail_id", using: :btree
   end
 
-  create_table "plans", force: :cascade do |t|
-    t.integer  "user_id"
-    t.string   "subscription"
-    t.integer  "amount"
-    t.string   "code_partner"
-    t.date     "date_end_partner"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.index ["user_id"], name: "index_plans_on_user_id", using: :btree
-  end
-
-  create_table "prospects", force: :cascade do |t|
-    t.integer  "user_id"
-    t.string   "name"
-    t.string   "street"
-    t.string   "zipcode"
-    t.string   "city"
-    t.string   "leader_name"
-    t.string   "email"
-    t.boolean  "canvassed",   default: true, null: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.index ["user_id"], name: "index_prospects_on_user_id", using: :btree
-  end
-
   create_table "user_histories", force: :cascade do |t|
     t.integer  "user_id"
     t.boolean  "member",                 default: false, null: false

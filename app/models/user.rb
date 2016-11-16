@@ -69,7 +69,6 @@ class User < ApplicationRecord
   belongs_to :cause
   has_many :uses
   has_many :payments, dependent: :destroy
-  has_many :prospects
   has_many :user_histories
 
   scope :member, -> { where(member: true) }
