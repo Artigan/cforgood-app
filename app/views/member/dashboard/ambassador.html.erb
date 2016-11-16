@@ -10,7 +10,9 @@
   <%= render "member/dashboard/shared/sidebar" %>
   <!-- Content -->
   <div class="dashboard ambassador <%= current_user.ambassador %>">
+
     <% if !current_user.ambassador %>
+
       <!-- NOT AMBASSADOR -->
       <div class="picture-container">
         <% if current_user.picture? %>
@@ -33,7 +35,9 @@
       On vous promet une aventure folle pleine de rencontres bienveillantes, de bonnes idées, de surprises, de challenges et d'événements enthousiasmants !</p>
       <!-- <span class="label-info">Demande en cours de modération</span> -->
       <a class="button-link" href="https://cforgood1.typeform.com/to/erHCLs" data-mode="1" target="_blank">Devenir Ambassadeur</a>
+
     <% else %>
+
       <!-- AMBASSADOR -->
       <div class="ambassasor-container">
         <!-- Header -->
@@ -55,7 +59,7 @@
             <% end %>
             <span class="label-info">Ambassadeur</span>
           </div>
-          <button class="button-link form">Déclarer un commerce</button>
+          <a href="https://www.appsheet.com/start/3ffdccbf-a018-4518-812b-22e6e30d08d1?utm_medium=email&utm_source=transactional&utm_campaign=Share+the+App+Conversions#_appName=AmbassadeurBoard-217783&_control=Bordeaux&_imageDisplayType=Square+Image&_page=deck&_showActionBar=true&_sortBy%5B0%5D%5BColumn%5D=Commerce&_sortBy%5B0%5D%5BOrder%5D=Ascending&_sortBy%5B1%5D%5BColumn%5D=Commer%C3%A7ant&_sortBy%5B1%5D%5BOrder%5D=Ascending&_table=Board+tri%C3%A9button" class="button-link app" target="_blank">Accès app ambassadeur</a>
         </div>
         <!-- Pitch -->
         <div class="pitch">
@@ -137,20 +141,13 @@
 <%= render partial: 'components/modals/modal_template', locals: {id: "modal-questions", source: "//bit.ly/FAQ_cforgood", style:"width:100%; height:600px; border:0;"} %>
 <%= render partial: 'components/modals/modal_template', locals: {id: "modal-ideas", source: "//bit.ly/boite_idée", style:"width:100%; height:600px; border:0;"} %>
 
-<%= render(partial: 'member/prospects/form/create', locals: {prospect: Prospect.new }) %>
-
 <% content_for :after_js do %>
 
   <script>
 
     $(document).ready(function() {
 
-      $(".button-modal").click(function() {
-        var idModal = $(this).attr('class').split(" ")[1];
-        $("#"+idModal).removeClass('hidden');
-      });
-
-      $(".button-more").click(function() {
+      $(".button-modal, .button-more").click(function() {
         var idModal = $(this).attr('class').split(" ")[1];
         $("#"+idModal).removeClass('hidden');
       });
@@ -158,14 +155,6 @@
       $('.button-close').click(function() {
         var idModal = $(this).attr('class').split(" ")[1];
         $("#"+idModal).addClass('hidden');
-      });
-
-      $('.button-link.form').click(function() {
-        $(".form-create-prospect").removeClass('hidden');
-      });
-
-      $('.button-close-create').click(function() {
-        $(".form-create-prospect").addClass('hidden');
       });
 
     });

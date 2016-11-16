@@ -69,7 +69,6 @@ class User < ApplicationRecord
   belongs_to :cause
   has_many :uses
   has_many :payments, dependent: :destroy
-  has_many :prospects
   has_many :user_histories
 
   scope :member, -> { where(member: true) }
@@ -180,6 +179,15 @@ class User < ApplicationRecord
     self.save
   end
 
+  def trial_done?
+    if self.code_partner.present? && !self.trial_done
+      self.trial_done = true
+      return self.save
+    end
+    return false
+  end
+
+
   def stop_subscription!
     self.member = false
     self.date_stop_subscription = Time.now
@@ -203,7 +211,7 @@ class User < ApplicationRecord
     end
 
     #SEND EVENT TO SLACK
-    message =  find_name_or_email? + " a résilié son abonnement de " + self.amount.to_s + "€."
+    message =  find_name_or_email? + " a résilié son abonnement. |" + self.email + "|"
 
     if Rails.env.production?
       notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_USER_URL']

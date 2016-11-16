@@ -29,6 +29,8 @@ Rails.application.routes.draw do
     post 'signin',                  to: 'devise/sessions#create'
     get 'signup',                   to: 'devise/registrations#new'
     post 'signup',                  to: 'devise/registrations#create'
+    get 'signup_trial',             to: 'devise/registrations#new'
+    post 'signup_trial',            to: 'devise/registrations#create'
     get "member/sent_mail",         to: "devise/passwords#sent_mail"
     put "member/update_cause",      to: "member/registrations#update_cause"
     put "member/update_profile",    to: "member/registrations#update_profile"
@@ -42,7 +44,6 @@ Rails.application.routes.draw do
       get "ambassador", to: "dashboard#ambassador"
     end
     resources :subscribe, only: [:new, :create, :update, :destroy]
-    resources :prospects, only: [:new, :create, :update]
     resources :perks, only: [:show]
   end
 

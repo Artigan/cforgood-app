@@ -27,8 +27,17 @@ class ApplicationController < ActionController::Base
           @mangopay_user = MangopayServices.new(current_user).create_mangopay_natural_user
           current_user.update_attribute(:mangopay_id, @mangopay_user["Id"])
         rescue MangoPay::ResponseError => e
+          puts e
         end
-        new_member_subscribe_path
+        # Signup from the landing with automatic fill code_partner
+        if request.env["HTTP_REFERER"].include?('signup_trial')
+          current_user.code_partner = "SIGNUPTRIAL"
+          current_user.save
+          member_user_dashboard_path(resource)
+        else
+          # Funnel subscritpion
+          new_member_subscribe_path
+        end
       else
         member_user_dashboard_path(resource)
       end
