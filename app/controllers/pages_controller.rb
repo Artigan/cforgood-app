@@ -2,7 +2,7 @@ class PagesController < ApplicationController
 
   before_action :redirect_to_dashboard!
 
-  skip_before_action :authenticate_user!, only: [:home, :newsletter, :landing_business, :landing_cause]
+  skip_before_action :authenticate_user!, only: [:home, :newsletter, :landing_business, :landing_cause, :faq_connect]
 
   def home
     @businesses = Business.active.joins(:perks).active.distinct
@@ -20,6 +20,10 @@ class PagesController < ApplicationController
       format.html {redirect_to :back}
       format.js { @result }
     end
+  end
+
+  def faq_connect
+    return redirect_to root_path unless current_business || current_user
   end
 
   private
