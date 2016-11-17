@@ -529,7 +529,7 @@
         }
 
         /* Profile supervisor ********************/
-        .perk-map {
+        .supervisor-map {
           position: relative;
           padding: 10px;
           margin-top: 20px;
@@ -540,9 +540,8 @@
           border-radius: 3px;
 
           /* BLOCK - MAP **************************/
-          #map-perk-desktop {
+          #map-supervisor {
             height: 100%;
-            opacity: 0.6;
 
             .mapboxgl-ctrl-attrib {
               display: none;

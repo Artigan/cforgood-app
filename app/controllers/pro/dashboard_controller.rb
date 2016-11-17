@@ -25,8 +25,39 @@ class Pro::DashboardController < Pro::ProController
   def supervisor_dashboard
     @business = current_business
     # A modifier !!!
-    @perks = Perk.all
+    @perks = @business.businesses_perks
     authorize @business
+
+    @geojson = {"type" => "FeatureCollection", "features" => []}
+
+    @business.businesses.each do |business|
+      # BUSINESS ADDRESSES
+      addresses = []
+      # Main shop address
+      addresses << [0, business.longitude, business.latitude, business.street] if business.shop
+      # Other addresses
+      business.addresses.each do |address|
+        # shop
+        addresses << [address.id, address.longitude, address.latitude, address.street] if business.shop and !address.day.present?
+        # itinerant
+        addresses << [address.id, address.longitude, address.latitude, address.street] if business.itinerant and address.day.present?
+      end
+
+      # LOAD ADDRESSES
+      addresses.uniq!
+      addresses.each do |address|
+        @geojson["features"] << {
+          "type": 'Feature',
+          "geometry": {
+            "type": 'Point',
+            "coordinates": [address[1], address[2]],
+          },
+          "properties": {
+            "marker-symbol": @business.business_category.marker_symbol
+          }
+        }
+      end
+    end
   end
 
   private

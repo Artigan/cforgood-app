@@ -2,8 +2,8 @@
   <!-- BLOCK MAP -->
   <div class="row">
     <div class="col-xs-12 col-md-6">
-      <div class="perk-map">
-        <div id="map-perk-desktop" style="width: 100%;"></div>
+      <div class="supervisor-map">
+        <div id="map-supervisor" style="width: 100%;"></div>
       </div>
     </div>
     <div class="col-xs-12 col-md-6">
@@ -51,5 +51,5 @@
 </div>
 
 <% content_for :after_js do %>
-  <%= render 'components/map_perk_show', geojson: @geojson %>
+  <%= render 'components/map_supervisor', geojson: @geojson, coordinates: [current_business.latitude, current_business.longitude] %>
 <% end %>
