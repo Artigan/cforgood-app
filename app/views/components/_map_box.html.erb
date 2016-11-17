@@ -52,7 +52,9 @@
 <div class="mapboxv2">
 
 
-
+      <div class="caret-absolute hidden-xs" style="color: <%= business.business_category.color %>">
+        <i class="fa fa-caret-up" aria-hidden="true"></i>
+      </div>
 
 
       <% business.perks_in_time.each do |perk| %>
@@ -76,7 +78,7 @@
 
   <div class="mv2-content">
 
-    <div class="mv2-content-top">
+    <div class="mv2-content-top" style="background-color: <%= business.business_category.color %>;">
       <div class="mv2-content-top-top">
         <div class="mv2-content-top-top-text"><%= business.name %></div>
       </div>
@@ -85,17 +87,21 @@
       </div>
     </div>
 
-    <div class="mv2-content-bottom">
+    <div class="mv2-content-bottom" style="background-color: <%= business.business_category.color %>;">
 
-      <div class="mv2-content-bottom-left">
-        <div class="available-perk-text">2 bons plans disponibles</div>
+      <div class="mv2-content-bottom-left" style="background-color: rgba(55,55,55,0.2);">
+        <% if business.perks.count == 1 %>
+          <div class="available-perk-text"><%= "#{business.perks.count} bon plan disponible" %></div>
+        <% else %>
+          <div class="available-perk-text"><%= "#{business.perks.count} bons plans disponibles" %></div>
+        <% end %>
       </div>
 
-      <div class="mv2-content-bottom-right">
+      <div class="mv2-content-bottom-right" style="background-color: rgba(55,55,55,0.2);">
         <div class="asso-card-red-heart-v2">
             <i class="fa fa-heart" aria-hidden="true"></i>
         </div>
-        <div class="asso-firstblock-text-v2">63</div>
+        <div class="asso-firstblock-text-v2"><%= business.sign_in_count %></div>
       </div>
 
     </div>
@@ -104,4 +110,5 @@
 
 
 </div>
+
 

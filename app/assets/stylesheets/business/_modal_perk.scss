@@ -1,14 +1,18 @@
 /* MODAL - USE CODE  **********************************************************/
 
+
+
+
+
 .use-overlay {
   display: flex;
   justify-content: center;
   align-items: center;
   position: fixed;
   top: 0;
-  bottom: 10%;
+  bottom: 0%;
   right: 0;
-  left: 0;
+  left: 90px;
   z-index: 200;
   background-color: rgba(0,0,0,0.6);
   @include transition(all, 0.3s, ease-in-out);
@@ -353,9 +357,9 @@
 }
 
 
-@media only screen and (min-width:769px){
+@media (max-width:768px) {
   .use-overlay {
-    bottom: 0;
-    left: 90px;
+    left: 0px;
+    bottom: 0% !important;
   }
 }
