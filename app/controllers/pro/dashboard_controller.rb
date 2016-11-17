@@ -24,6 +24,8 @@ class Pro::DashboardController < Pro::ProController
 
   def supervisor_dashboard
     @business = current_business
+    # A modifier !!!
+    @perks = Perk.all
     authorize @business
   end
 

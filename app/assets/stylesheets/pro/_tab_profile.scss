@@ -527,6 +527,28 @@
             }
           }
         }
+
+        /* Profile supervisor ********************/
+        .perk-map {
+          position: relative;
+          padding: 10px;
+          margin-top: 20px;
+          height: 460px;
+          width: 95%;
+          background-color: #fff;
+          box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+          border-radius: 3px;
+
+          /* BLOCK - MAP **************************/
+          #map-perk-desktop {
+            height: 100%;
+            opacity: 0.6;
+
+            .mapboxgl-ctrl-attrib {
+              display: none;
+            }
+          }
+        }
       }
     }
 
