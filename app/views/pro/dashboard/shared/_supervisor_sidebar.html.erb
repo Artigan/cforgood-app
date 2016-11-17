@@ -2,15 +2,17 @@
 <% if business_signed_in? %>
   <div class="business-sidebar">
     <ul id="sidebar">
-      <li class="<%= active_class(pro_business_dashboard_path(current_business))%> supervisor-profile">
-        <%= link_to '#' do %>
-          <div class="icon-container">
-            <!-- icone à modifier -->
-            <%= render "shared/icons/analytics" %>
-          </div>
-          <span class="admin-label">Mes informations</span>
-        <% end %>
-      </li>
+      <% if device_type != :mobile %>
+        <li class="<%= active_class(pro_business_supervisor_dashboard_path(current_business))%> supervisor-profile">
+          <%= link_to pro_business_supervisor_dashboard_path(current_business) do %>
+            <div class="icon-container">
+              <!-- icone à modifier -->
+              <%= render "shared/icons/analytics" %>
+            </div>
+            <span class="admin-label">Mon compte</span>
+          <% end %>
+        </li>
+      <% end %>
       <li class="<%= active_class(pro_business_dashboard_path(current_business))%>">
         <%= link_to pro_business_dashboard_path(current_business) do %>
           <div class="icon-container">
@@ -50,7 +52,7 @@
           <div class="icon-container">
             <%= image_tag('icons/profil.png', :class => 'admin-icon') %>
           </div>
-          <span class="admin-label">Son profil</span>
+          <span class="admin-label">Mon compte</span>
         </a>
         <ul class="mobile-menu hidden">
           <!-- BUSINESS DETAILS -->
@@ -66,8 +68,13 @@
           <% end %>
           <!-- OTHER LINKS -->
           <li class="<%= active_class(edit_business_registration_path(current_business)) %>">
+            <%= link_to pro_business_supervisor_dashboard_path(current_business) do %>
+              <i class="fa fa-user-plus"></i>Mon compte
+            <% end %>
+          </li>
+          <li class="<%= active_class(edit_business_registration_path(current_business)) %>">
             <%= link_to pro_business_profile_path(current_business) do %>
-              <i class="fa fa-user"></i>Mon profil
+              <i class="fa fa-user"></i>Son profil
             <% end %>
           </li>
           <li>

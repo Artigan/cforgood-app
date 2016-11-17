@@ -22,6 +22,11 @@ class Pro::DashboardController < Pro::ProController
     authorize @business
   end
 
+  def supervisor_dashboard
+    @business = current_business
+    authorize @business
+  end
+
   private
 
   def find_business

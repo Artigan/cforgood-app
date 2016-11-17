@@ -25,6 +25,10 @@ class BusinessPolicy < ApplicationPolicy
     end
   end
 
+  def supervisor_dashboard?
+    user == record
+  end
+
   def profile?
     if user.supervisor
       user == record.manager || user == record

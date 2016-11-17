@@ -67,7 +67,7 @@ Rails.application.routes.draw do
       get 'dashboard',  to: 'dashboard#dashboard'
       post 'impersonation', to: 'dashboard#set_impersonation'
       get "profile",    to: "dashboard#profile"
-
+      get "supervisor_dashboard", to: "dashboard#supervisor_dashboard"
     end
     resources :perks, only: [:show, :edit, :update, :destroy]
     resources :addresses, only: [:update]
