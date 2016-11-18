@@ -75,15 +75,16 @@ class Business < ApplicationRecord
   scope :for_map, -> { where('businesses.shop = ? or businesses.itinerant = ?', true, true) }
   scope :shop, -> { where(shop: true) }
   scope :itinerant, -> { where(itinerant: true) }
+  scope :supervisor, -> { where(supervisor: true) }
 
   validates :email, presence: true, uniqueness: true
-  validates :business_category_id, presence: true
+  validates :business_category_id, presence: true, unless: :supervisor
   validates :name, presence: true
   validates :url, format: { with: /\Ahttps?:\/\/[\S]+/, message: "Votre URL doit commencer par http:// ou https://" }, allow_blank: true
 
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
-  before_save :controle_geocode!, if: :address_changed?
+  before_save :controle_geocode!, :assign_supervisor, if: :address_changed?
 
   validates_size_of :picture, maximum: 2.megabytes,
     message: "Cette image dépasse 2 MG !", if: :picture_changed?
@@ -172,6 +173,10 @@ class Business < ApplicationRecord
       self.latitude -= 0.0001
       self.longitude += 0.0001
     end
+  end
+
+  def assign_supervisor
+    self.manager = Business.supervisor.near([self.latitude, self.longitude], 10).first
   end
 
 end
