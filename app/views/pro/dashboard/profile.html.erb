@@ -42,7 +42,6 @@
 </div>
 
 <% content_for :after_js do %>
-
   <script>
 
     $(document).ready(function() {
@@ -51,8 +50,36 @@
         $(".alert").remove();
         $(this).tab('show');
       });
+
+      // ******** START PREVENTDEFAULT ********
+      // $(".business-sidebar a").click(function(e){
+      //   e.preventDefault();
+      //   $(".done-overlay").removeClass("hidden");
+      // });
+      // ******** END PREVENTDEFAULT ********
+
+      // ******** START BEFOREUNLOAD ********
+      var saved = true;
+      var submitted = false;
+
+      $(":input").change(function () {
+       saved = false;
+       submitted = false;
+      });
+
+      $("form").submit(function() {
+        submitted = true;
+      });
+
+      $(window).on('beforeunload', function() {
+        if (submitted || saved) {
+          return undefined;
+        }
+        return "Vous n'avez pas sauvegardé le formulaire";
+      });
+      // ******** END BEFOREUNLOAD ********
+
     });
 
   </script>
-
 <% end %>
