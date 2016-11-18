@@ -49,9 +49,8 @@
     <!-- MENU ITEMS -->
     <% if business_signed_in? && pro_space? && current_business.supervisor %>
       <div class="impersonate_business">
-        <%= form_tag pro_business_impersonation_path(current_business), class: "form-inline" do %>
+        <%= form_tag pro_business_impersonation_path(current_business), class: "form-inline", id: "impersonate-form" do %>
           <%= select_tag :impersonate_id, options_from_collection_for_select(current_business.businesses, :id, :name, selected: session[:impersonate_id]), prompt: "Sélectionner un commerce" %>
-          <%= submit_tag "Valider", class: "" %>
         <% end %>
       </div>
       <div>

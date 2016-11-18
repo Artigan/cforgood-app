@@ -62,12 +62,12 @@
       var saved = true;
       var submitted = false;
 
-      $(":input").change(function () {
+      $(".form-edit input").change(function () {
        saved = false;
        submitted = false;
       });
 
-      $("form").submit(function() {
+      $(".form-edit form").submit(function() {
         submitted = true;
       });
 

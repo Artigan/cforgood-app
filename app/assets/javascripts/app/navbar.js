@@ -18,6 +18,8 @@ $(document).ready(function(){
     event.preventDefault();
     //$('body').bind('touchmove', function(e){e.preventDefault()})
   });
+
+  $('#impersonate_id').change(function() {
+    $('#impersonate-form').submit();
+  });
 });
-
-
