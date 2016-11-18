@@ -219,7 +219,7 @@
   </div>
   </div>
 
-  <div class="dropdown" id="button-dropdown-asso">
+  <div class="dropdown hidden-xs" id="button-dropdown-asso">
         <div class="asso-button dropdown-toggle" data-toggle="dropdown" style="background-color: <%= @cause.cause_category.color %>;">
           <div class="asso-card-red-heart">
             <i class="fa fa-heart" aria-hidden="true"></i>
@@ -233,11 +233,27 @@
             <div class="validate-choice-button" style="background-color: <%= @cause.cause_category.color %>;">JE VALIDE</div>
           </div>
         </ul>
-      </div>
+  </div>
 
 
 
-
+<div class="asso-bottom-container-v2 visible-xs">
+    <div class="dropdown" id="button-dropdown-asso">
+            <div class="asso-button-v2 dropdown-toggle" data-toggle="dropdown" style="background-color: <%= @cause.cause_category.color %>;">
+              <div class="asso-card-red-heart">
+                <i class="fa fa-heart" aria-hidden="true"></i>
+              </div>
+              <div class="asso-button-text">Soutenir cette Asso</div>
+            </div>
+            <ul class="dropdown-menu" style="border-top: 2px solid <%= @cause.cause_category.color %> !important;">
+              <div class="drop-display-flex">
+                <div class="cool-things">VOUS ALLEZ FAIRE QUELQUE CHOSE DE CHOUETTE !!</div>
+                <div class="cool-things-small">En validant votre choix, vois allez soutenir ENTR-AUTRES</div>
+                <div class="validate-choice-button" style="background-color: <%= @cause.cause_category.color %>;">JE VALIDE</div>
+              </div>
+            </ul>
+    </div>
+</div>
 
 
 
