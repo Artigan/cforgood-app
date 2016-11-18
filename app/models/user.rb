@@ -47,6 +47,7 @@
 #  date_stop_subscription :datetime
 #  picture                :string
 #  ambassador             :boolean          default(FALSE)
+#  supervisor_id          :integer
 #
 # Indexes
 #
@@ -67,6 +68,7 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
 
   belongs_to :cause
+  belongs_to :supervisor, class_name: 'Business', foreign_key: 'supervisor_id'
   has_many :uses
   has_many :payments, dependent: :destroy
   has_many :prospects
@@ -98,6 +100,8 @@ class User < ApplicationRecord
   before_save :subscription!, if: :code_partner_changed?
 
   before_save :date_support!, if: :cause_id_changed?
+
+  before_save :assign_supervisor, if: :address_changed?
 
   after_save :create_partner_for_third_use_code_partner, if: :code_partner_changed?
   after_save :send_code_partner_slack, if: :code_partner_changed?
@@ -415,6 +419,10 @@ class User < ApplicationRecord
     rescue Intercom::IntercomError => e
       puts e
     end
+  end
+
+  def assign_supervisor
+    self.supervisor = Business.supervisor.near([self.latitude, self.longitude], 10).first
   end
 
 end
