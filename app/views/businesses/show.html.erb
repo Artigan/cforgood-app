@@ -42,7 +42,9 @@
       </div>
       <div class="banner-business-top-infos">
         <div class="infos-left">
-          <div class="category-icon"></div>
+          <div class="little-perk-logo">
+              <%= image_tag @business.business_category.picture, size: "10x10" %>
+          </div>
           <div class="category-name"><%= @business.business_category.name %></div>
         </div>
         <div class="infos-right">
@@ -59,8 +61,8 @@
             </div>
             <div class="firstblock-text"><%= "63 personnes" %></div>
           </div>
-          <div class="card-bottom-right-item">
-            <div class="cbri-firstblock">
+          <div class="card-bottom-right-item" style="background-color: <%= @business.business_category.color %>;">
+            <div class="cbri-firstblock hidden-xs">
               <div class="firstblock-text">Partager :</div>
             </div>
             <div class="cbri-middleblock">
@@ -199,9 +201,11 @@
 <div class="fixed-bottom-container-button">
 
   <div class="fixed-bottom-perk-link" style="border-top: 2px solid <%= @business.business_category.color %> ;">
-
-    <div class="see-perk-button perk-pseudo-modal-link-mobile" style="background-color: <%= @business.business_category.color %>;">Voir nos bons plans</div>
-
+    <% if !current_user.member %>
+      <div class="see-perk-button perk-pseudo-modal-link-mobile-member" style="background-color: <%= @business.business_category.color %>;">Voir nos bons plans</div>
+    <% else %>
+      <div class="see-perk-button perk-pseudo-modal-link-mobile" style="background-color: <%= @business.business_category.color %>;">Voir nos bons plans</div>
+    <% end %>
 
   </div>
 
@@ -211,63 +215,6 @@
 
 
 
+<%= render "businesses/mobileshow" %>
 
-
-
-
-
-
-
-
-
-
-<div class="perk-modal-mobile hidden">
-  <div class="perk-modal-close-mobile">
-    <i class="fa fa-times" aria-hidden="true"></i>
-  </div>
-
-  <div class="perk-modal-header">
-    <div class="perk-modal-icon"></div>
-    <div class="perk-modal-header-text">REJOIGNEZ LA REVOLUTION POSITIVE</div>
-  </div>
-
-  <div class="perk-modal-title-dotted">
-    <div class="perk-modal-yellow-dot">
-      <div>1</div>
-    </div>
-    <div class="perk-modal-title-text">Découvrez votre ville autrement</div>
-  </div>
-
-  <div class="perk-modal-description">
-    Je trouve de nouveaux commerçants responsables, des associations engagées et des événements enthousiasmant chez moi ou dans les autres villes où je me rends.
-  </div>
-
-
-  <div class="perk-modal-title-dotted">
-    <div class="perk-modal-yellow-dot">
-      <div>2</div>
-    </div>
-    <div class="perk-modal-title-text">J'accède à des reductions exclusives</div>
-  </div>
-
-  <div class="perk-modal-description">
-    Je trouve de nouveaux commerçants responsables, des associations engagées et des événements enthousiasmant chez moi ou dans les autres villes où je me rends.
-  </div>
-
-
-  <div class="perk-modal-title-dotted">
-    <div class="perk-modal-yellow-dot">
-      <div>3</div>
-    </div>
-    <div class="perk-modal-title-text">Je rejoins une véritable révolution</div>
-  </div>
-
-  <div class="perk-modal-description">
-    Je trouve de nouveaux commerçants responsables, des associations engagées et des événements enthousiasmant chez moi ou dans les autres villes où je me rends.
-  </div>
-
-  <div class="perk-modal-button-signup">
-    <div class="perk-signin-button">JE M'INSCRIS</div>
-  </div>
-
-</div>
+<%= render "businesses/mobileshow_member" %>
