@@ -53,7 +53,7 @@ class Pro::DashboardController < Pro::ProController
             "coordinates": [address[1], address[2]],
           },
           "properties": {
-            "marker-symbol": @business.business_category.marker_symbol
+            "marker-symbol": business.business_category.marker_symbol
           }
         }
       end
