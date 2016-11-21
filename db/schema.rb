@@ -20,8 +20,8 @@ ActiveRecord::Schema.define(version: 20161115224729) do
     t.text     "body"
     t.string   "resource_id",   null: false
     t.string   "resource_type", null: false
-    t.integer  "author_id"
     t.string   "author_type"
+    t.integer  "author_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
@@ -37,27 +37,12 @@ ActiveRecord::Schema.define(version: 20161115224729) do
     t.string   "city"
     t.float    "latitude"
     t.float    "longitude"
+    t.boolean  "active",      default: true, null: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
-    t.boolean  "active",      default: true, null: false
     t.datetime "start_time"
     t.datetime "end_time"
     t.index ["business_id"], name: "index_addresses_on_business_id", using: :btree
-  end
-
-  create_table "attachinary_files", force: :cascade do |t|
-    t.integer  "attachinariable_id"
-    t.string   "attachinariable_type"
-    t.string   "scope"
-    t.string   "public_id"
-    t.string   "version"
-    t.integer  "width"
-    t.integer  "height"
-    t.string   "format"
-    t.string   "resource_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["attachinariable_type", "attachinariable_id", "scope"], name: "by_scoped_parent", using: :btree
   end
 
   create_table "business_categories", force: :cascade do |t|
@@ -67,20 +52,6 @@ ActiveRecord::Schema.define(version: 20161115224729) do
     t.string   "color"
     t.string   "marker_symbol"
     t.string   "picture"
-  end
-
-  create_table "business_hours", force: :cascade do |t|
-    t.integer  "business_id"
-    t.string   "day"
-    t.datetime "am_start_at"
-    t.datetime "am_end_at"
-    t.datetime "pm_start_at"
-    t.datetime "pm_end_at"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.integer  "address_id"
-    t.index ["address_id"], name: "index_business_hours_on_address_id", using: :btree
-    t.index ["business_id"], name: "index_business_hours_on_business_id", using: :btree
   end
 
   create_table "businesses", force: :cascade do |t|
@@ -121,8 +92,6 @@ ActiveRecord::Schema.define(version: 20161115224729) do
     t.string   "picture"
     t.string   "leader_picture"
     t.string   "logo"
-    t.boolean  "supervisor",             default: false
-    t.integer  "supervisor_id"
     t.integer  "like",                   default: 0
     t.integer  "unlike",                 default: 0
     t.string   "link_video"
@@ -167,10 +136,6 @@ ActiveRecord::Schema.define(version: 20161115224729) do
     t.string   "link_video"
     t.string   "picture"
     t.string   "logo"
-    t.boolean  "mailing",                   default: true
-    t.boolean  "tax_receipt",               default: true
-    t.string   "followers"
-    t.string   "heard"
     t.integer  "like",                      default: 0
     t.integer  "unlike",                    default: 0
     t.index ["cause_category_id"], name: "index_causes_on_cause_category_id", using: :btree
@@ -316,12 +281,9 @@ ActiveRecord::Schema.define(version: 20161115224729) do
   end
 
   add_foreign_key "addresses", "businesses"
-  add_foreign_key "business_hours", "businesses"
   add_foreign_key "payments", "causes"
   add_foreign_key "payments", "users"
   add_foreign_key "perks", "businesses"
-  add_foreign_key "plans", "users"
-  add_foreign_key "prospects", "users"
   add_foreign_key "user_histories", "causes"
   add_foreign_key "user_histories", "users"
   add_foreign_key "users", "causes"
