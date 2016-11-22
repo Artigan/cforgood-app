@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20161115224729) do
+ActiveRecord::Schema.define(version: 20161122112855) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,8 +20,8 @@ ActiveRecord::Schema.define(version: 20161115224729) do
     t.text     "body"
     t.string   "resource_id",   null: false
     t.string   "resource_type", null: false
-    t.integer  "author_id"
     t.string   "author_type"
+    t.integer  "author_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
@@ -38,9 +37,9 @@ ActiveRecord::Schema.define(version: 20161115224729) do
     t.string   "city"
     t.float    "latitude"
     t.float    "longitude"
+    t.boolean  "active",      default: true, null: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
-    t.boolean  "active",      default: true, null: false
     t.datetime "start_time"
     t.datetime "end_time"
     t.index ["business_id"], name: "index_addresses_on_business_id", using: :btree
@@ -53,18 +52,6 @@ ActiveRecord::Schema.define(version: 20161115224729) do
     t.string   "color"
     t.string   "marker_symbol"
     t.string   "picture"
-  end
-
-  create_table "business_hours", force: :cascade do |t|
-    t.integer  "business_id"
-    t.string   "day"
-    t.datetime "am_start_at"
-    t.datetime "am_end_at"
-    t.datetime "pm_start_at"
-    t.datetime "pm_end_at"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["business_id"], name: "index_business_hours_on_business_id", using: :btree
   end
 
   create_table "businesses", force: :cascade do |t|
@@ -214,6 +201,18 @@ ActiveRecord::Schema.define(version: 20161115224729) do
     t.index ["perk_detail_id"], name: "index_perks_on_perk_detail_id", using: :btree
   end
 
+  create_table "timetables", force: :cascade do |t|
+    t.integer  "address_id"
+    t.string   "day"
+    t.datetime "am_start_at"
+    t.datetime "am_end_at"
+    t.datetime "pm_start_at"
+    t.datetime "pm_end_at"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["address_id"], name: "index_timetables_on_address_id", using: :btree
+  end
+
   create_table "user_histories", force: :cascade do |t|
     t.integer  "user_id"
     t.boolean  "member",                 default: false, null: false
@@ -294,10 +293,10 @@ ActiveRecord::Schema.define(version: 20161115224729) do
   end
 
   add_foreign_key "addresses", "businesses"
-  add_foreign_key "business_hours", "businesses"
   add_foreign_key "payments", "causes"
   add_foreign_key "payments", "users"
   add_foreign_key "perks", "businesses"
+  add_foreign_key "timetables", "addresses"
   add_foreign_key "user_histories", "causes"
   add_foreign_key "user_histories", "users"
   add_foreign_key "users", "causes"

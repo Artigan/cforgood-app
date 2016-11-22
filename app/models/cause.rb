@@ -30,10 +30,6 @@
 #  link_video                :string
 #  picture                   :string
 #  logo                      :string
-#  mailing                   :boolean          default(TRUE)
-#  tax_receipt               :boolean          default(TRUE)
-#  followers                 :string
-#  heard                     :string
 #  like                      :integer          default(0)
 #  unlike                    :integer          default(0)
 #
