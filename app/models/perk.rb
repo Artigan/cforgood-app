@@ -158,24 +158,24 @@ class Perk < ApplicationRecord
       user.custom_attributes[:perks_active] = Business.find(self.business_id).perks.active.count
       intercom.users.save(user)
 
-      # if :after_create
-      #    intercom.events.create(
-      #     event_name: "new-perk",
-      #     created_at: Time.now.to_i,
-      #     user_id: 'B'+self.business_id.to_s,
-      #     email: self.business.email,
-      #     metadata: {
-      #       perk_id: self.id,
-      #       perk_type: perk_type(self.appel, self.durable, self.flash),
-      #       title: self.name,
-      #       description: self.description,
-      #       picture_url: self.picture.url,
-      #       start_date: self.start_date,
-      #       end_date: self.end_date,
-      #       times: self.times
-      #     }
-      #   )
-      #  end
+      if :after_create
+         intercom.events.create(
+          event_name: "new-perk",
+          created_at: Time.now.to_i,
+          user_id: 'B'+self.business_id.to_s,
+          email: self.business.email,
+          metadata: {
+            perk_id: self.id,
+            perk_type: perk_type(self.appel, self.durable, self.flash),
+            title: self.name,
+            description: self.description,
+            picture_url: self.picture.url,
+            start_date: self.start_date,
+            end_date: self.end_date,
+            times: self.times
+          }
+        )
+       end
 
     rescue Intercom::IntercomError => e
       puts e

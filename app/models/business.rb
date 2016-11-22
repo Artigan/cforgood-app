@@ -151,7 +151,7 @@ class Business < ApplicationRecord
         user.custom_attributes["first_name"] = self.leader_first_name
         user.custom_attributes["city"] = self.city
         user.custom_attributes["zipcode"] = self.zipcode
-        # user.custom_attributes["picture_url"] = self.picture.url
+        user.custom_attributes["picture_url"] = self.picture.url
         intercom.users.save(user)
       rescue Intercom::IntercomError => e
         puts e
