@@ -2,15 +2,13 @@
 #
 # Table name: timetables
 #
-#  id          :integer          not null, primary key
-#  address_id  :integer
-#  day         :string
-#  am_start_at :datetime
-#  am_end_at   :datetime
-#  pm_start_at :datetime
-#  pm_end_at   :datetime
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  id         :integer          not null, primary key
+#  address_id :integer
+#  day        :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  start_at   :datetime
+#  end_at     :datetime
 #
 # Indexes
 #
@@ -22,4 +20,7 @@
 #
 
 class Timetable < ApplicationRecord
+
+  belongs_to :address
+
 end

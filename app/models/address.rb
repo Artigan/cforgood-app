@@ -10,11 +10,13 @@
 #  city        :string
 #  latitude    :float
 #  longitude   :float
+#  active      :boolean          default(TRUE), not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  active      :boolean          default(TRUE), not null
 #  start_time  :datetime
 #  end_time    :datetime
+#  name        :string
+#  main        :boolean          default(FALSE), not null
 #
 # Indexes
 #
@@ -27,6 +29,7 @@
 
 class Address < ApplicationRecord
   belongs_to :business
+  has_many :timetables, dependent: :destroy
 
   extend TimeSplitter::Accessors
   split_accessor :start_time, :end_time
@@ -36,15 +39,15 @@ class Address < ApplicationRecord
   scope :today, -> { where('addresses.active = ? and addresses.day = ?', true, I18n.t("date.day_names")[Time.now.wday]) }
   scope :in_time, -> { where("start_time.strftime('%R') <= ? and end_time.strftime('%R') >= ?", Time.now.strftime('%R'), Time.now.strftime('%R')) }
   scope :shop, -> { where('day is null or day = ?', "") }
+  scope :main, -> { where(main: true) }
 
   validates :day, :inclusion=> { :in => I18n.t("date.day_names"), allow_blank: true }
   validate :day_uniqueness, if: :day_changed?
 
   validates :business_id, presence: true
-  validates :street, presence: true
+  # validates :street, presence: true
   validates :zipcode, presence: true
   validates :city, presence: true
-
 
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
