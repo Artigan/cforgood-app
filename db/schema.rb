@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161122112855) do
+ActiveRecord::Schema.define(version: 20161122170918) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,11 +37,13 @@ ActiveRecord::Schema.define(version: 20161122112855) do
     t.string   "city"
     t.float    "latitude"
     t.float    "longitude"
-    t.boolean  "active",      default: true, null: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.boolean  "active",      default: true,  null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.datetime "start_time"
     t.datetime "end_time"
+    t.string   "name"
+    t.boolean  "main",        default: false, null: false
     t.index ["business_id"], name: "index_addresses_on_business_id", using: :btree
   end
 
@@ -204,12 +206,10 @@ ActiveRecord::Schema.define(version: 20161122112855) do
   create_table "timetables", force: :cascade do |t|
     t.integer  "address_id"
     t.string   "day"
-    t.datetime "am_start_at"
-    t.datetime "am_end_at"
-    t.datetime "pm_start_at"
-    t.datetime "pm_end_at"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "start_at"
+    t.datetime "end_at"
     t.index ["address_id"], name: "index_timetables_on_address_id", using: :btree
   end
 

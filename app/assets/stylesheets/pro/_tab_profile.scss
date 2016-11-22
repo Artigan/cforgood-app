@@ -528,16 +528,16 @@
           }
         }
 
-        /* PROFILE - HOURS *********************************************/
+        /* PROFILE - TIMETABLES *********************************************/
 
-        #business_hours_am_start_at_hour,
-        #business_hours_am_start_at_min,
-        #business_hours_am_end_at_hour,
-        #business_hours_am_end_at_min,
-        #business_hours_pm_start_at_hour,
-        #business_hours_pm_start_at_min,
-        #business_hours_pm_end_at_hour,
-        #business_hours_pm_end_at_min {
+        #timetables_am_start_at_hour,
+        #timetables_am_start_at_min,
+        #timetables_am_end_at_hour,
+        #timetables_am_end_at_min,
+        #timetables_pm_start_at_hour,
+        #timetables_pm_start_at_min,
+        #timetables_pm_end_at_hour,
+        #timetables_pm_end_at_min {
           display: inline-flex;
           align-items: baseline;
           margin-top: 20px;

@@ -19,9 +19,9 @@
         <li role="profile">
           <%= link_to "Mon commerce", "#shop", role: "tab", data_toggle: "tab" %>
         </li>
-        <li role="profile">
-          <%= link_to "Mes horaires", "#hours", role: "tab", data_toggle: "tab" %>
-        </li>
+     <!--    <li role="profile">
+          <%#= link_to "Mes horaires", "#hours", role: "tab", data_toggle: "tab" %>
+        </li> -->
       </ul>
       <!-- Tab panes -->
       <div class="tab-content">
@@ -31,9 +31,9 @@
         <div role="tabpanel" class="tab-pane" id="shop">
           <%= render "pro/dashboard/form/form_business" %>
         </div>
-        <div role="tabpanel" class="tab-pane" id="hours">
-          <%= render "pro/dashboard/form/form_hours" %>
-        </div>
+<!--         <div role="tabpanel" class="tab-pane" id="timetables">
+          <%#= render "pro/dashboard/form/form_timetables" %>
+        </div> -->
       </div>
     </div>
   </div>
