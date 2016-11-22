@@ -101,7 +101,10 @@
         <div class="asso-card-red-heart-v2">
             <i class="fa fa-heart" aria-hidden="true"></i>
         </div>
-        <div class="asso-firstblock-text-v2"><%= business.sign_in_count %></div>
+        <% business.perks_in_time.each do |perk| %>
+          <% @liked = Use.liked.where(perk_id: perk.id).count %>
+        <% end %>
+        <div class="asso-firstblock-text-v2"><%= @liked %></div>
       </div>
 
     </div>

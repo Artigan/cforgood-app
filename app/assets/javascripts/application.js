@@ -13,6 +13,7 @@
 
 //= require vendor/scrollReveal
 //= require vendor/slick
+//= require vendor/list
 
 //= require_tree ./app
 

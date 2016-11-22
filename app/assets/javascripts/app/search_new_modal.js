@@ -1,6 +1,6 @@
 $(document).ready(function() {
     $(".search-modal-button").click(function() {
-    $(".search-modal").removeClass("hidden");
+    $(".search-modal").toggleClass("hidden");
     });
 });
 

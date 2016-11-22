@@ -32,20 +32,19 @@
 
 
 
-
 <div class="fullpage">
 
   <div class="fullpage-left-item">
     <div class="colored-banner" style="background-color: <%= @business.business_category.color %>;">
       <div class="banner-business-name">
-        <div><%= @business.name %></div>
+        <div class="name"><%= @business.name %></div>
       </div>
       <div class="banner-business-top-infos">
         <div class="infos-left">
           <div class="little-perk-logo">
               <%= image_tag @business.business_category.picture, size: "10x10" %>
           </div>
-          <div class="category-name"><%= @business.business_category.name %></div>
+          <div class="category-name category"><%= @business.business_category.name %></div>
         </div>
         <div class="infos-right">
           <div class="dot-state"></div>

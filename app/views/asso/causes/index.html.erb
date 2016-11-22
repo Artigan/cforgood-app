@@ -26,32 +26,44 @@
       </div>
     </div>
 
+    <div id="assos">
 
 
 
 
 
-    <div id="mixitup" class="container-perk-cards">
-      <% @causes.each do |cause| %>
-        <% if cause.id != ENV['CAUSE_ID_CFORGOOD'].to_i %>
-          <!-- COMPONENT | CARD BON PLAN -->
-          <%= link_to asso_cause_path(cause), class: "card-frame mix #{cause.cause_category_id}" do %>
-            <!-- CARD HEADER -->
-            <div class="card-body" style="background-image: url('<%= cause.picture.url(:card) %>');">
-              <div class="disque-item item-category" style="background-color: <%= cause.cause_category.color %>;">
-                <%= image_tag cause.cause_category.picture %>
-              </div>
-              <span><%= cause.name %></span>
-              <p><%= truncate(cause.description, length: 190) %></p>
-              <div class="disque-item item-logo">
-                <%= image_tag cause.logo %>
-              </div>
-            </div>
+      <div id="mixitup" class="container-perk-cards">
+        <ul class="list">
+        <% @causes.each do |cause| %>
+          <% if cause.id != ENV['CAUSE_ID_CFORGOOD'].to_i %>
+            <!-- COMPONENT | CARD BON PLAN -->
+            <%= link_to asso_cause_path(cause), class: "card-frame mix #{cause.cause_category_id}" do %>
+              <!-- CARD HEADER -->
+                <div class="card-body" style="background-image: url('<%= cause.picture.url(:card) %>');">
+                  <div class="disque-item item-category" style="background-color: <%= cause.cause_category.color %>;">
+                    <%= image_tag cause.cause_category.picture %>
+                  </div>
+                  <span class="name"><%= cause.name %></span>
+                  <div class="category hidden"><%= cause.cause_category.name %></div>
+                  <p><%= truncate(cause.description, length: 190) %></p>
+                  <div class="disque-item item-logo">
+                    <%= image_tag cause.logo %>
+                  </div>
+                </div>
+
+            <% end %>
+            <!-- END | CARD BON PLAN -->
           <% end %>
-          <!-- END | CARD BON PLAN -->
         <% end %>
-      <% end %>
+        </ul>
+      </div>
+
+
+
     </div>
+
+
+
   <!-- END | DASHBOARD CAUSES -->
   </div>
  <!-- END | ADMIN -->
@@ -112,3 +124,26 @@
     });
   </script>
 <% end %>
+
+
+
+<% content_for :listjs do %>
+
+  <script>
+    var options = {
+      valueNames: [ 'name', 'category' ]
+    };
+
+    var userList = new List('assos', options);
+
+    $('#search-assos').keyup(function(){
+      userList.search($(this).val());
+    });
+  </script>
+
+
+<% end %>
+
+
+
+

@@ -659,3 +659,51 @@
 .drop-header-container a {
   text-decoration: none;
 }
+
+
+
+
+
+
+
+.search-asso-container {
+  width: 100%;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(39,148,235,1);
+  padding-left: 25px;
+  padding-right: 25px;
+  background-color: white;
+}
+
+
+.search-modal input.search {
+  border: none;
+  font-size: 24px;
+  font-weight: lighter;
+  opacity: 0.8;
+  margin-right: auto;
+  width: 50%;
+}
+
+.search-modal input.search:focus {
+  outline: none;
+}
+
+.sort-container {
+  border-left: 1px solid rgba(39,148,235,1);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 25px;
+  padding-right: 25px;
+  width: 25%;
+}
+
+
+.filter-by {
+  margin-right: 10px;
+  font-size: 12px;
+}
