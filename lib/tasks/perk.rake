@@ -13,4 +13,17 @@ namespace :perk do
     puts "----------------------------------------"
   end
 
+  desc "Extract perk datas"
+  task extract_perks_job: :environment do
+    puts "----------------------------------------"
+    puts "TASK EXTRACT_PERKS STARTING"
+    puts "----------------------------------------"
+
+    ExtractPerksJob.perform_later
+
+    puts "----------------------------------------"
+    puts "TASK EXTRACT_PERKS DONE"
+    puts "----------------------------------------"
+  end
+
 end
