@@ -342,6 +342,7 @@ class User < ApplicationRecord
     # UPDATE CUSTOM ATTRIBUTES ON INTERCOM
 
     intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
+    promo = Partner.find_by_code_partner(self.code_partner).try(:promo) || false
     begin
       user = intercom.users.find(:user_id => self.id)
       user.custom_attributes["user_type"] = 'user'
@@ -352,6 +353,7 @@ class User < ApplicationRecord
       user.custom_attributes["user_cause"] = self.cause.name
       user.custom_attributes["user_member"] = self.member
       user.custom_attributes['code_partner'] = self.code_partner
+      user.custom_attributes['code_promo'] = promo
       user.custom_attributes['date_end_trial'] = self.date_end_partner
       user.custom_attributes['ambassador'] = self.ambassador
       intercom.users.save(user)
@@ -371,6 +373,7 @@ class User < ApplicationRecord
             'user_cause' => self.cause.name,
             'user_member' => self.member,
             'code_partner' => self.code_partner,
+            'code_promo' => promo,
             'date_end_trial' => self.date_end_partner,
             'ambassador' => self.ambassador
           })
