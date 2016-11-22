@@ -23,6 +23,17 @@ class Member::SubscribeController < ApplicationController
     end
   end
 
+  def destroy
+    if current_user.user_histories.last.code_partner == current_user.code_partner
+      current_user.user_histories.last.delete
+      current_user.code_partner = nil
+      current_user.date_end_partner = nil
+      current_user.save
+      current_user.user_histories.last.delete
+    end
+    respond_to :js
+  end
+
   private
 
   def execute_payin

@@ -19,6 +19,29 @@
     autoRegister: true,
     notifyButton: {
       enable: false/* Set to false to hide */
+    },
+    text: {
+      'tip.state.unsubscribed': 'Afficher les notifications',
+      'tip.state.subscribed': 'Vous êtes abonné aux notifications',
+      'tip.state.blocked': 'Vous avez bloqué les notifications',
+      'message.prenotify': 'Cliquer pour accepter les notifications',
+      'message.action.subscribed': 'Merci de nous suivre !',
+      'message.action.resubscribed': 'Vous êtes inscrit aux notifications !',
+      'message.action.unsubscribed': 'Vous ne recevrez plus de notifications',
+      'dialog.main.title': 'Gérer les notifications',
+      'dialog.main.button.subscribe': 'AUTORISER',
+      'dialog.main.button.unsubscribe': 'BLOQUER',
+      'dialog.blocked.title': 'Débloquer les notifications',
+      'dialog.blocked.message': 'Suivez ces instructions pour autoriser les notifications :'
+    },
+    promptOptions: {
+      /* These prompt options values configure both the HTTP prompt and the HTTP popup. */
+      /* actionMessage limited to 90 characters */
+      actionMessage: "Nous aimerions vous montrer les notifications des dernières nouvelles et mises à jour.",
+      /* acceptButtonText limited to 15 characters */
+      acceptButtonText: 'AUTORISER',
+      /* cancelButtonText limited to 15 characters */
+      cancelButtonText: 'NON MERCI'
     }
   }]);
 </script>

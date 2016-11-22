@@ -941,15 +941,20 @@
     }
 
     .message-subscription {
-      font-size: 11px;
+      margin-bottom: 10px;
+      font-size: 14px;
       line-height: 14px;
       font-weight: 400;
       text-transform: none;
       color: $turquoise;
     }
 
+    .days {
+      display: inline;
+    }
+
     i {
-      margin-bottom: 20px;
+      margin-bottom: 10px;
       font-size: 14px;
 
       @media (max-width: 320px) {

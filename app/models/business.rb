@@ -40,8 +40,9 @@
 #  picture                :string
 #  leader_picture         :string
 #  logo                   :string
-#  supervisor             :boolean          default(FALSE)
-#  supervisor_id          :integer
+#  like                   :integer          default(0)
+#  unlike                 :integer          default(0)
+#  link_video             :string
 #
 # Indexes
 #
@@ -100,7 +101,7 @@ class Business < ApplicationRecord
   after_save :update_data_intercom
 
   def perks_uses_count
-    perks.reduce(0) { |sum, perk| sum + perk.uses.count }
+    perks.reduce(0) { |sum, perk| sum + perk.uses.used.count }
   end
 
   def perks_views_count
@@ -108,7 +109,7 @@ class Business < ApplicationRecord
   end
 
   def perks_new_users
-    perks.reduce(0) { |sum, perk| sum + perk.uses.select(:user_id).distinct.count }
+    perks.reduce(0) { |sum, perk| sum + perk.uses.used.select(:user_id).distinct.count }
   end
 
   def address_changed?
