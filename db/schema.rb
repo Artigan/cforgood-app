@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161122170918) do
+ActiveRecord::Schema.define(version: 20161122225547) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -141,6 +141,24 @@ ActiveRecord::Schema.define(version: 20161122170918) do
     t.integer  "like",                      default: 0
     t.integer  "unlike",                    default: 0
     t.index ["cause_category_id"], name: "index_causes_on_cause_category_id", using: :btree
+  end
+
+  create_table "label_categories", force: :cascade do |t|
+    t.string   "name"
+    t.string   "model"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "labels", force: :cascade do |t|
+    t.integer  "label_category_id"
+    t.integer  "business_id"
+    t.integer  "cause_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.index ["business_id"], name: "index_labels_on_business_id", using: :btree
+    t.index ["cause_id"], name: "index_labels_on_cause_id", using: :btree
+    t.index ["label_category_id"], name: "index_labels_on_label_category_id", using: :btree
   end
 
   create_table "partners", force: :cascade do |t|
@@ -293,6 +311,9 @@ ActiveRecord::Schema.define(version: 20161122170918) do
   end
 
   add_foreign_key "addresses", "businesses"
+  add_foreign_key "labels", "businesses"
+  add_foreign_key "labels", "causes"
+  add_foreign_key "labels", "label_categories"
   add_foreign_key "payments", "causes"
   add_foreign_key "payments", "users"
   add_foreign_key "perks", "businesses"
