@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161122225547) do
+ActiveRecord::Schema.define(version: 20161123092439) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -145,7 +145,6 @@ ActiveRecord::Schema.define(version: 20161122225547) do
 
   create_table "label_categories", force: :cascade do |t|
     t.string   "name"
-    t.string   "model"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -153,11 +152,9 @@ ActiveRecord::Schema.define(version: 20161122225547) do
   create_table "labels", force: :cascade do |t|
     t.integer  "label_category_id"
     t.integer  "business_id"
-    t.integer  "cause_id"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
     t.index ["business_id"], name: "index_labels_on_business_id", using: :btree
-    t.index ["cause_id"], name: "index_labels_on_cause_id", using: :btree
     t.index ["label_category_id"], name: "index_labels_on_label_category_id", using: :btree
   end
 
@@ -217,6 +214,10 @@ ActiveRecord::Schema.define(version: 20161122225547) do
     t.string   "picture"
     t.string   "text_notification"
     t.boolean  "send_notification", default: false
+    t.boolean  "offer",             default: false, null: false
+    t.boolean  "value",             default: false, null: false
+    t.boolean  "percent",           default: false, null: false
+    t.integer  "amount"
     t.index ["business_id"], name: "index_perks_on_business_id", using: :btree
     t.index ["perk_detail_id"], name: "index_perks_on_perk_detail_id", using: :btree
   end
@@ -312,7 +313,6 @@ ActiveRecord::Schema.define(version: 20161122225547) do
 
   add_foreign_key "addresses", "businesses"
   add_foreign_key "labels", "businesses"
-  add_foreign_key "labels", "causes"
   add_foreign_key "labels", "label_categories"
   add_foreign_key "payments", "causes"
   add_foreign_key "payments", "users"

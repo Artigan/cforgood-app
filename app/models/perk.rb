@@ -23,6 +23,10 @@
 #  picture           :string
 #  text_notification :string
 #  send_notification :boolean          default(FALSE)
+#  offer             :boolean          default(FALSE), not null
+#  value             :boolean          default(FALSE), not null
+#  percent           :boolean          default(FALSE), not null
+#  amount            :integer
 #
 # Indexes
 #
