@@ -6,14 +6,26 @@
 
 <div class="navbar-v2">
 
-  <div class="navbar-left-item"></div>
-
+  <div class="navbar-left-item hidden-xs"></div>
+  <span id="open-leftmenu"><div class="visible-xs">MENU</div></span>
 
 
   <div class="navbar-right-item">
 
 
-      <div class="search-navbar search-modal-button">
+
+
+      <div class="search-navbar search-modal-button hidden-xs">
+        <i class="fa fa-search" aria-hidden="true"></i>
+      </div>
+
+
+      <!-- <div class="search-input-mobile hidden">
+        <input id="search-businesses"class="search" placeholder="rechercher">
+      </div> -->
+
+
+      <div class="search-navbar-mobile search-modal-button-mobile">
         <i class="fa fa-search" aria-hidden="true"></i>
       </div>
 
@@ -25,7 +37,8 @@
         <div class="avatar-navbar dropdown-toggle" data-toggle="dropdown" style="background-image: url(<%= avatar_url(current_user) %>);"><div class="caret"></div>
         </div>
       <% else %>
-        <%= image_tag "default_pic.png", class: "img-circle", size: "12x12" %>
+        <div class="avatar-navbar dropdown-toggle" data-toggle="dropdown" style="background-image: url(<%= asset_path "default_pic" %>);"><div class="caret"></div>
+        </div>
       <% end %>
 
 

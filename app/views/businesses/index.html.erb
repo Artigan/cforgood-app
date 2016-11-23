@@ -15,7 +15,7 @@
     <%= render "components/menu/index_search_category" %>
 
 
-
+<div class="search-category-overlay hidden"></div>
 
   <div id="businesses">
 
@@ -125,6 +125,20 @@
         $('.category-item').removeClass('is-open-min');
       });
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       // EVENT AMPLITUDE USER_ALL_PERKS + USER_C_BUSINESS_ALLPERKS
       amplitude.logEvent('USER_ALL_PERKS');
       $('.card-frame').click(function(event) {
@@ -148,7 +162,7 @@
       self.$filters = $('#Filters');
       self.$reset = $('#categories-all');
       self.$container = $('#mixitup');
-      self.$filters.find('fieldset').each(function(){
+      self.$filters.find('.fieldset-flexbox').each(function(){
         self.groups.push({
           $buttons: $(this).find('.filter-btn'),
           active: ''

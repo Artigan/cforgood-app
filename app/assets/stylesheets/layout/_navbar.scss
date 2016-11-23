@@ -485,7 +485,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1;
+  z-index: 8000;
 }
 
 
@@ -500,7 +500,7 @@
 
 .navbar-right-item {
   height: 100%;
-  width: 200px;
+  min-width: 200px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -516,6 +516,12 @@
   background-position: center center;
   &:hover {
     cursor: pointer;
+  }
+}
+
+@media (max-width: 768px) {
+  .avatar-navbar {
+    margin-left: 10px;
   }
 }
 
@@ -598,7 +604,30 @@
   }
 }
 
+.search-navbar-mobile {
+  min-height: 30px;
+  min-width: 30px;
+  border-radius: 50%;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  transition: 0.4s ease;
+  color: grey;
+  &:hover {
+    cursor: pointer;
+    background-color: lightgrey;
+    color: grey;
+  }
+}
 
+
+@media (min-width: 768px) {
+  .search-navbar-mobile {
+    display: none;
+  }
+}
 
 
 
@@ -612,13 +641,26 @@
   background-color: white;
   top: 50px;
   left: 0px;
-  padding-left: 110px;
-  z-index: 29;
+  padding-left: 45px;
+  margin-left: 90px;
+  z-index: 60000;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding-right: 40px;
 }
+
+
+@media (max-width: 768px) {
+  .search-modal {
+    padding-left: 110px;
+    margin-left: 0;
+  }
+}
+
+
+
+
 
 .text-in-search-modal {
   font-size: 22px;
@@ -706,4 +748,36 @@
 .filter-by {
   margin-right: 10px;
   font-size: 12px;
+}
+
+
+
+
+
+
+.search-input-mobile input.search {
+  border: 1px solid rgba(55,55,55,0.2);
+  font-size: 16px;
+  font-weight: lighter;
+  opacity: 0.8;
+  margin-right: auto;
+  width: 90%;
+  padding-left: 16px;
+  padding-right: 8px;
+  border-radius: 20px;
+}
+
+.search-input-mobile input.search:focus {
+  outline: none;
+}
+
+
+
+
+.search-input-mobile {
+  height: 100%;
+  width: 70%;
+  padding-left: 10px;
+  display: flex;
+  align-items: center;
 }

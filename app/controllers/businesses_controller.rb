@@ -69,6 +69,10 @@ class BusinessesController < ApplicationController
     @addresses_id.delete([]) # REMOVE WHEN NO ACTIVE RECORD ASSOCIATION
   end
 
+  def businesses_index
+    @businesses = Business.all
+  end
+
   def show
     @business = Business.joins(:business_category).find(params[:id])
     @perk = @business.perks.find(params[:perk_id])
