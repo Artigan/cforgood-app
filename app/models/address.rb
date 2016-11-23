@@ -53,6 +53,10 @@ class Address < ApplicationRecord
   after_validation :geocode, if: :address_changed?
   before_save :controle_geocode!, if: :address_changed?
 
+  def open?
+    self.timetables.today.open.present? ? true : false
+  end
+
   private
 
   def address_changed?
