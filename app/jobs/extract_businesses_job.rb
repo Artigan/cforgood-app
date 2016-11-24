@@ -85,7 +85,6 @@ class ExtractBusinessesJob < ApplicationJob
     begin
       ftp = Net::FTP.new('ftp.cluster007.hosting.ovh.net')
       ftp.login("cforgoodny", "Bethechange85")
-            binding.pry
       ftp.chdir("www/business")
       ftp.passive = true
       ftp.puttextfile(path + filename, filename)
