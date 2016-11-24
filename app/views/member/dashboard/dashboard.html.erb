@@ -5,6 +5,10 @@
   Découvrez les bons plans de nos partenaires !
 <% end %>
 
+
+<%= render 'businesses/business_search_index' %>
+<%= render 'businesses/business_search_index_desk' %>
+
 <div class="container-fluid admin">
   <% if user_signed_in? and !current_user.active %>
     <div class="done-overlay waiting connexion-user">

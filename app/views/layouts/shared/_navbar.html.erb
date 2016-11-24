@@ -19,15 +19,14 @@
         <i class="fa fa-search" aria-hidden="true"></i>
       </div>
 
-
-      <!-- <div class="search-input-mobile hidden">
-        <input id="search-businesses"class="search" placeholder="rechercher">
-      </div> -->
-
-
-      <div class="search-navbar-mobile search-modal-button-mobile">
-        <i class="fa fa-search" aria-hidden="true"></i>
-      </div>
+      <% if current_page?("/member/users/#{current_user.id}/dashboard") %>
+        <div class="search-input-mobile hidden hidden-sm hidden-md hidden-lg">
+          <input id="search-in-navbar-mobile"class="search" placeholder="rechercher">
+        </div>
+        <div class="search-navbar-mobile search-modal-button-mobile">
+          <i class="fa fa-search" aria-hidden="true"></i>
+        </div>
+      <% end %>
 
 
 
@@ -108,8 +107,9 @@
 
   <div class="search-modal hidden">
     <input id="search-dashboard"class="search" placeholder="rechercher">
-    <div class="close-search-modal">
-        <i class="fa fa-close" aria-hidden="true"></i>
+
+    <div class="business-search-close-button-desk">
+      <div>Annuler la recherche</div>
     </div>
   </div>
 
