@@ -132,11 +132,8 @@ class Perk < ApplicationRecord
   end
 
   def send_registration_slack
-    if Rails.env.production?
-      notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_PERK_URL']
-      message = "#{self.business.name} a créé un nouveau bon plan *" + perk_type(self.appel, self.durable, self.flash) + "* : #{name} : #{description}"
-      notifier.ping message
-    end
+    message = "#{self.business.name} a créé un nouveau bon plan *" + perk_type(self.appel, self.durable, self.flash) + "* : #{name} : #{description}"
+    send_message_to_slack(ENV['SLACK_WEBHOOK_PERK_URL'], message)
   end
 
   def name_uniqueness
