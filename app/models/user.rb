@@ -80,14 +80,16 @@ class User < ApplicationRecord
   # validates :last_name, presence: true
   # validates :city, presence: true
 
+  validate :code_partner?, if: :code_partner_changed?
+
   validates_size_of :picture, maximum: 2.megabytes,
     message: "Cette image dépasse 2 MG !", if: :picture_changed?
+
   mount_uploader :picture, PictureUploader
 
   geocoded_by :address
-  after_validation :geocode, if: :address_changed?
 
-  validate :code_partner?, if: :code_partner_changed?
+  after_validation :geocode, if: :address_changed?
 
   before_create :default_cause_id!
 
@@ -95,7 +97,6 @@ class User < ApplicationRecord
 
   before_save :subscription!, if: :subscription_changed?
   before_save :subscription!, if: :code_partner_changed?
-
   before_save :date_support!, if: :cause_id_changed?
 
   after_save :create_partner_for_third_use_code_partner, if: :code_partner_changed?
@@ -394,7 +395,6 @@ class User < ApplicationRecord
       self.user_histories.new.create_history(history_params)
     end
   end
-
 
   def create_partner_for_third_use_code_partner
     if code_partner.present?
