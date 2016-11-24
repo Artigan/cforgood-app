@@ -79,7 +79,7 @@ Rails.application.routes.draw do
   end
 
   resources :addresses do
-    resources :timatable, only: [:create, :update]
+    resources :timetable, only: [:create, :update]
   end
 
   require "sidekiq/web"
