@@ -67,6 +67,7 @@ class Business < ApplicationRecord
   has_many :perks, dependent: :destroy
   has_many :perks_in_time, -> { in_time }, class_name: "Perk"
   has_many :perks_flash_in_time, -> { flash_in_time }, class_name: "Perk"
+  has_many :labels
 
   scope :active, -> { where(active: true) }
   scope :for_map, -> { where('businesses.shop = ? or businesses.itinerant = ?', true, true) }
@@ -151,7 +152,7 @@ class Business < ApplicationRecord
         user.custom_attributes["first_name"] = self.leader_first_name
         user.custom_attributes["city"] = self.city
         user.custom_attributes["zipcode"] = self.zipcode
-        # user.custom_attributes["picture_url"] = self.picture.url
+        user.custom_attributes["picture_url"] = self.picture.url
         intercom.users.save(user)
       rescue Intercom::IntercomError => e
         puts e

@@ -78,6 +78,10 @@ Rails.application.routes.draw do
     resources :uses, only: [:create, :update]
   end
 
+  resources :addresses do
+    resources :timetable, only: [:create, :update]
+  end
+
   require "sidekiq/web"
   authenticate :user, lambda { |u| u.admin } do
     mount Sidekiq::Web => '/sidekiq'
