@@ -28,6 +28,24 @@
         </div>
       <% end %>
 
+      <% if current_page?('/asso/causes') %>
+        <div class="search-input-mobile hidden hidden-sm hidden-md hidden-lg">
+          <input id="search-in-navbar-mobile-assos"class="search" placeholder="rechercher">
+        </div>
+        <div class="search-navbar-mobile search-modal-button-mobile">
+          <i class="fa fa-search" aria-hidden="true"></i>
+        </div>
+      <% end %>
+
+      <% if current_page?('/businesses') %>
+        <div class="search-input-mobile hidden hidden-sm hidden-md hidden-lg">
+          <input id="search-in-navbar-mobile-perks"class="search" placeholder="rechercher">
+        </div>
+        <div class="search-navbar-mobile search-modal-button-mobile">
+          <i class="fa fa-search" aria-hidden="true"></i>
+        </div>
+      <% end %>
+
 
 
     <div class="dropdown" id="button-dropdown-navbar">
@@ -39,17 +57,6 @@
         <div class="avatar-navbar dropdown-toggle" data-toggle="dropdown" style="background-image: url(<%= asset_path "default_pic" %>);"><div class="caret"></div>
         </div>
       <% end %>
-
-
-
-
-
-
-
-
-
-
-
 
       <ul class="dropdown-menu dropdown-menu-right">
 
