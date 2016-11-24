@@ -729,6 +729,12 @@
   width: 50%;
 }
 
+.search-modal input.search::placeholder {
+  font-size: 24px;
+  font-weight: lighter;
+  opacity: 0.8;
+}
+
 .search-modal input.search:focus {
   outline: none;
 }
