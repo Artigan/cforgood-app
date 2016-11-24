@@ -234,7 +234,7 @@ class MonthlyPayinJob < ApplicationJob
       end
     end
 
-    @payment = user.payments.new(cause_id: user.cause_id, amount: user.amount, done: result["ResultMessage"] == "Success" ? true : false)
+    @payment = user.payments.new(cause_id: user.cause_id, amount: user.amount, subscription: user.subscription, done: result["ResultMessage"] == "Success" ? true : false)
     @payment.save
 
     if @payment.done
