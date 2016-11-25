@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161123095605) do
+ActiveRecord::Schema.define(version: 20161124155437) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -180,9 +180,10 @@ ActiveRecord::Schema.define(version: 20161123095605) do
     t.integer  "user_id"
     t.integer  "cause_id"
     t.integer  "amount"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.boolean  "done",       default: false, null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.boolean  "done",         default: false, null: false
+    t.string   "subscription"
     t.index ["cause_id"], name: "index_payments_on_cause_id", using: :btree
     t.index ["user_id"], name: "index_payments_on_user_id", using: :btree
   end

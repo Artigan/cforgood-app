@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
 
   include Mobvious::Rails::Controller
+  # include Modules::ModuleSlack
 
   protect_from_forgery with: :null_session
 

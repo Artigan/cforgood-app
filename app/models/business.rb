@@ -79,10 +79,6 @@ class Business < ApplicationRecord
   validates :name, presence: true
   validates :url, format: { with: /\Ahttps?:\/\/[\S]+/, message: "Votre URL doit commencer par http:// ou https://" }, allow_blank: true
 
-  geocoded_by :address
-  after_validation :geocode, if: :address_changed?
-  before_save :controle_geocode!, if: :address_changed?
-
   validates_size_of :picture, maximum: 2.megabytes,
     message: "Cette image dépasse 2 MG !", if: :picture_changed?
   mount_uploader :picture, PictureUploader
@@ -95,9 +91,17 @@ class Business < ApplicationRecord
     message: "Cette image dépasse 1 MG !", if: :logo_changed?
   mount_uploader :logo, PictureUploader
 
+  geocoded_by :address
+
+  after_validation :geocode, if: :address_changed?
+
+  before_save :controle_geocode!, if: :address_changed?
+
   after_create :create_code_partner, :send_registration_slack, :subscribe_to_newsletter_business
 
   after_save :update_data_intercom
+  after_save :send_activation_slack, if: :active_changed?
+
 
   def perks_uses_count
     perks.reduce(0) { |sum, perk| sum + perk.uses.used.count }
@@ -130,10 +134,14 @@ class Business < ApplicationRecord
   end
 
   def send_registration_slack
-    if Rails.env.production?
-      notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_BUSINESS_URL']
-      notifier.ping "#{name}, *#{city}*, a rejoint la communauté !"
-    end
+    message = "#{name}, *#{city}*, a rejoint la communauté !"
+    send_message_to_slack(ENV['SLACK_WEBHOOK_BUSINESS_URL'], message)
+  end
+
+  def send_activation_slack
+    return unless active
+    message = "*#{name}* a été activé !"
+    send_message_to_slack(ENV['SLACK_WEBHOOK_BUSINESS_URL'], message)
   end
 
   def subscribe_to_newsletter_business
