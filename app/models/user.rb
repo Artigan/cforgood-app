@@ -188,14 +188,13 @@ class User < ApplicationRecord
     return false
   end
 
-
   def stop_subscription!
     self.member = false
     self.date_stop_subscription = Time.now
     self.subscription = nil
     self.amount = nil
     self.date_last_payment = nil
-    code_partner_save =  self.code_partner
+    code_partner_save = self.code_partner
     self.code_partner = nil
     self.date_end_partner = nil
     self.save
