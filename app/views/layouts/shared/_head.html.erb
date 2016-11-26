@@ -13,37 +13,79 @@
 <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async></script>
 <script>
   var OneSignal = OneSignal || [];
-  response = OneSignal.push(["init", {
-    appId: "<%= ENV['ONESIGNAL_APP_ID'] %>",
-    safari_web_id: "<%= ENV['ONESIGNAL_SAFARI_WEB_ID'] %>",
-    autoRegister: true,
-    notifyButton: {
-      enable: false/* Set to false to hide */
-    },
-    text: {
-      'tip.state.unsubscribed': 'Afficher les notifications',
-      'tip.state.subscribed': 'Vous êtes abonné aux notifications',
-      'tip.state.blocked': 'Vous avez bloqué les notifications',
-      'message.prenotify': 'Cliquer pour accepter les notifications',
-      'message.action.subscribed': 'Merci de nous suivre !',
-      'message.action.resubscribed': 'Vous êtes inscrit aux notifications !',
-      'message.action.unsubscribed': 'Vous ne recevrez plus de notifications',
-      'dialog.main.title': 'Gérer les notifications',
-      'dialog.main.button.subscribe': 'AUTORISER',
-      'dialog.main.button.unsubscribe': 'BLOQUER',
-      'dialog.blocked.title': 'Débloquer les notifications',
-      'dialog.blocked.message': 'Suivez ces instructions pour autoriser les notifications :'
-    },
-    promptOptions: {
-      /* These prompt options values configure both the HTTP prompt and the HTTP popup. */
-      /* actionMessage limited to 90 characters */
-      actionMessage: "Nous aimerions vous montrer les notifications des dernières nouvelles et mises à jour.",
-      /* acceptButtonText limited to 15 characters */
-      acceptButtonText: 'AUTORISER',
-      /* cancelButtonText limited to 15 characters */
-      cancelButtonText: 'NON MERCI'
-    }
-  }]);
+  <% if !Rails.env.development? %>
+    OneSignal.push(["init", {
+      appId: "<%= ENV['ONESIGNAL_APP_ID'] %>",
+      safari_web_id: "<%= ENV['ONESIGNAL_SAFARI_WEB_ID'] %>",
+      autoRegister: true,
+      notifyButton: {
+        enable: false,/* Set to false to hide */
+        text: {
+          'tip.state.unsubscribed': 'Afficher les notifications',
+          'tip.state.subscribed': 'Vous êtes abonné aux notifications',
+          'tip.state.blocked': 'Vous avez bloqué les notifications',
+          'message.prenotify': 'Cliquer pour accepter les notifications',
+          'message.action.subscribed': 'Merci de nous suivre !',
+          'message.action.resubscribed': 'Vous êtes inscrit aux notifications !',
+          'message.action.unsubscribed': 'Vous ne recevrez plus de notifications',
+          'dialog.main.title': 'Gérer les notifications',
+          'dialog.main.button.subscribe': 'AUTORISER',
+          'dialog.main.button.unsubscribe': 'BLOQUER',
+          'dialog.blocked.title': 'Débloquer les notifications',
+          'dialog.blocked.message': 'Suivez ces instructions pour autoriser les notifications :'
+        },
+      },
+      promptOptions: {
+        /* These prompt options values configure both the HTTP prompt and the HTTP popup. */
+        /* actionMessage limited to 90 characters */
+        actionMessage: "Nous aimerions vous envoyer nos dernières nouvelles et mises à jour.",
+        /* acceptButtonText limited to 15 characters */
+        acceptButtonText: 'AUTORISER',
+        /* cancelButtonText limited to 15 characters */
+        cancelButtonText: 'NON MERCI'
+      }
+    }]);
+  <% else %>
+    OneSignal.push(["init", {
+      appId: "<%= ENV['ONESIGNAL_APP_ID'] %>",
+      safari_web_id: "<%= ENV['ONESIGNAL_SAFARI_WEB_ID'] %>",
+      autoRegister: true,
+      subdomainName: 'cforgood',
+      notifyButton: {
+        enable: false,/* Set to false to hide */
+        text: {
+          'tip.state.unsubscribed': 'Afficher les notifications',
+          'tip.state.subscribed': 'Vous êtes abonné aux notifications',
+          'tip.state.blocked': 'Vous avez bloqué les notifications',
+          'message.prenotify': 'Cliquer pour accepter les notifications',
+          'message.action.subscribed': 'Merci de nous suivre !',
+          'message.action.resubscribed': 'Vous êtes inscrit aux notifications !',
+          'message.action.unsubscribed': 'Vous ne recevrez plus de notifications',
+          'dialog.main.title': 'Gérer les notifications',
+          'dialog.main.button.subscribe': 'AUTORISER',
+          'dialog.main.button.unsubscribe': 'BLOQUER',
+          'dialog.blocked.title': 'Débloquer les notifications',
+          'dialog.blocked.message': 'Suivez ces instructions pour autoriser les notifications :'
+        },
+      },
+      promptOptions: {
+        /* These prompt options values configure both the HTTP prompt and the HTTP popup. */
+        /* actionMessage limited to 90 characters */
+        actionMessage: "Nous aimerions vous envoyer nos dernières nouvelles et mises à jour.",
+        /* acceptButtonText limited to 15 characters */
+        acceptButtonText: 'AUTORISER',
+        /* cancelButtonText limited to 15 characters */
+        cancelButtonText: 'NON MERCI'
+      }
+    }]);
+  <% end %>
+  OneSignal.push(function() {
+  /* These examples are all valid */
+    OneSignal.getUserId(function(userId) {
+      console.log("OneSignal User ID:", userId);
+      // (Output) OneSignal User ID: 270a35cd-4dda-4b3f-b04e-41d7463a2316
+    });
+  });
 </script>
 
 <!-- Favicons -->
