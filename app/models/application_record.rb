@@ -1,7 +1,9 @@
 class ApplicationRecord < ActiveRecord::Base
 
-  self.abstract_class = true
+  require 'one_signal'
 
   include Modules::ModuleSlack
+
+  self.abstract_class = true
 
 end

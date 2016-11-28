@@ -40,8 +40,6 @@
 
 class Perk < ApplicationRecord
 
-  require 'one_signal'
-
   belongs_to :business
   has_many :uses, dependent: :destroy
   belongs_to :perk_detail

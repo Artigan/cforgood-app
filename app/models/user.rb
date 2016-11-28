@@ -47,6 +47,7 @@
 #  date_stop_subscription :datetime
 #  picture                :string
 #  ambassador             :boolean          default(FALSE)
+#  onesignal_id           :string
 #
 # Indexes
 #
@@ -93,8 +94,6 @@ class User < ApplicationRecord
 
   before_create :default_cause_id!
 
-  after_create :send_registration_slack, :subscribe_to_newsletter_user, :create_event_amplitude
-
   before_save :subscription!, if: :subscription_changed?
   before_save :subscription!, if: :code_partner_changed?
   before_save :date_support!, if: :cause_id_changed?
@@ -104,6 +103,9 @@ class User < ApplicationRecord
   after_save :save_history
 
   after_commit :update_data_intercom
+
+  after_create :send_registration_slack, :subscribe_to_newsletter_user, :create_event_amplitude, :save_onesignal_id
+
 
 
   def self.find_for_google_oauth2(access_token, signed_in_resourse=nil)
@@ -405,6 +407,31 @@ class User < ApplicationRecord
     rescue Intercom::IntercomError => e
       puts e
     end
+  end
+
+  def save_onesignal_id
+    # begin
+    #   device_token = "abcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdab" + self.id.to_s
+    #   params = {
+    #     app_id: ENV['ONESIGNAL_APP_ID'],
+    #     device_type: 5,
+    #     language: 'fr',
+    #     identifier: device_token,
+    #     tags: {
+    #       user_id: self.id
+    #     }
+    #   }
+    #   response = OneSignal::Player.create(params: params)
+    #   self.onesignal_id = JSON.parse(response.body)["id"]
+    #   self.save
+    #   puts "One Signal Id : " + JSON.parse(response.body)["id"]
+
+    # rescue OneSignal::OneSignalError => e
+    #   puts "--- OneSignalError  :"
+    #   puts "-- message : #{e.message}"
+    #   puts "-- status : #{e.http_status}"
+    #   puts "-- body : #{e.http_body}"
+    # end
   end
 
 end
