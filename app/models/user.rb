@@ -92,7 +92,7 @@ class User < ApplicationRecord
 
   after_validation :geocode, if: :address_changed?
 
-  before_create :default_cause_id!, :save_onesignal_id
+  before_create :default_cause_id!
 
   before_save :subscription!, if: :subscription_changed?
   before_save :subscription!, if: :code_partner_changed?
@@ -104,7 +104,7 @@ class User < ApplicationRecord
 
   after_commit :update_data_intercom
 
-  after_create :send_registration_slack, :subscribe_to_newsletter_user, :create_event_amplitude
+  after_create :send_registration_slack, :subscribe_to_newsletter_user, :create_event_amplitude, :save_onesignal_id
 
 
 
@@ -410,23 +410,28 @@ class User < ApplicationRecord
   end
 
   def save_onesignal_id
-    begin
-      params = {
-        app_id: ENV['ONESIGNAL_APP_ID'],
-        device_type: 'ONESIGNAL_DEVICE_TYPE',
-        language: 'fr',
-        notification_types: '1'
-      }
-      response = OneSignal::Player.create(params: params)
-      # self.onesignal_id = JSON.parse(response.body)["id"]
-      puts "One Signal Id : " + JSON.parse(response.body)["id"]
+    # begin
+    #   device_token = "abcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdab" + self.id.to_s
+    #   params = {
+    #     app_id: ENV['ONESIGNAL_APP_ID'],
+    #     device_type: 5,
+    #     language: 'fr',
+    #     identifier: device_token,
+    #     tags: {
+    #       user_id: self.id
+    #     }
+    #   }
+    #   response = OneSignal::Player.create(params: params)
+    #   self.onesignal_id = JSON.parse(response.body)["id"]
+    #   self.save
+    #   puts "One Signal Id : " + JSON.parse(response.body)["id"]
 
-    rescue OneSignal::OneSignalError => e
-      puts "--- OneSignalError  :"
-      puts "-- message : #{e.message}"
-      puts "-- status : #{e.http_status}"
-      puts "-- body : #{e.http_body}"
-    end
+    # rescue OneSignal::OneSignalError => e
+    #   puts "--- OneSignalError  :"
+    #   puts "-- message : #{e.message}"
+    #   puts "-- status : #{e.http_status}"
+    #   puts "-- body : #{e.http_body}"
+    # end
   end
 
 end
