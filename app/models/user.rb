@@ -47,6 +47,7 @@
 #  date_stop_subscription :datetime
 #  picture                :string
 #  ambassador             :boolean          default(FALSE)
+#  onesignal_id           :string
 #  supervisor_id          :integer
 #
 # Indexes

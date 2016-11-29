@@ -10,11 +10,13 @@
 #  city        :string
 #  latitude    :float
 #  longitude   :float
+#  active      :boolean          default(TRUE), not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  active      :boolean          default(TRUE), not null
 #  start_time  :datetime
 #  end_time    :datetime
+#  name        :string
+#  main        :boolean          default(FALSE), not null
 #
 # Indexes
 #

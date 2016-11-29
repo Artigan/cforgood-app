@@ -2,13 +2,14 @@
 #
 # Table name: payments
 #
-#  id         :integer          not null, primary key
-#  user_id    :integer
-#  cause_id   :integer
-#  amount     :integer
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  done       :boolean          default(FALSE), not null
+#  id           :integer          not null, primary key
+#  user_id      :integer
+#  cause_id     :integer
+#  amount       :integer
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  done         :boolean          default(FALSE), not null
+#  subscription :string
 #
 # Indexes
 #
