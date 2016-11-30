@@ -68,6 +68,7 @@ class Business < ApplicationRecord
   has_many :perks_in_time, -> { in_time }, class_name: "Perk"
   has_many :perks_flash_in_time, -> { flash_in_time }, class_name: "Perk"
   has_many :labels
+  has_many :timetables, through: :addresses
 
   scope :active, -> { where(active: true) }
   scope :for_map, -> { where('businesses.shop = ? or businesses.itinerant = ?', true, true) }

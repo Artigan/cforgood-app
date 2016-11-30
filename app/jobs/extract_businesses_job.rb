@@ -16,7 +16,10 @@ class ExtractBusinessesJob < ApplicationJob
     report = []
     report << "-----------------------------------------"
 
-    nb_read = 0
+    nb_businesses_read = 0
+    nb_addresses_read = 0
+    nb_timetables_read = 0
+
     businesses = []
 
     CSV.open(path + filename, "wb", :col_sep => '|') do |csv|
@@ -50,9 +53,9 @@ class ExtractBusinessesJob < ApplicationJob
               "unlike",
               "link_video"]
 
-      Business.active.where("updated_at > ?", date_from).each do |business|
-        nb_read += 1
-        csv << [business.id,
+      Business.active.includes(:addresses, :timetables).where("updated_at > ?", date_from).each do |business|
+        nb_businesses_read += 1
+        row = [business.id,
                business.name,
                business.street,
                business.zipcode,
@@ -60,7 +63,7 @@ class ExtractBusinessesJob < ApplicationJob
                business.url,
                business.telephone,
                business.email,
-               business.description,
+               business.description.present? ? business.description.squish : "",
                business.business_category_id,
                business.latitude,
                business.longitude,
@@ -69,7 +72,7 @@ class ExtractBusinessesJob < ApplicationJob
                business.instagram,
                business.leader_first_name,
                business.leader_last_name,
-               business.leader_description,
+               business.leader_description.present? ? business.leader_description.squish : "",
                business.online,
                business.leader_phone,
                business.leader_email,
@@ -81,6 +84,27 @@ class ExtractBusinessesJob < ApplicationJob
                business.like,
                business.unlike,
                business.link_video]
+
+        business.addresses.each do |address|
+          nb_addresses_read += 1
+          row.push(address.street,
+                  address.zipcode,
+                  address.city,
+                  address.latitude,
+                  address.longitude,
+                  address.name,
+                  address.main)
+
+          address.timetables.each do |timetable|
+            nb_timetables_read += 1
+            row.push(timetable.day,
+                    timetable.start_at,
+                    timetable.end_at)
+          end
+        end
+
+        csv << row
+
       end
     end
 
@@ -97,7 +121,9 @@ class ExtractBusinessesJob < ApplicationJob
       report << "ERROR FTP | #{e} |"
     end
 
-    report << "Nb businesses read | #{nb_read}"
+    report << "Nb businesses read | #{nb_businesses_read}"
+    report << "Nb addresses read | #{nb_addresses_read}"
+    report << "Nb timetables read | #{nb_timetables_read}"
     report << "-----------------------------------------"
 
     # Edit report + Send to slack
