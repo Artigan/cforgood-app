@@ -860,6 +860,7 @@
 
   .btn-no-subscription {
     position: absolute;
+    width: 100%;
     color: $grey;
     font-size: 0.7em;
     font-weight: 200;
@@ -871,8 +872,8 @@
     }
 
     @media (max-width: 320px) {
-      bottom: 17vh;
-     }
+      bottom: 13vh;
+    }
 
     &:hover {
       color: #333;
