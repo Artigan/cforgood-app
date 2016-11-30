@@ -20,8 +20,8 @@ ActiveRecord::Schema.define(version: 20161129154537) do
     t.text     "body"
     t.string   "resource_id",   null: false
     t.string   "resource_type", null: false
-    t.string   "author_type"
     t.integer  "author_id"
+    t.string   "author_type"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
@@ -45,6 +45,21 @@ ActiveRecord::Schema.define(version: 20161129154537) do
     t.string   "name"
     t.boolean  "main",        default: false, null: false
     t.index ["business_id"], name: "index_addresses_on_business_id", using: :btree
+  end
+
+  create_table "attachinary_files", force: :cascade do |t|
+    t.integer  "attachinariable_id"
+    t.string   "attachinariable_type"
+    t.string   "scope"
+    t.string   "public_id"
+    t.string   "version"
+    t.integer  "width"
+    t.integer  "height"
+    t.string   "format"
+    t.string   "resource_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["attachinariable_type", "attachinariable_id", "scope"], name: "by_scoped_parent", using: :btree
   end
 
   create_table "business_categories", force: :cascade do |t|
@@ -338,6 +353,7 @@ ActiveRecord::Schema.define(version: 20161129154537) do
   add_foreign_key "payments", "causes"
   add_foreign_key "payments", "users"
   add_foreign_key "perks", "businesses"
+  add_foreign_key "plans", "users"
   add_foreign_key "prospects", "users"
   add_foreign_key "timetables", "addresses"
   add_foreign_key "user_histories", "causes"
