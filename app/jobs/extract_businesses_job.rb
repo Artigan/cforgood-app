@@ -17,8 +17,6 @@ class ExtractBusinessesJob < ApplicationJob
     report << "-----------------------------------------"
 
     nb_businesses_read = 0
-    nb_addresses_read = 0
-    nb_timetables_read = 0
 
     businesses = []
 
@@ -53,7 +51,7 @@ class ExtractBusinessesJob < ApplicationJob
               "unlike",
               "link_video"]
 
-      Business.active.includes(:addresses, :timetables).where("updated_at > ?", date_from).each do |business|
+      Business.active.where("businesses.updated_at > ?", date_from).includes(:main_address, :labels).each do |business|
         nb_businesses_read += 1
         row = [business.id,
                business.name,
@@ -85,8 +83,19 @@ class ExtractBusinessesJob < ApplicationJob
                business.unlike,
                business.link_video]
 
-        business.addresses.each do |address|
-          nb_addresses_read += 1
+
+        i = 1
+        business.labels.each do |label|
+          row.push(label.label_category.name)
+          i += 1
+        end
+
+        (8 - i).times do
+          row.push("")
+        end
+
+        address = business.main_address
+        if address.present?
           row.push(address.street,
                   address.zipcode,
                   address.city,
@@ -96,11 +105,12 @@ class ExtractBusinessesJob < ApplicationJob
                   address.main)
 
           address.timetables.each do |timetable|
-            nb_timetables_read += 1
+            puts timetable
             row.push(timetable.day,
                     timetable.start_at,
                     timetable.end_at)
           end
+
         end
 
         csv << row
@@ -113,7 +123,7 @@ class ExtractBusinessesJob < ApplicationJob
     begin
       ftp = Net::FTP.new('ftp.cluster007.hosting.ovh.net')
       ftp.login("cforgoodny", "Bethechange85")
-      ftp.chdir("www/business")
+      ftp.chdir("datas/business")
       ftp.passive = true
       ftp.puttextfile(path + filename, filename)
       ftp.close
@@ -122,8 +132,6 @@ class ExtractBusinessesJob < ApplicationJob
     end
 
     report << "Nb businesses read | #{nb_businesses_read}"
-    report << "Nb addresses read | #{nb_addresses_read}"
-    report << "Nb timetables read | #{nb_timetables_read}"
     report << "-----------------------------------------"
 
     # Edit report + Send to slack
