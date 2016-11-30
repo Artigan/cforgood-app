@@ -324,7 +324,7 @@
 
       @media (max-width: 320px) {
         right: -15px;
-        bottom: 14vh;
+        bottom: 10vh;
 
         &:after {
           right: 15px;
@@ -425,10 +425,13 @@
 
     .yearly-benefit {
       display: flex;
+      position: absolute;
+      top: 0;
+      left: 40px;
 
       @media (max-width: 767px) {
         flex-direction: column;
-        transform: translateY(-20px);
+        top: -24px;
 
         span {
           margin-bottom: 0;
@@ -436,11 +439,9 @@
       }
 
       @media (max-width: 320px) {
-        margin-top: 10px;
-        transform: translateY(-17px);
+        top: 0;
       }
     }
-
 
     input {
       cursor: pointer;
@@ -472,6 +473,7 @@
       font-size: 12px;
       top: -2px;
 
+
       span {
         color: #59c07b;
         text-transform: none;
@@ -481,6 +483,10 @@
 
         &.more {
           line-height: 21px;}
+
+        @media (max-width: 320px) {
+          min-width: 40px;
+        }
       }
     }
 
@@ -565,10 +571,12 @@
   span {
     display: block;
     margin-bottom: 20px;
-    max-width: 335px;
+    max-width: 400px;
     text-transform: uppercase;
     font-weight: 600;
     text-align: center;
+
+    @media (max-width: 767px) { max-width: 230px; }
   }
 
   .subscription-title {
@@ -589,7 +597,7 @@
     bottom: 0;
 
     @media (max-width: 767px) { bottom: 12vh; }
-    @media (max-width: 320px) { bottom: 14vh; }
+    @media (max-width: 320px) { bottom: 10vh; }
   }
 
   .signup-next {
@@ -675,37 +683,6 @@
 
       @media (max-width: 767px) {
         margin-top: 0;
-      }
-
-      &:before,
-      &:after {
-        position: absolute;
-        top: 10px;
-        font-size: 48px;
-        font-weight: 100;
-        color: $turquoise;
-
-        @media (max-width: 320px) {
-          display: none;
-        }
-      }
-
-      &:before {
-        content: "[";
-        left: -28px;
-
-        @media (max-width: 767px) {
-          left: -20px;
-        }
-      }
-
-      &:after {
-        content: "]";
-        right: -28px;
-
-        @media (max-width: 767px) {
-          right: -20px;
-        }
       }
 
       h5 {
@@ -871,10 +848,12 @@
   }
 
   .no-subscription {
-    position: relative;
     display: flex;
-    justify-content: center;
     @media (min-width: 321px) and (max-width: 767px) { margin-top: 20px; }
+
+    a {
+      width: 100%;
+    }
   }
 
   .btn-no-subscription {
@@ -885,7 +864,13 @@
     text-decoration: underline;
     bottom: 7px;
 
-    @media (max-width: 767px) { bottom: 20vh; }
+    @media (max-width: 767px) {
+      bottom: 20vh;
+    }
+
+    @media (max-width: 320px) {
+      bottom: 17vh;
+     }
 
     &:hover {
       color: #333;
@@ -1071,7 +1056,7 @@
         left: -25px;
         bottom: 12vh;
       }
-      @media (max-width: 320px) { bottom: 14vh; }
+      @media (max-width: 320px) { bottom: 10vh; }
 
       &:after {
         content:"\f104";
@@ -1095,6 +1080,7 @@
 
     .btn-no-bank-details {
       position: absolute;
+      width: 100%;
       right: 40px;
       bottom: 15px;
       padding: 0;

@@ -1,7 +1,5 @@
 class Member::DashboardController < ApplicationController
 
-  skip_before_action :authenticate_user!, only: [:dashboard]
-
   def dashboard
     # Patch during VIDEO && SALON
     if (current_user.present? && current_user.email == "allan.floury@gmail.com") || !cookies[:coordinates].present?

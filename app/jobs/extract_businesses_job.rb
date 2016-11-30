@@ -16,7 +16,8 @@ class ExtractBusinessesJob < ApplicationJob
     report = []
     report << "-----------------------------------------"
 
-    nb_read = 0
+    nb_businesses_read = 0
+
     businesses = []
 
     CSV.open(path + filename, "wb", :col_sep => '|') do |csv|
@@ -30,6 +31,8 @@ class ExtractBusinessesJob < ApplicationJob
               "email",
               "description",
               "business_category_id",
+              "latitude",
+              "longitude",
               "facebook",
               "twitter",
               "instagram",
@@ -48,9 +51,9 @@ class ExtractBusinessesJob < ApplicationJob
               "unlike",
               "link_video"]
 
-      Business.active.where("updated_at > ?", date_from).each do |business|
-        nb_read += 1
-        csv << [business.id,
+      Business.active.where("businesses.updated_at > ?", date_from).includes(:main_address, :labels).each do |business|
+        nb_businesses_read += 1
+        row = [business.id,
                business.name,
                business.street,
                business.zipcode,
@@ -58,14 +61,16 @@ class ExtractBusinessesJob < ApplicationJob
                business.url,
                business.telephone,
                business.email,
-               business.description,
+               business.description.present? ? business.description.squish : "",
                business.business_category_id,
+               business.latitude,
+               business.longitude,
                business.facebook,
                business.twitter,
                business.instagram,
                business.leader_first_name,
                business.leader_last_name,
-               business.leader_description,
+               business.leader_description.present? ? business.leader_description.squish : "",
                business.online,
                business.leader_phone,
                business.leader_email,
@@ -77,6 +82,39 @@ class ExtractBusinessesJob < ApplicationJob
                business.like,
                business.unlike,
                business.link_video]
+
+
+        i = 1
+        business.labels.each do |label|
+          row.push(label.label_category.name)
+          i += 1
+        end
+
+        (8 - i).times do
+          row.push("")
+        end
+
+        address = business.main_address
+        if address.present?
+          row.push(address.street,
+                  address.zipcode,
+                  address.city,
+                  address.latitude,
+                  address.longitude,
+                  address.name,
+                  address.main)
+
+          address.timetables.each do |timetable|
+            puts timetable
+            row.push(timetable.day,
+                    timetable.start_at,
+                    timetable.end_at)
+          end
+
+        end
+
+        csv << row
+
       end
     end
 
@@ -85,7 +123,7 @@ class ExtractBusinessesJob < ApplicationJob
     begin
       ftp = Net::FTP.new('ftp.cluster007.hosting.ovh.net')
       ftp.login("cforgoodny", "Bethechange85")
-      ftp.chdir("www/business")
+      ftp.chdir("datas/business")
       ftp.passive = true
       ftp.puttextfile(path + filename, filename)
       ftp.close
@@ -93,7 +131,7 @@ class ExtractBusinessesJob < ApplicationJob
       report << "ERROR FTP | #{e} |"
     end
 
-    report << "Nb businesses read | #{nb_read}"
+    report << "Nb businesses read | #{nb_businesses_read}"
     report << "-----------------------------------------"
 
     # Edit report + Send to slack

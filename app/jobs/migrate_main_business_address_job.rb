@@ -63,13 +63,15 @@ class MigrateMainBusinessAddressJob < ApplicationJob
       fields << { "value": line }
     end
 
-    notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_JOB_URL']
-    attachment = {
-      fallback: "Report MIGRATE ADDRESSES AND TIMETABLES JOB",
-      fields: fields,
-      color: "good"
-    }
-    notifier.ping "Report MIGRATE ADDRESSES AND TIMETABLES JOB", attachments: [attachment]
+    if Rails.env.production?
+      notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_JOB_URL']
+      attachment = {
+        fallback: "Report MIGRATE ADDRESSES AND TIMETABLES JOB",
+        fields: fields,
+        color: "good"
+      }
+      notifier.ping "Report MIGRATE ADDRESSES AND TIMETABLES JOB", attachments: [attachment]
+    end
 
   end
 end

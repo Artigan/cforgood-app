@@ -2,9 +2,9 @@
 <div class="form-edit-container offer-form">
   <div class="signup-plan">
     <% if current_user.member %>
-      <span>Changer le montant de ma participation</span>
+      <span>Changer le montant de votre participation <strong>libre</strong> et sans engagement</span>
     <% else %>
-      <span>Choisir le montant de ma participation</span>
+      <span>Choisir le montant de votre participation <strong>libre</strong> et sans engagement</span>
     <% end %>
     <div class="switch">
       <input id="monthly" type="radio" <%= current_user.subscription == "M" ? checked="checked" : "" %>>
@@ -40,8 +40,8 @@
             </div>
           </div>
           <div class="offer-description">
-            <h5>Abonnement <strong>libre</strong> sans engagement</h5>
-            <p>Vous pouvez le modifier ou l'annuler à tout moment depuis votre profil</p>
+            <h5>En moyenne, les membres donnent <strong>7</strong> euros !</h5>
+            <p>PS : Ceci est notre seule source de revenu !</p>
           </div>
           <!-- PARTNER CODE -->
           <%= simple_form_for(current_user, url: member_subscribe_path(current_user), method: :put, remote: true, authenticity_token: true, html: { id: "update_subscription" } ) do |f| %>

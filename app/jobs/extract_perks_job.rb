@@ -40,7 +40,7 @@ class ExtractPerksJob < ApplicationJob
     begin
       ftp = Net::FTP.new('ftp.cluster007.hosting.ovh.net')
       ftp.login("cforgoodny", "Bethechange85")
-      ftp.chdir("www/perk")
+      ftp.chdir("datas/perk")
       ftp.passive = true
       ftp.puttextfile(path + filename, filename)
       ftp.close

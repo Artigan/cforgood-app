@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
 
   # ROOT TO LANDING WEBSITE
-  root  to: redirect("http://cforgood.github.io/landings/")
+  root  to: redirect("http://cforgood.com")
   get 'about',                    to: 'pages#about'
   get 'notre_charte',             to: 'pages#charte'
   get 'cgu',                      to: 'pages#cgu'
@@ -46,8 +46,6 @@ Rails.application.routes.draw do
     resources :subscribe, only: [:new, :create, :update, :destroy]
     resources :perks, only: [:show]
   end
-
-  get "map", to: "member/dashboard#dashboard"
 
   devise_for :businesses, path: :pro, controllers: { passwords: :passwords }
   devise_scope :business do
