@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
 
   # ROOT TO LANDING WEBSITE
-  root  to: redirect("http://cforgood.github.io/landings/")
+  root  to: redirect("http://cforgood.com")
   get 'about',                    to: 'pages#about'
   get 'notre_charte',             to: 'pages#charte'
   get 'cgu',                      to: 'pages#cgu'
