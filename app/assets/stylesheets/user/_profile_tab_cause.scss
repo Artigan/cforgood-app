@@ -194,23 +194,15 @@
       margin-top: 25px;
     }
 
-    .no-subscription {
-      position: inherit;
-    }
-
     .btn-no-subscription {
       @media (max-width: 767px)  { bottom: -20px;}
-      @media (max-width: 320px)  { bottom: 0;}
+      @media (max-width: 320px)  { bottom: -15px;}
     }
 
     .stop-subscription {
       bottom: -15px;
       @media (max-width: 767px)  { bottom: -45px;}
-      @media (max-width: 320px)  { bottom: -30px;}
-    }
-
-    .show-payment {
-      margin-top: 90px;
+      @media (max-width: 320px)  { bottom: -40px;}
     }
 
     .code-partner {
@@ -240,7 +232,6 @@
       }
     }
   }
-
 
   .card-authorized {
      margin-top: 25px;
@@ -273,7 +264,6 @@
   .signup-prev {
     display: none;
   }
-
 
   /* PROFILE - USER PAYMENTS ****************************************/
   .list-payments {
