@@ -30,7 +30,13 @@ class Pro::DashboardController < Pro::ProController
 
     @geojson = {"type" => "FeatureCollection", "features" => []}
 
-    @business.businesses.each do |business|
+    if current_business.admin
+      @businesses = Business.all
+    else
+      @businesses = @business.businesses
+    end
+
+    @businesses.each do |business|
       # BUSINESS ADDRESSES
       addresses = []
       # Main shop address

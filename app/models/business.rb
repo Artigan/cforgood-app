@@ -40,8 +40,12 @@
 #  picture                :string
 #  leader_picture         :string
 #  logo                   :string
+#  like                   :integer          default(0)
+#  unlike                 :integer          default(0)
+#  link_video             :string
 #  supervisor             :boolean          default(FALSE)
 #  supervisor_id          :integer
+#  admin                  :boolean          default(FALSE), not null
 #
 # Indexes
 #
@@ -76,6 +80,7 @@ class Business < ApplicationRecord
   scope :shop, -> { where(shop: true) }
   scope :itinerant, -> { where(itinerant: true) }
   scope :supervisor, -> { where(supervisor: true) }
+  scope :admin, -> { where(admin: true) }
 
   validates :email, presence: true, uniqueness: true
   validates :business_category_id, presence: true, unless: :supervisor
@@ -120,7 +125,12 @@ class Business < ApplicationRecord
 
   def supervising?(id)
     return false unless id.present?
-    Business.find(id).manager == self
+    self.admin || Business.find(id).manager == self
+  end
+
+  def collection_supervising
+    return self.businesses unless self.admin
+    Business.all
   end
 
   private
