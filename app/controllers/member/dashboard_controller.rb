@@ -1,4 +1,4 @@
-class Member::DashboardController < ApplicationController
+  class Member::DashboardController < ApplicationController
 
   def dashboard
     # Patch during VIDEO && SALON

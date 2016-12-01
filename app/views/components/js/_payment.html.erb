@@ -40,6 +40,7 @@
       e.preventDefault();
       if ($("#form-card-creation").valid()) {
         $("#loading-indicator").show();
+
         var cardPreRegistration = <%= current_user.mangopay_id ? raw(MangopayServices.new(current_user).create_mangopay_card_pre_registration.to_json) : "null" %>;
 
         // Initialize with card register data prepared on the server
@@ -92,7 +93,6 @@
         $('.message-subscription').addClass('hidden');
         $(".rollback_code_partner").click();
       }
-
 
       // EVENT AMPLITUDE : USER_C_SIGNUP1_NEXT
       amplitude.logEvent('USER_C_SIGNUP3_PREV');

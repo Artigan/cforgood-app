@@ -2,7 +2,6 @@ class Member::SubscribeController < ApplicationController
 
   before_action :authenticate_user!
 
-
   def new
     @cause = Cause.all.includes(:cause_category)
   end
@@ -32,6 +31,9 @@ class Member::SubscribeController < ApplicationController
       current_user.user_histories.last.delete
     end
     respond_to :js
+  end
+
+  def gift
   end
 
   private

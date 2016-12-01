@@ -31,6 +31,8 @@ Rails.application.routes.draw do
     post 'signup',                  to: 'devise/registrations#create'
     get 'signup_trial',             to: 'devise/registrations#new'
     post 'signup_trial',            to: 'devise/registrations#create'
+    get 'signup_gift',              to: 'devise/registrations#new_gift'
+    post 'signup_gift',             to: 'sevise/registrations#create_gift'
     get "member/sent_mail",         to: "devise/passwords#sent_mail"
     put "member/update_cause",      to: "member/registrations#update_cause"
     put "member/update_profile",    to: "member/registrations#update_profile"
@@ -43,6 +45,7 @@ Rails.application.routes.draw do
       get "profile", to: "dashboard#profile"
       get "ambassador", to: "dashboard#ambassador"
     end
+    get "subscribe_gift", to: "subscribe#gift"
     resources :subscribe, only: [:new, :create, :update, :destroy]
     resources :perks, only: [:show]
   end
@@ -77,7 +80,7 @@ Rails.application.routes.draw do
   end
 
   resources :addresses do
-    resources :timetable, only: [:create, :update]
+    resources :timetables, only: [:create, :update]
   end
 
   require "sidekiq/web"
