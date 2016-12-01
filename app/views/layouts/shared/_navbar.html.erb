@@ -53,9 +53,6 @@
           <%= select_tag :impersonate_id, options_from_collection_for_select(current_business.collection_supervising, :id, :name, selected: session[:impersonate_id]), prompt: "Sélectionner un commerce" %>
         <% end %>
       </div>
-      <div>
-        <%= link_to "Créer un commerce", new_pro_business_path, class: "btn btn-primary" %>
-      </div>
     <% end %>
     <% if current_impersonation %>
       <div class="btn btn-success">
