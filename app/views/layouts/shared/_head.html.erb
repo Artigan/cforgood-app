@@ -18,6 +18,11 @@
       appId: "<%= ENV['ONESIGNAL_APP_ID'] %>",
       safari_web_id: "<%= ENV['ONESIGNAL_SAFARI_WEB_ID'] %>",
       autoRegister: true,
+      welcomeNotification: {
+        "title": "CforGood",
+        "message": "Merci pour votre inscription !",
+        // "url": "" /* Leave commented for the notification to not open a window on Chrome and Firefox (on Safari, it opens to your webpage) */
+      },
       notifyButton: {
         enable: false,/* Set to false to hide */
         text: {
