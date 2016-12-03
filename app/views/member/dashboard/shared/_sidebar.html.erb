@@ -39,8 +39,8 @@
 
     <!-- USER NOT SIGN IN -->
     <% else %>
-      <li class="<%= active_class(map_path)%>">
-        <%= link_to map_path do %>
+      <li class="<%= active_class(signin_path)%>">
+        <%= link_to signin_path do %>
           <div class="icon-container">
             <%= render "shared/icons/around_me" %>
           </div>
