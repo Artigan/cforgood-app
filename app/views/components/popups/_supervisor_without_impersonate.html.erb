@@ -6,16 +6,10 @@
     </div>
     <span>Sélectionnez un commerce !</span>
     <p>Pour pouvoir agir en temps que commerce vous devez d'abord en sélectionner un ou en créer un.</p>
-
-    <div class="impersonate_business">
-      <%= form_tag pro_business_impersonation_path(current_business), class: "form-inline" do %>
-        <%= select_tag :impersonate_id, options_from_collection_for_select(current_business.businesses, :id, :name, selected: session[:impersonate_id]), prompt: "Sélectionner un commerce" %>
-        <%= submit_tag "Valider", class: "" %>
-      <% end %>
-    </div>
+    <%= render "components/select_impersonate_business", dropdown_search: "popup_select_impersonate"%>
     <p>ou</p>
     <div>
-      <%= link_to "Créer un commerce", new_pro_business_path, class: "btn business-buttin" %>
+      <%= link_to "Créer un commerce", new_pro_business_path, class: "btn business-button" %>
     </div>
   </div>
 </div>

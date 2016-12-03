@@ -56,7 +56,7 @@
 
       <!-- POPUP PERKS WITHOUT FEEDBACK -->
       <% @uses_without_feedback.each do |use| %>
-        <%= render(partial: 'uses/form/feedback_dashboard', locals: { use: use }) %>
+        <%= render partial: 'uses/form/feedback_dashboard', locals: { use: use } %>
       <% end %>
     </div>
   <% end %>

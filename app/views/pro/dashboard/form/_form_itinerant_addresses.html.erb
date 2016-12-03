@@ -10,9 +10,9 @@
           <!-- FORM ADDRESS -->
           <div class="form-address" id="<%= day %>">
             <% if current_business.addresses.find_by_day(day) %>
-              <%= render(partial: 'pro/addresses/form/edit', locals: { day: day, address: current_business.addresses.find_by_day(day) })  %>
+              <%= render partial: 'pro/addresses/form/edit', locals: { day: day, address: current_business.addresses.find_by_day(day) }  %>
             <% else %>
-              <%= render(partial: 'pro/addresses/form/create', locals: { day: day, address: Address.new }) %>
+              <%= render partial: 'pro/addresses/form/create', locals: { day: day, address: Address.new } %>
             <% end %>
           </div>
         </div>
