@@ -56,7 +56,7 @@ class BusinessesController < ApplicationController
     @businesses = Business.active.joins(:perks).active.distinct.includes(:business_category)
     @addresses_id = []
     @businesses.each do |business|
-      @addresses_id << [business.id, 0] # BUSINESS MAIN ADDRESS
+      # @addresses_id << [business.id, 0] # BUSINESS MAIN ADDRESS
       business.addresses.shop.each do |address_shop|
         @addresses_id << [business.id, address_shop.id]
       end
