@@ -48,6 +48,7 @@
 #  picture                :string
 #  ambassador             :boolean          default(FALSE)
 #  onesignal_id           :string
+#  supervisor_id          :integer
 #
 # Indexes
 #
@@ -71,6 +72,7 @@ class User < ApplicationRecord
   has_many :uses
   has_many :payments, dependent: :destroy
   has_many :user_histories
+  has_many :beneficiaries
 
   scope :member, -> { where(member: true) }
   scope :member_should_payin, lambda {|day| where('users.member = ? and (users.code_partner is null or users.code_partner = ?) and users.subscription = ? and users.date_last_payment between ? and ?', true, "", "M", (Time.now - 1.month - day.day).beginning_of_day,  (Time.now - 1.month - day.day).end_of_day) }
@@ -105,8 +107,6 @@ class User < ApplicationRecord
   after_commit :update_data_intercom
 
   after_create :send_registration_slack, :subscribe_to_newsletter_user, :create_event_amplitude, :save_onesignal_id
-
-
 
   def self.find_for_google_oauth2(access_token, signed_in_resourse=nil)
     data = access_token.info

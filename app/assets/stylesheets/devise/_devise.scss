@@ -595,6 +595,63 @@
     }
   }
 
+  .sign-box.gift {
+    transform: translateY(-50%) translateX(-50%);
+
+    @media (max-width: 767px) {
+      transform: translateY(0%) translateX(0%);
+    }
+
+    .gift-payment {
+      padding: 20px;
+
+      input[type="submit"] {
+        margin-bottom: 20px;
+        color: white;
+        background-color: #36d3da;
+
+        &:hover {
+          background-color: #19A2C2;
+          outline-color: transparent;
+          outline-style: none;
+        }
+      }
+    }
+
+    .subscription-form {
+       @media (min-width: 768px) { margin-top: 15px; }
+
+      i {
+        top: -100px;
+        @media (max-width: 767px) { top: -50px; }
+      }
+    }
+
+    .signup-message-gift {
+      top: 50px;
+      @media (max-width: 767px) { top: 100px; }
+    }
+
+    .signup-message-beneficiary {
+      top: 20px;
+      @media (max-width: 767px) { top: 60px; }
+    }
+
+    .beneficiary {
+      input[type="submit"] {
+        margin-top: 30px;
+      }
+    }
+
+    .beneficiary_first_name {
+      @media (min-width: 768px) { margin-top: 30px; }
+    }
+
+    .signup-prev, .btn-no-bank-details {
+      display: none;
+    }
+  }
+
   .renawal-password {
     .user_password::after,
     .business_password::after,

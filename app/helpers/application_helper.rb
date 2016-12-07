@@ -40,6 +40,7 @@ module ApplicationHelper
     request.path == "/users" ||
     request.path == "/signin" ||
     request.path == "/signup" ||
+    request.path == "/signup_gift" ||
     request.path == "/member/signin" ||
     request.path == "/users/sign_in" ||
     request.path == "/member/signup" ||

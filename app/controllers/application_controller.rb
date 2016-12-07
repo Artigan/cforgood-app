@@ -37,6 +37,8 @@ class ApplicationController < ActionController::Base
           member_user_dashboard_path(resource)
         elsif request.env["HTTP_REFERER"].include?('signup_gift')
           # Funnel just payment
+          current_user.code_partner = request.env["HTTP_REFERER"].split("?")[1].upcase
+          current_user.save
           member_subscribe_gift_path
         else
           # Funnel subscritpion

@@ -9,7 +9,9 @@ class Member::SubscribeController < ApplicationController
   def create
     if current_user.mangopay_id
       current_user.update_attribute("card_id", params[:card][:id])
-      execute_payin
+      if !request.env["HTTP_REFERER"].include?('subscribe_gift')
+        execute_payin
+      end
     end
     respond_to :js
   end

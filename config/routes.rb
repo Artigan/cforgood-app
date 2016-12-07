@@ -50,6 +50,10 @@ Rails.application.routes.draw do
     resources :perks, only: [:show]
   end
 
+  resources :users do
+    resources :beneficiaries, only: [:create, :update]
+  end
+
   devise_for :businesses, path: :pro, controllers: { passwords: :passwords }
   devise_scope :business do
     get "pro/sent_mail",        to: "devise/passwords#sent_mail"

@@ -145,9 +145,6 @@
       $("#user_subscription").val(subscription == 'monthly' ? 'M' : 'Y');
       $("#amount_subscription").html($("#user_amount").val());
       $("#label_subscription").html(subscription == 'monthly' ? 'mois' : 'an');
-
-
-
       <% if controller_path == "member/dashboard" %>
         // EVENT AMPLITUDE : USER_C_PROFILE_MYSUBSCRIPTION_OK
         amplitude.logEvent('USER_C_PROFILE_MYSUBSCRIPTION_OK');
@@ -170,42 +167,3 @@
 
 
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

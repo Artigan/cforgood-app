@@ -1,0 +1,9 @@
+$(".alert").remove();
+if (<%= !current_user.errors.any? %>) {
+  $(".form-card.beneficiary").addClass("hidden");
+  $(".gift-payment").removeClass("hidden");
+  $(".gift-payment").addClass("slideup");
+  $('.message-gift').removeClass('hidden');
+} else {
+  $(document).find(".signup-beneficiary").prepend('<%= j render("components/error_messages", resource: current_user, formats: [:html]) %>');
+}
