@@ -1,4 +1,4 @@
-class Member::DashboardController < ApplicationController
+  class Member::DashboardController < ApplicationController
 
   def dashboard
     # Patch during VIDEO && SALON
@@ -68,6 +68,8 @@ class Member::DashboardController < ApplicationController
     if current_user.present?
       @uses_without_feedback = current_user.uses.without_feedback
     end
+
+    @user_offering = Beneficiary.includes(:users).find_by_email(current_user.email).try(:users)
 
     respond_to do |format|
       format.html

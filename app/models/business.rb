@@ -43,6 +43,9 @@
 #  like                   :integer          default(0)
 #  unlike                 :integer          default(0)
 #  link_video             :string
+#  supervisor             :boolean          default(FALSE)
+#  supervisor_id          :integer
+#  admin                  :boolean          default(FALSE), not null
 #
 # Indexes
 #

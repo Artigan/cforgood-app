@@ -595,6 +595,7 @@
     padding: 10px;
     margin: 0;
     bottom: 0;
+    z-index: 10;
 
     @media (max-width: 767px) { bottom: 12vh; }
     @media (max-width: 320px) { bottom: 10vh; }
@@ -941,7 +942,7 @@
       display: inline;
     }
 
-    i {
+    .payment-title {
       margin-bottom: 10px;
       font-size: 14px;
 
@@ -1004,6 +1005,8 @@
       @media (max-width: 320px) { margin-top: 5px; }
 
       ul {
+        list-style: none;
+        display: flex;
         margin-bottom: 10px;
         &:before,
         &:after {
@@ -1084,7 +1087,8 @@
     .btn-no-bank-details {
       position: absolute;
       width: 100%;
-      right: 40px;
+      left: 50%;
+      transform: translateX(-50%);
       bottom: 15px;
       padding: 0;
       color: $grey;
@@ -1092,7 +1096,9 @@
       font-weight: 200;
       text-decoration: underline;
 
-      @media (max-width: 767px) { bottom: 20vh; }
+      @media (max-width: 767px) {
+        bottom: 20vh;
+      }
       @media (max-width: 320px) {
         bottom: 17vh;
         right: 0;

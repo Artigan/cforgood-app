@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161125154351) do
+ActiveRecord::Schema.define(version: 20161208230703) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,18 @@ ActiveRecord::Schema.define(version: 20161125154351) do
     t.string   "name"
     t.boolean  "main",        default: false, null: false
     t.index ["business_id"], name: "index_addresses_on_business_id", using: :btree
+  end
+
+  create_table "beneficiaries", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.boolean  "used",       default: false, null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "paid",       default: false, null: false
+    t.index ["user_id"], name: "index_beneficiaries_on_user_id", using: :btree
   end
 
   create_table "business_categories", force: :cascade do |t|
@@ -97,6 +109,9 @@ ActiveRecord::Schema.define(version: 20161125154351) do
     t.integer  "like",                   default: 0
     t.integer  "unlike",                 default: 0
     t.string   "link_video"
+    t.boolean  "supervisor",             default: false
+    t.integer  "supervisor_id"
+    t.boolean  "admin",                  default: false, null: false
     t.index ["business_category_id"], name: "index_businesses_on_business_category_id", using: :btree
     t.index ["email"], name: "index_businesses_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_businesses_on_reset_password_token", unique: true, using: :btree
@@ -310,6 +325,7 @@ ActiveRecord::Schema.define(version: 20161125154351) do
     t.string   "picture"
     t.boolean  "ambassador",             default: false
     t.string   "onesignal_id"
+    t.integer  "supervisor_id"
     t.index ["cause_id"], name: "index_users_on_cause_id", using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
@@ -329,6 +345,7 @@ ActiveRecord::Schema.define(version: 20161125154351) do
   end
 
   add_foreign_key "addresses", "businesses"
+  add_foreign_key "beneficiaries", "users"
   add_foreign_key "labels", "businesses"
   add_foreign_key "labels", "label_categories"
   add_foreign_key "payments", "causes"

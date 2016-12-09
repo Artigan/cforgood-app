@@ -31,6 +31,10 @@ Rails.application.routes.draw do
     post 'signup',                  to: 'devise/registrations#create'
     get 'signup_trial',             to: 'devise/registrations#new'
     post 'signup_trial',            to: 'devise/registrations#create'
+    get 'signup_gift',              to: 'devise/registrations#new_gift'
+    post 'signup_gift',             to: 'devise/registrations#create_gift'
+    get 'signup_beneficiary',       to: 'devise/registrations#new_gift'
+    post 'signup_beneficiary',      to: 'devise/registrations#create_gift'
     get "member/sent_mail",         to: "devise/passwords#sent_mail"
     put "member/update_cause",      to: "member/registrations#update_cause"
     put "member/update_profile",    to: "member/registrations#update_profile"
@@ -39,12 +43,18 @@ Rails.application.routes.draw do
 
   namespace :member do
     resources :users, only: [:show, :update] do
-      get "dashboard", to: "dashboard#dashboard"
-      get "profile", to: "dashboard#profile"
+      get "dashboard",  to: "dashboard#dashboard"
+      get "profile",    to: "dashboard#profile"
       get "ambassador", to: "dashboard#ambassador"
+      get "gift",       to: "dashboard#gift"
     end
+    get "subscribe_gift", to: "subscribe#gift"
     resources :subscribe, only: [:new, :create, :update, :destroy]
     resources :perks, only: [:show]
+  end
+
+  resources :users do
+    resources :beneficiaries, only: [:create, :update]
   end
 
   devise_for :businesses, path: :pro, controllers: { passwords: :passwords }
@@ -77,7 +87,7 @@ Rails.application.routes.draw do
   end
 
   resources :addresses do
-    resources :timetable, only: [:create, :update]
+    resources :timetables, only: [:create, :update]
   end
 
   require "sidekiq/web"

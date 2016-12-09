@@ -2,7 +2,6 @@ class Member::SubscribeController < ApplicationController
 
   before_action :authenticate_user!
 
-
   def new
     @cause = Cause.all.includes(:cause_category)
   end
@@ -34,30 +33,38 @@ class Member::SubscribeController < ApplicationController
     respond_to :js
   end
 
+  def gift
+  end
+
   private
 
   def execute_payin
-    if current_user.should_payin? || ( params['commit'] == "M'abonner" || params['commit'] == "Me réabonner" )
-      wallet_id = Cause.find_by_id(current_user.cause_id).wallet_id if current_user.cause_id
-      wallet_id = ENV['MANGOPAY_CFORGOOD_WALLET_ID'] unless wallet_id
-      result = MangopayServices.new(current_user).create_mangopay_payin(wallet_id)
-      if result["ResultMessage"] == "Success"
-        @payment = current_user.payments.new(cause_id: current_user.cause_id, amount: current_user.amount, subscription: current_user.subscription, done: true)
-        if @payment.save
-          current_user.member!
-          current_user.update(date_last_payment: Time.now, code_partner: nil, date_end_partner: nil)
-          flash[:success] = "Votre paiement a été pris en compte."
-        else
-          flash[:alert] = "Erreur lors de l'enregistrement de votre paiement."
-        end
-      else
-        flash[:alert] = result["ResultMessage"]
-        message = current_user.find_name_or_email? + ": *erreur lors du paiement* :" + (result["ResultMessage"] || "")
-        send_message_to_slack(ENV['SLACK_WEBHOOK_USER_URL'], message)
-      end
-    elsif current_user.subscription.present?
+    if request.env["HTTP_REFERER"].include?('subscribe_gift') || request.env["HTTP_REFERER"].include?('/gift')
       flash[:success] = "Vos données bancaires ont bien été enregistrées."
-      current_user.member!
+      current_user.member! if current_user.code_partner.present? && current_user.date_end_partner > Time.now
+    else
+      if current_user.should_payin? || ( params['commit'] == "M'abonner" || params['commit'] == "Me réabonner" )
+        wallet_id = Cause.find_by_id(current_user.cause_id).wallet_id if current_user.cause_id
+        wallet_id = ENV['MANGOPAY_CFORGOOD_WALLET_ID'] unless wallet_id
+        result = MangopayServices.new(current_user).create_mangopay_payin(wallet_id)
+        if result["ResultMessage"] == "Success"
+          @payment = current_user.payments.new(cause_id: current_user.cause_id, amount: current_user.amount, subscription: current_user.subscription, done: true)
+          if @payment.save
+            current_user.member!
+            current_user.update(date_last_payment: Time.now, code_partner: nil, date_end_partner: nil)
+            flash[:success] = "Votre paiement a été pris en compte."
+          else
+            flash[:alert] = "Erreur lors de l'enregistrement de votre paiement."
+          end
+        else
+          flash[:alert] = result["ResultMessage"]
+          message = current_user.find_name_or_email? + ": *erreur lors du paiement* :" + (result["ResultMessage"] || "")
+          send_message_to_slack(ENV['SLACK_WEBHOOK_USER_URL'], message)
+        end
+      elsif current_user.subscription.present?
+        flash[:success] = "Vos données bancaires ont bien été enregistrées."
+        current_user.member!
+      end
     end
   end
 
