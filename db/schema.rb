@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161207091012) do
+ActiveRecord::Schema.define(version: 20161208230703) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,11 +52,10 @@ ActiveRecord::Schema.define(version: 20161207091012) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email"
-    t.boolean  "used",         default: false, null: false
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
-    t.string   "code_partner"
-    t.boolean  "paid",         default: false, null: false
+    t.boolean  "used",       default: false, null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "paid",       default: false, null: false
     t.index ["user_id"], name: "index_beneficiaries_on_user_id", using: :btree
   end
 

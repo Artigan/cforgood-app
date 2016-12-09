@@ -69,6 +69,8 @@
       @uses_without_feedback = current_user.uses.without_feedback
     end
 
+    @user_offering = Beneficiary.includes(:users).find_by_email(current_user.email).try(:users)
+
     respond_to do |format|
       format.html
       format.json{render json: @geojson}

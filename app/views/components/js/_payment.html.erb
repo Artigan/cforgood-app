@@ -40,10 +40,7 @@
       e.preventDefault();
       if ($("#form-card-creation").valid()) {
         $("#loading-indicator").show();
-        console.log('<%= current_user.mangopay_id %>');
         var cardPreRegistration = <%= current_user.mangopay_id ? raw(MangopayServices.new(current_user).create_mangopay_card_pre_registration.to_json) : "null" %>;
-
-        console.log(cardPreRegistration);
 
         // Initialize with card register data prepared on the server
         mangoPay.cardRegistration.init({
@@ -66,8 +63,6 @@
         mangoPay.cardRegistration.clientId  = "<%= ENV['MANGOPAY_CLIENT_ID'] %>";
         var validateCard = mangoPay.cardRegistration._validateCardData(cardData);
 
-        console.log('validate : ' + validateCard);
-
         if (validateCard) {
           // Register card
           mangoPay.cardRegistration.registerCard(
@@ -78,8 +73,6 @@
               // Success, you can use res.CardId now that points to registered card
             },
             function(res) {
-              console.log(res.ResultCode);
-              console.log(res.CardId);
               $("#loading-indicator").hide();
               $(".error-message").html(res.ResultMessage);
               $(".signup-done-overlay.ko").removeClass('hidden');

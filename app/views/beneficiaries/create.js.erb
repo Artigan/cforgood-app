@@ -1,9 +1,22 @@
 $(".alert").remove();
-if (<%= !current_user.errors.any? %>) {
-  $(".form-card.beneficiary").addClass("hidden");
-  $(".gift-payment").removeClass("hidden");
-  $(".gift-payment").addClass("slideup");
-  $('.message-gift').removeClass('hidden');
+
+if (<%= @beneficiary.errors.any? %>) {
+  $(document).find("form").prepend('<%= j render("components/error_messages", resource: @beneficiary, formats: [:html]) %>');
 } else {
-  $(document).find(".signup-beneficiary").prepend('<%= j render("components/error_messages", resource: current_user, formats: [:html]) %>');
+  if (<%= !current_user.card_id.present? %>) {
+    $(".form-card.beneficiary").addClass("hidden");
+    $(".gift-payment").removeClass("hidden");
+    $(".gift-payment").addClass("slideup");
+    $('.message-gift').removeClass('hidden');
+  } else {
+    // DISCLAIMER - DISPLAYED
+    $(".done-overlay").removeClass("hidden");
+
+    window.setTimeout(function(){
+      DISCLAIMER - HIDDEN
+      $(".done-overlay").addClass("hidden");
+      window.location.href = "<%= member_user_dashboard_path(current_user) %>";
+    }, 3000);
+  }
 }
+

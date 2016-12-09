@@ -2,16 +2,15 @@
 #
 # Table name: beneficiaries
 #
-#  id           :integer          not null, primary key
-#  user_id      :integer
-#  first_name   :string
-#  last_name    :string
-#  email        :string
-#  used         :boolean          default(FALSE), not null
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#  code_partner :string
-#  paid         :boolean          default(FALSE), not null
+#  id         :integer          not null, primary key
+#  user_id    :integer
+#  first_name :string
+#  last_name  :string
+#  email      :string
+#  used       :boolean          default(FALSE), not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  paid       :boolean          default(FALSE), not null
 #
 # Indexes
 #

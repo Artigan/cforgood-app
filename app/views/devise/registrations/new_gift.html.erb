@@ -4,7 +4,18 @@
 
 <div class="connexion signup" style="background-image: url(<%= image_url('signin-background.jpg') %>);">
   <div class="sign-box gift">
-      <span class="signup-message-gift">Vous voulez offrir un cadeaux ?</span>
+      <!-- Return to SIGNUP -->
+      <%= link_to "", signup_path, class: "close-sign-box" %>
+      <!-- Message -->
+      <% if request.path == "/signup_beneficiary" %>
+        <span class="signup-message-gift">Profitez de votre cadeaux !</span>
+      <% else %>
+        <span class="signup-message-gift">Vous voulez offrir un cadeaux ?</span>
+      <% end %>
+      <!-- Form SIGNUP USER -->
       <%= render "devise/registrations/shared/form_signup_user", resource: User.new, resource_name: :user %>
   </div>
 </div>
+
+<!-- MODAL CGU CFORGOOD -->
+<%= render "components/modals/signup_cgu" %>

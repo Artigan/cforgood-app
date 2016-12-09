@@ -10,6 +10,10 @@
     position: relative;
     height: 90%;
   }
+
+  .sign-box.gift {
+    z-index: 0;
+  }
 }
 
 @media only screen and (min-width:769px){
@@ -20,3 +24,4 @@
     }
   }
 }
+
