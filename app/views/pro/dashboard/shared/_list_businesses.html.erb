@@ -1,5 +1,5 @@
 <div>
-  <%= link_to "Créer un commerce", new_pro_business_path, class: "btn btn-default btn-create" %>
+  <%= link_to "Créer un commerce", new_pro_business_path, class: "btn business-button" %>
 </div>
 <div id="accordion">
   <% current_business.businesses.group_by{|e| e[:business_category_id]}.each do |business_category, businesses| %>

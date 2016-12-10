@@ -51,7 +51,7 @@
       <%= render "components/select_impersonate_business", dropdown_search: "navbar_select_impersonate" %>
     <% end %>
     <% if current_impersonation %>
-      <div class="btn btn-success">
+      <div class="current-impersonation">
         Vous agissez en temps que <%= current_impersonation.name %>
       </div>
     <% end %>
