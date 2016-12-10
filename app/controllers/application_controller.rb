@@ -32,21 +32,21 @@ class ApplicationController < ActionController::Base
         rescue MangoPay::ResponseError => e
           puts e
         end
-        if request.env["HTTP_REFERER"].include?('signup_trial')
+        if request.referer.include?('signup_trial')
           # Signup from the landing with automatic fill code_partner
           current_user.code_partner = "SIGNUPTRIAL"
           current_user.save
           member_user_dashboard_path(resource)
-        elsif request.env["HTTP_REFERER"].include?('signup_gift')
+        elsif request.referer.include?('signup_gift')
           # Signup to suscribe for gift > Funnel just for payment
-          current_user.code_partner = request.env["HTTP_REFERER"].split("?")[1].upcase
+          current_user.code_partner = request.referer.split("?")[1].upcase
           current_user.save
           member_subscribe_gift_path
-        elsif request.env["HTTP_REFERER"].include?('signup_beneficiary')
+        elsif request.referer.include?('signup_beneficiary')
           # Only for signupt
           current_user.code_partner = "FREEYEAR"
           current_user.save
-          Beneficiary.find(request.env["HTTP_REFERER"].split("?")[1].to_i).update(used: true)
+          Beneficiary.find(request.referer.split("?")[1].to_i).update(used: true)
           member_user_dashboard_path(resource)
         else
           # Funnel subscritpion
@@ -92,7 +92,7 @@ class ApplicationController < ActionController::Base
   end
 
   def prevent_signup
-    if request.env['PATH_INFO'].include?("/signup_beneficiary")
+    if request.path.include?("/signup_beneficiary")
       @beneficiary = Beneficiary.find_by_id(request.env['QUERY_STRING'].to_i)
       if @beneficiary.present? && !@beneficiary.used
         session[:beneficiary_id] = @beneficiary.id

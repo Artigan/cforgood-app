@@ -13,7 +13,7 @@ if (<%= @beneficiary.errors.any? %>) {
     $(".done-overlay").removeClass("hidden");
 
     window.setTimeout(function(){
-      DISCLAIMER - HIDDEN
+      // DISCLAIMER - HIDDEN
       $(".done-overlay").addClass("hidden");
       window.location.href = "<%= member_user_dashboard_path(current_user) %>";
     }, 3000);

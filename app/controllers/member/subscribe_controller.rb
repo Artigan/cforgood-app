@@ -39,9 +39,12 @@ class Member::SubscribeController < ApplicationController
   private
 
   def execute_payin
-    if request.env["HTTP_REFERER"].include?('subscribe_gift') || request.env["HTTP_REFERER"].include?('/gift')
+    if request.referer.include?('gift')
       flash[:success] = "Vos données bancaires ont bien été enregistrées."
-      current_user.member! if current_user.code_partner.present? && current_user.date_end_partner > Time.now
+      if !current_user.member
+        current_user.code_partner = "SIGNUPGIFT"
+        current_user.member!
+      end
     else
       if current_user.should_payin? || ( params['commit'] == "M'abonner" || params['commit'] == "Me réabonner" )
         wallet_id = Cause.find_by_id(current_user.cause_id).wallet_id if current_user.cause_id

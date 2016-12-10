@@ -3,8 +3,8 @@
     <span>Renseignez vos données bancaires</span>
     <div class="payment-title">
       <span class="text-subscription">Montant de la participation choisi : </span>
-      <span id="amount_subscription"><%= request.env['PATH_INFO'].include?("/subscribe_gift") ? '50' : current_user.amount %></span> /
-      <span id="label_subscription"><%= request.env['PATH_INFO'].include?("/subscribe_gift") || current_user.subscription == "Y" ? "an" : "mois" %></span>
+      <span id="amount_subscription"><%= request.path.include?("gift") ? '50' : current_user.amount %></span> /
+      <span id="label_subscription"><%= request.path.include?("gift") || current_user.subscription == "Y" ? "an" : "mois" %></span>
     </div>
     <span class="message-subscription hidden">Rassurez-vous ! <br> Le prélèvement se fera dans <span class="days"></span> jours.</span>
     <div class="subscription-form">
