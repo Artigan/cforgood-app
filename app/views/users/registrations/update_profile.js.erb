@@ -1,7 +1,7 @@
 $(".alert").remove();
 
 if (<%= !current_user.errors.any? %>) {
-  if (<%= request.env["HTTP_REFERER"].include?("subscribe") %>) {
+  if (<%= request.referer.include?("subscribe") %>) {
       $(".signup-plan").addClass("ishidden");
       $(".signup-payment").removeClass("ishidden");
       $(".signup-payment").addClass("slideup");
@@ -28,7 +28,7 @@ if (<%= !current_user.errors.any? %>) {
     }
   }
 } else {
-  if (<%= request.env["HTTP_REFERER"].include?("subscribe") %>) {
+  if (<%= request.referer.include?("subscribe") %>) {
     $(document).find(".signup-plan").prepend('<%= j render("components/error_messages", resource: current_user, formats: [:html]) %>');
   } else {
     $(document).find("form").prepend('<%= j render("components/error_messages", resource: current_user, formats: [:html]) %>');
