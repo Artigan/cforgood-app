@@ -38,7 +38,7 @@
     </div>
     <div class="sign-business <%= params[:business].present? ? "" : "hidden" %>">
       <!-- SIGNUP FORM BUSINESS -->
-      <%= render "devise/registrations/shared/form_signup_business", resource: resource_business, resource_name: :business %>
+      <%= render "devise/registrations/shared/form_signup_business", resource: resource_business, resource_name: :business, supervisor: false %>
     </div>
     <!-- ALREADY SUBSCRIBED -->
     <div class="already-subscribed">

@@ -5,7 +5,7 @@ $(document).ready(function() {
   $('.popup_select_impersonate').select2();
 
   $('.navbar_select_impersonate#impersonate_id').change(function() {
-    $('.popup_select_impersonate#impersonate_id').closest('form').submit();
+    $('.navbar_select_impersonate#impersonate_id').closest('form').submit();
   });
 
   $('.popup_select_impersonate#impersonate_id').change(function() {
