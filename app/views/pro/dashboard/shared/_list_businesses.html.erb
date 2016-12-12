@@ -2,7 +2,7 @@
   <%= link_to "Créer un commerce", new_pro_business_path, class: "btn business-button" %>
 </div>
 <div id="accordion">
-  <% current_business.businesses.group_by{|e| e[:business_category_id]}.each do |business_category, businesses| %>
+  <% @businesses.group_by{|e| e[:business_category_id]}.each do |business_category, businesses| %>
     <h3><%= BusinessCategory.find(business_category).name %></h3>
     <ul>
       <% businesses.each do |business| %>

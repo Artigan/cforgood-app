@@ -31,9 +31,9 @@ class Pro::DashboardController < Pro::ProController
     @geojson = {"type" => "FeatureCollection", "features" => []}
 
     if current_business.admin
-      @businesses = Business.all
+      @businesses = Business.all.includes(:addresses, :business_category)
     else
-      @businesses = @business.businesses
+      @businesses = @business.businesses.includes(:addresses, :business_category)
     end
 
     @businesses.each do |business|
