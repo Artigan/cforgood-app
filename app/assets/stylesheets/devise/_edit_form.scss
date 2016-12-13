@@ -108,6 +108,14 @@
       border-radius: 50%;
       padding: 1rem;
       transition: transform 300ms ease;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    .present-3month {
+      width: 70% !important;
     }
 
     .icon svg {
