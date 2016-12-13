@@ -3,9 +3,12 @@
     <span>Renseignez vos données bancaires</span>
     <div class="payment-title">
       <span class="text-subscription">Montant de la participation choisi : </span>
-      <span id="amount_subscription"><%= request.path.include?("gift") ? '50' : current_user.amount %></span> /
-      <span id="label_subscription"><%= request.path.include?("gift") || current_user.subscription == "Y" ? "an" : "mois" %></span>
+      <span id="amount_subscription"><%= current_user.amount if !request.path.include?("gift") %></span> /
+      <span id="label_subscription"><%= current_user.subscription == "Y" ? "an" : "mois" if !request.path.include?("gift") %></span>
     </div>
+    <% if request.path.include?("gift") %>
+      <span class="message-subscription">Le paiement sera effectué le 15 janvier !</span>
+    <% end %>
     <span class="message-subscription hidden">Rassurez-vous ! <br> Le prélèvement se fera dans <span class="days"></span> jours.</span>
     <div class="subscription-form">
       <form id="form-card-creation">
@@ -60,6 +63,13 @@
 <%= render "components/modals/payment" %>
 
 <% content_for :after_js do %>
+
+  <script>
+    <% if request.path.include?("gift") %>
+      $('#amount_subscription').html($('#beneficiary_amount').val());
+      $('#label_subscription').html("(" + $('#beneficiary_nb_month').val() + " mois)");
+    <% end %>
+  </script>
 
   <%= render "components/js/payment" %>
 

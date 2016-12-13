@@ -23,7 +23,7 @@ class BeneficiariesController < ApplicationController
   end
 
   def beneficiary_params
-    params.require(:beneficiary).permit(:id, :user_id, :first_name, :last_name, :email, :used)
+    params.require(:beneficiary).permit(:id, :user_id, :first_name, :last_name, :email, :nb_month, :amount, :used)
   end
 
 end
