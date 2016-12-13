@@ -33,7 +33,9 @@
   <div class="subscription-form">
     <%= simple_form_for :beneficiary, url: user_beneficiaries_path(current_user), remote: true, html: { id: :new_beneficiary } do |f| %>
       <div id="error-code">
-        <%= flash[:alert].humanize unless flash[:alert] == nil %>
+        <% if flash[:alert].present &&  flash[:alert] != "Vous êtes déjà connecté" && %>
+          <%= flash[:alert].humanize  %>
+        <% end %>
       </div>
       <%= f.input :first_name, placeholder: 'Prénom', required: true, label: false %>
       <%= f.input :last_name, placeholder: 'Nom', required: true, label: false %>
