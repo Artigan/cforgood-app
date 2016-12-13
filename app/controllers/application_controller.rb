@@ -44,9 +44,10 @@ class ApplicationController < ActionController::Base
           member_subscribe_gift_path
         elsif request.referer.include?('signup_beneficiary')
           # Only for signupt
-          current_user.code_partner = "FREEYEAR"
+          @beneficiary =  Beneficiary.find(request.referer.split("?")[1].to_i)
+          current_user.code_partner = "GIFT" + @beneficiary.nb_month.to_s + "MONTH"
           current_user.save
-          Beneficiary.find(request.referer.split("?")[1].to_i).update(used: true)
+          @beneficiary.update(used: true)
           member_user_dashboard_path(resource)
         else
           # Funnel subscritpion

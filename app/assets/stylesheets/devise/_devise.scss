@@ -598,7 +598,12 @@
   .sign-box.gift {
     transform: translateY(-50%) translateX(-50%);
 
+    @media (min-width: 768px) {
+      max-width: 360px;
+    }
+
     @media (max-width: 767px) {
+      width: 100%;
       transform: translateY(0%) translateX(0%);
     }
 
@@ -645,7 +650,7 @@
       }
 
       #label_subscription {
-        width: 15px;
+        width: 60px;
       }
 
       input[type="submit"] {
@@ -665,33 +670,36 @@
       }
 
     .subscription-form {
-       @media (min-width: 768px) { margin-top: 15px; }
+       @media (max-width: 767px) { margin-top: 20px; }
 
       i {
-        top: -100px;
+        top: -88px;
         margin-bottom: 30px;
         @media (max-width: 767px) { top: -35px; }
       }
     }
 
     .signup-message-gift {
-      top: 45px;
+      top: 35px;
       @media (max-width: 767px) { top: 100px; }
     }
 
     .signup-message-beneficiary {
-      top: 20px;
-      @media (max-width: 767px) { top: 60px; }
+      @media (max-width: 767px) { top: 10px; }
     }
 
     .beneficiary {
+      p {
+        margin-bottom: 10px;
+      }
+
       input[type="submit"] {
-        margin-top: 30px;
+        margin-top: 10px;
       }
     }
 
     .beneficiary_first_name {
-      @media (min-width: 768px) { margin-top: 30px; }
+      @media (min-width: 768px) { margin-top: 15px; }
     }
 
     .signup-prev, .btn-no-bank-details {

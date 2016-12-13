@@ -11,6 +11,8 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  paid       :boolean          default(FALSE), not null
+#  nb_month   :integer
+#  amount     :integer
 #
 # Indexes
 #

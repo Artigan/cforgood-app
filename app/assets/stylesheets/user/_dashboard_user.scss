@@ -13,6 +13,11 @@
 
   .sign-box.gift {
     z-index: 0;
+    width: 100%;
+
+    @media (min-width: 767px) {
+      max-width: 380px !important;
+    }
   }
 }
 
