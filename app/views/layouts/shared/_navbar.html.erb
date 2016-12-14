@@ -52,7 +52,7 @@
     <% end %>
     <% if current_impersonation %>
       <div class="current-impersonation">
-        Vous agissez en temps que <%= current_impersonation.name %>
+        Vous agissez en tant que <%= current_impersonation.name %>
       </div>
     <% end %>
 
@@ -76,7 +76,7 @@
               <i class="fa fa-home"></i> <%= t(".how_it_works", default: "Accueil") %>
             <% end %>
           </li>
-          <li>
+          <li class="faq-connect">
             <%= link_to faq_connect_path do %>
               <i class="fa fa-dot-circle-o"></i> <%= t(".how_it_works", default: "Aide et conseils") %>
             <% end %>
