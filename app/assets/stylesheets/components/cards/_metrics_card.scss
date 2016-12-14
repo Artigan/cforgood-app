@@ -55,3 +55,13 @@
     padding-top: 15px;
   }
 }
+
+.data-supervisor {
+  margin-bottom: 70px !important;
+
+  ul {
+    @media (max-width: 767px) {
+      flex-direction: row !important;
+    }
+  }
+}
