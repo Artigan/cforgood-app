@@ -3,13 +3,13 @@
     <!-- LINK ADDRESSES -->
     <%= render "pro/dashboard/form/form_itinerant_addresses" %>
     <!-- FORM BUSINESS -->
-    <%= simple_form_for(current_business, url: pro_update_business_path, method: :put, remote: true, authenticity_token: true) do |f| %>
+    <%= simple_form_for(@business, url: pro_update_business_path, method: :put, remote: true, authenticity_token: true) do |f| %>
       <%= f.error_notification %>
       <div class="col-1">
         <label>Photo</label>
         <div class="picture-container">
-          <% if current_business.picture? %>
-            <%= image_tag current_business.picture.url, class: 'picture-business' %>
+          <% if @business.picture? %>
+            <%= image_tag @business.picture.url, class: 'picture-business' %>
           <% else %>
             <div class="picture-none">
               <%= render 'shared/icons/shop' %>
@@ -54,11 +54,11 @@
       <div class="select-wrapper">
         <%= f.input :business_category_id, required: true, label: 'Activité', collection: BusinessCategory.all %>
       </div>
-      <%= f.input :shop, label: "Es-tu une boutique physique ?", as: :radio_buttons, collection: [['Oui', true ], ['Non', false ]], checked: current_business.shop || false  %>
-      <%= f.input :online, label: "Es-tu une e-boutique ?", as: :radio_buttons, collection: [['Oui', true ], ['Non', false ]], checked: current_business.online || false  %>
+      <%= f.input :shop, label: "Es-tu une boutique physique ?", as: :radio_buttons, collection: [['Oui', true ], ['Non', false ]], checked: @business.shop || false  %>
+      <%= f.input :online, label: "Es-tu une e-boutique ?", as: :radio_buttons, collection: [['Oui', true ], ['Non', false ]], checked: @business.online || false  %>
       <div class="business_itinerant_select">
-        <%= f.input :itinerant, label: "Es-tu itinérant ?", as: :radio_buttons, collection: [['Oui', true ], ['Non', false ]], checked: current_business.itinerant || false  %>
-        <% if current_business.itinerant %>
+        <%= f.input :itinerant, label: "Es-tu itinérant ?", as: :radio_buttons, collection: [['Oui', true ], ['Non', false ]], checked: @business.itinerant || false  %>
+        <% if @business.itinerant %>
           <a href="#" class="button-itinerant-address"><%= render "shared/icons/address" %></a>
         <% else %>
           <a href="#" class="button-itinerant-address hidden"><%= render "shared/icons/address" %></a>

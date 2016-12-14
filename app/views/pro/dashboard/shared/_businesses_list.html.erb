@@ -1,0 +1,59 @@
+<div>
+  <%= link_to "Créer un commerce", new_pro_business_path, class: "btn business-button" %>
+</div>
+<div id="accordion">
+  <% @businesses.group_by{|e| e[:business_category_id]}.each do |business_category, businesses| %>
+    <h3><%= BusinessCategory.find(business_category).name %>
+      <div class="data-business">
+        <li id="data-list-business">
+          <span class="label">Nombre de commerces </span>
+          <span class="number"><%= businesses.count %></span>
+        </li>
+        <li id="data-list-create">
+          <span class="label">Bons plans créés </span>
+          <span class="number">0<%#= businesses.perks_count %></span>
+        </li>
+        <li id="data-list-views">
+          <span class="label">Nombre total de vues </span>
+          <span class="number">0<%#= businesses.perks_views_count %></span>
+        </li>
+        <li id="data-list-used">
+          <span class="label">Bons plans utilisés </span>
+          <span class="number">0<%#= businesses.perks_uses_count %></span>
+        </li>
+      </ul>
+    </h3>
+    <ul class="data-list">
+      <% businesses.each do |business| %>
+        <li >
+          <span><%= business.name %></span>
+          <ul class="data-business">
+            <li id="data-list-create">
+              <span class="label">Bons plans créés </span>
+              <span class="number"><%= business.perks.count %></span>
+            </li>
+            <li id="data-list-views">
+              <span class="label">Nombre total de vues </span>
+              <span class="number"><%= business.perks_views_count %></span>
+            </li>
+            <li id="data-list-used">
+              <span class="label">Bons plans utilisés </span>
+              <span class="number"><%= business.perks_uses_count %></span>
+            </li>
+          </ul>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
+
+<% content_for :after_js do %>
+
+ <script>
+  $( function() {
+    $( "#accordion" ).accordion();
+  } );
+  </script>
+
+<% end %>
+

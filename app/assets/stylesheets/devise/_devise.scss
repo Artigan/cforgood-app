@@ -758,6 +758,26 @@
   }
 }
 
+.supervisor-new-business {
+  .sign-box {
+    @media (min-width: 768px) {
+      transform: translateX(-50%) translateY(-50%);
+    }
+
+    @media (max-width: 767px) {
+      transform: translateX(0) translateY(0);
+    }
+  }
+
+  &:after {
+    background: none;
+  }
+
+  input[type="submit"] {
+    margin-top: 50px;
+  }
+}
+
 .signin {
   .sign-back {
     padding: 5% 10%;

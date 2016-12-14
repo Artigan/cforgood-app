@@ -19,4 +19,8 @@ class Pro::ProController < ActionController::Base
     current_business
   end
 
+  def current_impersonation
+    return nil unless session[:impersonate_id].present?
+    @current_impersonation ||= Business.find(session[:impersonate_id])
+  end
 end

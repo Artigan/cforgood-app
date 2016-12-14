@@ -58,6 +58,12 @@
     @include transition(all, 0.3s, ease-in-out);
   }
 
+  .popup-supervisor {
+    span {
+      padding-top: 0 !important;
+    }
+  }
+
   /* PERK CREATION CONFIRMATION *************************************************/
 
   .waiting,
@@ -225,6 +231,8 @@
     background: linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* W3C */
   }
 }
+
+
 
 @media only screen and (min-width:769px){
   .admin {

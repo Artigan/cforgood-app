@@ -232,8 +232,7 @@
 
   <script type="text/javascript">setRoutePathFromLocation()</script>
 
-  <%= render 'components/map_perk_show', geojson: @geojson %>
-  <%= render 'components/map_perk_show_desktop', geojson: @geojson %>
+  <%= render 'components/map_show', geojson: @geojson, container: device_type == :mobile ? 'map-perk' : 'map-perk-desktop' %>
 
   <script>
 

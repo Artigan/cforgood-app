@@ -16,7 +16,7 @@
   height: 50px;
   padding: 10px 20px;
   box-sizing: border-box;
-  z-index: 999999;
+  z-index: 1000;
   display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
   display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
   display: -ms-flexbox;      /* TWEENER - IE 10 */
@@ -389,6 +389,22 @@
         color: #5D8A69;
       }
     }
+  }
+
+  .impersonate-business {
+    margin-left: 5%;
+  }
+
+  .current-impersonation {
+    background-color: #8460AA;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 4px;
+    height: 28px;
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: 100;
+    text-transform: uppercase;
   }
 }
 

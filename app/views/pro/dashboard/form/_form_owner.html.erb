@@ -1,12 +1,12 @@
 <div class="form-edit-container">
   <div class="form-edit">
-    <%= simple_form_for(current_business, url: pro_update_business_path, method: :put, remote: true, authenticity_token: true) do |f| %>
+    <%= simple_form_for(@business, url: pro_update_business_path, method: :put, remote: true, authenticity_token: true) do |f| %>
       <%= f.error_notification %>
       <div class="col-1">
         <label>Photo</label>
         <div class="picture-container">
-          <% if current_business.leader_picture? %>
-            <%= image_tag current_business.leader_picture.url(:avatar), class: 'picture-owner' %>
+          <% if @business.leader_picture? %>
+            <%= image_tag @business.leader_picture.url(:avatar), class: 'picture-owner' %>
           <% else %>
             <div class="picture-none">
               <%= render 'shared/icons/profile' %>

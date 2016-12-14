@@ -74,13 +74,21 @@ class Business < ApplicationRecord
   has_many :timetables, through: :addresses
   has_one  :main_address, -> { main }, class_name: "Address"
 
+  belongs_to :manager, class_name: 'Business', foreign_key: 'supervisor_id'
+  has_many :businesses, class_name: 'Business', foreign_key: 'supervisor_id'
+  has_many :businesses_perks, through: :businesses, source: :perks
+  has_many :businesses_perks_uses, through: :businesses_perks, source: :uses
+  has_many :members, class_name: 'User', foreign_key: 'supervisor_id'
+
   scope :active, -> { where(active: true) }
   scope :for_map, -> { where('businesses.shop = ? or businesses.itinerant = ?', true, true) }
   scope :shop, -> { where(shop: true) }
   scope :itinerant, -> { where(itinerant: true) }
+  scope :supervisor, -> { where(supervisor: true) }
+  scope :admin, -> { where(admin: true) }
 
   validates :email, presence: true, uniqueness: true
-  validates :business_category_id, presence: true
+  validates :business_category_id, presence: true, unless: :supervisor
   validates :name, presence: true
   validates :url, format: { with: /\Ahttps?:\/\/[\S]+/, message: "Votre URL doit commencer par http:// ou https://" }, allow_blank: true
 
@@ -120,8 +128,26 @@ class Business < ApplicationRecord
     perks.reduce(0) { |sum, perk| sum + perk.uses.used.select(:user_id).distinct.count }
   end
 
+  def causes_count
+    0
+  end
+
+  def amount_donation
+    0
+  end
+
   def address_changed?
     street_changed? || zipcode_changed? || city_changed?
+  end
+
+  def supervising?(id)
+    return false unless id.present?
+    self.admin || Business.find(id).manager == self
+  end
+
+  def collection_supervising
+    return self.businesses unless self.admin
+    Business.all
   end
 
   private
@@ -178,6 +204,10 @@ class Business < ApplicationRecord
       self.latitude -= 0.0001
       self.longitude += 0.0001
     end
+  end
+
+  def assign_supervisor
+    self.manager = Business.supervisor.near([self.latitude, self.longitude], 10).first
   end
 
 end

@@ -414,7 +414,6 @@
         }
       }
 
-
       .select-wrapper {
         position: relative;
         //width: 100%;
@@ -434,7 +433,7 @@
 
       .perk_start_date_date,
       .perk_end_date_date {
-        width: 36%;
+        width: 28%;
         display: inline-block;
         float: left;
         margin-right: 3%;
@@ -445,7 +444,10 @@
       }
 
       .perk_start_date_hour,
-      .perk_end_date_hour, {
+      .perk_end_date_hour,
+      .perk_start_date_min,
+      .perk_end_date_min
+      {
         width: 5%;
         margin-right: 3%;
       }

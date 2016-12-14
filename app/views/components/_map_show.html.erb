@@ -6,21 +6,21 @@
 
   mapboxgl.accessToken = '<%= ENV['MAPBOXGL_TOKEN'] %>';
 
-  var map_desktop = new mapboxgl.Map({
-    container: 'map-perk-desktop',
+  var map = new mapboxgl.Map({
+    container: "<%= container %>",
     style: 'mapbox://styles/fredpetris/cikporvjj00p8b5lwovwd3kq9',
     center: coordinates,
     interactive: false,
     zoom: 15
   });
 
-  map_desktop.on('style.load', function () {
-    map_desktop.addSource("markers", {
+  map.on('style.load', function () {
+    map.addSource("markers", {
       "type": "geojson",
       "data": geoJson
     });
 
-    map_desktop.addLayer({
+    map.addLayer({
       "id": "markers",
       "type": "symbol",
       "source": "markers",

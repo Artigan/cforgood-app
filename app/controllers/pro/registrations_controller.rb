@@ -1,11 +1,16 @@
 class Pro::RegistrationsController < Devise::RegistrationsController
 
   def update_business
-    if business_params[:password].present?
-      current_business.update(business_params)
-      sign_in(current_business, bypass: true)
+    if session[:impersonate_id].present?
+      @business = Business.find(session[:impersonate_id])
     else
-      current_business.update_without_password(business_params)
+      @business = current_business
+    end
+    if business_params[:password].present?
+      @business.update(business_params)
+      # sign_in(current_business, bypass: true)
+    else
+      @business.update_without_password(business_params)
     end
     respond_to do |format|
       format.html {redirect_to pro_business_profile_path(current_business) }

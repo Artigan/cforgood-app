@@ -25,7 +25,6 @@
       </div>
     </a>
     <!-- BRAND LOGO -->
-
     <!-- LOGO -->
     <% if user_signed_in? %>
       <%= link_to member_user_dashboard_path(current_user) do %>
@@ -47,7 +46,15 @@
       <% end %>
     <% end %>
 
-    <!-- <#= link_to image_tag(navbar_logo), navbar_logo_link, class: "logo" #> -->
+    <!-- MENU ITEMS -->
+    <% if business_signed_in? && pro_space? && current_business.supervisor %>
+      <%= render "components/select_impersonate_business", dropdown_search: "navbar_select_impersonate" %>
+    <% end %>
+    <% if current_impersonation %>
+      <div class="current-impersonation">
+        Vous agissez en temps que <%= current_impersonation.name %>
+      </div>
+    <% end %>
 
     <!-- MENU ITEMS -->
     <div class="link-container">

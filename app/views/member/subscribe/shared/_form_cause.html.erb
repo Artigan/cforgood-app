@@ -9,7 +9,7 @@
           <% if cause.id != current_user.cause_id && cause.id != ENV['CAUSE_ID_CFORGOOD'].to_i %>
             <div id="<%= cause.id %>" class="cause-presentation">
               <!-- CARD CAUSE -->
-              <%= render(partial: 'components/card_cause', locals: { cause: cause }) %>
+              <%= render partial: 'components/card_cause', locals: { cause: cause } %>
               <div class="love-you hidden"> <%= render 'shared/icons/heart' %>Vous soutenez cette association</div>
             </div>
           <% end %>

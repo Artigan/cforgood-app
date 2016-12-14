@@ -1,7 +1,11 @@
 class PerkPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope.where(business_id: user.perks.select(:business_id))
+      if user.supervisor
+        scope.where(business: user.businesses)
+      else
+        scope.where(business: user)
+      end
     end
   end
 
@@ -10,7 +14,8 @@ class PerkPolicy < ApplicationPolicy
   end
 
   def edit?
-    user.id == record.business_id
+    true
+    # user.id == record.business_id || user.id == record.business.manager.id
   end
 
   def update?
