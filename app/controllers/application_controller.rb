@@ -20,7 +20,11 @@ class ApplicationController < ActionController::Base
     }
 
     if resource.class.name == "Business"
-      pro_business_dashboard_path(resource)
+      if resource.supervisor
+        pro_business_supervisor_dashboard_path(resource)
+      else
+        pro_business_dashboard_path(resource)
+      end
     else
       if !current_user.mangopay_id.present?
         begin
