@@ -70,6 +70,9 @@ class Business < ApplicationRecord
   has_many :perks, dependent: :destroy
   has_many :perks_in_time, -> { in_time }, class_name: "Perk"
   has_many :perks_flash_in_time, -> { flash_in_time }, class_name: "Perk"
+  has_many :labels
+  has_many :timetables, through: :addresses
+  has_one  :main_address, -> { main }, class_name: "Address"
 
   belongs_to :manager, class_name: 'Business', foreign_key: 'supervisor_id'
   has_many :businesses, class_name: 'Business', foreign_key: 'supervisor_id'
@@ -89,10 +92,6 @@ class Business < ApplicationRecord
   validates :name, presence: true
   validates :url, format: { with: /\Ahttps?:\/\/[\S]+/, message: "Votre URL doit commencer par http:// ou https://" }, allow_blank: true
 
-  geocoded_by :address
-  after_validation :geocode, if: :address_changed?
-  before_save :controle_geocode!, :assign_supervisor, if: :address_changed?
-
   validates_size_of :picture, maximum: 2.megabytes,
     message: "Cette image dépasse 2 MG !", if: :picture_changed?
   mount_uploader :picture, PictureUploader
@@ -105,12 +104,20 @@ class Business < ApplicationRecord
     message: "Cette image dépasse 1 MG !", if: :logo_changed?
   mount_uploader :logo, PictureUploader
 
+  geocoded_by :address
+
+  after_validation :geocode, if: :address_changed?
+
+  before_save :controle_geocode!, if: :address_changed?
+
   after_create :create_code_partner, :send_registration_slack, :subscribe_to_newsletter_business
 
   after_save :update_data_intercom
+  after_save :send_activation_slack, if: :active_changed?
+
 
   def perks_uses_count
-    perks.reduce(0) { |sum, perk| sum + perk.uses.count }
+    perks.reduce(0) { |sum, perk| sum + perk.uses.used.count }
   end
 
   def perks_views_count
@@ -118,7 +125,7 @@ class Business < ApplicationRecord
   end
 
   def perks_new_users
-    perks.reduce(0) { |sum, perk| sum + perk.uses.select(:user_id).distinct.count }
+    perks.reduce(0) { |sum, perk| sum + perk.uses.used.select(:user_id).distinct.count }
   end
 
   def causes_count
@@ -158,10 +165,14 @@ class Business < ApplicationRecord
   end
 
   def send_registration_slack
-    if Rails.env.production?
-      notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_BUSINESS_URL']
-      notifier.ping "#{name}, *#{city}*, a rejoint la communauté !"
-    end
+    message = "#{name}, *#{city}*, a rejoint la communauté !"
+    send_message_to_slack(ENV['SLACK_WEBHOOK_BUSINESS_URL'], message)
+  end
+
+  def send_activation_slack
+    return unless active
+    message = "*#{name}* a été activé !"
+    send_message_to_slack(ENV['SLACK_WEBHOOK_BUSINESS_URL'], message)
   end
 
   def subscribe_to_newsletter_business
@@ -180,7 +191,7 @@ class Business < ApplicationRecord
         user.custom_attributes["first_name"] = self.leader_first_name
         user.custom_attributes["city"] = self.city
         user.custom_attributes["zipcode"] = self.zipcode
-        # user.custom_attributes["picture_url"] = self.picture.url
+        user.custom_attributes["picture_url"] = self.picture.url
         intercom.users.save(user)
       rescue Intercom::IntercomError => e
         puts e

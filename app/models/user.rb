@@ -72,34 +72,33 @@ class User < ApplicationRecord
   belongs_to :supervisor, class_name: 'Business', foreign_key: 'supervisor_id'
   has_many :uses
   has_many :payments, dependent: :destroy
-  has_many :prospects
   has_many :user_histories
+  has_many :beneficiaries
 
   scope :member, -> { where(member: true) }
-  scope :member_should_payin, lambda {|day| where('users.member = ? and users.subscription = ? and users.date_last_payment between ? and ?', true, "M", (Time.now - 1.month - day.day).beginning_of_day,  (Time.now - 1.month - day.day).end_of_day) }
-  scope :member_on_trial_should_payin, lambda {|day| where('users.member = ? and users.code_partner.present? and users.date_end_partner = ?', true, Time.now + day.day) }
+  scope :member_should_payin, lambda {|day| where('users.member = ? and (users.code_partner is null or users.code_partner = ?) and users.subscription = ? and users.date_last_payment between ? and ?', true, "", "M", (Time.now - 1.month - day.day).beginning_of_day,  (Time.now - 1.month - day.day).end_of_day) }
+  scope :member_on_trial_should_payin, lambda {|day| where('users.member = ? and users.code_partner is not null and users.code_partner <> ? and users.date_end_partner = ?', true, "", Time.now + day.day) }
 
   validates :email, presence: true, uniqueness: true
   # validates :first_name, presence: true
   # validates :last_name, presence: true
   # validates :city, presence: true
 
+  validate :code_partner?, if: :code_partner_changed?
+
   validates_size_of :picture, maximum: 2.megabytes,
     message: "Cette image dépasse 2 MG !", if: :picture_changed?
+
   mount_uploader :picture, PictureUploader
 
   geocoded_by :address
-  after_validation :geocode, if: :address_changed?
 
-  validate :code_partner?, if: :code_partner_changed?
+  after_validation :geocode, if: :address_changed?
 
   before_create :default_cause_id!
 
-  after_create :send_registration_slack, :subscribe_to_newsletter_user, :create_event_amplitude
-
   before_save :subscription!, if: :subscription_changed?
   before_save :subscription!, if: :code_partner_changed?
-
   before_save :date_support!, if: :cause_id_changed?
 
   before_save :assign_supervisor, if: :address_changed?
@@ -110,6 +109,7 @@ class User < ApplicationRecord
 
   after_commit :update_data_intercom
 
+  after_create :send_registration_slack, :subscribe_to_newsletter_user, :create_event_amplitude, :save_onesignal_id
 
   def self.find_for_google_oauth2(access_token, signed_in_resourse=nil)
     data = access_token.info
@@ -185,12 +185,21 @@ class User < ApplicationRecord
     self.save
   end
 
+  def trial_done?
+    if self.code_partner.present? && !self.trial_done
+      self.trial_done = true
+      return self.save
+    end
+    return false
+  end
+
   def stop_subscription!
     self.member = false
     self.date_stop_subscription = Time.now
     self.subscription = nil
     self.amount = nil
     self.date_last_payment = nil
+    code_partner_save = self.code_partner
     self.code_partner = nil
     self.date_end_partner = nil
     self.save
@@ -208,14 +217,10 @@ class User < ApplicationRecord
     end
 
     #SEND EVENT TO SLACK
-    message =  find_name_or_email? + " a résilié son abonnement de " + self.amount.to_s + "€."
-
-    if Rails.env.production?
-      notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_USER_URL']
-      notifier.ping message
-    else
-      puts message
-    end
+    message =  find_name_or_email?
+    message += code_partner_save.present? ? " a résilié sa période d'essai." : " a résilié son abonnement."
+    message += " |" + self.email + "|"
+    send_message_to_slack(ENV['SLACK_WEBHOOK_USER_URL'], message)
   end
 
   private
@@ -284,34 +289,17 @@ class User < ApplicationRecord
   end
 
   def send_registration_slack
-
     message = find_name_or_email?
     message += ", *#{city}*," if city.present?
     message += " a rejoint la communauté !"
-
-    if Rails.env.production?
-      notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_USER_URL']
-      notifier.ping message
-    else
-      puts message
-    end
+    send_message_to_slack(ENV['SLACK_WEBHOOK_USER_URL'], message)
   end
 
   def send_code_partner_slack
-
     if self.code_partner.present?
-
       message = find_name_or_email? + " a utilisé le code partenaire : #{self.code_partner}"
-
-      if Rails.env.production?
-        notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_USER_URL']
-        notifier.ping message
-      else
-        puts message
-      end
-
+      send_message_to_slack(ENV['SLACK_WEBHOOK_USER_URL'], message)
     end
-
   end
 
   def subscribe_to_newsletter_user
@@ -339,6 +327,7 @@ class User < ApplicationRecord
     # UPDATE CUSTOM ATTRIBUTES ON INTERCOM
 
     intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
+    promo = Partner.find_by_code_partner(self.code_partner).try(:promo) || false
     begin
       user = intercom.users.find(:user_id => self.id)
       user.custom_attributes["user_type"] = 'user'
@@ -349,6 +338,7 @@ class User < ApplicationRecord
       user.custom_attributes["user_cause"] = self.cause.name
       user.custom_attributes["user_member"] = self.member
       user.custom_attributes['code_partner'] = self.code_partner
+      user.custom_attributes['code_promo'] = promo
       user.custom_attributes['date_end_trial'] = self.date_end_partner
       user.custom_attributes['ambassador'] = self.ambassador
       intercom.users.save(user)
@@ -368,6 +358,7 @@ class User < ApplicationRecord
             'user_cause' => self.cause.name,
             'user_member' => self.member,
             'code_partner' => self.code_partner,
+            'code_promo' => promo,
             'date_end_trial' => self.date_end_partner,
             'ambassador' => self.ambassador
           })
@@ -391,7 +382,6 @@ class User < ApplicationRecord
       self.user_histories.new.create_history(history_params)
     end
   end
-
 
   def create_partner_for_third_use_code_partner
     if code_partner.present?
@@ -424,6 +414,31 @@ class User < ApplicationRecord
 
   def assign_supervisor
     self.supervisor = Business.supervisor.near([self.latitude, self.longitude], 10).first
+  end
+
+  def save_onesignal_id
+    # begin
+    #   device_token = "abcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdab" + self.id.to_s
+    #   params = {
+    #     app_id: ENV['ONESIGNAL_APP_ID'],
+    #     device_type: 5,
+    #     language: 'fr',
+    #     identifier: device_token,
+    #     tags: {
+    #       user_id: self.id
+    #     }
+    #   }
+    #   response = OneSignal::Player.create(params: params)
+    #   self.onesignal_id = JSON.parse(response.body)["id"]
+    #   self.save
+    #   puts "One Signal Id : " + JSON.parse(response.body)["id"]
+
+    # rescue OneSignal::OneSignalError => e
+    #   puts "--- OneSignalError  :"
+    #   puts "-- message : #{e.message}"
+    #   puts "-- status : #{e.http_status}"
+    #   puts "-- body : #{e.http_body}"
+    # end
   end
 
 end

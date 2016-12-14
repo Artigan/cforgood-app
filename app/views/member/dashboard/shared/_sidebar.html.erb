@@ -35,12 +35,22 @@
             <span class="admin-label">Espace ambassadeur</span>
           <% end %>
         </li>
+        <li class="<%= active_class(member_user_gift_path(current_user)) %> light ">
+          <%= link_to member_user_gift_path(current_user) do %>
+            <div class="icon-container">
+              <i><%= image_tag 'icons/present.svg' %></i>
+            </div>
+            <span class="admin-label">Plaisir d'offrir</span>
+          <% end %>
+        </li>
+
       <% end %>
+
 
     <!-- USER NOT SIGN IN -->
     <% else %>
-      <li class="<%= active_class(map_path)%>">
-        <%= link_to map_path do %>
+      <li class="<%= active_class(signin_path)%>">
+        <%= link_to signin_path do %>
           <div class="icon-container">
             <%= render "shared/icons/around_me" %>
           </div>

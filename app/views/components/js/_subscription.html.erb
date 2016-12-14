@@ -50,6 +50,19 @@
       $('#user_amount').val(amount);
       $('.output-asso').html(pourcent);
       $('.output-fiscal').html(outputFiscal);
+
+      if (subscription == 'monthly') {
+        $('#range').val(amount.toString());
+      } else {
+        index = valMap.indexOf(amount);
+        $("#slider").slider({
+          max: valMap.length - 1,
+          value: index,
+          slide: function(event, ui) {
+            changeValues(valMap[ui.value], subscription);
+          }
+        });
+      }
     }
 
     var amountInit = parseInt($("#user_amount").val());
@@ -69,13 +82,13 @@
           changeValues(valMap[ui.value], subscription);
         }
       });
+    }
 //       .each(theArray, function(){
 //   if (closest == null || Math.abs(this - goal) < Math.abs(closest - goal)) {
 //     closest = this;
 //   }
 // });
 
-    }
 
     $('#range').on('input', function() {
       var value = parseInt(this.value);
@@ -85,22 +98,9 @@
     $('#user_amount').on('input', function() {
       var value = parseInt(this.value);
       changeValues(value, subscription);
-
-      if (subscription == 'monthly') {
-        $('#range').val(value.toString());
-      } else {
-      index = valMap.indexOf(value);
-      $("#slider").slider({
-        max: valMap.length - 1,
-        value: index,
-        slide: function(event, ui) {
-          changeValues(valMap[ui.value], subscription);
-        }
-      });
-      }
     });
 
-    $('#monthly, .subscription-monthly').on('click', function() {
+    $('#monthly').on('click', function() {
       subscription = 'monthly';
       changeValues(5, subscription);
       $('#yearly').attr('checked', false);
@@ -109,7 +109,7 @@
       $('#range').removeClass('hidden');
     });
 
-    $('#yearly, .subscription-yearly').on('click', function() {
+    $('#yearly').on('click', function() {
       subscription = 'yearly';
       changeValues(50, subscription);
       $('#monthly').attr('checked', false);
@@ -145,9 +145,6 @@
       $("#user_subscription").val(subscription == 'monthly' ? 'M' : 'Y');
       $("#amount_subscription").html($("#user_amount").val());
       $("#label_subscription").html(subscription == 'monthly' ? 'mois' : 'an');
-
-
-
       <% if controller_path == "member/dashboard" %>
         // EVENT AMPLITUDE : USER_C_PROFILE_MYSUBSCRIPTION_OK
         amplitude.logEvent('USER_C_PROFILE_MYSUBSCRIPTION_OK');
@@ -170,42 +167,3 @@
 
 
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

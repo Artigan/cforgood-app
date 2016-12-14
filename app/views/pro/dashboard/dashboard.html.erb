@@ -7,10 +7,10 @@ Consultez vos chiffres
 
 <div class="container-fluid admin">
   <!-- DISCLAIMER IF INACTIVE BUSINESS -->
-  <% if !@business.active &&
-    (request.env["HTTP_REFERER"] == nil ||
-     request.env["HTTP_REFERER"].include?("/pro/sign_up") ||
-     request.env["HTTP_REFERER"].include?("/pro/sign_in")) %>
+  <% if !current_business.active &&
+    (request.referer == nil ||
+     request.referer.include?("/pro/sign_up") ||
+     request.referer.include?("/pro/sign_in")) %>
     <%= render "pro/dashboard/shared/welcome_inactive" %>
   <% end %>
   <!-- ACOUNT -->

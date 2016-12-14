@@ -31,6 +31,7 @@ class Payment < ApplicationRecord
   validates :user_id, presence: true
   validates :cause_id, presence: true
   validates :amount, presence: true
+  validates :subscription, presence: true
 
   after_create :create_event_intercom, :send_payment_slack
 
@@ -64,16 +65,10 @@ class Payment < ApplicationRecord
   def send_payment_slack
 
     if @user.payments.valid_payment.count <= 1 && self.done == true
-
-      message = @user.find_name_or_email? + " a souscrit une participation de " + @user.amount.to_s + "€. |" + @user.email + "|"
-
-      if Rails.env.production?
-        notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_USER_URL']
-        notifier.ping message
-      else
-        puts message
-      end
-
+      message = @user.find_name_or_email? + " a souscrit une participation "
+      message += self.subscription == "M" ? "mensuelle" : "annuelle"
+      message += " de " + @user.amount.to_s + "€. |" + @user.email + "|"
+      send_message_to_slack(ENV['SLACK_WEBHOOK_USER_URL'], message)
     end
   end
 

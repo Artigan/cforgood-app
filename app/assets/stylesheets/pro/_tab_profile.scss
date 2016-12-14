@@ -626,6 +626,25 @@
             .number {
               line-height: 12px;
             }
+
+        /* PROFILE - TIMETABLES *********************************************/
+
+        #timetables_am_start_at_hour,
+        #timetables_am_start_at_min,
+        #timetables_am_end_at_hour,
+        #timetables_am_end_at_min,
+        #timetables_pm_start_at_hour,
+        #timetables_pm_start_at_min,
+        #timetables_pm_end_at_hour,
+        #timetables_pm_end_at_min {
+          display: inline-flex;
+          align-items: baseline;
+          margin-top: 20px;
+          width: 20%;
+
+          &:before {
+            color: #636363;
+            font-weight: 100;
           }
         }
       }

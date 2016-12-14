@@ -50,7 +50,6 @@
     display: inline;
     font-size: 14px;
   }
-
 }
 
 .subscription-form .ap-input-icon {
@@ -125,3 +124,121 @@
 //   border-top: 1px solid #red;
 //   border-bottom: 0;
 // }
+
+/* BENEFICIARY FORM ***********************************************************/
+
+.pack-gift {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 20px 0 0;
+}
+
+.pack-gift-comment {
+  padding: 0 20px 10px;
+}
+
+.radio-tile-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  //set dimensions for invisible container
+  .input-container {
+    position: relative;
+    height:  5rem;
+    width:  5rem;
+    margin: 0 2rem;
+
+    //make actual radio input invisible
+    // + stretch to fill container
+    .radio-button {
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      cursor: pointer;
+    }
+
+    //default tile styles
+    .radio-tile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      border: 2px solid $turquoise;
+      border-radius: 50%;
+      padding: 1rem;
+      transition: transform 300ms ease;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    .present-3month {
+      width: 70% !important;
+    }
+
+    .icon svg {
+      fill: $turquoise;
+      width: 3rem;
+      height: 3rem;
+    }
+
+    //active tile styles
+    .radio-button:checked + .radio-tile {
+      background-color: $turquoise;
+      border: 2px solid $turquoise;
+      color: white;
+      transform: scale(1.1, 1.1);
+
+      .icon svg {
+        fill: white;
+        background-color: $turquoise;
+      }
+
+      .radio-tile-label {
+        color: white;
+        background-color: $turquoise;
+      }
+    }
+  }
+}
+
+.radio-tile-label {
+  text-align: center;
+  font-size: 1.1rem !important;
+  font-weight: 400;
+  text-transform: uppercase;
+  margin: 0 0.85em;
+}
+
+.icon-card {
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  padding: 10px;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background: #fff;
+  transform: translateX(-50%);
+
+  @media (max-width: 767px) {
+    position: relative;
+    margin-bottom: 20px;
+    top: 10px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

@@ -46,8 +46,11 @@ module Cforgoodwebsite
     # Mobvious::Manager as Rack middleware : detection device/User-Agent
     config.middleware.use Mobvious::Manager
 
-    #background jobs
+    # background jobs
     config.active_job.queue_adapter = :sidekiq
+
+    # Modules
+    config.autoload_paths += %W(#{config.root}/lib)
   end
 
 end

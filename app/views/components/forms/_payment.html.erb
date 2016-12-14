@@ -1,12 +1,15 @@
 <div class="signup-payment">
   <div class="payment-container">
     <span>Renseignez vos données bancaires</span>
-    <i>
+    <div class="payment-title">
       <span class="text-subscription">Montant de la participation choisi : </span>
-      <span id="amount_subscription"><%= current_user.amount %></span> /
-      <span id="label_subscription"><%= current_user.subscription == "M" ? "mois" : "an" %></span>
-    </i>
-    <span class="message-subscription hidden">PAS DE PANIQUE ! Le prélèvement ne se fera qu'à la fin de la période d'essai.</span>
+      <span id="amount_subscription"><%= current_user.amount if !request.path.include?("gift") %></span> /
+      <span id="label_subscription"><%= current_user.subscription == "Y" ? "an" : "mois" if !request.path.include?("gift") %></span>
+    </div>
+    <% if request.path.include?("gift") %>
+      <span class="message-subscription">Le paiement sera effectué le 15 janvier !</span>
+    <% end %>
+    <span class="message-subscription hidden">Rassurez-vous ! <br> Le prélèvement se fera dans <span class="days"></span> jours.</span>
     <div class="subscription-form">
       <form id="form-card-creation">
         <div class="form-group">
@@ -43,10 +46,15 @@
     </div>
     <%= link_to "Je renseignerai plus tard mes données bancaires ", member_user_dashboard_path(current_user), class: "btn btn-no-bank-details" %>
     <button class="signup-prev">Retour</button>
+    <div class="hidden">
+        <%= simple_form_for :rollback_code_partner, url: member_subscribe_path(current_user), remote: true, method: :delete do |f| %>
+        <%= f.submit "", class: "rollback_code_partner", :style => "display: none;" %>
+        <% end %>
+      </div>
   </div>
 </div>
 <div>
-  <%= image_tag('icons/loading.gif', id: "loading-indicator", style: "display:none") %>
+  <%= image_tag('icons/loading.gif', id: "loading-indicator", style: "display: none;") %>
 </div>
 
 
@@ -55,6 +63,13 @@
 <%= render "components/modals/payment" %>
 
 <% content_for :after_js do %>
+
+  <script>
+    <% if request.path.include?("gift") %>
+      $('#amount_subscription').html($('#beneficiary_amount').val());
+      $('#label_subscription').html("(" + $('#beneficiary_nb_month').val() + " mois)");
+    <% end %>
+  </script>
 
   <%= render "components/js/payment" %>
 

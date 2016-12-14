@@ -13,7 +13,7 @@
     overflow: hidden;
   }
 
-  &:after {
+  &:not(.dashboard):after {
     content: "";
     position: absolute;
     top: 0;
@@ -592,6 +592,118 @@
           }
         }
       }
+    }
+  }
+
+  .sign-box.gift {
+    transform: translateY(-50%) translateX(-50%);
+
+    @media (min-width: 768px) {
+      max-width: 360px;
+    }
+
+    @media (max-width: 767px) {
+      width: 100%;
+      transform: translateY(0%) translateX(0%);
+    }
+
+    .form-card {
+      @media (max-width: 767px) {
+        padding: 40px 20px 20px;
+      }
+    }
+
+    .gift-payment {
+      padding: 20px;
+
+      .payment-container {
+        @media (min-width: 768px)  {
+          margin-top: 15px;
+        }
+      }
+
+      i {
+        position: absolute;
+        top: -20px;
+        left: 50%;
+        padding: 10px;
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        background: #fff;
+        transform: translateX(-50%);
+
+        @media (max-width: 767px) {
+          position: relative;
+          margin-bottom: 60px;
+          top: 20px;
+          box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+          padding: 15px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+
+      .mangopay-disclaimer {
+        max-width: 200px;
+      }
+
+      #label_subscription {
+        width: 60px;
+      }
+
+      input[type="submit"] {
+        margin-bottom: 20px;
+        color: white;
+        background-color: #36d3da;
+
+        &:hover {
+          background-color: #19A2C2;
+          outline-color: transparent;
+          outline-style: none;
+        }
+      }
+
+      .card-authorized ul li {
+        margin: 0 5px;}
+      }
+
+    .subscription-form {
+       @media (max-width: 767px) { margin-top: 20px; }
+
+      i {
+        top: -88px;
+        margin-bottom: 30px;
+        @media (max-width: 767px) { top: -35px; }
+      }
+    }
+
+    .signup-message-gift {
+      top: 35px;
+      @media (max-width: 767px) { top: 100px; }
+    }
+
+    .signup-message-beneficiary {
+      @media (max-width: 767px) { top: 10px; }
+    }
+
+    .beneficiary {
+      p {
+        margin-bottom: 10px;
+      }
+
+      input[type="submit"] {
+        margin-top: 10px;
+      }
+    }
+
+    .beneficiary_first_name {
+      @media (min-width: 768px) { margin-top: 15px; }
+    }
+
+    .signup-prev, .btn-no-bank-details {
+      display: none;
     }
   }
 

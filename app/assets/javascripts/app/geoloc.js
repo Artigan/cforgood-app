@@ -55,6 +55,7 @@ function geolocErrors(error) {
     break;
   }
   $("#link-map").addClass("unable");
+  $('.info-unable').remove();
   $("#link-map").after('<span class="info-unable">' + info + "</span>");
   $("#link-itinerary").addClass("unable");
 }
