@@ -44,9 +44,12 @@ ActiveAdmin.register Business do
       f.input :shop
       f.input :online
       f.input :itinerant
+      f.input :supervisor
+      f.input :supervisor_id
+      f.input :admin
     end
     f.actions
   end
 
-  permit_params :name, :business_category_id, :email, :password, :url, :description, :street, :zipcode, :city, :facebook, :twitter, :instagram, :telephone, :picture, :latitude, :longitude, :active, :leader_picture, :leader_first_name, :leader_last_name, :leader_description, :leader_phone, :leader_email, :logo, :shop, :online, :itinerant, :like, :unlike, :link_video
+  permit_params :name, :business_category_id, :email, :password, :url, :description, :street, :zipcode, :city, :facebook, :twitter, :instagram, :telephone, :picture, :latitude, :longitude, :active, :leader_picture, :leader_first_name, :leader_last_name, :leader_description, :leader_phone, :leader_email, :logo, :shop, :online, :itinerant, :like, :unlike, :link_video, :supervisor, :supervisor_id, :admin
 end
