@@ -9,7 +9,7 @@ class Pro::DashboardController < Pro::ProController
     else
       session[:impersonate_id] = nil
     end
-    redirect_to :back
+    redirect_to pro_business_dashboard_path(current_business)
   end
 
   def dashboard

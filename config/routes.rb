@@ -73,7 +73,7 @@ Rails.application.routes.draw do
   namespace :pro do
     resources :businesses, only: [:show, :update, :new, :create] do
       resources :addresses
-      resources :perks, only: [:index, :new, :create]
+      resources :perks, only: [:index, :new, :create, :update]
       get 'dashboard',  to: 'dashboard#dashboard'
       post 'impersonation', to: 'dashboard#set_impersonation'
       get "profile",    to: "dashboard#profile"

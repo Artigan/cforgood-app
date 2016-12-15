@@ -1,7 +1,7 @@
 class Pro::PerksController < Pro::ProController
 
   before_action :find_perk, only: [:edit, :update, :destroy]
-  before_action :find_business, only: [:index, :new, :create]
+  before_action :find_business, only: [:index, :new, :create, :edit]
 
   skip_after_action :verify_authorized
   skip_after_action :verify_policy_scoped
