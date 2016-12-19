@@ -193,7 +193,7 @@ class Business < ApplicationRecord
         user.custom_attributes["city"] = self.city
         user.custom_attributes["zipcode"] = self.zipcode
         user.custom_attributes["picture_url"] = self.picture.url
-        user.custom_attributes["manager"] = self.manager.name
+        user.custom_attributes["manager"] = self.manager.name if self.manager.present?
         user.custom_attributes["supervisor"] = self.supervisor
         intercom.users.save(user)
       rescue Intercom::IntercomError => e
