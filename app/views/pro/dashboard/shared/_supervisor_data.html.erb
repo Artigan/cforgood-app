@@ -7,11 +7,11 @@
   <ul class="data-desktop">
     <span class="data-title">Resumé de votre activité</span>
     <li id="data-businesses">
-      <% if @business.perks.count == 0 %>
+      <% if @business.businesses.count == 0 %>
         <span class="number number-inactive"><%= @business.businesses.count %></span>
         <span class="label number-inactive">Nombre de commerces</span>
       <% else %>
-        <span class="number"><%= @business.perks.count %></span>
+        <span class="number"><%= @business.businesses.count %></span>
         <span class="label">Nombre de commerces</span>
       <% end %>
     </li>
