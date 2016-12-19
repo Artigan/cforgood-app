@@ -71,6 +71,7 @@ class Perk < ApplicationRecord
   after_create :send_registration_slack, :update_data_intercom
   after_save :update_data_intercom, if: :active_changed?
   after_save :send_push_notification, if: :send_notification_changed?
+  after_save :send_change_to_slack
   after_destroy :update_data_intercom
 
   def update_nb_view!
@@ -134,6 +135,13 @@ class Perk < ApplicationRecord
     send_message_to_slack(ENV['SLACK_WEBHOOK_PERK_URL'], message)
   end
 
+  def send_change_to_slack
+    if ( name_changed? && name_was.present? ) || ( description_changed? && description_was.present? )
+      message = "#{self.business.name} a changé son bon plan *" + perk_type(self.appel, self.durable, self.flash) + "* : #{name} : #{description}"
+      send_message_to_slack(ENV['SLACK_WEBHOOK_PERK_URL'], message)
+    end
+  end
+
   def name_uniqueness
     if name.present?
       name.upcase!
@@ -174,7 +182,7 @@ class Perk < ApplicationRecord
             times: self.times
           }
         )
-       end
+      end
 
     rescue Intercom::IntercomError => e
       puts e
