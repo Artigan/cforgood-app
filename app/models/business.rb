@@ -86,6 +86,7 @@ class Business < ApplicationRecord
   scope :itinerant, -> { where(itinerant: true) }
   scope :supervisor, -> { where(supervisor: true) }
   scope :admin, -> { where(admin: true) }
+  scope :supervisor_not_admin, -> { where('supervisor = ? and admin = ?', true, false) }
 
   validates :email, presence: true, uniqueness: true
   validates :business_category_id, presence: true, unless: :supervisor
@@ -108,7 +109,7 @@ class Business < ApplicationRecord
 
   after_validation :geocode, if: :address_changed?
 
-  before_save :controle_geocode!, if: :address_changed?
+  before_save :controle_geocode!, :assign_supervisor, if: :address_changed?
 
   after_create :create_code_partner, :send_registration_slack, :subscribe_to_newsletter_business
 
@@ -182,7 +183,7 @@ class Business < ApplicationRecord
   end
 
   def update_data_intercom
-    if active_changed? or leader_first_name_changed? or city_changed? or picture_changed?
+    if active_changed? or leader_first_name_changed? or city_changed? or picture_changed? or supervisor_changed?  or supervisor_id_changed?
       # UPDATE CUSTOM ATTRIBUTES ON INTERCOM
       intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
       begin
@@ -192,6 +193,8 @@ class Business < ApplicationRecord
         user.custom_attributes["city"] = self.city
         user.custom_attributes["zipcode"] = self.zipcode
         user.custom_attributes["picture_url"] = self.picture.url
+        user.custom_attributes["manager"] = self.manager.name
+        user.custom_attributes["supervisor"] = self.supervisor
         intercom.users.save(user)
       rescue Intercom::IntercomError => e
         puts e
@@ -207,7 +210,7 @@ class Business < ApplicationRecord
   end
 
   def assign_supervisor
-    self.manager = Business.supervisor.near([self.latitude, self.longitude], 10).first
+    self.manager = Business.supervisor_not_admin.near([self.latitude, self.longitude], 10).first
   end
 
 end
