@@ -27,14 +27,6 @@
         <% end %>
       </li>
       <% if device_type != :mobile %>
-        <li class="<%= active_class(member_user_ambassador_path(current_user)) %> light ">
-          <%= link_to member_user_ambassador_path(current_user) do %>
-            <div class="icon-container">
-              <%= render "shared/icons/ambassador" %>
-            </div>
-            <span class="admin-label">Espace ambassadeur</span>
-          <% end %>
-        </li>
         <li class="<%= active_class(member_user_gift_path(current_user)) %> light ">
           <%= link_to member_user_gift_path(current_user) do %>
             <div class="icon-container">
@@ -43,7 +35,14 @@
             <span class="admin-label">Plaisir d'offrir</span>
           <% end %>
         </li>
-
+        <li class="<%= active_class(member_user_ambassador_path(current_user)) %> light ">
+          <%= link_to member_user_ambassador_path(current_user) do %>
+            <div class="icon-container">
+              <%= render "shared/icons/ambassador" %>
+            </div>
+            <span class="admin-label">Espace ambassadeur</span>
+          <% end %>
+        </li>
       <% end %>
 
 
