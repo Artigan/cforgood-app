@@ -25,15 +25,15 @@ class Pro::DashboardController < Pro::ProController
   def supervisor_dashboard
     @business = current_business
     # A modifier !!!
-    @perks = @business.businesses_perks
+    # @perks = @business.businesses_perks
     authorize @business
 
     @geojson = {"type" => "FeatureCollection", "features" => []}
 
     if current_business.admin
-      @businesses = Business.all.includes(:addresses, :business_category)
+      @businesses = Business.all.includes(:addresses, :business_category, :perks).eager_load(:businesses_perks, :businesses_perks_uses)
     else
-      @businesses = @business.businesses.includes(:addresses, :business_category)
+      @businesses = @business.businesses.includes(:addresses, :business_category, :perks).eager_load(:businesses_perks, :businesses_perks_uses)
     end
 
     @businesses.each do |business|
@@ -70,6 +70,6 @@ class Pro::DashboardController < Pro::ProController
 
   def find_business
     id = session[:impersonate_id] || params[:business_id]
-    @business = Business.find(id)
+    @business = Business.includes(:manager).find(id)
   end
 end

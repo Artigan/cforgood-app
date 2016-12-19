@@ -3,17 +3,19 @@
   <%= render "pro/dashboard/shared/supervisor_sidebar" %>
   <!-- Content -->
   <div class="dashboard connexion signup supervisor-new-business">
-    <div class="sign-box signup ">
+    <div class="sign-box signup">
       <%= link_to "", pro_business_supervisor_dashboard_path(current_business) , class: "close-sign-box" %>
+
       <!-- SIGNUP FORM BUSINESS -->
-      <%= @error %>
       <div class="mobile-title">
         <%= image_tag('logopouce.png', class: '') %>
-        <span>Création d'un nouveau commerce</span>
+        <span>Création d'un commerce</span>
       </div>
       <div class="form-card">
         <div class="subscription-form">
           <%= simple_form_for(@business, url: pro_businesses_path) do |f| %>
+            <i><%= render "shared/icons/shop" %></i>
+            <p class="comment"><%= @error %></p>
             <%= f.error_notification %>
             <%= f.input :name, placeholder: 'Nom commerce', required: true, label: false %>
             <%= f.input :email, placeholder: 'Adresse email', required: true, label: false %>

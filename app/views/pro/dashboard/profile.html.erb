@@ -21,10 +21,16 @@
         <!-- Nav tabs -->
         <ul id="menu" class="nav nav-tabs">
           <li role="profile" class="active">
-            <%= link_to "Mes informations", "#business", role: "tab", data_toggle: "tab" %>
+            <%= link_to "#business", role: "tab", data_toggle: "tab" do %>
+              <i class="fa fa-user" aria-hidden="true"></i>
+              <span>Mes informations</span>
+            <% end %>
           </li>
           <li role="profile">
-            <%= link_to "Mon commerce", "#shop", role: "tab", data_toggle: "tab" %>
+            <%= link_to "#shop", role: "tab", data_toggle: "tab" do %>
+              <i class="fa fa-home" aria-hidden="true"></i>
+              <span>Mon commerce</span>
+            <% end %>
           </li>
         </ul>
         <!-- Tab panes -->

@@ -31,6 +31,18 @@
               background-color: transparent;
               opacity: 1;
             }
+
+            @media (max-width: 767px) {
+              span {
+                display: none;
+              }
+            }
+          }
+
+          @media (min-width: 768px) {
+            i {
+              display: none;
+            }
           }
         }
 

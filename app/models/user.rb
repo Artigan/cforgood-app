@@ -413,7 +413,7 @@ class User < ApplicationRecord
   end
 
   def assign_supervisor
-    self.supervisor = Business.supervisor.near([self.latitude, self.longitude], 10).first
+    self.supervisor = Business.supervisor_not_admin.near([self.latitude, self.longitude], 10).first
   end
 
   def save_onesignal_id

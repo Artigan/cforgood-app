@@ -15,19 +15,28 @@ Consultez vos chiffres
     <%= render "pro/dashboard/shared/updated" %>
     <div class="mobile-title">
       <%= image_tag('logopouce.png', class: '') %>
-      <span>Mes informations personnelles</span>
+      <span>Mon compte</span>
     </div>
     <div class="tab-container">
       <!-- Nav tabs -->
       <ul id="menu" class="nav nav-tabs">
         <li role="profile" class="active">
-          <%= link_to "Mes chiffres", "#data", role: "tab", data_toggle: "tab" %>
+          <%= link_to "#data", role: "tab", data_toggle: "tab" do %>
+            <i class="fa fa-tachometer" aria-hidden="true"></i>
+            <span>Mes chiffres</span>
+          <% end %>
         </li>
         <li role="profile">
-          <%= link_to "Les commerces", "#shop", role: "tab", data_toggle: "tab" %>
+          <%= link_to "#shop", role: "tab", data_toggle: "tab" do %>
+           <i class="fa fa-list" aria-hidden="true"></i>
+           <span>Les commerces</span>
+          <% end %>
         </li>
         <li role="profile">
-          <%= link_to "Mes informations", "#business", role: "tab", data_toggle: "tab" %>
+          <%= link_to "#business", role: "tab", data_toggle: "tab"  do %>
+            <i class="fa fa-user" aria-hidden="true"></i>
+            <span>Mes informations</span>
+          <% end %>
         </li>
       </ul>
       <!-- Tab panes -->
