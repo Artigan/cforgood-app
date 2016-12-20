@@ -1,12 +1,8 @@
-
-
-
 $(document).ready(function() {
     $(".perk-pseudo-modal-link-mobile").click(function() {
     $(".perk-modal-mobile").removeClass("hidden");
     });
 });
-
 
 $(document).ready(function() {
     $('.perk-modal-close-mobile').click(function() {
@@ -14,16 +10,11 @@ $(document).ready(function() {
     });
 });
 
-
-
-
-
 $(document).ready(function() {
     $(".perk-pseudo-modal-link-mobile-member").click(function() {
     $(".perk-modal-mobile-member").removeClass("hidden");
     });
 });
-
 
 $(document).ready(function() {
     $('.perk-modal-close-mobile-member').click(function() {

@@ -4,15 +4,11 @@ $(document).ready(function() {
     });
 });
 
-
 $(document).ready(function() {
     $('.close-search-modal').click(function() {
     $(".search-modal").addClass('hidden');
     });
 });
-
-
-
 
 $(document).ready(function(){
 
@@ -26,10 +22,6 @@ $(document).ready(function(){
       });
 
 });
-
-
-
-
 
 $(document).ready(function() {
     $(".search-modal-button-mobile").click(function() {
