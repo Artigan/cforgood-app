@@ -4,13 +4,8 @@ $(document).ready(function() {
     });
 });
 
-
 $(document).ready(function() {
     $('.perk-modal-close').click(function() {
     $(".perk-modal").addClass('hidden');
     });
 });
-
-
-
-

@@ -73,7 +73,9 @@
   <%= render 'components/map', geojson: @geojson %>
 
   <script>
+
     $(document).ready(function(){
+
       // SET VISIBLE OR NOT LAYERS ON MAP
       function setLayerVisibilty() {
         var input = document.getElementsByClassName('category-item');
@@ -104,6 +106,7 @@
           }
         }
       }
+
       // TOOGLE FLASH PERKS LAYER ON MAP
       $('.in-central-city').click(function(event) {
         $('.mapboxgl-popup').addClass('hidden');
@@ -121,6 +124,7 @@
         // SET VISIBLE OR NOT LAYERS ON MAP
         setLayerVisibilty();
       });
+
       // TOOGLE NOTIFICATION CENTER MENU & HIDE CATEGORY MENU
       $('#open-notification').click(function(event) {
         $('.notification-center-overlay').toggleClass('hidden');
@@ -132,12 +136,14 @@
         $('.notification-center').toggleClass('is-open-max');
         $('.notification-panel').toggleClass('is-open-min');
       });
+
       // TOOGLE NOTIFICATION CENTER OVERLAY
       $('.notification-center-overlay').click(function(event) {
         $(this).addClass('hidden');
         $('.notification-center').toggleClass('is-open-max');
         $('.notification-panel').toggleClass('is-open-min');
       });
+
       // TOOGLE CATEGORY MENU & HIDE NOTIFICATION CENTER
       $('#open-categories').click(function(event) {
         $('.search-category-overlay').toggleClass('hidden');
@@ -149,20 +155,26 @@
         $('.search-category').toggleClass('is-open-max');
         $('.category-item').toggleClass('is-open-min');
       });
+
       // TOOGLE CATEGORY OVERLAY
       $('.search-category-overlay').click(function(event) {
         $(this).addClass('hidden');
         $('.search-category').removeClass('is-open-max');
         $('.category-item').removeClass('is-open-min');
       });
+
       // CLOSE BUTTON FOR POP_UP
       $(".close-button").click(function() {
         $('.use-overlay').addClass('hidden');
       });
+
       // DISPLAY FIRST POPUP FEEDBACK
       $('.feedback-overlay').first().removeClass('hidden');
+
       // EVENT AMPLITUDE : USER_DASHBOARD
       amplitude.logEvent('USER_DASHBOARD');
     });
+
   </script>
+
 <% end %>

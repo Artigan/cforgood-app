@@ -1,10 +1,8 @@
-
 $(document).ready(function() {
   $('#search-dashboard').keyup(function(){
       $(".business-search-index-js-desk").removeClass("hidden");
   });
 });
-
 
 $(document).ready(function() {
     $('.business-search-close-button-desk').click(function() {
@@ -12,13 +10,11 @@ $(document).ready(function() {
     });
 });
 
-
 $(document).ready(function() {
     $('.business-search-close-button-desk').click(function() {
       $('#search-dashboard').val('');
     });
 });
-
 
 $(document).ready(function() {
     $('.business-search-close-button-desk').click(function() {
@@ -31,9 +27,6 @@ $(document).ready(function() {
       $(".search-category-overlay").addClass('hidden');
     });
 });
-
-
-
 
 $(document).ready(function() {
     var options = {

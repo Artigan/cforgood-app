@@ -6,7 +6,6 @@
 
   <div class="bsmd-container">
     <div id="business-search-modal-desktop">
-
       <ul class="list">
         <% @businesses.each do |business| %>
           <div class="business-index-card">
@@ -30,18 +29,15 @@
           </div>
         <% end %>
       </ul>
-
     </div>
   </div>
 
 </div>
 
-
-
-
 <% content_for :modal_search_index_desk do %>
 
   <script>
+
     var options = {
       valueNames: [ 'business-name-desk' ]
     };
@@ -51,6 +47,7 @@
     $('#search-dashboard').keyup(function(){
       userList.search($(this).val());
     });
+
   </script>
 
 <% end %>

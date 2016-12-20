@@ -42,7 +42,9 @@
 </div>
 
 <% content_for :after_js do %>
+
   <script>
+
     $(document).ready(function() {
       function readURL(input) {
         var reader = new FileReader();
@@ -84,7 +86,9 @@
         amplitude.logEvent('USER_C_PROFILE_MYINFO_SAVED');
       });
     });
+
   </script>
+
 <% end %>
 
 
