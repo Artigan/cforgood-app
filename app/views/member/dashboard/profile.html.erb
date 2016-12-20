@@ -18,7 +18,7 @@
   <div class="dash-fullpage-bottom-container">
 
     <div class="dash-fullpage-user-name">
-      <div class="user-name">current_user.name</div>
+      <div class="user-name"><%= current_user.name %></div>
       <div class="user-name-tooltip">ABONNE DEPUIS LE 1er NOVEMBRE 2015</div>
     </div>
 
@@ -43,9 +43,6 @@
             <span>Mon abonnement</span>
           <% end %>
         </li>
-        <li role="profile">
-          <%= link_to "Vos données bancaires", "#payment", role: "tab", data_toggle: "tab", class: "show-payment hidden" %>
-        </li>
         <% if @payments.present? %>
           <li role="profile">
             <%= link_to "#list-payments", role: "tab", data_toggle: "tab" do %>
@@ -54,6 +51,9 @@
             <% end %>
           </li>
         <% end %>
+        <li role="profile">
+          <%= link_to "Vos données bancaires", "#payment", role: "tab", data_toggle: "tab", class: "show-payment hidden" %>
+        </li>
       </ul>
       <!-- Tab panes -->
       <div class="tab-content">

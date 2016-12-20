@@ -671,6 +671,10 @@
   }
 }
 
+.dropdown-menu > li > a {
+  padding: 3px 0;
+}
+
 .dropdown-menu > li > a:hover {
   background-color: white;
 }

@@ -62,7 +62,11 @@
 
         <li role="separator" class="divider"></li>
         <li><div class="droptext-opacity">Aide et conseils</div></li>
-        <li><div class="droptext-opacity">Déconnexion</div></li>
+        <li>
+          <%= link_to destroy_user_session_path, method: :delete do %>
+            <div class="droptext-opacity">Déconnexion</div>
+          <% end %>
+        </li>
       </ul>
     </div>
   </div>
