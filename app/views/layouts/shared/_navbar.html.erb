@@ -53,15 +53,19 @@
         <div class="drop-header-container">
           <% if user_signed_in? %>
             <%= link_to member_user_profile_path(current_user) do %>
-            <div class="droptext-bold"><%= current_user.first_name %>&nbsp;<%= current_user.last_name %></div>
-          <% end %>
+              <div class="droptext-bold"><%= current_user.first_name %>&nbsp;<%= current_user.last_name %></div>
+            <% end %>
           <% else %>
           <% end %>
           <div class="droptext-thin">Mon profil</div>
         </div>
 
         <li role="separator" class="divider"></li>
-        <li><div class="droptext-opacity">Aide et conseils</div></li>
+        <li>
+          <%= link_to faq_connect_path do %>
+            <div class="droptext-opacity">Aide et conseils</div>
+          <% end %>
+        </li>
         <li>
           <%= link_to destroy_user_session_path, method: :delete do %>
             <div class="droptext-opacity">Déconnexion</div>
