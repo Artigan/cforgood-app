@@ -8,7 +8,6 @@
   background-color: white;
 }
 
-
 .dash-fullpage-header {
   width: 100%;
   height: 20%;
@@ -65,7 +64,6 @@
   margin-top: 15px;
 }
 
-
 .dash-fullpage-bottom-container {
   border-left: 1px solid lightgrey;
   height: 80%;
@@ -98,10 +96,20 @@
   width: 31%;
   display: flex;
   justify-content: center;
+
+  @media (max-width: 767px) {
+    span {
+      display: none;
+    }
+  }
+
+  @media (min-width: 768px) {
+    i {
+      display: none;
+    }
+  }
+
 }
-
-
-
 
 .nav-tabs > li.active > a {
   border: 1px solid #0DE2EA;
@@ -121,9 +129,6 @@
   background-color: white;
 }
 
-
-
-
 .nav-tabs > li > a {
   border: 1px solid rgba(155,155,155,0.3);
   border-bottom-color: transparent;
@@ -134,14 +139,10 @@
   border-bottom-color: transparent;
 }
 
-
 .nav-tabs > li > a:hover {
   background-color: white;
   border-bottom-color: #0DE2EA;
 }
-
-
-
 
 .tabs-container-dash {
   padding-top: 25px;
