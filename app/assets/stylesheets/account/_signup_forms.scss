@@ -1116,3 +1116,15 @@
   left: 50%;
   top: 50%;
 }
+
+.form-control {
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  border-bottom: 1px solid #00c9ff;
+}
+
+.form-control:focus {
+  outline: none;
+  box-shadow: none;
+}

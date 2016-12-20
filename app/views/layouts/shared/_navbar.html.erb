@@ -9,7 +9,7 @@
       <i class="fa fa-search" aria-hidden="true"></i>
     </div>
 
-    <% if current_page?("/member/users/#{current_user.id}/dashboard") %>
+    <% if user_signed_in? && current_page?("/member/users/#{current_user.id}/dashboard") %>
       <div class="search-input-mobile hidden hidden-sm hidden-md hidden-lg">
         <input id="search-in-navbar-mobile"class="search" placeholder="rechercher">
       </div>
@@ -38,7 +38,7 @@
 
     <div class="dropdown" id="button-dropdown-navbar">
 
-      <% if current_user.picture.present? %>
+      <% if   user_signed_in? && current_user.picture.present? %>
         <div class="avatar-navbar dropdown-toggle" data-toggle="dropdown" style="background-image: url(<%= avatar_url(current_user) %>);">
           <div class="caret"></div>
         </div>
@@ -52,8 +52,8 @@
 
         <div class="drop-header-container">
           <% if user_signed_in? %>
-          <%= link_to member_user_profile_path(current_user) do %>
-          <div class="droptext-bold"><%= current_user.first_name %>&nbsp;<%= current_user.last_name %></div>
+            <%= link_to member_user_profile_path(current_user) do %>
+            <div class="droptext-bold"><%= current_user.first_name %>&nbsp;<%= current_user.last_name %></div>
           <% end %>
           <% else %>
           <% end %>
@@ -90,7 +90,7 @@
   </div>
 <% end %>
 
-<% if current_page?("/member/users/#{current_user.id}/dashboard") %>
+<% if  user_signed_in? && current_page?("/member/users/#{current_user.id}/dashboard") %>
   <div class="search-modal hidden">
     <input id="search-dashboard"class="search" placeholder="rechercher">
     <div class="business-search-close-button-desk">
