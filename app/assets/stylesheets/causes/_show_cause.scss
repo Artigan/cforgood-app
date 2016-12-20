@@ -1,8 +1,9 @@
 .dashboard-causes {
-  width: 100%;
   .cause-container {
+    margin: 20px 20px 100px;
     background-color: #fff;
-    width: 100%;
+    border-radius: 3px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
 
     .cause-header {
       position: relative;
@@ -11,6 +12,7 @@
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center;
+      border-radius: 3px 3px 0 0;
 
       img.cause-logo {
         position: absolute;
@@ -113,8 +115,7 @@
       display: flex;
       flex-direction: column;
       position: relative;
-      width: 100%;
-      margin-bottom: 55px;
+      padding: 50px 20px 40px;
 
       h2 {
         font-size: 16px;
@@ -172,7 +173,6 @@
           li:last-child {
             margin: 0;
           }
-
         }
 
         ul.direct-contact {
@@ -244,349 +244,89 @@
   }
 }
 
+@media only screen and (min-width:769px){
+  .dashboard-causes {
+    .cause-container {
+      margin: 20px;
+      background-color: #fff;
+      border-radius: 3px;
 
+      .cause-header {
+        h1 {
+          width: 55%;
+        }
 
+        .user-button {
+          position: absolute;
+          bottom: 10px;
+          width: 180px;
+          font-size: 12px;
+          padding: 10px;
+          left: initial;
+          right: 20px !important;
+        }
 
-
-
-
-
-
-
-
-
-
-
-@media all and (max-width:768px) {
-  .asso-bottom-container {
-    padding-left: 10% !important;
-    padding-right: 10% !important;
+        .love-you {
+          bottom: 10px;
+          right: 20px;
+          left: inherit;
+        }
+      }
+    }
   }
 }
 
-
-
-
-
-
-@media all and (max-width:768px) {
-  .asso-banner-header-name {
-    padding-left: 10% !important;
-    padding-right: 10% !important;
-  }
-}
-
-
-
-@media all and (max-width:768px) {
-  .asso-card-abs-banner {
-    width: 100% !important;
-    left: 0 !important;
-  }
-}
-
-
-@media all and (max-width:768px) {
-  .asso-fullpage {
-    padding-left: 0px !important;
-  }
-}
-
-
-
-
-
-
-.asso-fullpage {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  min-height: 100vh;
-  padding-left: 90px;
-  padding-top: 50px;
-}
-
-.asso-banner {
-  height: 350px;
-  width: 100%;
-  background-color: #0C81F6;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-
-.asso-bottom-container {
-  width: 100%;
-  min-height: 50%;
-  border-left: 1px solid lightgrey;
-  padding-top: 120px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding-left: 30%;
-  padding-right: 30%;
-  padding-bottom: 180px;
-}
-
-.asso-bottom-header {
-  height: 30px;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  color: rgba(55,55,55,0.5);
-  font-size: 9px;
-  font-weight: 400;
-}
-
-.asso-description-container {
-  width: 100%;
-  font-size: 12px;
-  color: rgba(55,55,55,1);
-  padding-bottom: 40px;
-}
-
-.asso-button {
-  width: 100%;
-  height: 50px;
-  border-radius: 4px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #0C81F6;
-  margin-bottom: 40px;
-  cursor: pointer;
-}
-
-.asso-button-text {
-  color: white;
-  font-size: 14px;
-  font-weight: 500;
-}
-
-
-
-
-
-
-
-
-
-.asso-card-abs-banner {
-  position: absolute;
-  top: 120px;
-  left: 30%;
-  width: 40%;
-  height: 320px;
-  background-color: red;
-  border-radius: 4px;
-  display: flex;
-  flex-direction: column;
-}
-
-.asso-card-photo {
-  width: 100%;
-  height: 87%;
-  background-image: url(https://parisiansecrets.files.wordpress.com/2012/10/dsc_0361.jpg);
-  background-size: cover;
-  background-position: center center;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
-}
-
-.asso-card-bottom-links {
-  width: 100%;
-  height: 13%;
-  background-color: #0C81F6;
-  border-bottom-right-radius: 4px;
-  border-bottom-left-radius: 4px;
-  display: flex;
-}
-
-
-.asso-card-bottom-left-item {
-  height: 100%;
-  width: 60%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-bottom-left-radius: 4px;
-}
-
-.asso-card-bottom-right-item {
-  height: 100%;
-  width: 40%;
-  display: flex;
-}
-
-
-
-
-
-
-
-
-
-
-
-.asso-cbri-firstblock {
-  height: 100%;
-  width: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(55,55,55,0.9);
-}
-
-.asso-cbri-middleblock {
-  height: 100%;
-  width: 25%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #046FDB;
-  font-size: 22px;
-  color: white;
-}
-
-.asso-cbri-endblock {
-  height: 100%;
-  width: 25%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-bottom-right-radius: 4px;
-  background-color: #03D6D2;
-  font-size: 22px;
-  color: white;
-}
-
-.asso-firstblock-text {
-  font-size: 12px;
-  color: white;
-  font-weight: 400;
-}
-
-.asso-card-red-heart {
-  color: #EF4339;
-  font-size: 18px;
-  margin-right: 10px;
-}
-
-
-
-
-
-
-
-.asso-banner-header-name {
-  width: 100%;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  height: 120px;
-  padding-left: 30%;
-  padding-right: 30%;
-}
-
-.asso-head-column-container {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-}
-
-.banner-asso-description {
-  font-size: 10px;
-  opacity: 0.7;
-  color: white;
-}
-
-
-
-
-.button-dropdown-asso {
-  width: 100%;
-}
-
-
-.asso-bottom-container .dropdown {
-  width: 100%;
-}
-
-
-.asso-bottom-container .dropdown .dropdown-menu {
-  top: 48px;
-  width: 100%;
-  height: 150px;
-  border-radius: 0px;
-  border-color: rgba(55,55,55,0.1);
-}
-
-
-.drop-display-flex {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-
-.cool-things {
-  font-size: 15px;
-}
-
-.cool-things-small {
-  font-size: 10px;
-}
-
-.validate-choice-button {
-  padding: 10px 30px 10px 30px;
-  background-color: #0C81F6;
-  border-radius: 24px;
-  color: white;
-  font-size: 12px;
-  margin-top: 15px;
-}
-
-
-
-
-
-
-
-.title-sub {
-        font-size: 16px;
-        padding: 0;
-        margin-bottom: 20px;
-
-
+@media only screen and (min-width:1200px) {
+  .dashboard-causes {
+    .cause-container {
+      position: relative;
+      margin: 20px;
+      background-color: #fff;
+      border-radius: 3px;
+
+      .cause-header {
+        img.cause-logo {
+          left: 40px;
+        }
+
+        h1 {
+          left: 155px;
+        }
       }
 
+      .cause-content {
+        flex-direction: row;
+        padding: 135px 85px 40px;
 
+        .cause-category {
+          position: absolute;
+          top: 10px;
+          left: 150px;
+        }
 
+        .cause-details {
+          width: 60%;
+          margin-right: 5%;
+        }
 
-
-
-
+        .cause-info {
+          width: 40%;
+          margin-top: 0;
+        }
+      }
+    }
+  }
+}
 
 
 
 .button-dropdown-asso {
   width: 100%;
 }
-
 
 .asso-bottom-container-v2 .dropdown {
   width: 100%;
 }
-
 
 .asso-bottom-container-v2 .dropdown .dropdown-menu {
   position: fixed;
@@ -600,7 +340,6 @@
   margin: 0;
 }
 
-
 .drop-display-flex {
   width: 100%;
   height: 100%;
@@ -610,10 +349,6 @@
   flex-direction: column;
 }
 
-
-
-
-
 .asso-bottom-container-v2 {
   width: 100%;
   position: fixed;
@@ -621,8 +356,6 @@
   bottom: 0;
   z-index: 7000;
 }
-
-
 
 .asso-button-v2 {
   width: 100%;

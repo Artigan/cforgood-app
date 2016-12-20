@@ -5,73 +5,71 @@
   Vos informations personnelles
 <% end %>
 
-
-<%= render "member/dashboard/shared/sidebar" %>
-
-
-<div class="dashboard-fullpage">
-
-
-  <div class="dash-fullpage-header">
-    <div class="dash-header-avatar-container">
-      <div class="header-avatar" style="background-image: url(<%= avatar_url(current_user) %>);"></div>
-    </div>
-  </div>
-
-  <div class="dash-fullpage-bottom-container">
-
-    <div class="dash-fullpage-user-name">
-      <div class="user-name">Cédric M.</div>
-      <div class="user-name-tooltip">ABONNE DEPUIS LE 1er NOVEMBRE 2015</div>
-    </div>
-
-    <div class="tabs-dashboard">
-
-
-      <ul class="nav nav-tabs" role="tablist" id="menu">
-
-        <li role="presentation" class="active">
-          <%= link_to "#monprofil", role: "tab", data_toggle: "tab" do %>
-            MON PROFIL
+<div class="container-fluid admin">
+  <!-- Sub Menu Sidebar -->
+  <%= render "member/dashboard/shared/sidebar" %>
+  <!-- Content - Statistics -->
+  <div class="dashboard">
+    <div class="mobile-menu-overlay hidden"></div>
+    <!-- UPDATE PROFILE CONFIRMATION -->
+    <%= render "member/dashboard/shared/updated" %>
+    <div class="tab-container user-container ">
+      <span class="user-title"><%= render "components/svg/logo_thumb" %>Mon Profil</span>
+      <!-- Nav tabs -->
+      <ul id="menu" class="nav nav-tabs">
+        <li role="profile" class="active">
+          <%= link_to "#profile", role: "tab", data_toggle: "tab" do %>
+            <i class="fa fa-user" aria-hidden="true"></i>
+            <span>Mes informations</span>
           <% end %>
         </li>
         <li role="profile">
-          <%= link_to "#monabonnement", role: "tab", data_toggle: "tab" do %>
-            MON ABONNEMENT
+          <%= link_to "#cause", role: "tab", data_toggle: "tab" do %>
+            <i class="fa fa-heart" aria-hidden="true"></i>
+            <span>Mon association</span>
           <% end %>
         </li>
-        <li role="presentation">
-          <%= link_to "#monasso", role: "tab", data_toggle: "tab" do %>
-            MON ASSOCIATION
+        <li role="profile">
+          <%= link_to "#subscription", role: "tab", data_toggle: "tab" do %>
+            <i class="fa fa-credit-card" aria-hidden="true"></i>
+            <span>Mon abonnement</span>
           <% end %>
         </li>
-
+        <li role="profile">
+          <%= link_to "Vos données bancaires", "#payment", role: "tab", data_toggle: "tab", class: "show-payment hidden" %>
+        </li>
+        <% if @payments.present? %>
+          <li role="profile">
+            <%= link_to "#list-payments", role: "tab", data_toggle: "tab" do %>
+              <i class="fa fa-list" aria-hidden="true"></i>
+              <span>Mes contributions</span>
+            <% end %>
+          </li>
+        <% end %>
       </ul>
-
-      <div class="tab-content tabs-container-dash">
-        <div role="tabpanel" class="tab-pane active" id="monprofil">
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane tab-profile active" id="profile">
           <%= render "member/dashboard/shared/form_user" %>
         </div>
-        <div role="tabpanel" class="tab-pane tab-profile tab-payment" id="monabonnement">
-          <%= render "member/dashboard/shared/form_subscription" %>
-        </div>
-        <div role="tabpanel" class="tab-pane" id="monasso">
+        <div role="tabpanel" class="tab-pane tab-profile tab-cause" id="cause">
           <%= render "member/dashboard/shared/form_cause" %>
         </div>
+        <div role="tabpanel" class="tab-pane tab-profile tab-payment" id="subscription">
+          <%= render "member/dashboard/shared/form_subscription" %>
+        </div>
+        <div role="tabpanel" class="tab-pane tab-profile hidden" id="payment">
+          <%= render "member/dashboard/shared/form_payment" %>
+        </div>
+        <% if @payments.present? %>
+          <div role="tabpanel" class="tab-pane tab-profile tab-contribution" id="list-payments">
+            <%= render "member/dashboard/shared/list_payments" %>
+          </div>
+        <% end %>
       </div>
-
-
     </div>
-
   </div>
-
-
-
 </div>
-
-
-
-
 
 <% content_for :after_js do %>
 
@@ -80,13 +78,13 @@
     $(document).ready(function() {
 
       function eventAmplitude() {
-        if ($('#menu li.active a').attr('href') == '#monprofil') {
+        if ($('#menu li.active a').attr('href') == '#profile') {
           // EVENT AMPLITUDE USER_PROFILE_MYINFO
           amplitude.logEvent('USER_PROFILE_MYINFO');
-        } else if ($('#menu li.active a').attr('href') == '#monasso') {
+        } else if ($('#menu li.active a').attr('href') == '#cause') {
           // EVENT AMPLITUDE USER_PROFILE_MYCAUSE
           amplitude.logEvent('USER_PROFILE_MYCAUSE');
-        } else if ($('#menu li.active a').attr('href') == '#monabonnement') {
+        } else if ($('#menu li.active a').attr('href') == '#subscription') {
           // EVENT AMPLITUDE USER_PROFILE_MYSUBSCRIPTION
           amplitude.logEvent('USER_PROFILE_MYSUBSCRIPTION');
         }
@@ -123,7 +121,3 @@
   </script>
 
 <% end %>
-
-
-
-

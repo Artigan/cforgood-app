@@ -27,7 +27,7 @@
         <% end %>
       </li>
       <!-- DESKTOP | GO TO PROFILE -->
-      <li id="perk-tab" class="<%= active_class(edit_business_registration_path(current_business))%> light desktop-profile">
+      <li id="perk-tab" class="<%= active_class(pro_business_profile_path(current_business))%> light desktop-profile">
         <%= link_to pro_business_profile_path(current_business) do %>
           <div class="icon-container">
             <%= render "shared/icons/profile" %>

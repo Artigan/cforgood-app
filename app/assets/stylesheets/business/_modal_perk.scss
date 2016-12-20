@@ -1,9 +1,5 @@
 /* MODAL - USE CODE  **********************************************************/
 
-
-
-
-
 .use-overlay {
   display: flex;
   justify-content: center;
@@ -356,10 +352,11 @@
   }
 }
 
-
 @media (max-width:768px) {
   .use-overlay {
-    left: 0px;
-    bottom: 0% !important;
+    // left: 0px;
+    // bottom: 0% !important;
+    bottom: 0;
+    left: 15%;
   }
 }

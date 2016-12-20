@@ -798,51 +798,9 @@
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* -------------------------------------
  * CSS code specific to business show
  * ------------------------------------- */
-
 
 .fullpage {
   padding-left: 90px;
@@ -860,14 +818,12 @@
   justify-content: flex-start;
 }
 
-
 .fullpage-right-item {
   flex: 6;
   background-color: rgba(155,155,155,0.1);
   display: flex;
   flex-direction: column;
 }
-
 
 .colored-banner {
   width: 100%;
@@ -910,7 +866,6 @@
   border-bottom-left-radius: 4px;
   display: flex;
 }
-
 
 .card-bottom-left-item {
   height: 100%;
@@ -973,7 +928,6 @@
   margin-left: 20px;
 }
 
-
 .banner-business-name {
   width: 100%;
   height: 40px;
@@ -982,7 +936,6 @@
   color: white;
   font-size: 28px;
 }
-
 
 .banner-business-top-infos {
   width: 100%;
@@ -1008,7 +961,6 @@
   align-items: center;
 }
 
-
 .dot-state {
   width: 8px;
   height: 8px;
@@ -1023,7 +975,6 @@
   color: white;
 }
 
-
 .category-icon {
   width: 16px;
   height: 16px;
@@ -1037,11 +988,6 @@
   color: white;
 }
 
-
-
-
-
-
 .fullpage-left-item-bottom {
   width: 100%;
   padding-left: 10%;
@@ -1054,7 +1000,6 @@
   justify-content: flex-start;
   border-left: 1px solid lightgrey;
 }
-
 
 .flib-header {
   width: 100%;
@@ -1079,7 +1024,6 @@
   align-items: center;
 }
 
-
 .flib-text {
   font-size: 10px;
   color: rgba(55,55,55,0.9);
@@ -1092,7 +1036,6 @@
   border-radius: 50%;
   background-color: green;
 }
-
 
 .business-desc {
   width: 100%;
@@ -1125,10 +1068,6 @@
   background-color: white;
   display: flex;
 }
-
-
-
-
 
 .perk-card-left-item {
   height: 100%;
@@ -1198,7 +1137,6 @@
   font-weight: bolder;
 }
 
-
 .perk-modal {
   position: fixed;
   width: calc(50% - 45px);
@@ -1249,8 +1187,6 @@
   height: 120px;
 }
 
-
-
 .perk-modal-title-dotted {
   height: 40px;
   width: 100%;
@@ -1258,7 +1194,6 @@
   justify-content: flex-start;
   align-items: center;
 }
-
 
 .perk-modal-yellow-dot {
   width: 20px;
@@ -1274,7 +1209,6 @@
   margin-right: 10px;
 }
 
-
 .perk-modal-title-text {
   font-size: 14px;
   font-weight: 600;
@@ -1286,8 +1220,6 @@
   margin-bottom: 25px;
 }
 
-
-
 .perk-modal-button-signup {
   width: 100%;
   height: 80px;
@@ -1295,7 +1227,6 @@
   justify-content: center;
   align-items: center;
 }
-
 
 .perk-signin-button {
   color: white;
@@ -1307,15 +1238,11 @@
   margin-bottom: 50px;
 }
 
-
 @media all and (max-width: 768px) {
   .fullpage {
     padding-left: 0;
   }
 }
-
-
-
 
 @media all and (max-width: 768px) {
   .card-abs-banner {
@@ -1324,16 +1251,11 @@
   }
 }
 
-
-
 @media all and (max-width: 768px) {
   .search-modal {
     padding-left: 40px;
   }
 }
-
-
-
 
 .biz-avatar {
   width: 30px;
@@ -1344,8 +1266,6 @@
   margin-right: 15px;
 }
 
-
-
 .fixed-bottom-perk-link {
   width: 100%;
   height: 100%;
@@ -1354,8 +1274,6 @@
   justify-content: center;
   align-items: center;
 }
-
-
 
 .see-perk-button {
   font-size: 13px;
@@ -1368,7 +1286,6 @@
   align-items: center;
 }
 
-
 .fixed-bottom-container-button {
   position: fixed;
   bottom: 0;
@@ -1377,15 +1294,11 @@
   height: 110px;
 }
 
-
 @media all and (min-width: 768px) {
   .fixed-bottom-container-button {
     display: none;
   }
 }
-
-
-
 
 .perk-modal-mobile {
   position: fixed;
@@ -1401,7 +1314,6 @@
   padding-bottom: 25px;
 }
 
-
 .perk-modal-close-mobile {
   position: absolute;
   top: 25px;
@@ -1414,18 +1326,6 @@
     color: rgba(55,55,55,0.9);
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 .perk-modal-mobile-member {
   position: fixed;
@@ -1444,7 +1344,6 @@
   justify-content: flex-start;
   align-items: center;
 }
-
 
 .perk-modal-close-mobile-member {
   position: absolute;
@@ -1466,14 +1365,6 @@
   }
 }
 
-
-
-
-
-
-
-
-
 .perk-modal-member-header {
   width: 100%;
   height: 80px;
@@ -1483,13 +1374,10 @@
   margin-bottom: 50px;
 }
 
-
 .member-header-text {
   color: rgba(55,55,55,0.8);
   font-size: 16px;
 }
-
-
 
 .pmls-modal {
   position: absolute;
@@ -1498,7 +1386,6 @@
   color: white;
   font-size: 24px;
 }
-
 
 .little-perk-logo {
   width: 20px;
@@ -1511,14 +1398,10 @@
   margin-right: 8px;
 }
 
-
 .business-on-perk {
   color: white;
   font-size: 10px;
 }
-
-
-
 
 .pmdjs {
   position: fixed;
@@ -1535,11 +1418,6 @@
   justify-content: flex-start;
   align-items: center;
 }
-
-
-
-
-
 
 .closed-perk-on-modal {
   position: absolute;
@@ -1561,13 +1439,10 @@
   }
 }
 
-
-
 .pmdjs-header-color {
   height: 80px;
   width: 100%;
 }
-
 
 .pmdjs-photo {
   width: 100%;
@@ -1576,7 +1451,6 @@
   background-position: center center;
   background-repeat: no-repeat;
 }
-
 
 .pmdjs-offers {
   width: 100%;
@@ -1588,7 +1462,6 @@
   margin-top: 20px;
 }
 
-
 .pmdjs-perk-name {
   width: 100%;
   height: 30px;
@@ -1597,7 +1470,6 @@
   align-items: center;
   padding-left: 8%;
 }
-
 
 .pmdjs-perk-description {
   width: 100%;
@@ -1610,3 +1482,4 @@
   padding-right: 10px;
   font-size: 13px;
 }
+

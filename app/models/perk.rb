@@ -23,6 +23,10 @@
 #  picture           :string
 #  text_notification :string
 #  send_notification :boolean          default(FALSE)
+#  offer             :boolean          default(FALSE), not null
+#  value             :boolean          default(FALSE), not null
+#  percent           :boolean          default(FALSE), not null
+#  amount            :integer
 #
 # Indexes
 #
@@ -35,8 +39,6 @@
 #
 
 class Perk < ApplicationRecord
-
-  require 'one_signal'
 
   belongs_to :business
   has_many :uses, dependent: :destroy
@@ -69,6 +71,7 @@ class Perk < ApplicationRecord
   after_create :send_registration_slack, :update_data_intercom
   after_save :update_data_intercom, if: :active_changed?
   after_save :send_push_notification, if: :send_notification_changed?
+  after_save :send_change_to_slack
   after_destroy :update_data_intercom
 
   def update_nb_view!
@@ -108,15 +111,15 @@ class Perk < ApplicationRecord
     if flash
       if !start_date.present?
         errors.add(:start_date, "La date de début est obligatoire pour un bon plan flash.")
-      end
-      if !end_date.present? && !all_day
+      elsif all_day
+        if end_date.present?
+          self.start_date = start_date.change(hour: 0, min: 0)
+          self.end_date = start_date.change(hour: 23, min: 59)
+        elsif
+          self.end_date = end_date.change(min: 0)
+        end
+      elsif !end_date.present?
         errors.add(:end_date, "La date de fin est obligatoire pour un bon plan flash.")
-      end
-      if all_day && start_date.present?
-        self.start_date = start_date.change(hour: 0, min: 0)
-        self.end_date = start_date.change(hour: 23, min: 59)
-      else
-        self.end_date = end_date.change(min: 0)
       end
     end
   end
@@ -128,10 +131,14 @@ class Perk < ApplicationRecord
   end
 
   def send_registration_slack
-    if Rails.env.production?
-      notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_PERK_URL']
-      message = "#{self.business.name} a créé un nouveau bon plan *" + perk_type(self.appel, self.durable, self.flash) + "* : #{name} : #{description}"
-      notifier.ping message
+    message = "#{self.business.name} a créé un nouveau bon plan *" + perk_type(self.appel, self.durable, self.flash) + "* : #{name} : #{description}"
+    send_message_to_slack(ENV['SLACK_WEBHOOK_PERK_URL'], message)
+  end
+
+  def send_change_to_slack
+    if ( name_changed? && name_was.present? ) || ( description_changed? && description_was.present? )
+      message = "#{self.business.name} a changé son bon plan *" + perk_type(self.appel, self.durable, self.flash) + "* : #{name} : #{description}"
+      send_message_to_slack(ENV['SLACK_WEBHOOK_PERK_URL'], message)
     end
   end
 
@@ -158,24 +165,24 @@ class Perk < ApplicationRecord
       user.custom_attributes[:perks_active] = Business.find(self.business_id).perks.active.count
       intercom.users.save(user)
 
-      # if :after_create
-      #    intercom.events.create(
-      #     event_name: "new-perk",
-      #     created_at: Time.now.to_i,
-      #     user_id: 'B'+self.business_id.to_s,
-      #     email: self.business.email,
-      #     metadata: {
-      #       perk_id: self.id,
-      #       perk_type: perk_type(self.appel, self.durable, self.flash),
-      #       title: self.name,
-      #       description: self.description,
-      #       picture_url: self.picture.url,
-      #       start_date: self.start_date,
-      #       end_date: self.end_date,
-      #       times: self.times
-      #     }
-      #   )
-      #  end
+      if :after_create
+         intercom.events.create(
+          event_name: "new-perk",
+          created_at: Time.now.to_i,
+          user_id: 'B'+self.business_id.to_s,
+          email: self.business.email,
+          metadata: {
+            perk_id: self.id,
+            perk_type: perk_type(self.appel, self.durable, self.flash),
+            title: self.name,
+            description: self.description,
+            picture_url: self.picture.url,
+            start_date: self.start_date,
+            end_date: self.end_date,
+            times: self.times
+          }
+        )
+      end
 
     rescue Intercom::IntercomError => e
       puts e

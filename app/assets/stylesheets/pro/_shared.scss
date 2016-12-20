@@ -58,6 +58,12 @@
     @include transition(all, 0.3s, ease-in-out);
   }
 
+  .popup-supervisor {
+    span {
+      padding-top: 0 !important;
+    }
+  }
+
   /* PERK CREATION CONFIRMATION *************************************************/
 
   .waiting,
@@ -226,6 +232,8 @@
   }
 }
 
+
+
 @media only screen and (min-width:769px){
   .admin {
     height: 100vh;
@@ -238,9 +246,8 @@
 
     .dashboard {
       position: relative;
-      left: 0;
-      width: 100%;
-      top: 0;
+      left: 15%;
+      width: 85%;
       height: 100vh;
       background-color: #f1f1f1;
       overflow-y: scroll;

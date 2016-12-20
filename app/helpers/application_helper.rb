@@ -40,6 +40,8 @@ module ApplicationHelper
     request.path == "/users" ||
     request.path == "/signin" ||
     request.path == "/signup" ||
+    request.path == "/signup_gift" ||
+    request.path == "/signup_beneficiary" ||
     request.path == "/member/signin" ||
     request.path == "/users/sign_in" ||
     request.path == "/member/signup" ||
@@ -90,6 +92,11 @@ module ApplicationHelper
     else
       root_path
     end
+  end
+
+  def current_impersonation
+    return nil unless session[:impersonate_id].present?
+    @current_impersonation ||= Business.find(session[:impersonate_id])
   end
 
 end

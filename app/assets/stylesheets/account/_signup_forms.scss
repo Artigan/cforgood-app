@@ -324,7 +324,7 @@
 
       @media (max-width: 320px) {
         right: -15px;
-        bottom: 14vh;
+        bottom: 10vh;
 
         &:after {
           right: 15px;
@@ -425,10 +425,13 @@
 
     .yearly-benefit {
       display: flex;
+      position: absolute;
+      top: 0;
+      left: 40px;
 
       @media (max-width: 767px) {
         flex-direction: column;
-        transform: translateY(-20px);
+        top: -24px;
 
         span {
           margin-bottom: 0;
@@ -436,11 +439,9 @@
       }
 
       @media (max-width: 320px) {
-        margin-top: 10px;
-        transform: translateY(-17px);
+        top: 0;
       }
     }
-
 
     input {
       cursor: pointer;
@@ -472,6 +473,7 @@
       font-size: 12px;
       top: -2px;
 
+
       span {
         color: #59c07b;
         text-transform: none;
@@ -481,6 +483,10 @@
 
         &.more {
           line-height: 21px;}
+
+        @media (max-width: 320px) {
+          min-width: 40px;
+        }
       }
     }
 
@@ -534,7 +540,7 @@
     left: 5%;
     border: 0;
     border-radius: 10px;
-    z-index: 2;
+    z-index: 10;
 
     .ui-slider-handle {
       height: 25px;
@@ -547,7 +553,9 @@
   }
 
   #slider {
-    transform: translateX(-24px);
+    transform: translateX(-2.4rem);
+    @media (max-width: 767px) { transform: translateX(-1.7rem); }
+    @media (max-width: 320px) { transform: translateX(-1.4rem); }
   }
 
   input[type=number]::-webkit-inner-spin-button,
@@ -563,10 +571,12 @@
   span {
     display: block;
     margin-bottom: 20px;
-    max-width: 335px;
+    max-width: 400px;
     text-transform: uppercase;
     font-weight: 600;
     text-align: center;
+
+    @media (max-width: 767px) { max-width: 230px; }
   }
 
   .subscription-title {
@@ -585,9 +595,10 @@
     padding: 10px;
     margin: 0;
     bottom: 0;
+    z-index: 10;
 
     @media (max-width: 767px) { bottom: 12vh; }
-    @media (max-width: 320px) { bottom: 14vh; }
+    @media (max-width: 320px) { bottom: 10vh; }
   }
 
   .signup-next {
@@ -673,37 +684,6 @@
 
       @media (max-width: 767px) {
         margin-top: 0;
-      }
-
-      &:before,
-      &:after {
-        position: absolute;
-        top: 10px;
-        font-size: 48px;
-        font-weight: 100;
-        color: $turquoise;
-
-        @media (max-width: 320px) {
-          display: none;
-        }
-      }
-
-      &:before {
-        content: "[";
-        left: -28px;
-
-        @media (max-width: 767px) {
-          left: -20px;
-        }
-      }
-
-      &:after {
-        content: "]";
-        right: -28px;
-
-        @media (max-width: 767px) {
-          right: -20px;
-        }
       }
 
       h5 {
@@ -869,21 +849,32 @@
   }
 
   .no-subscription {
-    position: relative;
     display: flex;
-    justify-content: center;
     @media (min-width: 321px) and (max-width: 767px) { margin-top: 20px; }
+
+    a {
+      width: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+    }
   }
 
   .btn-no-subscription {
     position: absolute;
+    width: 100%;
     color: $grey;
     font-size: 0.7em;
     font-weight: 200;
     text-decoration: underline;
     bottom: 7px;
 
-    @media (max-width: 767px) { bottom: 20vh; }
+    @media (max-width: 767px) {
+      bottom: 20vh;
+    }
+
+    @media (max-width: 320px) {
+      bottom: 13vh;
+    }
 
     &:hover {
       color: #333;
@@ -939,15 +930,20 @@
     }
 
     .message-subscription {
-      font-size: 11px;
+      margin-bottom: 10px;
+      font-size: 14px;
       line-height: 14px;
       font-weight: 400;
       text-transform: none;
       color: $turquoise;
     }
 
-    i {
-      margin-bottom: 20px;
+    .days {
+      display: inline;
+    }
+
+    .payment-title {
+      margin-bottom: 10px;
       font-size: 14px;
 
       @media (max-width: 320px) {
@@ -1009,6 +1005,8 @@
       @media (max-width: 320px) { margin-top: 5px; }
 
       ul {
+        list-style: none;
+        display: flex;
         margin-bottom: 10px;
         &:before,
         &:after {
@@ -1064,7 +1062,7 @@
         left: -25px;
         bottom: 12vh;
       }
-      @media (max-width: 320px) { bottom: 14vh; }
+      @media (max-width: 320px) { bottom: 10vh; }
 
       &:after {
         content:"\f104";
@@ -1088,7 +1086,9 @@
 
     .btn-no-bank-details {
       position: absolute;
-      right: 40px;
+      width: 100%;
+      left: 50%;
+      transform: translateX(-50%);
       bottom: 15px;
       padding: 0;
       color: $grey;
@@ -1096,7 +1096,9 @@
       font-weight: 200;
       text-decoration: underline;
 
-      @media (max-width: 767px) { bottom: 20vh; }
+      @media (max-width: 767px) {
+        bottom: 20vh;
+      }
       @media (max-width: 320px) {
         bottom: 17vh;
         right: 0;

@@ -1,6 +1,6 @@
 $(".alert").remove();
 
-if (<%= !current_business.errors.any? %>) {
+if (<%= !@business.errors.any? %>) {
 
   // DISCLAIMER - DISPLAYED
   $(".done-overlay").removeClass("hidden");
@@ -18,9 +18,6 @@ if (<%= !current_business.errors.any? %>) {
 
 } else {
 
-  $(document).find("form").prepend('<%= j render("components/error_messages", resource: current_business, formats: [:html]) %>');
+  $(document).find("form").prepend('<%= j render("components/error_messages", resource: @business, formats: [:html]) %>');
 
 }
-
-
-

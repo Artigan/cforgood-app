@@ -2,35 +2,7 @@
 <% content_for :meta_description, "Découvrez le Bon Plan offert par #{@business.name} !" %>
 <% content_for :meta_image, @perk.picture.present? ? @perk.picture : @business.picture %>
 
-
-
-
 <%= render "member/dashboard/shared/sidebar" %>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <div class="fullpage">
 
@@ -42,7 +14,7 @@
       <div class="banner-business-top-infos">
         <div class="infos-left">
           <div class="little-perk-logo">
-              <%= image_tag @business.business_category.picture, size: "10x10" %>
+            <%= image_tag @business.business_category.picture, size: "10x10" %>
           </div>
           <div class="category-name category"><%= @business.business_category.name %></div>
         </div>
@@ -52,7 +24,7 @@
         </div>
       </div>
       <div class="card-abs-banner">
-          <div class="card-photo" style="background-image: url('<%= @business.picture %>');"></div>
+        <div class="card-photo" style="background-image: url('<%= @business.picture %>');"></div>
         <div class="card-bottom-links">
           <div class="card-bottom-left-item" style="background-color: <%= @business.business_category.color %>;">
             <div class="card-red-heart">
@@ -119,7 +91,6 @@
           <div class="perk-card-absolute-photo"></div>
         </div>
         <div class="perk-card-right-item">
-
           <div class="pcri-container">
             <div class="pcri-item">
               <div class="pcri-item-tooltip" style="background-color: <%= @business.business_category.color %>;">
@@ -131,17 +102,11 @@
             </div>
             <div class="perk-pseudo-modal-link">J'EN PROFITE</div>
           </div>
-
         </div>
       </div>
     </div>
   </div>
-
-
 </div>
-
-
-
 
 <div class="perk-modal hidden">
   <div class="perk-modal-close">
@@ -161,7 +126,7 @@
   </div>
 
   <div class="perk-modal-description">
-    Je trouve de nouveaux commerçants responsables, des associations engagées et des événements enthousiasmant chez moi ou dans les autres villes où je me rends.
+    Je trouve de nouveaux commerçants responsables, des associations engageées et des événements enthousiasmant chez moi ou dans les autres villes où je me rends.
   </div>
 
 
@@ -173,7 +138,7 @@
   </div>
 
   <div class="perk-modal-description">
-    Je trouve de nouveaux commerçants responsables, des associations engagées et des événements enthousiasmant chez moi ou dans les autres villes où je me rends.
+    Je trouve de nouveaux commerçants responsables, des associations engageées et des événements enthousiasmant chez moi ou dans les autres villes où je me rends.
   </div>
 
 
@@ -185,7 +150,7 @@
   </div>
 
   <div class="perk-modal-description">
-    Je trouve de nouveaux commerçants responsables, des associations engagées et des événements enthousiasmant chez moi ou dans les autres villes où je me rends.
+    Je trouve de nouveaux commerçants responsables, des associations engageées et des événements enthousiasmant chez moi ou dans les autres villes où je me rends.
   </div>
 
   <div class="perk-modal-button-signup">
@@ -194,25 +159,15 @@
 
 </div>
 
-
-
-
 <div class="fixed-bottom-container-button">
-
   <div class="fixed-bottom-perk-link" style="border-top: 2px solid <%= @business.business_category.color %> ;">
     <% if !current_user.member %>
-      <div class="see-perk-button perk-pseudo-modal-link-mobile-member" style="background-color: <%= @business.business_category.color %>;">Voir nos bons plans</div>
+    <div class="see-perk-button perk-pseudo-modal-link-mobile-member" style="background-color: <%= @business.business_category.color %>;">Voir nos bons plans</div>
     <% else %>
-      <div class="see-perk-button perk-pseudo-modal-link-mobile" style="background-color: <%= @business.business_category.color %>;">Voir nos bons plans</div>
+    <div class="see-perk-button perk-pseudo-modal-link-mobile" style="background-color: <%= @business.business_category.color %>;">Voir nos bons plans</div>
     <% end %>
-
   </div>
-
 </div>
-
-
-
-
 
 <%= render "businesses/mobileshow" %>
 

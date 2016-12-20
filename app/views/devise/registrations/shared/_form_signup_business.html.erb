@@ -13,9 +13,13 @@
       <%= f.input :zipcode, as: :hidden %>
       <%= f.input :business_category_id, required: true, label: false, collection: BusinessCategory.all, prompt: 'Sélectionnez une catégorie' %>
 
-      <p>En cliquant sur <strong>S'inscrire</strong>, vous acceptez les <a type="href" class="" data-toggle="modal" data-target="#modal-cgu"><strong>CGU</strong></a> et certifiez avoir de plus de 18 ans.</p>
+      <% if supervisor %>
+        <%= f.button :submit, "Inscrire", class: "btn btn-connexion btn-business-connexion" %>
+      <% else %>
+        <p>En cliquant sur <strong>S'inscrire</strong>, vous acceptez les <a type="href" class="" data-toggle="modal" data-target="#modal-cgu"><strong>CGU</strong></a> et certifiez avoir de plus de 18 ans.</p>
 
-      <%= f.button :submit, "s'inscrire", class: "btn btn-connexion btn-business-connexion" %>
+        <%= f.button :submit, "s'inscrire", class: "btn btn-connexion btn-business-connexion" %>
+      <% end %>
     <% end %>
   </div>
 </div>

@@ -30,6 +30,8 @@
 #  link_video                :string
 #  picture                   :string
 #  logo                      :string
+#  like                      :integer          default(0)
+#  unlike                    :integer          default(0)
 #
 # Indexes
 #

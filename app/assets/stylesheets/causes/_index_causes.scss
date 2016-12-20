@@ -27,11 +27,9 @@
       cursor: pointer;
       @include transition(all 0.3s);
 
-
       &:hover {
         box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
       }
-
 
       .card-body {
         display: flex;
@@ -198,7 +196,6 @@
           .item-logo { transform: translateX(-35px); }
         }
       }
-
     }
   }
 }
@@ -215,8 +212,6 @@
   padding-right: 30px;
 }
 
-
-
 .asso-header-count-container {
   height: 100%;
   width: 100px;
@@ -232,21 +227,16 @@
   font-size: 30px;
 }
 
-
 .asso-text {
   color: white;
   font-size: 12px;
 }
-
-
 
 @media all and (max-width: 768px) {
   .asso-header {
     padding-top: 50px;
   }
 }
-
-
 
 @media all and (max-width: 768px) {
   .card-frame {

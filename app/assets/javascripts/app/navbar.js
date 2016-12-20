@@ -1,13 +1,13 @@
 
-if ($(window).width() > 768) {
-  $(window).scroll(function(){
-    if($(window).scrollTop() > 0){
-      $('#navbar').addClass('navbar-scrolled');
-    }else{
-      $('#navbar').removeClass('navbar-scrolled');
-    };
-  });
-};
+// if ($(window).width() > 768) {
+//   $(window).scroll(function(){
+//     if($(window).scrollTop() > 0){
+//       $('#navbar').addClass('navbar-scrolled');
+//     }else{
+//       $('#navbar').removeClass('navbar-scrolled');
+//     };
+//   });
+// };
 
 $(document).ready(function(){
   $('.menu-toggle').click(function(event) {
@@ -19,6 +19,4 @@ $(document).ready(function(){
     //$('body').bind('touchmove', function(e){e.preventDefault()})
   });
 });
-
-
 
