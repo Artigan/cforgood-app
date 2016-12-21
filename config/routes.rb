@@ -12,17 +12,9 @@ Rails.application.routes.draw do
     root  to: redirect("http://cforgood.com")
   end
 
-  get 'about',                    to: 'pages#about'
   get 'notre_charte',             to: 'pages#charte'
   get 'cgu',                      to: 'pages#cgu'
-  get 'charte_confidentialite',   to: 'pages#charte_confidentialite'
-  get 'mentions_legales',         to: 'pages#mentions_legales'
-  get 'info_business',            to: 'pages#info_business'
-  get 'info_cause',               to: 'pages#info_cause'
-  get 'faq',                      to: 'pages#faq'
   get 'faq_connect',              to: 'pages#faq_connect'
-  get 'landing_business',         to: 'pages#landing_business'
-  get 'landing_cause',            to: 'pages#landing_cause'
   put 'newsletter',               to: 'pages#newsletter'
 
   resources :contact_forms, only: [:new, :create]
