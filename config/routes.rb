@@ -60,6 +60,8 @@ Rails.application.routes.draw do
     resources :perks, only: [:show]
   end
 
+  get "map", to: "member/dashboard#dashboard"
+
   resources :users do
     resources :beneficiaries, only: [:create, :update]
   end
