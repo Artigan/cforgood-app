@@ -26,7 +26,11 @@ class ApplicationController < ActionController::Base
     else
       if session[:logout] == true
          session[:logout] = false
-        request.referer
+        if request.referer.present?
+          request.referer
+        else
+          member_user_dashboard_path(resource)
+        end
       elsif !current_user.mangopay_id.present?
         begin
           @mangopay_user = MangopayServices.new(current_user).create_mangopay_natural_user
