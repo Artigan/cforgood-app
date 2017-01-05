@@ -66,7 +66,7 @@ class Pro::PerksController < Pro::ProController
   end
 
   def find_business
-    id = session[:impersonate_id] || params[:business_id]
+    id = session[:impersonate_id] || params[:business_id] || current_business.id
     @business = Business.find(id)
   end
 

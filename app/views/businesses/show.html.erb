@@ -54,7 +54,8 @@
                  <button type="button" class="use-button" style="background-color: <%= @business.business_category.color %>;">J'en profite</button>
               <% end %>
             <% else %>
-              <%= link_to "J'en profite", new_member_subscribe_path, class: "btn btn-use-button btn-block" %>
+              <button type="button" class="use-button-logout" style="background-color: <%= @business.business_category.color %>;">J'en profite</button>
+              <%#= link_to "J'en profite", new_member_subscribe_path, class: "btn btn-use-button btn-block" %>
             <% end %>
           </div>
         </div>
@@ -147,10 +148,11 @@
                 <button class="empty">Bon plan épuisé</button>
               </div>
             <% else %>
-               <button type="button" class="use-button" style="background-color: <%= @business.business_category.color %>;">J'en profite</button>
+              <button type="button" class="use-button" style="background-color: <%= @business.business_category.color %>;">J'en profite</button>
             <% end %>
           <% else %>
-            <%= link_to "J'en profite", new_member_subscribe_path, class: "btn btn-use-button btn-block" %>
+            <button type="button" class="use-button-logout" style="background-color: <%= @business.business_category.color %>;">J'en profite</button>
+            <%#= link_to "J'en profiterai bien", new_member_subscribe_path, class: "btn btn-use-button btn-block" %>
           <% end %>
         </div>
       </div>
@@ -226,6 +228,8 @@
       <%= render "pro/perks/modals/perk_offline_desktop", latitude: @business.latitude, longitude: @business.longitude, street: @business.street, zipcode: @business.zipcode, city: @business.city %>
     <% end %>
   <% end %>
+<% else %>
+    <%= render "pro/perks/modals/perk_logout" %>
 <% end %>
 
 <% content_for(:after_js) do %>
@@ -247,6 +251,12 @@
         $('.use-overlay').removeClass('hidden');
         // EVENT AMPLITUDE USER_C_BENEFIT
         amplitude.logEvent('USER_C_BENEFIT');
+      });
+
+      $(".use-button-logout").click(function() {
+        $('.use-overlay').removeClass('hidden');
+        // EVENT AMPLITUDE USER_C_BENEFIT
+        amplitude.logEvent('USER_C_BENEFIT_LOGOUT');
       });
 
       $(".btn-use-button").click(function() {

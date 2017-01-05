@@ -3,6 +3,7 @@
   padding-top: 50px;
   width: 15%;
   height: 100%;
+  overflow: scroll;
 
   left: 0px;
   z-index: 300;
@@ -66,10 +67,10 @@
   }
 
   .signout {
-    position: absolute;
+    position: fixed;
     padding: 5px;
     bottom: 0;
-    width: 100%;
+    width: 15%;
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -206,6 +207,11 @@
           background-color: #fff;
           border-radius: 3px;
           box-shadow: 0px 1px 9px rgba(0,0,0,0.2);
+
+          &.logout {
+            max-height: 100px;
+            padding-top: 12px;
+          }
 
           &:after {
             top: 99%;
