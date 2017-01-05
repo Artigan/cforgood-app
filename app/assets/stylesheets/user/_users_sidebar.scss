@@ -3,7 +3,6 @@
   padding-top: 50px;
   width: 15%;
   height: 100%;
-  overflow: scroll;
 
   left: 0px;
   z-index: 300;
@@ -208,10 +207,10 @@
           border-radius: 3px;
           box-shadow: 0px 1px 9px rgba(0,0,0,0.2);
 
-          // &.logout {
-          //   max-height: 100px;
-          //   padding-top: 12px;
-          // }
+          &.logout {
+            max-height: 100px;
+            padding-top: 12px;
+          }
 
           &:after {
             top: 99%;
@@ -284,5 +283,6 @@
 @media only screen and (min-width:768px){
   .users-sidebar {
     min-height: 100vh;
+    overflow: scroll;
   }
 }
