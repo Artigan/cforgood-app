@@ -384,13 +384,13 @@ class User < ApplicationRecord
   end
 
   def create_partner_for_third_use_code_partner
-    if code_partner.present?
-      @partner = Partner.find_by_code_partner(code_partner)
-      if @partner.shared && UserHistory.where(code_partner: self.code_partner).select(:user_id).distinct.count == 3
+    if self.code_partner.present?
+      @partner = Partner.find_by_code_partner(self.code_partner)
+      if @partner.shared && UserHistory.where(code_partner: self.code_partner).select(:user_id).distinct.count == 2
         @user = User.find(@partner.user_id)
-        code_partner = "3CP" + @user.id.to_s
-        Partner.new.create_code_partner_user(@user, code_partner, true, false)
-        create_event_intercom(@user, code_partner)
+        new_code_partner = "3CP" + @user.id.to_s
+        Partner.new.create_code_partner_user(@user, new_code_partner, true, false)
+        create_event_intercom(@user, new_code_partner)
       end
     end
   end

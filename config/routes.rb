@@ -9,7 +9,7 @@ Rails.application.routes.draw do
       root to: 'devise/sessions#new'
     end
   else
-    root  to: redirect("http://cforgood.com")
+    root to: redirect("http://cforgood.com")
   end
 
   get 'about',                    to: 'pages#about'
