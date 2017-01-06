@@ -97,13 +97,11 @@
       </li>
     <% end %>
   </ul>
-  <% if user_signed_in? %>
-    <div class="signout">
-      <%= link_to destroy_user_session_path, method: :delete do %>
-        <%= image_tag('icons/signout.png', :class => 'signout-icon sign-out') %><%= t ".se_déconnecter", default: "À bientôt" %>
-      <% end %>
-    </div>
-  <% end %>
+  <div class="signout">
+    <%= link_to root_path do %>
+      <%= image_tag('icons/signout.png', :class => 'signout-icon sign-out') %>Plus d'infos ?
+    <% end %>
+  </div>
 </div>
 
 

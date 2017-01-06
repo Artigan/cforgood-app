@@ -36,6 +36,11 @@
     <% end %>
   </li>
   <li>
+    <%= link_to root_path do %>
+      <i class="fa fa-info-circle"></i>Plus d'infos ?
+    <% end %>
+  </li>
+  <li>
     <%= link_to destroy_user_session_path, method: :delete do %>
       <i class="fa fa-power-off sign-out"></i>Se déconnecter
     <% end %>

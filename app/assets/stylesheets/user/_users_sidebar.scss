@@ -199,7 +199,7 @@
           flex-direction: column;
           position: fixed;
           width: 220px;
-          max-height: 260px;
+          max-height: 280px;
           bottom: 69px;
           right: 10px;
           text-align: left;
@@ -208,7 +208,7 @@
           box-shadow: 0px 1px 9px rgba(0,0,0,0.2);
 
           &.logout {
-            max-height: 100px;
+            max-height: 120px;
             padding-top: 12px;
           }
 
