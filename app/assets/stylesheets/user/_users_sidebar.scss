@@ -66,10 +66,10 @@
   }
 
   .signout {
-    position: absolute;
+    position: fixed;
     padding: 5px;
     bottom: 0;
-    width: 100%;
+    width: 15%;
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -199,13 +199,18 @@
           flex-direction: column;
           position: fixed;
           width: 220px;
-          max-height: 260px;
+          max-height: 280px;
           bottom: 69px;
           right: 10px;
           text-align: left;
           background-color: #fff;
           border-radius: 3px;
           box-shadow: 0px 1px 9px rgba(0,0,0,0.2);
+
+          &.logout {
+            max-height: 120px;
+            padding-top: 12px;
+          }
 
           &:after {
             top: 99%;
@@ -278,5 +283,6 @@
 @media only screen and (min-width:768px){
   .users-sidebar {
     min-height: 100vh;
+    overflow: scroll;
   }
 }

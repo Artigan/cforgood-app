@@ -6,6 +6,7 @@
 
 <div class="fullpage">
 
+<<<<<<< HEAD
   <div class="fullpage-left-item">
     <div class="colored-banner" style="background-color: <%= @business.business_category.color %>;">
       <div class="banner-business-name">
@@ -15,6 +16,34 @@
         <div class="infos-left">
           <div class="little-perk-logo">
             <%= image_tag @business.business_category.picture, size: "10x10" %>
+=======
+          <!-- IF FLASH PERK -->
+          <% if @perk.flash? %>
+            <% if @perk.times > 0 %>
+              <span class="flash-notification" style="background-color: <%= @business.business_category.color %>;"><i class="fa fa-flash"></i><%= @perk.times - Use.used.where(perk_id: params[:perk_id]).count %> restants</span>
+            <% end %>
+            <span class="availabilities"><%= render(partial: "components/perk_flash_period", locals: { start_date: @perk.start_date, end_date: @perk.end_date }) %></span>
+          <% end %>
+          <h1><%= @perk.name %></h1>
+          <p><%= @perk.description %></p>
+            <div class="use-perk">
+            <% if user_signed_in? %>
+              <% if !@perk.perk_in_time? %>
+                <div id="button-used">
+                  <button class="empty">Bon plan non disponible</button>
+                </div>
+              <% elsif !@perk.perk_usable?(current_user) %>
+                <div id="button-used">
+                  <button class="empty">Bon plan épuisé</button>
+                </div>
+              <% else %>
+                 <button type="button" class="use-button" style="background-color: <%= @business.business_category.color %>;">J'en profite</button>
+              <% end %>
+            <% else %>
+              <button type="button" class="use-button-logout" style="background-color: <%= @business.business_category.color %>;">J'en profite</button>
+              <%#= link_to "J'en profite", new_member_subscribe_path, class: "btn btn-use-button btn-block" %>
+            <% end %>
+>>>>>>> master
           </div>
           <div class="category-name category"><%= @business.business_category.name %></div>
         </div>
@@ -46,6 +75,7 @@
         </div>
       </div>
     </div>
+<<<<<<< HEAD
     <div class="fullpage-left-item-bottom">
       <div class="">
         <div class="title-sub">Leurs engagements</div>
@@ -58,6 +88,47 @@
         <div class="flib-engages-item">
           <div class="flib-icon"></div>
           <div class="flib-text">Zéro déchets</div>
+=======
+  </div>
+</div><!-- END SHOW MOBILE -->
+
+  <div class="show-desktop">
+    <!-- COLUMN LEFT -->
+    <div class="perk-details">
+       <!-- BLOCK PERK -->
+        <% if @perk.picture.present? %>
+          <div class="perk-image" style="background-image: url('<%= @perk.picture %>');">
+        <% else %>
+          <div class="perk-image" style="background-image: url('<%= @business.picture %>');">
+        <% end %>
+
+        <!-- IF FLASH PERK -->
+        <% if @perk.flash? %>
+          <% if @perk.times > 0 %>
+            <span class="flash-notification" style="background-color: <%= @business.business_category.color %>;"><i class="fa fa-flash"></i><%= @perk.times - Use.used.where(perk_id: params[:perk_id]).count %> restants</span>
+          <% end %>
+          <span class="availabilities"><%= render(partial: "components/perk_flash_period", locals: { start_date: @perk.start_date, end_date: @perk.end_date }) %></span>
+        <% end %>
+        <h1><%= @perk.name %></h1>
+        <p><%= @perk.description %></p>
+        <div class="use-perk">
+          <% if user_signed_in? %>
+            <% if !@perk.perk_in_time? %>
+              <div id="button-used">
+                <button class="empty">Bon plan non disponible</button>
+              </div>
+            <% elsif !@perk.perk_usable?(current_user) %>
+              <div id="button-used">
+                <button class="empty">Bon plan épuisé</button>
+              </div>
+            <% else %>
+              <button type="button" class="use-button" style="background-color: <%= @business.business_category.color %>;">J'en profite</button>
+            <% end %>
+          <% else %>
+            <button type="button" class="use-button-logout" style="background-color: <%= @business.business_category.color %>;">J'en profite</button>
+            <%#= link_to "J'en profiterai bien", new_member_subscribe_path, class: "btn btn-use-button btn-block" %>
+          <% end %>
+>>>>>>> master
         </div>
         <div class="flib-engages-item">
           <div class="flib-icon"></div>
@@ -108,6 +179,7 @@
   </div>
 </div>
 
+<<<<<<< HEAD
 <div class="perk-modal hidden">
   <div class="perk-modal-close">
     <i class="fa fa-times" aria-hidden="true"></i>
@@ -129,6 +201,7 @@
     Je trouve de nouveaux commerçants responsables, des associations engageées et des événements enthousiasmant chez moi ou dans les autres villes où je me rends.
   </div>
 
+
   <div class="perk-modal-title-dotted">
     <div class="perk-modal-yellow-dot">
       <div>2</div>
@@ -139,6 +212,7 @@
   <div class="perk-modal-description">
     Je trouve de nouveaux commerçants responsables, des associations engageées et des événements enthousiasmant chez moi ou dans les autres villes où je me rends.
   </div>
+
 
   <div class="perk-modal-title-dotted">
     <div class="perk-modal-yellow-dot">
@@ -151,9 +225,22 @@
     Je trouve de nouveaux commerçants responsables, des associations engageées et des événements enthousiasmant chez moi ou dans les autres villes où je me rends.
   </div>
 
+<<<<<<< HEAD
   <div class="perk-modal-button-signup">
     <div class="perk-signin-button">JE M'INSCRIS</div>
   </div>
+=======
+      $(".use-button-logout").click(function() {
+        $('.use-overlay').removeClass('hidden');
+        // EVENT AMPLITUDE USER_C_BENEFIT
+        amplitude.logEvent('USER_C_BENEFIT_LOGOUT');
+      });
+
+      $(".btn-use-button").click(function() {
+        // EVENT AMPLITUDE USER_C_BENEFIT
+        amplitude.logEvent('USER_C_BENEFIT');
+      });
+>>>>>>> master
 
 </div>
 
@@ -170,25 +257,3 @@
 <%= render "businesses/mobileshow" %>
 
 <%= render "businesses/mobileshow_member" %>
-
-
-<% content_for :after_js do %>
-
-  <script>
-
-    $(document).ready(function(){
-      // $(".use-button-logout").click(function() {
-      //   $('.use-overlay').removeClass('hidden');
-      //   // EVENT AMPLITUDE USER_C_BENEFIT
-      //   amplitude.logEvent('USER_C_BENEFIT_LOGOUT');
-      // });
-
-      // $(".btn-use-button").click(function() {
-      //   // EVENT AMPLITUDE USER_C_BENEFIT
-      //   amplitude.logEvent('USER_C_BENEFIT');
-      // });
-    });
-
-  </script>
-
-<% end %>

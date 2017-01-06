@@ -25,14 +25,19 @@
       <% end %>
     </li>
     <li class="<%= active_class(member_user_gift_path(current_user)) %>">
-          <%= link_to member_user_gift_path(current_user) do %>
-            <i class="fa fa-gift"></i>Plaisir d'offrir
-          <% end %>
-        </li>
+      <%= link_to member_user_gift_path(current_user) do %>
+        <i class="fa fa-gift"></i>Plaisir d'offrir
+      <% end %>
+    </li>
   <% end %>
   <li>
     <%= link_to faq_connect_path do %>
       <i class="fa fa-question"></i>Aide et conseils
+    <% end %>
+  </li>
+  <li>
+    <%= link_to root_path do %>
+      <i class="fa fa-info-circle"></i>Plus d'infos ?
     <% end %>
   </li>
   <li>

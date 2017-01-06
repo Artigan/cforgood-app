@@ -17,11 +17,6 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
 
-    cookies.permanent[:user_cforgood] = {
-      value: 'login',
-      domain: ENV['COOKIES_DOMAIN']
-    }
-
     if resource.class.name == "Business"
       if resource.supervisor
         pro_business_supervisor_dashboard_path(resource)
@@ -29,7 +24,14 @@ class ApplicationController < ActionController::Base
         pro_business_dashboard_path(resource)
       end
     else
-      if !current_user.mangopay_id.present?
+      if session[:logout] == true
+         session[:logout] = false
+        if request.referer.present?
+          request.referer
+        else
+          member_user_dashboard_path(resource)
+        end
+      elsif !current_user.mangopay_id.present?
         begin
           @mangopay_user = MangopayServices.new(current_user).create_mangopay_natural_user
           current_user.update_attribute(:mangopay_id, @mangopay_user["Id"])
@@ -47,7 +49,7 @@ class ApplicationController < ActionController::Base
           current_user.save
           member_subscribe_gift_path
         elsif request.referer.include?('signup_beneficiary')
-          # Only for signupt
+          # Only for beneficiary signup
           @beneficiary =  Beneficiary.find(request.referer.split("?")[1].to_i)
           current_user.code_partner = "GIFT" + @beneficiary.nb_month.to_s + "MONTH"
           current_user.save
@@ -64,7 +66,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_out_path_for(resource_or_scope)
-    cookies.delete(:user_cforgood, domain: ENV['COOKIES_DOMAIN'])
+    session.delete(:logout)
     root_path
   end
 

@@ -39,6 +39,13 @@
       <% end %>
     </div>
 
+    <div class="leftmenu-v2-item <%= active_class(root_path) %>">
+      <%= link_to root_path do %>
+        <div class="left-menu-svg-container" style="background-image: url(<%= asset_path "icons/signout.png" %>)"></div>
+        <div class="left-menu-text">Plus d'infos ?</div>
+      <% end %>
+    </div>
+
     <!-- USER NOT SIGN IN -->
   <% else %>
 
@@ -50,14 +57,14 @@
     </div>
 
     <div class="leftmenu-v2-item <%= active_class(businesses_path) %>">
-      <%= link_to new_member_subscribe_path do %>
+      <%= link_to businesses_path do %>
         <div class="left-menu-svg-container" style="background-image: url(<%= asset_path "bonplan.svg" %>)"></div>
         <div class="left-menu-text">Bon plans</div>
       <% end %>
     </div>
 
     <div class="leftmenu-v2-item <%= active_class(asso_causes_path) %>">
-      <%= link_to new_member_subscribe_path do %>
+      <%= link_to asso_causes_path do %>
         <div class="left-menu-svg-container" style="background-image: url(<%= asset_path "association.svg" %>)"></div>
         <div class="left-menu-text">Associations</div>
       <% end %>
@@ -109,6 +116,13 @@
           <% end %>
         </div>
 
+        <div class="leftmenu-v3-item <%= active_class(root_path) %>">
+          <%= link_to root_path do %>
+            <div class="left-menu-svg-container" style="background-image: url(<%= asset_path "icons/signout.png" %>)"></div>
+            <div class="left-menu-text">Plus d'infos ?</div>
+          <% end %>
+        </div>
+
         <!-- USER NOT SIGN IN -->
       <% else %>
 
@@ -120,16 +134,23 @@
         </div>
 
         <div class="leftmenu-v3-item <%= active_class(businesses_path) %>">
-          <%= link_to new_member_subscribe_path do %>
+          <%= link_to businesses_path do %>
             <div class="left-menu-svg-container" style="background-image: url(<%= asset_path "bonplan.svg" %>)"></div>
             <div class="left-menu-text">Bon plans</div>
           <% end %>
         </div>
 
         <div class="leftmenu-v3-item <%= active_class(asso_causes_path) %>">
-          <%= link_to new_member_subscribe_path do %>
+          <%= link_to asso_causes_path do %>
             <div class="left-menu-svg-container" style="background-image: url(<%= asset_path "association.svg" %>)"></div>
             <div class="left-menu-text">Associations</div>
+          <% end %>
+        </div>
+
+        <div class="leftmenu-v3-item <%= active_class(root_path) %>">
+          <%= link_to root_path do %>
+            <div class="left-menu-svg-container" style="background-image: url(<%= asset_path "icons/signout.png" %>)"></div>
+            <div class="left-menu-text">Plus d'infos ?</div>
           <% end %>
         </div>
 

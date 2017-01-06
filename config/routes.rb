@@ -9,7 +9,7 @@ Rails.application.routes.draw do
       root to: 'devise/sessions#new'
     end
   else
-    root  to: redirect("http://cforgood.com")
+    root to: redirect("http://cforgood.com")
   end
 
   get 'notre_charte',             to: 'pages#charte'
@@ -51,6 +51,8 @@ Rails.application.routes.draw do
     resources :subscribe, only: [:new, :create, :update, :destroy]
     resources :perks, only: [:show]
   end
+
+  get "map", to: "member/dashboard#dashboard"
 
   resources :users do
     resources :beneficiaries, only: [:create, :update]

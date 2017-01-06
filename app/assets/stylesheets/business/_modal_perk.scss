@@ -21,6 +21,10 @@
     position: relative;
     perspective: 1000px;
 
+    &.flip-signin {
+      width: 90%;
+    }
+
     .flipper-mobile {
       width: 100%;
       height: 100%;
@@ -242,7 +246,6 @@
         z-index: 500;
         transform: rotateX( 180deg );
 
-
         .container-feedback {
           display: flex;
           flex-direction: column;
@@ -284,6 +287,18 @@
         }
       }
     }
+  }
+
+  .close-button-signin {
+    position: absolute;
+    color: #636363;
+    background: transparent;
+    border: none;
+    top: 10px;
+    right: 10px;
+    font-size: 40px;
+    font-weight: 100;
+    z-index: 200;
   }
 
   .flipped {
