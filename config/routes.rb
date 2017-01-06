@@ -79,10 +79,10 @@ Rails.application.routes.draw do
     resources :activate, only: [:update, :destroy]
   end
 
-  namespace :asso do
-    resources :causes, only: [:index, :show]
-    get 'dashboard', to: 'dashboard#dashboard'
-  end
+  # namespace :asso do
+  resources :causes, only: [:index, :show]
+  #   get 'dashboard', to: 'dashboard#dashboard'
+  # end
 
   resources :perks do
     resources :uses, only: [:create, :update]

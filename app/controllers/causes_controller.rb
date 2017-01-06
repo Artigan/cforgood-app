@@ -1,4 +1,4 @@
-class Asso::CausesController < ApplicationController
+class CausesController < ApplicationController
 
   skip_before_action :authenticate_user!, only: [:index, :show]
 

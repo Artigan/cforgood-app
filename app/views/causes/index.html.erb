@@ -29,7 +29,7 @@
         <% @causes.each do |cause| %>
           <% if cause.id != ENV['CAUSE_ID_CFORGOOD'].to_i %>
             <!-- COMPONENT | CARD BON PLAN -->
-            <%= link_to asso_cause_path(cause), class: "card-frame mix #{cause.cause_category_id}" do %>
+            <%= link_to cause_path(cause), class: "card-frame mix #{cause.cause_category_id}" do %>
               <!-- CARD HEADER -->
                 <div class="card-body" style="background-image: url('<%= cause.picture.url(:card) %>');">
                   <div class="disque-item item-category" style="background-color: <%= cause.cause_category.color %>;">
