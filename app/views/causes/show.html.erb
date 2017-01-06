@@ -8,8 +8,8 @@
 <%= render "member/dashboard/shared/sidebar" %>
 
 <div class="asso-fullpage">
-
   <div class="asso-banner" style="background-color: <%= @cause.cause_category.color %>;">
+
     <div class="asso-banner-header-name">
       <div class="asso-head-column-container">
         <div class="banner-business-name">
@@ -22,36 +22,40 @@
     </div>
 
     <div class="asso-card-abs-banner">
-      <div class="asso-card-photo" style="background-image: url('<%= device_type == :mobile ? @cause.picture.url(:card) : @cause.picture %>');"></div>
-      <div class="asso-card-bottom-links">
-        <div class="asso-card-bottom-left-item" style="background-color: <%= @cause.cause_category.color %>;">
-          <div class="asso-card-red-heart">
-            <i class="fa fa-heart" aria-hidden="true"></i>
+        <div class="asso-card-photo" style="background-image: url('<%= device_type == :mobile ? @cause.picture.url(:card) : @cause.picture %>');"></div>
+        <div class="asso-card-bottom-links">
+          <div class="asso-card-bottom-left-item" style="background-color: <%= @cause.cause_category.color %>;">
+            <div class="asso-card-red-heart">
+              <i class="fa fa-heart" aria-hidden="true"></i>
+            </div>
+            <div class="asso-firstblock-text"><%= "63 pour #{@cause.name}" %></div>
           </div>
-          <div class="asso-firstblock-text"><%= "63 pour #{@cause.name}" %></div>
+          <div class="asso-card-bottom-right-item">
+            <div class="asso-cbri-firstblock">
+              <div class="asso-firstblock-text">Partager :</div>
+            </div>
+            <div class="asso-cbri-middleblock">
+              <i class="fa fa-facebook" aria-hidden="true"></i>
+            </div>
+            <div class="asso-cbri-endblock">
+              <i class="fa fa-twitter" aria-hidden="true"></i>
+            </div>
+          </div>
         </div>
-        <div class="asso-card-bottom-right-item">
- <!--          <div class="asso-cbri-firstblock">
-            <div class="asso-firstblock-text">Partager :</div>
-          </div> -->
-          <div class="asso-cbri-middleblock">
-            <i class="fa fa-facebook" aria-hidden="true"></i>
-          </div>
-          <div class="asso-cbri-endblock">
-            <i class="fa fa-twitter" aria-hidden="true"></i>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 
   <div class="asso-bottom-container">
     <div class="title-sub">En quelques mots</div>
-    <div class="asso-description-container" style="font-size: 13px;"><%= @cause.description %></div>
+
+    <div class="asso-description-container" style="font-size: 13px;">
+      <%= @cause.description %>
+    </div>
+
     <% if @cause.link_video.present? %>
       <div class="cause-video">
         <div class="embed-container video-mobile">
-         <%= content_tag(:iframe, nil, src: "#{@cause.link_video}", allowfullscreen: "allowfullscreen") %>
+          <%= content_tag(:iframe, nil, src: "#{@cause.link_video}", allowfullscreen: "allowfullscreen") %>
         </div>
       </div>
     <% end %>
@@ -87,7 +91,7 @@
             </ul>
             <!-- LINKS | WEB -->
             <ul class="direct-contact">
-             <% if @cause.telephone.present? %>
+              <% if @cause.telephone.present? %>
                 <li>
                   <a href="tel:<%= @cause.telephone %>" class="link-website-business business-icon-container" target="_blank" >
                     <i class="fa fa-phone business-icon" style="border: 1px solid <%= @cause.cause_category.color %>; color: <%= @cause.cause_category.color %>;"></i><span><%= @cause.telephone %></span>
@@ -161,9 +165,7 @@
   <%= render 'components/popups/cause_validation' %>
 
   <% content_for :after_js do %>
-
     <script>
-
       $(document).ready(function() {
         $(".user-button").on("click", function(e) {
           e.preventDefault;
@@ -176,9 +178,7 @@
           amplitude.logEvent('USER_C_CAUSE_SUPPORT');
         });
       });
-
     </script>
-
   <% end %>
 
 <% end %>
