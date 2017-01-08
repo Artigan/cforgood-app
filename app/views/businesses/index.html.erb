@@ -14,26 +14,17 @@
 
     <%= render "components/menu/index_search_category" %>
 
-  <div class="search-category-overlay hidden"></div>
-    <div id="businesses">
-      <div id="mixitup" class="container-perk-cards">
+    <div class="search-category-overlay hidden"></div>
+      <div id="businesses">
+        <div id="mixitup" class="container-perk-cards">
 
-        <!-- <div id="perks-list"> -->
-
-            <!-- <input class="search" placeholder="Search" /> -->
-
-          <!-- <ul class="list"> -->
-        <% @businesses.each do |business| %>
-          <% (@addresses_id.select { |address_id| address_id[0] == business.id }).each do |address_id| %>
-            <!-- COMPONENT | ADDRESSES -->
-
-            <% business.perks.active.each do |perk| %>
-                    <!-- <li> -->
-              <!-- COMPONENT | CARD BON PLAN -->
-
-              <%= link_to business_path(business, perk_id: perk.id, address_id: address_id[1]), class: "card-frame mix #{business.business_category_id} #{business.online? ? 'online' : ''}" do %>
-
-                <ul class="list">
+        <ul class="list">
+          <% @businesses.each do |business| %>
+            <% (@addresses_id.select { |address_id| address_id[0] == business.id }).each do |address_id| %>
+              <!-- COMPONENT | ADDRESSES -->
+              <% business.perks.active.each do |perk| %>
+                <!-- COMPONENT | CARD BON PLAN -->
+                <%= link_to business_path(business, perk_id: perk.id, address_id: address_id[1]), class: "card-frame mix #{business.business_category_id} #{business.online? ? 'online' : ''}" do %>
                   <!-- CARD HEADER -->
                   <div class="card-header">
                     <h3 class="perk-name name hidden"><%= perk.name %></h3>
@@ -69,23 +60,18 @@
                       <h3 class="perk-name name"><%= perk.name %></h3>
                     </div>
                   </div>
-                </ul>
+                <% end %>
+                <!-- END | CARD BON PLAN -->
               <% end %>
-
-              <!-- END | CARD BON PLAN -->
+              <!-- END | ADDRESSES -->
             <% end %>
-
-            <!-- END | ADDRESSES -->
           <% end %>
-        <!-- </li> -->
-        <% end %>
-      <!-- </ul> -->
-    <!-- </div> -->
+        </ul>
       </div>
     </div>
   <!-- END | DASHBOARD PERKS -->
   </div>
- <!-- END | ADMIN -->
+  <!-- END | ADMIN -->
 </div>
 
 <% content_for :after_js do %>
@@ -220,11 +206,11 @@
     //   plugins: [ ListFuzzySearch() ]
     // });
 
-    var options = {
-      valueNames: [ 'perk-name' ]
-    };
+    // var options = {
+    //   valueNames: [ 'perk-name' ]
+    // };
 
-    var perksList = new List('perks-list', options);
+    // var perksList = new List('perks-list', options);
 
   </script>
 
@@ -235,10 +221,13 @@
   <script>
 
     var options = {
-      valueNames: [ 'name' ]
+      valueNames: [ 'perk-title' ]
     };
 
+    console.log(options);
+
     var userList = new List('businesses', options);
+    console.log(userList);
 
     $('#search-businesses').keyup(function(){
       userList.search($(this).val());
