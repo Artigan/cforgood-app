@@ -38,7 +38,7 @@
 
     <div class="dropdown" id="button-dropdown-navbar">
 
-      <% if   user_signed_in? && current_user.picture.present? %>
+      <% if user_signed_in? && current_user.picture.present? %>
         <div class="avatar-navbar dropdown-toggle" data-toggle="dropdown" style="background-image: url(<%= avatar_url(current_user) %>);">
           <div class="caret"></div>
         </div>
