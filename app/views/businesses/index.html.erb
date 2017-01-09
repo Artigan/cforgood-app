@@ -224,10 +224,7 @@
       valueNames: [ 'perk-title' ]
     };
 
-    console.log(options);
-
     var userList = new List('businesses', options);
-    console.log(userList);
 
     $('#search-businesses').keyup(function(){
       userList.search($(this).val());

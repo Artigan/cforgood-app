@@ -28,14 +28,11 @@
         <div class="card-bottom-links">
           <div class="card-bottom-left-item" style="background-color: <%= @business.business_category.color %>;">
             <div class="card-red-heart">
-              <i class="fa fa-heart" aria-hidden="true"></i>
+              <%= image_tag "icons/heart.svg" %>
             </div>
             <div class="firstblock-text"><%= "63 personnes" %></div>
           </div>
           <div class="card-bottom-right-item" style="background-color: <%= @business.business_category.color %>;">
-       <!--      <div class="cbri-firstblock hidden-xs">
-              <div class="firstblock-text">Partager :</div>
-            </div> -->
             <div class="cbri-middleblock">
               <i class="fa fa-facebook" aria-hidden="true"></i>
             </div>

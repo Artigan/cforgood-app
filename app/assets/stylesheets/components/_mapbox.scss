@@ -35,10 +35,9 @@
   position: absolute;
   width: 300px !important;
   max-height: 271px;
-  top: 12px;
   padding: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  top: 17px;
+  left: -18.4%;
   box-shadow: 0 1px 6px rgba(178, 178, 178, 0.6);
   background-color: #fff;
   border-radius: 3px;
@@ -351,10 +350,11 @@
 
 @media (max-width: 768px) {
   .mapboxgl-popup-content {
-    width: 100%;
     position: relative;
-    top: 0;
     width: 100% !important;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
     border-radius: 0px;
   }
 }

@@ -45,7 +45,8 @@
           },
           "properties": {
             "marker-symbol": business.business_category.marker_symbol,
-           "description": render_to_string(partial: "components/map_box", locals: { business: business, address: address[0], street: address[3], flash: false })
+            "color": business.business_category.color,
+            "description": render_to_string(partial: "components/map_box", locals: { business: business, address: address[0], street: address[3], flash: false })
           }
         }
 

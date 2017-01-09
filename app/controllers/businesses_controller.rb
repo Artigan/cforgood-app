@@ -95,7 +95,8 @@ class BusinessesController < ApplicationController
         "coordinates": [longitude, latitude],
       },
       "properties": {
-        "marker-symbol": @business.business_category.marker_symbol
+        "marker-symbol": @business.business_category.marker_symbol,
+        "color": @business.business_category.color
       }
     }
     respond_to do |format|
