@@ -7,7 +7,7 @@
   <div class="sign-back">
     <!-- SIGNIN AS USER -->
     <div class="connect-user" style="<%= device_type == :mobile || params[:business].present? ? 'visibility: visible;' : 'visibility: hidden;' %>">
-      <i><%= render "shared/icons/profile" %></i>
+      <%= image_tag "citoyen.svg", class: "avatar-citoyen"%>
       <span>Je suis membre ?</span>
       <p>Vous êtes un particulier et souhaitez agir à votre échelle.</p>
       <button type="button" class="btn-user">Se connecter</button>

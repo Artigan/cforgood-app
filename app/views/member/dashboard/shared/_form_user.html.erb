@@ -10,7 +10,7 @@
             <%= image_tag current_user.picture.url(:avatar), class: 'user-picture'  %>
           <% else %>
             <div class="picture-none">
-              <%= render 'shared/icons/profile' %>
+              <%= image_tag "citoyen.svg", class: "avatar-citoyen" %>
             </div>
           <% end %>
         </div>
