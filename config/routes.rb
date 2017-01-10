@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     root to: redirect("http://cforgood.com")
   end
 
+  get "more_infos",               to: redirect("http://www.cforgood.com/plus-dinfos/")
   get 'notre_charte',             to: 'pages#charte'
   get 'cgu',                      to: 'pages#cgu'
   get 'faq_connect',              to: 'pages#faq_connect'
