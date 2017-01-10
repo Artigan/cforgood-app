@@ -49,11 +49,11 @@
     <!-- MENU ITEMS -->
     <% if business_signed_in? && pro_space? && current_business.supervisor %>
       <%= render "components/select_impersonate_business", dropdown_search: "navbar_select_impersonate" %>
-    <% end %>
-    <% if current_impersonation %>
-      <div class="current-impersonation">
-        Vous agissez en tant que <%= current_impersonation.name %>
-      </div>
+      <% if current_impersonation %>
+        <div class="current-impersonation">
+          Vous agissez en tant que <%= current_impersonation.name %>
+        </div>
+      <% end %>
     <% end %>
 
     <!-- MENU ITEMS -->
