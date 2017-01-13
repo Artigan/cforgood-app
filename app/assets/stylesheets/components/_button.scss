@@ -185,3 +185,57 @@
     }
   }
 }
+
+.see-more {
+  font-size: 40px;
+  font-weight: 100;
+  color: #fff;
+}
+
+.cta-button {
+  color: white;
+  padding: 5px 50px;
+  background-color: $turquoise;
+  border: none;
+  border-radius: 30px;
+  outline: none;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-bottom: 30px;
+
+  &:hover {
+    color: rgba(55,55,55,0.9);
+  }
+
+  .fa {
+    margin-right: 10px;
+  }
+
+  a {
+    color: #fff;
+
+    &:hover {
+      color: rgba(55,55,55,0.9);
+    }
+  }
+}
+
+.close-button {
+  position: absolute;
+  color: rgba(55,55,55,0.6);
+  background: transparent;
+  border: none;
+  top: 10px;
+  right: 10px;
+  font-size: 30px;
+  font-weight: 100;
+  cursor: pointer;
+  transition: 0.5s ease;
+  z-index: 200;
+
+  &:hover {
+    color: rgba(55,55,55,0.9);
+  }
+}

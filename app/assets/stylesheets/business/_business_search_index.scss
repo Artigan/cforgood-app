@@ -112,6 +112,7 @@ ul.list {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-right: 10px;
 }
 
 .bic-middle {
@@ -129,6 +130,7 @@ ul.list {
   justify-content: center;
   align-items: center;
   font-size: 50px;
+  font-weight: 100;
 }
 
 .bic-middle-top {
@@ -137,7 +139,7 @@ ul.list {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding-top: 10px;
+  padding-top: 15px;
 }
 
 .bic-middle-bottom {
@@ -146,9 +148,8 @@ ul.list {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding-bottom: 10px;
+  padding-bottom: 15px;
 }
-
 
 .bic-photo {
   width: 85%;
@@ -159,13 +160,9 @@ ul.list {
   background-repeat: no-repeat;
 }
 
-
-
 .business-name-desk {
   font-size: 19px;
 }
-
-
 
 .text-count-container {
   width: 100%;
@@ -175,7 +172,6 @@ ul.list {
   padding-left: 45px;
   align-items: center;
 }
-
 
 .text-count {
   font-size: 14px;

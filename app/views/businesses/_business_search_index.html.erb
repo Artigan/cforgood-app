@@ -18,14 +18,16 @@
                 <div class="business-name"><%= business.name %></div>
               </div>
               <div class="bic-middle-bottom">
-                <div class="little-perk-logo" style="background-color:<%= business.business_category.color %> ">
+                <div class="pastille" style="background-color:<%= business.business_category.color %>;">
                   <%= image_tag business.business_category.picture, size: "10x10" %>
                 </div>
                 <div class="category-name category" style="color: grey;"><%= business.business_category.name %></div>
               </div>
             </div>
             <div class="bic-right">
-              <div>+</div>
+              <%#= link_to business_path(business), class: "link-business-plus" do %>
+                <div>+</div>
+              <%# end %>
             </div>
           </div>
         <% end %>

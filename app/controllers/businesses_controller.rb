@@ -53,7 +53,7 @@ class BusinessesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    @businesses = Business.active.joins(:perks).active.distinct.includes(:business_category)
+    @businesses = Business.active.joins(:perks).merge(Perk.in_time).active.distinct.includes(:business_category)
     @addresses_id = []
     @businesses.each do |business|
       # @addresses_id << [business.id, 0] # BUSINESS MAIN ADDRESS
@@ -75,7 +75,6 @@ class BusinessesController < ApplicationController
 
   def show
     @business = Business.joins(:business_category).find(params[:id])
-    @perk = @business.perks.find(params[:perk_id])
 
     if params[:address_id].to_i > 0
       @address = @business.addresses.find(params[:address_id])

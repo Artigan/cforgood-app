@@ -8,7 +8,7 @@
     <% if !flash || (flash && perk.flash) %>
 
         <%= link_to business_path(perk.business_id, perk_id: perk.id, address_id: address), class: "link-business-plus" do %>
-          <i class="fa fa-plus"></i>
+          <span class="see-more">+</span>
         <% end %>
 
     <% end %>
@@ -23,6 +23,9 @@
         <div class="mv2-content-top-top-text"><%= business.name %></div>
       </div>
       <div class="mv2-content-top-bottom">
+        <div class="pastille">
+          <%= image_tag business.business_category.picture, size: "10x10" %>
+        </div>
         <div class="mv2-content-top-bottom-text"><%= business.business_category.name %></div>
       </div>
     </div>
@@ -30,10 +33,10 @@
     <div class="mv2-content-bottom" style="background-color: <%= business.business_category.color %>;">
 
       <div class="mv2-content-bottom-left" style="background-color: rgba(55,55,55,0.2);">
-        <% if business.perks.count == 1 %>
-          <div class="available-perk-text"><%= "#{business.perks.count} bon plan disponible" %></div>
+        <% if business.perks_in_time.count == 1 %>
+          <div class="available-perk-text"><%= "#{business.perks_in_time.count}" %><span> bon plan disponible </span></div>
         <% else %>
-          <div class="available-perk-text"><%= "#{business.perks.count} bons plans disponibles" %></div>
+          <div class="available-perk-text"><%= "#{business.perks_in_time.count}" %><span> bons plans disponibles </span></div>
         <% end %>
       </div>
 

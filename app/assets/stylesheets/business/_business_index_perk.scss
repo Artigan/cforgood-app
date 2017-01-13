@@ -28,8 +28,6 @@
       cursor: pointer;
       @include transition(all 0.3s);
 
-
-
       .card-header {
         display: flex;
         position: relative;
@@ -278,6 +276,7 @@
 
       .card-frame {
         width: 31.33333%;
+        margin: 4px;
 
         &:hover {
           box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);

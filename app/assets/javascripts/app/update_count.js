@@ -2,9 +2,9 @@ $(document).ready(function() {
   $('#search-dashboard').keyup(function(){
     var elements = $("#business-search-modal-desktop .business-name-desk:visible").length;
     if (elements <= 1) {
-      $( ".text-count" ).text( elements + " resultat");
+      $( ".text-count" ).text( elements + " résultat");
     } else {
-      $( ".text-count" ).text( elements + " resultats");
+      $( ".text-count" ).text( elements + " résultats");
     }
   });
 });

@@ -100,6 +100,12 @@ class Perk < ApplicationRecord
     self.update(active: false, deleted: true)
   end
 
+  def offer_type?
+    return "#{self.amount} €" if value
+    return "#{self.amount} %" if percent
+    return "Offert"
+  end
+
   private
 
   def perk_code_needed?
@@ -224,9 +230,9 @@ class Perk < ApplicationRecord
   protected
 
   def perk_type(appel, durable, flash)
-      return "BIENVENUE" if self.appel
-      return "DURABLE" if self.durable
-      return "FLASH" if self.flash
+    return "BIENVENUE" if self.appel
+    return "DURABLE" if self.durable
+    return "FLASH" if self.flash
   end
 
 end

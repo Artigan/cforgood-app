@@ -217,7 +217,7 @@ class User < ApplicationRecord
     end
 
     #SEND EVENT TO SLACK
-    message =  find_name_or_email?
+    message = find_name_or_email?
     message += code_partner_save.present? ? " a résilié sa période d'essai." : " a résilié son abonnement."
     message += " |" + self.email + "|"
     send_message_to_slack(ENV['SLACK_WEBHOOK_USER_URL'], message)

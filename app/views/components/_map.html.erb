@@ -76,17 +76,13 @@
         // Add Layer
         map.addLayer({
           "id": layerID,
-          "type": "circle",
+          "type": "symbol",
           "source": "markers",
           "interactive": true,
-          // "layout": {
-          //   "icon-image": symbol,
-          //   "icon-offset": [0,-20],
-          //   "icon-allow-overlap": true
-          // },
-          "paint": {
-            'circle-radius': initialRadius,
-            'circle-color': color
+          "layout": {
+            "icon-image": symbol,
+            "icon-offset": [0,-20],
+            "icon-allow-overlap": true
           },
           "filter": ["==", "marker-symbol", symbol]
         });
@@ -130,7 +126,6 @@
         "circle-color": "#32C4CB"
       }
     });
-
 
     function animateMarker(timestamp) {
         setTimeout(function(){
