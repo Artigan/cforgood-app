@@ -166,19 +166,6 @@
       //   amplitude.logEvent('USER_C_BENEFIT');
       // });
     });
-
-
-    $(document).ready(function() {
-
-      $('.radio-button').on('click', function() {
-        feedback = $('.radio-button:checked').attr('id');
-        console.log(feedback);
-        $('#use_like, #use_unlike, #use_unused').val('false');
-        $('#use_' + feedback).val('true');
-      });
-
-    });
-
   </script>
 
 <% end %>

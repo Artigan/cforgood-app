@@ -38,3 +38,11 @@
     <% end %>
   </div>
 </div>
+
+<script type="text/javascript">
+  $('.radio-button').click(function() {
+    feedback = $('.radio-button:checked').attr('id');
+    $('#use_like, #use_unlike, #use_unused').val('false');
+    $('#use_' + feedback).val('true');
+  });
+</script>
