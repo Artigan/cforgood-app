@@ -9,13 +9,14 @@
   <% if perk.perk_detail.name == "email" %>
     <p class="pmu-question">Envie d'en profiter ?</p>
     <p class="pmu-answer">Envoyez-nous un email pour réserver votre bon plan : </p>
-    <a href='mailto:<%= @business.email %>?subject=Nouvelle demande de bon plan CforGood !&body=Bonjour <%= @business.leader_first_name if @business.leader_first_name.present? %>,%0D%0A<%= @business.name %> semble sympa comme tout !%0D%0AJe souhaiterais bénéficier du bon plan « <%= perk.name.gsub(/%/, "%25").upcase %> » (Code : <%= perk.perk_code %>), pouvez-vous me dire comment procéder ?%0D%0A Merci par avance !%0D%0A<%= current_user.first_name.capitalize if current_user.first_name.present? %> <%= current_user.last_name.capitalize if current_user.last_name.present? %>' class="cta-button" style="background-color:<%= @business.business_category.color %>;" target="_blank">
+    <a href='mailto:<%= @business.email %>?subject=Nouvelle demande de bon plan CforGood !&body=Bonjour <%= @business.leader_first_name if @business.leader_first_name.present? %>,%0D%0A<%= @business.name %> semble sympa comme tout !%0D%0AJe souhaiterais bénéficier du bon plan « <%= perk.name.gsub(/%/, "%25").upcase %> » (Code : <%= perk.perk_code %>), pouvez-vous me dire comment procéder ?%0D%0A Merci par avance !%0D%0A<%= current_user.first_name.capitalize if current_user.first_name.present? %> <%= current_user.last_name.capitalize if current_user.last_name.present? %>' class="cta-button send-mail" style="background-color:<%= @business.business_category.color %>;" target="_blank">
       <i class="fa fa-envelope-o"></i>Nous écrire
     </a>
 
   <% elsif @business.online %>
     <p class="pmu-question">Envie d'en profiter ? Copiez ce code : </p>
-    <span class="online-code">CODE PROMO : <stong><%= perk.perk_code.upcase %></strong></span>
+    <div class="pmu-answer">CODE PROMO : <stong><%= perk.perk_code.upcase %></strong></div>
+    <button class="cta-button send-to-shop" style="background-color:<%= @business.business_category.color %>;">
       <%= link_to "#{@business.url}", class: "send-to-shop", target: "_blank" do %>
         <i class="fa fa-share"></i>Me rendre sur le site
       <% end %>
@@ -29,7 +30,6 @@
         <i class="fa fa-paper-plane"></i> Afficher l'itinéraire
       <% end %>
     </button>
-
   <% end %>
 
   <% if perk.perk_detail.name == "email" || @business.online %>
@@ -37,6 +37,7 @@
       <%= f.input :perk_id, as: :hidden, input_html: {value: params[:perk_id]} %>
       <%= f.submit "", class: "btn-create-use", :style => "display: none;" %>
     <% end %>
+    <div class="container-feedback"></div>
   <% end %>
 </div>
 

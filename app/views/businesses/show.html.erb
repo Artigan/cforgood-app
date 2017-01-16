@@ -122,7 +122,7 @@
               </div>
               <% if user_signed_in? %>
                 <% if !perk.perk_in_time? %>
-                  <div class="perk-pseudo-modal-link disabled" id="perk-modal-use-<%= perk.id %>">JBon plan non disponible</div>
+                  <div class="perk-pseudo-modal-link disabled" id="perk-modal-use-<%= perk.id %>">Bon plan non disponible</div>
                 <% elsif !perk.perk_usable?(current_user) %>
                   <div class="perk-pseudo-modal-link disabled" id="perk-modal-use-<%= perk.id %>">Bon plan épuisé</div>
                 <% else %>
@@ -135,7 +135,7 @@
         <div class="perk-modal-use perk-modal-use-<%= perk.id %> hidden">
           <% if !user_signed_in? %>
             <%= render "businesses/business_perk_not_member" %>
-          <% elsif device_type == :desktop || perk.detail.name == "email" || @business.online   %>
+          <% elsif device_type == :desktop || perk.perk_detail.name == "email" || @business.online   %>
             <%= render "businesses/business_perk_usage", perk: perk %>
           <% else %>
             <%= render "businesses/business_perk_using", perk: perk %>
@@ -150,6 +150,8 @@
 
 <% content_for :after_js do %>
 
+  <script type="text/javascript">setRoutePathFromLocation()</script>
+
   <script>
 
     $(document).ready(function(){
@@ -163,6 +165,18 @@
       //   // EVENT AMPLITUDE USER_C_BENEFIT
       //   amplitude.logEvent('USER_C_BENEFIT');
       // });
+    });
+
+
+    $(document).ready(function() {
+
+      $('.radio-button').on('click', function() {
+        feedback = $('.radio-button:checked').attr('id');
+        console.log(feedback);
+        $('#use_like, #use_unlike, #use_unused').val('false');
+        $('#use_' + feedback).val('true');
+      });
+
     });
 
   </script>

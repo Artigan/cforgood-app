@@ -1263,10 +1263,7 @@
 
 .pmu-answer {
   font-size: 12px;
-}
-
-.pmu-itinary {
-
+  margin-bottom: 20px;
 }
 
 .perk-modal {
@@ -1317,6 +1314,11 @@
 
 .perk-modal-header-text {
   font-size: 17px;
+  text-transform: uppercase;
+
+  &.feedback {
+    max-width: 210px;
+  }
 }
 
 .perk-modal-icon {
@@ -1326,6 +1328,15 @@
   width: 70px;
   height: 70px;
   margin-bottom: 20px;
+}
+
+.perk-modal-illustration {
+  margin-bottom: 20px;
+
+  img {
+    width: 80px;
+    height: 80px;
+  }
 }
 
 .perk-modal-title-dotted {
