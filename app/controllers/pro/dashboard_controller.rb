@@ -18,7 +18,6 @@ class Pro::DashboardController < Pro::ProController
   end
 
   def profile
-    5.times{ @business.addresses.build }
     authorize @business
   end
 
