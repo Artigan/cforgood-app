@@ -76,7 +76,7 @@ class Address < ApplicationRecord
 
   def assign_business_supervisor
     if self.main
-      supervisor_address = Address.joins(:business).merge(Business.supervisor_not_admin).near([self.latitude, self.longitude], 10).first
+      supervisor_address = Address.main.joins(:business).merge(Business.supervisor_not_admin).near([self.latitude, self.longitude], 10).first
       self.business.update(supervisor_id: supervisor_address.business_id) if supervisor_address
     end
   end
