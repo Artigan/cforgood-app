@@ -51,7 +51,7 @@ class Address < ApplicationRecord
 
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
-  before_save :controle_geocode!, if: :address_changed?
+  before_save :controle_geocode!, if: :geoloc_changed?
   before_save :assign_business_supervisor, if: :address_changed?
 
   def open?
@@ -62,6 +62,10 @@ class Address < ApplicationRecord
 
   def address_changed?
     street_changed? || zipcode_changed? || city_changed?
+  end
+
+  def geoloc_changed?
+    latitude_changed? || longitude_changed?
   end
 
   def address
@@ -82,7 +86,7 @@ class Address < ApplicationRecord
   end
 
   def controle_geocode!
-    while Address.where('id != ? and day = ? and latitude = ? and longitude = ?', self.id, self.day, latitude, longitude).count > 0
+    while Address.where('latitude = ? and longitude = ?', latitude, longitude).count > 0
       self.latitude -= 0.0001
       self.longitude += 0.0001
     end

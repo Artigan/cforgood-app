@@ -105,12 +105,6 @@ class Business < ApplicationRecord
     message: "Cette image dépasse 1 MG !", if: :logo_changed?
   mount_uploader :logo, PictureUploader
 
-  # geocoded_by :address
-
-  # after_validation :geocode, if: :address_changed?
-
-  # before_save :controle_geocode!, :assign_supervisor, if: :address_changed?
-
   after_create :create_main_address, :create_code_partner, :send_registration_slack, :subscribe_to_newsletter_business
 
   after_save :update_data_intercom
@@ -152,14 +146,6 @@ class Business < ApplicationRecord
   end
 
   private
-
-  # def address
-  #   "#{street}, #{zipcode} #{city}"
-  # end
-
-  # def send_registration_email
-  #   BusinessMailer.registration(self).deliver_now
-  # end
 
   def create_code_partner
     Partner.new.create_code_partner_business(self.name, self.email)
