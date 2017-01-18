@@ -196,7 +196,9 @@ class User < ApplicationRecord
   def stop_subscription!
     self.member = false
     self.date_stop_subscription = Time.now
+    subscription_save = self.subscription
     self.subscription = nil
+    amount_save = self.amount
     self.amount = nil
     self.date_last_payment = nil
     code_partner_save = self.code_partner
@@ -218,7 +220,13 @@ class User < ApplicationRecord
 
     #SEND EVENT TO SLACK
     message =  find_name_or_email?
-    message += code_partner_save.present? ? " a résilié sa période d'essai." : " a résilié son abonnement."
+    if code_partner_save.present?
+      message += " a résilié sa période d'essai."
+    else
+      message += " a résilié son abonnement"
+      message += subscription_save == "M" ? ' mensuel' : ' annuel'
+      message += " de " + amount_save.to_s + "€."
+    end
     message += " |" + self.email + "|"
     send_message_to_slack(ENV['SLACK_WEBHOOK_USER_URL'], message)
   end

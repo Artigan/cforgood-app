@@ -25,8 +25,6 @@
     @businesses.each do |business|
       # BUSINESS ADDRESSES
       addresses = []
-      # Main shop address
-      addresses << [0, business.longitude, business.latitude, business.street] if business.shop
       # Other addresses
       business.addresses_for_map.each do |address|
         # shop
