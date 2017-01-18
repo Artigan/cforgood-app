@@ -51,7 +51,8 @@ class Address < ApplicationRecord
 
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
-  before_save :controle_geocode!, if: :address_changed?
+  before_save :controle_geocode!, if: :geoloc_changed?
+  before_save :assign_business_supervisor, if: :address_changed?
 
   def open?
     self.timetables.today.open.present? ? true : false
@@ -61,6 +62,10 @@ class Address < ApplicationRecord
 
   def address_changed?
     street_changed? || zipcode_changed? || city_changed?
+  end
+
+  def geoloc_changed?
+    latitude_changed? || longitude_changed?
   end
 
   def address
@@ -73,8 +78,15 @@ class Address < ApplicationRecord
     end
   end
 
+  def assign_business_supervisor
+    if self.main
+      supervisor_address = Address.main.joins(:business).merge(Business.supervisor_not_admin).near([self.latitude, self.longitude], 10).first
+      self.business.update(supervisor_id: supervisor_address.business_id) if supervisor_address
+    end
+  end
+
   def controle_geocode!
-    while Address.where('id != ? and day = ? and latitude = ? and longitude = ?', self.id, self.day, latitude, longitude).count > 0
+    while Address.where('latitude = ? and longitude = ?', latitude, longitude).count > 0
       self.latitude -= 0.0001
       self.longitude += 0.0001
     end

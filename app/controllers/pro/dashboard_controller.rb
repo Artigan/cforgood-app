@@ -18,7 +18,6 @@ class Pro::DashboardController < Pro::ProController
   end
 
   def profile
-    5.times{ @business.addresses.build }
     authorize @business
   end
 
@@ -39,14 +38,12 @@ class Pro::DashboardController < Pro::ProController
     @businesses.each do |business|
       # BUSINESS ADDRESSES
       addresses = []
-      # Main shop address
-      addresses << [0, business.longitude, business.latitude, business.street] if business.shop
       # Other addresses
       business.addresses.each do |address|
         # shop
-        addresses << [address.id, address.longitude, address.latitude, address.street] if business.shop and !address.day.present?
+        addresses << [address.longitude, address.latitude] if business.shop and !address.day.present?
         # itinerant
-        addresses << [address.id, address.longitude, address.latitude, address.street] if business.itinerant and address.day.present?
+        addresses << [address.longitude, address.latitude] if business.itinerant and address.day.present?
       end
 
       # LOAD ADDRESSES
@@ -56,7 +53,7 @@ class Pro::DashboardController < Pro::ProController
           "type": 'Feature',
           "geometry": {
             "type": 'Point',
-            "coordinates": [address[1], address[2]],
+            "coordinates": [address[0], address[1]],
           },
           "properties": {
             "marker-symbol": business.business_category.marker_symbol

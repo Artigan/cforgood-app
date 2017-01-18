@@ -22,33 +22,14 @@
         <%= f.input :name, placeholder: 'Nom commerce', required: true, label: "Nom de l'établissement" %>
         <%= f.input :description, as: :text, placeholder: 'Visible sur mes bons plans', :input_html => { :rows => 6, maxlength: 330 }, required: true, label: "Présenter mon commerce" %>
       </div>
-      <%= f.input :street, placeholder: 'Rue', required: true, label: 'Adresse principale' %>
-      <%= f.input :zipcode, placeholder: 'Code postal', required: true, label: "Code postal" %>
-      <%= f.input :city, placeholder: 'Ville', required: true, label: 'Ville' %>
       <!-- FOR MORE ADDRESS -->
-      <div class="address-other-shop">
+      <div class="address-other-shop" id="addresses">
         <%= f.simple_fields_for :addresses do |address| %>
-          <% if address.object.id.present? %>
-            <% if !address.object.day.present? %>
-              <div class="address-shop save">
-                <%= address.input :street, placeholder: 'Rue', label: 'Adresse' %>
-                <%= address.input :zipcode, placeholder: 'Code postal', label: 'Code postal' %>
-                <%= address.input :city, placeholder: 'Ville', label: 'Ville' %>
-                <%= address.check_box :_destroy, style: 'visibility: hidden', class: "business_addresses_destroy" %>
-                <a href="#" class="button-address-minus"><%= render "shared/icons/minus" %></a>
-              </div>
-            <% end %>
-          <% elsif %>
-            <div class="address-shop new hidden">
-              <%= address.input :street, placeholder: 'Rue', label: 'Adresse' %>
-              <%= address.input :zipcode, placeholder: 'Code postal', label: 'Code postal' %>
-              <%= address.input :city, placeholder: 'Ville', label: 'Ville' %>
-              <%= address.check_box :_destroy, style: 'visibility: hidden', class: "business_addresses_destroy" %>
-              <a href="#" class="button-address-minus"><%= render "shared/icons/minus" %></a>
-            </div>
-          <% end %>
+          <%= render 'address_fields', f: address %>
         <% end %>
-        <a href="#" class="button-address-more"><%= render "shared/icons/more" %></a>
+        <div class="links">
+          <%= link_to_add_association '+', f, :addresses, class: 'button-address-more on-left' %>
+        </div>
       </div>
 
       <div class="select-wrapper">
@@ -101,40 +82,6 @@
         readURL(newFile);
       });
 
-      // If multiple shop addresses
-      if ($('.address-shop.save').length >= 1) {
-        $('.button-address-more').addClass('on-left');
-      }
-
-      if ($('.address-shop.new.hidden').length == 0) {
-        $('.button-address-more').addClass('hidden');
-      }
-
-      // LINK TO NEW SHOP ADDRESS
-      $('.button-address-more').on('click', function(e) {
-        e.preventDefault();
-        if (!$(this).hasClass('on-left')) {
-          $(this).addClass('on-left');
-        }
-        $('.address-shop.new.hidden').first().removeClass('hidden');
-        if ($('.address-shop.new.hidden').length == 0) {
-          $('.button-address-more').addClass('hidden');
-        }
-      });
-
-      // DESTROY SHOP ADDRESS
-      $('.button-address-minus').on('click', function(e) {
-        e.preventDefault();
-        $(this).prev(".business_addresses_destroy").attr('checked', true);
-        $(this).closest('.address-shop').addClass('hidden').addClass('deleted');
-        if ($('.address-shop.new.hidden').length == 5 && $('.address-shop.save').length == 0) {
-          $('.button-address-more').removeClass('on-left');
-        }
-        if ($('.address-shop.new.hidden').length > 0) {
-          $('.button-address-more').removeClass('hidden');
-        }
-      });
-
       // ACTIVATE OR NOT BUTTON ITINERANT ADDRESS
       $('.business_itinerant').on('change', function(e) {
         e.preventDefault();
@@ -147,97 +94,35 @@
         $(".address-overlay").removeClass("hidden");
       });
 
-      // Autocomplete principal address
-      var placesAutocomplete = places({
-        container: document.querySelector('#business_street'),
-        type: 'address',
-        templates: {
-          value: function(suggestion) {
-            return suggestion.name;
-          }
-        }
+
+      function build_autocomplete() {
+        var address_inputs = document.querySelectorAll('.business_street');
+
+        var places_autocomplete;
+        [].forEach.call(address_inputs, function (address_input) {
+          places_autocomplete = places({
+            container: address_input,
+            templates: {
+              value: function(suggestion) {
+                return suggestion.name;
+              }
+            }
+          });
+          places_autocomplete.on('change', function resultSelected(e) {
+            var string = this.autocomplete[0].id.split("street")[0];
+            $('#' + string + 'city').val(e.suggestion.city || '');
+            $('#' + string + 'zipcode').val(e.suggestion.postcode || '');
+          });
+        });
+      }
+
+      build_autocomplete();
+
+      $(".button-address-more").on("click", function() {
+        setTimeout(function() {
+          build_autocomplete();
+        }, 100);
       });
-
-      placesAutocomplete.on('change', function resultSelected(e) {
-        document.querySelector('#business_city').value = e.suggestion.city || '';
-        document.querySelector('#business_zipcode').value = e.suggestion.postcode || '';
-      });
-
-      // // Autocomplete 5 other shop addresses
-      // var placesAutocomplete_0 = places({
-      //   container: document.querySelector('#business_addresses_attributes_0_street'),
-      //   type: 'address',
-      //   templates: {
-      //     value: function(suggestion) {
-      //       return suggestion.name;
-      //     }
-      //   }
-      // });
-
-      // placesAutocomplete_0.on('change', function resultSelected(e) {
-      //   document.querySelector('#business_addresses_attributes_0_city').value = e.suggestion.city || '';
-      //   document.querySelector('#business_addresses_attributes_0_zipcode').value = e.suggestion.postcode || '';
-      // });
-
-      // var placesAutocomplete_1 = places({
-      //   container: document.querySelector('#business_addresses_attributes_1_street'),
-      //   type: 'address',
-      //   templates: {
-      //     value: function(suggestion) {
-      //       return suggestion.name;
-      //     }
-      //   }
-      // });
-
-      // placesAutocomplete_1.on('change', function resultSelected(e) {
-      //   document.querySelector('#business_addresses_attributes_1_city').value = e.suggestion.city || '';
-      //   document.querySelector('#business_addresses_attributes_1_zipcode').value = e.suggestion.postcode || '';
-      // });
-
-      // var placesAutocomplete_2 = places({
-      //   container: document.querySelector('#business_addresses_attributes_2_street'),
-      //   type: 'address',
-      //   templates: {
-      //     value: function(suggestion) {
-      //       return suggestion.name;
-      //     }
-      //   }
-      // });
-
-      // placesAutocomplete_2.on('change', function resultSelected(e) {
-      //   document.querySelector('#business_addresses_attributes_2_city').value = e.suggestion.city || '';
-      //   document.querySelector('#business_addresses_attributes_2_zipcode').value = e.suggestion.postcode || '';
-      // });
-
-      // var placesAutocomplete_3 = places({
-      //   container: document.querySelector('#business_addresses_attributes_3_street'),
-      //   type: 'address',
-      //   templates: {
-      //     value: function(suggestion) {
-      //       return suggestion.name;
-      //     }
-      //   }
-      // });
-
-      // placesAutocomplete_3.on('change', function resultSelected(e) {
-      //   document.querySelector('#business_addresses_attributes_3_city').value = e.suggestion.city || '';
-      //   document.querySelector('#business_addresses_attributes_3_zipcode').value = e.suggestion.postcode || '';
-      // });
-
-      // var placesAutocomplete_4 = places({
-      //   container: document.querySelector('#business_addresses_attributes_4_street'),
-      //   type: 'address',
-      //   templates: {
-      //     value: function(suggestion) {
-      //       return suggestion.name;
-      //     }
-      //   }
-      // });
-
-      // placesAutocomplete_4.on('change', function resultSelected(e) {
-      //   document.querySelector('#business_addresses_attributes_4_city').value = e.suggestion.city || '';
-      //   document.querySelector('#business_addresses_attributes_4_zipcode').value = e.suggestion.postcode || '';
-      // });
 
     });
   </script>

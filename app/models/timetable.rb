@@ -27,7 +27,7 @@ class Timetable < ApplicationRecord
   split_accessor :start_at, :end_at
 
   scope :today, -> { where('timetables.day = ? or timetables.day = ? or timetables.day is null', I18n.t("date.day_names")[Time.now.wday], "") }
-  scope :open, -> { where("timetables.start_at <= ? and timetables.end_at >= ?", Time.now, Time.now) }
+  scope :opened, -> { where("timetables.start_at <= ? and timetables.end_at >= ?", Time.now, Time.now) }
 
   before_create :format_end_at
 

@@ -17,15 +17,14 @@
       lat = coordinates[0]
       lng = coordinates[1]
     end
-    @businesses_around = Business.near([lat, lng], 10).active.for_map.joins(:perks).merge(Perk.in_time).distinct.size
+    # @businesses_around = Business.near([lat, lng], 10).active.for_map.joins(:perks).merge(Perk.in_time).distinct.size
+    @businesses_around = Address.joins(:business).merge(Business.active.for_map.joins(:perks).merge(Perk.in_time)).near([lat, lng], 10)
     @businesses = Business.active.for_map.joins(:perks).merge(Perk.in_time).distinct.includes(:business_category).eager_load(:perks_in_time, :addresses_for_map)
     @geojson = {"type" => "FeatureCollection", "features" => []}
 
     @businesses.each do |business|
       # BUSINESS ADDRESSES
       addresses = []
-      # Main shop address
-      addresses << [0, business.longitude, business.latitude, business.street] if business.shop
       # Other addresses
       business.addresses_for_map.each do |address|
         # shop
