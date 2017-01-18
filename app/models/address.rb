@@ -52,6 +52,7 @@ class Address < ApplicationRecord
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
   before_save :controle_geocode!, if: :address_changed?
+  before_save :assign_business_supervisor, if: :address_changed?
 
   def open?
     self.timetables.today.open.present? ? true : false
@@ -70,6 +71,13 @@ class Address < ApplicationRecord
   def day_uniqueness
     if day.present? && business_id.present?
       errors.add(:day, "Ce jour est déjà créé !") if Address.where(day: self.day).where(business_id: self.business_id).count > 0
+    end
+  end
+
+  def assign_business_supervisor
+    if self.main
+      supervisor_address = Address.main.joins(:business).merge(Business.supervisor_not_admin).near([self.latitude, self.longitude], 10).first
+      self.business.update(supervisor_id: supervisor_address.business_id) if supervisor_address
     end
   end
 

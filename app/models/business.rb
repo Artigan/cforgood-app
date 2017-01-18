@@ -105,13 +105,13 @@ class Business < ApplicationRecord
     message: "Cette image dépasse 1 MG !", if: :logo_changed?
   mount_uploader :logo, PictureUploader
 
-  geocoded_by :address
+  # geocoded_by :address
 
-  after_validation :geocode, if: :address_changed?
+  # after_validation :geocode, if: :address_changed?
 
-  before_save :controle_geocode!, :assign_supervisor, if: :address_changed?
+  # before_save :controle_geocode!, :assign_supervisor, if: :address_changed?
 
-  after_create :create_code_partner, :send_registration_slack, :subscribe_to_newsletter_business
+  after_create :create_main_address, :create_code_partner, :send_registration_slack, :subscribe_to_newsletter_business
 
   after_save :update_data_intercom
   after_save :send_activation_slack, if: :active_changed?
@@ -153,9 +153,9 @@ class Business < ApplicationRecord
 
   private
 
-  def address
-    "#{street}, #{zipcode} #{city}"
-  end
+  # def address
+  #   "#{street}, #{zipcode} #{city}"
+  # end
 
   # def send_registration_email
   #   BusinessMailer.registration(self).deliver_now
@@ -202,15 +202,8 @@ class Business < ApplicationRecord
     end
   end
 
-  def controle_geocode!
-    while Business.where('id != ? and latitude = ? and longitude = ?', self.id, latitude, longitude).count > 0
-      self.latitude -= 0.0001
-      self.longitude += 0.0001
-    end
-  end
-
-  def assign_supervisor
-    self.manager = Business.supervisor_not_admin.near([self.latitude, self.longitude], 10).first
+  def create_main_address
+    self.addresses.create(city: self.city, zipcode: self.zipcode, main: true)
   end
 
 end
