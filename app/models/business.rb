@@ -185,7 +185,29 @@ class Business < ApplicationRecord
         user.custom_attributes["supervisor"] = self.supervisor
         intercom.users.save(user)
       rescue Intercom::IntercomError => e
-        puts e
+        begin
+          code_partner = Partner.find_by_email(self.email).code_partner if Partner.find_by_email(self.email)
+          manager_name = self.manager.name if self.manager.present?
+          intercom.users.create(
+            :user_id => 'B'+self.id.to_s,
+            :email => self.email,
+            :name => self.name,
+            :created_at => self.created_at,
+            :custom_data => {
+              'user_type' => 'business',
+              'user_active' => self.active,
+              'first_name' => self.leader_first_name,
+              'city' => self.city,
+              'zipcode' => self.zipcode,
+              'picture_url' => self.picture.url,
+              'code_partner' => code_partner,
+              'manager' => manager_name,
+              'supervisor' => self.supervisor
+            }
+          )
+        rescue Intercom::IntercomError => e
+          puts e
+        end
       end
     end
   end

@@ -352,7 +352,7 @@ class User < ApplicationRecord
       intercom.users.save(user)
     rescue Intercom::IntercomError => e
       begin
-        user = intercom.users.create(
+        intercom.users.create(
           :user_id => self.id,
           :email => self.email,
           :name => self.name,
@@ -369,8 +369,8 @@ class User < ApplicationRecord
             'code_promo' => promo,
             'date_end_trial' => self.date_end_partner,
             'ambassador' => self.ambassador
-          })
-        intercom.users.save(user)
+          }
+        )
       rescue Intercom::IntercomError => e
         puts e
       end
