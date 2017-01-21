@@ -152,7 +152,7 @@
           li {
             position: relative;
             margin-right: 10px;
-            background-color: #BDDB71;
+            background-color: $asso;
             height: 40px;
             width: 40px;
             border-radius: 50%;
@@ -195,15 +195,16 @@
                 position: relative;
                 width: 40px;
                 height: 40px;
+                color: #fff;
                 border-radius: 50%;
-                background-color: #fff;
+                background-color: $asso;
                 z-index: 1;
               }
 
               span {
                 padding: 7px 20px 7px 30px;
                 margin-left: -20px;
-                border: 1px solid #f4f4f4;
+                border: 1px solid $asso;
                 border-radius: 0 20px 20px 0;
                 background-color: #f4f4f4;
                 color: #636363;
@@ -227,8 +228,9 @@
                 position: relative;
                 width: 40px;
                 height: 40px;
+                color: #fff;
                 border-radius: 50%;
-                background-color: #fff;
+                background-color: $asso;
                 z-index: 1;
               }
 
@@ -245,28 +247,21 @@
   }
 }
 
-@media all and (max-width:768px) {
-  .asso-bottom-container {
-    padding-left: 10% !important;
-    padding-right: 10% !important;
-  }
-}
-
-@media all and (max-width:768px) {
+@media all and (max-width:767px) {
   .asso-banner-header-name {
     padding-left: 10% !important;
     padding-right: 10% !important;
   }
 }
 
-@media all and (max-width:768px) {
+@media all and (max-width:767px) {
   .asso-card-abs-banner {
     width: 100% !important;
     left: 0 !important;
   }
 }
 
-@media all and (max-width:768px) {
+@media all and (max-width:767px) {
   .asso-fullpage {
     padding-left: 0px !important;
   }
@@ -284,25 +279,11 @@
 .asso-banner {
   height: 350px;
   width: 100%;
-  background-color: #0C81F6;
+  background-color: $asso;
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-}
-
-.asso-bottom-container {
-  width: 100%;
-  min-height: 50%;
-  border-left: 1px solid lightgrey;
-  padding-top: 120px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding-left: 30%;
-  padding-right: 30%;
-  padding-bottom: 180px;
 }
 
 .asso-bottom-header {
@@ -320,7 +301,6 @@
   width: 100%;
   font-size: 12px;
   color: rgba(55,55,55,1);
-  padding-bottom: 40px;
 }
 
 .asso-button {
@@ -330,7 +310,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #0C81F6;
+  background-color: $asso;
   margin-bottom: 40px;
   cursor: pointer;
 }
@@ -339,15 +319,15 @@
   color: white;
   font-size: 14px;
   font-weight: 500;
+  text-transform: uppercase;
 }
 
 .asso-card-abs-banner {
   position: absolute;
   top: 120px;
-  left: 30%;
-  width: 40%;
+  left: 25%;
+  width: 50%;
   height: 320px;
-  background-color: red;
   border-radius: 4px;
   display: flex;
   flex-direction: column;
@@ -356,7 +336,7 @@
 .asso-card-photo {
   width: 100%;
   height: 87%;
-  background-image: url(https://parisiansecrets.files.wordpress.com/2012/10/dsc_0361.jpg);
+  // background-image: url(https://parisiansecrets.files.wordpress.com/2012/10/dsc_0361.jpg);
   background-size: cover;
   background-position: center center;
   border-top-left-radius: 4px;
@@ -366,7 +346,7 @@
 .asso-card-bottom-links {
   width: 100%;
   height: 13%;
-  background-color: #0C81F6;
+  background-color: $asso;
   border-bottom-right-radius: 4px;
   border-bottom-left-radius: 4px;
   display: flex;
@@ -374,32 +354,24 @@
 
 .asso-card-bottom-left-item {
   height: 100%;
-  width: 60%;
+  width: 70%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  padding-left: 15px;
   border-bottom-left-radius: 4px;
 }
 
 .asso-card-bottom-right-item {
   height: 100%;
-  width: 40%;
+  width: 30%;
   display: flex;
   justify-content: flex-end;
 }
 
-.asso-cbri-firstblock {
-  height: 100%;
-  width: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(55,55,55,0.9);
-}
-
 .asso-cbri-middleblock {
   height: 100%;
-  width: 25%;
+  width: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -410,7 +382,7 @@
 
 .asso-cbri-endblock {
   height: 100%;
-  width: 25%;
+  width: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -421,15 +393,11 @@
 }
 
 .asso-firstblock-text {
+  display: flex;
   font-size: 12px;
+  line-height: 14px;
   color: white;
   font-weight: 400;
-}
-
-.asso-card-red-heart {
-  color: #EF4339;
-  font-size: 18px;
-  margin-right: 10px;
 }
 
 .asso-banner-header-name {
@@ -438,8 +406,8 @@
   justify-content: flex-start;
   align-items: center;
   height: 120px;
-  padding-left: 30%;
-  padding-right: 30%;
+  padding-left: 25%;
+  padding-right: 25%;
 }
 
 .asso-head-column-container {
@@ -452,25 +420,14 @@
 }
 
 .banner-asso-description {
-  font-size: 10px;
-  opacity: 0.7;
+  font-size: 12px;
+  line-height: 17px;
+  text-transform: uppercase;
   color: white;
 }
 
 .button-dropdown-asso {
   width: 100%;
-}
-
-.asso-bottom-container .dropdown {
-  width: 100%;
-}
-
-.asso-bottom-container .dropdown .dropdown-menu {
-  top: 48px;
-  width: 100%;
-  height: 150px;
-  border-radius: 0px;
-  border-color: rgba(55,55,55,0.1);
 }
 
 .drop-display-flex {
@@ -480,23 +437,30 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  text-align: center;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .cool-things {
   font-size: 15px;
+  font-weight: 600;
 }
 
 .cool-things-small {
   font-size: 10px;
+  margin-bottom: 15px;
 }
 
 .validate-choice-button {
-  padding: 10px 30px 10px 30px;
-  background-color: #0C81F6;
-  border-radius: 24px;
-  color: white;
+  padding: 10px 40px 10px 40px;
+  background: $asso;
+  border-radius: 100px;
+  border: none;
+  color: #fff;
   font-size: 12px;
-  margin-top: 15px;
+  text-transform: uppercase;
+  outline: none;
 }
 
 .title-sub {
@@ -508,12 +472,18 @@
   padding: 0;
 }
 
-.button-dropdown-asso {
+.asso-bottom-container {
   width: 100%;
-}
-
-.asso-bottom-container-v2 .dropdown {
-  width: 100%;
+  min-height: 50%;
+  border-left: 1px solid lightgrey;
+  padding-top: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding-left: 25%;
+  padding-right: 25%;
+  padding-bottom: 180px;
 }
 
 .asso-bottom-container-v2 .dropdown .dropdown-menu {
@@ -526,15 +496,11 @@
   border-color: rgba(55,55,55,0.1);
   border: none;
   margin: 0;
-}
 
-.drop-display-flex {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  @media (min-width: 768px) {
+    width: calc(100% - 90px);
+    left: 91px;
+  }
 }
 
 .asso-bottom-container-v2 {
@@ -543,6 +509,11 @@
   left: 0;
   bottom: 0;
   z-index: 7000;
+
+  @media (min-width: 768px) {
+    width: calc(100% - 90px);
+    left: 90px;
+  }
 }
 
 .asso-button-v2 {
@@ -552,6 +523,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #0C81F6;
+  background-color: $asso;
+  outline: none;
   cursor: pointer;
+}
+
+.dropdown.open .asso-button-v2 {
+  margin-bottom: 150px;
 }

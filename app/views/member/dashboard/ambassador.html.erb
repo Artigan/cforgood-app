@@ -52,9 +52,9 @@
             <% end %>
           </div>
           <div class="user-status">
-            <% if current_user.last_name != "" && current_user.last_name != nil %>
+            <% if !current_user.last_name.blank? %>
               <p><%= current_user.first_name %> <%= current_user.last_name.chars.first + "." %></p>
-            <% elsif current_user.name != "" && current_user.name != nil %>
+            <% elsif !current_user.name.blank? %>
               <p><%= current_user.name.split(" ")[0] %></p>
             <% end %>
             <span class="label-info">Ambassadeur</span>

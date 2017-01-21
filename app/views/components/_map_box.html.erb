@@ -33,21 +33,19 @@
     <div class="mv2-content-bottom" style="background-color: <%= business.business_category.color %>;">
 
       <div class="mv2-content-bottom-left" style="background-color: rgba(55,55,55,0.2);">
-        <% if business.perks_in_time.count == 1 %>
-          <div class="available-perk-text"><%= "#{business.perks_in_time.count}" %><span> bon plan disponible </span></div>
+        <% if business.perks_in_time.size == 1 %>
+          <div class="available-perk-text"><%= "#{business.perks_in_time.size}" %><span> bon plan disponible </span></div>
         <% else %>
-          <div class="available-perk-text"><%= "#{business.perks_in_time.count}" %><span> bons plans disponibles </span></div>
+          <div class="available-perk-text"><%= "#{business.perks_in_time.size}" %><span> bons plans disponibles </span></div>
         <% end %>
       </div>
 
       <div class="mv2-content-bottom-right" style="background-color: rgba(55,55,55,0.2);">
-        <div class="asso-card-red-heart-v2">
-            <%= image_tag "icons/heart.svg" %>
-        </div>
-        <% business.perks_in_time.each do |perk| %>
-          <% @liked = Use.where(perk_id: perk.id).liked.count %>
+        <% liked = business.perks_in_time.map { |perk| perk.uses.liked.size }.sum %>
+        <% if liked > 0 %>
+          <%= image_tag "icons/heart.svg", class: "red-heart"%>
+          <div class="asso-firstblock-text-v2"><%= liked %></div>
         <% end %>
-        <div class="asso-firstblock-text-v2"><%= @liked %></div>
       </div>
 
     </div>

@@ -15,7 +15,7 @@
   transition: all 0.3s ease-in-out;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .search-category-overlay {
     left: 0px;
   }
@@ -169,7 +169,7 @@
   }
 }
 
-// @media only screen and (min-width:769px){
+// @media only screen and (min-width:768px){
 //   .search-category {
 //     top: 90px;
 //   }
@@ -188,7 +188,7 @@
   }
 }
 
-@media only screen and (max-width:768px){
+@media only screen and (max-width:767px){
   .search-category {
     width: 100%;
   }
