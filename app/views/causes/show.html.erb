@@ -34,10 +34,14 @@
         </div>
         <div class="asso-card-bottom-right-item">
           <div class="asso-cbri-middleblock">
-            <i class="fa fa-facebook" aria-hidden="true"></i>
+            <a href="https://www.facebook.com/sharer.php?s=<%= request.url %>&title=CforGood" target="_blank">
+              <i class="fa fa-facebook" aria-hidden="true"></i>
+            </a>
           </div>
           <div class="asso-cbri-endblock">
-            <i class="fa fa-twitter" aria-hidden="true"></i>
+            <a href="http://twitter.com/home?status=CforGood+<%= request.url %>" target="_blank">
+              <i class="fa fa-twitter" aria-hidden="true"></i>
+            </a>
           </div>
         </div>
       </div>
@@ -129,17 +133,14 @@
 
     <div class="asso-bottom-container-v2">
       <div class="dropdown">
-        <% if current_user.cause == @cause %>
-          <div class="asso-button-v2 dropdown-toggle button-disabled" data-toggle="dropdown">
-            <%= image_tag "icons/heart.svg", class: "red-heart"%>
-            <div class="asso-button-text">Je soutiens cette association</div>
-          </div>
-        <% else %>
-          <div class="asso-button-v2 dropdown-toggle" data-toggle="dropdown">
-            <%= image_tag "icons/heart.svg", class: "red-heart"%>
-            <div class="asso-button-text">Soutenir cette association</div>
-          </div>
-        <% end %>
+        <div class="<%= current_user.cause != @cause ? 'hidden button-disabled' : '' %> asso-button-v2 dropdown-toggle" data-toggle="dropdown">
+          <%= image_tag "icons/heart_pulse.svg", class: "red-heart"%>
+          <div class="asso-button-text">Je soutiens cette association</div>
+        </div>
+        <div class="<%= current_user.cause == @cause ? 'hidden' : '' %> asso-button-v2 dropdown-toggle" data-toggle="dropdown">
+          <%= image_tag "icons/heart.svg", class: "red-heart"%>
+          <div class="asso-button-text">Soutenir cette association</div>
+        </div>
         <ul class="dropdown-menu">
           <div class="drop-display-flex">
             <div class="cool-things">VOUS ALLEZ FAIRE QUELQUE CHOSE DE CHOUETTE !</div>
@@ -167,39 +168,21 @@
 <%# if user_signed_in? %>
 
   <% content_for :after_js do %>
+
     <script>
       $(document).ready(function() {
-
-        var $button = $('#submit');
-
-        $button.on('click', function(e) {
-          e.preventDefault();
-          $button.val('');
-          setTimeout(function(){
-             $button.addClass('clicked');
-          }, 300);
-
-          $button.one('animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd', function(){
-                // Do something once!
-                // $(this).remove('clicked');
-                $(this).addClass('submited');
-          });
-        });
-
-        // $reset.on('click', function(e) {
-        //   e.preventDefault();
-        //   $button.removeClass('clicked');
-        //   $button.removeClass('submited');
-        //   $button.off('animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd');
-        // });
-
 
         $(".validate-choice-button").on("click", function() {
           // EVENT AMPLITUDE : USER_C_CAUSE_SUPPORT
           amplitude.logEvent('USER_C_CAUSE_SUPPORT');
         });
+
       });
     </script>
+
   <% end %>
 
 <%# end %>
+
+<a name="fb_share" type="box_count" share_url="http://www.example.com/page.html"></a>
+
