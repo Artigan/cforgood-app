@@ -47,8 +47,8 @@
 #  date_stop_subscription :datetime
 #  picture                :string
 #  ambassador             :boolean          default(FALSE)
+#  ecosystem_id           :integer
 #  onesignal_id           :string
-#  supervisor_id          :integer
 #
 # Indexes
 #

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161212221505) do
+ActiveRecord::Schema.define(version: 20170125113654) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -312,7 +312,7 @@ ActiveRecord::Schema.define(version: 20161212221505) do
     t.datetime "date_stop_subscription"
     t.string   "picture"
     t.boolean  "ambassador",             default: false
-    t.integer  "supervisor_id"
+    t.integer  "ecosystem_id"
     t.string   "onesignal_id"
     t.index ["cause_id"], name: "index_users_on_cause_id", using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
