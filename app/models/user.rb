@@ -49,7 +49,7 @@
 #  ambassador             :boolean          default(FALSE)
 #  ecosystem_id           :integer
 #  onesignal_id           :string
-#  supervisor             :boolean
+#  supervisor             :boolean          default(FALSE)
 #  supervisor_id          :integer
 #
 # Indexes
