@@ -49,16 +49,20 @@
 #  ambassador             :boolean          default(FALSE)
 #  ecosystem_id           :integer
 #  onesignal_id           :string
+#  supervisor             :boolean
+#  supervisor_id          :integer
 #
 # Indexes
 #
 #  index_users_on_cause_id              (cause_id)
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
+#  index_users_on_supervisor_id         (supervisor_id)
 #
 # Foreign Keys
 #
 #  fk_rails_130d5504e9  (cause_id => causes.id)
+#  fk_rails_3972f91257  (supervisor_id => users.id)
 #
 
 class User < ApplicationRecord
@@ -70,6 +74,8 @@ class User < ApplicationRecord
 
   belongs_to :cause
   belongs_to :ecosystem, class_name: 'Business', foreign_key: 'ecosystem_id'
+  belongs_to :manager, class_name: 'User', foreign_key: 'supervisor_id'
+  has_many :users, class_name: 'User', foreign_key: 'supervisor_id'
   has_many :uses
   has_many :payments, dependent: :destroy
   has_many :user_histories

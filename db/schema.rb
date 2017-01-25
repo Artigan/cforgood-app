@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170125113654) do
+ActiveRecord::Schema.define(version: 20170125115734) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -314,9 +314,12 @@ ActiveRecord::Schema.define(version: 20170125113654) do
     t.boolean  "ambassador",             default: false
     t.integer  "ecosystem_id"
     t.string   "onesignal_id"
+    t.boolean  "supervisor"
+    t.integer  "supervisor_id"
     t.index ["cause_id"], name: "index_users_on_cause_id", using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+    t.index ["supervisor_id"], name: "index_users_on_supervisor_id", using: :btree
   end
 
   create_table "uses", force: :cascade do |t|
@@ -343,6 +346,7 @@ ActiveRecord::Schema.define(version: 20170125113654) do
   add_foreign_key "user_histories", "causes"
   add_foreign_key "user_histories", "users"
   add_foreign_key "users", "causes"
+  add_foreign_key "users", "users", column: "supervisor_id"
   add_foreign_key "uses", "perks"
   add_foreign_key "uses", "users"
 end
