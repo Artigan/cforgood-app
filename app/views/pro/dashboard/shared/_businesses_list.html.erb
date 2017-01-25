@@ -6,7 +6,7 @@
     <h3>
       <%= BusinessCategory.find(business_category).name %>
        <div class="icon-category" style="background-color: <%= BusinessCategory.find(business_category).color %>;">
-        <%= image_tag BusinessCategory.find(business_category).picture %>
+        <%= image_tag BusinessCategory.find(business_category).picture, size: "30x30" %>
       </div>
       <div class="data-business">
         <li>

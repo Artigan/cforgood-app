@@ -6,10 +6,6 @@
         <i class="fa fa-envelope business-icon" style="background-color: <%= @business.business_category.color %>;"></i>
         <span style="border-color: <%= @business.business_category.color %>;"><%= @business.email %></span>
       </a>
-    <% else %>
-       <div class="business-link">
-        <i class="fa fa-envelope business-icon"></i>
-      </div>
     <% end %>
   </li>
   <li>
@@ -18,10 +14,6 @@
         <i class="fa fa-phone" style="background-color: <%= @business.business_category.color %>;"></i>
         <span style="border-color: <%= @business.business_category.color %>;"><%= @business.telephone %></span>
       </a>
-    <% else %>
-       <div class="business-link">
-        <i class="fa fa-phone"></i>
-      </div>
     <% end %>
   </li>
   <li class="direction">
@@ -31,7 +23,7 @@
   </li>
 </ul>
 <!-- DESKTOP -->
-<span>Retrouvez-vous nous :</span>
+<span class="follow-us-title">Retrouvez-vous nous :</span>
 <ul class="follow-us">
   <% if @business.url.present? %>
     <li>
