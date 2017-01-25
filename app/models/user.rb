@@ -101,7 +101,7 @@ class User < ApplicationRecord
   before_save :subscription!, if: :code_partner_changed?
   before_save :date_support!, if: :cause_id_changed?
 
-  before_save :assign_supervisor, if: :address_changed?
+  before_save :assign_ecosystem, if: :address_changed?
 
   after_save :create_partner_for_third_use_code_partner, if: :code_partner_changed?
   after_save :send_code_partner_slack, if: :code_partner_changed?
@@ -420,9 +420,10 @@ class User < ApplicationRecord
     end
   end
 
-  def assign_supervisor
-    supervisor_address = Address.main.joins(:business).merge(Business.supervisor_not_admin).near([self.latitude, self.longitude], 10).first
-    self.supervisor = supervisor_address.business_id if supervisor_address
+  def assign_ecosystem
+    byebug
+    ecosystem_address = Address.main.joins(:business).merge(Business.supervisor_not_admin).near([self.latitude, self.longitude], 10).first
+    self.ecosystem = ecosystem_address.business if ecosystem_address
   end
 
   def save_onesignal_id
