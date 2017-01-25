@@ -1,25 +1,23 @@
 <div class="search-category-overlay hidden"></div>
 <div class="search-category">
-  <span id="open-categories"><i class="fa fa-search"></i>Filtrer par catégories</span>
+  <span id="open-categories"><i class="fa fa-search"></i></span>
   <form class="controls" id="Filters">
     <ul class="search-pannel">
       <!-- GROUPE ONLINE -->
-      <fieldset>
+      <div role="group" class="fieldset-flexbox">
         <a href="#" data-filter=".online" class="filter-btn current">
           <li id="online" class="category-item">
             <div class="container-icon" style="background-color: #8398C2;">
-              <%= image_tag "icons/online.png" %>
+              <%= image_tag "icons/e_commerce.svg" %>
             </div>
             Voir les e-commerces
           </li>
         </a>
-      </fieldset>
-      <!-- RESET TO ALL -->
-      <fieldset>
+        <!-- RESET TO ALL -->
         <a href="#" data-filter="" class="filter-btn current">
           <li id="categories-all" class="category-item">
             <div class="container-icon" style="background-color: #fff;">
-              <%= image_tag "icons/all.png" %>
+              <%= image_tag "icons/toutes_categories.svg" %>
             </div>
             Toutes les catégories
           </li>
@@ -35,7 +33,7 @@
             </li>
           </a>
         <% end %>
-      </fieldset>
+      </div>
     </ul>
   </form>
 </div>

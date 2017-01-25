@@ -5,17 +5,25 @@
   Vos informations personnelles
 <% end %>
 
-<div class="container-fluid admin">
-  <!-- Sub Menu Sidebar -->
-  <%= render "member/dashboard/shared/sidebar" %>
-  <!-- Content - Statistics -->
-  <div class="dashboard">
-    <div class="mobile-menu-overlay hidden"></div>
-    <!-- UPDATE PROFILE CONFIRMATION -->
-    <%= render "member/dashboard/shared/updated" %>
-    <div class="tab-container user-container ">
-      <span class="user-title"><%= render "components/svg/logo_thumb" %>Mon Profil</span>
-      <!-- Nav tabs -->
+<%= render "member/dashboard/shared/sidebar" %>
+
+<div class="dashboard-fullpage">
+
+  <div class="dash-fullpage-header">
+    <div class="dash-header-avatar-container">
+      <div class="header-avatar" style="background-image: url(<%= avatar_url(current_user) %>);"></div>
+    </div>
+  </div>
+
+  <div class="dash-fullpage-bottom-container">
+
+    <div class="dash-fullpage-user-name">
+      <div class="user-name"><%= current_user.name %></div>
+      <div class="user-name-tooltip">ABONNE DEPUIS LE 1er NOVEMBRE 2015</div>
+    </div>
+
+    <div class="tabs-dashboard">
+
       <ul id="menu" class="nav nav-tabs">
         <li role="profile" class="active">
           <%= link_to "#profile", role: "tab", data_toggle: "tab" do %>
@@ -35,9 +43,6 @@
             <span>Mon abonnement</span>
           <% end %>
         </li>
-        <li role="profile">
-          <%= link_to "Vos données bancaires", "#payment", role: "tab", data_toggle: "tab", class: "show-payment hidden" %>
-        </li>
         <% if @payments.present? %>
           <li role="profile">
             <%= link_to "#list-payments", role: "tab", data_toggle: "tab" do %>
@@ -46,6 +51,9 @@
             <% end %>
           </li>
         <% end %>
+        <li role="profile">
+          <%= link_to "Vos données bancaires", "#payment", role: "tab", data_toggle: "tab", class: "show-payment hidden" %>
+        </li>
       </ul>
       <!-- Tab panes -->
       <div class="tab-content">

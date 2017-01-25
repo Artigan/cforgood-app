@@ -71,10 +71,10 @@
         }
       });
 
-    $('.radio-button').on('click', function() {
-      $('#beneficiary_nb_month').val($('.radio-button:checked').attr('id').split('.')[0]);
-      $('#beneficiary_amount').val($('.radio-button:checked').attr('id').split('.')[1]);
-    });
+      $('.radio-button').on('click', function() {
+        $('#beneficiary_nb_month').val($('.radio-button:checked').attr('id').split('.')[0]);
+        $('#beneficiary_amount').val($('.radio-button:checked').attr('id').split('.')[1]);
+      });
 
     });
 

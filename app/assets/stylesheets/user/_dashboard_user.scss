@@ -8,20 +8,20 @@
   /* BACKGROUND MAP ***********************************************************/
   .user-map-businesses {
     position: relative;
-    height: 90%;
+    height: 100%;
   }
 
   .sign-box.gift {
     z-index: 0;
     width: 100%;
 
-    @media (min-width: 767px) {
+    @media (min-width: 768px) {
       max-width: 380px !important;
     }
   }
 }
 
-@media only screen and (min-width:769px){
+@media only screen and (min-width:768px){
   .dashboard {
     .user-map-businesses {
       position: relative;

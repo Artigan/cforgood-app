@@ -53,15 +53,14 @@ class BusinessesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    @businesses = Business.active.joins(:perks).active.distinct.includes(:business_category)
+    @businesses = Business.active.with_perks_in_time.distinct.includes(:business_category)
     @addresses_id = []
     @businesses.each do |business|
-      # @addresses_id << [business.id, 0] # BUSINESS MAIN ADDRESS
       business.addresses.shop.each do |address_shop|
         @addresses_id << [business.id, address_shop.id]
       end
       if business.itinerant
-        business.addresses.active.today.each do |address_itinerant|
+        business.addresses.today.each do |address_itinerant|
            @addresses_id << [business.id, address_itinerant.id]
         end
       end
@@ -69,18 +68,13 @@ class BusinessesController < ApplicationController
     @addresses_id.delete([]) # REMOVE WHEN NO ACTIVE RECORD ASSOCIATION
   end
 
+  def businesses_index
+    @businesses = Business.all
+  end
+
   def show
     @business = Business.joins(:business_category).find(params[:id])
-    @perk = @business.perks.find(params[:perk_id])
-
-    if params[:address_id].to_i > 0
-      @address = @business.addresses.find(params[:address_id])
-      longitude = @address.longitude
-      latitude = @address.latitude
-    else
-      longitude = @business.longitude
-      latitude = @business.latitude
-    end
+    @address = @business.addresses.find(params[:address_id])
 
     @geojson = {"type" => "FeatureCollection", "features" => []}
 
@@ -88,10 +82,11 @@ class BusinessesController < ApplicationController
       "type": 'Feature',
       "geometry": {
         "type": 'Point',
-        "coordinates": [longitude, latitude],
+        "coordinates": [@address.longitude, @address.latitude],
       },
       "properties": {
-        "marker-symbol": @business.business_category.marker_symbol
+        "marker-symbol": @business.business_category.marker_symbol,
+        "color": @business.business_category.color
       }
     }
     respond_to do |format|

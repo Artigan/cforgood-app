@@ -234,7 +234,7 @@
 
 
 
-@media only screen and (min-width:769px){
+@media only screen and (min-width:768px){
   .admin {
     height: 100vh;
     overflow: hidden;
@@ -246,8 +246,9 @@
 
     .dashboard {
       position: relative;
-      left: 15%;
-      width: 85%;
+      left: 0;
+      width: 100%;
+      top: 0;
       height: 100vh;
       background-color: #f1f1f1;
       overflow-y: scroll;
@@ -390,7 +391,7 @@
 }
 
 
-@media only screen and (min-width:769px){
+@media only screen and (min-width:768px){
   .signup-done-overlay {
     .done-overlay {
       left: 15%;

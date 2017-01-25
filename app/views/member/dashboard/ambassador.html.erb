@@ -18,9 +18,9 @@
         <% if current_user.picture? %>
           <%= image_tag current_user.picture.url(:avatar), class: "img-circle user" %>
         <% else %>
-          <div class="picture-none">
-            <%= render 'shared/icons/profile' %>
-          </div>
+          <!-- <div class="picture-none"> -->
+            <%= image_tag "citoyen.svg", class: "pastille-citoyen"%>
+          <!-- </div> -->
         <% end %>
       </div>
       <h2> Rejoignez la communauté<br>Cforgood</h2>
@@ -46,15 +46,15 @@
             <% if current_user.picture? %>
               <%= image_tag current_user.picture.url(:avatar), class: "img-circle user" %>
             <% else %>
-              <div class="picture-none">
-                <%= render 'shared/icons/profile' %>
-              </div>
+              <!-- <div class="picture-none"> -->
+                <%= image_tag "citoyen.svg", class: "pastille-citoyen"%>
+              <!-- </div> -->
             <% end %>
           </div>
           <div class="user-status">
-            <% if current_user.last_name != "" && current_user.last_name != nil %>
+            <% if !current_user.last_name.blank? %>
               <p><%= current_user.first_name %> <%= current_user.last_name.chars.first + "." %></p>
-            <% elsif current_user.name != "" && current_user.name != nil %>
+            <% elsif !current_user.name.blank? %>
               <p><%= current_user.name.split(" ")[0] %></p>
             <% end %>
             <span class="label-info">Ambassadeur</span>

@@ -5,6 +5,9 @@
   Découvrez les bons plans de nos partenaires !
 <% end %>
 
+<%= render 'businesses/business_search_index' %>
+<%= render 'businesses/business_search_index_desk' %>
+
 <div class="container-fluid admin">
   <% if user_signed_in? and !current_user.active %>
     <div class="done-overlay waiting connexion-user">
@@ -27,11 +30,7 @@
         <%= render 'components/popups/not_member_dashboard' %>
       <% elsif current_user.trial_done? %>
         <!-- POPUP TRIAL -->
-        <% if current_user.code_partner == "GIFT3MONTH" || current_user.code_partner == "GIFT6MONTH" || current_user.code_partner == "GIFT12MONTH" %>
-           <%= render partial: 'components/popups/welcome_member_trial_gift', locals: { beneficiary: @beneficiary, user_offering: @user_offering } %>
-        <% else %>
-           <%= render 'components/popups/welcome_member_trial' %>
-        <% end %>
+        <%= render 'components/popups/welcome_member_trial' %>
       <% elsif @businesses_around == 0 %>
         <%= render 'components/popups/no_perks_dashboard' %>
       <% end %>
@@ -47,7 +46,7 @@
       <div class="mobile-menu-overlay hidden"></div>
 
       <!-- MENU | NOTIFICATION -->
-      <%= render 'components/menu/notification_center' %>
+      <%#= render 'components/menu/notification_center' %>
 
       <!-- FLASH | FIND PERK -->
       <%= render 'components/user_dashboard/flash_button' %>
@@ -56,14 +55,14 @@
       <%= render 'components/menu/search_category' %>
 
       <!-- ON MOBILE | WELCOME -->
-      <%= render 'components/user_dashboard/welcome_user' %>
+      <%#= render 'components/user_dashboard/welcome_user' %>
 
       <!-- MAP -->
       <div id="map-dashboard" class="user-map-businesses" style="width: 100%;"></div>
 
       <!-- POPUP PERKS WITHOUT FEEDBACK -->
       <% @uses_without_feedback.each do |use| %>
-        <%= render partial: 'uses/form/feedback_dashboard', locals: { use: use } %>
+        <%= render(partial: 'uses/form/feedback_dashboard', locals: { use: use }) %>
       <% end %>
     </div>
   <% end %>
@@ -74,6 +73,7 @@
   <%= render 'components/map', geojson: @geojson %>
 
   <script>
+
     $(document).ready(function(){
 
       // SET VISIBLE OR NOT LAYERS ON MAP
@@ -113,12 +113,11 @@
         $('.flash').toggleClass('is-running');
         setLayerVisibilty();
       });
-
       $('.category-item').click(function(event) {
         if ($(this).val('div').attr('id') != 'categories-all') {
           $(this).toggleClass('is-selected');
           $('#categories-all').removeClass('is-selected');
-        } else {
+        } else {
           $('.category-item').removeClass('is-selected');
           $('#categories-all').addClass('is-selected');
         }
@@ -174,7 +173,8 @@
 
       // EVENT AMPLITUDE : USER_DASHBOARD
       amplitude.logEvent('USER_DASHBOARD');
-
     });
+
   </script>
+
 <% end %>
