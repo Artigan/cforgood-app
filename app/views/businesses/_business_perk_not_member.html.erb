@@ -38,6 +38,18 @@
   </div>
 
   <div class="perk-modal-button-signup">
-    <div class="cta-button" style="background-color:<%= @business.business_category.color %>;">JE M'INSCRIS</div>
+    <%= link_to signup_path do %>
+      <div class="cta-button" style="background-color:<%= @business.business_category.color %>;">Je m'inscris</div>
+    <% end %>
   </div>
+
+  <div class="perk-modal-button-signup dropdown">
+    <div class="cta-button dropdown-toggle" data-toggle="dropdown" style="background-color: #363636;">Se connecter</div>
+  <!-- SIGNIN -->
+  <div class="dropdown-menu">
+    <div class="sign-box">
+      <%= render "devise/sessions/shared/form_signin_logout", resource: User.new, resource_name: :user%>
+    </div>
+  </div>
+    </div>
 </div>

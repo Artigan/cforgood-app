@@ -8,27 +8,29 @@
     <div id="business-search-modal-desktop">
       <ul class="list">
         <% @businesses.each do |business| %>
-          <div class="business-index-card">
-            <div class="bic-left">
-              <div class="bic-photo" style="background-image: url('<%= business.picture %>');"></div>
-            </div>
-            <div class="bic-middle">
-              <div class="bic-middle-top">
-                <div class="business-name-desk"><%= business.name %></div>
+          <%= link_to business_path(business, address_id: business.main_address) do %>
+            <div class="business-index-card">
+              <div class="bic-left">
+                <div class="bic-photo" style="background-image: url('<%= business.picture %>');"></div>
               </div>
-              <div class="bic-middle-bottom">
-                <div class="pastille" style="background-color:<%= business.business_category.color %>;">
-                  <%= image_tag business.business_category.picture, size: "20x20" %>
+              <div class="bic-middle">
+                <div class="bic-middle-top">
+                  <div class="business-name-desk"><%= business.name %></div>
                 </div>
-                <div class="category-name category" style="color: grey;"><%= business.business_category.name %></div>
+                <div class="bic-middle-bottom">
+                  <div class="pastille" style="background-color:<%= business.business_category.color %>;">
+                    <%= image_tag business.business_category.picture, size: "20x20" %>
+                  </div>
+                  <div class="category-name category" style="color: grey;"><%= business.business_category.name %></div>
+                </div>
+              </div>
+              <div class="bic-right">
+                <%#= link_to business_path(business), class: "link-business-plus" do %>
+                  <div>+</div>
+                <%# end %>
               </div>
             </div>
-            <div class="bic-right">
-              <%#= link_to business_path(business), class: "link-business-plus" do %>
-                <div>+</div>
-              <%# end %>
-            </div>
-          </div>
+          <% end %>
         <% end %>
       </ul>
     </div>

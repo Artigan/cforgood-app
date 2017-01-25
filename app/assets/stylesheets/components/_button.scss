@@ -156,11 +156,11 @@
 }
 
 .button-log {
-  padding: 14px 20px;
+  padding: 8px 20px;
   border-radius: 2px;
   color: #fff;
   text-transform: uppercase;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 600;
   background-color: #9FD6AE;
   transition: all, 0.3s, ease-in-out;
@@ -177,11 +177,29 @@
 
   &.sign-in {
     background-color: #000;
+    font-weight: 400;
     opacity: 0.8;
+    margin-top: 15px;
 
     &:hover {
       color: #fff;
       background-color: #A3A5A8;
+    }
+  }
+
+  &.facebook {
+    background-color: $facebook;
+    font-weight: 100;
+
+    &:hover {
+      color: #fff;
+      opacity: 0.8;
+    }
+
+    .fa {
+      font-size: 12px;
+      font-weight: 600;
+      margin-right: 6px;
     }
   }
 }
@@ -203,10 +221,9 @@
   letter-spacing: 1px;
   text-transform: uppercase;
   cursor: pointer;
-  margin-bottom: 30px;
 
   &:hover {
-    color: rgba(55,55,55,0.9);
+    opacity: 0.7;
   }
 
   .fa {
@@ -217,7 +234,7 @@
     color: #fff;
 
     &:hover {
-      color: rgba(55,55,55,0.9);
+      // color: rgba(55,55,55,0.9);
     }
   }
 }
@@ -241,6 +258,12 @@
 }
 
 .button-disabled {
+  pointer-events: none !important;
+  cursor: default !important;
+  opacity: 0.3;
+}
+
+.button-inactived {
   pointer-events: none !important;
   cursor: default !important;
 }

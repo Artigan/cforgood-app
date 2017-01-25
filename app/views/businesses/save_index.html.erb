@@ -10,9 +10,11 @@
   <%= render "member/dashboard/shared/sidebar" %>
   <!-- Content - Statistics -->
   <div class="dashboard dashboard-view-perks">
+    <div class="mobile-menu-overlay hidden"></div>
 
     <%= render "components/menu/index_search_category" %>
 
+    <div class="search-category-overlay hidden"></div>
       <div id="businesses">
         <div id="mixitup" class="container-perk-cards">
 
@@ -23,9 +25,40 @@
               <% business.perks.active.each do |perk| %>
                 <!-- COMPONENT | CARD BON PLAN -->
                 <%= link_to business_path(business, perk_id: perk.id, address_id: address_id[1]), class: "card-frame mix #{business.business_category_id} #{business.online? ? 'online' : ''}" do %>
-                  <!-- CARD PERK -->
-                  <div class="perk-card-container perk-modal-use-<%= perk.id %>">
-                    <%= render  "businesses/business_card", business: business, address: Address.find(address_id[1]), perk: perk, index_view: true %>
+                  <!-- CARD HEADER -->
+                  <div class="card-header">
+                    <h3 class="perk-name name hidden"><%= perk.name %></h3>
+                    <div class="card-header-main">
+                      <span class="perk-title"><%= business.name %></span>
+                      <% liked = Use.liked.where(perk_id: perk.id).count %>
+                      <% if liked > 0 %>
+                      <div class="perk-liked">
+                        <%= render 'shared/icons/heart_like' %>
+                        <span><%= liked %></span>
+                      </div>
+                      <% end %>
+                    </div>
+                    <div class="card-header-leader">
+                    <% if business.leader_picture.present? %>
+                      <%= image_tag business.leader_picture.url(:avatar) %>
+                    <% else %>
+                      <%= image_tag image_url 'default_pic.png' %>
+                    <% end %>
+                    </div>
+                    <div class="card-header-category" style="background-color: <%= business.business_category.color %>;">
+                      <%= image_tag business.business_category.picture %>
+                      <!-- <div class="category-container" style="background-color: <#= business.business_category.color %>;">
+                      </div> -->
+                    </div>
+                  </div>
+                  <!-- CARD BODY -->
+                  <div class="card-body" style="background-image: url('<%= perk.picture.present? ? perk.picture.url(:card) : business.picture.url(:card) %>');">
+                    <div class="business-details">
+                      <% if perk.flash? && perk.times > 0 %>
+                        <span style="background-color: <%= business.business_category.color %>;"><i class="fa fa-flash"></i><%= perk.times - Use.used.where(perk_id: perk.id).count  %> restants</span>
+                      <% end %>
+                      <h3 class="perk-name name"><%= perk.name %></h3>
+                    </div>
                   </div>
                 <% end %>
                 <!-- END | CARD BON PLAN -->
@@ -188,7 +221,7 @@
   <script>
 
     var options = {
-      valueNames: [ 'perk-title', 'name' ]
+      valueNames: [ 'perk-title' ]
     };
 
     var userList = new List('businesses', options);

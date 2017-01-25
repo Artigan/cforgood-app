@@ -264,7 +264,7 @@
   }
 }
 
-@media only screen and (min-width:768px){
+@media (min-width:768px){
   .dashboard-view-perks {
     padding-top: 20px;
 
@@ -275,8 +275,8 @@
       justify-content: space-around;
 
       .card-frame {
-        width: 31.33333%;
-        margin: 4px;
+        width: 48%;
+        margin: 1%;
 
         &:hover {
           box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
@@ -294,22 +294,18 @@
           }
         }
       }
-
-      // .card-frame:nth-child(0n+1) {
-      //   margin-left: 0;
-      // }
-
-      // .card-frame:nth-child(1n+3) {
-      //   margin-right: 0;
-      // }
-
-      // .card-frame:nth-child(-n+1) {
-      //   margin-left: 0;
-      // }
-
-      // .card-frame:nth-child(n+3) {
-      //   margin-right: 0;
-      // }
     }
   }
 }
+
+@media (min-width:1025px){
+  .dashboard-view-perks {
+    .card-frame {
+      width: 31.3333%;
+      margin: 3%;
+    }
+  }
+}
+
+
+
