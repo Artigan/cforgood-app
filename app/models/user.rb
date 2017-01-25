@@ -175,6 +175,15 @@ class User < ApplicationRecord
     end
   end
 
+  def collection_supervising
+    self.users
+  end
+
+  def supervising?(id)
+    return false unless id.present?
+    User.find(id).manager == self
+  end
+
   def should_payin?
     ( !self.code_partner.present? && ( ( self.subscription == "M" && ( !self.date_last_payment.present? || ( self.date_last_payment < Time.now - 1.month ) ) ) ||
     ( self.subscription == "Y" && ( !self.date_last_payment.present? || ( self.date_last_payment < Time.now - 12.month ) ) ) ) ||

@@ -48,6 +48,7 @@ Rails.application.routes.draw do
       get "profile",    to: "dashboard#profile"
       get "ambassador", to: "dashboard#ambassador"
       get "gift",       to: "dashboard#gift"
+      post 'impersonation', to: 'dashboard#set_impersonation'
     end
     get "subscribe_gift", to: "subscribe#gift"
     resources :subscribe, only: [:new, :create, :update, :destroy]

@@ -2,6 +2,15 @@
 
   skip_before_action :authenticate_user!, only: [:dashboard]
 
+  def set_impersonation
+    if current_user.supervising?(params[:impersonate_id])
+      session[:impersonate_id] = params[:impersonate_id]
+    else
+      session[:impersonate_id] = nil
+    end
+    redirect_to member_user_dashboard_path(current_user)
+  end
+
   def dashboard
     # save logout access
     if !user_signed_in?
