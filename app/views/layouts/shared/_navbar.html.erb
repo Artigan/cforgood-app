@@ -3,6 +3,18 @@
   <div class="navbar-left-item hidden-xs"></div>
   <span id="open-leftmenu"><div class="visible-xs">MENU</div></span>
 
+  <!-- Impersonnate businesses -->
+  <% if business_signed_in? && pro_space? && current_business.supervisor %>
+    <div  class="nav-impersonate">
+      <%= render "components/select_impersonate_business", dropdown_search: "navbar_select_impersonate" %>
+      <% if current_impersonation %>
+        <div class="current-impersonation">
+          Vous agissez en tant que <%= current_impersonation.name %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
   <div class="navbar-right-item">
 
     <div class="search-navbar search-modal-button hidden-xs">
