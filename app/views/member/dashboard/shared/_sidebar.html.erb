@@ -3,13 +3,14 @@
 
   <!-- USER SIGN IN -->
   <% if user_signed_in? %>
-
-    <div class="leftmenu-v2-item <%= active_class(member_user_my_account_path(current_user))%>">
-      <%= link_to member_user_my_account_path(current_user) do %>
-        <div class="left-menu-svg-container" style="background-image: url(<%= asset_path "autourdemoi.svg" %>)"></div>
-        <div class="left-menu-text">Mon compte</div>
-      <% end %>
-    </div>
+    <% if current_user.supervisor %>
+      <div class="leftmenu-v2-item <%= active_class(member_user_my_account_path(current_user))%>">
+        <%= link_to member_user_my_account_path(current_user) do %>
+          <div class="left-menu-svg-container" style="background-image: url(<%= asset_path "autourdemoi.svg" %>)"></div>
+          <div class="left-menu-text">Mon compte</div>
+        <% end %>
+      </div>
+    <% end %>
 
     <div class="leftmenu-v2-item <%= active_class(member_user_dashboard_path(current_user))%>">
       <%= link_to member_user_dashboard_path(current_user) do %>
