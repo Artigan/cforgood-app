@@ -314,7 +314,7 @@ ActiveRecord::Schema.define(version: 20170125115734) do
     t.boolean  "ambassador",             default: false
     t.integer  "ecosystem_id"
     t.string   "onesignal_id"
-    t.boolean  "supervisor"
+    t.boolean  "supervisor",             default: false
     t.integer  "supervisor_id"
     t.index ["cause_id"], name: "index_users_on_cause_id", using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
