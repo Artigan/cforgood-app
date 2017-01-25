@@ -1,0 +1,18 @@
+<%= content_for(:title) do %>
+  Mon compte
+<% end %>
+<%= content_for(:description) do %>
+  Mon espace personnel
+<% end %>
+
+<div class="container-fluid admin">
+  <!-- SIDEBAR -->
+  <%= render "member/dashboard/shared/sidebar" %>
+
+  <!-- DASHBOARD CONTAINER -->
+  <div class="dashboard">
+    <div class="mobile-menu-overlay hidden"></div>
+    <p>je suis dans le dashboard</p>
+
+  </div>
+</div>

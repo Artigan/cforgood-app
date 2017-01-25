@@ -85,6 +85,10 @@
     end
   end
 
+  def my_account
+
+  end
+
   def profile
     @cause = Cause.all.includes(:cause_category)
     @payments = Payment.where(user_id: current_user.id).includes(:cause)
