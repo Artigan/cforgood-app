@@ -69,7 +69,7 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
 
   belongs_to :cause
-  belongs_to :supervisor, class_name: 'Business', foreign_key: 'supervisor_id'
+  belongs_to :ecosystem, class_name: 'Business', foreign_key: 'ecosystem_id'
   has_many :uses
   has_many :payments, dependent: :destroy
   has_many :user_histories
