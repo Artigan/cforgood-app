@@ -30,7 +30,8 @@ class Use < ApplicationRecord
   after_create :create_code_partner_for_first_use_perk
 
   scope :without_feedback, -> { where(feedback: false) }
-  scope :used, -> { where('feedback = ? or (feedback = ? and unused = ?)', false, true, false) }
+  # scope :used, -> { where('feedback = ? or (feedback = ? and unused = ?)', false, true, false) }
+  scope :used, -> { where(feedback: true, unused: false).or(where(feedback: false)) }
   scope :liked, -> { where(like: true) }
 
   private

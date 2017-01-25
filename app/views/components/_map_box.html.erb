@@ -45,7 +45,7 @@
             <%= image_tag "icons/heart.svg" %>
         </div>
         <% business.perks_in_time.each do |perk| %>
-          <% @liked = Use.where(perk_id: perk.id).liked.count %>
+          <% @liked = perk.uses.liked.size %>
         <% end %>
         <div class="asso-firstblock-text-v2"><%= @liked %></div>
       </div>

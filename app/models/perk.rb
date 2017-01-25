@@ -47,9 +47,11 @@ class Perk < ApplicationRecord
   scope :active, -> { where(active: true) }
   scope :flash, -> { where(flash: true) }
   scope :undeleted, -> { where(deleted: false) }
-  scope :permanent, -> { where('perks.active = ? and (perks.durable = ? or perks.appel = ?)', true, true, true) }
-  scope :in_time, -> { where('perks.active = ? and (perks.durable = ? or perks.appel = ? or (perks.flash = ? and perks.start_date <= ? and perks.end_date >= ?))', true, true, true, true, Time.now, Time.now) }
-  scope :flash_in_time, -> { where('perks.active = ? and perks.flash = ? and perks.start_date <= ? and perks.end_date >= ?', true, true, Time.now, Time.now) }
+  scope :permanent, -> { where(durable: true).or(where(appel: true)).active }
+  scope :flash_in_time, -> { active.flash.where('perks.start_date <= ? and perks.end_date >= ?', Time.now, Time.now) }
+  # scope :in_time, -> { where('perks.active = ? and (perks.durable = ? or perks.appel = ? or (perks.flash = ? and perks.start_date <= ? and perks.end_date >= ?))', true, true, true, true, Time.now, Time.now) }
+  scope :in_time, -> { permanent.or(flash_in_time) }
+  # scope :flash_in_time, -> { where('perks.active = ? and perks.flash = ? and perks.start_date <= ? and perks.end_date >= ?', true, true, Time.now, Time.now) }
 
   extend TimeSplitter::Accessors
   split_accessor :start_date, :end_date

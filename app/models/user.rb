@@ -76,7 +76,17 @@ class User < ApplicationRecord
   has_many :beneficiaries
 
   scope :member, -> { where(member: true) }
-  scope :member_should_payin, lambda {|day| where('users.member = ? and (users.code_partner is null or users.code_partner = ?) and users.subscription = ? and users.date_last_payment between ? and ?', true, "", "M", (Time.now - 1.month - day.day).beginning_of_day,  (Time.now - 1.month - day.day).end_of_day) }
+
+
+  # user doit etre membre
+  # et pas de code partenaire (nil ou blank)
+  # et souscription a "M"
+  # et la date de dernier paiement <= 1 mois et 'day' matin, >= 1 mois et day le soir
+  # (Time.now - 1.month - day.day).beginning_of_day,  (Time.now - 1.month - day.day).end_of_day)
+
+  scope :member_should_payin, -> (day) { member.where(code_partner: [nil, ""], subscription: "M", date_last_payment: (Date.today - 1.month - day.day)) }
+
+  # scope :member_should_payin, lambda {|day| where('users.member = ? and (users.code_partner is null or users.code_partner = ?) and users.subscription = ? and users.date_last_payment between ? and ?', true, "", "M", (Time.now - 1.month - day.day).beginning_of_day,  (Time.now - 1.month - day.day).end_of_day) }
   scope :member_on_trial_should_payin, lambda {|day| where('users.member = ? and users.code_partner is not null and users.code_partner <> ? and users.date_end_partner = ?', true, "", Time.now + day.day) }
 
   validates :email, presence: true, uniqueness: true
