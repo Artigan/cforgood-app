@@ -86,7 +86,7 @@
   end
 
   def my_account
-
+    #TODO : Pundit Policy to prevent regular user from accessing this page
   end
 
   def profile
