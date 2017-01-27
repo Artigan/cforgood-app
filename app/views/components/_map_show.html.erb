@@ -3,6 +3,13 @@
   var geoJson = <%= raw(@geojson.to_json) %>;
 
   var coordinates = geoJson.features[0].geometry.coordinates;
+  var color = geoJson.features[0].properties.color;
+  var framesPerSecond = 15;
+  var initialOpacity = 1
+  var opacity = initialOpacity;
+  var initialRadius = 6;
+  var radius = initialRadius;
+  var maxRadius = 16;
 
   mapboxgl.accessToken = '<%= ENV['MAPBOXGL_TOKEN'] %>';
 
@@ -11,25 +18,63 @@
     style: 'mapbox://styles/fredpetris/cikporvjj00p8b5lwovwd3kq9',
     center: coordinates,
     interactive: false,
-    zoom: 14
+    zoom: 13
   });
 
   map.on('style.load', function () {
-    map.addSource("markers", {
+
+    // Add a source and layer displaying a point which will be animated in a circle.
+    map.addSource('point', {
       "type": "geojson",
-      "data": geoJson
+      "data": {
+        "type": "Point",
+        "coordinates": coordinates
+      }
     });
 
     map.addLayer({
-      "id": "markers",
-      "type": "symbol",
-      "source": "markers",
-      "interactive": true,
-      "layout": {
-        "icon-image": "{marker-symbol}",
-        "icon-offset": [5,-20]
+      "id": "point",
+      "source": "point",
+      "type": "circle",
+      "paint": {
+        "circle-radius": initialRadius,
+        "circle-radius-transition": {duration: 0},
+        "circle-opacity-transition": {duration: 0},
+        "circle-color": color
       }
     });
+
+    map.addLayer({
+      "id": "point1",
+      "source": "point",
+      "type": "circle",
+      "paint": {
+        "circle-radius": initialRadius,
+        "circle-color": color
+      }
+    });
+
+    function animateMarker(timestamp) {
+      setTimeout(function(){
+        requestAnimationFrame(animateMarker);
+
+        radius += (maxRadius - radius) / framesPerSecond;
+        opacity -= ( .9 / framesPerSecond );
+
+        if (opacity <= 0) {
+            radius = initialRadius;
+            opacity = initialOpacity;
+        }
+
+        map.setPaintProperty('point', 'circle-radius', radius);
+        map.setPaintProperty('point', 'circle-opacity', opacity);
+
+      }, 1000 / framesPerSecond);
+
+    }
+
+    // Start the animation.
+    animateMarker(0);
   });
 
 </script>

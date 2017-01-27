@@ -21,7 +21,7 @@
     </div>
   </div>
   <div class="sign-box signup <%= params[:business].present? || ( device_type == :mobile && ( flash[:alert].present? || resource.errors.any? ) ) ? "translate" : "" %>">
-    <div class="close-sign-box"></div>
+    <div class="close-sign-box close-button">&times;</div>
     <div class="sign-user <%= params[:business].present? ? "hidden" : "" %>">
       <!-- SIGNUP FORM USER -->
        <% if params[:business].present? %>

@@ -4,8 +4,8 @@
   <ul class="search-pannel">
     <a href="#" data-filter="all" class="filter-btn current">
       <li id="categories-all" class="category-item is-selected">
-        <div class="container-icon" style="background-color: #fff;">
-          <%= image_tag "icons/toutes_categories.svg" %>
+        <div class="container-icon">
+          <%= image_tag "icons/toutes_categories.svg", size:"60X60" %>
         </div>
         Toutes les catégories
       </li>
@@ -13,7 +13,7 @@
     <% CauseCategory.all.each do |category| %>
     <a href="#" data-filter="<%= "."+category.id.to_s %>" class="filter-btn current">
       <li class="category-item">
-        <div class="container-icon" style="background-color: <%= category.color %>;">
+        <div class="container-icon picture">
           <%= image_tag category.picture %>
         </div>
         <%= category.name %>

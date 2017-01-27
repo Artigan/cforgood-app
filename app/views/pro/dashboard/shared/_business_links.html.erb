@@ -1,59 +1,63 @@
 <!-- LINKS | FIND THEM -->
-<ul class="reach-us">
-  <li>
-    <% if @business.email.present? %>
-      <a href="mailto:<%= @business.email %>" class="business-link link-mailto" target="_blank">
-        <i class="fa fa-envelope business-icon" style="background-color: <%= @business.business_category.color %>;"></i>
-        <span style="border-color: <%= @business.business_category.color %>;"><%= @business.email %></span>
-      </a>
-    <% end %>
-  </li>
-  <li>
-    <% if @business.telephone.present? %>
-      <a href="tel:<%= @business.telephone %>" class="business-link link-mailto hint--top" target="_blank" data-hint="<%= @business.telephone %>">
-        <i class="fa fa-phone" style="background-color: <%= @business.business_category.color %>;"></i>
-        <span style="border-color: <%= @business.business_category.color %>;"><%= @business.telephone %></span>
-      </a>
-    <% end %>
-  </li>
-  <li class="direction">
-    <%= link_to "http://maps.google.com/maps", class: "business-link link-mailto", id:"link-itinerary", disabled: true, data: { locale: I18n.locale, destination: { latitude: Perk.find(params[:perk_id]).business.latitude, longitude: Perk.find(params[:perk_id]).business.longitude } }, :target => "_blank" do %>
-        <i class="fa fa-location-arrow" style="background-color: <%= @business.business_category.color %>;"></i>
-    <% end %>
-  </li>
-</ul>
-<!-- DESKTOP -->
-<span class="follow-us-title">Retrouvez-vous nous :</span>
-<ul class="follow-us">
-  <% if @business.url.present? %>
+<div class="business-links">
+  <ul class="reach-us">
     <li>
-      <a href="<%= @business.url %>" class="business-link link-website" style="background-color: <%= @business.business_category.color %>;" target="_blank">
-        <i class="fa fa-globe business-icon"></i>
-      </a>
+      <% if @business.email.present? %>
+        <a href="mailto:<%= @business.email %>" class="business-link link-mailto" target="_blank">
+          <i class="fa fa-envelope business-icon" style="background-color: <%= @business.business_category.color %>;"></i>
+          <span style="border-color: <%= @business.business_category.color %>;"><%= @business.email %></span>
+        </a>
+      <% end %>
     </li>
-  <% end %>
+    <li>
+      <% if @business.telephone.present? %>
+        <a href="tel:<%= @business.telephone %>" class="business-link link-mailto hint--top" target="_blank" data-hint="<%= @business.telephone %>">
+          <i class="fa fa-phone" style="background-color: <%= @business.business_category.color %>;"></i>
+          <span style="border-color: <%= @business.business_category.color %>;"><%= @business.telephone %></span>
+        </a>
+      <% end %>
+    </li>
+    <li class="direction">
+      <%= link_to "http://maps.google.com/maps", class: "business-link link-mailto", id:"link-itinerary", disabled: true, data: { locale: I18n.locale, destination: { latitude: Perk.find(params[:perk_id]).business.latitude, longitude: Perk.find(params[:perk_id]).business.longitude } }, :target => "_blank" do %>
+          <i class="fa fa-location-arrow" style="background-color: <%= @business.business_category.color %>;"></i>
+      <% end %>
+    </li>
+  </ul>
+  <!-- DESKTOP -->
+  <div class="follow-us">
+    <span class="follow-us-title">Retrouvez-nous :</span>
+    <ul>
+      <% if @business.url.present? %>
+        <li>
+          <a href="<%= @business.url %>" class="business-link link-website" style="background-color: <%= @business.business_category.color %>;" target="_blank">
+            <i class="fa fa-globe business-icon"></i>
+          </a>
+        </li>
+      <% end %>
 
-  <% if @business.facebook.present? %>
-    <li>
-      <a href="http://facebook.com/<%= @business.facebook %>" class="business-link link-facebook" style="background-color: <%= @business.business_category.color %>;" target="_blank">
-        <i class="fa fa-facebook business-icon"></i>
-      </a>
-    </li>
-  <% end %>
+      <% if @business.facebook.present? %>
+        <li>
+          <a href="http://facebook.com/<%= @business.facebook %>" class="business-link link-facebook" style="background-color: <%= @business.business_category.color %>;" target="_blank">
+            <i class="fa fa-facebook business-icon"></i>
+          </a>
+        </li>
+      <% end %>
 
-  <% if @business.twitter.present? %>
-    <li>
-      <a href="http://twitter.com/<%= @business.twitter %>" class="business-link link-twitter" style="background-color: <%= @business.business_category.color %>;" target="_blank">
-          <i class="fa fa-twitter business-icon"></i>
-      </a>
-    </li>
-  <% end %>
+      <% if @business.twitter.present? %>
+        <li>
+          <a href="http://twitter.com/<%= @business.twitter %>" class="business-link link-twitter" style="background-color: <%= @business.business_category.color %>;" target="_blank">
+              <i class="fa fa-twitter business-icon"></i>
+          </a>
+        </li>
+      <% end %>
 
-  <% if @business.instagram.present? %>
-    <li>
-      <a href="http://instagram.com/<%= @business.instagram %>" class="business-link link-instagram" style="background-color: <%= @business.business_category.color %>;" target="_blank">
-        <i class="fa fa-instagram business-icon"></i>
-      </a>
-    </li>
-  <% end %>
-</ul>
+      <% if @business.instagram.present? %>
+        <li>
+          <a href="http://instagram.com/<%= @business.instagram %>" class="business-link link-instagram" style="background-color: <%= @business.business_category.color %>;" target="_blank">
+            <i class="fa fa-instagram business-icon"></i>
+          </a>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
