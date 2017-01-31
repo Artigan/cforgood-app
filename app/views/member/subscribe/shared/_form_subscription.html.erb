@@ -34,7 +34,11 @@
           </div>
         </div>
         <div class="offer-description">
-          <h5>En moyenne, les membres donnent <strong>7</strong> euros !</h5>
+          <% if current_user.subscription == 'M' %>
+            <h5>En moyenne, les membres donnent <strong>7</strong> euros !</h5>
+          <% else %>
+            <h5>En moyenne, les membres donnent <strong>60</strong> euros !</h5>
+          <% end %>
           <p>PS : Ceci est notre seule source de revenu !</p>
           <p class="comment">Attention, nous sommes encore essentiellement sur Bordeaux, mais ça bouge ! :)</p>
         </div>
