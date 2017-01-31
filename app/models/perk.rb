@@ -47,9 +47,9 @@ class Perk < ApplicationRecord
   scope :active, -> { where(active: true) }
   scope :flash, -> { where(flash: true) }
   scope :undeleted, -> { where(deleted: false) }
-  scope :permanent, -> { where(durable: true).or(where(appel: true)).active }
-  scope :flash_in_time, -> { active.flash.where('perks.start_date <= ? and perks.end_date >= ?', Time.now, Time.now) }
-  scope :in_time, -> { permanent.or(flash_in_time) }
+  scope :permanent, -> { where('perks.active = ? and (perks.durable = ? or perks.appel = ?)', true, true, true) }
+  scope :in_time, -> { where('perks.active = ? and (perks.durable = ? or perks.appel = ? or (perks.flash = ? and perks.start_date <= ? and perks.end_date >= ?))', true, true, true, true, Time.now, Time.now) }
+  scope :flash_in_time, -> { where('perks.active = ? and perks.flash = ? and perks.start_date <= ? and perks.end_date >= ?', true, true, Time.now, Time.now) }
 
   extend TimeSplitter::Accessors
   split_accessor :start_date, :end_date
@@ -98,12 +98,6 @@ class Perk < ApplicationRecord
 
   def deleted!
     self.update(active: false, deleted: true)
-  end
-
-  def offer_type?
-    return "#{self.amount} €" if value
-    return "#{self.amount} %" if percent
-    return "Offert"
   end
 
   private
@@ -230,9 +224,9 @@ class Perk < ApplicationRecord
   protected
 
   def perk_type(appel, durable, flash)
-    return "BIENVENUE" if self.appel
-    return "DURABLE" if self.durable
-    return "FLASH" if self.flash
+      return "BIENVENUE" if self.appel
+      return "DURABLE" if self.durable
+      return "FLASH" if self.flash
   end
 
 end

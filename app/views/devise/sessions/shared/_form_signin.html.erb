@@ -3,7 +3,7 @@
   <div class="subscription-form">
     <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <% if resource_name == :user %>
-        <%= image_tag "citoyen.svg", class: "avatar-citoyen" %>
+        <i><%= render "shared/icons/profile" %></i>
       <% else %>
         <i><%= render "shared/icons/shop" %></i>
       <% end %>

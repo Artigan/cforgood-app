@@ -1,8 +1,8 @@
 /* FIND FLASH PERKS *********************************************************/
 .in-central-city {
   position: fixed;
-  top: 70px;
-  left: calc(50% + 44px);
+  top: 30px;
+  left: 50%;
   z-index: 10;
   -webkit-transform: translateX(-50%);
   -moz-transform: translateX(-50%);
@@ -39,8 +39,10 @@
   }
 }
 
-@media only screen and (max-width:767px){
+@media only screen and (min-width:769px){
   .in-central-city {
-    left: calc(50% + 0px);
+    position: absolute;
+    top: 90px;
+    transform: translateX(-100%);
   }
 }

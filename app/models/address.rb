@@ -35,10 +35,10 @@ class Address < ApplicationRecord
   split_accessor :start_time, :end_time
 
   scope :active, -> { where(active: true) }
-  scope :for_map_load, -> { active.where("(businesses.shop = ? and (day is null or day = ?)) or (businesses.itinerant = ? and addresses.day = ?)", true, "", true, I18n.t("date.day_names")[Time.now.wday]) }
-  scope :today, -> { active.where(day: I18n.t("date.day_names")[Time.now.wday]) }
+  scope :for_map_load, -> { where("(businesses.shop = ? and (day is null or day = ?)) or (businesses.itinerant = ? and addresses.active = ? and addresses.day = ?)", true, "", true, true, I18n.t("date.day_names")[Time.now.wday]) }
+  scope :today, -> { where('addresses.active = ? and addresses.day = ?', true, I18n.t("date.day_names")[Time.now.wday]) }
   scope :in_time, -> { where("start_time.strftime('%R') <= ? and end_time.strftime('%R') >= ?", Time.now.strftime('%R'), Time.now.strftime('%R')) }
-  scope :shop, -> { where(day: [nil, ""]) }
+  scope :shop, -> { where('day is null or day = ?', "") }
   scope :main, -> { where(main: true) }
 
   validates :day, :inclusion=> { :in => I18n.t("date.day_names"), allow_blank: true }
@@ -55,7 +55,7 @@ class Address < ApplicationRecord
   before_save :assign_business_supervisor, if: :address_changed?
 
   def open?
-    #self.timetables.today.open.present? ? true : false
+    self.timetables.today.open.present? ? true : false
   end
 
   private
@@ -86,7 +86,7 @@ class Address < ApplicationRecord
   end
 
   def controle_geocode!
-    while Address.where(latitude:latitude, longitude: longitude).count > 0
+    while Address.where('latitude = ? and longitude = ?', latitude, longitude).count > 0
       self.latitude -= 0.0001
       self.longitude += 0.0001
     end
