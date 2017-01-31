@@ -30,9 +30,7 @@ class Use < ApplicationRecord
   after_create :create_code_partner_for_first_use_perk
 
   scope :without_feedback, -> { where(feedback: false) }
-  # feedback == false : perk/use est considéré comme utilisé tant que feedback non saisi
-  # feedback == true && unused = false : perk/use est considéré comme utilisé car il est donc soit liked soit unliked
-  scope :used, -> { where(feedback: true, unused: false).or(where(feedback: false)) }
+  scope :used, -> { where('feedback = ? or (feedback = ? and unused = ?)', false, true, false) }
   scope :liked, -> { where(like: true) }
 
   private

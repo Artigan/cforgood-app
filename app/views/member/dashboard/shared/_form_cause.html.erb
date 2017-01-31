@@ -13,7 +13,7 @@
                 <%= image_tag current_user.picture.url(:avatar), class: 'user-picture' %>
               <% else %>
                 <div class="picture-none">
-                  <%= image_tag "citoyen.svg", class: "avatar-citoyen" %>
+                  <%= render 'shared/icons/profile' %>
                 </div>
               <% end %>
             </div>
@@ -22,7 +22,7 @@
                 <%= image_tag current_user.cause.logo.url(:thumb), class: 'cause-picture' %>
               <% else %>
                 <div class="picture-none">
-                  <%= image_tag "citoyen.svg", class: "avatar-citoyen" %>
+                  <%= render 'shared/icons/profile' %>
                 </div>
               <% end %>
             </div>
@@ -47,7 +47,7 @@
       <% @cause.each do |cause| %>
         <% if cause.id != current_user.cause_id && cause.id != ENV['CAUSE_ID_CFORGOOD'].to_i %>
           <div id="<%= cause.id %>" class="cause-presentation">
-            <%= link_to cause_path(cause), class: "card-frame" do %>
+            <%= link_to asso_cause_path(cause), class: "card-frame" do %>
               <!-- CARD CAUSE -->
              <%= render partial: 'components/card_cause', locals: { cause: cause } %>
             <% end %>

@@ -10,7 +10,7 @@
             <%= image_tag @business.leader_picture.url(:avatar), class: 'picture-owner' %>
           <% else %>
             <div class="picture-none">
-              <%= image_tag "citoyen.svg", class: "avatar-citoyen" %>
+              <%= render 'shared/icons/profile' %>
             </div>
           <% end %>
         </div>

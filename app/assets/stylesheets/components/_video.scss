@@ -20,9 +20,12 @@
   height: 100%;
 }
 
-.cause-video {
-  width: 100%;
+.border-video {
+  border: 5px rgb(54,211,218) solid;
+  border-radius: 5px;
+}
 
+.cause-video {
   .embed-container {
     padding-top: 0;
     margin-bottom: 0;

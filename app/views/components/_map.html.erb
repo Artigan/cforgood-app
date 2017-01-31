@@ -48,8 +48,7 @@
 
   if (<%= device_type == :desktop %>) {
     // Add zoom controls to the map.
-    var nav = new mapboxgl.NavigationControl();
-    map.addControl(nav, 'bottom-left');
+    map.addControl(new mapboxgl.Navigation({position: 'bottom-left'}));
     // hidden button map rotation
     // $('.mapboxgl-ctrl-compass').addClass('hidden');
   }
@@ -66,7 +65,6 @@
 
     markers.features.forEach(function(feature) {
       var symbol = feature.properties['marker-symbol'];
-      var color = feature.properties['color'];
       var layerID = 'layer-' + symbol;
 
       // Add a layer for this symbol type if it hasn't been added already.
@@ -116,16 +114,16 @@
       }
     });
 
-    // heart of the point : to keep it displayed
     map.addLayer({
       "id": "point1",
       "source": "point",
       "type": "circle",
       "paint": {
-        "circle-radius": initialRadius - 1,
+        "circle-radius": initialRadius,
         "circle-color": "#32C4CB"
       }
     });
+
 
     function animateMarker(timestamp) {
         setTimeout(function(){

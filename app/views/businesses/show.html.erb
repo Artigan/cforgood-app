@@ -1,122 +1,238 @@
 <% content_for :meta_title, @business.name %>
 <% content_for :meta_description, "Découvrez le Bon Plan offert par #{@business.name} !" %>
-<% content_for :meta_image, @business.picture %>
+<% content_for :meta_image, @perk.picture.present? ? @perk.picture : @business.picture %>
 
-<%= render "member/dashboard/shared/sidebar" %>
+<div class="container-fluid admin">
+  <!-- Sub Menu Sidebar -->
+  <%= render "member/dashboard/shared/sidebar" %>
+  <!-- Content - Statistics -->
+  <div class="dashboard dashboard-perk">
+    <!-- OVERLY ON MENU ACTIVATION -->
+    <div class="mobile-menu-overlay hidden"></div>
+    <div class="side-menu-overlay hidden"></div>
 
-<div class="fullpage">
-
-  <div class="fullpage-left-item">
-    <div class="colored-banner" style="background-color: <%= @business.business_category.color %>;">
-      <div class="banner-business-name">
-        <div class="name"><%= @business.name %></div>
+    <% @perk.update_nb_view! if user_space? %>
+    <div class="show-mobile">
+      <!-- PERK MENU -->
+      <div class="switch-tab">
+        <span class="switch-active"></span>
+        <button class="switch-button active-case">Bon plan</button>
+        <button class="switch-button"><%= truncate(@business.name, length: 18) %></button>
       </div>
-      <div class="banner-business-top-infos">
-        <div class="infos-left">
-          <div class="pastille">
-            <%= image_tag @business.business_category.picture, size: "20x20" %>
-          </div>
-          <div class="category-name category"><%= @business.business_category.name %></div>
-        </div>
-        <div class="infos-right">
-          <div class="dot-state"></div>
-          <div class="dot-state-name">Ouvert</div>
-        </div>
-      </div>
-      <div class="card-abs-banner">
-        <div class="card-photo" style="background-image: url('<%= @business.picture %>');"></div>
-        <div class="card-bottom-links">
-          <div class="card-bottom-left-item" style="background-color: <%= @business.business_category.color %>;">
-            <% if @business.like == 1 %>
-              <%= image_tag "icons/heart.svg", class: "red-heart"%>
-              <div class="firstblock-text"><%= "#{@business.like} personne" %></div>
-            <% elsif @business.like > 1 %>
-              <%= image_tag "icons/heart.svg", class: "red-heart"%>
-              <div class="firstblock-text"><%= "#{@business.like} personnes" %></div>
+
+      <!-- PERK CARDS -->
+      <div class="flip-container">
+        <div class="flipper">
+          <figure class="front">
+          <!-- PERK IMAGE - CHANGE BACKGROUND IMAGE -->
+          <% if @perk.picture.present? %>
+            <div class="perk-image" style="background-image: url('<%= @perk.picture.url(:card) %>');">
+          <% else %>
+            <div class="perk-image" style="background-image: url('<%= @business.picture.url(:card) %>');">
+          <% end %>
+
+          <!-- IF FLASH PERK -->
+          <% if @perk.flash? %>
+            <% if @perk.times > 0 %>
+              <span class="flash-notification" style="background-color: <%= @business.business_category.color %>;"><i class="fa fa-flash"></i><%= @perk.times - Use.used.where(perk_id: params[:perk_id]).count %> restants</span>
+            <% end %>
+            <span class="availabilities"><%= render(partial: "components/perk_flash_period", locals: { start_date: @perk.start_date, end_date: @perk.end_date }) %></span>
+          <% end %>
+          <h1><%= @perk.name %></h1>
+          <p><%= @perk.description %></p>
+            <div class="use-perk">
+            <% if user_signed_in? %>
+              <% if !@perk.perk_in_time? %>
+                <div id="button-used">
+                  <button class="empty">Bon plan non disponible</button>
+                </div>
+              <% elsif !@perk.perk_usable?(current_user) %>
+                <div id="button-used">
+                  <button class="empty">Bon plan épuisé</button>
+                </div>
+              <% else %>
+                 <button type="button" class="use-button" style="background-color: <%= @business.business_category.color %>;">J'en profite</button>
+              <% end %>
+            <% else %>
+              <button type="button" class="use-button-logout" style="background-color: <%= @business.business_category.color %>;">J'en profite</button>
+              <%#= link_to "J'en profite", new_member_subscribe_path, class: "btn btn-use-button btn-block" %>
             <% end %>
           </div>
-          <div class="card-bottom-right-item" style="background-color: <%= @business.business_category.color %>;">
-            <div class="cbri-middleblock">
-              <i class="fa fa-facebook" aria-hidden="true"></i>
+        </div>
+
+        <div class="perk-owner">
+          <div class="owner-details">
+            <% if @business.leader_picture.present? %>
+              <%= image_tag @business.leader_picture.url(:avatar) %>
+            <% else %>
+              <%= image_tag image_url 'default_pic.png' %>
+            <% end %>
+            <span>Rendez-vous chez <%= @business.name %></span>
+          </div>
+          <div id="map-perk" style="width: 100%;"></div>
+          <span class="business-address"><i class="fa fa-map-marker"></i><%= @address.present? ? @address.street : @business.street %>, <%= @address.present? ? @address.zipcode : @business.zipcode %> <%= @address.present? ? @address.city : @business.city %></span>
+        </div>
+      </figure> <!-- END FRONT CARD -->
+
+      <figure class="back"><!-- BACK CARD -->
+        <div class="business-card">
+          <!-- BACKGROUND IMAGE -->
+          <div class="perk-image" style="background-image: url('<%= @business.picture.url(:card) %>');">
+            <% if @business.leader_picture.present? %>
+
+              <%= image_tag @business.leader_picture.url(:avatar) %>
+            <% else %>
+              <%= image_tag image_url 'default_pic.png' %>
+            <% end %>
+            <h1><%= @business.name %></h1>
+          </div>
+
+          <div class="profile-card">
+            <div class="profile-business">
+              <h3>En quelques mots</h3>
+              <% if @business.description.present? %>
+                <p><%= @business.description %></p>
+              <% else %>
+                <p>Profil en cours de construction</p>
+              <% end %>
+              <!-- LINKS | FIND THEM -->
+              <%= render "pro/dashboard/shared/business_links" %>
             </div>
-            <div class="cbri-endblock">
-              <i class="fa fa-twitter" aria-hidden="true"></i>
+            <!-- SECOND SLIDE -->
+            <div class="profile-owner">
+              <h3>Qui se cache derrière ?</h3>
+              <% if @business.leader_description.present? %>
+                <p><%= @business.leader_description %></p>
+              <% else %>
+               <% if @business.leader_first_name.present? %>
+                  <p>C'est <%= @business.leader_first_name %> qui se cache derrière. Lors de votre prochaine visite, rappelez-lui de raconter un peu son histoire !</p>
+                <% else %>
+                    <p>Profil en cours de construction</p>
+                <% end %>
+              <% end %>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="fullpage-left-item-bottom">
-      <div class="">
-        <div class="title-sub">Leurs engagements</div>
-      </div>
-      <div class="flib-engages">
-        <div class="flib-engages-item">
-          <div class="flib-icon"></div>
-          <div class="flib-text">Eco-responsable</div>
-        </div>
-        <div class="flib-engages-item">
-          <div class="flib-icon"></div>
-          <div class="flib-text">Zéro déchets</div>
-        </div>
-        <div class="flib-engages-item">
-          <div class="flib-icon"></div>
-          <div class="flib-text">Circuit court</div>
-        </div>
-      </div>
-      <div class="">
-        <div class="title-sub">En quelques mots</div>
-      </div>
-      <% if @business.description.present? %>
-        <div class="business-desc">
-          <%= @business.description %>
-        </div>
-      <% else %>
-        <div class="business-desc">Profil en construction</div>
-      <% end %>
-      <div class="title-sub">Détails</div>
-      <div class="business-details">
-        <!-- BLOCK MAP -->
-        <div class="perk-map" style="border-color: <%= @business.business_category.color %>;">
-          <div id="map-perk-desktop"></div>
-        </div>
-        <div class="business-address">
-          <div class="pastille" style="background-color:<%= @business.business_category.color %>;">
-            <i class="fa fa-map-marker"></i>
-          </div>
-          <%= @address.present? ? @address.street : @business.street %>, <%= @address.present? ? @address.zipcode : @business.zipcode %> <%= @address.present? ? @address.city : @business.city %>
-        </div>
-        <!-- LINKS | FIND THEM -->
-        <%= render "pro/dashboard/shared/business_links" %>
-      </div>
+      </figure><!-- END BACK CARD -->
     </div>
   </div>
+</div><!-- END SHOW MOBILE -->
 
-  <div class="fullpage-right-item hidden-xs">
-    <div class="fri-header">
-      <div class="title-fri-header">Nos bons plans</div>
-      <div class="title-fri-underline" style="border-color: <%= @business.business_category.color %>;"></div>
-    </div>
-    <% @business.perks.active.each do |perk| %>
-      <div class="perk-card-container perk-modal-use-<%= perk.id %>">
-        <%= render  "businesses/business_card", business: @business, address: @address, perk: perk, index_view: false %>
-      </div>
-      <div class="perk-modal-use perk-modal-use-<%= perk.id %> hidden">
-        <% if !user_signed_in? %>
-          <%= render "businesses/business_perk_not_member" %>
-        <% elsif device_type == :desktop || perk.perk_detail.name == "email" || @business.online   %>
-          <%= render "businesses/business_perk_usage", perk: perk %>
+  <div class="show-desktop">
+    <!-- COLUMN LEFT -->
+    <div class="perk-details">
+       <!-- BLOCK PERK -->
+        <% if @perk.picture.present? %>
+          <div class="perk-image" style="background-image: url('<%= @perk.picture %>');">
         <% else %>
-          <%#= render "businesses/business_perk_using", perk: perk %>
+          <div class="perk-image" style="background-image: url('<%= @business.picture %>');">
         <% end %>
-          <%#= render "businesses/mobileshow" %>
-          <%#= render "businesses/mobileshow_member" %>
+
+        <!-- IF FLASH PERK -->
+        <% if @perk.flash? %>
+          <% if @perk.times > 0 %>
+            <span class="flash-notification" style="background-color: <%= @business.business_category.color %>;"><i class="fa fa-flash"></i><%= @perk.times - Use.used.where(perk_id: params[:perk_id]).count %> restants</span>
+          <% end %>
+          <span class="availabilities"><%= render(partial: "components/perk_flash_period", locals: { start_date: @perk.start_date, end_date: @perk.end_date }) %></span>
+        <% end %>
+        <h1><%= @perk.name %></h1>
+        <p><%= @perk.description %></p>
+        <div class="use-perk">
+          <% if user_signed_in? %>
+            <% if !@perk.perk_in_time? %>
+              <div id="button-used">
+                <button class="empty">Bon plan non disponible</button>
+              </div>
+            <% elsif !@perk.perk_usable?(current_user) %>
+              <div id="button-used">
+                <button class="empty">Bon plan épuisé</button>
+              </div>
+            <% else %>
+              <button type="button" class="use-button" style="background-color: <%= @business.business_category.color %>;">J'en profite</button>
+            <% end %>
+          <% else %>
+            <button type="button" class="use-button-logout" style="background-color: <%= @business.business_category.color %>;">J'en profite</button>
+            <%#= link_to "J'en profiterai bien", new_member_subscribe_path, class: "btn btn-use-button btn-block" %>
+          <% end %>
+        </div>
       </div>
-    <% end %>
+      <!-- BLOCK MAP -->
+      <div class="perk-map">
+        <div id="map-perk-desktop" style="width: 100%;"></div>
+        <span class="business-address"><i class="fa fa-map-marker"></i><%= @address.present? ? @address.street : @business.street %>, <%= @address.present? ? @address.zipcode : @business.zipcode %> <%= @address.present? ? @address.city : @business.city %></span>
+      </div>
+    </div>
+
+    <!-- COLUMN RIGHT -->
+    <div class="business-details">
+
+      <div class="business-misc">
+        <div class="perk-image" style="background-image: url('<%= @business.picture %>');">
+          <% if @business.leader_picture.present? %>
+            <%= image_tag @business.leader_picture.url(:avatar) %>
+          <% else %>
+            <%= image_tag image_url 'default_pic.png' %>
+          <% end %>
+          <h1><%= @business.name %></h1>
+        </div>
+
+        <div class="profile-card">
+          <div class="profile-business">
+            <h3>En quelques mots</h3>
+            <% if @business.description.present? %>
+              <p><%= @business.description %></p>
+            <% else %>
+              <p>Profil en cours de construction</p>
+            <% end %>
+          </div>
+          <!-- SECOND SLIDE -->
+          <div class="profile-owner">
+            <h3>Qui se cache derrière ?</h3>
+            <% if @business.leader_description.present? %>
+              <p><%= @business.leader_description %></p>
+            <% else %>
+             <% if @business.leader_first_name.present? %>
+                <p>C'est <%= @business.leader_first_name %> qui se cache derrière. Lors de votre prochaine visite, rappelez-lui de raconter un peu son histoire !</p>
+              <% else %>
+                  <p>Profil en cours de construction</p>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+        <div class="business-contact">
+          <%= render "pro/dashboard/shared/business_links" %>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
-<% content_for :after_js do %>
+<!-- MODAL CODE PERK -->
+<% if user_signed_in? %>
+  <% if !current_user.member %>
+    <%= render "pro/perks/modals/perk_not_member" %>
+  <% elsif Perk.find(params[:perk_id]).perk_detail.name == "email" %>
+    <%= render "pro/perks/modals/perk_mailto" %>
+  <% elsif @business.online %>
+    <%= render "pro/perks/modals/perk_online" %>
+  <% elsif device_type == :mobile %>
+    <% if @address.present? %>
+      <%= render "pro/perks/modals/perk_offline_mobile", latitude: @address.latitude, longitude: @address.longitude, street: @address.street, zipcode: @address.zipcode, city: @address.city %>
+    <% else %>
+      <%= render "pro/perks/modals/perk_offline_mobile", latitude: @business.latitude, longitude: @business.longitude, street: @business.street, zipcode: @business.zipcode, city: @business.city %>
+    <% end %>
+  <% else %>
+    <% if @address.present? %>
+      <%= render "pro/perks/modals/perk_offline_desktop", latitude: @address.latitude, longitude: @address.longitude, street: @address.street, zipcode: @address.zipcode, city: @address.city %>
+    <% else %>
+      <%= render "pro/perks/modals/perk_offline_desktop", latitude: @business.latitude, longitude: @business.longitude, street: @business.street, zipcode: @business.zipcode, city: @business.city %>
+    <% end %>
+  <% end %>
+<% else %>
+    <%= render "pro/perks/modals/perk_logout" %>
+<% end %>
+
+<% content_for(:after_js) do %>
 
   <script type="text/javascript">setRoutePathFromLocation()</script>
 
@@ -124,19 +240,37 @@
 
   <script>
 
-    $(document).ready(function(){
-      // $(".use-button-logout").click(function() {
-      //   $('.use-overlay').removeClass('hidden');
-      //   // EVENT AMPLITUDE USER_C_BENEFIT
-      //   amplitude.logEvent('USER_C_BENEFIT_LOGOUT');
-      // });
-
-      // $(".btn-use-button").click(function() {
-      //   // EVENT AMPLITUDE USER_C_BENEFIT
-      //   amplitude.logEvent('USER_C_BENEFIT');
-      // });
+    $('.switch-button').click(function() {
+      $('.switch-active').toggleClass('activated');
+      $('.flipper').toggleClass('flipped');
     });
+
+    $(document).ready(function() {
+
+      $(".use-button").click(function() {
+        $('.use-overlay').removeClass('hidden');
+        // EVENT AMPLITUDE USER_C_BENEFIT
+        amplitude.logEvent('USER_C_BENEFIT');
+      });
+
+      $(".use-button-logout").click(function() {
+        $('.use-overlay').removeClass('hidden');
+        // EVENT AMPLITUDE USER_C_BENEFIT
+        amplitude.logEvent('USER_C_BENEFIT_LOGOUT');
+      });
+
+      $(".btn-use-button").click(function() {
+        // EVENT AMPLITUDE USER_C_BENEFIT
+        amplitude.logEvent('USER_C_BENEFIT');
+      });
+
+      $(".close-button").click(function() {
+        $('.use-overlay').addClass('hidden');
+      });
+
+      amplitude.logEvent('USER_SHOW_PERK');
+
+    });
+
   </script>
-
 <% end %>
-

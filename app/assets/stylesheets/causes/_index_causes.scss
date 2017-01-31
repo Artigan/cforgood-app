@@ -19,7 +19,6 @@
       box-sizing: border-box;
       position: relative;
       width: 100%;
-      margin-right: 13px;
       margin-bottom: 20px;
       background-color: #fff;
       border-radius: 3px;
@@ -27,9 +26,11 @@
       cursor: pointer;
       @include transition(all 0.3s);
 
+
       &:hover {
         box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
       }
+
 
       .card-body {
         display: flex;
@@ -144,7 +145,7 @@
   }
 }
 
-@media only screen and (min-width:768px){
+@media only screen and (min-width:769px){
   .dashboard-causes  {
     padding-top: 20px;
 
@@ -156,7 +157,6 @@
 
       .card-frame {
         width: 31.33333%;
-        max-resolution: 1%;
 
         .card-body {
 
@@ -197,50 +197,7 @@
           .item-logo { transform: translateX(-35px); }
         }
       }
+
     }
-  }
-}
-
-
-.asso-header {
-  height: 150px;
-  width: 100%;
-  background-color: $asso;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  padding-left: 30px;
-  padding-right: 30px;
-}
-
-.asso-header-count-container {
-  height: 100%;
-  width: 100px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.asso-number {
-  color: white;
-  font-weight: 400;
-  font-size: 30px;
-}
-
-.asso-text {
-  color: white;
-  font-size: 12px;
-}
-
-@media all and (max-width: 767px) {
-  .asso-header {
-    padding-top: 50px;
-  }
-}
-
-@media all and (max-width: 767px) {
-  .card-frame {
-    margin-right: 0;
   }
 }

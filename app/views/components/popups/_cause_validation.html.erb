@@ -19,9 +19,7 @@
 </div>
 
 <% content_for :after_js do %>
-
   <script>
-
     $(document).ready(function() {
       $(".close-popup").click(function (e) {
         e.preventDefault();
@@ -29,7 +27,7 @@
       });
 
       $(".cause-validated").click(function () {
-        <% if controller_path == "causes" %>
+        <% if controller_path == "asso/causes" %>
           // EVENT AMPLITUDE : USER_C_CAUSE_VALIDATED
           amplitude.logEvent('USER_C_CAUSE_VALIDATED');
         <% else %>
@@ -38,7 +36,7 @@
         <% end %>
       });
     });
-
   </script>
-
 <% end %>
+
+

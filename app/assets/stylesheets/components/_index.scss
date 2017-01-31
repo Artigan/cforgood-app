@@ -4,7 +4,9 @@
 @import "user_dashboard/flash_button";
 @import "user_dashboard/welcome_user";
 
+
 @import "cards/cause_card";
+@import "cards/metrics_card";
 @import "popups/commons";
 @import "popups/empty_perks_index";
 @import "no_content";
@@ -19,5 +21,4 @@
 @import "mapbox";
 @import "form_error";
 @import "payment";
-@import "leftmenu-v2";
-@import "image";
+@import "category";

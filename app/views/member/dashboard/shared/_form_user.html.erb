@@ -10,7 +10,7 @@
             <%= image_tag current_user.picture.url(:avatar), class: 'user-picture'  %>
           <% else %>
             <div class="picture-none">
-              <%= image_tag "citoyen.svg", class: "avatar-citoyen" %>
+              <%= render 'shared/icons/profile' %>
             </div>
           <% end %>
         </div>
@@ -42,9 +42,7 @@
 </div>
 
 <% content_for :after_js do %>
-
   <script>
-
     $(document).ready(function() {
       function readURL(input) {
         var reader = new FileReader();
@@ -86,9 +84,7 @@
         amplitude.logEvent('USER_C_PROFILE_MYINFO_SAVED');
       });
     });
-
   </script>
-
 <% end %>
 
 

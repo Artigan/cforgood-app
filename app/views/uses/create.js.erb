@@ -2,7 +2,7 @@
     // REDIRECTION TO INDEX WHEN COME FROM MAILTO AND ONLINE
     window.location.href = "<%= member_user_dashboard_path(current_user) %>";
 <% else %>
-    // $('.flipper-mobile').toggleClass('flipped');
+    $('.flipper-mobile').toggleClass('flipped');
     // REDIRECTION TO MEMBER CARD
     <% params[:id] = @use.id %>
     $(".container-feedback").html("<%= j(render 'uses/form/feedback') %>");

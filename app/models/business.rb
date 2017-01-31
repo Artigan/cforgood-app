@@ -64,11 +64,10 @@ class Business < ApplicationRecord
   has_many :addresses, dependent: :destroy
   accepts_nested_attributes_for :addresses, :allow_destroy => true, :reject_if => :all_blank
   has_many :addresses_shop, -> { shop }, class_name: "Address"
-  has_many :addresses_itinerant, -> { today }, class_name: "Address"
+  # has_many :addresses_itinerant, -> { today }, class_name: "Address"
   has_many :addresses_for_map, -> { for_map_load }, class_name: "Address"
 
   has_many :perks, dependent: :destroy
-  has_many :uses, through: :perks
   has_many :perks_in_time, -> { in_time }, class_name: "Perk"
   has_many :perks_flash_in_time, -> { flash_in_time }, class_name: "Perk"
   has_many :labels
@@ -82,13 +81,12 @@ class Business < ApplicationRecord
   has_many :members, class_name: 'User', foreign_key: 'supervisor_id'
 
   scope :active, -> { where(active: true) }
-  scope :for_map, -> { where(shop:true).or(where(itinerant: true)) }
-  scope :with_perks_in_time, -> { joins(:perks).merge(Perk.in_time) }
+  scope :for_map, -> { where('businesses.shop = ? or businesses.itinerant = ?', true, true) }
   scope :shop, -> { where(shop: true) }
   scope :itinerant, -> { where(itinerant: true) }
   scope :supervisor, -> { where(supervisor: true) }
   scope :admin, -> { where(admin: true) }
-  scope :supervisor_not_admin, -> { where(supervisor: true, admin: false) }
+  scope :supervisor_not_admin, -> { where('supervisor = ? and admin = ?', true, false) }
 
   validates :email, presence: true, uniqueness: true
   validates :business_category_id, presence: true, unless: :supervisor
