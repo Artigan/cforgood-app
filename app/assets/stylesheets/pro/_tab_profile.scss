@@ -627,12 +627,7 @@
               position: absolute;
               right: 5px;
               top: 50%;
-              border-radius: 50%;
               transform: translateY(-50%);
-
-              img {
-                margin: 3px;
-              }
 
               @media (max-width: 767px) {
                 right: 10px;
