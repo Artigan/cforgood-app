@@ -23,6 +23,7 @@ class Pro::DashboardController < Pro::ProController
 
   def supervisor_dashboard
     @business = current_business
+    @main_address = @business.main_address
     # A modifier !!!
     # @perks = @business.businesses_perks
     authorize @business
@@ -56,7 +57,8 @@ class Pro::DashboardController < Pro::ProController
             "coordinates": [address[0], address[1]],
           },
           "properties": {
-            "marker-symbol": business.business_category.marker_symbol
+            "marker-symbol": business.business_category.marker_symbol,
+            "icon-opacity": business.active ? 1 : 0.5,
           }
         }
       end

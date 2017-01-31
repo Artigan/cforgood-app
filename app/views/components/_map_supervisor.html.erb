@@ -33,6 +33,7 @@
 
     markers.features.forEach(function(feature) {
       var symbol = feature.properties['marker-symbol'];
+      var iconOpacity = feature.properties['icon-opacity'];
       var layerID = 'layer-' + symbol;
 
       // Add a layer for this symbol type if it hasn't been added already.
@@ -48,7 +49,11 @@
           "layout": {
             "icon-image": symbol,
             "icon-offset": [0,-20],
-            "icon-allow-overlap": true
+            "icon-allow-overlap": true,
+          },
+          "paint":{
+            "icon-image": symbol,
+            "icon-opacity": iconOpacity,
           },
           "filter": ["==", "marker-symbol", symbol]
         });
