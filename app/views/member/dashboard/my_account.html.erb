@@ -35,13 +35,39 @@
       <!-- Tab panes -->
       <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="dashboard">
-
+          <p>Nombre de bon plan utilisés : <%= @user.count_users_used_perks %></p>
+          <p>Nombre d'employés : <%= @user.users.size %></p>
+          <p>Nombre de like : <%= @user.count_users_liked_perks %></p>
+          <p>Montant total : <%= @user.sum_payments %></p>
         </div>
         <div role="tabpanel" class="tab-pane" id="employees">
-
+          <p>Créer un nouvel employé</p>
+          <%= simple_form_for @new_employee do |f| %>
+            <%= f.hidden_field :supervisor, value: @user %>
+            <%= f.input :email %>
+            <%= f.input :first_name %>
+            <%= f.input :last_name %>
+            <%= f.input :city %>
+            <%= f.hidden_field :zipcode %>
+            <%= f.submit %>
+          <% end %>
+          <p>List des employés</p>
+          <ul>
+            <% @user.users.each do |employee| %>
+              <li><%= employee.email %> - <%= link_to "Détacher l'employé", "#" %></li>
+            <% end %>
+          </ul>
         </div>
         <div role="tabpanel" class="tab-pane active" id="my_account">
-
+          <%= simple_form_for(@user) do |f| %>
+            <%= f.input :email %>
+            <%= f.input :first_name %>
+            <%= f.input :last_name %>
+            <%= f.input :street %>
+            <%= f.input :zipcode %>
+            <%= f.input :city %>
+            <%= f.submit %>
+          <% end %>
         </div>
       </div>
     </div>
