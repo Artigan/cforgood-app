@@ -96,6 +96,8 @@
 
   def my_account
     #TODO : Pundit Policy to prevent regular user from accessing this page
+    @new_employee = User.new
+    @user = User.includes(users: [:used_uses, :liked_uses]).find(params[:user_id])
   end
 
   def profile
