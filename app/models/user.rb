@@ -436,7 +436,6 @@ class User < ApplicationRecord
   end
 
   def assign_ecosystem
-    byebug
     ecosystem_address = Address.main.joins(:business).merge(Business.supervisor_not_admin).near([self.latitude, self.longitude], 10).first
     self.ecosystem = ecosystem_address.business if ecosystem_address
   end
