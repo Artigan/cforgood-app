@@ -3,6 +3,7 @@ class ImportUsers < ApplicationJob
   queue_as :default
 
   def perform
+    # il faut prendre le fichier depuis le ftp
     csv_path = 'data/import_users.csv'
     ko, ok = 0, 0
 
@@ -13,7 +14,7 @@ class ImportUsers < ApplicationJob
         row[:supervisor_id] = row[:supervisor_id].to_i
         # password automatique de devise
         # TODO: s'assurer que l'utilisateur recoit un email pour changer de mdp
-        # ou set choisir un mdp 
+        # ou set choisir un mdp
         row[:password] = Devise.friendly_token.first(8)
         User.create!(row.to_h)
         ok += 1
