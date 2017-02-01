@@ -1,0 +1,4 @@
+supervisor_id,email,first_name,last_name,street,zipcode,city
+5,test_import@gmail.com,imported,user,Rue Ligier,33000,Bordeaux
+134,test_import@gmail.com,wrongsupervisor,user,Rue Ligier,33000,Bordeaux
+5, ,noemail,user,Rue Ligier,33000,Bordeaux
