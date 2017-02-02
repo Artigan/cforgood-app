@@ -7,6 +7,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       puts "*****************************"
       if session[:logout]
         session[:logout] = false
+        puts request.referer.present?
+        puts "*****************************"
         if request.referer.present?
           sign_in @user
           puts request.referer
