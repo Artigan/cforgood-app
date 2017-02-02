@@ -3,7 +3,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     @user = User.find_for_facebook_oauth(request.env['omniauth.auth'], current_user)
     if @user.persisted?
       puts "*****************************"
-      puts "session[:logout] : " + session[:logout]
+      puts "session[:logout] : " + session[:logout].to_s
       puts "*****************************"
       if session[:logout]
         session[:logout] = false
