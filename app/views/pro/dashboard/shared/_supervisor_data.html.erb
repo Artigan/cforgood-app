@@ -64,5 +64,5 @@
 </div>
 
 <% content_for :after_js do %>
-  <%= render 'components/map_supervisor', geojson: @geojson, coordinates: [current_business.latitude, current_business.longitude] %>
+  <%= render 'components/map_supervisor', geojson: @geojson, coordinates: [@main_address.latitude, @main_address.longitude] %>
 <% end %>

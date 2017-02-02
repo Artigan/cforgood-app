@@ -60,11 +60,27 @@ class Cause < ApplicationRecord
   # validates :representative_first_name, presence: true
   # validates :representative_last_name, presence: true
 
+  before_save :format_facebook, if: :facebook_changed?
+  before_save :format_twitter, if: :twitter_changed?
+  before_save :format_instagram, if: :instagram_changed?
+
   after_create :subscribe_to_newsletter_cause
   after_save :create_mangopay_data!
   after_save :update_data_intercom
 
   private
+
+   def format_facebook
+    self.facebook = self.facebook.split("facebook.com/").last
+  end
+
+  def format_twitter
+    self.twitter = self.twitter.split("twitter.com/").last
+  end
+
+  def format_instagram
+    self.instagram = self.instagram.split("instagram.com/").last
+  end
 
   def create_mangopay_data!
     if !self.mangopay_id.present?

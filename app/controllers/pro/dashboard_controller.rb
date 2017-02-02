@@ -23,6 +23,7 @@ class Pro::DashboardController < Pro::ProController
 
   def supervisor_dashboard
     @business = current_business
+    @main_address = @business.main_address
     # A modifier !!!
     # @perks = @business.businesses_perks
     authorize @business
