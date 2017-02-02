@@ -20,9 +20,16 @@ class Member::UsersController < ActionController::Base
     end
   end
 
+  def update
+    @employee = User.find(params[:id])
+    @employee.manager = nil
+    @employee.save
+    redirect_to member_user_my_account_path(current_user)
+  end
+
   private
 
   def users_params
-    params.require(:user).permit(:email, :first_name, :last_name, :city, :zipcode, :supervisor)
+    params.require(:user).permit(:email, :first_name, :last_name, :city, :zipcode, :supervisor_id)
   end
 end
