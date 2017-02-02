@@ -3,7 +3,7 @@
   <%= render "member/dashboard/shared/sidebar" %>
   <div class="dashboard">
     <%= simple_form_for @employee, url: member_users_path do |f| %>
-      <%= f.hidden_field :supervisor, value: @user %>
+      <%= f.hidden_field :supervisor_id, value: current_user.id %>
       <%= f.input :email %>
       <%= f.input :first_name %>
       <%= f.input :last_name %>
