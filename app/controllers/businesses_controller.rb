@@ -20,9 +20,11 @@ class BusinessesController < ApplicationController
   end
 
   def show
-    # save logout access
+    # save request.referer when logout access
     if !user_signed_in?
-      session[:logout] = true
+      session[:referer] = request.url
+    else
+      session.delete(:referer)
     end
 
     @business = Business.joins(:business_category).find(params[:id])
