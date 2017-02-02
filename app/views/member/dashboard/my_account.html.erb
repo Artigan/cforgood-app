@@ -48,13 +48,13 @@
           <p>Liste des employés</p>
 
           <ul>
-            <% @user.users.each do |employee| %>
-              <li><%= employee.email %> - <%= link_to "Détacher l'employé", "#" %></li>
+            <% @employes_sorted_by_uses.each do |employee| %>
+              <li><%= employee[:email] %> - cause: <%= employee[:cause] %> - likes: <%= employee[:likes_count] -%>/ bon plans: <%= employee[:uses_count] %>  - <%= link_to "Détacher l'employé", member_user_path(employee[:id]), method: :patch -%></li>
             <% end %>
           </ul>
         </div>
         <div role="tabpanel" class="tab-pane active" id="my_account">
-          <%= simple_form_for(@user) do |f| %>
+          <%= simple_form_for(current_user, url: member_update_profile_path, method: :put) do |f| %>
             <%= f.input :email %>
             <%= f.input :first_name %>
             <%= f.input :last_name %>
