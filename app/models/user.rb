@@ -76,7 +76,7 @@ class User < ApplicationRecord
   belongs_to :ecosystem, class_name: 'Business', foreign_key: 'ecosystem_id'
   belongs_to :manager, class_name: 'User', foreign_key: 'supervisor_id'
   has_many :users, class_name: 'User', foreign_key: 'supervisor_id'
-  has_many :uses
+  has_many :uses, dependent: :destroy
   has_many :used_uses, -> { used }, class_name: "Use"
   has_many :liked_uses, -> { liked }, class_name: "Use"
   has_many :payments, dependent: :destroy
