@@ -248,14 +248,6 @@ class User < ApplicationRecord
     send_message_to_slack(ENV['SLACK_WEBHOOK_USER_URL'], message)
   end
 
-  def count_users_used_perks
-    self.users.map { |user| user.used_uses }.flatten.count
-  end
-
-  def count_users_liked_perks
-    self.users.map { |user| user.liked_uses }.flatten.count
-  end
-
   def sum_payments
     payments.sum(:amount)
   end
