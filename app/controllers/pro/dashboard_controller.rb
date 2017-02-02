@@ -57,8 +57,7 @@ class Pro::DashboardController < Pro::ProController
             "coordinates": [address[0], address[1]],
           },
           "properties": {
-            "marker-symbol": business.business_category.marker_symbol,
-            "icon-opacity": business.active ? 1 : 0.5,
+            "marker-symbol": business.business_category.marker_symbol
           }
         }
       end
