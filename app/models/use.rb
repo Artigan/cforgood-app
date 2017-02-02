@@ -35,6 +35,9 @@ class Use < ApplicationRecord
   scope :used, -> { where(feedback: true, unused: false).or(where(feedback: false)) }
   scope :liked, -> { where(like: true) }
 
+  scope :used_by_users_for, -> (user) { used.includes(:user).where(user: user.users) }
+  scope :liked_by_users_for, -> (user) { liked.includes(:user).where(user: user.users) }
+
   private
 
   def create_code_partner_for_first_use_perk
