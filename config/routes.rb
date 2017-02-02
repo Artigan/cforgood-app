@@ -42,7 +42,7 @@ Rails.application.routes.draw do
   end
 
   namespace :member do
-    resources :users, only: [:show, :update] do
+    resources :users, only: [:new, :create] do
       get "dashboard",  to: "dashboard#dashboard"
       get "my_account",  to: "dashboard#my_account"
       get "profile",    to: "dashboard#profile"
