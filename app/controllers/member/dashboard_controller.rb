@@ -97,9 +97,13 @@
   def my_account
     #TODO : Pundit Policy to prevent regular user from accessing this page
     @new_employee = User.new
-    @user = User.includes(:users).find(params[:user_id])
+    @user = User.includes(users: :cause).find(params[:user_id])
     @used_perks = Use.used_by_users_for(@user)
     @liked_perks = Use.liked_by_users_for(@user)
+    @employees_infos = @user.users.map do |employee|
+      {id: employee.id, email: employee.email, cause: employee.cause.name, likes_count: employee.liked_uses.count, uses_count: employee.used_uses.count}
+    end
+    @employes_sorted_by_uses = @employees_infos.sort_by { |infos| infos[:uses_count] }.reverse
   end
 
   def profile
