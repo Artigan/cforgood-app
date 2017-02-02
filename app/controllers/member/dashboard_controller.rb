@@ -1,13 +1,8 @@
-  class Member::DashboardController < ApplicationController
+class Member::DashboardController < ApplicationController
 
   skip_before_action :authenticate_user!, only: [:dashboard]
 
   def dashboard
-    # save logout access
-    if !user_signed_in?
-      session[:logout] = true
-    end
-
     # Patch during VIDEO && SALON
     if (current_user.present? && current_user.email == "allan.floury@gmail.com") || !cookies[:coordinates].present?
       lat = 44.837789

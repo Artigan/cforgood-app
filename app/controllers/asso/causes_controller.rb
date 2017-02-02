@@ -7,6 +7,11 @@ class Asso::CausesController < ApplicationController
   end
 
   def show
+    # save logout access
+    if !user_signed_in?
+      session[:logout] = true
+    end
+
     @cause  = Cause.joins(:cause_category).find(params[:id])
   end
 end
