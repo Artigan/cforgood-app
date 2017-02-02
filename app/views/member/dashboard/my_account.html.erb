@@ -35,9 +35,9 @@
       <!-- Tab panes -->
       <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="dashboard">
-          <p>Nombre de bon plan utilisés : <%= @user.count_users_used_perks %></p>
+          <p>Nombre de bon plan utilisés : <%= @used_perks.count %></p>
           <p>Nombre d'employés : <%= @user.users.size %></p>
-          <p>Nombre de like : <%= @user.count_users_liked_perks %></p>
+          <p>Nombre de like : <%= @liked_perks.count %></p>
           <p>Montant total : <%= @user.sum_payments %></p>
         </div>
         <div role="tabpanel" class="tab-pane" id="employees">
