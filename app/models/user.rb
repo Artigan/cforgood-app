@@ -80,7 +80,7 @@ class User < ApplicationRecord
   has_many :used_uses, -> { used }, class_name: "Use"
   has_many :liked_uses, -> { liked }, class_name: "Use"
   has_many :payments, dependent: :destroy
-  has_many :user_histories
+  has_many :user_histories, dependent: :destroy
   has_many :beneficiaries
 
   scope :member, -> { where(member: true) }
