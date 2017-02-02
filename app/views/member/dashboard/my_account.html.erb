@@ -41,17 +41,12 @@
           <p>Montant total : <%= @user.sum_payments %></p>
         </div>
         <div role="tabpanel" class="tab-pane" id="employees">
-          <p>Créer un nouvel employé</p>
-          <%= simple_form_for @new_employee do |f| %>
-            <%= f.hidden_field :supervisor, value: @user %>
-            <%= f.input :email %>
-            <%= f.input :first_name %>
-            <%= f.input :last_name %>
-            <%= f.input :city %>
-            <%= f.hidden_field :zipcode %>
-            <%= f.submit %>
-          <% end %>
-          <p>List des employés</p>
+          <div>
+            <%= link_to "Créer un employé", new_member_user_path, class: "btn business-button" %>
+          </div>
+          <br>
+          <p>Liste des employés</p>
+
           <ul>
             <% @user.users.each do |employee| %>
               <li><%= employee.email %> - <%= link_to "Détacher l'employé", "#" %></li>
@@ -83,5 +78,18 @@
         $(this).tab('show');
       });
     });
+
+    // store the currently selected tab in the hash value
+    $("#menu a").on("shown.bs.tab", function(e) {
+      var id = $(e.target).attr("href").substr(1);
+      // window.location.hash = id;
+      localStorage.setItem("id", id)
+    });
+
+    // on load of the page: switch to the currently selected tab
+    if (localStorage) {
+      var hash = localStorage.getItem("id");
+      $('#menu a[href="' + '#' + hash + '"]').tab('show');
+    }
   </script>
 <% end %>
