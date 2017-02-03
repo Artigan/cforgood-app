@@ -1,16 +1,23 @@
 <div class="container-fluid admin">
   <!-- SIDEBAR -->
   <%= render "member/dashboard/shared/sidebar" %>
-  <div class="dashboard">
-    <%= simple_form_for @employee, url: member_users_path do |f| %>
-      <%= f.hidden_field :supervisor_id, value: current_user.id %>
-      <%= f.input :email %>
-      <%= f.input :first_name %>
-      <%= f.input :last_name %>
-      <%= f.input :city %>
-      <%= f.hidden_field :zipcode %>
-      <%= f.submit %>
-    <% end %>
+  <div class="connexion signup">
+    <div class="sign-box signup">
+      <div class="sign-user">
+        <div class="form-card">
+         <div class="subscription-form">
+           <%= simple_form_for(@employee, url: member_users_path) do |f| %>
+           <%= f.hidden_field :supervisor_id, value: current_user.id %>
+           <%= f.input :email %>
+           <%= f.input :first_name %>
+           <%= f.input :last_name %>
+           <%= f.input :city %>
+           <%= f.hidden_field :zipcode %>
+           <%= f.submit %>
+           <% end %>
+         </div>
+       </div>
+      </div>
+    </div>
   </div>
-
 </div>
