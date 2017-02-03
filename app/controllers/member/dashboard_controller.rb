@@ -1,15 +1,6 @@
   class Member::DashboardController < ApplicationController
 
-  skip_before_action :authenticate_user!, only: [:dashboard]
-
-  def set_impersonation
-    if current_user.supervising?(params[:impersonate_id])
-      session[:impersonate_id] = params[:impersonate_id]
-    else
-      session[:impersonate_id] = nil
-    end
-    redirect_to member_user_dashboard_path(current_user)
-  end
+  skip_before_action :authenticate_user!, only: [:dashboard, :my_account]
 
   def dashboard
     # save logout access
@@ -101,7 +92,7 @@
     @used_perks = Use.used_by_users_for(@user)
     @liked_perks = Use.liked_by_users_for(@user)
     @employees_infos = @user.users.map do |employee|
-      {id: employee.id, email: employee.email, cause: employee.cause.name, likes_count: employee.liked_uses.count, uses_count: employee.used_uses.count}
+      {id: employee.id, first_name: employee.first_name, last_name: employee.last_name, cause: employee.cause.name, likes_count: employee.liked_uses.count, uses_count: employee.used_uses.count}
     end
     @employes_sorted_by_uses = @employees_infos.sort_by { |infos| infos[:uses_count] }.reverse
     @data_for_chart = @user.users.joins(:cause).group('causes.name').count

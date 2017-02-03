@@ -1,5 +1,0 @@
-<div class="impersonate-business">
-  <%= form_tag member_user_impersonation_path(current_user), class: "form-inline", id: "impersonate-form" do %>
-    <%= select_tag(:impersonate_id, options_from_collection_for_select(current_user.collection_supervising, :id, :first_name, selected: session[:impersonate_id]), prompt: "Sélectionner un utilisateur", class: dropdown_search) %>
-  <% end %>
-</div>

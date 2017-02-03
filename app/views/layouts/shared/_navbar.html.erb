@@ -15,18 +15,6 @@
     </div>
   <% end %>
 
-  <!-- Impersonnate users -->
-  <% if user_signed_in? && user_space? && current_user.supervisor %>
-    <div  class="nav-impersonate">
-      <%= render "components/select_impersonate_user", dropdown_search: "navbar_select_impersonate" %>
-      <% if current_user_impersonation %>
-        <div class="current-impersonation">
-          Vous agissez en tant que <%= current_impersonation.first_name %>
-        </div>
-      <% end %>
-    </div>
-  <% end %>
-
   <div class="navbar-right-item">
 
     <div class="search-navbar search-modal-button hidden-xs">
