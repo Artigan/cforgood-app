@@ -63,16 +63,40 @@
         </div>
         <div role="tabpanel" class="tab-pane" id="employees">
           <div>
-            <%= link_to "Créer un employé", new_member_user_path, class: "btn business-button" %>
+            <%= link_to "Créer un employé", new_member_user_path, class: "btn btn-primary" %>
           </div>
           <br>
           <p>Liste des employés</p>
 
-          <ul>
-            <% @employes_sorted_by_uses.each do |employee| %>
-              <li><%= employee[:email] %> - cause: <%= employee[:cause] %> - likes: <%= employee[:likes_count] -%>/ bon plans: <%= employee[:uses_count] %>  - <%= link_to "Détacher l'employé", member_user_path(employee[:id]), method: :patch -%></li>
-            <% end %>
-          </ul>
+          <div id="users">
+            <input class="search" placeholder="Rechercher" />
+            <ul class="list list-group list-users">
+              <% @employes_sorted_by_uses.each do |employee| %>
+                <li class="list-group-item">
+                  <div class="employee-display">
+                    <div class="employee-left">
+                      <span class="first_name"><%= employee[:first_name] %></span>
+                      <span class="last_name"><%= employee[:last_name] %></span>
+                      - cause: <%= employee[:cause] %>
+                    </div>
+                    <div class="employee-right">
+                      <ul class="data">
+                        <li>
+                          <i class="fa fa-tag"></i>
+                          <span class="number"><%= employee[:likes_count] %></span>
+                        </li>
+                        <li>
+                          <i class="fa fa-eye"></i>
+                          <span class="number"><%= employee[:uses_count] %></span>
+                        </li>
+                      </ul>
+                      <%= link_to "Détacher l'employé", member_user_path(employee[:id]), method: :patch, class: "btn btn-primary" %>
+                    </div>
+                  </div>
+                </li>
+              <% end %>
+            </ul>
+          </div>
         </div>
         <div role="tabpanel" class="tab-pane" id="my_account">
           <%= simple_form_for(current_user, url: member_update_profile_path, method: :put) do |f| %>
@@ -99,6 +123,12 @@
         $(".alert").remove();
         $(this).tab('show');
       });
+
+      // List JS for users list
+      var options = {
+        valueNames: [ 'first_name', 'last_name' ]
+      };
+      var userList = new List('users', options);
     });
 
     // store the currently selected tab in the hash value

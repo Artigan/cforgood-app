@@ -1,0 +1,35 @@
+.list-users {
+  margin-top: 10px;
+}
+
+.employee-display {
+  display: flex;
+  justify-content: space-between;
+}
+
+.employee-right {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .data {
+    display: flex;
+
+    li {
+      display: flex;
+      margin: 0 3px;
+
+      i {
+        padding: 5px;
+        border-radius: 3px 0 0 3px;
+        text-transform: uppercase;
+      }
+
+      .number {
+        padding: 5px;
+        line-height: 15px;
+        border-radius: 0 3px 3px 0;
+        text-align: center;
+      }
+    }
+  }
+}
