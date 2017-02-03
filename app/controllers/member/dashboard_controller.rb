@@ -104,6 +104,7 @@
       {id: employee.id, email: employee.email, cause: employee.cause.name, likes_count: employee.liked_uses.count, uses_count: employee.used_uses.count}
     end
     @employes_sorted_by_uses = @employees_infos.sort_by { |infos| infos[:uses_count] }.reverse
+    @data_for_chart = @user.users.joins(:cause).group('causes.name').count
   end
 
   def profile
