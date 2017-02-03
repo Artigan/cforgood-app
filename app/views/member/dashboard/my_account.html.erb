@@ -35,10 +35,13 @@
       <!-- Tab panes -->
       <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="dashboard">
-          <p>Nombre de bon plan utilisés : <%= @used_perks.count %></p>
-          <p>Nombre d'employés : <%= @user.users.size %></p>
-          <p>Nombre de like : <%= @liked_perks.count %></p>
-          <p>Montant total : <%= @user.sum_payments %></p>
+          <ul class="data-desktop">
+            <span class="data-title">Résumé de l'activité de vos employés</span>
+            <li>Nombre de bon plan utilisés : <span class="number"><%= @used_perks.count %></span></li>
+            <li>Nombre d'employés : <span class="number"><%= @user.users.size %></span></li>
+            <li>Nombre de like : <span class="number"><%= @liked_perks.count %></span></li>
+            <li>Montant total : <span class="number"><%= @user.sum_payments %></span></li>
+          </ul>
         </div>
         <div role="tabpanel" class="tab-pane" id="employees">
           <div>
@@ -53,7 +56,7 @@
             <% end %>
           </ul>
         </div>
-        <div role="tabpanel" class="tab-pane active" id="my_account">
+        <div role="tabpanel" class="tab-pane" id="my_account">
           <%= simple_form_for(current_user, url: member_update_profile_path, method: :put) do |f| %>
             <%= f.input :email %>
             <%= f.input :telephone %>
