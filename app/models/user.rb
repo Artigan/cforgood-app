@@ -51,6 +51,7 @@
 #  onesignal_id           :string
 #  supervisor             :boolean          default(FALSE)
 #  supervisor_id          :integer
+#  telephone              :string
 #
 # Indexes
 #
