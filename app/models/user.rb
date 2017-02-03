@@ -52,6 +52,7 @@
 #  supervisor             :boolean          default(FALSE)
 #  supervisor_id          :integer
 #  telephone              :string
+#  logo                   :string
 #
 # Indexes
 #
@@ -99,6 +100,7 @@ class User < ApplicationRecord
     message: "Cette image dépasse 2 MG !", if: :picture_changed?
 
   mount_uploader :picture, PictureUploader
+  mount_uploader :logo, PictureUploader
 
   geocoded_by :address
 

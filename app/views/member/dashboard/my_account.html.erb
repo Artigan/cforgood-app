@@ -100,6 +100,16 @@
         </div>
         <div role="tabpanel" class="tab-pane" id="my_account">
           <%= simple_form_for(current_user, url: member_update_profile_path, method: :put) do |f| %>
+            <div class="picture-container">
+              <% if current_user.logo? %>
+                <%= image_tag current_user.logo.url(:avatar), class: 'user-picture'  %>
+              <% else %>
+                <div class="picture-none">
+                  <%= image_tag "citoyen.svg", class: "avatar-citoyen" %>
+                </div>
+              <% end %>
+            </div>
+            <%= f.input :logo %>
             <%= f.input :email %>
             <%= f.input :telephone %>
             <%= f.input :first_name %>
