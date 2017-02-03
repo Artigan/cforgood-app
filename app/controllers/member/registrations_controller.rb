@@ -32,6 +32,6 @@ class Member::RegistrationsController < Devise::RegistrationsController
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :password, :email, :picture, :picture_cache, :cause_id, :subscription, :birthday, :street, :zipcode, :city, :amount, :code_partner)
+    params.require(:user).permit(:first_name, :last_name, :password, :email, :picture, :picture_cache, :cause_id, :subscription, :birthday, :street, :zipcode, :city, :amount, :code_partner, :telephone)
   end
 end
