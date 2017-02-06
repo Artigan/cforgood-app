@@ -204,7 +204,8 @@ class Perk < ApplicationRecord
         headings: {"en" => "Un tout nouveau bon plan pour #{self.business.name} 😊👏"},
         contents: {"en" => "#{self.text_notification}"},
         included_segments: ["All"],
-        chrome_web_icon: self.picture.url(:thumb)
+        chrome_web_icon: self.picture.url(:thumb),
+        url: ENV['ASSET_HOST'] + "/businesses/#{self.business_id}?address_id=#{self.business.main_address.id}&perk_id=#{self.id}"
       }
 
       begin
