@@ -109,9 +109,12 @@ class Business < ApplicationRecord
 
   after_create :create_main_address, :create_code_partner, :send_registration_slack, :subscribe_to_newsletter_business
 
+  before_save :format_facebook, if: :facebook_changed?
+  before_save :format_twitter, if: :twitter_changed?
+  before_save :format_instagram, if: :instagram_changed?
+
   after_save :update_data_intercom
   after_save :send_activation_slack, if: :active_changed?
-
 
   def perks_uses_count
     perks.reduce(0) { |sum, perk| sum + perk.uses.used.count }
@@ -148,6 +151,18 @@ class Business < ApplicationRecord
   end
 
   private
+
+  def format_facebook
+    self.facebook = self.facebook.split("facebook.com/").last
+  end
+
+  def format_twitter
+    self.twitter = self.twitter.split("twitter.com/").last
+  end
+
+  def format_instagram
+    self.instagram = self.instagram.split("instagram.com/").last
+  end
 
   def create_code_partner
     Partner.new.create_code_partner_business(self.name, self.email)
