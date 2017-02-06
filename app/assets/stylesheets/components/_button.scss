@@ -244,6 +244,7 @@
   color: rgba(55,55,55,0.6);
   background: transparent;
   border: none;
+  outline: none;
   top: 10px;
   right: 10px;
   font-size: 30px;
@@ -260,7 +261,7 @@
 .button-disabled {
   pointer-events: none !important;
   cursor: default !important;
-  opacity: 0.3;
+  // opacity: 0.3;
 }
 
 .button-inactived {

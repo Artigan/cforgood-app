@@ -99,11 +99,17 @@
   end
 
   def profile
+    @businesses = Business.active.with_perks_in_time.distinct.includes(:business_category)
     @cause = Cause.all.includes(:cause_category)
     @payments = Payment.where(user_id: current_user.id).includes(:cause)
   end
 
+  def gift
+    @businesses = Business.active.with_perks_in_time.distinct.includes(:business_category)
+  end
+
   def ambassador
+    @businesses = Business.active.with_perks_in_time.distinct.includes(:business_category)
   end
 
 end

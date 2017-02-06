@@ -99,9 +99,8 @@ module ApplicationHelper
     @current_impersonation ||= Business.find(session[:impersonate_id])
   end
 
-  def current_user_impersonation
-    return nil unless session[:impersonate_id].present?
-    @current_impersonation ||= User.find(session[:impersonate_id])
+  def devise_mapping
+    Devise.mappings[:user]
   end
 
 end

@@ -2,6 +2,7 @@
 <% content_for :meta_description, "Découvrez le Bon Plan offert par #{@business.name} !" %>
 <% content_for :meta_image, @business.picture %>
 
+<%= render 'businesses/business_search_index' %>
 <%= render "member/dashboard/shared/sidebar" %>
 
 <div class="fullpage">
@@ -75,16 +76,17 @@
         <div class="business-desc">Profil en construction</div>
       <% end %>
       <div class="title-sub">Détails</div>
-      <div class="business-details">
+      <div class="business-infos">
         <!-- BLOCK MAP -->
         <div class="perk-map" style="border-color: <%= @business.business_category.color %>;">
           <div id="map-perk-desktop"></div>
-        </div>
-        <div class="business-address">
-          <div class="pastille" style="background-color:<%= @business.business_category.color %>;">
-            <i class="fa fa-map-marker"></i>
+          <div class="business-address">
+            <div class="pastille" style="background-color:<%= @business.business_category.color %>;">
+              <i class="fa fa-map-marker"></i>
+            </div>
+            <span><%= @address.present? ? @address.street : @business.street %>,
+            <br><%= @address.present? ? @address.zipcode : @business.zipcode %> <%= @address.present? ? @address.city : @business.city %></span>
           </div>
-          <%= @address.present? ? @address.street : @business.street %>, <%= @address.present? ? @address.zipcode : @business.zipcode %> <%= @address.present? ? @address.city : @business.city %>
         </div>
         <!-- LINKS | FIND THEM -->
         <%= render "pro/dashboard/shared/business_links" %>

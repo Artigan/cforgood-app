@@ -79,10 +79,12 @@ class ApplicationController < ActionController::Base
     if pages_admin?
       @_action_has_layout = false
       return
-    elsif devise_controller? || user_signed_in? || business_signed_in?
-      self.class.layout "application"
     else
-      self.class.layout "website"
+      self.class.layout "application"
+    # elsif devise_controller? || user_signed_in? || business_signed_in?
+    #   self.class.layout "application"
+    # else
+    #   self.class.layout "website"
     end
   end
 

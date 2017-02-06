@@ -1,11 +1,11 @@
 <div class="navbar-v2">
 
-  <div class="navbar-left-item hidden-xs"></div>
+  <div class="navbar-logo-item left hidden-xs"></div>
   <span id="open-leftmenu"><div class="visible-xs">MENU</div></span>
 
   <!-- Impersonnate businesses -->
   <% if business_signed_in? && pro_space? && current_business.supervisor %>
-    <div  class="nav-impersonate">
+    <div class="nav-impersonate">
       <%= render "components/select_impersonate_business", dropdown_search: "navbar_select_impersonate" %>
       <% if current_impersonation %>
         <div class="current-impersonation">
@@ -17,48 +17,64 @@
 
   <div class="navbar-right-item">
 
-    <div class="search-navbar search-modal-button hidden-xs">
-      <i class="fa fa-search" aria-hidden="true"></i>
-    </div>
+    <% if user_space? %>
 
-    <% if user_signed_in? && current_page?("/member/users/#{current_user.id}/dashboard") %>
-      <div class="search-input-mobile hidden hidden-sm hidden-md hidden-lg">
-        <input id="search-in-navbar-mobile"class="search" placeholder="rechercher">
+      <div class="search-navbar search-modal-button hidden-xs">
+        <i class="fa fa-search" aria-hidden="true"></i>
       </div>
       <div class="search-navbar-mobile search-modal-button-mobile">
         <i class="fa fa-search" aria-hidden="true"></i>
       </div>
-    <% end %>
 
-    <% if current_page?('/causes') %>
-      <div class="search-input-mobile hidden hidden-sm hidden-md hidden-lg">
-        <input id="search-in-navbar-mobile-assos"class="search" placeholder="rechercher">
-      </div>
-      <div class="search-navbar-mobile search-modal-button-mobile">
-        <i class="fa fa-search" aria-hidden="true"></i>
-      </div>
-    <% end %>
+      <% if current_page?('/causes') %>
+        <div class="search-input-mobile hidden hidden-sm hidden-md hidden-lg">
+          <input id="search-in-navbar-mobile-assos"class="search" placeholder="rechercher">
+        </div>
+      <% elsif current_page?('/businesses') %>
+        <div class="search-input-mobile hidden hidden-sm hidden-md hidden-lg">
+          <input id="search-in-navbar-mobile-perks"class="search" placeholder="rechercher">
+        </div>
+      <% else %>
+        <div class="search-input-mobile hidden hidden-sm hidden-md hidden-lg">
+          <input id="search-in-navbar-mobile"class="search" placeholder="rechercher">
+        </div>
+      <% end %>
 
-    <% if current_page?('/businesses') %>
-      <div class="search-input-mobile hidden hidden-sm hidden-md hidden-lg">
-        <input id="search-in-navbar-mobile-perks"class="search" placeholder="rechercher">
-      </div>
-      <div class="search-navbar-mobile search-modal-button-mobile">
-        <i class="fa fa-search" aria-hidden="true"></i>
-      </div>
     <% end %>
 
     <div class="dropdown" id="button-dropdown-navbar">
 
-      <% if user_signed_in? && current_user.picture.present? %>
-        <div class="avatar-navbar dropdown-toggle" data-toggle="dropdown" style="background-image: url(<%= avatar_url(current_user) %>);">
-          <div class="caret"></div>
-        </div>
+      <% if user_signed_in? %>
+         <% if current_user.picture.present? %>
+          <div class="avatar-navbar dropdown-toggle" data-toggle="dropdown" style="background-image: url(<%= avatar_url(current_user) %>);">
+            <div class="caret"></div>
+          </div>
+        <% else %>
+          <div class="avatar-navbar dropdown-toggle" data-toggle="dropdown">
+            <%= image_tag "citoyen.svg" %>
+            <div class="caret"></div>
+          </div>
+        <% end %>
       <% else %>
-        <div class="avatar-navbar dropdown-toggle" data-toggle="dropdown">
-          <%= image_tag "citoyen.svg" %>
+        <!-- SIGNUP/SIGNIN BUTTONS -->
+        <div class="nav-right">
+          <%= link_to signup_path, class: "sign-up" do %>
+            <div class="ripple-area js-ripple">
+              <span class="ripple-circle"></span>
+            </div>
+            Je m'inscris
+          <% end %>
+          <%= link_to signin_path, class: "sign-in" do %>
+            <div class="ripple-area js-ripple">
+              <span class="ripple-circle"></span>
+            </div>
+            Se connecter
+          <% end %>
+        </div>
+        <div class="navbar-logo-item visible-xs dropdown-toggle" data-toggle="dropdown">
           <div class="caret"></div>
         </div>
+
       <% end %>
 
       <ul class="dropdown-menu dropdown-menu-right">
@@ -66,11 +82,30 @@
         <div class="drop-header-container">
           <% if user_signed_in? %>
             <%= link_to member_user_profile_path(current_user) do %>
-              <div class="droptext-bold"><%= current_user.first_name %>&nbsp;<%= current_user.last_name %></div>
+              <div class="droptext">
+                <div class="droptext-bold"><%= current_user.first_name %>&nbsp;<%= current_user.last_name %></div>
+                <div class="droptext-thin">Mon profil</div>
+              </div>
+            <% end %>
+          <% elsif business_signed_in? %>
+            <%= link_to pro_business_profile_path(current_business) do %>
+              <div class="droptext">
+                <div class="droptext-bold"><%= current_business.name %></div>
+                <div class="droptext-thin">Mon profil</div>
+              </div>
             <% end %>
           <% else %>
+            <%= link_to signup_path do %>
+              <div class="droptext">
+                <div class="droptext-bold">Je m'inscris</div>
+              </div>
+            <% end %>
+            <%= link_to signin_path do %>
+              <div class="droptext">
+                <div class="droptext-bold">Se connecter</div>
+              </div>
+            <% end %>
           <% end %>
-          <div class="droptext-thin">Mon profil</div>
         </div>
 
         <li role="separator" class="divider"></li>
@@ -79,39 +114,39 @@
             <div class="droptext-opacity">Aide et conseils</div>
           <% end %>
         </li>
-        <li>
-          <%= link_to destroy_user_session_path, method: :delete do %>
-            <div class="droptext-opacity">Déconnexion</div>
-          <% end %>
-        </li>
+        <% if user_signed_in? || user_signed_in? %>
+          <li>
+            <%= link_to destroy_user_session_path, method: :delete do %>
+              <div class="droptext-opacity">Déconnexion</div>
+            <% end %>
+          </li>
+        <% end %>
       </ul>
     </div>
   </div>
 </div>
 
-<% if current_page?('/causes') %>
-  <div class="search-modal hidden">
-    <input id="search-assos" class="search" placeholder="rechercher">
-    <div class="close-search-modal">
-      <i class="fa fa-close" aria-hidden="true"></i>
+<% if user_space? %>
+  <% if current_page?('/causes') %>
+    <div class="search-modal hidden">
+      <input id="search-assos" class="search" placeholder="rechercher">
+      <div class="close-search-modal">
+        <i class="fa fa-close" aria-hidden="true"></i>
+      </div>
     </div>
-  </div>
-<% end %>
-
-<% if current_page?('/businesses') %>
-  <div class="search-modal hidden">
-    <input id="search-businesses" class="search" placeholder="rechercher">
-    <div class="close-search-modal">
-      <i class="fa fa-close" aria-hidden="true"></i>
+  <% elsif current_page?('/businesses') %>
+    <div class="search-modal hidden">
+      <input id="search-businesses" class="search" placeholder="rechercher">
+      <div class="close-search-modal">
+        <i class="fa fa-close" aria-hidden="true"></i>
+      </div>
     </div>
-  </div>
-<% end %>
-
-<% if  user_signed_in? && current_page?("/member/users/#{current_user.id}/dashboard") %>
-  <div class="search-modal hidden">
-    <input id="search-dashboard"class="search" placeholder="rechercher">
-    <div class="business-search-close-button-desk">
-      <div>Revenir sur la Map</div>
+  <% else %>
+    <div class="search-modal hidden">
+      <input id="search-dashboard"class="search" placeholder="rechercher">
+      <div class="business-search-close-button">
+        <div>Annuler</div>
+      </div>
     </div>
-  </div>
+  <% end %>
 <% end %>
