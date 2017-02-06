@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   include Pundit
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
-  
+
   protect_from_forgery with: :null_session
 
   before_action :prevent_signup
@@ -27,13 +27,8 @@ class ApplicationController < ActionController::Base
         pro_business_dashboard_path(resource)
       end
     else
-      if session[:logout] == true
-         session[:logout] = false
-        if request.referer.present?
-          request.referer
-        else
-          member_user_dashboard_path(resource)
-        end
+      if session[:referer]
+        session[:referer]
       elsif !current_user.mangopay_id.present?
         begin
           @mangopay_user = MangopayServices.new(current_user).create_mangopay_natural_user
@@ -69,7 +64,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_out_path_for(resource_or_scope)
-    session.delete(:logout)
+    session.delete(:referer)
     root_path
   end
 

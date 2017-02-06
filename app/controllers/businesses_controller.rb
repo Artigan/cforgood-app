@@ -23,6 +23,12 @@ class BusinessesController < ApplicationController
   end
 
   def show
+    # save request.referer when logout access
+    if !user_signed_in?
+      session[:referer] = request.url
+    else
+      session.delete(:referer)
+    end
     @businesses = Business.active.with_perks_in_time.distinct.includes(:business_category)
     @business = Business.joins(:business_category).find(params[:id])
     @address = @business.addresses.find(params[:address_id])
