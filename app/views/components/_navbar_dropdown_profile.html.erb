@@ -6,9 +6,9 @@
      <% else %>
       <%= image_tag "default_pic.png" %>
     <% end %>
-    <% if current_user.last_name != "" && current_user.last_name != nil %>
+    <% if !current_user.last_name.blank? %>
       <span><%= current_user.first_name %> <%= current_user.last_name.chars.first + "." %></span>
-    <% elsif current_user.name != "" && current_user.name != nil %>
+    <% elsif !current_user.name.blank? %>
       <span><%= current_user.name.split(" ")[0] %></span>
     <% end %>
   </div>

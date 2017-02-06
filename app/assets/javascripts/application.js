@@ -3,6 +3,7 @@
 //= require jquery.remotipart
 //= require bootstrap
 //= require underscore
+//= require cocoon
 
 //= require bootstrap-datepicker/core
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.fr.js

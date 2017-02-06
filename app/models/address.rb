@@ -35,10 +35,10 @@ class Address < ApplicationRecord
   split_accessor :start_time, :end_time
 
   scope :active, -> { where(active: true) }
-  scope :for_map_load, -> { where("(businesses.shop = ? and (addresses.day is null or day = ?)) or (businesses.itinerant = ? and addresses.active = ? and addresses.day = ?)", true, "", true, true, I18n.t("date.day_names")[Time.now.wday]) }
-  scope :today, -> { where('addresses.active = ? and addresses.day = ?', true, I18n.t("date.day_names")[Time.now.wday]) }
+  scope :for_map_load, -> { active.where("(businesses.shop = ? and (day is null or day = ?)) or (businesses.itinerant = ? and addresses.day = ?)", true, "", true, I18n.t("date.day_names")[Time.now.wday]) }
+  scope :today, -> { active.where(day: I18n.t("date.day_names")[Time.now.wday]) }
   scope :in_time, -> { where("start_time.strftime('%R') <= ? and end_time.strftime('%R') >= ?", Time.now.strftime('%R'), Time.now.strftime('%R')) }
-  scope :shop, -> { where('day is null or day = ?', "") }
+  scope :shop, -> { where(day: [nil, ""]) }
   scope :main, -> { where(main: true) }
 
   validates :day, :inclusion=> { :in => I18n.t("date.day_names"), allow_blank: true }
@@ -51,16 +51,21 @@ class Address < ApplicationRecord
 
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
-  before_save :controle_geocode!, if: :address_changed?
+  before_save :controle_geocode!, if: :geoloc_changed?
+  before_save :assign_business_supervisor, if: :address_changed?
 
   def open?
-    self.timetables.today.open.present? ? true : false
+    #self.timetables.today.open.present? ? true : false
   end
 
   private
 
   def address_changed?
     street_changed? || zipcode_changed? || city_changed?
+  end
+
+  def geoloc_changed?
+    latitude_changed? || longitude_changed?
   end
 
   def address
@@ -73,8 +78,15 @@ class Address < ApplicationRecord
     end
   end
 
+  def assign_business_supervisor
+    if self.main
+      supervisor_address = Address.main.joins(:business).merge(Business.supervisor_not_admin).near([self.latitude, self.longitude], 10).first
+      self.business.update(supervisor_id: supervisor_address.business_id) if supervisor_address
+    end
+  end
+
   def controle_geocode!
-    while Address.where('id != ? and day = ? and latitude = ? and longitude = ?', self.id, self.day, latitude, longitude).count > 0
+    while Address.where(latitude:latitude, longitude: longitude).count > 0
       self.latitude -= 0.0001
       self.longitude += 0.0001
     end

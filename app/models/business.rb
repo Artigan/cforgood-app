@@ -64,10 +64,11 @@ class Business < ApplicationRecord
   has_many :addresses, dependent: :destroy
   accepts_nested_attributes_for :addresses, :allow_destroy => true, :reject_if => :all_blank
   has_many :addresses_shop, -> { shop }, class_name: "Address"
-  # has_many :addresses_itinerant, -> { today }, class_name: "Address"
+  has_many :addresses_itinerant, -> { today }, class_name: "Address"
   has_many :addresses_for_map, -> { for_map_load }, class_name: "Address"
 
   has_many :perks, dependent: :destroy
+  has_many :uses, through: :perks
   has_many :perks_in_time, -> { in_time }, class_name: "Perk"
   has_many :perks_flash_in_time, -> { flash_in_time }, class_name: "Perk"
   has_many :labels
@@ -81,12 +82,13 @@ class Business < ApplicationRecord
   has_many :members, class_name: 'User', foreign_key: 'supervisor_id'
 
   scope :active, -> { where(active: true) }
-  scope :for_map, -> { where('businesses.shop = ? or businesses.itinerant = ?', true, true) }
+  scope :for_map, -> { where(shop:true).or(where(itinerant: true)) }
+  scope :with_perks_in_time, -> { joins(:perks).merge(Perk.in_time) }
   scope :shop, -> { where(shop: true) }
   scope :itinerant, -> { where(itinerant: true) }
   scope :supervisor, -> { where(supervisor: true) }
   scope :admin, -> { where(admin: true) }
-  scope :supervisor_not_admin, -> { where('supervisor = ? and admin = ?', true, false) }
+  scope :supervisor_not_admin, -> { where(supervisor: true, admin: false) }
 
   validates :email, presence: true, uniqueness: true
   validates :business_category_id, presence: true, unless: :supervisor
@@ -105,13 +107,7 @@ class Business < ApplicationRecord
     message: "Cette image dépasse 1 MG !", if: :logo_changed?
   mount_uploader :logo, PictureUploader
 
-  geocoded_by :address
-
-  after_validation :geocode, if: :address_changed?
-
-  before_save :controle_geocode!, :assign_supervisor, if: :address_changed?
-
-  after_create :create_code_partner, :send_registration_slack, :subscribe_to_newsletter_business
+  after_create :create_main_address, :create_code_partner, :send_registration_slack, :subscribe_to_newsletter_business
 
   after_save :update_data_intercom
   after_save :send_activation_slack, if: :active_changed?
@@ -153,14 +149,6 @@ class Business < ApplicationRecord
 
   private
 
-  def address
-    "#{street}, #{zipcode} #{city}"
-  end
-
-  # def send_registration_email
-  #   BusinessMailer.registration(self).deliver_now
-  # end
-
   def create_code_partner
     Partner.new.create_code_partner_business(self.name, self.email)
   end
@@ -197,20 +185,35 @@ class Business < ApplicationRecord
         user.custom_attributes["supervisor"] = self.supervisor
         intercom.users.save(user)
       rescue Intercom::IntercomError => e
-        puts e
+        begin
+          code_partner = Partner.find_by_email(self.email).code_partner if Partner.find_by_email(self.email)
+          manager_name = self.manager.name if self.manager.present?
+          intercom.users.create(
+            :user_id => 'B'+self.id.to_s,
+            :email => self.email,
+            :name => self.name,
+            :created_at => self.created_at,
+            :custom_data => {
+              'user_type' => 'business',
+              'user_active' => self.active,
+              'first_name' => self.leader_first_name,
+              'city' => self.city,
+              'zipcode' => self.zipcode,
+              'picture_url' => self.picture.url,
+              'code_partner' => code_partner,
+              'manager' => manager_name,
+              'supervisor' => self.supervisor
+            }
+          )
+        rescue Intercom::IntercomError => e
+          puts e
+        end
       end
     end
   end
 
-  def controle_geocode!
-    while Business.where('id != ? and latitude = ? and longitude = ?', self.id, latitude, longitude).count > 0
-      self.latitude -= 0.0001
-      self.longitude += 0.0001
-    end
-  end
-
-  def assign_supervisor
-    self.manager = Business.supervisor_not_admin.near([self.latitude, self.longitude], 10).first
+  def create_main_address
+    self.addresses.create(city: self.city, zipcode: self.zipcode, main: true)
   end
 
 end

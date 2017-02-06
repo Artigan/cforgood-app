@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="35px" height="27px" viewBox="0 0 35 27" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.8.3 (29802) - http://www.bohemiancoding.com/sketch -->
+    <title>heart</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="heart" stroke="#FFFFFF">
+            <g id="Page-1">
+                <path d="M34.3112582,8.42673363 L31,7" id="Line" stroke-linecap="square" transform="translate(32.655629, 7.713367) scale(1, -1) translate(-32.655629, -7.713367) "></path>
+                <path d="M31.5800303,5.51861942 L29,3" id="Line" stroke-linecap="square" transform="translate(30.290015, 4.259310) scale(1, -1) translate(-30.290015, -4.259310) "></path>
+                <path d="M26.975062,3.47120354 L26,0" id="Line" stroke-linecap="square" transform="translate(26.500000, 1.735602) scale(1, -1) translate(-26.500000, -1.735602) "></path>
+                <path d="M9.97506205,3.47120354 L9,0" id="Line" stroke-linecap="square" transform="translate(9.500000, 1.735602) scale(-1, -1) translate(-9.500000, -1.735602) "></path>
+                <path d="M6.58003027,5.51861942 L4,3" id="Line" stroke-linecap="square" transform="translate(5.290015, 4.259310) scale(-1, -1) translate(-5.290015, -4.259310) "></path>
+                <path d="M4.29001514,8.42673363 L0.978756896,7" id="Line" stroke-linecap="square" transform="translate(2.634386, 7.713367) scale(-1, -1) translate(-2.634386, -7.713367) "></path>
+                <path d="M23,7 C20.916875,7 19.23875,8.15125 17.980625,9.646875 C16.758125,8.1 15.083125,7 13,7 C10.06625,7 8,9.5225 8,12.27375 C8,13.749375 8.604375,14.811875 9.26625,15.810625 L17.036875,25.126875 C17.90875,25.945 18.07375,25.945 18.945625,25.126875 L26.73375,15.810625 C27.5125,14.811875 28,13.749375 28,12.27375 C28,9.5225 25.93375,7 23,7" id="Fill-72" fill="#DE004A"></path>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -7,6 +7,7 @@ class CausesController < ApplicationController
   end
 
   def show
+    @businesses = Business.active.with_perks_in_time.distinct.includes(:business_category)
     @cause  = Cause.joins(:cause_category).find(params[:id])
   end
 end

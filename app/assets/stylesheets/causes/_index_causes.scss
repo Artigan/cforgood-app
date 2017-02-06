@@ -144,7 +144,7 @@
   }
 }
 
-@media only screen and (min-width:769px){
+@media only screen and (min-width:768px){
   .dashboard-causes  {
     padding-top: 20px;
 
@@ -156,6 +156,7 @@
 
       .card-frame {
         width: 31.33333%;
+        margin: 1%;
 
         .card-body {
 
@@ -204,7 +205,7 @@
 .asso-header {
   height: 150px;
   width: 100%;
-  background-color: #2794EB;
+  background-color: $asso;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -232,13 +233,13 @@
   font-size: 12px;
 }
 
-@media all and (max-width: 768px) {
+@media all and (max-width: 767px) {
   .asso-header {
     padding-top: 50px;
   }
 }
 
-@media all and (max-width: 768px) {
+@media all and (max-width: 767px) {
   .card-frame {
     margin-right: 0;
   }

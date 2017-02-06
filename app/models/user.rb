@@ -77,17 +77,8 @@ class User < ApplicationRecord
 
   scope :member, -> { where(member: true) }
 
-
-  # user doit etre membre
-  # et pas de code partenaire (nil ou blank)
-  # et souscription a "M"
-  # et la date de dernier paiement <= 1 mois et 'day' matin, >= 1 mois et day le soir
-  # (Time.now - 1.month - day.day).beginning_of_day,  (Time.now - 1.month - day.day).end_of_day)
-
-  scope :member_should_payin, -> (day) { member.where(code_partner: [nil, ""], subscription: "M", date_last_payment: (Date.today - 1.month - day.day)) }
-
-  # scope :member_should_payin, lambda {|day| where('users.member = ? and (users.code_partner is null or users.code_partner = ?) and users.subscription = ? and users.date_last_payment between ? and ?', true, "", "M", (Time.now - 1.month - day.day).beginning_of_day,  (Time.now - 1.month - day.day).end_of_day) }
-  scope :member_on_trial_should_payin, lambda {|day| where('users.member = ? and users.code_partner is not null and users.code_partner <> ? and users.date_end_partner = ?', true, "", Time.now + day.day) }
+  scope :member_should_payin, -> (day) { member.where(code_partner: [nil, ""], subscription: "M", date_last_payment: (DateTime.now - 1.month - day.day).beginning_of_day..(DateTime.now - 1.month - day.day).end_of_day ) }
+  scope :member_on_trial_should_payin, -> (day) { member.where.not(code_partner: [nil, ""]).where(date_end_partner: Date.today + day.day) }
 
   validates :email, presence: true, uniqueness: true
   # validates :first_name, presence: true
@@ -206,7 +197,9 @@ class User < ApplicationRecord
   def stop_subscription!
     self.member = false
     self.date_stop_subscription = Time.now
+    subscription_save = self.subscription
     self.subscription = nil
+    amount_save = self.amount
     self.amount = nil
     self.date_last_payment = nil
     code_partner_save = self.code_partner
@@ -227,8 +220,14 @@ class User < ApplicationRecord
     end
 
     #SEND EVENT TO SLACK
-    message = find_name_or_email?
-    message += code_partner_save.present? ? " a résilié sa période d'essai." : " a résilié son abonnement."
+    message =  find_name_or_email?
+    if code_partner_save.present?
+      message += " a résilié sa période d'essai."
+    else
+      message += " a résilié son abonnement"
+      message += subscription_save == "M" ? ' mensuel' : ' annuel'
+      message += " de " + amount_save.to_s + "€."
+    end
     message += " |" + self.email + "|"
     send_message_to_slack(ENV['SLACK_WEBHOOK_USER_URL'], message)
   end
@@ -354,7 +353,7 @@ class User < ApplicationRecord
       intercom.users.save(user)
     rescue Intercom::IntercomError => e
       begin
-        user = intercom.users.create(
+        intercom.users.create(
           :user_id => self.id,
           :email => self.email,
           :name => self.name,
@@ -371,8 +370,8 @@ class User < ApplicationRecord
             'code_promo' => promo,
             'date_end_trial' => self.date_end_partner,
             'ambassador' => self.ambassador
-          })
-        intercom.users.save(user)
+          }
+        )
       rescue Intercom::IntercomError => e
         puts e
       end
@@ -423,7 +422,8 @@ class User < ApplicationRecord
   end
 
   def assign_supervisor
-    self.supervisor = Business.supervisor_not_admin.near([self.latitude, self.longitude], 10).first
+    supervisor_address = Address.main.joins(:business).merge(Business.supervisor_not_admin).near([self.latitude, self.longitude], 10).first
+    self.supervisor = supervisor_address.business_id if supervisor_address
   end
 
   def save_onesignal_id

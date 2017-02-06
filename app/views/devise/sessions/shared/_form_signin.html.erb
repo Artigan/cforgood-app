@@ -13,9 +13,9 @@
       <%= f.input :email, placeholder: 'Adresse email', required: false, autofocus: false, :class => "validate", label: false %>
       <%= f.input :password, placeholder: '********', required: false, :class => "validate", label: false %>
       <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-      <%= f.button :submit, "Se connecter", class: "btn btn-connexion" %>
+      <%= f.button :submit, "Se connecter", class: "btn-connexion" %>
       <% if devise_mapping.recoverable? && controller_name != 'passwords' %>
-      <%= link_to t(".forgot_your_password", :default => "Mot de passe oublié ?"), new_password_path(resource_name), class: "new-password" %>
+        <%= link_to t(".forgot_your_password", :default => "Mot de passe oublié ?"), new_password_path(resource_name), class: "new-password" %>
       <% end %>
     <% end %>
   </div>
@@ -23,7 +23,7 @@
   <% if resource_name == :user %>
     <div class="subscription-network">
       <span>ou</span>
-      <%= link_to raw("<i class='fa fa-facebook' aria-hidden='true'></i>Se connecter avec Facebook"), user_facebook_omniauth_authorize_path, class: "btn btn-connexion" %>
+      <%= link_to raw("<i class='fa fa-facebook' aria-hidden='true'></i>Se connecter avec Facebook"), user_facebook_omniauth_authorize_path, class: "btn-connexion btn-facebook" %>
       <%#= link_to raw("<i class=\"fa fa-google\"></i>"), user_omniauth_authorize_path(:google_oauth2), class: "btn-google" %>
     </div>
   <% end %>

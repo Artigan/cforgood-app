@@ -21,7 +21,7 @@
     </div>
   </div>
   <div class="sign-box signin <%= params[:business].present? || ( device_type == :mobile && ( flash[:alert].present? || resource.errors.any? ) ) ? "translate" : "" %>">
-    <div class="close-sign-box"></div>
+    <div class="close-sign-box close-button">&times;</div>
     <div class="sign-user <%= params[:business].present? ? "hidden" : "" %>">
       <!-- SIGNIN FORM USER -->
       <%= render "devise/sessions/shared/form_signin", resource_name: :user %>

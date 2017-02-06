@@ -63,7 +63,7 @@ nav {
       ul {
         display: flex;
         margin-left: 30px;
-        @media (max-width: 768px) {
+        @media (max-width: 767px) {
           display: none;
         }
         li {
@@ -72,63 +72,68 @@ nav {
       }
     }
   }
+}
 
-  .nav-right {
+.nav-right {
+  display: flex;
+  margin-left: 15px;
+  margin-right: 15px;
+
+  a {
+    position: relative;
     display: flex;
-    margin-right: 15px;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 20px;
+    color: #fff;
+    border-radius: 2px;
+    border: none;
+    min-width: 140px;
+    background: transparent;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-family: $header-font !important;
+    @include transition(background-color 150ms ease-out);
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
 
-    a {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 5px 20px;
-      color: #fff;
-      border-radius: 2px;
-      border: none;
-      min-width: 140px;
-      background: transparent;
-      text-transform: uppercase;
-      font-size: 12px;
-      font-family: $header-font !important;
-      @include transition(background-color 150ms ease-out);
-      -webkit-tap-highlight-color: rgba(0,0,0,0);
-
-      &:hover,
-      &:focus {
-        outline: 0;
-        text-decoration: none;
-      }
-
-      &:not(:disabled) {
-        cursor: pointer;
-      }
+    &:hover,
+    &:focus {
+      outline: 0;
+      text-decoration: none;
     }
 
+    &:not(:disabled) {
+      cursor: pointer;
+    }
+  }
+
+  a.sign-up {
+    margin-right: 10px;
+    background-color: $turquoise;
+
+    &:hover {
+      background-color: $darken-turquoise;
+    }
+  }
+
+  a.sign-in {
+    background-color: #3E4149;
+
+    &:hover {
+      background-color: $grey;
+    }
+  }
+  @media (max-width: 375px) {
+    a.sign-in,
     a.sign-up {
-      margin-right: 10px;
-      background-color: $turquoise;
-
-      &:hover {
-        background-color: $darken-turquoise;
-      }
+      min-width: 100px;
+      max-height: 28px;
+      font-size: 0.6em;
+      padding: 9px 10px;
     }
+  }
 
-    a.sign-in {
-      background-color: $black;
-
-      &:hover {
-        background-color: $grey;
-      }
-    }
-    @media (max-width: 375px) {
-      a.sign-in,
-      a.sign-up {
-        min-width: 100px;
-        max-height: 28px;
-        font-size: 0.6em;
-        padding: 9px 10px;
-      }
-    }
+  @media (max-width: 767px) {
+    display: none;
   }
 }

@@ -9,6 +9,7 @@ gem 'rails', '~> 5.0.0.beta1'
 gem "pg"
 gem "figaro"
 gem "simple_form"
+gem "cocoon"
 gem "mail_form"
 gem "country_select"
 gem "high_voltage"

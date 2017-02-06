@@ -5,10 +5,11 @@
   Découvrez l'engagement de <%= @cause.name %> !
 <% end %>
 
+<%= render 'businesses/business_search_index' %>
 <%= render "member/dashboard/shared/sidebar" %>
 
 <div class="asso-fullpage">
-  <div class="asso-banner" style="background-color: <%= @cause.cause_category.color %>;">
+  <div class="asso-banner">
 
     <div class="asso-banner-header-name">
       <div class="asso-head-column-container">
@@ -23,19 +24,25 @@
 
     <div class="asso-card-abs-banner">
       <div class="asso-card-photo" style="background-image: url('<%= device_type == :mobile ? @cause.picture.url(:card) : @cause.picture %>');"></div>
-      <div class="asso-card-bottom-links" style="background-color: <%= @cause.cause_category.color %>;">
+      <div class="asso-card-bottom-links">
         <div class="asso-card-bottom-left-item">
-          <div class="asso-card-red-heart">
-            <i class="fa fa-heart" aria-hidden="true"></i>
-          </div>
-          <div class="asso-firstblock-text"><%= "63 pour #{@cause.name}" %></div>
+          <% if @cause.like > 0 %>
+            <%= image_tag "icons/heart.svg", class: "red-heart"%>
+            <div class="asso-firstblock-text">
+              <%= @cause.like > 1 ? "#{@cause.like} personnes aiment #{@cause.name}" : "#{@cause.like} personne aime #{@cause.name}" %>
+            </div>
+          <% end %>
         </div>
         <div class="asso-card-bottom-right-item">
           <div class="asso-cbri-middleblock">
-            <i class="fa fa-facebook" aria-hidden="true"></i>
+            <a href="https://www.facebook.com/sharer.php?s=<%= request.url %>&title=CforGood" target="_blank">
+              <i class="fa fa-facebook" aria-hidden="true"></i>
+            </a>
           </div>
           <div class="asso-cbri-endblock">
-            <i class="fa fa-twitter" aria-hidden="true"></i>
+            <a href="http://twitter.com/home?status=CforGood+<%= request.url %>" target="_blank">
+              <i class="fa fa-twitter" aria-hidden="true"></i>
+            </a>
           </div>
         </div>
       </div>
@@ -65,23 +72,23 @@
             <!-- LINKS | SOCIAL NETWORKS -->
             <ul class="network">
               <% if @cause.facebook.present? %>
-                <li style="background-color: <%= @cause.cause_category.color %>;">
-                  <a href="https://facebook.com/<%= @cause.facebook %>" class="link-facebook-business business-icon-container" target="_blank">
+                <li>
+                  <a href="https://facebook.com/<%= @cause.facebook %>" target="_blank">
                     <i class="fa fa-facebook business-icon"></i>
                   </a>
                 </li>
               <% end %>
               <% if @cause.twitter.present? %>
-                <li style="background-color: <%= @cause.cause_category.color %>;">
-                  <a href="https://twitter.com/<%= @cause.twitter %>" class="link-instagram-business business-icon-container" target="_blank">
-                    <i class="fa fa-twitter business-icon"></i>
+                <li>
+                  <a href="https://twitter.com/<%= @cause.twitter %>" target="_blank">
+                    <i class="fa fa-twitter" aria-hidden="true"></i>
                   </a>
                 </li>
               <% end %>
               <% if @cause.instagram.present? %>
-                <li style="background-color: <%= @cause.cause_category.color %>;">
-                  <a href="https://instagram.com/<%= @cause.instagram %>" class="link-instagram-business business-icon-container" target="_blank">
-                    <i class="fa fa-instagram business-icon"></i>
+                <li>
+                  <a href="https://instagram.com/<%= @cause.instagram %>" target="_blank">
+                    <i class="fa fa-instagram" aria-hidden="true"></i>
                   </a>
                 </li>
               <% end %>
@@ -90,22 +97,25 @@
             <ul class="direct-contact">
               <% if @cause.telephone.present? %>
                 <li>
-                  <a href="tel:<%= @cause.telephone %>" class="link-website-business business-icon-container" target="_blank" >
-                    <i class="fa fa-phone business-icon" style="border: 1px solid <%= @cause.cause_category.color %>; color: <%= @cause.cause_category.color %>;"></i><span><%= @cause.telephone %></span>
+                  <a href="tel:<%= @cause.telephone %>" target="_blank" >
+                    <i class="fa fa-phone" aria-hidden="true"></i>
+                    <span><%= @cause.telephone %></span>
                   </a>
                 </li>
               <% end %>
               <% if @cause.email.present? %>
                 <li>
-                  <a href="mailto:<%= @cause.email %>" class="link-mail-business business-icon-container" target="_blank">
-                    <i class="fa fa-envelope business-icon" style="border: 1px solid <%= @cause.cause_category.color %>; color: <%= @cause.cause_category.color %>;"></i><span><%= @cause.email %></span>
+                  <a href="mailto:<%= @cause.email %>" target="_blank">
+                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                    <span><%= @cause.email %></span>
                   </a>
                 </li>
               <% end %>
               <% if @cause.url.present? %>
                 <li>
-                  <a href="<%= @cause.url %>" class="link-website-business business-icon-container" target="_blank">
-                    <i class="fa fa-globe business-icon" style="border: 1px solid <%= @cause.cause_category.color %>; color: <%= @cause.cause_category.color %>;"></i><span><%= @cause.url %></span>
+                  <a href="<%= @cause.url %>" target="_blank">
+                    <i class="fa fa-globe" aria-hidden="true"></i>
+                    <span><%= @cause.url %></span>
                   </a>
                 </li>
               <% end %>
@@ -113,7 +123,7 @@
             <!-- INFO | ADRESSE -->
             <div class="place">
               <% if @cause.city.present? %>
-                <i class="fa fa-map-marker" style="border: 1px solid <%= @cause.cause_category.color %>; color: <%= @cause.cause_category.color %>;"></i>
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
                 <span><%= @cause.street %><br><%= @cause.zipcode %> <%= @cause.city %></span>
               <% end %>
             </div>
@@ -122,35 +132,34 @@
       </div>
     </div>
 
-    <div class="dropdown hidden-xs" id="button-dropdown-asso">
-      <div class="asso-button dropdown-toggle" data-toggle="dropdown" style="background-color: <%= @cause.cause_category.color %>;">
-        <div class="asso-card-red-heart">
-          <i class="fa fa-heart" aria-hidden="true"></i>
+    <div class="asso-bottom-container-v2">
+      <div class="dropdown">
+        <div class="<%= user_signed_in? && current_user.cause == @cause ? '' : 'hidden' %> asso-button-v2 dropdown-toggle" data-toggle="dropdown">
+          <%= image_tag "icons/heart_pulse.svg", class: "red-heart"%>
+          <div class="asso-button-text">Je soutiens cette association</div>
         </div>
-        <div class="asso-button-text">Soutenir cette Asso</div>
-      </div>
-      <ul class="dropdown-menu">
-        <div class="drop-display-flex">
-          <div class="cool-things">VOUS ALLEZ FAIRE QUELQUE CHOSE DE CHOUETTE !!</div>
-          <div class="cool-things-small">En validant votre choix, vois allez soutenir ENTR-AUTRES</div>
-          <div class="validate-choice-button" style="background-color: <%= @cause.cause_category.color %>;">JE VALIDE</div>
+        <div class="<%= !user_signed_in? || current_user.cause != @cause ? '' : 'hidden' %> asso-button-v2 dropdown-toggle" data-toggle="dropdown">
+          <%= image_tag "icons/heart.svg", class: "red-heart"%>
+          <div class="asso-button-text">Soutenir cette association</div>
         </div>
-      </ul>
-    </div>
-
-    <div class="asso-bottom-container-v2 visible-xs">
-      <div class="dropdown" id="button-dropdown-asso">
-        <div class="asso-button-v2 dropdown-toggle" data-toggle="dropdown" style="background-color: <%= @cause.cause_category.color %>;">
-          <div class="asso-card-red-heart">
-            <i class="fa fa-heart" aria-hidden="true"></i>
-          </div>
-          <div class="asso-button-text">Soutenir cette Asso</div>
-        </div>
-        <ul class="dropdown-menu" style="border-top: 2px solid <%= @cause.cause_category.color %> !important;">
+        <ul class="dropdown-menu">
           <div class="drop-display-flex">
-            <div class="cool-things">VOUS ALLEZ FAIRE QUELQUE CHOSE DE CHOUETTE !!</div>
-            <div class="cool-things-small">En validant votre choix, vois allez soutenir ENTR-AUTRES</div>
-            <div class="validate-choice-button" style="background-color: <%= @cause.cause_category.color %>;">JE VALIDE</div>
+            <div class="cool-things">VOUS ALLEZ FAIRE QUELQUE CHOSE DE CHOUETTE !</div>
+            <div class="cool-things-small">En validant votre choix, vous allez soutenir <%= @cause.name %></div>
+            <% if user_signed_in? %>
+              <%= simple_form_for(current_user, url: member_update_cause_path, remote: true, method: :put) do |f| %>
+                <%= f.input :cause_id, as: :hidden, input_html: {value: params[:id]}%>
+                <div id="submit">
+                  <span class="icon"><i class="fa fa-check" aria-hidden="true"></i></span>
+                  <%= f.submit "Je valide", class: "validate-choice-button" %>
+                  <span class="spinner">
+                    <svg width="44" height="44">
+                      <circle r="20" cx="22" cy="22" />
+                    </svg>
+                  </span>
+                </div>
+              <% end %>
+            <% end %>
           </div>
         </ul>
       </div>
@@ -158,24 +167,24 @@
   </div>
 </div>
 
-<% if user_signed_in? %>
-  <%= render 'components/popups/cause_validation' %>
+
+<%# if user_signed_in? %>
 
   <% content_for :after_js do %>
+
     <script>
       $(document).ready(function() {
-        $(".user-button").on("click", function(e) {
-          e.preventDefault;
-          var causeId = $('.cause-container').val('div').attr('id');
-          $(".popup-overlay").toggleClass("hidden");
-          $("#user_cause_id").val(causeId);
-          var causeName = "<%= @cause.name %>";
-          $('.cause-confirmation span.cause-name').html(causeName);
+
+        $(".validate-choice-button").on("click", function() {
           // EVENT AMPLITUDE : USER_C_CAUSE_SUPPORT
           amplitude.logEvent('USER_C_CAUSE_SUPPORT');
         });
+
       });
     </script>
+
   <% end %>
 
-<% end %>
+<%# end %>
+
+

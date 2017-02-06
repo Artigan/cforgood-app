@@ -2,6 +2,7 @@
 <% content_for :meta_description, "Découvrez le Bon Plan offert par #{@business.name} !" %>
 <% content_for :meta_image, @business.picture %>
 
+<%= render 'businesses/business_search_index' %>
 <%= render "member/dashboard/shared/sidebar" %>
 
 <div class="fullpage">
@@ -14,7 +15,7 @@
       <div class="banner-business-top-infos">
         <div class="infos-left">
           <div class="pastille">
-            <%= image_tag @business.business_category.picture, size: "10x10" %>
+            <%= image_tag @business.business_category.picture, size: "20x20" %>
           </div>
           <div class="category-name category"><%= @business.business_category.name %></div>
         </div>
@@ -28,10 +29,10 @@
         <div class="card-bottom-links">
           <div class="card-bottom-left-item" style="background-color: <%= @business.business_category.color %>;">
             <% if @business.like == 1 %>
-              <div class="card-red-heart"><%= image_tag "icons/heart.svg" %></div>
+              <%= image_tag "icons/heart.svg", class: "red-heart"%>
               <div class="firstblock-text"><%= "#{@business.like} personne" %></div>
             <% elsif @business.like > 1 %>
-              <div class="card-red-heart"><%= image_tag "icons/heart.svg" %></div>
+              <%= image_tag "icons/heart.svg", class: "red-heart"%>
               <div class="firstblock-text"><%= "#{@business.like} personnes" %></div>
             <% end %>
           </div>
@@ -74,8 +75,21 @@
       <% else %>
         <div class="business-desc">Profil en construction</div>
       <% end %>
-      <div class="">
-        <div class="title-sub">Informations</div>
+      <div class="title-sub">Détails</div>
+      <div class="business-infos">
+        <!-- BLOCK MAP -->
+        <div class="perk-map" style="border-color: <%= @business.business_category.color %>;">
+          <div id="map-perk-desktop"></div>
+          <div class="business-address">
+            <div class="pastille" style="background-color:<%= @business.business_category.color %>;">
+              <i class="fa fa-map-marker"></i>
+            </div>
+            <span><%= @address.present? ? @address.street : @business.street %>,
+            <br><%= @address.present? ? @address.zipcode : @business.zipcode %> <%= @address.present? ? @address.city : @business.city %></span>
+          </div>
+        </div>
+        <!-- LINKS | FIND THEM -->
+        <%= render "pro/dashboard/shared/business_links" %>
       </div>
     </div>
   </div>
@@ -87,62 +101,18 @@
     </div>
     <% @business.perks.active.each do |perk| %>
       <div class="perk-card-container perk-modal-use-<%= perk.id %>">
-        <div class="perk-card">
-          <div class="perk-card-left-item" style="background-color: <%= @business.business_category.color %>;">
-            <div class="perk-card-absolute-photo" style="background-image: url('<%= perk.picture.present? ? perk.picture.url(:card) : @business.picture.url(:card) %>');"></div>
-          </div>
-          <div class="perk-card-right-item">
-            <div class="pcri-container">
-              <div class="pcri-offer">
-                <div class="pcri-offer-tooltip" style="background-color: <%= @business.business_category.color %>;">
-                  <div><%= perk.offer_type? %></div>
-                </div>
-                <div class="pcri-offer-flash">
-                  <% if perk.times > 0 %>
-                    <span><i class="fa fa-flash pastille" style="background-color: #3F3F3F;" aria-hidden="true"></i><%= perk.times - Use.where(perk_id: perk.id).count %> restants</span>
-                  <% end %>
-                </div>
-              </div>
-              <div class="pcri-item">
-                <div class="pcri-item-name"><%= perk.name %></div>
-                <div class="pcri-item-text"><%= truncate(perk.description, length: 175) %></div>
-              </div>
-              <div class="pcri-uses">
-                <% if perk.uses.count == 1 %>
-                  <div class="pastille" style="background-color:<%= @business.business_category.color %>;">
-                    <i class="fa fa-heart" aria-hidden="true"></i>
-                  </div>
-                  <div><%= "#{perk.uses.count} personne a utilisé ce bon plan" %></div>
-                <% elsif perk.uses.count > 1 %>
-                  <div class="pastille" style="background-color:<%= @business.business_category.color %>;">
-                    <i class="fa fa-heart" aria-hidden="true"></i>
-                  </div>
-                  <div><%= "#{perk.uses.count} personnes ont utilisé ce bon plan" %></div>
-                <% end %>
-              </div>
-              <% if user_signed_in? %>
-                <% if !perk.perk_in_time? %>
-                  <div class="perk-pseudo-modal-link disabled" id="perk-modal-use-<%= perk.id %>">Bon plan non disponible</div>
-                <% elsif !perk.perk_usable?(current_user) %>
-                  <div class="perk-pseudo-modal-link disabled" id="perk-modal-use-<%= perk.id %>">Bon plan épuisé</div>
-                <% else %>
-                  <div class="perk-pseudo-modal-link" id="perk-modal-use-<%= perk.id %>">J'en profite</div>
-                <% end %>
-              <% end %>
-            </div>
-          </div>
-        </div>
-        <div class="perk-modal-use perk-modal-use-<%= perk.id %> hidden">
-          <% if !user_signed_in? %>
-            <%= render "businesses/business_perk_not_member" %>
-          <% elsif device_type == :desktop || perk.perk_detail.name == "email" || @business.online   %>
-            <%= render "businesses/business_perk_usage", perk: perk %>
-          <% else %>
-            <%= render "businesses/business_perk_using", perk: perk %>
-          <% end %>
-            <%#= render "businesses/mobileshow" %>
-            <%#= render "businesses/mobileshow_member" %>
-        </div>
+        <%= render  "businesses/business_card", business: @business, address: @address, perk: perk, index_view: false %>
+      </div>
+      <div class="perk-modal-use perk-modal-use-<%= perk.id %> hidden">
+        <% if !user_signed_in? %>
+          <%= render "businesses/business_perk_not_member" %>
+        <% elsif device_type == :desktop || perk.perk_detail.name == "email" || @business.online   %>
+          <%= render "businesses/business_perk_usage", perk: perk %>
+        <% else %>
+          <%#= render "businesses/business_perk_using", perk: perk %>
+        <% end %>
+          <%#= render "businesses/mobileshow" %>
+          <%#= render "businesses/mobileshow_member" %>
       </div>
     <% end %>
   </div>
@@ -151,6 +121,8 @@
 <% content_for :after_js do %>
 
   <script type="text/javascript">setRoutePathFromLocation()</script>
+
+  <%= render 'components/map_show', geojson: @geojson, container: device_type == :mobile ? 'map-perk' : 'map-perk-desktop' %>
 
   <script>
 
@@ -169,3 +141,4 @@
   </script>
 
 <% end %>
+

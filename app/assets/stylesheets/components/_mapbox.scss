@@ -174,7 +174,7 @@
   }
 }
 
-@media only screen and (min-width:769px) {
+@media only screen and (min-width:768px) {
   .mapboxgl-popup-content {
     .map-box {
       .map-perks {
@@ -344,7 +344,7 @@
   font-size: 26px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .mapboxgl-popup {
     position: fixed !important;
     bottom: 0;
@@ -356,7 +356,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .mapboxgl-popup-content {
     position: relative;
     width: 100% !important;
@@ -367,7 +367,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .mapboxv2 {
     width: 100%;
     border-radius: 0px;

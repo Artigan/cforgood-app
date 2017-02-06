@@ -99,4 +99,8 @@ module ApplicationHelper
     @current_impersonation ||= Business.find(session[:impersonate_id])
   end
 
+  def devise_mapping
+    Devise.mappings[:user]
+  end
+
 end

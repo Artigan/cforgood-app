@@ -17,15 +17,14 @@
       lat = coordinates[0]
       lng = coordinates[1]
     end
-    @businesses_around = Business.near([lat, lng], 10).active.for_map.joins(:perks).merge(Perk.in_time).distinct.size
-    @businesses = Business.active.for_map.joins(:perks).merge(Perk.in_time).distinct.includes(:business_category).eager_load(:perks_in_time, :addresses_for_map)
+
+    @businesses_around = Address.joins(:business).merge(Business.active.for_map.with_perks_in_time).near([lat, lng], 10).size
+    @businesses = Business.active.for_map.with_perks_in_time.distinct.includes(:business_category, :uses).eager_load(:perks_in_time, :addresses_for_map)
     @geojson = {"type" => "FeatureCollection", "features" => []}
 
     @businesses.each do |business|
       # BUSINESS ADDRESSES
       addresses = []
-      # Main shop address
-      addresses << [0, business.longitude, business.latitude, business.street] if business.shop
       # Other addresses
       business.addresses_for_map.each do |address|
         # shop
@@ -87,11 +86,17 @@
   end
 
   def profile
+    @businesses = Business.active.with_perks_in_time.distinct.includes(:business_category)
     @cause = Cause.all.includes(:cause_category)
     @payments = Payment.where(user_id: current_user.id).includes(:cause)
   end
 
+  def gift
+    @businesses = Business.active.with_perks_in_time.distinct.includes(:business_category)
+  end
+
   def ambassador
+    @businesses = Business.active.with_perks_in_time.distinct.includes(:business_category)
   end
 
 end
