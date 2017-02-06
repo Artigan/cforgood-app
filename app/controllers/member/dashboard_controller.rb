@@ -1,6 +1,6 @@
   class Member::DashboardController < ApplicationController
 
-  skip_before_action :authenticate_user!, only: [:dashboard, :my_account]
+  skip_before_action :authenticate_user!, only: [:dashboard]
 
   def dashboard
     # save logout access
@@ -86,9 +86,9 @@
   end
 
   def my_account
-    #TODO : Pundit Policy to prevent regular user from accessing this page
-    @new_employee = User.new
     @user = User.includes(users: :cause).find(params[:user_id])
+    authorize @user
+    @new_employee = User.new
     @used_perks = Use.used_by_users_for(@user)
     @liked_perks = Use.liked_by_users_for(@user)
     @employees_infos = @user.users.map do |employee|

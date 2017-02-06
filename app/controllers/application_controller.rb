@@ -2,7 +2,10 @@ class ApplicationController < ActionController::Base
 
   include Mobvious::Rails::Controller
   include Modules::ModuleSlack
+  include Pundit
 
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  
   protect_from_forgery with: :null_session
 
   before_action :prevent_signup
