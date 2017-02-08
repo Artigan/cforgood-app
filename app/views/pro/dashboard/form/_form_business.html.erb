@@ -1,7 +1,7 @@
 <div class="form-edit-container">
   <div class="form-edit">
     <!-- LINK ADDRESSES -->
-    <%= render "pro/dashboard/form/form_itinerant_addresses" %>
+    <%#= render "pro/dashboard/form/form_timetables" %>
     <!-- FORM BUSINESS -->
     <%= simple_form_for(@business, url: pro_update_business_path, method: :put, remote: true, authenticity_token: true) do |f| %>
       <%= f.error_notification %>
@@ -25,7 +25,7 @@
       <!-- FOR MORE ADDRESS -->
       <div class="address-other-shop" id="addresses">
         <%= f.simple_fields_for :addresses do |address| %>
-          <%= render 'address_fields', f: address %>
+          <%= render 'pro/dashboard/address_fields', f: address %>
         <% end %>
         <div class="links">
           <%= link_to_add_association '+', f, :addresses, class: 'button-address-more on-left' %>

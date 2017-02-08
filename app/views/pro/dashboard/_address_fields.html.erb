@@ -4,4 +4,26 @@
   <%= f.input :zipcode, placeholder: 'Code postal', label: 'Code postal' %>
   <%= f.input :city, placeholder: 'Ville', label: 'Ville' %>
   <%= link_to_remove_association("-", f, class: 'button-address-minus') unless f.object.main %>
+
+  <a href="#" class="timetables-modal"><%= render "shared/icons/address" %></a>
 </div>
+
+  <!-- LINK ADDRESSES -->
+
+  <%= f.simple_fields_for :timetables do |timetable| %>
+    <%= render 'pro/dashboard/timetables_fields', f: timetable %>
+  <% end %>
+   <%= f.button :submit, "Sauvegarder" %>
+
+  <%#= render "pro/dashboard/form/timetable_fields", f: f.object %>
+
+<% content_for :after_js do %>
+  <script>
+    $(document).ready(function() {
+      $(".timetables-modal").on("click", function(e) {
+        e.preventDefault();
+        $(".timetables-overlay").removeClass("hidden");
+      });
+    });
+  </script>
+<% end %>

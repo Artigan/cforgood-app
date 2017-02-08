@@ -30,6 +30,7 @@
 class Address < ApplicationRecord
   belongs_to :business
   has_many :timetables, dependent: :destroy
+  accepts_nested_attributes_for :timetables, :allow_destroy => true, :reject_if => :all_blank
 
   extend TimeSplitter::Accessors
   split_accessor :start_time, :end_time
