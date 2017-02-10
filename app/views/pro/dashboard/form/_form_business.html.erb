@@ -3,7 +3,7 @@
     <!-- LINK ADDRESSES -->
     <%#= render "pro/dashboard/form/form_timetables" %>
     <!-- FORM BUSINESS -->
-    <%= simple_form_for(@business, url: pro_update_business_path, method: :put, remote: true, authenticity_token: true) do |f| %>
+    <%= simple_form_for(@business, url: pro_update_business_path, method: :put, remote: false, authenticity_token: true) do |f| %>
       <%= f.error_notification %>
       <div class="col-1">
         <label>Photo</label>

@@ -10,6 +10,7 @@ threads threads_count, threads_count
 # Specifies the `port` that Puma will listen on to receive requests, default is 3000.
 #
 port        ENV.fetch("PORT") { 3000 }
+worker_timeout 3600
 
 # Specifies the `environment` that Puma will run in.
 #
@@ -45,3 +46,4 @@ workers ENV.fetch("WEB_CONCURRENCY") { 2 }
 
 # Allow puma to be restarted by `rails restart` command.
 plugin :tmp_restart
+

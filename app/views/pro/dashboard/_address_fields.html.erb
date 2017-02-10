@@ -9,11 +9,20 @@
 </div>
 
   <!-- LINK ADDRESSES -->
-
-  <%= f.simple_fields_for :timetables do |timetable| %>
-    <%= render 'pro/dashboard/timetables_fields', f: timetable %>
+  <% for i in 0..6 do %>
+    <%# binding.pry %>
+    <% if f.object.timetables.where(day: I18n.t("date.day_names")[i]).present?  %>
+      <%= f.simple_fields_for :timetables,  f.object.timetables.where(day: I18n.t("date.day_names")[i]) do |timetable| %>
+        <%= render 'pro/dashboard/timetable_fields', f: timetable, locals: { day: i}  %>
+      <% end %>
+    <% else %>
+      <div class="links">
+            <%# binding.pry %>
+          <%= link_to_add_association "", f, :timetables, day: i %>
+      </div>
+    <% end %>
   <% end %>
-   <%= f.button :submit, "Sauvegarder" %>
+  <%#= f.button :submit, "Sauvegarder" %>
 
   <%#= render "pro/dashboard/form/timetable_fields", f: f.object %>
 
