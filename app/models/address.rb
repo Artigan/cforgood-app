@@ -30,7 +30,7 @@
 class Address < ApplicationRecord
   belongs_to :business
   has_many :timetables, dependent: :destroy
-  accepts_nested_attributes_for :timetables, :allow_destroy => true, :reject_if => :all_blank
+  accepts_nested_attributes_for :timetables, :allow_destroy => true, :reject_if => :blank_hours?
 
   extend TimeSplitter::Accessors
   split_accessor :start_time, :end_time
@@ -60,6 +60,13 @@ class Address < ApplicationRecord
   end
 
   private
+
+  def blank_hours?(att)
+    att[:start_at_hour] == "00" &&
+    att[:start_at_min] == "00" &&
+    att[:end_at_hour] == "00" &&
+    att[:end_at_min] == "00"
+  end
 
   def address_changed?
     street_changed? || zipcode_changed? || city_changed?

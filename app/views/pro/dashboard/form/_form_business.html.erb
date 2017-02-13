@@ -1,7 +1,5 @@
 <div class="form-edit-container">
   <div class="form-edit">
-    <!-- LINK ADDRESSES -->
-    <%#= render "pro/dashboard/form/form_timetables" %>
     <!-- FORM BUSINESS -->
     <%= simple_form_for(@business, url: pro_update_business_path, method: :put, remote: false, authenticity_token: true) do |f| %>
       <%= f.error_notification %>
@@ -83,16 +81,16 @@
       });
 
       // ACTIVATE OR NOT BUTTON ITINERANT ADDRESS
-      $('.business_itinerant').on('change', function(e) {
-        e.preventDefault();
-        $(".button-itinerant-address").toggleClass('hidden');
-      });
+      // $('.business_itinerant').on('change', function(e) {
+      //   e.preventDefault();
+      //   $(".button-itinerant-address").toggleClass('hidden');
+      // });
 
       // LINK TO ITINERANT ADDRESS
-      $(".button-itinerant-address").on("click", function(e) {
-        e.preventDefault();
-        $(".address-overlay").removeClass("hidden");
-      });
+      // $(".button-itinerant-address").on("click", function(e) {
+      //   e.preventDefault();
+      //   $(".address-overlay").removeClass("hidden");
+      // });
 
 
       function build_autocomplete() {
