@@ -218,14 +218,6 @@ class Perk < ApplicationRecord
         puts "-- body : #{e.http_body}"
       end
     end
-   end
-
-  def active?
-    if flash
-      end_date < DateTime.now
-    else
-      active
-    end
   end
 
   protected

@@ -1,7 +1,7 @@
 <div class="form-edit-container">
   <div class="form-edit">
     <!-- FORM BUSINESS -->
-    <%= simple_form_for(@business, url: pro_update_business_path, method: :put, remote: false, authenticity_token: true) do |f| %>
+    <%= simple_form_for(@business, url: pro_update_business_path, method: :put, remote: true, authenticity_token: true) do |f| %>
       <%= f.error_notification %>
       <div class="col-1">
         <label>Photo</label>
@@ -35,14 +35,7 @@
       </div>
       <%= f.input :shop, label: "Es-tu une boutique physique ?", as: :radio_buttons, collection: [['Oui', true ], ['Non', false ]], checked: @business.shop || false  %>
       <%= f.input :online, label: "Es-tu une e-boutique ?", as: :radio_buttons, collection: [['Oui', true ], ['Non', false ]], checked: @business.online || false  %>
-      <div class="business_itinerant_select">
-        <%= f.input :itinerant, label: "Es-tu itinérant ?", as: :radio_buttons, collection: [['Oui', true ], ['Non', false ]], checked: @business.itinerant || false  %>
-        <% if @business.itinerant %>
-          <a href="#" class="button-itinerant-address"><%= render "shared/icons/address" %></a>
-        <% else %>
-          <a href="#" class="button-itinerant-address hidden"><%= render "shared/icons/address" %></a>
-        <% end %>
-      </div>
+      <%= f.input :itinerant, label: "Es-tu itinérant ?", as: :radio_buttons, collection: [['Oui', true ], ['Non', false ]], checked: @business.itinerant || false  %>
       <%= f.input :url, placeholder: 'Site web', label: 'Site web' %>
       <%= f.input :email, placeholder: 'Adresse email', required: true, label: "Email" %>
       <%= f.input :telephone, placeholder: 'Téléphone', required: true, label: 'Téléphone' %>
@@ -80,21 +73,10 @@
         readURL(newFile);
       });
 
-      // ACTIVATE OR NOT BUTTON ITINERANT ADDRESS
-      // $('.business_itinerant').on('change', function(e) {
-      //   e.preventDefault();
-      //   $(".button-itinerant-address").toggleClass('hidden');
-      // });
-
-      // LINK TO ITINERANT ADDRESS
-      // $(".button-itinerant-address").on("click", function(e) {
-      //   e.preventDefault();
-      //   $(".address-overlay").removeClass("hidden");
-      // });
-
 
       function build_autocomplete() {
         var address_inputs = document.querySelectorAll('.business_street');
+        $('.business_street').removeClass('business_street');
 
         var places_autocomplete;
         [].forEach.call(address_inputs, function (address_input) {

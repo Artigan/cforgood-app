@@ -304,9 +304,9 @@
             }
           }
 
-          .business_itinerant_select {
-            width: 100%;
-          }
+          // .business_itinerant_select {
+          //   width: 100%;
+          // }
 
           .address-other-shop {
             width: 100%;
@@ -323,6 +323,12 @@
                 width: 30px;
                 height: 30px;
               }
+
+              &:hover,
+              &:focus {
+                color: #fff;
+              }
+
             }
           }
 
@@ -359,187 +365,187 @@
 
         /* PROFILE - ADDRESS *********************************************/
 
-        a.button-itinerant-address {
-          position: absolute;
-          right: 0;
-          margin-top: 10px;
-          border: none;
-          border-radius: 50%;
-          background-color: #FFF;
+        // a.button-itinerant-address {
+        //   position: absolute;
+        //   right: 0;
+        //   margin-top: 10px;
+        //   border: none;
+        //   border-radius: 50%;
+        //   background-color: #FFF;
 
-          svg {
-            padding-top: 17%;;
-          }
-        }
+        //   svg {
+        //     padding-top: 17%;;
+        //   }
+        // }
 
-        .days-carrousel {
-          display: flex;
-          flex-direction: column;
-          width: 260px;
+        // .days-carrousel {
+        //   display: flex;
+        //   flex-direction: column;
+        //   width: 260px;
 
-          a:active,
-          a:focus, {
-            outline: none;
-          }
+        //   a:active,
+        //   a:focus, {
+        //     outline: none;
+        //   }
 
-          .slick-slide {
-            margin-top: 30px;
-            margin-right: 40px;
-          }
+        //   .slick-slide {
+        //     margin-top: 30px;
+        //     margin-right: 40px;
+        //   }
 
-          .slick-list {
-            order: 1;
-            margin-top: -30px;
-            min-height: 390px;
-          }
+        //   .slick-list {
+        //     order: 1;
+        //     margin-top: -30px;
+        //     min-height: 390px;
+        //   }
 
-          .slick-arrow,
-          .slick-prev,
-          .slick-prev:hover,
-          .slick-prev:active,
-          .slick-prev:focus,
-          .slick-next,
-          .slick-next:hover,
-          .slick-next:active,
-          .slick-next:focus {
-            position: relative;
-            width: 40px;
-            height: 40px;
-            background-color: #9FD6AE;
-            z-index: 10;
-            bottom: -35px;
-          }
+        //   .slick-arrow,
+        //   .slick-prev,
+        //   .slick-prev:hover,
+        //   .slick-prev:active,
+        //   .slick-prev:focus,
+        //   .slick-next,
+        //   .slick-next:hover,
+        //   .slick-next:active,
+        //   .slick-next:focus {
+        //     position: relative;
+        //     width: 40px;
+        //     height: 40px;
+        //     background-color: #9FD6AE;
+        //     z-index: 10;
+        //     bottom: -35px;
+        //   }
 
-          .slick-prev {
-            order: 2;
-            top: -340px;
-            left: 0px;
-            border-radius: 3px 0 0 3px;
+        //   .slick-prev {
+        //     order: 2;
+        //     top: -340px;
+        //     left: 0px;
+        //     border-radius: 3px 0 0 3px;
 
-             &:before {
-              font-family: FontAwesome;
-              font-size: 24px;
-              content: '\f104';
-            }
-          }
+        //      &:before {
+        //       font-family: FontAwesome;
+        //       font-size: 24px;
+        //       content: '\f104';
+        //     }
+        //   }
 
-          .slick-next {
-            order: 3;
-            top: -380px;
-            left: 220px;
-            border-radius: 0 3px 3px 0;
+        //   .slick-next {
+        //     order: 3;
+        //     top: -380px;
+        //     left: 220px;
+        //     border-radius: 0 3px 3px 0;
 
-            &:before {
-              font-family: FontAwesome;
-              font-size: 24px;
-              content: '\f105';
-            }
-          }
-        }
+        //     &:before {
+        //       font-family: FontAwesome;
+        //       font-size: 24px;
+        //       content: '\f105';
+        //     }
+        //   }
+        // }
 
-        .title-address {
-          width: 260px;
-          height: 40px;
-          padding: 8px 20px;
-          margin-bottom: 15px;
-          color: #fff;
-          text-align: center;
-          background-color: #9FD6AE;
-          border-radius: 3px 3px 0 0;
+        // .title-address {
+        //   width: 260px;
+        //   height: 40px;
+        //   padding: 8px 20px;
+        //   margin-bottom: 15px;
+        //   color: #fff;
+        //   text-align: center;
+        //   background-color: #9FD6AE;
+        //   border-radius: 3px 3px 0 0;
 
-          &.day {
-            font-size: 14px;
-            font-weight: 500;
-            text-transform: uppercase;
-          }
-        }
+        //   &.day {
+        //     font-size: 14px;
+        //     font-weight: 500;
+        //     text-transform: uppercase;
+        //   }
+        // }
 
-        .form-address {
-          width: 260px;
-          margin-left: -18px;
-          margin-top: 20px;
+        // .form-address {
+        //   width: 260px;
+        //   margin-left: -18px;
+        //   margin-top: 20px;
 
-          label {
-            font-size: 11px;
-            text-transform: uppercase;
-            font-weight: 600;
-            color: #636363;
-          }
+        //   label {
+        //     font-size: 11px;
+        //     text-transform: uppercase;
+        //     font-weight: 600;
+        //     color: #636363;
+        //   }
 
-          label.hint--top-right {
-            height: 25px;
-          }
+        //   label.hint--top-right {
+        //     height: 25px;
+        //   }
 
-          .address_active {
-            margin: 0;
-          }
+        //   .address_active {
+        //     margin: 0;
+        //   }
 
-          .address_start_time_hour,
-          .address_start_time_min,
-          .address_end_time_hour,
-          .address_end_time_min {
-            display: inline-flex;
-            align-items: baseline;
-            margin-top: 20px;
-            width: 20%;
+        //   .address_start_time_hour,
+        //   .address_start_time_min,
+        //   .address_end_time_hour,
+        //   .address_end_time_min {
+        //     display: inline-flex;
+        //     align-items: baseline;
+        //     margin-top: 20px;
+        //     width: 20%;
 
-            &:before {
-              color: #636363;
-              font-weight: 100;
-            }
+        //     &:before {
+        //       color: #636363;
+        //       font-weight: 100;
+        //     }
 
-            label {
-              margin-right: 10px;
-            }
-          }
+        //     label {
+        //       margin-right: 10px;
+        //     }
+        //   }
 
-          .address_start_time_hour {
-            margin-left: -48px;
-          }
+        //   .address_start_time_hour {
+        //     margin-left: -48px;
+        //   }
 
-          .address_end_time_hour {
-            margin-left: 45px;
-          }
+        //   .address_end_time_hour {
+        //     margin-left: 45px;
+        //   }
 
-          .address_street { width: 100%; }
-          .address_zipcode { width: 35%; }
-          .address_city { width: 63%; margin-left: 1%; }
+        //   .address_street { width: 100%; }
+        //   .address_zipcode { width: 35%; }
+        //   .address_city { width: 63%; margin-left: 1%; }
 
-          .btn-update, .btn-new {
-            width: 100%;
-            margin-right: 3px;
-            margin-bottom: 20px;
-            border-radius: 0 0 3px 3px;
-            font-size: 12px;
-            text-transform: uppercase;
+        //   .btn-update, .btn-new {
+        //     width: 100%;
+        //     margin-right: 3px;
+        //     margin-bottom: 20px;
+        //     border-radius: 0 0 3px 3px;
+        //     font-size: 12px;
+        //     text-transform: uppercase;
 
-            &:hover, a:focus, a:active {
-              background-color: #8BBD99;
-              color: #fff;
-            }
-          }
+        //     &:hover, a:focus, a:active {
+        //       background-color: #8BBD99;
+        //       color: #fff;
+        //     }
+        //   }
 
-          .btn-delete {
-            display: flex;
-            float: right;
-            position: relative;
-            justify-content: center;
-            padding: 10px;
-            bottom: 55px;
-            right: 5px;
-            width: 45px;
-            height: 34px;
-            border-radius: 0 0 3px 0;
-            background-color: #E1E1E1;
-            font-size: 14px;
-            color: #fff;
+        //   .btn-delete {
+        //     display: flex;
+        //     float: right;
+        //     position: relative;
+        //     justify-content: center;
+        //     padding: 10px;
+        //     bottom: 55px;
+        //     right: 5px;
+        //     width: 45px;
+        //     height: 34px;
+        //     border-radius: 0 0 3px 0;
+        //     background-color: #E1E1E1;
+        //     font-size: 14px;
+        //     color: #fff;
 
-            &:hover, a:focus, a:active {
-              background-color: #8BBD99;
-              color: #fff;
-            }
-          }
-        }
+        //     &:hover, a:focus, a:active {
+        //       background-color: #8BBD99;
+        //       color: #fff;
+        //     }
+        //   }
+        // }
 
         /* Profile supervisor ********************/
         .supervisor-map {
