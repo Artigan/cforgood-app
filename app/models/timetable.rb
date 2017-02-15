@@ -7,8 +7,8 @@
 #  day        :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  start_at   :time
-#  end_at     :time
+#  start_at   :datetime
+#  end_at     :datetime
 #
 # Indexes
 #
@@ -29,7 +29,7 @@ class Timetable < ApplicationRecord
   scope :today, -> { where('timetables.day = ? or timetables.day = ? or timetables.day is null', I18n.t("date.day_names")[Time.now.wday], "") }
   scope :opened, -> { where("timetables.start_at <= ? and timetables.end_at >= ?", Time.now, Time.now) }
 
-  before_create :format_end_at
+  # before_create :format_end_at
 
   private
 

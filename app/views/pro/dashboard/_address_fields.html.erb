@@ -15,7 +15,7 @@
     <span>Horaires</span>
     <% for i in 0..6 do %>
       <% if f.object.timetables.where(day: i).present?  %>
-        <%= f.simple_fields_for :timetables,  f.object.timetables.where(day: i).order('start_at::time') do |timetable| %>
+        <%= f.simple_fields_for :timetables,  f.object.timetables.where(day: i) do |timetable| %>
           <%= render 'pro/dashboard/timetable_fields', f: timetable  %>
         <% end %>
       <% else %>

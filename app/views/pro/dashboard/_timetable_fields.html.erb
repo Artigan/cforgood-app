@@ -4,8 +4,8 @@
   <div class="day-hours">
     <%= f.input :day, as: :hidden %>
     <%= f.input :start_at_hour, label: false, collection: pad0(0..23), selected: f.object.start_at_hour.present? ? pad0(f.object.start_at_hour) : "00"  %>
-    <%= f.input :start_at_min, label: false, collection: pad0([0, 15, 30, 45]), selected: f.object.present? ? pad0(f.object.start_at_min)  : "00" %>
-    <%= f.input :end_at_hour, label: false, collection: pad0(0..23), selected: f.object.present? ? pad0(f.object.end_at_hour)  : "00" %>
-    <%= f.input :end_at_min, label: false, collection: pad0([0, 15, 30, 45]), selected: f.object.present? ? pad0(f.object.end_at_min)  : "00" %>
+    <%= f.input :start_at_min, label: false, collection: pad0([0, 15, 30, 45]), selected: f.object.start_at_min.present? ? pad0(f.object.start_at_min)  : "00" %>
+    <%= f.input :end_at_hour, label: false, collection: pad0(0..23), selected: f.object.end_at_hour.present? ? pad0(f.object.end_at_hour)  : "00" %>
+    <%= f.input :end_at_min, label: false, collection: pad0([0, 15, 30, 45]), selected: f.object.end_at_min.present? ? pad0(f.object.end_at_min)  : "00" %>
   </div>
 </div>

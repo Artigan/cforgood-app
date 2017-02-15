@@ -260,8 +260,8 @@ ActiveRecord::Schema.define(version: 20170213151944) do
     t.integer  "day"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.time     "start_at"
-    t.time     "end_at"
+    t.datetime "start_at"
+    t.datetime "end_at"
     t.index ["address_id"], name: "index_timetables_on_address_id", using: :btree
   end
 
