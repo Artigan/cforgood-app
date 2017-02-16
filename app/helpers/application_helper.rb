@@ -11,6 +11,14 @@ module ApplicationHelper
     end
   end
 
+  def name_user(user)
+    if !current_user.last_name.blank?
+      current_user.first_name + " " + current_user.last_name.chars.first + "."
+    elsif !current_user.name.blank?
+      current_user.name.split(" ")[0]
+    end
+  end
+
   def active_class(link_path)
     current_page?(link_path) ? "active" : ""
   end
