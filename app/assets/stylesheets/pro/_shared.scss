@@ -218,6 +218,7 @@
   background-color: #9FD6AE;
   text-decoration: none;
   outline: none;
+  cursor: pointer;
 }
 
 .day-container {
@@ -296,7 +297,7 @@
 
     .done-overlay,
     .done-overlay-address {
-      left: 15%;
+      left: 90px;
     }
 
     .dashboard {

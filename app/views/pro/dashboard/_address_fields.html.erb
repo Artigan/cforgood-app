@@ -5,45 +5,43 @@
   <%= f.input :city, placeholder: 'Ville', label: 'Ville' %>
   <%= link_to_remove_association("-", f, class: 'button-address-minus') unless f.object.main %>
 
-  <a href="#" class="timetables-modal"><%= image_tag 'icons/horloge.svg' %></a>
+  <div class="timetables-modal"><%= image_tag 'icons/horloge.svg' %></div>
 
-<!-- LINK Timetables -->
-<div class="timetables-overlay hidden">
-  <div class="timetables-container">
-    <!-- CLOSE BUTTON -->
-    <button type="button" class="close-button"><i class="fa fa-times"></i></button>
-    <span>Horaires</span>
-    <% for i in 0..6 do %>
-      <% if f.object.timetables.where(day: i).present?  %>
-        <%= f.simple_fields_for :timetables,  f.object.timetables.where(day: i) do |timetable| %>
-          <%= render 'pro/dashboard/timetable_fields', f: timetable  %>
+  <!-- LINK Timetables -->
+  <div class="timetables-overlay hidden">
+    <div class="timetables-container">
+      <!-- CLOSE BUTTON -->
+      <button type="button" class="close-button"><i class="fa fa-times"></i></button>
+      <span>Horaires</span>
+      <% for i in 0..6 do %>
+        <% if f.object.timetables.where(day: i).present?  %>
+          <%= f.simple_fields_for :timetables,  f.object.timetables.where(day: i) do |timetable| %>
+            <%= render 'pro/dashboard/timetable_fields', f: timetable  %>
+          <% end %>
+        <% else %>
+          <div class="links">
+          <%= f.simple_fields_for :timetables, Timetable.new do |timetable| %>
+            <% timetable.object.day = i %>
+            <%= render 'pro/dashboard/timetable_fields', f: timetable  %>
+          <% end %>
+          </div>
         <% end %>
-      <% else %>
-        <div class="links">
-        <%= f.simple_fields_for :timetables,  Timetable.new do |timetable| %>
-          <% timetable.object.day = i %>
-          <%= render 'pro/dashboard/timetable_fields', f: timetable  %>
-        <% end %>
-        </div>
       <% end %>
-    <% end %>
+    </div>
   </div>
-</div>
-
 </div>
 
 <% content_for :after_js do %>
   <script>
     $(document).ready(function() {
-
       $(".timetables-modal").on("click", function(e) {
         e.preventDefault();
         $(this).next("div.timetables-overlay").removeClass("hidden");
       });
 
       $('.close-button').on("click", function(e) {
-         $(this).closest("div.timetables-overlay").addClass("hidden");
         e.preventDefault();
+        $(this).closest("div.timetables-overlay").addClass("hidden");
       });
     });
   </script>
