@@ -1,6 +1,20 @@
 <div class="navbar-v2">
 
-  <div class="navbar-logo-item left hidden-xs"></div>
+
+  <% if user_signed_in? %>
+    <%= link_to member_user_dashboard_path(current_user) do %>
+      <div class="navbar-logo-item left hidden-xs"></div>
+    <% end %>
+  <% elsif business_signed_in? %>
+    <%= link_to pro_business_dashboard_path(current_business) do %>
+      <div class="navbar-logo-item left hidden-xs"></div>
+    <% end %>
+  <% else %>
+    <%= link_to root_path do %>
+      <div class="navbar-logo-item left hidden-xs"></div>
+    <% end %>
+  <% end %>
+
   <span id="open-leftmenu"><div class="visible-xs">MENU</div></span>
 
   <!-- Impersonnate businesses -->
@@ -117,7 +131,7 @@
             <div class="droptext-opacity">Aide et conseils</div>
           <% end %>
         </li>
-        <% if user_signed_in? || user_signed_in? %>
+        <% if user_signed_in? || business_signed_in? %>
           <li>
             <%= link_to destroy_user_session_path, method: :delete do %>
               <div class="droptext-opacity">Déconnexion</div>

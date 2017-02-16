@@ -1,0 +1,156 @@
+.leftmenu {
+  position: fixed;
+  left: 0;
+  width: 90px;
+  height: 100vh;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  z-index: 30;
+  border-right: 1px solid rgba(211, 211, 211, 0.3);
+}
+
+.leftmenu-item {
+  width: 100%;
+  height: 90px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.4s ease;
+  flex-direction: column;
+}
+
+.leftmenu-item:hover {
+  color: white;
+  transition: 0.4s ease;
+}
+
+.leftmenu-item:hover a {
+  color: white;
+  transition: 0.4s ease;
+}
+
+.leftmenu-item:active {
+  color: white;
+  transition: 0.4s ease;
+}
+
+.leftmenu-item a {
+  text-decoration: none;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgba(55,55,55,0.6);
+  flex-direction: column;
+}
+
+.leftmenu-item.active a {
+  background-color: rgba(55,55,55,1);
+}
+
+.leftmenu-item.active.pro  a{
+  background-color: rgba(51, 204, 102, 1);
+}
+
+.leftmenu-item.active a {
+  color: white;
+}
+
+@media (min-width: 768px) {
+  .leftmenu {
+    top: 50px;
+  }
+
+  .leftmenu-item:hover a {
+    background-color: lightgrey;
+  }
+  .leftmenu-item.pro:hover a {
+    background-color: rgba(199, 237, 204, 1);
+  }
+
+  .leftmenu-item.active a:after {
+    position: absolute;
+    content:"";
+    top: 36px;
+    right: -10px;
+    width:0;
+    height:0;
+    border-top:10px solid transparent;
+    border-bottom:10px solid transparent;
+    border-left:10px solid rgba(55,55,55,1);
+    z-index: 1;
+    transition: 0.4s ease;
+  }
+
+  .leftmenu-item.pro.active a:after {
+    border-left:10px solid rgba(51, 204, 102, 1);
+  }
+}
+
+.left-menu-svg-container {
+  height: 40px;
+  width: 40px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.left-menu-text {
+  font-size: 10px;
+  margin-top: 5px;
+}
+
+.leftmenu-animation {
+  position: fixed;
+  z-index: 100;
+  height: 100%;
+  width: 100px;
+  top: 50px;
+  left: 0;
+  overflow: hidden;
+
+  transition: all 0.3s ease-in-out;
+
+  span {
+    width: 30px;
+    left: 30px;
+    height: 30px;
+    top: 35px;
+    position: absolute;
+    text-transform: uppercase;
+    display: flex;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 600;
+    background-color: white;
+    color: rgba(55,55,55,0.8);
+    cursor: pointer;
+    z-index: 1;
+    border: 2px solid white;
+
+    .fa {
+      font-size: 16px;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .leftmenu-animation {
+    transform: translateX(-94px);
+
+    &.is-open-max {
+      transform: translateX(0px);
+    }
+  }
+}
+
+#open-leftmenu {
+  margin-left: 8px;
+  font-size: 13px;
+}

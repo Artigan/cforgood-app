@@ -54,11 +54,7 @@
             <% end %>
           </div>
           <div class="user-status">
-            <% if !current_user.last_name.blank? %>
-              <p><%= current_user.first_name %> <%= current_user.last_name.chars.first + "." %></p>
-            <% elsif !current_user.name.blank? %>
-              <p><%= current_user.name.split(" ")[0] %></p>
-            <% end %>
+            <%= name_user(current_user) %>
             <span class="label-info">Ambassadeur</span>
           </div>
           <a href="https://www.appsheet.com/start/3ffdccbf-a018-4518-812b-22e6e30d08d1?utm_medium=email&utm_source=transactional&utm_campaign=Share+the+App+Conversions#_appName=AmbassadeurBoard-217783&_control=Bordeaux&_imageDisplayType=Square+Image&_page=deck&_showActionBar=true&_sortBy%5B0%5D%5BColumn%5D=Commerce&_sortBy%5B0%5D%5BOrder%5D=Ascending&_sortBy%5B1%5D%5BColumn%5D=Commer%C3%A7ant&_sortBy%5B1%5D%5BOrder%5D=Ascending&_table=Board+tri%C3%A9button" class="button-link app" target="_blank">Accès app ambassadeur</a>
