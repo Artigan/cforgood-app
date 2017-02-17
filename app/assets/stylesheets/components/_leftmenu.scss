@@ -22,18 +22,19 @@
   flex-direction: column;
 }
 
-.leftmenu-item:hover {
+.leftmenu-item:hover,
+.leftmenu-item:hover a,
+.leftmenu-item:active,
+.leftmenu-item.active a {
   color: white;
   transition: 0.4s ease;
 }
 
-.leftmenu-item:hover a {
-  color: white;
-  transition: 0.4s ease;
-}
-
-.leftmenu-item:active {
-  color: white;
+.leftmenu-item.pro:hover,
+.leftmenu-item.pro:hover a,
+.leftmenu-item.pro:active,
+.leftmenu-item.pro.active a {
+  color: rgba(55,55,55,0.6);
   transition: 0.4s ease;
 }
 
@@ -53,11 +54,8 @@
 }
 
 .leftmenu-item.active.pro  a{
-  background-color: rgba(51, 204, 102, 1);
-}
-
-.leftmenu-item.active a {
-  color: white;
+  background-color: white;
+  border: 2px solid #33cc66;
 }
 
 @media (min-width: 768px) {
@@ -69,7 +67,7 @@
     background-color: lightgrey;
   }
   .leftmenu-item.pro:hover a {
-    background-color: rgba(199, 237, 204, 1);
+    background-color: rgba(199, 237, 204, 0.9);
   }
 
   .leftmenu-item.active a:after {
@@ -101,7 +99,10 @@
 
 .left-menu-text {
   font-size: 10px;
+  line-height: 11px;
+  text-align: center;
   margin-top: 5px;
+  padding: 0 5px;
 }
 
 .leftmenu-animation {
