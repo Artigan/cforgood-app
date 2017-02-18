@@ -13,14 +13,15 @@
   <div class="dash-fullpage-header">
     <div class="dash-header-avatar-container">
       <div class="header-avatar" style="background-image: url(<%= avatar_url(current_user) %>);"></div>
+
     </div>
   </div>
 
   <div class="dash-fullpage-bottom-container">
 
     <div class="dash-fullpage-user-name">
-      <div class="user-name"><%= current_user.name %></div>
-      <div class="user-name-tooltip">ABONNE DEPUIS LE 1er NOVEMBRE 2015</div>
+      <div class="user-name"><%= name_user(current_user) %></div>
+      <div class="user-name-tooltip"><%= current_user.status? %></div>
     </div>
 
     <div class="tabs-dashboard">

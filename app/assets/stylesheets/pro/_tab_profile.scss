@@ -356,190 +356,6 @@
           width: 37%;
         }
 
-        /* PROFILE - ADDRESS *********************************************/
-
-        // a.button-itinerant-address {
-        //   position: absolute;
-        //   right: 0;
-        //   margin-top: 10px;
-        //   border: none;
-        //   border-radius: 50%;
-        //   background-color: #FFF;
-
-        //   svg {
-        //     padding-top: 17%;;
-        //   }
-        // }
-
-        // .days-carrousel {
-        //   display: flex;
-        //   flex-direction: column;
-        //   width: 260px;
-
-        //   a:active,
-        //   a:focus, {
-        //     outline: none;
-        //   }
-
-        //   .slick-slide {
-        //     margin-top: 30px;
-        //     margin-right: 40px;
-        //   }
-
-        //   .slick-list {
-        //     order: 1;
-        //     margin-top: -30px;
-        //     min-height: 390px;
-        //   }
-
-        //   .slick-arrow,
-        //   .slick-prev,
-        //   .slick-prev:hover,
-        //   .slick-prev:active,
-        //   .slick-prev:focus,
-        //   .slick-next,
-        //   .slick-next:hover,
-        //   .slick-next:active,
-        //   .slick-next:focus {
-        //     position: relative;
-        //     width: 40px;
-        //     height: 40px;
-        //     background-color: #9FD6AE;
-        //     z-index: 10;
-        //     bottom: -35px;
-        //   }
-
-        //   .slick-prev {
-        //     order: 2;
-        //     top: -340px;
-        //     left: 0px;
-        //     border-radius: 3px 0 0 3px;
-
-        //      &:before {
-        //       font-family: FontAwesome;
-        //       font-size: 24px;
-        //       content: '\f104';
-        //     }
-        //   }
-
-        //   .slick-next {
-        //     order: 3;
-        //     top: -380px;
-        //     left: 220px;
-        //     border-radius: 0 3px 3px 0;
-
-        //     &:before {
-        //       font-family: FontAwesome;
-        //       font-size: 24px;
-        //       content: '\f105';
-        //     }
-        //   }
-        // }
-
-        // .title-address {
-        //   width: 260px;
-        //   height: 40px;
-        //   padding: 8px 20px;
-        //   margin-bottom: 15px;
-        //   color: #fff;
-        //   text-align: center;
-        //   background-color: #9FD6AE;
-        //   border-radius: 3px 3px 0 0;
-
-        //   &.day {
-        //     font-size: 14px;
-        //     font-weight: 500;
-        //     text-transform: uppercase;
-        //   }
-        // }
-
-        // .form-address {
-        //   width: 260px;
-        //   margin-left: -18px;
-        //   margin-top: 20px;
-
-        //   label {
-        //     font-size: 11px;
-        //     text-transform: uppercase;
-        //     font-weight: 600;
-        //     color: #636363;
-        //   }
-
-        //   label.hint--top-right {
-        //     height: 25px;
-        //   }
-
-        //   .address_active {
-        //     margin: 0;
-        //   }
-
-        //   .address_start_time_hour,
-        //   .address_start_time_min,
-        //   .address_end_time_hour,
-        //   .address_end_time_min {
-        //     display: inline-flex;
-        //     align-items: baseline;
-        //     margin-top: 20px;
-        //     width: 20%;
-
-        //     &:before {
-        //       color: #636363;
-        //       font-weight: 100;
-        //     }
-
-        //     label {
-        //       margin-right: 10px;
-        //     }
-        //   }
-
-        //   .address_start_time_hour {
-        //     margin-left: -48px;
-        //   }
-
-        //   .address_end_time_hour {
-        //     margin-left: 45px;
-        //   }
-
-        //   .address_street { width: 100%; }
-        //   .address_zipcode { width: 35%; }
-        //   .address_city { width: 63%; margin-left: 1%; }
-
-        //   .btn-update, .btn-new {
-        //     width: 100%;
-        //     margin-right: 3px;
-        //     margin-bottom: 20px;
-        //     border-radius: 0 0 3px 3px;
-        //     font-size: 12px;
-        //     text-transform: uppercase;
-
-        //     &:hover, a:focus, a:active {
-        //       background-color: #8BBD99;
-        //       color: #fff;
-        //     }
-        //   }
-
-        //   .btn-delete {
-        //     display: flex;
-        //     float: right;
-        //     position: relative;
-        //     justify-content: center;
-        //     padding: 10px;
-        //     bottom: 55px;
-        //     right: 5px;
-        //     width: 45px;
-        //     height: 34px;
-        //     border-radius: 0 0 3px 0;
-        //     background-color: #E1E1E1;
-        //     font-size: 14px;
-        //     color: #fff;
-
-        //     &:hover, a:focus, a:active {
-        //       background-color: #8BBD99;
-        //       color: #fff;
-        //     }
-        //   }
-        // }
-
         /* Profile supervisor ********************/
         .supervisor-map {
           display: inline-block;
@@ -909,3 +725,105 @@
     }
   }
 }
+
+.profile-datas {
+  display: flex;
+}
+
+.picture-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30%;
+  max-width: 130px;
+  margin-top: 20px;
+  padding: 10px;
+  text-align: center;
+  color: #656565;
+  @include transition(all, 0.3s, ease-in-out);
+
+  img {
+    width: 70%;
+    max-width: 150px;
+    max-height: 150px;
+    border: 1px solid #eeeeee;
+  }
+
+  .form-group {
+    width: 100%;
+  }
+}
+
+.user_picture {
+  label {
+    font-size: 10px;
+    line-height: 14px;
+    margin-top: 15px;
+    cursor: pointer;
+  }
+
+  input {
+    display: none;
+  }
+}
+
+.profile-details {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  min-width: 300px;
+  margin-top: 30px;
+  padding-left: 30px;
+  color: #656565;
+
+  .form-group {
+    width: 100%;
+  }
+
+  label {
+    font-size: 10px;
+    font-weight: 600;
+    margin-bottom: 0,
+  }
+
+  input {
+    font-size: 16px;
+    font-weight: 400;
+    padding: 0;
+  }
+
+  input::placeholder {
+    font-size: 14px;
+    font-weight: 100;
+    color: #ccc;
+  }
+
+  select {
+    -webkit-appearance: none;
+    padding: 1px;
+  }
+}
+
+#user_birthday_3i,
+#user_birthday_2i {
+  width: 31%;
+  margin-right: 2.33%;
+}
+
+@media (max-width: 767px) {
+
+  .profile-datas {
+    flex-direction: column;
+  }
+
+  .picture-container,
+  .profile-details {
+    width: 100%;
+    padding-left: 0px;
+  }
+}
+
+.valid-profile {
+  width: 100%;
+}
+

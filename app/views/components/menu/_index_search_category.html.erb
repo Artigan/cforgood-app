@@ -7,7 +7,7 @@
       <div role="group" class="fieldset-flexbox">
         <a href="#" data-filter=".online" class="filter-btn current">
           <li id="online" class="category-item">
-            <div class="container-icon" style="background-color: #8398C2;">
+            <div class="container-icon">
               <%= image_tag "icons/e_commerce.svg" %>
             </div>
             Voir les e-commerces
@@ -16,7 +16,7 @@
         <!-- RESET TO ALL -->
         <a href="#" data-filter="" class="filter-btn current">
           <li id="categories-all" class="category-item">
-            <div class="container-icon" style="background-color: #fff;">
+            <div class="container-icon">
               <%= image_tag "icons/toutes_categories.svg" %>
             </div>
             Toutes les catégories
@@ -26,7 +26,7 @@
         <% BusinessCategory.all.each do |category| %>
           <a href="#" data-filter="<%= "."+category.id.to_s %>" class="filter-btn current">
             <li class="category-item">
-              <div class="container-icon" style="background-color: <%= category.color %>;">
+              <div class="container-icon" style="border-color: <%= category.color %>;">
                 <%= image_tag category.picture %>
               </div>
               <%= category.name %>

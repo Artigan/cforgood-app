@@ -13,9 +13,17 @@ module ApplicationHelper
 
   def name_user(user)
     if !current_user.last_name.blank?
-      current_user.first_name + " " + current_user.last_name.chars.first + "."
+      current_user.first_name.capitalize + " " + current_user.last_name.chars.first.capitalize + "."
     elsif !current_user.name.blank?
       current_user.name.split(" ")[0]
+    end
+  end
+
+  def fullname_user(user)
+    if !current_user.last_name.blank?
+      current_user.first_name.capitalize + " " + current_user.last_name.capitalize
+    elsif !current_user.name.blank?
+      current_user.name
     end
   end
 

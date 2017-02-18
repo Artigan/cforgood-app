@@ -14,20 +14,20 @@
 
 .dash-fullpage-header {
   width: 100%;
-  height: 20%;
-  background-color: #0DE2EA;
+  height: 100px;
+  background-color: #00CBE5;
   position: relative;
 }
 
 .dash-header-avatar-container {
   position: absolute;
-  width: 30%;
-  height: 150px;
+  height: 80px;
   display: flex;
   align-items: center;
   justify-content: center;
   top: 55px;
-  left: 35%;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .header-avatar {
@@ -63,7 +63,7 @@
   padding-right: 8px;
   font-size: 9px;
   color: white;
-  background-color: #0DE2EA;
+  background-color: #00CBE5;
   border-radius: 2px;
   margin-top: 15px;
 }
@@ -76,6 +76,11 @@
   padding-left: 20%;
   padding-right: 20%;
   padding-top: 15px;
+
+  @media (max-width: 767px) {
+    padding-left: 10%;
+    padding-right: 10%;
+  }
 }
 
 .nav-tabs > li > a {

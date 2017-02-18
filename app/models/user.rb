@@ -190,6 +190,12 @@ class User < ApplicationRecord
     User.find(id).manager == self
   end
 
+  def status?
+    return "Inscrit depuis " + I18n.l(self.created_at.to_date, format: :long) unless member
+    return "A l'essai jusqu'au " + I18n.l(self.date_end_partner.to_date, format: :long) if self.code_partner.present?
+    return "Abonné depuis le " + I18n.l(self.date_subscription.to_date, format: :long)
+  end
+
   def should_payin?
     ( !self.code_partner.present? && ( ( self.subscription == "M" && ( !self.date_last_payment.present? || ( self.date_last_payment < Time.now - 1.month ) ) ) ||
     ( self.subscription == "Y" && ( !self.date_last_payment.present? || ( self.date_last_payment < Time.now - 12.month ) ) ) ) ||
