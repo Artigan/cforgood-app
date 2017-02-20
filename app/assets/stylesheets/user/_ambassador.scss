@@ -1,9 +1,13 @@
 .ambassador {
-    display: flex;
-    flex-direction: column;
-    background-color: #FFF !important;
-    color: #656565;
-    padding-bottom: 120px;
+  display: flex;
+  flex-direction: column;
+  background-color: #FFF !important;
+  color: #656565;
+  padding-bottom: 120px;
+
+  @media (max-width: 767px) {
+    margin-top: 50px;
+  }
 
   .button-more {
     color: #696969;
@@ -92,6 +96,7 @@
     }
 
     .picture-container {
+      align-items: flex-start;
       margin-left: 40px;
 
       img {
@@ -112,7 +117,9 @@
     }
 
     .user-status {
-      margin-left: 40px;
+      margin-left: 20px;
+      display: flex;
+      flex-direction: column;
 
       p {
         margin: 0;
