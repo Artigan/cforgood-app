@@ -64,7 +64,7 @@
           max-width: 60px;
         }
 
-        @media (max-width:840px){
+        @media (max-width: 991px){
           width: 100%;
 
           .user-support {
@@ -73,6 +73,23 @@
             .user-cause-disclaimer {
               width: 100%;
             }
+          }
+        }
+
+        @media (max-width: 767px) {
+          position: relative;
+          width: 335px;
+          left: 50%;
+          transform: translateX(-50%);
+        }
+
+        @media (max-width: 320px) {
+          width: 280px;
+          min-width: 0;
+
+          .user-cause-disclaimer {
+            min-width: 0;
+            padding: 10px 0;
           }
         }
       }
@@ -90,17 +107,12 @@
         }
 
         .user-button-profile {
-          top: 279px;
-          left: 113px;
+          position: relative;
+          top: -65px;
+          left: 50px;
 
-          @media (max-width: 320px) {
-            top: 279px;
-            left: 100px;
-          }
-
-          @media (min-width: 321px) and (max-width: 767px) {
-            top: -65px;
-            left: 135px;
+          @media (min-width: 322px) {
+            max-width: 235px
           }
         }
       }
