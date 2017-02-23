@@ -233,29 +233,52 @@
 
   a {
     color: #fff;
-
-    &:hover {
-      // color: rgba(55,55,55,0.9);
-    }
   }
 }
 
+.button-validation-modal {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: calc(50% - 45px);
+  height: 50px;
+  bottom: 0;
+  right: 0;
+  border-radius: 0;
+  outline: none;
+  cursor: pointer;
+  color: white;
+  z-index: 10;
+
+  &:hover, &:focus {
+    color: white;
+  }
+
+  @media (max-width: 767px) {
+    width: 100%;
+  }
+}
+
+
 .close-button {
   position: absolute;
-  color: rgba(55,55,55,0.6);
-  background: transparent;
-  border: none;
-  outline: none;
   top: 10px;
   right: 10px;
   font-size: 30px;
   font-weight: 100;
+  color: rgba(55,55,55,0.4);
+  background: transparent;
+  border: 1px solid rgba(55,55,55,0.4);
+  border-radius: 50%;
+  outline: none;
   cursor: pointer;
   transition: 0.5s ease;
   z-index: 200;
 
   &:hover {
     color: rgba(55,55,55,0.9);
+    border-color: rgba(55,55,55,0.9);
   }
 }
 

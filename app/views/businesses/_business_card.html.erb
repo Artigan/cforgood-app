@@ -41,14 +41,14 @@
       </div>
       <% if user_signed_in? %>
         <% if !perk.perk_in_time? %>
-          <div class="perk-pseudo-modal-link button-disabled" id="perk-modal-use-<%= perk.id %>">Bon plan non disponible</div>
+          <div class="perk-pseudo-modal-link button-disabled" id="perk-modal-dynamic-<%= perk.id %>">Bon plan non disponible</div>
         <% elsif !perk.perk_usable?(current_user) %>
-          <div class="perk-pseudo-modal-link button-disabled" id="perk-modal-use-<%= perk.id %>">Bon plan épuisé</div>
+          <div class="perk-pseudo-modal-link button-disabled" id="perk-modal-dynamic-<%= perk.id %>">Bon plan épuisé</div>
         <% else %>
-          <div class="perk-pseudo-modal-link <%= index_view ? 'button-inactived' : '' %>" id="perk-modal-use-<%= perk.id %>">J'en profite</div>
+          <div class="perk-pseudo-modal-link <%= index_view ? 'button-inactived' : '' %>" id="perk-modal-dynamic-<%= perk.id %>">J'en profite</div>
         <% end %>
        <% else %>
-          <div class="perk-pseudo-modal-link <%= index_view ? 'button-inactived' : '' %>" id="perk-modal-use-<%= perk.id %>">J'en profite</div>
+          <div class="perk-pseudo-modal-link <%= index_view ? 'button-inactived' : '' %>" id="perk-modal-dynamic-<%= perk.id %>">J'en profite</div>
       <% end %>
     </div>
   </div>

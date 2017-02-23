@@ -1,7 +1,5 @@
-<div class="perk-modal-mobile-member" style="border-top: 8px solid <%= @business.business_category.color %>;">
-  <div class="perk-modal-close-mobile-member" style="color: <%= @business.business_category.color %>;border: 3px solid <%= @business.business_category.color %>;">
-    <i class="fa fa-times" aria-hidden="true"></i>
-  </div>
+<div class="perk-modal-mobile-member hidden">
+  <button type="button" class="closed-perk-modal-mobile-member close-button">&times;</button>
 
   <div class="perk-modal-member-header">
     <div class="member-header-text"><%= "Les bons plans de #{@business.name}" %></div>
@@ -10,7 +8,7 @@
   <% @business.perks_in_time.each do |perk| %>
 
     <div class="mapboxv2">
-      <div class="pmls-modal perk-<%= @business.id %>-<%= perk.id %>">
+      <div class="pmls-modal" id="perk-modal-dynamic-<%= perk.id %>">
           <i class="fa fa-plus"></i>
       </div>
 
@@ -42,28 +40,41 @@
       </div>
     </div>
 
-    <%= render "businesses/mobileshow_perk", perk: perk %>
-
-    <% content_for :perk_dynamic do %>
-
-      <script>
-
-        $(document).ready(function() {
-          $(".perk-<%= @business.id %>-<%= perk.id %>").click(function() {
-          $(".perk-modal-dynamic-<%= @business.id %>-<%= perk.id %>").removeClass("hidden");
-          });
-        });
-
-        $(document).ready(function() {
-          $('.closed-perk-on-modal').click(function() {
-          $(".perk-modal-dynamic-<%= @business.id %>-<%= perk.id %>").addClass('hidden');
-          });
-        });
-
-      </script>
-
-    <% end %>
+    <%= render "businesses/perk_show", perk: perk %>
 
   <% end %>
 
 </div>
+
+<% content_for :after_js do %>
+
+  <script>
+
+    $(document).ready(function(){
+
+      $(".pmls-modal").click(function() {
+        var classModal = $(this).attr('id');
+        console.log(classModal);
+        $('.' + classModal).removeClass("hidden");
+      });
+
+      $('.closed-perk-modal-mobile-member').click(function() {
+         // console.log($(this).closest(".pmdjs"));
+        $(".perk-modal-mobile-member").addClass('hidden');
+      });
+
+      // $(".use-button-logout").click(function() {
+      //   $('.use-overlay').removeClass('hidden');
+      //   // EVENT AMPLITUDE USER_C_BENEFIT
+      //   amplitude.logEvent('USER_C_BENEFIT_LOGOUT');
+      // });
+
+      // $(".btn-use-button").click(function() {
+      //   // EVENT AMPLITUDE USER_C_BENEFIT
+      //   amplitude.logEvent('USER_C_BENEFIT');
+      // });
+    });
+
+  </script>
+
+<% end %>

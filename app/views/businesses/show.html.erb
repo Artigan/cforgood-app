@@ -95,26 +95,27 @@
   </div>
 
   <div class="fullpage-right-item hidden-xs">
-    <div class="fri-header">
-      <div class="title-fri-header">Nos bons plans</div>
-      <div class="title-fri-underline" style="border-color: <%= @business.business_category.color %>;"></div>
-    </div>
+    <div class="title-fri-underline" style="border-color: <%= @business.business_category.color %>;">Nos bons plans</div>
     <% @business.perks.active.each do |perk| %>
       <div class="perk-card-container perk-modal-use-<%= perk.id %>">
         <%= render  "businesses/business_card", business: @business, address: @address, perk: perk, index_view: false %>
       </div>
-      <div class="perk-modal-use perk-modal-use-<%= perk.id %> hidden">
+      <div class="perk-modal-use">
         <% if !user_signed_in? %>
           <%= render "businesses/business_perk_not_member" %>
-        <% elsif device_type == :desktop || perk.perk_detail.name == "email" || @business.online   %>
-          <%= render "businesses/business_perk_usage", perk: perk %>
         <% else %>
-          <%#= render "businesses/business_perk_using", perk: perk %>
+          <%= render "businesses/perk_show", perk: perk %>
         <% end %>
-          <%#= render "businesses/mobileshow" %>
           <%#= render "businesses/mobileshow_member" %>
       </div>
     <% end %>
+  </div>
+
+  <div class="mobile_perks_list visible-xs">
+    <button class="button-validation-modal mobile-perks-list" style="background-color:<%= @business.business_category.color %>;">
+      Voir nos bons plans
+    </button>
+    <%= render "businesses/mobile_perks_list" %>
   </div>
 </div>
 
@@ -127,6 +128,17 @@
   <script>
 
     $(document).ready(function(){
+
+      $(".perk-pseudo-modal-link").click(function() {
+        var classModal = $(this).attr('id');
+        console.log(classModal);
+        $('.' + classModal).removeClass("hidden");
+      });
+
+      $(".mobile-perks-list").click(function() {
+        $('.perk-modal-mobile-member').removeClass("hidden");
+      });
+
       // $(".use-button-logout").click(function() {
       //   $('.use-overlay').removeClass('hidden');
       //   // EVENT AMPLITUDE USER_C_BENEFIT
@@ -141,4 +153,5 @@
   </script>
 
 <% end %>
+
 

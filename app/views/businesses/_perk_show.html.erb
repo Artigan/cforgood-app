@@ -1,0 +1,86 @@
+<div class="pmdjs perk-modal-dynamic-<%= perk.id %> hidden">
+
+  <div class="pmdjs-header">
+    <div class="pmdjs-title-underline" style="border-color: <%= @business.business_category.color %>;">Bon plan</div>
+    <button type="button" class="closed-perk-on-modal close-button">&times;</button>
+  </div>
+
+  <div class="pmdjs-photo" style="background-image: url('<%= perk.picture.present? ? perk.picture : perk.business.picture %>');">
+     <div class="pcri-offer">
+      <div class="pcri-offer-tooltip" style="background-color: <%= perk.business.business_category.color %>;">
+        <div><%= perk.offer_type? %></div>
+      </div>
+      <div class="pcri-offer-flash">
+        <% if perk.times > 0 %>
+          <span><i class="fa fa-flash pastille" style="background-color: #3F3F3F;" aria-hidden="true"></i><%= perk.times - Use.where(perk_id: perk.id).count %> restants</span>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="pmdjs-perk-name">
+    <%= perk.name %>
+  </div>
+  <div class="pmdjs-perk-description">
+    <%= perk.description %>
+  </div>
+
+  <div class="pmu-alert">
+    <% if perk.appel %>
+      <span><i class="fa fa-bell pastille" style="background-color: <%= @business.business_category.color %>;" aria-hidden="true"></i>Ce bon plan n'est valable une seule fois</span>
+    <% end %>
+  </div>
+
+  <div class="divider-line"></div>
+
+  <p class="pmu-question">Envie d'en profiter ?</p>
+
+  <% if perk.perk_detail.name == "email" %>
+    <p class="pmu-answer">Envoyez-nous un email pour réserver votre bon plan </p>
+    <a href='mailto:<%= @business.email %>?subject=Nouvelle demande de bon plan CforGood !&body=Bonjour <%= @business.leader_first_name if @business.leader_first_name.present? %>,%0D%0A<%= @business.name %> semble sympa comme tout !%0D%0AJe souhaiterais bénéficier du bon plan « <%= perk.name.gsub(/%/, "%25").upcase %> » (Code : <%= perk.perk_code %>), pouvez-vous me dire comment procéder ?%0D%0A Merci par avance !%0D%0A<%= current_user.first_name.capitalize if current_user.first_name.present? %> <%= current_user.last_name.capitalize if current_user.last_name.present? %>' class="button-validation-modal send-mail" style="background-color:<%= @business.business_category.color %>;" target="_blank">
+      Nous écrire
+    </a>
+
+  <% elsif @business.online %>
+    <div class="pmu-answer">CODE PROMO : <stong><%= perk.perk_code.upcase %></strong></div>
+    <button class="button-validation-modal send-to-shop" style="background-color:<%= @business.business_category.color %>;">
+      <%= link_to "#{@business.url}", class: "send-to-shop", target: "_blank" do %>
+        Me rendre sur le site
+      <% end %>
+    </button>
+
+  <% else %>
+    <p class="pmu-answer">Rendez-vous en magasin avec votre smartphone</p>
+    <button class="cta-button" style="background-color:<%= @business.business_category.color %>;">
+      <%= link_to "http://maps.google.com/maps", class: "", id: "link-map", disabled: true, data: { locale: I18n.locale, destination: { latitude: @business.latitude, longitude: @business.longitude } }, :target => "_blank" do %>
+        <i class="fa fa-paper-plane"></i> Afficher l'itinéraire
+      <% end %>
+    </button>
+  <% end %>
+
+  <% if perk.perk_detail.name == "email" || @business.online %>
+    <%= simple_form_for :use, url: perk_uses_path(params[:perk_id], online: true), method: :post, remote: true, authenticity_token: true, html: { id: :create_use } do |f| %>
+      <%= f.input :perk_id, as: :hidden, input_html: {value: params[:perk_id]} %>
+      <%= f.submit "", class: "btn-create-use", :style => "display: none;" %>
+    <% end %>
+    <div class="container-feedback"></div>
+  <% end %>
+</div>
+
+<% content_for :after_js do %>
+  <script>
+    $(document).ready(function(){
+
+      $('.closed-perk-on-modal').click(function() {
+         // console.log($(this).closest(".pmdjs"));
+        $(this).closest(".pmdjs").addClass('hidden');
+      });
+
+      $('.send-mail').click(function() {
+        $(this).closest('.btn-create-use').click();
+      });
+
+    });
+  </script>
+<% end %>
+
