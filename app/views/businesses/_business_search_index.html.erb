@@ -11,7 +11,7 @@
     <div id="business-search-modal">
       <ul class="list">
         <% @businesses.each do |business| %>
-          <%= link_to business_path(business, address_id: business.main_address, perk_id: business.perks.active.first) do %>
+          <%= link_to business_path(business, address_id: business.main_address.id) do %>
             <div class="business-index-card">
               <div class="bic-left">
                 <div class="bic-photo" style="background-image: url('<%= business.picture %>');"></div>

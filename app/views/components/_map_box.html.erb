@@ -7,7 +7,7 @@
   <% business.perks_in_time.each do |perk| %>
     <% if !flash || (flash && perk.flash) %>
 
-        <%= link_to business_path(perk.business_id, perk_id: perk.id, address_id: address), class: "link-business-plus" do %>
+        <%= link_to business_path(perk.business_id, perk_id: perk.id, address_id: address.id), class: "link-business-plus" do %>
           <span class="see-more">+</span>
         <% end %>
 
@@ -41,11 +41,7 @@
       </div>
 
       <div class="mv2-content-bottom-right" style="background-color: rgba(55,55,55,0.2);">
-        <% liked = business.perks_in_time.map { |perk| perk.uses.liked.size }.sum %>
-        <% if liked > 0 %>
-          <%= image_tag "icons/heart.svg", class: "red-heart"%>
-          <div class="asso-firstblock-text-v2"><%= liked %></div>
-        <% end %>
+        <div class="asso-firstblock-text-v2"><%= address.distance_from([lat, lng]) %></div>
       </div>
 
     </div>

@@ -9,7 +9,10 @@
     end
 
     # Patch during VIDEO && SALON
-    if (current_user.present? && current_user.email == "allan.floury@gmail.com") || !cookies[:coordinates].present?
+    if params[:lng].present? && params[:lat].present?
+      lat = params[:lat]
+      lng = params[:lng]
+    elsif (current_user.present? && current_user.email == "allan.floury@gmail.com") || !cookies[:coordinates].present?
       lat = 44.837789
       lng = -0.57918
     else
@@ -18,34 +21,21 @@
       lng = coordinates[1]
     end
 
-    @businesses_around = Address.joins(:business).merge(Business.active.for_map.with_perks_in_time).near([lat, lng], 10).size
-    @businesses = Business.active.for_map.with_perks_in_time.distinct.includes(:business_category, :uses).eager_load(:perks_in_time, :addresses_for_map)
+    @businesses = Business.includes(:business_category, :perks_in_time, :uses).active.for_map.with_perks_in_time.distinct.eager_load(:addresses_for_map, :main_address).merge(Address.near([lat, lng], 10))
     @geojson = {"type" => "FeatureCollection", "features" => []}
 
     @businesses.each do |business|
-      # BUSINESS ADDRESSES
-      addresses = []
-      # Other addresses
       business.addresses_for_map.each do |address|
-        # shop
-        addresses << [address.id, address.longitude, address.latitude, address.street] if business.shop and !address.day.present?
-        # itinerant
-        addresses << [address.id, address.longitude, address.latitude, address.street] if business.itinerant and address.day.present? and address.start_time.strftime('%R') <= Time.now.strftime('%R') and address.end_time.strftime('%R') >= Time.now.strftime('%R')
-      end
-
-      # LOAD ADDRESSES
-      addresses.uniq!
-      addresses.each do |address|
         @geojson["features"] << {
           "type": 'Feature',
           "geometry": {
             "type": 'Point',
-            "coordinates": [address[1], address[2]]
+            "coordinates": [address.longitude, address.latitude]
           },
           "properties": {
             "marker-symbol": business.business_category.marker_symbol,
             "color": business.business_category.color,
-            "description": render_to_string(partial: "components/map_box", locals: { business: business, address: address[0], street: address[3], flash: false })
+            "description": render_to_string(partial: "components/map_box", locals: { business: business, address: address, flash: false, lat: lat, lng: lng })
           }
         }
 
@@ -60,11 +50,11 @@
             "type": 'Feature',
             "geometry": {
               "type": 'Point',
-              "coordinates": [address[1], address[2]]
+              "coordinates": [address.longitude, address.latitude]
             },
             "properties": {
               "marker-symbol": business.business_category.marker_symbol+"-flash",
-              "description": render_to_string(partial: "components/map_box", locals: { business: business, address: address[0], street: address[3], flash: true })
+              "description": render_to_string(partial: "components/map_box", locals: { business: business, address: address, flash: true, lat: lat, lng: lng })
             }
            }
         end
@@ -81,7 +71,7 @@
 
     respond_to do |format|
       format.html
-      format.json{render json: @geojson}
+      format.json { render json: @geojson }
     end
   end
 

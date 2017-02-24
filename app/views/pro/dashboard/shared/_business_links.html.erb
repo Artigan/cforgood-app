@@ -18,7 +18,7 @@
       <% end %>
     </li>
     <li class="direction">
-      <%= link_to "http://maps.google.com/maps", class: "business-link link-mailto", id:"link-itinerary", disabled: true, data: { locale: I18n.locale, destination: { latitude: Perk.find(params[:perk_id]).business.latitude, longitude: Perk.find(params[:perk_id]).business.longitude } }, :target => "_blank" do %>
+      <%= link_to "http://maps.google.com/maps", class: "business-link link-mailto", id:"link-itinerary", disabled: true, data: { locale: I18n.locale, destination: { latitude: @address.latitude, longitude: @address.longitude } }, :target => "_blank" do %>
           <i class="fa fa-location-arrow" style="background-color: <%= @business.business_category.color %>;"></i>
       <% end %>
     </li>

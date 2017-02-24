@@ -1,7 +1,6 @@
 <script>
 
   var geoJson = <%= raw(@geojson.to_json) %>;
-  var markers = geoJson;
 
   var framesPerSecond = 15;
   var initialOpacity = 1
@@ -27,36 +26,9 @@
       return "";
   }
 
-  var coordinates = getCookie("coordinates").split('&');
-  var lat = coordinates[0];
-  var lng = coordinates[1];
+  function addMarkers(geoJson) {
 
-  if (lat == null || lng == null || (<%= current_user.present? && (current_user.email == "allan.floury@gmail.com")%>)) {
-     mapCenter = [-0.57918, 44.837789];
-     lat = 44.837789;
-     lng = -0.57918;
-  } else {
-    mapCenter = [lng, lat];
-  }
-
-  var map = new mapboxgl.Map({
-    container: 'map-dashboard',
-    style: 'mapbox://styles/fredpetris/cikporvjj00p8b5lwovwd3kq9',
-    center: mapCenter,
-    zoom: 12
-  });
-
-  if (<%= device_type == :desktop %>) {
-    // Add zoom controls to the map.
-    var nav = new mapboxgl.NavigationControl();
-    map.addControl(nav, 'bottom-left');
-    // hidden button map rotation
-    // $('.mapboxgl-ctrl-compass').addClass('hidden');
-  }
-
-  var layers = [];
-
-  map.on('style.load', function () {
+    var markers = geoJson
 
     // Add marker data as a new GeoJSON source.
     map.addSource("markers", {
@@ -92,6 +64,62 @@
         }
       }
     });
+  }
+
+  function reloadMap(url) {
+
+    $.ajax({
+      type: "GET",
+      url: url,
+      dataType: "json",
+      success: function(data){
+
+        layers.forEach(function(layer) {map.removeLayer(layer) });
+        map.removeSource("markers");
+
+        geoJson = data;
+        layers = [];
+
+        // Add marker data as a new GeoJSON source.
+        addMarkers(geoJson)
+      }
+    });
+
+  }
+
+  var coordinates = getCookie("coordinates").split('&');
+  var lat = coordinates[0];
+  var lng = coordinates[1];
+
+  if (lat == null || lng == null || (<%= current_user.present? && (current_user.email == "allan.floury@gmail.com")%>)) {
+     mapCenter = [-0.57918, 44.837789];
+     lat = 44.837789;
+     lng = -0.57918;
+  } else {
+    mapCenter = [lng, lat];
+  }
+
+  var map = new mapboxgl.Map({
+    container: 'map-dashboard',
+    style: 'mapbox://styles/fredpetris/cikporvjj00p8b5lwovwd3kq9',
+    center: mapCenter,
+    zoom: 12
+  });
+
+  if (<%= device_type == :desktop %>) {
+    // Add zoom controls to the map.
+    var nav = new mapboxgl.NavigationControl();
+    map.addControl(nav, 'bottom-left');
+    // hidden button map rotation
+    // $('.mapboxgl-ctrl-compass').addClass('hidden');
+  }
+
+  var layers = [];
+
+  map.on('style.load', function () {
+
+    // Add marker data as a new GeoJSON source.
+    addMarkers(geoJson);
 
     // Add a source and layer displaying a point which will be animated in a circle.
     map.addSource('point', {
@@ -189,6 +217,28 @@
   map.on('mousemove', function (e) {
     var features = map.queryRenderedFeatures(e.point, { layer: layers });
     map.getCanvas().style.cursor = (features.length) ? 'pointer' : '';
+  });
+
+  // Reload map when drag on
+  map.on('dragend', function (e) {
+
+    var newCenter = map.getCenter();
+
+    var url = window.location.href + "?" + "lng" + '=' + newCenter.lng + "&" + "lat" + '=' + newCenter.lat;
+
+    reloadMap(url);
+
+  });
+
+  // Reload map when drag on
+  map.on('zoomend', function (e) {
+
+    var newCenter = map.getCenter();
+
+    var url = window.location.href + "?" + "lng" + '=' + newCenter.lng + "&" + "lat" + '=' + newCenter.lat;
+
+    reloadMap(url);
+
   });
 
 </script>
