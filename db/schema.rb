@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170213151944) do
+ActiveRecord::Schema.define(version: 20170224112016) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -157,6 +157,10 @@ ActiveRecord::Schema.define(version: 20170213151944) do
     t.string   "logo"
     t.integer  "like",                      default: 0
     t.integer  "unlike",                    default: 0
+    t.boolean  "mailing",                   default: true
+    t.boolean  "tax_receipt",               default: true
+    t.string   "followers"
+    t.string   "heard"
     t.index ["cause_category_id"], name: "index_causes_on_cause_category_id", using: :btree
   end
 

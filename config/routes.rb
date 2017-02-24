@@ -82,7 +82,7 @@ Rails.application.routes.draw do
   end
 
   # namespace :asso do
-  resources :causes, only: [:index, :show]
+  resources :causes, only: [:new, :create, :index, :show]
   #   get 'dashboard', to: 'dashboard#dashboard'
   # end
 

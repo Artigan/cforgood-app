@@ -1,0 +1,137 @@
+<% content_for :meta_title, "Inscription - CforGood" %>
+<% content_for :meta_description %>
+<% content_for :meta_image %>
+
+<div class="profile-cause">
+  <div class="profile-cause-container">
+    <div class="form-edit">
+      <%= simple_form_for @cause, url: new_cause_path, method: :post do |f| %>
+        <%= f.error_notification %>
+        <div class="col-no-wrap asso">
+          <label>A propos de l'association</label>
+          <%= f.input :cause_category_id, collection: CauseCategory.all, label_method: :name, class: "detail-appel", prompt: 'Sélectionnez une catégorie' , label: false %>
+          <%= f.input :name, placeholder: 'Nom association', label: false %>
+        </div>
+        <div class="col-picture" id="asso-picture">
+          <label>Photo</label>
+          <div class="picture-container">
+            <div class="  ">
+              <% if @cause.picture? %>
+                <%= image_tag @cause.picture.url(:avatar), class: 'cause-picture'  %>
+              <% else %>
+                <div class="picture-none">
+                  <%= render 'shared/icons/profile' %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+          <%= f.input :picture, label: 'Sélectionner une nouvelle image'%>
+          <%= f.input :picture_cache, as: :hidden %>
+        </div>
+        <div class="col-picture logo" id="asso-logo">
+          <label>Logo</label>
+          <div class="picture-container">
+            <div class="  ">
+              <% if @cause.logo? %>
+                <%= image_tag @cause.logo.url(:avatar), class: 'cause-logo' %>
+              <% else %>
+                <div class="picture-none">
+                  <%= render 'shared/icons/profile' %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+          <%= f.input :logo, label: 'Sélectionner une nouvelle image' %>
+          <%= f.input :logo_cache, as: :hidden %>
+        </div>
+        <div class="col-no-wrap">
+          <%= f.input :description, placeholder: 'Votre association en quelques mots...' , label: false %>
+        </div>
+        <div class="col-wrap">
+          <label>A propos de vous</label>
+          <%= f.input :representative_first_name, placeholder: 'Nom représentant légal', autofocus: true, label: false %>
+          <%= f.input :representative_last_name, placeholder: 'Prénom représentant légal', label: false %>
+        </div>
+        <div class="col-wrap">
+           <label>Votre engagement</label>
+          <%= f.input :impact, placeholder: 'Quel est votre engagement ?', label: 'Engagement' %>
+          <%= f.input :description_impact, placeholder: 'Décrivez-nous votre engagement...', label: 'Description engagement' %>
+          <%= f.input :amount_impact, placeholder: 'Pour quel montant ?', label: 'Montant engagement' %>
+        </div>
+        <div class="col-wrap">
+          <%= f.input :followers, label: "Quelle est la taille de votre communauté ?" %>
+          <%= f.input :mailing, label: "Êtes-vous prêt à présenter CforGood sur vos réseaux ?", as: :radio_buttons, collection: [['Oui', true ], ['Non', false ]], checked: @cause.mailing || true %>
+          <%= f.input :tax_receipt, label: "Êtes-vous capable de délivrer des reçus fiscaux ?", as: :radio_buttons, collection: [['Oui', true ], ['Non', false ]], checked: @cause.tax_receipt || true %>
+          <%= f.input :heard, label: "Comment avez-vous connu CforGood ? ", as: :radio_buttons, collection: [['Un commerce partenaire', 'commerce'], ['Une association partenaire', 'association'], ['Un ambassadeur', 'ambassadeur']], checked: :unchecked %>
+        </div>
+        <div class="col-wrap">
+          <label>Contacts</label>
+          <%= f.input :email, placeholder: 'Adresse email', label: "Email" %>
+          <%= f.input :telephone, placeholder: 'Téléphone', label: 'Téléphone' %>
+          <label>Informations complémentaires</label>
+          <%= f.input :street, placeholder: 'Rue',  label: 'Adresse' %>
+          <%= f.input :zipcode, placeholder: 'Code postal',  label: false %>
+          <%= f.input :city, placeholder: 'Ville',  label: false %>
+          <%= f.input :url, placeholder: 'Site web', label: 'Site web' %>
+          <%= f.input :link_video, placeholder: 'http://...', label: 'Lien vidéo' %>
+          <%= f.input :facebook, placeholder: 'lapagedejohndoe', label: 'Facebook' %>
+          <%= f.input :twitter, placeholder: 'johndoe', label: 'Twitter' %>
+          <%= f.input :instagram, placeholder: 'johndoe', label: 'Instagram' %>
+        </div>
+
+        <div class="col-no-wrap">
+          <%= f.button :submit, "S'inscrire", class: "btn btn-turquoise" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<% content_for :after_js do %>
+  <script>
+    $(document).ready(function() {
+
+      function readURLPicture(input) {
+        var reader = new FileReader();
+          reader.onload = function (e) {
+            if ($('.cause-picture').attr('src') === undefined) {
+              $("#asso-picture .picture-none").remove();
+              $('#asso-picture .picture-container').append('<img src=" " class="cause-picture" >')
+            };
+            $('.cause-picture').attr('src', e.target.result).addClass("thumb-crop");
+          }
+        reader.readAsDataURL(input);
+      }
+
+      function readURLLogo(input) {
+        var reader = new FileReader();
+          reader.onload = function (e) {
+            if ($('.cause-logo').attr('src') === undefined) {
+              console.log("src undefined");
+              $("#asso-logo .picture-none").remove();
+              $('#asso-logo .picture-container').append('<img src=" " class="cause-logo" >')
+            };
+            console.log(e.target.result)
+            $('.cause-logo').attr('src', e.target.result).addClass("thumb-crop");
+          }
+        reader.readAsDataURL(input);
+      }
+
+      $(".cause_picture").on("change", function(e) {
+        e.preventDefault();
+        var newFile = document.querySelector('#asso-picture input[type=file]').files[0];
+        $(".cause_picture").children().html(newFile.name);
+        readURLPicture(newFile);
+      });
+
+      $(".cause_logo").on("change", function(e) {
+        e.preventDefault();
+        var newFile = document.querySelector('#asso-logo input[type=file]').files[0];
+        $(".cause_logo").children().html(newFile.name);
+        readURLLogo(newFile);
+      });
+    });
+  </script>
+<% end %>
+
+

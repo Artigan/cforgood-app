@@ -61,6 +61,11 @@
       <!-- MAP -->
       <div id="map-dashboard" class="user-map-businesses" style="width: 100%;"></div>
 
+      <!-- Button reinit position -->
+      <div id="reinit-position">
+        <i class="fa fa-location-arrow pastille" style="background-color: #FFF;" aria-hidden="true"></i>
+      </div>
+
       <!-- POPUP PERKS WITHOUT FEEDBACK -->
       <% @uses_without_feedback.each do |use| %>
         <%= render(partial: 'uses/form/feedback_dashboard', locals: { use: use }) %>

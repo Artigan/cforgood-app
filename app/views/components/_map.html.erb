@@ -1,3 +1,8 @@
+
+
+<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v3.1.1/mapbox-gl-directions.js'></script>
+<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v3.1.1/mapbox-gl-directions.css' type='text/css' />
+
 <script>
 
   var geoJson = <%= raw(@geojson.to_json) %>;
@@ -26,7 +31,7 @@
       return "";
   }
 
-  function addMarkers(geoJson) {
+  function addMarkers(geoJson, point, point1) {
 
     var markers = geoJson
 
@@ -64,9 +69,15 @@
         }
       }
     });
+
+    // Move the user Marker on top
+    if (map.getLayer(point)) {
+      map.moveLayer(point, layers.last);
+      map.moveLayer(point1, layers.last);
+    };
   }
 
-  function reloadMap(url) {
+  function reloadMap(url, point, point1) {
 
     $.ajax({
       type: "GET",
@@ -81,7 +92,7 @@
         layers = [];
 
         // Add marker data as a new GeoJSON source.
-        addMarkers(geoJson)
+        addMarkers(geoJson, point, point1)
       }
     });
 
@@ -104,6 +115,17 @@
     style: 'mapbox://styles/fredpetris/cikporvjj00p8b5lwovwd3kq9',
     center: mapCenter,
     zoom: 12
+  });
+
+  var directions = new MapboxDirections({
+    accessToken: '<%= ENV['MAPBOXGL_TOKEN'] %>',
+    unit: 'metric',
+    profile: 'walking',
+    interactive: false,
+    controls: false,
+    style: {
+
+    }
   });
 
   if (<%= device_type == :desktop %>) {
@@ -184,6 +206,9 @@
 
   map.on('click', function (e) {
 
+    // Removes all routes and waypoints from the map
+    directions.removeRoutes();
+
     var features = map.queryRenderedFeatures(e.point, { layers: layers });
 
     if (!features.length) {
@@ -208,6 +233,17 @@
       .setHTML(feature.properties.description)
       .addTo(map);
 
+    // Init directions
+    if (<%= device_type == :mobile %>) {
+      directions.setOrigin([lng, lat]);
+      directions.setDestination([e.lngLat["lng"], e.lngLat["lat"]]);
+      map.addControl(directions);
+      if (map.getLayer('directions-origin-point')) {
+        map.removeLayer('directions-origin-point');
+        map.removeLayer('directions-destination-point');
+      }
+    }
+
     // EVENT AMPLITUDE : USER_C_BUSINESS_MAP
     amplitude.logEvent('USER_C_BUSINESS_MAP');
   });
@@ -215,8 +251,10 @@
   // Use the same approach as above to indicate that the symbols are clickable
   // by changing the cursor style to 'pointer'.
   map.on('mousemove', function (e) {
+
     var features = map.queryRenderedFeatures(e.point, { layer: layers });
     map.getCanvas().style.cursor = (features.length) ? 'pointer' : '';
+
   });
 
   // Reload map when drag on
@@ -226,7 +264,7 @@
 
     var url = window.location.href + "?" + "lng" + '=' + newCenter.lng + "&" + "lat" + '=' + newCenter.lat;
 
-    reloadMap(url);
+    reloadMap(url, "point", "point1");
 
   });
 
@@ -237,8 +275,13 @@
 
     var url = window.location.href + "?" + "lng" + '=' + newCenter.lng + "&" + "lat" + '=' + newCenter.lat;
 
-    reloadMap(url);
-
+    reloadMap(url, "point", "point1");
   });
+
+  // Reinit center map on user position
+  $('#reinit-position').click(function () {
+    map.flyTo({center: mapCenter});
+  });
+
 
 </script>

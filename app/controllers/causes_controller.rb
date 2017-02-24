@@ -16,4 +16,26 @@ class CausesController < ApplicationController
     @businesses = Business.active.with_perks_in_time.distinct.includes(:business_category)
     @cause  = Cause.joins(:cause_category).find(params[:id])
   end
+
+  def new
+     @cause = Cause.new
+  end
+
+  def create
+    @cause = Cause.new(cause_params)
+    if @cause.save
+      redirect_to "https://www.cforgood.com/associations/"
+    else
+      render :new
+    end
+  end
+
+  private
+
+    def cause_params
+    params.require(:cause).permit(:name, :description, :street, :zipcode, :city, :url, :email, :telephone, :impact, :cause_category_id, :facebook, :twitter, :instagram, :description_impact,
+:representative_first_name, :representative_last_name, :amount_impact, :active, :link_video, :picture, :picture_cache, :logo, :logo_cache, :mailing, :tax_receipt, :followers, :heard)
+
+    end
+
 end

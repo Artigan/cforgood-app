@@ -30,3 +30,20 @@
   }
 }
 
+#reinit-position {
+  position: absolute;
+  left: 101px;
+  bottom: 130px;
+  cursor: pointer;
+
+  @media (max-width: 767px) {
+    left: 11px;
+    bottom: 50px;
+  }
+
+  .pastille {
+    width: 30px;
+    height: 30px;
+  }
+}
+
