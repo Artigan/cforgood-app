@@ -47,15 +47,17 @@
 #  date_stop_subscription :datetime
 #  picture                :string
 #  ambassador             :boolean          default(FALSE)
-#  ecosystem_id           :integer
 #  onesignal_id           :string
+#  ecosystem_id           :integer
 #  supervisor             :boolean          default(FALSE)
 #  supervisor_id          :integer
 #  telephone              :string
 #  logo                   :string
+#  authentication_token   :string(30)
 #
 # Indexes
 #
+#  index_users_on_authentication_token  (authentication_token) UNIQUE
 #  index_users_on_cause_id              (cause_id)
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
@@ -68,6 +70,9 @@
 #
 
 class User < ApplicationRecord
+
+  acts_as_token_authenticatable
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable,

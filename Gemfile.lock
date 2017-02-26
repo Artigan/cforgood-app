@@ -198,6 +198,9 @@ GEM
       json (~> 1.8)
     intercom-rails (0.3.4)
       activesupport (> 3.0)
+    jbuilder (2.6.3)
+      activesupport (>= 3.0.0, < 5.2)
+      multi_json (~> 1.2)
     jquery-rails (4.2.1)
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
@@ -372,6 +375,10 @@ GEM
     simple_form (3.3.1)
       actionpack (> 4, < 5.1)
       activemodel (> 4, < 5.1)
+    simple_token_authentication (1.15.1)
+      actionmailer (>= 3.2.6, < 6)
+      actionpack (>= 3.2.6, < 6)
+      devise (>= 3.2, < 6)
     slack-notifier (1.5.1)
     slop (3.6.0)
     sort_alphabetical (1.0.2)
@@ -441,6 +448,7 @@ DEPENDENCIES
   high_voltage
   intercom (~> 3.4.0)
   intercom-rails
+  jbuilder (~> 2.6, >= 2.6.1)
   jquery-rails
   letter_opener
   listjs-rails
@@ -473,6 +481,7 @@ DEPENDENCIES
   sidekiq
   sidekiq-failures
   simple_form
+  simple_token_authentication
   sinatra!
   slack-notifier
   spring
