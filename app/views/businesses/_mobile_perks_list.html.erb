@@ -2,7 +2,7 @@
   <button type="button" class="closed-perk-modal-mobile-member close-button">&times;</button>
 
   <div class="perk-modal-member-header">
-    <div class="member-header-text"><%= "Les bons plans de #{@business.name}" %></div>
+    <div class="title-fri-underline" style="border-color: <%= @business.business_category.color %>;"><%= "Les bons plans de #{@business.name}" %></div>
   </div>
 
   <% @business.perks_in_time.each do |perk| %>

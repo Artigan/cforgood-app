@@ -1,5 +1,7 @@
 <div class="pmdjs perk-modal-dynamic-<%= perk.id %> hidden">
 
+  <% @perk.update_nb_view! if @perk.present? && user_space? %>
+
   <div class="pmdjs-header">
     <div class="pmdjs-title-underline" style="border-color: <%= @business.business_category.color %>;">Bon plan</div>
     <button type="button" class="closed-perk-on-modal close-button">&times;</button>
@@ -49,14 +51,25 @@
       <% end %>
     </button>
 
-  <% else %>
+  <% elsif device_type != :mobile %>
     <p class="pmu-answer">Rendez-vous en magasin avec votre smartphone</p>
-    <button class="cta-button" style="background-color:<%= @business.business_category.color %>;">
-      <%= link_to "http://maps.google.com/maps", class: "", id: "link-map", disabled: true, data: { locale: I18n.locale, destination: { latitude: @business.latitude, longitude: @business.longitude } }, :target => "_blank" do %>
-        <i class="fa fa-paper-plane"></i> Afficher l'itinéraire
-      <% end %>
+    <%= link_to "http://maps.google.com/maps", class: "pastille itinary", id: "link-map", disabled: true, data: { locale: I18n.locale, destination: { latitude: @business.latitude, longitude: @business.longitude } }, :target => "_blank" do %>
+      <i class="fa fa-location-arrow"></i>
+    <% end %>
+
+  <% else %>
+    <p class="pmu-answer">Montrez votre carte de membre au commerçant.</p>
+    <%= link_to "http://maps.google.com/maps", class: "pastille itinary", id: "link-map", disabled: true, data: { locale: I18n.locale, destination: { latitude: @business.latitude, longitude: @business.longitude } }, :target => "_blank" do %>
+        <i class="fa fa-location-arrow"></i>
+    <% end %>
+    <span class="label-itinary">Afficher l'itinéraire</span>
+    <button class="button-validation-modal btn-show-card" style="background-color:<%= @business.business_category.color %>;">
+      <p>Affichez ma carte pour valider</p>
+      <span>(seulement chez le commerçant)</span>
     </button>
   <% end %>
+
+  <%= render "components/member_card" %>
 
   <% if perk.perk_detail.name == "email" || @business.online %>
     <%= simple_form_for :use, url: perk_uses_path(params[:perk_id], online: true), method: :post, remote: true, authenticity_token: true, html: { id: :create_use } do |f| %>
@@ -67,6 +80,7 @@
   <% end %>
 </div>
 
+
 <% content_for :after_js do %>
   <script>
     $(document).ready(function(){
@@ -76,8 +90,12 @@
         $(this).closest(".pmdjs").addClass('hidden');
       });
 
-      $('.send-mail').click(function() {
+      $('.send-mail, send-to-shop').click(function() {
         $(this).closest('.btn-create-use').click();
+      });
+
+      $('.btn-show-card').click(function() {
+        $('.popup-member-card').removeClass('hidden');
       });
 
     });

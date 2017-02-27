@@ -1422,6 +1422,37 @@
   }
 }
 
+.pastille.itinary {
+  width: auto;
+  height: auto;
+  min-width: 35px;
+  min-height: 35px;
+  color: white;
+  background-color: #229FEC;
+
+
+  .fa-location-arrow {
+    transform: rotate(-45deg);
+  }
+}
+
+.label-itinary {
+  font-size: 12px;
+  color: rgba(55, 55, 55, 0.9);
+  margin-bottom: 100px;
+}
+
+.btn-show-card {
+  display: flex;
+  flex-direction: column;
+  line-height: 7px;
+
+  span {
+    font-size: 11px;
+    font-weight: 100;
+  }
+}
+
 @media all and (max-width: 767px) {
   .fullpage {
     padding-left: 0;
