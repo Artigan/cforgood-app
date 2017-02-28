@@ -14,7 +14,7 @@ class Member::UsersController < ActionController::Base
     @employee = current_user.users.build(users_params)
     @employee.password = Devise.friendly_token.first(8)
     if @employee.save
-      redirect_to member_user_my_account_path(current_user)
+      redirect_to member_user_supervisor_account_path(current_user)
     else
       render :new
     end
@@ -24,7 +24,7 @@ class Member::UsersController < ActionController::Base
     @employee = User.find(params[:id])
     @employee.manager = nil
     @employee.save
-    redirect_to member_user_my_account_path(current_user)
+    redirect_to member_user_supervisor_account_path(current_user)
   end
 
   private

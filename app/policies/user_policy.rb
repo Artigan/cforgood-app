@@ -5,7 +5,7 @@ class UserPolicy < ApplicationPolicy
     end
   end
 
-  def my_account?
+  def supervisor_account?
     user == record
   end
 end

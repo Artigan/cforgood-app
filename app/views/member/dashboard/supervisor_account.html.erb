@@ -27,7 +27,7 @@
           <% end %>
         </li>
         <li role="profile">
-          <%= link_to "#my_account", role: "tab", data_toggle: "tab" do %>
+          <%= link_to "#supervisor_account", role: "tab", data_toggle: "tab" do %>
             <span>Mon compte</span>
           <% end %>
         </li>
@@ -98,7 +98,7 @@
             </ul>
           </div>
         </div>
-        <div role="tabpanel" class="tab-pane" id="my_account">
+        <div role="tabpanel" class="tab-pane" id="supervisor_account">
           <%= simple_form_for(current_user, url: member_update_profile_path, method: :put) do |f| %>
             <div class="picture-container">
               <% if current_user.logo? %>

@@ -43,11 +43,11 @@ Rails.application.routes.draw do
 
   namespace :member do
     resources :users, only: [:new, :create, :update] do
-      get "dashboard",  to: "dashboard#dashboard"
-      get "my_account",  to: "dashboard#my_account"
-      get "profile",    to: "dashboard#profile"
-      get "ambassador", to: "dashboard#ambassador"
-      get "gift",       to: "dashboard#gift"
+      get "dashboard",            to: "dashboard#dashboard"
+      get "supervisor_account",   to: "dashboard#supervisor_account"
+      get "profile",              to: "dashboard#profile"
+      get "ambassador",           to: "dashboard#ambassador"
+      get "gift",                 to: "dashboard#gift"
     end
     get "subscribe_gift", to: "subscribe#gift"
     resources :subscribe, only: [:new, :create, :update, :destroy]

@@ -75,7 +75,7 @@
     end
   end
 
-  def my_account
+  def supervisor_account
     @user = User.includes(users: :cause).find(params[:user_id])
     authorize @user
     @new_employee = User.new
