@@ -87,7 +87,7 @@ class User < ApplicationRecord
 
   scope :member, -> { where(member: true) }
 
-  scope :member_should_payin, -> (day) { member.where(code_partner: [nil, ""], subscription: "M", date_last_payment: (DateTime.now - 1.month - day.day).beginning_of_day..(DateTime.now - 1.month - day.day).end_of_day ) }
+  scope :member_should_payin, -> (day) { member.where(subscription: "M", code_partner: [nil, ""], supervisor_id: nil, date_last_payment: (DateTime.now - 1.month - day.day).beginning_of_day..(DateTime.now - 1.month - day.day).end_of_day ) }
   scope :member_on_trial_should_payin, -> (day) { member.where.not(code_partner: [nil, ""]).where(date_end_partner: Date.today + day.day) }
 
   validates :email, presence: true, uniqueness: true
