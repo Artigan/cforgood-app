@@ -583,8 +583,12 @@
 }
 
 .droptext-bold {
-  font-size: 16px;
-  color: rgba(55,55,55,0.8) !important;
+  font-size: 14px;
+  color: rgba(55,55,55,0.6) !important;
+
+  &:hover {
+    color: rgba(55,55,55,0.8) !important;
+  }
 }
 
 .droptext-thin {

@@ -97,11 +97,11 @@
 
         <div class="drop-header-container">
           <% if user_signed_in? %>
-            <%= link_to member_user_profile_path(current_user) do %>
-              <div class="droptext">
-                <div class="droptext-bold"><%= current_user.first_name %>&nbsp;<%= current_user.last_name %></div>
-                <div class="droptext-thin">Mon profil</div>
-              </div>
+            <% if !current_user.supervisor %>
+              <%= link_to "Mon profil", member_user_profile_path(current_user, anchor: 'profile' ), class: "droptext-bold profile-tab", reload: true %>
+              <%= link_to "Mon association", member_user_profile_path(current_user, anchor: 'cause'), class: "droptext-bold profile-tab" ,  reload: true %>
+              <%= link_to "Mon abonnement", member_user_profile_path(current_user,  anchor: 'subscription'), class: "droptext-bold profile-tab" ,   reload: true %>
+              <%= link_to "Mes contributions", member_user_profile_path(current_user, anchor: 'list-payments'),  class: "droptext-bold profile-tab" ,   reload: true %>
             <% end %>
           <% elsif business_signed_in? %>
             <%= link_to pro_business_profile_path(current_business) do %>
@@ -165,4 +165,19 @@
       </div>
     </div>
   <% end %>
+<% end %>
+
+<% content_for :after_js do %>
+  <script>
+
+    $(document).ready(function() {
+      $('.profile-tab').click(function(e) {
+        var id = $(e.target).attr("href").split('#')[1];
+        console.log(id);
+        window.location.hash = id;
+        window.location.reload();
+      });
+    });
+
+  </script>
 <% end %>
