@@ -98,18 +98,14 @@
         <div class="drop-header-container">
           <% if user_signed_in? %>
             <% if !current_user.supervisor %>
-              <%= link_to "Mon profil", member_user_profile_path(current_user, anchor: 'profile' ), class: "droptext-bold profile-tab", reload: true %>
-              <%= link_to "Mon association", member_user_profile_path(current_user, anchor: 'cause'), class: "droptext-bold profile-tab" ,  reload: true %>
-              <%= link_to "Mon abonnement", member_user_profile_path(current_user,  anchor: 'subscription'), class: "droptext-bold profile-tab" ,   reload: true %>
-              <%= link_to "Mes contributions", member_user_profile_path(current_user, anchor: 'list-payments'),  class: "droptext-bold profile-tab" ,   reload: true %>
+              <%= link_to "Mes informations", member_user_profile_path(current_user, anchor: 'profile' ), class: "droptext-bold profile-tab" %>
+              <%= link_to "Mon association", member_user_profile_path(current_user, anchor: 'cause'), class: "droptext-bold profile-tab" %>
+              <%= link_to "Mon abonnement", member_user_profile_path(current_user,  anchor: 'subscription'), class: "droptext-bold profile-tab" %>
+              <%= link_to "Mes contributions", member_user_profile_path(current_user, anchor: 'list-payments'),  class: "droptext-bold profile-tab" %>
             <% end %>
           <% elsif business_signed_in? %>
-            <%= link_to pro_business_profile_path(current_business) do %>
-              <div class="droptext">
-                <div class="droptext-bold"><%= current_business.name %></div>
-                <div class="droptext-thin">Mon profil</div>
-              </div>
-            <% end %>
+            <%= link_to "Mes informations", pro_business_profile_path(current_user, anchor: 'business' ), class: "droptext-bold profile-tab" %>
+            <%= link_to "Mon commerce", pro_business_profile_path(current_user, anchor: 'shop'), class: "droptext-bold profile-tab" %>
           <% else %>
             <%= link_to signup_path do %>
               <div class="droptext">
@@ -173,7 +169,6 @@
     $(document).ready(function() {
       $('.profile-tab').click(function(e) {
         var id = $(e.target).attr("href").split('#')[1];
-        console.log(id);
         window.location.hash = id;
         window.location.reload();
       });

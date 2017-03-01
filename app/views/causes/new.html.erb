@@ -107,11 +107,9 @@
         var reader = new FileReader();
           reader.onload = function (e) {
             if ($('.cause-logo').attr('src') === undefined) {
-              console.log("src undefined");
               $("#asso-logo .picture-none").remove();
               $('#asso-logo .picture-container').append('<img src=" " class="cause-logo" >')
             };
-            console.log(e.target.result)
             $('.cause-logo').attr('src', e.target.result).addClass("thumb-crop");
           }
         reader.readAsDataURL(input);
