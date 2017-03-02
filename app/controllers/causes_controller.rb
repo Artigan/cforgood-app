@@ -13,7 +13,7 @@ class CausesController < ApplicationController
     else
       session.delete(:referer)
     end
-    @businesses = Business.active.with_perks_in_time.distinct.includes(:business_category)
+    @businesses = Business.includes(:business_category, :main_address).active.with_perks_in_time.distinct
     @cause  = Cause.joins(:cause_category).find(params[:id])
   end
 

@@ -1,9 +1,9 @@
 class BusinessesController < ApplicationController
 
   skip_before_action :authenticate_user!, only: [:index, :show]
+  before_action :find_businesses_for_search, only: [:index, :show]
 
   def index
-    @businesses = Business.active.with_perks_in_time.distinct.includes(:business_category)
     @addresses_id = []
     @businesses.each do |business|
       business.addresses.shop.each do |address_shop|
@@ -29,9 +29,8 @@ class BusinessesController < ApplicationController
     else
       session.delete(:referer)
     end
-    @businesses = Business.includes(:main_address).active.with_perks_in_time.distinct.includes(:business_category)
-    @business = Business.joins(:business_category).find(params[:id])
-    @address = Address.find(params[:address_id])
+    @business = @businesses.find(params[:id])
+    @address = @business.addresses.find(params[:address_id])
 
     @geojson = {"type" => "FeatureCollection", "features" => []}
 
@@ -50,5 +49,11 @@ class BusinessesController < ApplicationController
       format.html
       format.json{render json: @geojson}
     end
+  end
+
+  private
+
+  def find_businesses_for_search
+    @businesses = Business.includes(:business_category, :main_address).active.with_perks_in_time.distinct
   end
 end

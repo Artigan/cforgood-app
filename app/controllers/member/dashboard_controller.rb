@@ -1,6 +1,7 @@
   class Member::DashboardController < ApplicationController
 
   skip_before_action :authenticate_user!, only: [:dashboard]
+  before_action :find_businesses_for_search, only: [:dashboard, :profile, :gift, :ambassador]
 
   def dashboard
     # save logout access
@@ -89,17 +90,20 @@
   end
 
   def profile
-    @businesses = Business.active.with_perks_in_time.distinct.includes(:business_category)
     @cause = Cause.all.includes(:cause_category)
     @payments = Payment.where(user_id: current_user.id).includes(:cause)
   end
 
   def gift
-    @businesses = Business.active.with_perks_in_time.distinct.includes(:business_category)
   end
 
   def ambassador
-    @businesses = Business.active.with_perks_in_time.distinct.includes(:business_category)
+  end
+
+  private
+
+  def find_businesses_for_search
+    @businesses = Business.includes(:business_category, :main_address).active.with_perks_in_time.distinct
   end
 
 end
