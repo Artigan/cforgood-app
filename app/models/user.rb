@@ -190,7 +190,7 @@ class User < ApplicationRecord
     User.find(id).manager == self
   end
 
-  def status?
+  def status
     return "Inscrit depuis " + I18n.l(self.created_at.to_date, format: :long) unless member
     return "A l'essai jusqu'au " + I18n.l(self.date_end_partner.to_date, format: :long) if self.code_partner.present?
     return "Abonné depuis le " + I18n.l(self.date_subscription.to_date, format: :long)
@@ -202,7 +202,7 @@ class User < ApplicationRecord
     ( self.code_partner.present? && self.date_end_partner < Time.now ) )
   end
 
-  def find_name_or_email?
+  def find_name_or_email
     self.first_name + " " + self.last_name || self.name || self.email
   end
 
@@ -246,7 +246,7 @@ class User < ApplicationRecord
     end
 
     #SEND EVENT TO SLACK
-    message =  find_name_or_email?
+    message =  find_name_or_email
     if code_partner_save.present?
       message += " a résilié sa période d'essai."
     else
@@ -328,7 +328,7 @@ class User < ApplicationRecord
   end
 
   def send_registration_slack
-    message = find_name_or_email?
+    message = find_name_or_email
     message += ", *#{city}*," if city.present?
     message += " a rejoint la communauté !"
     send_message_to_slack(ENV['SLACK_WEBHOOK_USER_URL'], message)
@@ -336,7 +336,7 @@ class User < ApplicationRecord
 
   def send_code_partner_slack
     if self.code_partner.present?
-      message = find_name_or_email? + " a utilisé le code partenaire : #{self.code_partner}"
+      message = find_name_or_email + " a utilisé le code partenaire : #{self.code_partner}"
       send_message_to_slack(ENV['SLACK_WEBHOOK_USER_URL'], message)
     end
   end

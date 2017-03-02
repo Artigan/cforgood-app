@@ -61,7 +61,7 @@ class Beneficiary < ApplicationRecord
     end
 
     # SEND EVENT TO SLACK
-    message =  user.find_name_or_email? + " a offert *" + self.nb_month.to_s + "* mois gratuit(s) à " + self.first_name + ' ' + self.last_name
+    message =  user.find_name_or_email + " a offert *" + self.nb_month.to_s + "* mois gratuit(s) à " + self.first_name + ' ' + self.last_name
     send_message_to_slack(ENV['SLACK_WEBHOOK_USER_URL'], message)
 
   end
