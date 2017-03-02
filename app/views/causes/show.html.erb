@@ -135,11 +135,11 @@
     <div class="asso-bottom-container-v2">
       <div class="dropdown">
         <div class="<%= user_signed_in? && current_user.cause == @cause ? '' : 'hidden' %> asso-button-v2 dropdown-toggle" data-toggle="dropdown">
-          <%= image_tag "icons/heart_pulse.svg", class: "red-heart"%>
+          <div class="red-heart"><%= inline_svg("icons/heart_pulse.svg") %></div>
           <div class="asso-button-text">Je soutiens cette association</div>
         </div>
         <div class="<%= !user_signed_in? || current_user.cause != @cause ? '' : 'hidden' %> asso-button-v2 dropdown-toggle" data-toggle="dropdown">
-          <%= image_tag "icons/heart.svg", class: "red-heart"%>
+           <div class="red-heart"><%= inline_svg("icons/heart.svg") %></div>
           <div class="asso-button-text">Soutenir cette association</div>
         </div>
         <ul class="dropdown-menu">
