@@ -1,4 +1,4 @@
-<div class="perk-modal">
+<div class="perk-modal-not_member hidden">
   <div class="perk-modal-label">
     <span class="label-info" style="background-color:<%= @business.business_category.color %>;">Espace réservé aux abonnés</span>
   </div>
@@ -60,6 +60,10 @@
   <script>
 
     $(document).ready(function() {
+
+      $('.perk-modal-close').click(function() {
+        $('.perk-modal-not_member').addClass('hidden');
+      });
 
       $(".button-log.sign-in").click(function() {
         $('.flipper-mobile').toggleClass('flipped');

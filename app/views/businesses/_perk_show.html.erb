@@ -69,14 +69,17 @@
     </button>
   <% end %>
 
-  <%= render "components/member_card" %>
+  <% if user_signed_in? && current_user.member %>
 
-  <% if perk.perk_detail.name == "email" || @business.online %>
-    <%= simple_form_for :use, url: perk_uses_path(params[:perk_id], online: true), method: :post, remote: true, authenticity_token: true, html: { id: :create_use } do |f| %>
-      <%= f.input :perk_id, as: :hidden, input_html: {value: params[:perk_id]} %>
-      <%= f.submit "", class: "btn-create-use", :style => "display: none;" %>
+    <%= render "components/member_card" %>
+
+    <% if perk.perk_detail.name == "email" || @business.online %>
+      <%= simple_form_for :use, url: perk_uses_path(params[:perk_id], online: true), method: :post, remote: true, authenticity_token: true, html: { id: :create_use } do |f| %>
+        <%= f.input :perk_id, as: :hidden, input_html: {value: params[:perk_id]} %>
+        <%= f.submit "", class: "btn-create-use", :style => "display: none;" %>
+      <% end %>
+      <div class="container-feedback"></div>
     <% end %>
-    <div class="container-feedback"></div>
   <% end %>
 </div>
 
