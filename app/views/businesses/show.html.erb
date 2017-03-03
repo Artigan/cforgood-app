@@ -1,156 +1,195 @@
-<% content_for :meta_title, @business.name %>
-<% content_for :meta_description, "Découvrez le Bon Plan offert par #{@business.name} !" %>
-<% content_for :meta_image, @business.picture %>
-
 <%= render 'businesses/business_search_index' %>
 <%= render "member/dashboard/shared/sidebar" %>
 
-<div class="fullpage">
+<div class="container-fluid full-page">
+    <div class="row" style="margin-top: 2.5%; margin-left:4.5%;">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <img style="width:90vh; height: 60vh" class="card-img-top" src="<%= @business.picture %>" alt="Business picture">
+                        <div class="row">
+                            <div class="col-lg-10 socials-row">
+                                <div>
 
-  <div class="fullpage-left-item">
-    <div class="colored-banner" style="background-color: <%= @business.business_category.color %>;">
-      <div class="banner-business-name">
-        <div class="name"><%= @business.name %></div>
-      </div>
-      <div class="banner-business-top-infos">
-        <div class="infos-left">
-          <div class="pastille">
-            <%= image_tag @business.business_category.picture, size: "20x20" %>
-          </div>
-          <div class="category-name category"><%= @business.business_category.name %></div>
+                                    <% if @business.like == 1 %>
+                                    <%= image_tag "icons/heart.svg", class: "red-heart"%>
+                                    <p><%= "#{@business.like} personne aime" %></p>
+                                    <% elsif @business.like > 1 %>
+                                    <%= image_tag "icons/heart.svg", class: "red-heart"%>
+                                    <p><%= "#{@business.like} personnes aiment" %></p>
+                                    <% end %>
+
+                                </div>
+                                <p class="likes align-middle"><%= @business.name %></p>
+                            </div>
+                            <div class="col-lg-2 share-row" style="background-color:<%= @business.business_category.color %>;">
+                                <a href="#" class="share-socials text-center">Partager sur
+                                    <i style="color:white" class="fa fa-share-alt fa-2x" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-block">
+                    <span>{business.opening}</span>
+                    <h1 class="card-text" id="business-name"><%= @business.name %></h1>
+                    <div class="row">
+                        <div class="col-lg-1">
+                            <div class="round-icon" style="background-color:<%= @business.business_category.color %>;"></div>
+                        </div>
+                        <div class="col-lg-3">
+                            <p class="business-category"><%= @business.business_category.name %></p>
+                        </div>
+                        <div class="col-lg-3">
+                            <p class="business-distance">
+                                <i style="color:<%= @business.business_category.color %>;" class="fa fa-map-marker fa-2x" aria-hidden="true"></i>
+                                à {distance}m</p>
+                        </div>
+                        <div class="col-lg-4 col-lg-offset-1">
+                            <div class="business-category-image">
+                                <%= image_tag @business.business_category.picture, size: "80x80" %>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row"><hr class="horizontal-bar"></div>
+
+                    <h6>Leurs engagements</h6>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <p>
+                                <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                            </i>
+                            Produits eco-responsables</p>
+                    </div>
+                    <div class="col-lg-4">
+                        <p>
+                            <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                            Zéro-déchet</p>
+                    </div>
+                    <div class="col-lg-4">
+                        <p>
+                            <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                            Circuit court</p>
+                    </div>
+                </div><br>
+
+                <h6>En quelques mots</h6>
+                <p>
+                    <% if @business.description.present? %>
+                    <div class="business-description">
+                        <%= @business.description %>
+                    </div>
+                <% else %>
+                    <div class="business-descritption">Profil en construction</div>
+                    <% end %>
+                </p>
+
+                <div class="row"><hr class="horizontal-bar"></div>
+
+                <div class="row details">
+                    <h6>Détails</h6>
+                    <div class="col-lg-4">
+                        <div class="map-details">
+                            <div id="map-perk-desktop"></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="business-addresss">
+                            <i class="fa fa-map-o fa-2x" style="color:<%= @business.business_category.color %>;"></i>
+                            <span><%= @address.present? ? @address.street : @business.street %></span>
+                            <span><%= @address.present? ? @address.zipcode : @business.zipcode %>
+                                <%= @address.present? ? @address.city : @business.city %></span>
+                        </div><br>
+                        <ul class="business-opening-hours">
+                            <li>{Lundi}</li>
+                            <li>{Mardi}</li>
+                            <li>{Mercredi}</li>
+                            <li>{Jeudi}</li>
+                            <li>{Vendredi}</li>
+                            <li>{Samedi}</li>
+                            <li>{Dimanche}</li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-4">
+                        <%= render "pro/dashboard/shared/business_links" %>
+                    </div>
+                </div>
+
+                <div class="row"><hr class="horizontal-bar"></div>
+
+                <h6>Qui se cache derrière ?</h6>
+                <br>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <img class="img-circle" src="<%= @business.leader_picture %>" alt=""/>
+                    </div>
+                    <div class="col-lg-9">
+                        <strong><%= @business.leader_first_name %>
+                            <%= @business.leader_last_name %></strong>
+                        <p><%= @business.leader_description %></p>
+                    </div>
+                </div>
+
+            </div>
         </div>
-        <div class="infos-right">
-          <div class="dot-state"></div>
-          <div class="dot-state-name">Ouvert</div>
-        </div>
-      </div>
-      <div class="card-abs-banner">
-        <div class="card-photo" style="background-image: url('<%= @business.picture %>');"></div>
-        <div class="card-bottom-links">
-          <div class="card-bottom-left-item" style="background-color: <%= @business.business_category.color %>;">
-            <% if @business.like == 1 %>
-              <%= image_tag "icons/heart.svg", class: "red-heart"%>
-              <div class="firstblock-text"><%= "#{@business.like} personne" %></div>
-            <% elsif @business.like > 1 %>
-              <%= image_tag "icons/heart.svg", class: "red-heart"%>
-              <div class="firstblock-text"><%= "#{@business.like} personnes" %></div>
+    </div>
+    <div class="col-lg-6">
+
+        <div class="fullpage-right-item hidden-xs">
+            <div class="title-fri-underline" style="border-color: <%= @business.business_category.color %>;">Nos bons plans</div>
+            <% @business.perks.active.each do |perk| %>
+            <div class="perk-card-container perk-modal-use-<%= perk.id %>">
+                <%= render  "businesses/business_card", business: @business, address: @address, perk: perk, index_view: false %>
+            </div>
+            <div class="perk-modal-use">
+                <% if !user_signed_in? %>
+                <%= render "businesses/business_perk_not_member" %>
+            <% else %>
+                <%= render "businesses/perk_show", perk: perk %>
+                <% end %>
+                <%#= render "businesses/mobileshow_member" %>
+            </div>
             <% end %>
-          </div>
-          <div class="card-bottom-right-item" style="background-color: <%= @business.business_category.color %>;">
-            <div class="cbri-middleblock">
-              <i class="fa fa-facebook" aria-hidden="true"></i>
-            </div>
-            <div class="cbri-endblock">
-              <i class="fa fa-twitter" aria-hidden="true"></i>
-            </div>
-          </div>
         </div>
-      </div>
-    </div>
-    <div class="fullpage-left-item-bottom">
-      <div class="">
-        <div class="title-sub">Leurs engagements</div>
-      </div>
-      <div class="flib-engages">
-        <div class="flib-engages-item">
-          <div class="flib-icon"></div>
-          <div class="flib-text">Eco-responsable</div>
-        </div>
-        <div class="flib-engages-item">
-          <div class="flib-icon"></div>
-          <div class="flib-text">Zéro déchets</div>
-        </div>
-        <div class="flib-engages-item">
-          <div class="flib-icon"></div>
-          <div class="flib-text">Circuit court</div>
-        </div>
-      </div>
-      <div class="">
-        <div class="title-sub">En quelques mots</div>
-      </div>
-      <% if @business.description.present? %>
-        <div class="business-desc">
-          <%= @business.description %>
-        </div>
-      <% else %>
-        <div class="business-desc">Profil en construction</div>
-      <% end %>
-      <div class="title-sub">Détails</div>
-      <div class="business-infos">
-        <!-- BLOCK MAP -->
-        <div class="perk-map" style="border-color: <%= @business.business_category.color %>;">
-          <div id="map-perk-desktop"></div>
-          <div class="business-address">
-            <div class="pastille" style="background-color:<%= @business.business_category.color %>;">
-              <i class="fa fa-map-marker"></i>
-            </div>
-            <span><%= @address.present? ? @address.street : @business.street %>,
-            <br><%= @address.present? ? @address.zipcode : @business.zipcode %> <%= @address.present? ? @address.city : @business.city %></span>
-          </div>
-        </div>
-        <!-- LINKS | FIND THEM -->
-        <%= render "pro/dashboard/shared/business_links" %>
-      </div>
-    </div>
-  </div>
 
-  <div class="fullpage-right-item hidden-xs">
-    <div class="title-fri-underline" style="border-color: <%= @business.business_category.color %>;">Nos bons plans</div>
-    <% @business.perks.active.each do |perk| %>
-      <div class="perk-card-container perk-modal-use-<%= perk.id %>">
-        <%= render  "businesses/business_card", business: @business, address: @address, perk: perk, index_view: false %>
-      </div>
-      <div class="perk-modal-use">
-        <% if !user_signed_in? %>
-          <%= render "businesses/business_perk_not_member" %>
-        <% else %>
-          <%= render "businesses/perk_show", perk: perk %>
-        <% end %>
-          <%#= render "businesses/mobileshow_member" %>
-      </div>
-    <% end %>
-  </div>
-
-  <div class="mobile_perks_list visible-xs">
-    <button class="button-validation-modal mobile-perks-list" style="background-color:<%= @business.business_category.color %>;">
-      Voir nos bons plans
-    </button>
-    <%= render "businesses/mobile_perks_list" %>
-  </div>
+        <div class="mobile_perks_list visible-xs">
+            <button class="button-validation-modal mobile-perks-list" style="background-color:<%= @business.business_category.color %>;">
+                Voir nos bons plans
+            </button>
+            <%= render "businesses/mobile_perks_list" %>
+        </div>
+    </div>
+</div>
+</div>
 </div>
 
 <% content_for :after_js do %>
 
-  <script type="text/javascript">setRoutePathFromLocation()</script>
+<script type="text/javascript">
+setRoutePathFromLocation()
+</script>
 
-  <%= render 'components/map_show', geojson: @geojson, container: device_type == :mobile ? 'map-perk' : 'map-perk-desktop' %>
+<%= render 'components/map_show', geojson: @geojson, container: device_type == :mobile ? 'map-perk' : 'map-perk-desktop' %>
 
-  <script>
+<script>
 
-    $(document).ready(function(){
+$(document).ready(function () {
 
-      $(".perk-pseudo-modal-link").click(function() {
+    $(".perk-pseudo-modal-link").click(function () {
         var classModal = $(this).attr('id');
         $('.' + classModal).removeClass("hidden");
-      });
-
-      $(".mobile-perks-list").click(function() {
-        $('.perk-modal-mobile-member').removeClass("hidden");
-      });
-
-      // $(".use-button-logout").click(function() {
-      //   $('.use-overlay').removeClass('hidden');
-      //   // EVENT AMPLITUDE USER_C_BENEFIT
-      //   amplitude.logEvent('USER_C_BENEFIT_LOGOUT');
-      // });
-
-      // $(".btn-use-button").click(function() {
-      //   // EVENT AMPLITUDE USER_C_BENEFIT
-      //   amplitude.logEvent('USER_C_BENEFIT');
-      // });
     });
-  </script>
+
+    $(".mobile-perks-list").click(function () {
+        $('.perk-modal-mobile-member').removeClass("hidden");
+    });
+
+    // $(".use-button-logout").click(function() {   $('.use-overlay').removeClass('hidden');   // EVENT AMPLITUDE USER_C_BENEFIT   amplitude.logEvent('USER_C_BENEFIT_LOGOUT'); }); $(".btn-use-button").click(function() {   // EVENT AMPLITUDE
+    // USER_C_BENEFIT   amplitude.logEvent('USER_C_BENEFIT'); });
+});
+</script>
 
 <% end %>
-
-
