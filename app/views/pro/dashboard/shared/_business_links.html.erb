@@ -1,63 +1,57 @@
 <!-- LINKS | FIND THEM -->
 <div class="business-links">
-  <ul class="reach-us">
-    <li>
+  <ul>
+    <li class="reach-uss">
       <% if @business.email.present? %>
-        <a href="mailto:<%= @business.email %>" class="business-link link-mailto" target="_blank">
-          <i class="fa fa-envelope business-icon" style="background-color: <%= @business.business_category.color %>;"></i>
-          <span style="border-color: <%= @business.business_category.color %>;"><%= @business.email %></span>
+        <a href="mailto:<%= @business.email %>" style="color: <%= @business.business_category.color %>;" target="_blank">
+          <i class="fa fa-envelope"></i>
+          <span><%= @business.email %></span>
         </a>
       <% end %>
-    </li>
-    <li>
+    </li><br>
+    <li class="reach-uss">
       <% if @business.telephone.present? %>
-        <a href="tel:<%= @business.telephone %>" class="business-link link-mailto hint--top" target="_blank" data-hint="<%= @business.telephone %>">
-          <i class="fa fa-phone" style="background-color: <%= @business.business_category.color %>;"></i>
-          <span style="border-color: <%= @business.business_category.color %>;"><%= @business.telephone %></span>
+        <a href="tel:<%= @business.telephone %>" style="color: <%= @business.business_category.color %>;" target="_blank" data-hint="<%= @business.telephone %>">
+          <i class="fa fa-phone"></i>
+          <span><%= @business.telephone %></span>
         </a>
-      <% end %>
-    </li>
-    <li class="direction">
-      <%= link_to "http://maps.google.com/maps", class: "business-link link-mailto", id:"link-itinerary", disabled: true, data: { locale: I18n.locale, destination: { latitude: @address.latitude, longitude: @address.longitude } }, :target => "_blank" do %>
-          <i class="fa fa-location-arrow" style="background-color: <%= @business.business_category.color %>;"></i>
       <% end %>
     </li>
   </ul>
   <!-- DESKTOP -->
-  <div class="follow-us">
-    <span class="follow-us-title">Retrouvez-nous :</span>
-    <ul>
+  <div class="follow-uss">
+    <span>Retrouvez-nous :</span>
+
       <% if @business.url.present? %>
-        <li>
-          <a href="<%= @business.url %>" class="business-link link-website" style="background-color: <%= @business.business_category.color %>;" target="_blank">
-            <i class="fa fa-globe business-icon"></i>
+        <span>
+          <a href="<%= @business.url %>" style="background-color: <%= @business.business_category.color %>;" target="_blank">
+            <i class="fa fa-globe"></i>
           </a>
-        </li>
+        </span>
       <% end %>
 
       <% if @business.facebook.present? %>
-        <li>
-          <a href="http://facebook.com/<%= @business.facebook %>" class="business-link link-facebook" style="background-color: <%= @business.business_category.color %>;" target="_blank">
-            <i class="fa fa-facebook business-icon"></i>
+        <span>
+          <a href="http://facebook.com/<%= @business.facebook %>" style="background-color: <%= @business.business_category.color %>;" target="_blank">
+            <i class="fa fa-facebook"></i>
           </a>
-        </li>
+        </span>
       <% end %>
 
       <% if @business.twitter.present? %>
-        <li>
-          <a href="http://twitter.com/<%= @business.twitter %>" class="business-link link-twitter" style="background-color: <%= @business.business_category.color %>;" target="_blank">
-              <i class="fa fa-twitter business-icon"></i>
+        <span>
+          <a href="http://twitter.com/<%= @business.twitter %>" style="background-color: <%= @business.business_category.color %>;" target="_blank">
+              <i class="fa fa-twitter"></i>
           </a>
-        </li>
+        </span>
       <% end %>
 
       <% if @business.instagram.present? %>
-        <li>
-          <a href="http://instagram.com/<%= @business.instagram %>" class="business-link link-instagram" style="background-color: <%= @business.business_category.color %>;" target="_blank">
-            <i class="fa fa-instagram business-icon"></i>
+        <span>
+          <a href="http://instagram.com/<%= @business.instagram %>" style="background-color: <%= @business.business_category.color %>;" target="_blank">
+            <i class="fa fa-instagram"></i>
           </a>
-        </li>
+        </span>
       <% end %>
-    </ul>
   </div>
 </div>

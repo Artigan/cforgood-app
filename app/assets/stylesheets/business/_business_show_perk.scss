@@ -1,3 +1,135 @@
+/* Adrien CSS */
+
+.card-block {
+  margin-left: 5%;
+  margin-right: 2%;
+}
+
+.full-page {
+  background-color: white;
+}
+
+
+.socials-row {
+  background-color: rgba(255,255,255,0.9);
+  opacity: 0.85;
+  margin-top: -5%;
+  border: 1px 1px 1px 1px;
+  height: 48px;
+  width: 70%;
+}
+
+.share-row {
+  margin-top: -5%;
+  border: 1px 1px 1px 1px;
+  height: 45px;
+  width: 23.7%;
+}
+
+.likes {
+  margin-left: 7%;
+  margin-top: 2%;
+}
+.share-socials {
+  color: white;
+  margin-left: 5%;
+}
+
+#business-name {
+  padding-bottom: 2%;
+  font-size: 2.5;
+  color: black;
+  font-weight: 600;
+  text-transform: lowercase;
+  text-transform: capitalize;
+}
+
+.round-icon {
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  margin-top: 2%;
+}
+
+.business-category {
+  margin-left:-20%;
+}
+
+.business-distance {
+  margin-top: -4%;
+}
+
+.business-category-image {
+  margin-top: -20%;
+}
+
+.business-description {
+width: 92%;
+padding-bottom: 20px;
+font-size: 12px;
+color: rgba(55,55,55,0.9);
+}
+
+hr {
+  -moz-border-bottom-colors: none;
+  -moz-border-image: none;
+  -moz-border-left-colors: none;
+  -moz-border-right-colors: none;
+  -moz-border-top-colors: none;
+  border-color: #EEEEEE -moz-use-text-color #FFFFFF;
+  border-style: solid none;
+  border-width: 1px 0;
+  margin-left: 0;
+  width: 90%;
+  background-color: rgba(128,128,128, 0.9);
+}
+
+.business-opening-hours li{
+  list-style-type: none;
+}
+
+
+.map-details {
+    width: 200px;
+    height: 200px;
+    margin-top: 5%;
+    background-color: #fff;
+  }
+
+
+  .reach-uss {
+    list-style-type: none;
+  }
+
+  .reach-uss i{
+    display: inline-block;
+    border-style: solid;
+    padding: 5px 6px 5px 6px;
+    border-width: 1.5px;
+    border-radius: 60px;
+
+  }
+
+  .reach-uss span {
+    color: black;
+    font-size: 0.8em;
+  }
+
+  .follow-uss a{
+    display: inline-block;
+    border-style: solid;
+    padding: 5px;
+    border-width: 1.5px;
+    border-radius: 60px;
+  }
+
+  .follow-uss span{
+    color: black;
+  }
+
+
+
+
 /* SHOW - PERK ****************************************************************/
 
 .dashboard-perk {
@@ -1099,12 +1231,6 @@
     line-height: 13px;
     font-weight: 400;
   }
-}
-
-.business-links {
-  width: 40%;
-  display: flex;
-  flex-direction: column;
 }
 
 .fullpage-right-item {
