@@ -31,8 +31,12 @@
       <% if !current_user.member %>
         <%= render 'components/popups/not_member_dashboard' %>
       <% elsif current_user.trial_done? %>
-        <!-- POPUP TRIAL -->
-        <%= render 'components/popups/welcome_member_trial' %>
+         <!-- POPUP TRIAL -->
+        <% if current_user.code_partner == "GIFT3MONTH" || current_user.code_partner == "GIFT6MONTH" || current_user.code_partner == "GIFT12MONTH" %>
+           <%= render partial: 'components/popups/welcome_member_trial_gift', locals: { beneficiary: @beneficiary, user_offering: @user_offering } %>
+        <% else %>
+           <%= render 'components/popups/welcome_member_trial' %>
+        <% end %>
       <% elsif @businesses.size == 0 %>
         <%= render 'components/popups/no_perks_dashboard' %>
       <% end %>
@@ -46,9 +50,6 @@
     <div class="dashboard">
 
       <div class="mobile-menu-overlay hidden"></div>
-
-      <!-- MENU | NOTIFICATION -->
-      <%#= render 'components/menu/notification_center' %>
 
       <!-- FLASH | FIND PERK -->
       <%= render 'components/user_dashboard/flash_button' %>

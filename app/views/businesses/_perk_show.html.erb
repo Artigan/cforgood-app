@@ -36,51 +36,53 @@
   <div class="divider-line"></div>
 
   <p class="pmu-question">Envie d'en profiter ?</p>
+  <% if user_signed_in? %>
 
-  <% if perk.perk_detail.name == "email" %>
-    <p class="pmu-answer">Envoyez-nous un email pour réserver votre bon plan </p>
-    <a href='mailto:<%= @business.email %>?subject=Nouvelle demande de bon plan CforGood !&body=Bonjour <%= @business.leader_first_name if @business.leader_first_name.present? %>,%0D%0A<%= @business.name %> semble sympa comme tout !%0D%0AJe souhaiterais bénéficier du bon plan « <%= perk.name.gsub(/%/, "%25").upcase %> » (Code : <%= perk.perk_code %>), pouvez-vous me dire comment procéder ?%0D%0A Merci par avance !%0D%0A<%= current_user.first_name.capitalize if current_user.first_name.present? %> <%= current_user.last_name.capitalize if current_user.last_name.present? %>' class="button-validation-modal send-mail" style="background-color:<%= @business.business_category.color %>;" target="_blank">
-      Nous écrire
-    </a>
+    <% if perk.perk_detail.name == "email" %>
+      <p class="pmu-answer">Envoyez-nous un email pour réserver votre bon plan </p>
+      <a href='mailto:<%= @business.email %>?subject=Nouvelle demande de bon plan CforGood !&body=Bonjour <%= @business.leader_first_name if @business.leader_first_name.present? %>,%0D%0A<%= @business.name %> semble sympa comme tout !%0D%0AJe souhaiterais bénéficier du bon plan « <%= perk.name.gsub(/%/, "%25").upcase %> » (Code : <%= perk.perk_code %>), pouvez-vous me dire comment procéder ?%0D%0A Merci par avance !%0D%0A<%= current_user.first_name.capitalize if current_user.first_name.present? %> <%= current_user.last_name.capitalize if current_user.last_name.present? %>' class="button-validation-modal send-mail" style="background-color:<%= @business.business_category.color %>;" target="_blank">
+        Nous écrire
+      </a>
 
-  <% elsif @business.online %>
-    <div class="pmu-answer">CODE PROMO : <stong><%= perk.perk_code.upcase %></strong></div>
-    <button class="button-validation-modal send-to-shop" style="background-color:<%= @business.business_category.color %>;">
-      <%= link_to "#{@business.url}", class: "send-to-shop", target: "_blank" do %>
-        Me rendre sur le site
-      <% end %>
-    </button>
+    <% elsif @business.online %>
+      <div class="pmu-answer">CODE PROMO : <stong><%= perk.perk_code.upcase %></strong></div>
+      <button class="button-validation-modal send-to-shop" style="background-color:<%= @business.business_category.color %>;">
+        <%= link_to "#{@business.url}", class: "send-to-shop", target: "_blank" do %>
+          Me rendre sur le site
+        <% end %>
+      </button>
 
-  <% elsif device_type != :mobile %>
-    <p class="pmu-answer">Rendez-vous en magasin avec votre smartphone</p>
-    <%= link_to "http://maps.google.com/maps", class: "pastille itinary", id: "link-map", disabled: true, data: { locale: I18n.locale, destination: { latitude: @business.latitude, longitude: @business.longitude } }, :target => "_blank" do %>
-      <i class="fa fa-location-arrow"></i>
-    <% end %>
-
-  <% else %>
-    <p class="pmu-answer">Montrez votre carte de membre au commerçant.</p>
-    <%= link_to "http://maps.google.com/maps", class: "pastille itinary", id: "link-map", disabled: true, data: { locale: I18n.locale, destination: { latitude: @business.latitude, longitude: @business.longitude } }, :target => "_blank" do %>
+    <% elsif device_type != :mobile %>
+      <p class="pmu-answer">Rendez-vous en magasin avec votre smartphone</p>
+      <%= link_to "http://maps.google.com/maps", class: "pastille itinary", id: "link-map", disabled: true, data: { locale: I18n.locale, destination: { latitude: @business.latitude, longitude: @business.longitude } }, :target => "_blank" do %>
         <i class="fa fa-location-arrow"></i>
-    <% end %>
-    <span class="label-itinary">Afficher l'itinéraire</span>
-    <button class="button-validation-modal btn-show-card" style="background-color:<%= @business.business_category.color %>;">
-      <p>Affichez ma carte pour valider</p>
-      <span>(seulement chez le commerçant)</span>
-    </button>
-  <% end %>
-
-  <% if user_signed_in? && current_user.member %>
-
-    <%= render "components/member_card" %>
-
-    <% if perk.perk_detail.name == "email" || @business.online %>
-      <%= simple_form_for :use, url: perk_uses_path(params[:perk_id], online: true), method: :post, remote: true, authenticity_token: true, html: { id: :create_use } do |f| %>
-        <%= f.input :perk_id, as: :hidden, input_html: {value: params[:perk_id]} %>
-        <%= f.submit "", class: "btn-create-use", :style => "display: none;" %>
       <% end %>
-      <div class="container-feedback"></div>
+
+    <% else %>
+      <p class="pmu-answer">Montrez votre carte de membre au commerçant.</p>
+      <%= link_to "http://maps.google.com/maps", class: "pastille itinary", id: "link-map", disabled: true, data: { locale: I18n.locale, destination: { latitude: @business.latitude, longitude: @business.longitude } }, :target => "_blank" do %>
+          <i class="fa fa-location-arrow"></i>
+      <% end %>
+      <span class="label-itinary">Afficher l'itinéraire</span>
+      <button class="button-validation-modal btn-show-card" style="background-color:<%= @business.business_category.color %>;">
+        <p>Affichez ma carte pour valider</p>
+        <span>(seulement chez le commerçant)</span>
+      </button>
     <% end %>
-  <% end %>
+
+    <% if current_user.member %>
+
+      <%= render "components/member_card" %>
+
+      <% if perk.perk_detail.name == "email" || @business.online %>
+        <%= simple_form_for :use, url: perk_uses_path(params[:perk_id], online: true), method: :post, remote: true, authenticity_token: true, html: { id: :create_use } do |f| %>
+          <%= f.input :perk_id, as: :hidden, input_html: {value: params[:perk_id]} %>
+          <%= f.submit "", class: "btn-create-use", :style => "display: none;" %>
+        <% end %>
+        <div class="container-feedback"></div>
+      <% end %>
+    <% end %>
+  <% end%>
 </div>
 
 

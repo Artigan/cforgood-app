@@ -5,13 +5,7 @@
 
       <div class="profile-datas">
         <div class="picture-container">
-          <% if current_user.picture? %>
-            <%= image_tag current_user.picture.url(:avatar), class: 'user-picture'  %>
-          <% else %>
-            <div class="picture-none">
-              <%= image_tag "citoyen.svg", class: "avatar-citoyen" %>
-            </div>
-          <% end %>
+          <%= render partial: 'components/avatar_or_picture', locals: { resource: current_user, style: "pastille" } %>
           <%= f.input :picture, label: 'Sélectionner une nouvelle image de profil', class: 'user-picture-label' %>
           <%= f.input :picture_cache, as: :hidden %>
         </div>

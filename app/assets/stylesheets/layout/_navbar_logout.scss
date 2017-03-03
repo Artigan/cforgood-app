@@ -133,7 +133,9 @@ nav {
     }
   }
 
-  @media (max-width: 767px) {
-    display: none;
+  &:not(.logout) {
+    @media (max-width: 767px) {
+      display: none;
+    }
   }
 }

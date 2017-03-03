@@ -1,15 +1,40 @@
 .avatar-citoyen {
-  height: 50px;
-  width: 50px;
+  width: 35px;
+  height: 35px;
 }
 
 .pastille-citoyen {
-  height: 80px;
-  width: 80px;
+  width: 100px;
+  height: 100px;
 }
 
-.avatar-citoyen, .pastille-citoyen {
+.connexion-citoyen {
+  width: 50px;
+  height: 50px;
+}
+
+.avatar-user {
+  width: auto;
+  height: auto;
+  max-width: 35px;
+  max-height: 35px;
+}
+
+.pastille-user {
+  width: auto;
+  height: auto;
+  max-width: 100px;
+  max-height: 100px;
+}
+
+.avatar-citoyen, .connexion-citoyen, .pastille-citoyen {
   padding: 6px 6px 0 6px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.avatar-user, .pastille-user {
+  padding: 1px;
   border-radius: 50%;
   background: #fff;
 }

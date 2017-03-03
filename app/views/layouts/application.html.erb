@@ -8,10 +8,8 @@
 
     <% if signup_or_signin_page? %>
       <%= render "layouts/shared/navbar_logout" %>
-    <% else %>
-      <div class="">
-        <%= render "layouts/shared/navbar" %>
-      </div>
+    <% elsif !funnel_subscription? %>
+      <%= render "layouts/shared/navbar" %>
     <% end %>
 
     <div id="menu-overlay">

@@ -82,16 +82,15 @@ class MonthlyPayinJob < ApplicationJob
       if user.card_id.present?
         if monthly_payin(user)
           # Change subscription: Trial is done !
-          user.update(subscription: "M")
           nb_payin_trial_OK += 1
           report << "MEMBER ON TRIAL J-0 | subscription OK | #{user.id} | #{user.email}"
         else
-          user.update(member: false)
+          user.update(member: false, code_partner: nil)
           nb_payin_trial_KO += 1
           report << "MEMBER ON TRIAL J-0 | subscription KO + member inactivate | #{user.id} | #{user.email}"
         end
       else
-        user.update(member: false)
+        user.update(member: false, code_partner: nil)
         begin
           intercom.events.create(
             event_name: "TRIAL-J-0",

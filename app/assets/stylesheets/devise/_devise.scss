@@ -84,7 +84,7 @@
       box-sizing: border-box;
       background: none;
 
-      i, .avatar-citoyen {
+      i, .avatar-citoyen, .connexion-citoyen {
         border-radius: 0;
       }
     }
@@ -285,7 +285,7 @@
         background: #fff;
       }
 
-      i, .avatar-citoyen {
+      i, .avatar-citoyen, .connexion-citoyen {
         position: absolute;
         top: -60px;
         left: 50%;
@@ -552,6 +552,14 @@
     @media (max-width: 767px) {
       width: 100%;
       transform: translateY(0%) translateX(0%);
+    }
+
+    .avatar-citoyen {
+        top: -90px;
+
+      @media (max-width: 767px) {
+        top: -60px;
+      }
     }
 
     .form-card {
@@ -914,6 +922,3 @@
     width: 100%;
   }
 }
-
-
-

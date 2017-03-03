@@ -509,11 +509,11 @@
   background-size: cover;
   background-position: center center;
 
-  .left {
+  &.left {
     margin-left: 10px;
   }
 
-  .right {
+  &.right {
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -536,20 +536,21 @@
 }
 
 .avatar-navbar {
-  height: 35px;
-  width: 35px;
+  // height: 35px;
+  // width: 35px;
   margin-left: 15px;
 
   &:hover {
     cursor: pointer;
   }
 
-  img {
-    width: 100%;
-    max-width: 35px;
-    max-height: 35px;
-    border-radius: 50%;
-  }
+  // img {
+  //   width: auto;
+  //   height: auto;
+  //   max-width: 40px;
+  //   max-height: 40px;
+  //   border-radius: 50%;
+  // }
 }
 
 .caret {

@@ -12,8 +12,7 @@
 
   <div class="dash-fullpage-header">
     <div class="dash-header-avatar-container">
-      <div class="header-avatar" style="background-image: url(<%= avatar_url(current_user) %>);"></div>
-
+      <%= render partial: 'components/avatar_or_picture', locals: { resource: current_user, style: "pastille" } %>
     </div>
   </div>
 

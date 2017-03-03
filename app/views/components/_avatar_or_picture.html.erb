@@ -1,0 +1,5 @@
+<% if resource.picture? %>
+  <%= image_tag resource.picture.url(:avatar), class: "#{style}-user" %>
+<% else %>
+  <%= image_tag "citoyen.svg", class: "#{style}-citoyen" %>
+<% end %>

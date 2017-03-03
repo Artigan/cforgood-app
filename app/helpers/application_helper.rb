@@ -2,15 +2,6 @@ module ApplicationHelper
 
   include Mobvious::Rails::Helper
 
-  def avatar_url(user)
-    gravatar_id = Digest::MD5::hexdigest(user.email).downcase
-    if user.picture # si le user est connecté avec fb
-      user.picture.url(:avatar)  # on affiche img de profile
-    else          # sinon on utilise gravatar pr son email
-      "https://www.gravatar.com/avatar/#{gravatar_id}.jpg?d=identicon&s=30"
-    end
-  end
-
   def name_user(user)
     if !current_user.last_name.blank?
       current_user.first_name.capitalize + " " + current_user.last_name.chars.first.capitalize + "."
@@ -60,11 +51,13 @@ module ApplicationHelper
     request.path == "/signup_beneficiary" ||
     request.path == "/member/signin" ||
     request.path == "/users/sign_in" ||
-    request.path == "/member/signup" ||
-    request.path == "/member/signup/new" ||
     request.path == "/pro" ||
     request.path == "/pro/sign_in" ||
     request.path == "/pro/sign_up"
+  end
+
+  def funnel_subscription?
+    request.path ==  "/member/subscribe/new"
   end
 
   def pad0 items

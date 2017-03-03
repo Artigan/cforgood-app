@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
         rescue MangoPay::ResponseError => e
           puts e
         end
-        if request.referer.prensent?
+        if request.referer.present?
           if request.referer.include?('signup_trial')
             # Signup from the landing with automatic fill code_partner
             current_user.code_partner = "SIGNUPTRIAL"
@@ -55,9 +55,10 @@ class ApplicationController < ActionController::Base
             @beneficiary.update(used: true)
             member_user_dashboard_path(resource)
           end
+        else
+         # Funnel subscritpion
+          new_member_subscribe_path
         end
-        # Funnel subscritpion
-        new_member_subscribe_path
       elsif resource.supervisor
         member_user_supervisor_account_path(resource)
       else

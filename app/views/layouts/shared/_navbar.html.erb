@@ -60,15 +60,13 @@
       <% if user_signed_in? %>
         <span class="hidden-xs"><%= name_user(current_user) %></span>
         <div class="avatar-navbar dropdown-toggle" data-toggle="dropdown">
-          <%= image_tag avatar_url(current_user) if current_user.picture.present? %>
-          <%= image_tag "citoyen.svg" unless current_user.picture.present? %>
+          <%= render partial: 'components/avatar_or_picture', locals: { resource: current_user, style: "avatar" } %>
           <div class="caret"></div>
         </div>
       <% elsif business_signed_in? %>
         <span class="hidden-xs"><%= current_business.name %></span>
         <div class="avatar-navbar dropdown-toggle" data-toggle="dropdown">
-          <%= image_tag current_business.picture if current_business.picture.present? %>
-          <%= image_tag "citoyen.svg" unless current_business.picture.present? %>
+          <%= image_tag avatar_url(current_business) %>
           <div class="caret"></div>
         </div>
       <% else %>

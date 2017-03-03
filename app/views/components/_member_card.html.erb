@@ -16,7 +16,7 @@
     </div>
 
     <div class="member-info">
-      <%= image_tag (current_user.picture? ? current_user.picture.url(:avatar) : "profile.png"), class: "img-circle user"%>
+      <%= render partial: 'components/avatar_or_picture', locals: { resource: current_user, style: "avatar" } %>
       <% if current_user.name.present? %>
         <span class="user"><%= current_user.name %></span>
       <% else %>

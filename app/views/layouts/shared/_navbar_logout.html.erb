@@ -5,30 +5,24 @@
       <div class="nav-left">
         <!-- LOGO -->
         <%= link_to root_path do %>
-          <div class="logo-mobile">
-            <%= render "components/svg/logo_thumb" %>
-          </div>
-          <div class="logo-desktop">
-            <%= render "components/svg/logo" %>
-          </div>
+          <div class="navbar-logo-item left"></div>
         <% end %>
       </div>
       <!-- SIGNUP/SIGNIN BUTTONS -->
-      <div class="nav-right">
-      <%= link_to signup_path, class: "sign-up" do %>
-        <div class="ripple-area js-ripple">
-          <span class="ripple-circle"></span>
-        </div>
-        Je m'inscris
-      <% end %>
-      <%= link_to signin_path, class: "sign-in" do %>
-        <div class="ripple-area js-ripple">
-          <span class="ripple-circle"></span>
-        </div>
-        Se connecter
-      <% end %>
+      <div class="nav-right logout">
+        <%= link_to signup_path, class: "sign-up" do %>
+          <div class="ripple-area js-ripple">
+            <span class="ripple-circle"></span>
+          </div>
+          Je m'inscris
+        <% end %>
+        <%= link_to signin_path, class: "sign-in" do %>
+          <div class="ripple-area js-ripple">
+            <span class="ripple-circle"></span>
+          </div>
+          Se connecter
+        <% end %>
       </div>
     </div>
   </div>
-
 </nav>
