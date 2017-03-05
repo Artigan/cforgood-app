@@ -66,7 +66,7 @@
       <% elsif business_signed_in? %>
         <span class="hidden-xs"><%= current_business.name %></span>
         <div class="avatar-navbar dropdown-toggle" data-toggle="dropdown">
-          <%= image_tag avatar_url(current_business) %>
+          <%= render partial: 'components/avatar_or_picture', locals: { resource: current_business, style: "avatar" } %>
           <div class="caret"></div>
         </div>
       <% else %>
@@ -99,11 +99,13 @@
               <%= link_to "Mes informations", member_user_profile_path(current_user, anchor: 'profile' ), class: "droptext-bold profile-tab" %>
               <%= link_to "Mon association", member_user_profile_path(current_user, anchor: 'cause'), class: "droptext-bold profile-tab" %>
               <%= link_to "Mon abonnement", member_user_profile_path(current_user,  anchor: 'subscription'), class: "droptext-bold profile-tab" %>
-              <%= link_to "Mes contributions", member_user_profile_path(current_user, anchor: 'list-payments'),  class: "droptext-bold profile-tab" %>
+              <% if current_user.date_last_payment.prsent? %>
+                <%= link_to "Mes contributions", member_user_profile_path(current_user, anchor: 'list-payments'),  class: "droptext-bold profile-tab" %>
+              <% end %>
             <% end %>
           <% elsif business_signed_in? %>
-            <%= link_to "Mes informations", pro_business_profile_path(current_user, anchor: 'business' ), class: "droptext-bold profile-tab" %>
-            <%= link_to "Mon commerce", pro_business_profile_path(current_user, anchor: 'shop'), class: "droptext-bold profile-tab" %>
+            <%= link_to "Mes informations", pro_business_profile_path(current_business, anchor: 'business' ), class: "droptext-bold profile-tab" %>
+            <%= link_to "Mon commerce", pro_business_profile_path(current_business, anchor: 'shop'), class: "droptext-bold profile-tab" %>
           <% else %>
             <%= link_to signup_path do %>
               <div class="droptext">

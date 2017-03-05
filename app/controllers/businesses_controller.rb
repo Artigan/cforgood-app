@@ -23,6 +23,15 @@ class BusinessesController < ApplicationController
   end
 
   def show
+
+    if params[:lng].present? && params[:lat].present?
+      @lat_lng = [params[:lat], params[:lng]]
+    elsif (current_user.present? && current_user.email == "allan.floury@gmail.com") || !cookies[:coordinates].present?
+      @lat_lng = [44.837789, -0.57918]
+    else
+      @lat_lng = cookies[:coordinates].split('&')
+    end
+
     # save request.referer when logout access
     if !user_signed_in?
       session[:referer] = request.url
@@ -31,6 +40,7 @@ class BusinessesController < ApplicationController
     end
     @business = @businesses.find(params[:id])
     @address = @business.addresses.find(params[:address_id])
+    @labels = @business.labels.includes(:label_category)
 
     @geojson = {"type" => "FeatureCollection", "features" => []}
 

@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="row">
                     <div class="col-lg-12">
-                        <img style="width:90vh; height: 60vh" class="card-img-top" src="<%= @business.picture %>" alt="Business picture">
+                        <img style="width:90vh; height: 60vh" class="card-img-top" src="<%= @business.picture.url(:medium) %>" alt="Business picture">
                         <div class="row">
                             <div class="col-lg-10 socials-row">
                                 <div>
@@ -45,7 +45,7 @@
                         <div class="col-lg-3">
                             <p class="business-distance">
                                 <i style="color:<%= @business.business_category.color %>;" class="fa fa-map-marker fa-2x" aria-hidden="true"></i>
-                                à {distance}m</p>
+                                à <%= display_distance(@address.distance_from(@lat_lng))  %> </p>
                         </div>
                         <div class="col-lg-4 col-lg-offset-1">
                             <div class="business-category-image">
@@ -58,21 +58,13 @@
 
                     <h6>Leurs engagements</h6>
                     <div class="row">
+                        <% @labels.each do |label| %>
                         <div class="col-lg-4">
                             <p>
-                                <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
-                            </i>
-                            Produits eco-responsables</p>
-                    </div>
-                    <div class="col-lg-4">
-                        <p>
-                            <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
-                            Zéro-déchet</p>
-                    </div>
-                    <div class="col-lg-4">
-                        <p>
-                            <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
-                            Circuit court</p>
+                                <%= image_tag label.label_category.picture, size: "40x40" %>
+                                <%= label.label_category.name %>
+                            </p>
+                        </div>
                     </div>
                 </div><br>
 

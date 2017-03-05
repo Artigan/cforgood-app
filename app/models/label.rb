@@ -22,4 +22,7 @@
 class Label < ApplicationRecord
   belongs_to :label_category
   belongs_to :business
+
+  validates :label_category_id, presence: true
+  validates :business_id, presence: true
 end

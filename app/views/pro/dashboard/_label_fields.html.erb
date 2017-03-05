@@ -1,0 +1,4 @@
+<%#= f.collection_select(:label_category_id, LabelCategory.all, label: 'Engagement', {multiple: true} ) %>
+    <%#= f.collection_select(:tag_ids, Tag.all, :id, :name, {include_hidden: false}, {multiple: true} ) %>
+
+<%= f.collection_select(:label_category_id, LabelCategory.all, :id,  {selected: @business.labels.label_categories, include_blank: true}, {multiple: true}) %>

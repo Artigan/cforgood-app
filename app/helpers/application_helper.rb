@@ -68,6 +68,14 @@ module ApplicationHelper
     end
   end
 
+  def display_distance distance
+    if distance.round(3) > 1
+      (distance).round(1).to_s + " km"
+    else
+      (distance * 1000).round(0).to_s + " m"
+    end
+  end
+
   def navbar_classes
     classes = []
     classes << "flash" if landing_page?

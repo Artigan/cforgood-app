@@ -71,7 +71,10 @@ class Business < ApplicationRecord
   has_many :uses, through: :perks
   has_many :perks_in_time, -> { in_time }, class_name: "Perk"
   has_many :perks_flash_in_time, -> { flash_in_time }, class_name: "Perk"
-  has_many :labels
+  has_many :labels, dependent: :destroy
+  has_many :label_categories, through: :labels
+  accepts_nested_attributes_for :labels, :allow_destroy => true, :reject_if => :all_blank
+  accepts_nested_attributes_for :label_categories, :allow_destroy => true, :reject_if => :all_blank
   has_many :timetables, through: :addresses
   has_one  :main_address, -> { main }, class_name: "Address"
 

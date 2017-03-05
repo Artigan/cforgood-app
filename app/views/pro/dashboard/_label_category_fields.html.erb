@@ -1,0 +1,5 @@
+<%#= f.collection_select(:label_category_id, LabelCategory.all, label: 'Engagement', {multiple: true} ) %>
+    <%#= f.collection_select(:tag_ids, Tag.all, :id, :name, {include_hidden: false}, {multiple: true} ) %>
+
+<%= f.collection_select(:id, LabelCategory.all, :name, {selected: @business.label_categories}, {multiple: true} ) %>
+<%#= f.input :id, label: 'Engagement', collection: LabelCategory.all, multiple: true %>
