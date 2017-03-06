@@ -125,33 +125,32 @@
                         <p><%= @business.leader_description %></p>
                     </div>
                 </div>
-
             </div>
         </div>
-    </div>
-    <div class="col-lg-6">
+        <div class="col-lg-6">
 
-        <div class="fullpage-right-item hidden-xs">
-            <div class="title-fri-underline" style="border-color: <%= @business.business_category.color %>;">Nos bons plans</div>
-            <% @business.perks.active.each do |perk| %>
-                <div class="perk-card-container perk-modal-use-<%= perk.id %>">
-                    <%= render "businesses/business_card", business: @business, address: @address, perk: perk, index_view: false %>
-                </div>
-                <div class="perk-modal-use">
-                    <% if !user_signed_in? %>
-                        <%= render "businesses/business_perk_not_member", perk: perk %>
-                    <% else %>
-                        <%= render "businesses/business_perk_show", perk: perk %>
-                    <% end %>
-                </div>
-            <% end %>
-        </div>
+          <div class="fullpage-right-item hidden-xs">
+              <div class="title-fri-underline" style="border-color: <%= @business.business_category.color %>;">Nos bons plans</div>
+              <% @business.perks.active.each do |perk| %>
+                  <div class="perk-card-container perk-modal-use-<%= perk.id %>">
+                      <%= render "businesses/business_card", business: @business, address: @address, perk: perk, index_view: false %>
+                  </div>
+                  <div class="perk-modal-use">
+                      <% if !user_signed_in? %>
+                          <%= render "businesses/business_perk_not_member", perk: perk %>
+                      <% else %>
+                          <%= render "businesses/business_perk_show", perk: perk %>
+                      <% end %>
+                  </div>
+              <% end %>
+          </div>
 
-        <div class="mobile_perks_list visible-xs">
-            <button class="button-validation-modal mobile-perks-list" style="background-color:<%= @business.business_category.color %>;">
-                Voir nos bons plans
-            </button>
-            <%= render "businesses/mobile_perks_list" %>
+          <div class="mobile_perks_list visible-xs">
+              <button class="button-validation-modal mobile-perks-list" style="background-color:<%= @business.business_category.color %>;">
+                  Voir nos bons plans
+              </button>
+              <%= render "businesses/mobile_perks_list" %>
+          </div>
         </div>
     </div>
 </div>
