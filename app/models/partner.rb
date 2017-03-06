@@ -16,10 +16,16 @@
 #  user_id          :integer
 #  exclusive        :boolean          default(FALSE), not null
 #  shared           :boolean          default(FALSE), not null
+#  supervisor_id    :integer
 #
 # Indexes
 #
-#  index_partners_on_user_id  (user_id)
+#  index_partners_on_supervisor_id  (supervisor_id)
+#  index_partners_on_user_id        (user_id)
+#
+# Foreign Keys
+#
+#  fk_rails_a6be2e8a0c  (supervisor_id => businesses.id)
 #
 
 class Partner < ApplicationRecord

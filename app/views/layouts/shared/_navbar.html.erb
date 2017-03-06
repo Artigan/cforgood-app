@@ -76,7 +76,7 @@
             <div class="ripple-area js-ripple">
               <span class="ripple-circle"></span>
             </div>
-            Je m'inscris
+            S'inscrire
           <% end %>
           <%= link_to signin_path, class: "sign-in" do %>
             <div class="ripple-area js-ripple">
@@ -99,7 +99,7 @@
               <%= link_to "Mes informations", member_user_profile_path(current_user, anchor: 'profile' ), class: "droptext-bold profile-tab" %>
               <%= link_to "Mon association", member_user_profile_path(current_user, anchor: 'cause'), class: "droptext-bold profile-tab" %>
               <%= link_to "Mon abonnement", member_user_profile_path(current_user,  anchor: 'subscription'), class: "droptext-bold profile-tab" %>
-              <% if current_user.date_last_payment.prsent? %>
+              <% if current_user.date_last_payment.present? %>
                 <%= link_to "Mes contributions", member_user_profile_path(current_user, anchor: 'list-payments'),  class: "droptext-bold profile-tab" %>
               <% end %>
             <% end %>
@@ -109,7 +109,7 @@
           <% else %>
             <%= link_to signup_path do %>
               <div class="droptext">
-                <div class="droptext-bold">Je m'inscris</div>
+                <div class="droptext-bold">S'inscrire</div>
               </div>
             <% end %>
             <%= link_to signin_path do %>

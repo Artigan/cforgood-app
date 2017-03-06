@@ -36,10 +36,16 @@
 #  tax_receipt               :boolean          default(TRUE)
 #  followers                 :string
 #  heard                     :string
+#  supervisor_id             :integer
 #
 # Indexes
 #
 #  index_causes_on_cause_category_id  (cause_category_id)
+#  index_causes_on_supervisor_id      (supervisor_id)
+#
+# Foreign Keys
+#
+#  fk_rails_5f972e4f3f  (supervisor_id => businesses.id)
 #
 
 class Cause < ApplicationRecord

@@ -1248,6 +1248,10 @@ hr {
   display: flex;
 }
 
+.perk-card.available {
+  cursor: pointer;
+}
+
 .perk-card-left-item {
   height: 100%;
   width: 30%;
@@ -1444,7 +1448,11 @@ hr {
   display: flex;
   flex-direction: column;
   padding: 20px 50px 50px 50px;
-  z-index: 1;
+  z-index: 200;
+
+  @media all and (max-width: 767px) {
+    width: 100%;
+  }
 }
 
 .perk-modal-label {

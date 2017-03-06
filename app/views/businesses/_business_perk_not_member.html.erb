@@ -1,8 +1,9 @@
-<div class="perk-modal-not_member hidden">
-  <div class="perk-modal-label">
-    <span class="label-info" style="background-color:<%= @business.business_category.color %>;">Espace réservé aux abonnés</span>
-  </div>
+<div class="perk-modal-dynamic-<%= perk.id %> hidden">
   <button type="button" class="perk-modal-close close-button">&times;</button>
+  <div class="perk-modal-label">
+    <%= image_tag 'logo_cforgood.png' %>
+    <span class="label-info">Espace réservé aux abonnés</span>
+  </div>
 
   <div class="perk-modal-header">
     <div class="perk-modal-icon"></div>
@@ -15,31 +16,12 @@
   </div>
 
   <div class="perk-modal-description">
-    Je trouve de nouveaux commerçants responsables, des associations engageées et des événements enthousiasmant chez moi ou dans les autres villes où je me rends.
-  </div>
-
-  <div class="perk-modal-title-dotted">
-    <div class="perk-modal-yellow-dot" style="background-color:<%= @business.business_category.color %>;">2</div>
-    <div class="perk-modal-title-text">J'accède à des reductions exclusives</div>
-  </div>
-
-  <div class="perk-modal-description">
-    Je trouve de nouveaux commerçants responsables, des associations engageées et des événements enthousiasmant chez moi ou dans les autres villes où je me rends.
-  </div>
-
-
-  <div class="perk-modal-title-dotted">
-    <div class="perk-modal-yellow-dot" style="background-color:<%= @business.business_category.color %>;">3</div>
-    <div class="perk-modal-title-text">Je rejoins une véritable révolution</div>
-  </div>
-
-  <div class="perk-modal-description">
-    Je trouve de nouveaux commerçants responsables, des associations engageées et des événements enthousiasmant chez moi ou dans les autres villes où je me rends.
+    Je trouve de nouveaux commerçants responsables, des associations engagées et des événements enthousiasmant chez moi ou dans les autres villes où je me rends.
   </div>
 
   <div class="perk-modal-button-signup">
     <%= link_to signup_path do %>
-      <div class="cta-button" style="background-color:<%= @business.business_category.color %>;">Je m'inscris</div>
+      <div class="cta-button" style="background-color:<%= @business.business_category.color %>;">S'inscrire</div>
     <% end %>
   </div>
 

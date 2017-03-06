@@ -5,7 +5,7 @@
       <span>Choisissez l'association que vous souhaitez soutenir</span>
       <div class="causes-carrousel">
         <!-- Random Causes cards -->
-        <% @cause.each do |cause| %>
+        <% @causes.each do |cause| %>
           <% if cause.id != current_user.cause_id && cause.id != ENV['CAUSE_ID_CFORGOOD'].to_i %>
             <div id="<%= cause.id %>" class="cause-presentation">
               <!-- CARD CAUSE -->
@@ -20,7 +20,7 @@
         <%= f.submit "Soutenir cette cause", class: "user-button" %>
       <% end %>
       <p class="comment-cause">Sans choix de votre part, c'est CforGood qui bénéficiera de votre soutien. Vous pourrez toujours modifier votre choix depuis votre profil.</p>
-      <button class="signup-next">Suivant</button>
+      <button class="signup-next <%= @partner.supervisor_id if @partner %>">Suivant</button>
     </div>
   </div>
 </div>
@@ -42,12 +42,17 @@
 
       $(".signup-cause .signup-next").on("click", function(e) {
         e.preventDefault;
-        $(".choose-cause").addClass("ishidden");
-        $(".signup-plan").removeClass("ishidden").addClass("slideup");
-        $("#signup-breadcrumb").addClass("slide-2");
+        var supervisorId = $(this).attr('class').split(" ")[1];
+        if (supervisorId !== undefined) {
+          window.location.href = "<%= member_user_dashboard_path(current_user) %>";
+        } else {
+          $(".choose-cause").addClass("ishidden");
+          $(".signup-plan").removeClass("ishidden").addClass("slideup");
+          $("#signup-breadcrumb").addClass("slide-2");
 
-        // EVENT AMPLITUDE : USER_C_SIGNUP1_NEXT
-        amplitude.logEvent('USER_C_SIGNUP1_NEXT');
+          // EVENT AMPLITUDE : USER_C_SIGNUP1_NEXT
+          amplitude.logEvent('USER_C_SIGNUP1_NEXT');
+        }
       });
 
     });

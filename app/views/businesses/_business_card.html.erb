@@ -1,13 +1,11 @@
-<div class="perk-card">
+<div class="perk-card <%= !perk.perk_in_time? || !(user_signed_in? && perk.perk_usable?(current_user))  ? 'unavailable' : 'available' %>" id="perk-modal-dynamic-<%= perk.id %>">
   <div class="perk-card-left-item" style="background-color: <%= business.business_category.color %>;">
     <div class="perk-card-absolute-photo" style="background-image: url('<%= perk.picture.present? ? perk.picture.url(:card) : business.picture.url(:card) %>');">
-      <% if index_view  %>
-        <div class="perk-card-business-infos">
-          <div class="pastille"><%= image_tag business.business_category.picture, size: "20x20" %></div>
-          <div class="name"><%= business.name %></div>
-          <div class="address"><%= address.street %>, <%= address.zipcode %> <%= address.city %></div>
-        </div>
-      <% end %>
+      <div class="perk-card-business-infos">
+        <div class="pastille"><%= image_tag business.business_category.picture, size: "20x20" %></div>
+        <div class="name"><%= business.name %></div>
+        <div class="address"><%= address.street %>, <%= address.zipcode %> <%= address.city %></div>
+      </div>
     </div>
   </div>
   <div class="perk-card-right-item">
@@ -39,17 +37,6 @@
           <div><%= "#{perk.uses.count} personnes ont utilisé ce bon plan" %></div>
         <% end %>
       </div>
-      <% if user_signed_in? %>
-        <% if !perk.perk_in_time? %>
-          <div class="perk-pseudo-modal-link button-disabled" id="perk-modal-dynamic-<%= perk.id %>">Bon plan non disponible</div>
-        <% elsif !perk.perk_usable?(current_user) %>
-          <div class="perk-pseudo-modal-link button-disabled" id="perk-modal-dynamic-<%= perk.id %>">Bon plan épuisé</div>
-        <% else %>
-          <div class="perk-pseudo-modal-link <%= index_view ? 'button-inactived' : '' %>" id="perk-modal-dynamic-<%= perk.id %>">J'en profite</div>
-        <% end %>
-       <% else %>
-          <div class="perk-pseudo-modal-link <%= index_view ? 'button-inactived' : '' %>" id="perk-modal-dynamic-<%= perk.id %>">J'en profite</div>
-      <% end %>
     </div>
   </div>
 </div>

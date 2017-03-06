@@ -13,11 +13,11 @@
                                 <div>
 
                                     <% if @business.like == 1 %>
-                                    <%= image_tag "icons/heart.svg", class: "red-heart"%>
-                                    <p><%= "#{@business.like} personne aime" %></p>
+                                        <%= image_tag "icons/heart.svg", class: "red-heart"%>
+                                        <p><%= "#{@business.like} personne aime" %></p>
                                     <% elsif @business.like > 1 %>
-                                    <%= image_tag "icons/heart.svg", class: "red-heart"%>
-                                    <p><%= "#{@business.like} personnes aiment" %></p>
+                                        <%= image_tag "icons/heart.svg", class: "red-heart"%>
+                                        <p><%= "#{@business.like} personnes aiment" %></p>
                                     <% end %>
 
                                 </div>
@@ -45,7 +45,7 @@
                         <div class="col-lg-3">
                             <p class="business-distance">
                                 <i style="color:<%= @business.business_category.color %>;" class="fa fa-map-marker fa-2x" aria-hidden="true"></i>
-                                à <%= display_distance(@address.distance_from(@lat_lng))  %> </p>
+                                à <%= display_distance(@address.distance_from(@lat_lng)) %> </p>
                         </div>
                         <div class="col-lg-4 col-lg-offset-1">
                             <div class="business-category-image">
@@ -59,23 +59,24 @@
                     <h6>Leurs engagements</h6>
                     <div class="row">
                         <% @labels.each do |label| %>
-                        <div class="col-lg-4">
-                            <p>
-                                <%= image_tag label.label_category.picture, size: "40x40" %>
-                                <%= label.label_category.name %>
-                            </p>
-                        </div>
+                          <div class="col-lg-4">
+                              <p>
+                                  <%= image_tag label.label_category.picture, size: "40x40" %>
+                                  <%= label.label_category.name %>
+                              </p>
+                          </div>
+                        <% end %>
                     </div>
                 </div><br>
 
                 <h6>En quelques mots</h6>
                 <p>
                     <% if @business.description.present? %>
-                    <div class="business-description">
-                        <%= @business.description %>
-                    </div>
-                <% else %>
-                    <div class="business-descritption">Profil en construction</div>
+                        <div class="business-description">
+                            <%= @business.description %>
+                        </div>
+                    <% else %>
+                        <div class="business-descritption">Profil en construction</div>
                     <% end %>
                 </p>
 
@@ -133,17 +134,16 @@
         <div class="fullpage-right-item hidden-xs">
             <div class="title-fri-underline" style="border-color: <%= @business.business_category.color %>;">Nos bons plans</div>
             <% @business.perks.active.each do |perk| %>
-            <div class="perk-card-container perk-modal-use-<%= perk.id %>">
-                <%= render  "businesses/business_card", business: @business, address: @address, perk: perk, index_view: false %>
-            </div>
-            <div class="perk-modal-use">
-                <% if !user_signed_in? %>
-                <%= render "businesses/business_perk_not_member" %>
-            <% else %>
-                <%= render "businesses/perk_show", perk: perk %>
-                <% end %>
-                <%#= render "businesses/mobileshow_member" %>
-            </div>
+                <div class="perk-card-container perk-modal-use-<%= perk.id %>">
+                    <%= render "businesses/business_card", business: @business, address: @address, perk: perk, index_view: false %>
+                </div>
+                <div class="perk-modal-use">
+                    <% if !user_signed_in? %>
+                        <%= render "businesses/business_perk_not_member", perk: perk %>
+                    <% else %>
+                        <%= render "businesses/business_perk_show", perk: perk %>
+                    <% end %>
+                </div>
             <% end %>
         </div>
 
@@ -155,33 +155,30 @@
         </div>
     </div>
 </div>
-</div>
-</div>
 
 <% content_for :after_js do %>
 
-<script type="text/javascript">
-setRoutePathFromLocation()
-</script>
+    <script type="text/javascript">
+        setRoutePathFromLocation()
+    </script>
 
-<%= render 'components/map_show', geojson: @geojson, container: device_type == :mobile ? 'map-perk' : 'map-perk-desktop' %>
+    <%= render 'components/map_show', geojson: @geojson, container: device_type == :mobile ? 'map-perk' : 'map-perk-desktop' %>
 
-<script>
+    <script>
+        $(document).ready(function () {
 
-$(document).ready(function () {
+            $('.perk-card.available').click(function () {
+                var classModal = $(this).attr('id');
+                $('.' + classModal).removeClass("hidden");
+            });
 
-    $(".perk-pseudo-modal-link").click(function () {
-        var classModal = $(this).attr('id');
-        $('.' + classModal).removeClass("hidden");
-    });
+            $(".mobile-perks-list").click(function () {
+                $('.perk-modal-mobile-member').removeClass("hidden");
+            });
 
-    $(".mobile-perks-list").click(function () {
-        $('.perk-modal-mobile-member').removeClass("hidden");
-    });
-
-    // $(".use-button-logout").click(function() {   $('.use-overlay').removeClass('hidden');   // EVENT AMPLITUDE USER_C_BENEFIT   amplitude.logEvent('USER_C_BENEFIT_LOGOUT'); }); $(".btn-use-button").click(function() {   // EVENT AMPLITUDE
-    // USER_C_BENEFIT   amplitude.logEvent('USER_C_BENEFIT'); });
-});
-</script>
+            // $(".use-button-logout").click(function() {   $('.use-overlay').removeClass('hidden');   // EVENT AMPLITUDE USER_C_BENEFIT   amplitude.logEvent('USER_C_BENEFIT_LOGOUT'); }); $(".btn-use-button").click(function() {   // EVENT AMPLITUDE
+            // USER_C_BENEFIT   amplitude.logEvent('USER_C_BENEFIT'); });
+        });
+    </script>
 
 <% end %>

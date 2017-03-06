@@ -1,5 +1,5 @@
 <div class="perk-modal feedback">
-  <button type="button" class="perk-modal-close feedback">&times;</button>
+  <button type="button" class="perk-modal-close close-button">&times;</button>
   <div class="perk-modal-header">
     <div class="perk-modal-illustration"><%= image_tag "yoga.svg" %></div>
     <div class="perk-modal-header-text feedback">Avez-vous appréciez ce bon plan ?</div>
@@ -19,12 +19,6 @@
           <%= image_tag "heart_dislike.svg" %>
         </div>
       </div>
-      <div class="input-container">
-        <input id="unused" class="radio-button" type="radio" name="radio" />
-        <div class="radio-tile">
-          <%= render "shared/icons/unused" %>
-        </div>
-      </div>
     </div>
   </div>
 
@@ -33,7 +27,6 @@
       <%= f.input :feedback, as: :hidden, input_html: { value: true } %>
       <%= f.input :like, as: :hidden, input_html: { value: false } %>
       <%= f.input :unlike, as: :hidden, input_html: { value: false } %>
-      <%= f.input :unused, as: :hidden, input_html: { value: false } %>
       <%= f.submit "Valider", class: "button-submit"%>
     <% end %>
   </div>
@@ -42,7 +35,7 @@
 <script type="text/javascript">
   $('.radio-button').click(function() {
     feedback = $('.radio-button:checked').attr('id');
-    $('#use_like, #use_unlike, #use_unused').val('false');
+    $('#use_like, #use_unlike').val('false');
     $('#use_' + feedback).val('true');
   });
 </script>

@@ -42,6 +42,10 @@
       <p class="pmu-answer">Envoyez-nous un email pour réserver votre bon plan </p>
       <a href='mailto:<%= @business.email %>?subject=Nouvelle demande de bon plan CforGood !&body=Bonjour <%= @business.leader_first_name if @business.leader_first_name.present? %>,%0D%0A<%= @business.name %> semble sympa comme tout !%0D%0AJe souhaiterais bénéficier du bon plan « <%= perk.name.gsub(/%/, "%25").upcase %> » (Code : <%= perk.perk_code %>), pouvez-vous me dire comment procéder ?%0D%0A Merci par avance !%0D%0A<%= current_user.first_name.capitalize if current_user.first_name.present? %> <%= current_user.last_name.capitalize if current_user.last_name.present? %>' class="button-validation-modal send-mail" style="background-color:<%= @business.business_category.color %>;" target="_blank">
         Nous écrire
+        <%= simple_form_for :use, url: perk_uses_path(params[:perk_id]), method: :post, remote: true, authenticity_token: true do |f| %>
+          <%= f.input :perk_id, as: :hidden, input_html: {value: params[:perk_id]} %>
+          <%= f.submit "", class: "btn-create-use", :style => "display: none;" %>
+        <% end %>
       </a>
 
     <% elsif @business.online %>
@@ -51,6 +55,10 @@
           Me rendre sur le site
         <% end %>
       </button>
+      <%= simple_form_for :use, url: perk_uses_path(params[:perk_id]), method: :post, remote: true, authenticity_token: true do |f| %>
+        <%= f.input :perk_id, as: :hidden, input_html: {value: params[:perk_id]} %>
+        <%= f.submit "", class: "btn-create-use", :style => "display: none;" %>
+      <% end %>
 
     <% elsif device_type != :mobile %>
       <p class="pmu-answer">Rendez-vous en magasin avec votre smartphone</p>
@@ -71,20 +79,11 @@
     <% end %>
 
     <% if current_user.member %>
-
-      <%= render "components/member_card" %>
-
-      <% if perk.perk_detail.name == "email" || @business.online %>
-        <%= simple_form_for :use, url: perk_uses_path(params[:perk_id], online: true), method: :post, remote: true, authenticity_token: true, html: { id: :create_use } do |f| %>
-          <%= f.input :perk_id, as: :hidden, input_html: {value: params[:perk_id]} %>
-          <%= f.submit "", class: "btn-create-use", :style => "display: none;" %>
-        <% end %>
-        <div class="container-feedback"></div>
-      <% end %>
+      <%= render "components/member_card", business: @business, perk: perk %>
+      <div class="container-feedback"></div>
     <% end %>
   <% end%>
 </div>
-
 
 <% content_for :after_js do %>
   <script>

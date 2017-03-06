@@ -31,18 +31,8 @@
       </div>
 
       <div class="select-wrapper">
-        <%#= f.input :business_category_id, required: true, label: 'Activité', collection: BusinessCategory.all %>
-        <%#= f.collection_select(:id, LabelCategory.all, :name, multiple: true ) %>
-        <%#= f.input :id, label: 'Engagement', collection: LabelCategory.all, input_html: {multiple: true} %>
-
-         <%#= f.simple_fields_for :label_categories do |label_category| %>
-          <%#= render 'pro/dashboard/label_category_fields', f: label_category %>
-        <%# end %>
-      <%#= f.collection_select :label_category_ids[], LabelCategory.all, :id, :name, {}, {multiple: true} %>
-      <%= f.collection_select(:label_category_ids, current_business.label_categories, :id, :name, multiple: true) %>
-
- <!-- collection: LabelCategory.all, -->
-
+        <%= f.input :business_category_id, required: true, label: 'Activité', collection: BusinessCategory.all %>
+        <%= f.collection_select :label_category_ids, LabelCategory.all, :id, :name, {selected: current_business.label_categories}, {multiple: true} %>
       </div>
       <%= f.input :shop, label: "Es-tu une boutique physique ?", as: :radio_buttons, collection: [['Oui', true ], ['Non', false ]], checked: @business.shop || false  %>
       <%= f.input :online, label: "Es-tu une e-boutique ?", as: :radio_buttons, collection: [['Oui', true ], ['Non', false ]], checked: @business.online || false  %>

@@ -29,6 +29,7 @@ class UsesController < ApplicationController
   before_action :find_perk, only: [:create]
 
   def create
+    binding.pry
     @use = current_user.uses.new(use_params)
     @use.save
     respond_to :js

@@ -236,6 +236,27 @@
   }
 }
 
+.button-gradient {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: calc(50% - 45px);
+  height: 50px;
+  bottom: 0;
+  right: 0;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: white;
+  background: linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%);
+  z-index: 10;
+
+  @media (max-width: 767px) {
+    width: 100%;
+  }
+}
+
 .button-validation-modal {
   position: fixed;
   display: flex;

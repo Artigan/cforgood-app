@@ -3,8 +3,8 @@
 
   <button type="button" class="closed-modal-member-card close-button">&times;</button>
 
-  <div><%#= business.name %></div>
-  <div><%#= perk.name %></div>
+  <div><%= business.name %></div>
+  <div><%= perk.name %></div>
 
   <div class="member-card">
     <div class="validation-date">
@@ -12,7 +12,7 @@
     </div>
 
     <div class="logo">
-      <%= image_tag 'logo_cforgood.png' %>
+      <%= image_tag 'logo_vertical.png' %>
     </div>
 
     <div class="member-info">
@@ -31,6 +31,26 @@
 
   <div>"La carte de membre doit être montrée au commerçant avant la prise de commande, cliquez ensuite sur "Terminer" pour valider votre bon plan."  </div>
 
-  <div class="cta-button" style="background-color:<%= @business.business_category.color %>;">Terminer</div>
+  <%= simple_form_for :use, url: perk_uses_path(params[:perk_id]), method: :post, remote: true, authenticity_token: true do |f| %>
+      <%= f.input :perk_id, as: :hidden, input_html: {value: params[:perk_id]} %>
+      <%= f.submit "Terminer", class: "button-gradient" %>
+  <% end %>
 </div>
 
+<div class="container-feedback"></div>
+
+<% content_for :after_js do %>
+  <script>
+    $(document).ready(function(){
+
+      $('.closed-modal-member-card').click(function() {
+        $(this).closest(".pmdjs").addClass('hidden');
+      });
+
+      $('.btn-show-card').click(function() {
+        $('.popup-member-card').removeClass('hidden');
+      });
+
+    });
+  </script>
+<% end %>
