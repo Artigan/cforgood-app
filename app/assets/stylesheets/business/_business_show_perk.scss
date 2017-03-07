@@ -1,8 +1,19 @@
 /* Adrien CSS */
 
-.card-block {
-  margin-left: 5%;
+.main-card-left {
+  border: 0.5px solid lightgrey;
+  margin-left: 5.5%;
+}
+
+ img.card-img-top{
+  width: 100%;
+  height: 60vh;
+}
+
+.card-left{
+  margin-left: 10%;
   margin-right: 2%;
+  padding-bottom: 2%;
 }
 
 .full-page {
@@ -78,10 +89,10 @@ hr {
   -moz-border-top-colors: none;
   border-color: #EEEEEE -moz-use-text-color #FFFFFF;
   border-style: solid none;
-  border-width: 1px 0;
+  border-width: 0.8px 0;
   margin-left: 0;
   width: 90%;
-  background-color: rgba(128,128,128, 0.9);
+  background-color: rgba(128,128,128, 0.3);
 }
 
 .business-opening-hours li{
@@ -110,6 +121,14 @@ hr {
 
   }
 
+  .reach-uss i:hover{
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    transform: rotate(90deg);
+  }
+
   .reach-uss span {
     color: black;
     font-size: 0.8em;
@@ -118,16 +137,173 @@ hr {
   .follow-uss a{
     display: inline-block;
     border-style: solid;
-    padding: 5px;
+    border-color: white;
+    color: white;
+    padding: 5px 11px 5px 11px;
     border-width: 1.5px;
     border-radius: 60px;
   }
 
-  .follow-uss span{
+    .follow-uss a:hover {
+      -webkit-transform: rotate(90deg);
+      -moz-transform: rotate(90deg);
+      -ms-transform: rotate(90deg);
+      -o-transform: rotate(90deg);
+      transform: rotate(90deg);
+    }
+
+  .follow-uss span:first-child{
     color: black;
+    font-size: 0.8em;
+  }
+
+  .follow-uss span{
+    color: white;
+  }
+
+// This is the right side of the page (perks from the business)
+
+  .right-side {
+    padding-top: 2%;
+    padding-left: 3%;
   }
 
 
+  .right-side h2 {
+    margin-right: 73%;
+    border-bottom: 10px solid;
+  }
+
+  .card-perks {
+    width: 90%;
+    margin: 3% 0.5% 3% 0.5%;
+    border: 0.2px solid lightgrey;
+  }
+
+  .card-perks img {
+    width: 100%;
+    height: 25vh;
+  }
+
+  .perk-description {
+    padding: 4% 3% 3% 3%;
+  }
+
+  .bolt-icon {
+    position: absolute;
+    z-index: 1;
+    margin-top: 2%;
+    margin-left:4%;
+    color: grey;
+    display: inline-block;
+    border-style: solid;
+    padding: 3px 12px 3px 12px;
+    border-width: 0px;
+    border-radius: 60px;
+    background-color: white;
+  }
+
+  .perks-offer-type {
+    position: absolute;
+    z-index: 1;
+    margin-top: 40%;
+    margin-left:70%;
+    background-color: white;
+    color: black;
+    border: 6px solid;
+    border-radius: 25px;
+    padding: 0.5% 2% 0.5% 2%;
+
+  }
+
+  .perks-number{
+    color: white;
+    position: absolute;
+    z-index: 1;
+    margin-top: 2.5%;
+    margin-left: 12%;
+  }
+
+  .perk-carddd.available {
+    cursor: pointer;
+  }
+
+  // perk modal //
+
+  .perk-modalll {
+    width: 80%;
+    margin: 4% 5% 4% 3%;
+    border: 0.2px solid lightgrey;
+  }
+
+  .perk-modalll h5 {
+    margin-right: 60%;
+    margin-left: 5%;
+    border-bottom: 10px solid;
+  }
+
+  .close-button {
+    margin-right: 4%;
+  }
+
+  .perk-modalll img {
+    width: 100%;
+    height: 45vh;
+  }
+
+  .perk-modal-perk-name {
+    margin: 3% 0 0 7.5%;
+  }
+
+
+  .perks-offer-type-modal {
+    position: absolute;
+    z-index: 1;
+    margin-top: -8%;
+    margin-left:65%;
+    background-color: white;
+    color: black;
+    border: 6px solid;
+    border-radius: 25px;
+    padding: 0.5% 2% 0.5% 2%;
+  }
+
+  .perk-modal-hr {
+    margin-left: 8%;
+  }
+
+  .perk-modal-alert p{
+    font-size: 0.8em;
+  }
+
+  .perk-modal-alert.fa-bell {
+    display: inline-block;
+    border-style: solid;
+    padding: 5px 6px 6px 6px;
+    border-width: 0px;
+    border-radius: 60px;
+  }
+
+  .perk-modal-answer.fa-location-arrow {
+    display: inline-block;
+    border-style: solid;
+    padding: 5px 6px 6px 6px;
+    border-width: 0px;
+    border-radius: 60px;
+
+  }
+
+  .perk-modal-question {
+    // margin-top: 14px;
+    // margin-bottom: 0;
+    // font-size: 18px;
+    // color: rgba(55,55,55,0.9);
+  }
+
+  .perk-modal-answer {
+    // font-size: 12px;
+    // margin-bottom: 20px;
+  }
 
 
 /* SHOW - PERK ****************************************************************/

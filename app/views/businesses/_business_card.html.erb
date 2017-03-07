@@ -1,42 +1,71 @@
-<div class="perk-card <%= !perk.perk_in_time? || !(user_signed_in? && perk.perk_usable?(current_user))  ? 'unavailable' : 'available' %>" id="perk-modal-dynamic-<%= perk.id %>">
-  <div class="perk-card-left-item" style="background-color: <%= business.business_category.color %>;">
-    <div class="perk-card-absolute-photo" style="background-image: url('<%= perk.picture.present? ? perk.picture.url(:card) : business.picture.url(:card) %>');">
-      <div class="perk-card-business-infos">
-        <div class="pastille"><%= image_tag business.business_category.picture, size: "20x20" %></div>
-        <div class="name"><%= business.name %></div>
-        <div class="address"><%= address.street %>, <%= address.zipcode %> <%= address.city %></div>
-      </div>
-    </div>
-  </div>
-  <div class="perk-card-right-item">
-    <div class="pcri-container">
-      <div class="pcri-offer">
-        <div class="pcri-offer-tooltip" style="background-color: <%= business.business_category.color %>;">
-          <div><%= perk.offer_type? %></div>
+
+<div class="col-md-6 col-sm-6 col-xs-12 perk-carddd <%= !perk.perk_in_time? || !(user_signed_in? && perk.perk_usable?(current_user))  ? 'unavailable' : 'available' %>" id="perk-modal-dynamic-<%= perk.id %>">
+
+        <div class="card-perks">
+            <div class="bolt-icon">
+                <i class="fa fa-bolt" aria-hidden="true"></i>
+            </div>
+            <% if perk.times > 0 %>
+            <p class="perks-number"><%= perk.times - Use.where(perk_id: perk.id).count %>
+                restants.</p>
+            <% end %>
+            <div class="perks-offer-type" style="border-color: <%= @business.business_category.color %>;">
+                <%= perk.offer_type? %>
+            </div>
+            <img  class="card-img-top img-responsive" src="<%= perk.picture.present? ? perk.picture.url(:card) : business.picture.url(:card) %>" alt="perk picture">
+            <div class="card-block card-right">
+                <p class="perk-description card-text text-center">
+                    <%= perk.name %>
+                </p>
+            </div>
         </div>
-        <div class="pcri-offer-flash">
-          <% if perk.times > 0 %>
-            <span><i class="fa fa-flash pastille" style="background-color: #3F3F3F;" aria-hidden="true"></i><%= perk.times - Use.where(perk_id: perk.id).count %> restants</span>
-          <% end %>
-        </div>
-      </div>
-      <div class="pcri-item">
-        <div class="pcri-item-name perk-title"><%= perk.name %></div>
-        <div class="pcri-item-text"><%= truncate(perk.description, length: 175) %></div>
-      </div>
-      <div class="pcri-uses">
-        <% if perk.uses.count == 1 %>
-          <div class="pastille" style="background-color:<%= business.business_category.color %>;">
-            <i class="fa fa-heart" aria-hidden="true"></i>
-          </div>
-          <div><%= "#{perk.uses.count} personne a utilisé ce bon plan" %></div>
-        <% elsif perk.uses.count > 1 %>
-          <div class="pastille" style="background-color:<%= business.business_category.color %>;">
-            <i class="fa fa-heart" aria-hidden="true"></i>
-          </div>
-          <div><%= "#{perk.uses.count} personnes ont utilisé ce bon plan" %></div>
-        <% end %>
-      </div>
-    </div>
-  </div>
 </div>
+
+
+<!--
+            <div class="perk-card <%= !perk.perk_in_time? || !(user_signed_in? && perk.perk_usable?(current_user))  ? 'unavailable' : 'available' %>" id="perk-modal-dynamic-<%= perk.id %>">
+                <div class="perk-card-left-item" style="background-color: <%= business.business_category.color %>;">
+                    <div class="perk-card-absolute-photo" style="background-image: url('<%= perk.picture.present? ? perk.picture.url(:card) : business.picture.url(:card) %>');">
+                        <div class="perk-card-business-infos">
+                            <div class="pastille"><%= image_tag business.business_category.picture, size: "20x20" %></div>
+                            <div class="name"><%= business.name %></div>
+                            <div class="address"><%= address.street %>,
+                                <%= address.zipcode %>
+                                <%= address.city %></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="perk-card-right-item">
+                    <div class="pcri-container">
+                        <div class="pcri-offer">
+                            <div class="pcri-offer-tooltip" style="background-color: <%= business.business_category.color %>;">
+                                <div><%= perk.offer_type? %></div>
+                            </div>
+                            <div class="pcri-offer-flash">
+                                <% if perk.times > 0 %>
+                                <span>
+                                    <i class="fa fa-flash pastille" style="background-color: #3F3F3F;" aria-hidden="true"></i><%= perk.times - Use.where(perk_id: perk.id).count %>
+                                    restants</span>
+                                <% end %>
+                            </div>
+                        </div>
+                        <div class="pcri-item">
+                            <div class="pcri-item-name perk-title"><%= perk.name %></div>
+                            <div class="pcri-item-text"><%= truncate(perk.description, length: 175) %></div>
+                        </div>
+                        <div class="pcri-uses">
+                            <% if perk.uses.count == 1 %>
+                            <div class="pastille" style="background-color:<%= business.business_category.color %>;">
+                                <i class="fa fa-heart" aria-hidden="true"></i>
+                            </div>
+                            <div><%= "#{perk.uses.count} personne a utilisé ce bon plan" %></div>
+                            <% elsif perk.uses.count > 1 %>
+                            <div class="pastille" style="background-color:<%= business.business_category.color %>;">
+                                <i class="fa fa-heart" aria-hidden="true"></i>
+                            </div>
+                            <div><%= "#{perk.uses.count} personnes ont utilisé ce bon plan" %></div>
+                            <% end %>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
