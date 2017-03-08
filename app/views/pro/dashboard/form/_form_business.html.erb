@@ -32,7 +32,8 @@
 
       <div class="select-wrapper">
         <%= f.input :business_category_id, required: true, label: 'Activité', collection: BusinessCategory.all %>
-        <%= f.collection_select :label_category_ids, LabelCategory.all, :id, :name, {selected: current_business.label_categories}, {multiple: true} %>
+        <label>Vos engagements</label>
+        <%= f.collection_select :label_category_ids, LabelCategory.all, :id, :name, {selected: current_business.label_category_ids}, {multiple: true} %>
       </div>
       <%= f.input :shop, label: "Es-tu une boutique physique ?", as: :radio_buttons, collection: [['Oui', true ], ['Non', false ]], checked: @business.shop || false  %>
       <%= f.input :online, label: "Es-tu une e-boutique ?", as: :radio_buttons, collection: [['Oui', true ], ['Non', false ]], checked: @business.online || false  %>

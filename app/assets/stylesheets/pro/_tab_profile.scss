@@ -804,6 +804,11 @@
     -webkit-appearance: none;
     padding: 1px;
   }
+
+  input[type="submit"] {
+    font-size: 14px;
+    padding: 5px;
+  }
 }
 
 #user_birthday_3i,

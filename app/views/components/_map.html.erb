@@ -1,5 +1,3 @@
-
-
 <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v3.1.1/mapbox-gl-directions.js'></script>
 <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v3.1.1/mapbox-gl-directions.css' type='text/css' />
 
@@ -53,20 +51,17 @@
         // Add Layer
         map.addLayer({
           "id": layerID,
-          "type": "symbol",
           "source": "markers",
           "interactive": true,
-          "layout": {
-            "icon-image": symbol,
-            "icon-offset": [0,-20],
-            "icon-allow-overlap": true
+          "type": "circle",
+          "paint": {
+            "circle-radius": initialRadius,
+            "circle-color": color,
+            "circle-stroke-width" : 2,
+            "circle-stroke-color" : "#FFF"
           },
-          "filter": ["==", "marker-symbol", symbol]
+           "filter": ["==", "marker-symbol", symbol]
         });
-        // Layer with flash perk are not visible at first
-        if (layerID.includes("-flash")) {
-          map.setLayoutProperty(layerID, 'visibility', 'none');
-        }
       }
     });
 
@@ -112,7 +107,7 @@
 
   var map = new mapboxgl.Map({
     container: 'map-dashboard',
-    style: 'mapbox://styles/fredpetris/cikporvjj00p8b5lwovwd3kq9',
+    style: 'mapbox://styles/cforgood/cizk1j8b3001x2speifk9bnlf',
     center: mapCenter,
     zoom: 12
   });
@@ -122,10 +117,7 @@
     unit: 'metric',
     profile: 'walking',
     interactive: false,
-    controls: false,
-    style: {
-
-    }
+    controls: false
   });
 
   if (<%= device_type == :desktop %>) {
@@ -217,14 +209,6 @@
 
     var feature = features[0];
 
-    // Get center the map on those coordinates
-    if (<%= device_type == :mobile %>) {
-      // Tranform geographical coordinates from the symbol in pixel coordinates
-      var newCoordinates = map.project(features[0].geometry.coordinates);
-      newCoordinates.y += 100;
-      map.flyTo({center: map.unproject(newCoordinates)});
-    }
-
     var popup = new mapboxgl.Popup({
         closeButton: false,
         closeOnClick: true,
@@ -236,12 +220,15 @@
     // Init directions
     if (<%= device_type == :mobile %>) {
       directions.setOrigin([lng, lat]);
-      directions.setDestination([e.lngLat["lng"], e.lngLat["lat"]]);
-      map.addControl(directions);
+      directions.setDestination(feature.geometry.coordinates);
       if (map.getLayer('directions-origin-point')) {
         map.removeLayer('directions-origin-point');
+        map.removeLayer('directions-origin-label');
         map.removeLayer('directions-destination-point');
+        map.removeLayer('directions-destination-label');
+        map.removeLayer('directions-route-line-alt');
       }
+      map.addControl(directions);
     }
 
     // EVENT AMPLITUDE : USER_C_BUSINESS_MAP
@@ -251,30 +238,21 @@
   // Use the same approach as above to indicate that the symbols are clickable
   // by changing the cursor style to 'pointer'.
   map.on('mousemove', function (e) {
-
     var features = map.queryRenderedFeatures(e.point, { layer: layers });
     map.getCanvas().style.cursor = (features.length) ? 'pointer' : '';
-
   });
 
   // Reload map when drag on
   map.on('dragend', function (e) {
-
     var newCenter = map.getCenter();
-
     var url = window.location.href + "?" + "lng" + '=' + newCenter.lng + "&" + "lat" + '=' + newCenter.lat;
-
     reloadMap(url, "point", "point1");
-
   });
 
   // Reload map when drag on
   map.on('zoomend', function (e) {
-
     var newCenter = map.getCenter();
-
     var url = window.location.href + "?" + "lng" + '=' + newCenter.lng + "&" + "lat" + '=' + newCenter.lat;
-
     reloadMap(url, "point", "point1");
   });
 

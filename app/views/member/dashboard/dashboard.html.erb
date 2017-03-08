@@ -5,10 +5,9 @@
   Découvrez les bons plans de nos partenaires !
 <% end %>
 
-
 <%= link_to "reload_map", user_signed_in? ? member_user_dashboard_path(current_user) : map_path, id:"reload_map", class: "hidden", remote: true %>
 
-<%= render 'businesses/business_search_index' %>
+<%= render 'businesses/business_search_index'%>
 
 <div class="container-fluid admin">
   <% if user_signed_in? and !current_user.active %>
@@ -51,14 +50,8 @@
 
       <div class="mobile-menu-overlay hidden"></div>
 
-      <!-- FLASH | FIND PERK -->
-      <%= render 'components/user_dashboard/flash_button' %>
-
       <!-- MENU | CATEGORY FILTER -->
       <%= render 'components/menu/search_category' %>
-
-      <!-- ON MOBILE | WELCOME -->
-      <%#= render 'components/user_dashboard/welcome_user' %>
 
       <!-- MAP -->
       <div id="map-dashboard" class="user-map-businesses" style="width: 100%;"></div>
@@ -91,16 +84,6 @@
         for (i = 0; i < input.length; i++) {
           var filter = input[i].getAttribute('id');
           var currentFilter = filter;
-          var outFilter = filter+"-flash"
-          // REVERSE CURRENT FILTER IF FLASH
-          if ($(".flash").hasClass('is-running')) {
-            currentFilter = outFilter;
-            outFilter = filter;
-          }
-          // HIDE NOT CURRENT LAYERS
-          if (map.getLayer(outFilter) != undefined) {
-            map.setLayoutProperty(outFilter, 'visibility', 'none');
-          }
           // SET VISIBLE LAYERS SELECTED
           if ($('#categories-all').hasClass('is-selected')) {
             if (map.getLayer(currentFilter) != undefined) {
@@ -116,11 +99,6 @@
       }
 
       // TOOGLE FLASH PERKS LAYER ON MAP
-      $('.in-central-city').click(function(event) {
-        $('.mapboxgl-popup').addClass('hidden');
-        $('.flash').toggleClass('is-running');
-        setLayerVisibilty();
-      });
       $('.category-item').click(function(event) {
         if ($(this).val('div').attr('id') != 'categories-all') {
           $(this).toggleClass('is-selected');
@@ -133,32 +111,10 @@
         setLayerVisibilty();
       });
 
-      // TOOGLE NOTIFICATION CENTER MENU & HIDE CATEGORY MENU
-      $('#open-notification').click(function(event) {
-        $('.notification-center-overlay').toggleClass('hidden');
-        $('.search-category-overlay').addClass('hidden');
-        // HIDE CATEGORY MENU
-        $('.search-category').removeClass('is-open-max');
-        $('.category-item').removeClass('is-open-min');
-        // TOOGLE NOTIFICATION CENTER MENU
-        $('.notification-center').toggleClass('is-open-max');
-        $('.notification-panel').toggleClass('is-open-min');
-      });
-
-      // TOOGLE NOTIFICATION CENTER OVERLAY
-      $('.notification-center-overlay').click(function(event) {
-        $(this).addClass('hidden');
-        $('.notification-center').toggleClass('is-open-max');
-        $('.notification-panel').toggleClass('is-open-min');
-      });
-
       // TOOGLE CATEGORY MENU & HIDE NOTIFICATION CENTER
       $('#open-categories').click(function(event) {
         $('.search-category-overlay').toggleClass('hidden');
         $('.notification-center-overlay').addClass('hidden');
-        //HIDE NOTIFICATION CENTER
-        $('.notification-center').removeClass('is-open-max');
-        $('.notification-panel').removeClass('is-open-min');
         // TOOGLE CATEGORY MENU
         $('.search-category').toggleClass('is-open-max');
         $('.category-item').toggleClass('is-open-min');

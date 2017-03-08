@@ -1,7 +1,7 @@
   class Member::DashboardController < ApplicationController
 
   skip_before_action :authenticate_user!, only: [:dashboard]
-  before_action :find_businesses_for_search, only: [:dashboard, :profile, :gift, :ambassador]
+  before_action :find_businesses_for_search, only: [:profile, :gift, :ambassador]
 
   def dashboard
     # save logout access
@@ -22,7 +22,7 @@
       lng = coordinates[1]
     end
 
-    @businesses = Business.includes(:business_category, :perks_in_time, :uses).active.for_map.with_perks_in_time.distinct.eager_load(:addresses_for_map, :main_address).merge(Address.near([lat, lng], 10))
+    @businesses = Business.includes(:business_category, :perks_in_time, :uses, :main_address).active.for_map.with_perks_in_time.distinct.eager_load(:addresses_for_map).merge(Address.near([lat, lng], 10))
     @geojson = {"type" => "FeatureCollection", "features" => []}
 
     @businesses.each do |business|
@@ -39,26 +39,6 @@
             "description": render_to_string(partial: "components/map_box", locals: { business: business, address: address, flash: false, lat: lat, lng: lng })
           }
         }
-
-        # ONLY BUSINESS WITH FLASH PERK
-        business_with_flash = false
-        business.perks_in_time.each do |perk|
-          business_with_flash = true if perk.flash
-        end
-
-        if business_with_flash
-          @geojson["features"] << {
-            "type": 'Feature',
-            "geometry": {
-              "type": 'Point',
-              "coordinates": [address.longitude, address.latitude]
-            },
-            "properties": {
-              "marker-symbol": business.business_category.marker_symbol+"-flash",
-              "description": render_to_string(partial: "components/map_box", locals: { business: business, address: address, flash: true, lat: lat, lng: lng })
-            }
-           }
-        end
       end
     end
 
@@ -90,7 +70,12 @@
   end
 
   def profile
-    @cause = Cause.all.includes(:cause_category)
+    @partner = Partner.find_by_code_partner(current_user.code_partner.upcase) if current_user.code_partner.present?
+    if @partner && @partner.supervisor_id.present?
+      @causes = Cause.where(supervisor_id: @partner.supervisor_id).includes(:cause_category)
+    else
+      @causes = Cause.all.includes(:cause_category)
+    end
     @payments = Payment.where(user_id: current_user.id).includes(:cause)
   end
 

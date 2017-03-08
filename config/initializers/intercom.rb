@@ -96,7 +96,7 @@ IntercomRails.config do |config|
   # uncomment this line and clicks on any element with id 'Intercom' will
   # open the messenger.
   #
-  # config.inbox.style = :custom
+   config.inbox.style = :custom
   #
   # If you'd like to use your own link activator CSS selector
   # uncomment this line and clicks on any element that matches the query will

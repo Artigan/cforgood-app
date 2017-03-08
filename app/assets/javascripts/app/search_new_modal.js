@@ -24,5 +24,7 @@ $(document).ready(function(){
 $(document).ready(function() {
   $(".search-modal-button-mobile").click(function() {
     $(".search-input-mobile").toggleClass("hidden");
+    $(".search-modal-button-mobile").toggleClass("hidden");
+    // $(".close.search-modal-button-mobile").toggleClass("hidden");
   });
 });
