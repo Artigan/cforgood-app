@@ -94,6 +94,17 @@ Rails.application.routes.draw do
     resources :timetables, only: [:create, :update]
   end
 
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      devise_scope :user do
+        post "/", :to => 'sessions#create'
+        delete "/logout", :to => 'session#destroy'
+      end
+      resources :users, only: [ :show ]
+      resources :uses, only: [ :index, :show, :update ]
+    end
+  end
+
   require "sidekiq/web"
   authenticate :user, lambda { |u| u.admin } do
     mount Sidekiq::Web => '/sidekiq'
