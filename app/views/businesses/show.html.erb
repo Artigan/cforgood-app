@@ -7,14 +7,14 @@
 
 <div class="container-fluid full-page">
     <div class="row" style="margin-top: 2.5%;">
-      <!-- This is the left side of the page (business infos) -->
+        <!-- This is the left side of the page (business infos) -->
         <div class="col-md-6 col-sm-12 col-xs-12 left-side">
             <div class="main-card-left">
                 <div class="row">
                     <div class="col-md-12">
                         <img class="card-img-top img-responsive" src="<%= @business.picture.url(:medium) %>" alt="Business picture">
 
-                        <div class="row">
+                        <div class="row business-picture-row">
                             <div class="col-md-10 col-sm-10 col-xs-10 col socials-row">
                                 <div>
 
@@ -30,11 +30,17 @@
                                 <p class="likes align-middle"><%= @business.name %></p>
                             </div>
                             <div class="col-md-2 col-sm-2 col-xs-2 share-row" style="background-color:<%= @business.business_category.color %>;">
-                                <a href="#" class="share-socials text-center">Partager sur
-                                    <i style="color:white" class="fa fa-share-alt fa-2x" aria-hidden="true"></i>
-                                </a>
+                                <div class="dropup">
+                                    <a href="" class="share-socials dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Partager sur
+                                        <i class="fa fa-share-alt fa-2x" aria-hidden="true"></i>
+                                    </a>
+                                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                        <li class="dropdown-socials">facebook</li>
+                                        <li class="dropdown-socials">twitter</li>
+                                    </ul>
+                                </div>
                             </div>
-                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -137,59 +143,57 @@
 
         <!-- This is the right side of the page (perks from the business) -->
 
-
-
-
-
-            <div class=" col-md-6 col-sm-12 col-xs-12 right-side hidden-xs">
-              <h2 style="border-color: <%= @business.business_category.color %>;">Nos bons plans </h2>
-                <% @business.perks.active.each do |perk| %>
-                <div class="">
-                    <%= render "businesses/business_card", business: @business, address: @address, perk: perk, index_view: false %>
-                </div>
-                <div class="perk-modal-use">
-                    <% if !user_signed_in? %>
-                    <%= render "businesses/business_perk_not_member", perk: perk %>
-                <% else %>
-                    <%= render "businesses/business_perk_show", perk: perk %>
-                    <% end %>
-                </div>
+        <div class=" col-md-6 col-sm-12 col-xs-12 right-side hidden-xs">
+            <h2 style="border-color: <%= @business.business_category.color %>;">Nos bons plans
+            </h2>
+            <% @business.perks.active.each do |perk| %>
+            <div class="">
+                <%= render "businesses/business_card", business: @business, address: @address, perk: perk, index_view: false %>
+            </div>
+            <div class="">
+                <% if !user_signed_in? %>
+                <%= render "businesses/business_perk_not_member", perk: perk %>
+            <% else %>
+                <%= render "businesses/business_perk_show", perk: perk %>
                 <% end %>
             </div>
+            <% end %>
+        </div>
 
-            <div class="mobile_perks_list visible-xs">
-                <button class="button-validation-modal mobile-perks-list" style="background-color:<%= @business.business_category.color %>;">
-                    Voir nos bons plans
-                </button>
-                <%= render "businesses/mobile_perks_list" %>
-            </div>
+        <div class="mobile_perks_list visible-xs">
+            <button class="button-validation-modal mobile-perks-list" style="background-color:<%= @business.business_category.color %>;">
+                Voir nos bons plans
+            </button>
+            <%= render "businesses/mobile_perks_list" %>
         </div>
     </div>
+</div>
 </div>
 
 <% content_for :after_js do %>
 
 <script type="text/javascript">
-    setRoutePathFromLocation()
+setRoutePathFromLocation()
 </script>
 
 <%= render 'components/map_show', geojson: @geojson, container: device_type == :mobile ? 'map-perk' : 'map-perk-desktop' %>
 
 <script>
-    $(document).ready(function () {
+$(document).ready(function () {
 
-        $('.perk-carddd.available').click(function () {
-            var classModal = $(this).attr('id');
-            $('.' + classModal).removeClass("hidden");
-        });
-
-        $(".mobile-perks-list").click(function () {
-            $('.perk-modal-mobile-member').removeClass("hidden");
-        });
-
-        // $(".use-button-logout").click(function() {   $('.use-overlay').removeClass('hidden');   // EVENT AMPLITUDE USER_C_BENEFIT   amplitude.logEvent('USER_C_BENEFIT_LOGOUT'); }); $(".btn-use-button").click(function() {   // EVENT AMPLITUDE
-        // USER_C_BENEFIT   amplitude.logEvent('USER_C_BENEFIT'); });
+    $('.perk-carddd.available').click(function () {
+        var classModal = $(this).attr('id');
+        $('.' + classModal).removeClass("hidden");
+        $('.left-side').css('filter', 'blur(2px)');
     });
+
+    $(".mobile-perks-list").click(function () {
+        $('.perk-modal-mobile-member').removeClass("hidden");
+    });
+
+    // $(".use-button-logout").click(function() {   $('.use-overlay').removeClass('hidden');   // EVENT AMPLITUDE USER_C_BENEFIT   amplitude.logEvent('USER_C_BENEFIT_LOGOUT'); }); $(".btn-use-button").click(function() {   // EVENT AMPLITUDE
+    // USER_C_BENEFIT   amplitude.logEvent('USER_C_BENEFIT'); });
+});
 </script>
 
 <% end %>
