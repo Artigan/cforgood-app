@@ -86,12 +86,12 @@ class MonthlyPayinJob < ApplicationJob
           nb_payin_trial_OK += 1
           report << "MEMBER ON TRIAL J-0 | subscription OK | #{user.id} | #{user.email}"
         else
-          user.update(member: false)
+          user.update(member: false, code_partner: nil)
           nb_payin_trial_KO += 1
           report << "MEMBER ON TRIAL J-0 | subscription KO + member inactivate | #{user.id} | #{user.email}"
         end
       else
-        user.update(member: false)
+        user.update(member: false, code_partner: nil)
         begin
           intercom.events.create(
             event_name: "TRIAL-J-0",
@@ -125,8 +125,8 @@ class MonthlyPayinJob < ApplicationJob
 
 
     # if last day of month and previous month is longer
-    if Time.now.end_of_day == Time.now.end_of_month && Time.now.prev_month.day > Time.now.end_of_month.day
-      index = Time.now.end_of_month.day - Time.now.prev_month.day
+    if Time.now.end_of_day == Time.now.end_of_month && Time.now.prev_month.end_of_month.day > Time.now.end_of_month.day
+      index = Time.now.prev_month.end_of_month.day - Time.now.end_of_month.day
 
       (1..index).each do |i|
         @user_member_should_payin << User.member_should_payin(-i)
@@ -160,8 +160,8 @@ class MonthlyPayinJob < ApplicationJob
     nb_events_member_J_7 = 0
 
     # if last day of month and previous month is longer
-    if Time.now.end_of_day == Time.now.end_of_month && Time.now.prev_month.day > Time.now.end_of_month.day
-      index = Time.now.end_of_month.day - Time.now.prev_month.day
+    if Time.now.end_of_day == Time.now.end_of_month && Time.now.prev_month.end_of_month.day > Time.now.end_of_month.day
+      index = Time.now.prev_month.end_of_month.day - Time.now.end_of_month.day
 
       (1..index).each do |i|
         @user_member_should_payin_J_7 << User.member_should_payin_J_7(7-i)
