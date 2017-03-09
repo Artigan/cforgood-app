@@ -12,6 +12,10 @@
     overflow-y: scroll;
     overflow-x: hidden;
 
+    @media (max-width: 767px) {
+      padding-top: 50px;
+    }
+
     .mobile-title {
       display: flex;
       align-items: center;
