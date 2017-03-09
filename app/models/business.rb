@@ -46,6 +46,7 @@
 #  supervisor             :boolean          default(FALSE)
 #  supervisor_id          :integer
 #  admin                  :boolean          default(FALSE), not null
+#  activity               :string
 #
 # Indexes
 #

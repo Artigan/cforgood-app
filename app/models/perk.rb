@@ -100,7 +100,7 @@ class Perk < ApplicationRecord
     self.update(active: false, deleted: true)
   end
 
-  def offer_type?
+  def offer_type
     return "#{self.amount} €" if value
     return "#{self.amount} %" if percent
     return "Offert"

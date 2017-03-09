@@ -6,7 +6,7 @@ class BusinessPolicy < ApplicationPolicy
   end
 
   def index?
-    user == record
+    true
   end
 
   def new?
