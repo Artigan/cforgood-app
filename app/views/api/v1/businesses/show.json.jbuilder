@@ -1,33 +1,70 @@
-// json.extract! @user, :id, :first_name, :last_name, :name
-// json.picture @user.picture.url(:card)
-// json.extract! @user, :member, :trial_done
+json.extract! @business,
+  :id,
+  :name,
+  :activity,
+  :url,
+  :telephone,
+  :email,
+  :description,
+  :business_category_id,
+  :facebook,
+  :twitter,
+  :instagram,
+  :leader_first_name,
+  :leader_last_name,
+  :leader_description,
+  :online,
+  :shop,
+  :itinerant
+json.picture @business.picture.url(:card)
+json.leader_picture @business.leader_picture.url(:card)
+json.extract! @business,
+  :like,
+  :unlike,
+  :link_video
 
-// json.trial_attributes do
-//   json.date_end_partner @user.date_end_partner
-//   if @partner.present?
-//     json.partner_name @partner.name
-//   else
-//     json.partner_name nil
-//   end
-// end
+json.address do
+  json.extract! @address,
+    :id,
+    :street,
+    :zipcode,
+    :city,
+    :latitude,
+    :longitude,
+    :main
+  json.timetables do
+    json.array! @address.timetables do |timetable|
+      json.day I18n.t("date.day_names")[timetable.day]
+      json.start_at timetable.start_at.strftime("%H:%M")
+      json.end_at timetable.end_at.strftime("%H:%M")
+    end
+  end
+end
 
-// json.gift_attributes do
-//   if @beneficiary.present?
-//     json.code_partner @user.code_partner
-//     json.user_offering_first_name @user_offering.first_name
-//     json.user_offering_last_name @user_offering.last_name
-//     json.nb_month_beneficiary @beneficiary.nb_month
-//   else
-//     json.code_partner nil
-//     json.user_offering_first_name nil
-//     json.user_offering_last_name nil
-//     json.nb_month_beneficiary nil
-//   end
-// end
+json.labels do
+  json.array! @business.label_categories do |label_category|
+    json.extract! label_category, :name, :picture
+  end
+end
 
-// json.uses_without_feedback do
-//   json.array! @uses_without_feedback do |uses_without_feedback|
-//     json.extract! uses_without_feedback, :id, :perk_name, :business_name, :created_at
-//   end
-// end
-
+json.perks do
+  json.array! @business.perks_in_time do |perk|
+    json.extract! perk,
+      :id,
+      :name,
+      :description,
+      :times,
+      :start_date,
+      :end_date,
+      :active,
+      :perk_code,
+      :nb_views,
+      :appel,
+      :durable,
+      :flash,
+      :perk_detail_id,
+      :all_day
+    json.picture perk.picture.url(:card)
+    json.offer perk.offer_type
+  end
+end

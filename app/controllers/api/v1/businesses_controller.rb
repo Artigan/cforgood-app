@@ -3,22 +3,29 @@ class Api::V1::BusinessesController < Api::V1::BaseController
   before_action :set_business, only: [ :show ]
 
   def index
-    # recherche comme pour la map
-    # ou recherche pour l'index selon paramètre
+    if params[:lat].present? && params[:lng].present?
+      lat = params[:lat]
+      lng = params[:lng]
+    else
+      lat = 44.850027
+      lng = -0.5846609
+    end
+    if params[:online].present? && params[:online] == "true"
+      @businesses = Business.includes(:business_category, :main_address).active.with_perks_in_time.distinct.eager_load(:addresses_for_map).merge(Address.near([lat, lng], 9999, order: "distance"))
+    else
+      @businesses = Business.includes(:business_category, :perks_in_time, :uses, :main_address).active.for_map.with_perks_in_time.distinct.eager_load(:addresses_for_map).merge(Address.near([lat, lng], 10))
+    end
+    authorize @businesses
   end
 
   def show
-    # récupération busimess + perk + ...
-  end
-
-  def update
-    # mise à jour du nombre de vue ou alors quand demande API mise à jour auto !
+    @address = Address.includes(:timetables).find(params[:address_id])
   end
 
   private
 
   def set_business
-    @business = Business.find(params[:id])
+    @business = Business.includes(:label_categories, :perks_in_time).find(params[:id])
     authorize @business
   end
 end
