@@ -31,7 +31,7 @@ class BusinessesController < ApplicationController
     else
       session.delete(:referer)
     end
-    @business = @businesses.find(params[:id])
+    @business = Business.includes(:business_category, :perks_in_time).find(params[:id])
     @address = @business.addresses.find(params[:address_id])
     @labels = @business.labels.includes(:label_category)
 
