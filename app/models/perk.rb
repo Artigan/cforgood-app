@@ -112,7 +112,7 @@ class Perk < ApplicationRecord
       if !start_date.present?
         errors.add(:start_date, "La date de début est obligatoire pour un bon plan flash.")
       elsif all_day
-        if end_date.present?
+        if !end_date.present?
           self.start_date = start_date.change(hour: 0, min: 0)
           self.end_date = start_date.change(hour: 23, min: 59)
         elsif
