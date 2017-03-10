@@ -23,31 +23,37 @@ img.card-img-top {
 
 .business-picture-row {
     width: 100%;
-    margin-left: 0.1%;
+    height: 2vw;
+    margin-top: -5%;
 }
 
 .socials-row {
     background-color: rgba(255,255,255,0.9);
     opacity: 0.85;
-    margin-top: -5%;
+    height: 2.35vw;
     width: 80%;
 }
 
 .share-row {
-    margin-top: -5%;
-    height: 46px;
+    opacity: 0.90;
+    height: 2.35vw;
     width: 20%;
 }
 
 .likes {
     margin-left: 12.5%;
-    margin-top: 2%;
+    margin-bottom: 1%;
 }
 
-.share-socials {
+.share-socials span:not(.not-on-mobile-device) {
     color: white;
-    margin-left: 10%;
+    margin-left: 10% !important;
+    margin-top: 200% !important;
 }
+
+.not-on-mobile-device {
+//     margin-left: -35% !important;
+ }
 
 .share-socials:hover {
     color: lightgrey;
@@ -99,7 +105,7 @@ img.card-img-top {
 .business-description {
     width: 92%;
     padding-bottom: 20px;
-    font-size: 12px;
+    font-size: 1em;
     color: rgba(55,55,55,0.9);
 }
 
@@ -190,10 +196,20 @@ hr {
 }
 
 .leader-presentation p {
-  margin-left: -10%;
-  margin-right: 10%;
+    margin-left: -10%;
+    margin-right: 10%;
+    font-size: 1em;
 }
-// This is the right side of the page (perks from the business)
+
+.leader-presentation p:first-child {
+    margin-top: 4%;
+}
+
+.leader-presentation img {
+    width: 100%;
+}
+// This is the right side of the page (perks from the business) //
+
 .right-side {
     padding-top: 2%;
     padding-left: 3%;
@@ -257,6 +273,7 @@ hr {
     cursor: pointer;
 }
 // perk modal //
+
 .perk-modalll {
     width: 80%;
     margin: 4% 5% 4% 3%;
@@ -334,103 +351,173 @@ hr {
     }
 }
 // Media Queries //
-
 @media screen and (min-width: 1221px) {
-  .business-addresss {
-    margin-left: -35%;
-  }
-  .business-address-row {
-    width: 100%;
-    margin-left: -5%;
-  }
-  .leader-description {
-    margin-top: -5%;
-  }
-}
-
-@media screen and (min-width: 992px) and (max-width: 1220px) {
-
-  .main-card-left {
-      margin-left: 14%;
-  }
-
-  #business-name {
-      font-size: 1.2em;
-  }
-  .business-category{
-      font-size: 0.8em;
-      margin-left: -10%;
-  }
-
-  .business-distance {
-    font-size: 0.8em;
-  }
-
-  .business-category-image {
-      margin-top: -40%;
-  }
-
-  .business-description {
-      font-size: 0.6em;
-  }
-
-  .map-details {
-      width: 15vw;
-      height: 15vw;
-      margin-top: 2%;
-  }
-
-  .business-informations {
-      padding-left: 15%;
-      font-size: 0.6em;
-      width: 50%;
-  }
-  .business-opening-hours {
-    margin-top: -15%;
-  }
-
-  .business-addresss {
-    margin-left: -35%;
-  }
-  .leader-description {
-    margin-top: -5%;
-  }
-  .business-contacts {
-      margin-left:0;
-      width: 80%;
-  }
-
-  .right-side {
-    padding-top: 5%;
-  }
-
-  .right-side h2 {
-      margin-right: 70%;
-      font-size: 1em;
-  }
-
-  .perks-offer-type {
-      margin-top: 33%;
-      margin-left: 60%;
-      font-size: 0.7em;
-  }
-
-  .perks-number {
-      margin-left: 20%;
-      font-size: 0.8em;
-  }
-
-  .perk-description {
-    font-size: 0.7em;
-  }
-
-
+    .business-addresss {
+        margin-top: -13%;
+        margin-left: 18%;
+        width: 130%;
+        font-size: 0.8em;
     }
 
+    .leader-description {
+        margin-top: -5%;
+    }
+
+    .leader-presentation p {
+        margin-left: 7%;
+    }
+}
+@media screen and (min-width: 992px) and (max-width: 1220px) {
+    .main-card-left {
+        margin-left: 14%;
+    }
+
+    .socials-row {
+        height: 2.15vw;
+    }
+
+    .share-row {
+        height: 2.15vw;
+    }
+
+    .likes {
+        margin-bottom: 0;
+        font-size: 0.6em;
+    }
+
+    .share-socials span:not(.not-on-mobile-device) {
+        font-size: 0.6em;
+    }
+
+    .dropdown-menu {
+        width: 90px;
+    }
+
+    .dropdown-socials {
+        font-size: 0.7em;
+    }
+
+    #business-name {
+        font-size: 1.2em;
+    }
+
+    .business-category {
+        font-size: 0.75em;
+        margin-left: -10%;
+        width: 150%;
+    }
+
+    .business-distance {
+        font-size: 0.75em;
+        margin-left: 10%;
+    }
+
+    .business-category-image {
+        margin-top: -40%;
+    }
+
+    .business-description {
+        font-size: 0.6em;
+    }
+
+    .map-details {
+        width: 17vw;
+        height: 18vw;
+        margin-top: 2%;
+    }
+
+    .business-informations {
+        padding-left: 15%;
+        font-size: 0.6em;
+        width: 50%;
+    }
+
+    .business-informations.fa-map-o {
+        font-size: 1.2em;
+    }
+
+    .business-opening-hours {
+        margin-top: -5%;
+    }
+
+    .business-addresss {
+        margin-top: -20%;
+        margin-left: 20%;
+        width: 150%;
+        font-size: 1em;
+    }
+
+    .business-contacts {
+        margin-left: 0;
+        padding-top: 2%;
+        width: 100%;
+    }
+
+    .follow-uss {
+        margin-left: 32%;
+    }
+
+    .leader-presentation img {
+        width: 140%;
+    }
+
+    .leader-presentation p {
+        margin-left: 7%;
+    }
+
+    p.leader-description {
+        margin-top: -12%;
+        font-size: 0.6em;
+    }
+
+    .right-side {
+        padding-top: 5%;
+    }
+
+    .right-side h2 {
+        margin-right: 70%;
+        font-size: 1em;
+    }
+
+    .perks-offer-type {
+        margin-top: 33%;
+        margin-left: 60%;
+        font-size: 0.7em;
+    }
+
+    .perks-number {
+        margin-left: 20%;
+        font-size: 0.8em;
+    }
+
+    .perk-description {
+        font-size: 0.7em;
+    }
+}
 @media screen and (min-width: 768px) and (max-width: 991px) {
     img.card-img-top {
         width: 100%;
         height: 50vw;
+    }
+
+    .socials-row {
+        height: 4.8vw;
+    }
+
+    .share-row {
+        height: 4.8vw;
+    }
+
+    .likes {
+        font-size: 0.9em;
+    }
+
+    .share-socials span {
+        font-size: 0.9em;
+    }
+
+    .dropdown-menu {
+        width: 110px;
     }
 
     .map-details {
@@ -438,12 +525,19 @@ hr {
         height: 26vw;
         margin-top: 2%;
     }
+
     .business-addresss {
-      margin-left: -35%;
+        margin-left: -33%;
     }
+
+    .leader-presentation img {
+        width: 70%;
+    }
+
     .leader-description {
-      margin-top: -5%;
+        margin-top: -5%;
     }
+
     .right-side {
         margin-left: 11.5%;
     }
@@ -469,106 +563,281 @@ hr {
         margin-left: 50%;
         font-size: 0.7em;
     }
-
 }
-
 @media screen and (min-width : 480px) and (max-width : 767px) {
+    .main-card-left {
+        margin-left: 0;
+    }
 
-  .main-card-left {
-      margin-left: 0;
-  }
+    img.card-img-top {
+        width: 100%;
+        height: 65vw;
+    }
 
-  img.card-img-top {
-      width: 100%;
-      height: 65vw;
-  }
-  .business-category-image {
-      display: none;
-  }
+    .business-picture-row {
+        margin-top: -6%;
+    }
 
-  #business-name {
-      font-size: 1.4em;
-      padding-top: -3%;
-  }
+    .socials-row {
+        height: 5.2vw;
+    }
 
-  .business-specs {
-    margin-left: -5%;
-    margin-top: -4%;
-  }
-  .business-category{
-      font-size: 0.9em;
-      margin-left: -10%;
-  }
+    .share-row {
+        height: 5.2vw;
+    }
 
-  .business-distance {
-    font-size: 0.9em;
-  }
+    .not-on-mobile-device {
+        display: none;
+    }
 
-  .business-description {
-      font-size: 0.8em;
-  }
-  .map-details {
-      width: 100%;;
-      height: 20vw;
-      margin-top: 1%;
-      margin-left: -5%;
-  }
-  .business-informations {
-      padding-top: 5%;
-      margin-left: -4%;
-  }
-  .business-informations i.fa-map-o {
-    font-size: 8em;
-    margin-top: 10%;
-  }
-  .business-addresss {
-    margin-top: 2%;
-  }
-   .business-opening-hours {
-     margin-top: -10%;
-   }
-  .business-contacts {
-      margin-left: 10%;
-      padding-top: 3%;
-  }
-  .follow-uss {
-      margin-left: 30%;
-  }
-  .follow-uss a {
-      font-size: 2em;
-      margin-right: 3%;
-      padding: 6px 12px 6px 12px;;
-      border-width: 1.5px;
-      border-radius: 60px;
-  }
+    .likes {
+        font-size: 0.8em;
+    }
 
-  .leader-presentation h6, .leader-presentation p {
-    text-align: center;
-  }
-  .leader-presentation img {
-    margin-left: 5%;
-  }
+    .share-socials span {
+        font-size: 0.8em;
+    }
 
-  .leader-presentation p:first-child  {
-    margin-top: 3%;
-  }
+    .dropdown-menu {
+        width: 95px;
+        margin-left: -20px;
+    }
 
-  .leader-description {
-    margin-bottom:  10%;
-  }
+    #business-name {
+        font-size: 1.4em;
+        padding-top: -3%;
+    }
 
+    .business-category-image {
+        display: none;
+    }
+
+    .business-specs {
+        margin-left: -5%;
+        margin-top: -4%;
+    }
+
+    .business-category {
+        font-size: 0.9em;
+        margin-left: -10%;
+    }
+
+    .business-distance {
+        font-size: 0.9em;
+    }
+
+    .business-description {
+        font-size: 0.8em;
+    }
+
+    .map-details {
+        width: 100%;
+        height: 20vw;
+        margin-top: 1%;
+        margin-left: -5%;
+    }
+
+    .business-informations {
+        padding-top: 5%;
+        margin-left: -4%;
+    }
+
+    .business-informations i.fa-map-o {
+        font-size: 8em;
+        margin-top: 10%;
+    }
+
+    .business-addresss {
+        margin-top: 2%;
+    }
+
+    .business-opening-hours {
+        margin-top: -10%;
+    }
+
+    .business-contacts {
+        margin-left: 10%;
+        padding-top: 3%;
+    }
+
+    .follow-uss {
+        margin-left: 22%;
+    }
+
+    .follow-uss a {
+        font-size: 2em;
+        margin-right: 3%;
+        padding: 6px 12px;
+        border-width: 1.5px;
+        border-radius: 60px;
+    }
+
+    .leader-presentation h6,
+    .leader-presentation p {
+        text-align: center;
+    }
+
+    .leader-presentation img {
+        margin-left: 75%;
+        width: 70%;
+    }
+
+    .leader-presentation p {
+        margin-left: 10%;
+    }
+
+    .leader-presentation p:first-child {
+        margin-top: 3%;
+    }
+
+    .leader-description {
+        margin-bottom: 13%;
+        margin-top: -5%;
+    }
 }
 @media screen and (min-width : 320px) and (max-width : 479px) {
-  .business-category-image {
-      display: none;
-  }
+    .main-card-left {
+        margin-left: 0;
+    }
+
+    .business-category-image {
+        display: none;
+    }
+
+    img.card-img-top {
+        height: 65vw;
+    }
+
+    .business-picture-row {
+        margin-top: -8.8%;
+    }
+
+    .socials-row {
+        height: 7vw;
+        width: 70%;
+    }
+
+    .share-row {
+        height: 7vw;
+        width: 30%;
+    }
+
+    .not-on-mobile-device {
+        display: none;
+    }
+
+    .likes {
+        font-size: 0.6em;
+        margin-left: 0;
+    }
+
+    .share-socials span {
+        font-size: 0.6em;
+    }
+
+    .dropdown-menu {
+        width: 100px;
+        margin-left: -20px;
+    }
+
+    #business-name {
+        font-size: 1.1em;
+        padding-top: -3%;
+    }
+
+    .business-specs {
+        margin-left: -5%;
+        margin-top: -4%;
+    }
+
+    .business-category {
+        font-size: 0.75em;
+        margin-left: -15%;
+    }
+
+    .business-distance {
+        font-size: 0.75em;
+        margin-left: -10%;
+    }
+
+    .business-description {
+        font-size: 0.8em;
+    }
+
+    .map-details {
+        width: 100%;
+        height: 20vw;
+        margin-top: 1%;
+        margin-left: -5%;
+    }
+
+    .business-informations {
+        padding-top: 3%;
+        margin-left: -15%;
+    }
+
+    .business-informations i.fa-map-o {
+        font-size: 7em;
+        margin-top: 10%;
+        margin-left: 0;
+    }
+
+    .business-addresss {
+        margin-top: 2%;
+        font-size: 0.8em;
+        width: 130%;
+    }
+
+    .business-opening-hours {
+        margin-top: -20%;
+        margin-left: 25%;
+        font-size: 0.8em;
+        height: 50%;
+    }
+
+    .business-contacts {
+        margin-left: 7%;
+        padding-top: 3%;
+    }
+
+    .follow-uss {
+        margin-left: 18%;
+    }
+
+    .follow-uss a {
+        font-size: 1.8em;
+        margin-right: 3%;
+        padding: 6px 12px;
+        border-width: 1.5px;
+        border-radius: 60px;
+    }
+
+    .leader-presentation h6,
+    .leader-presentation p {
+        text-align: center;
+    }
+
+    .leader-presentation img {
+        margin-left: 65%;
+        margin-top: -10%;
+    }
+
+    .leader-presentation p {
+        margin-left: 10%;
+    }
+
+    .leader-presentation p:first-child {
+        margin-top: 2%;
+    }
+
+    .leader-description {
+        margin-bottom: 22%;
+        margin-top: -5%;
+        font-size: 0.8em;
+    }
+    @media screen and (max-width : 319px) {}
 }
-
-
-
 // End Adrien CSS //
-
-
 /* SHOW - PERK ****************************************************************/
 .dashboard-perk {
     min-height: 100%;

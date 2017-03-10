@@ -11,12 +11,12 @@
         <div class="col-md-6 col-sm-12 col-xs-12 left-side">
             <div class="main-card-left">
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
                         <img class="card-img-top img-responsive" src="<%= @business.picture.url(:medium) %>" alt="Business picture">
 
                         <div class="row business-picture-row">
                             <div class="col-md-10 col-sm-10 col-xs-10 col socials-row">
-                                <div>
+                                <p class= "likes">
 
                                     <% if @business.like == 1 %>
                                     <%= image_tag "icons/heart.svg", class: "red-heart"%>
@@ -25,14 +25,14 @@
                                     <%= image_tag "icons/heart.svg", class: "red-heart"%>
                                     <p><%= "#{@business.like} personnes aiment" %></p>
                                     <% end %>
+                                  </p>
 
-                                </div>
                                 <p class="likes align-middle"><%= @business.name %></p>
                             </div>
                             <div class="col-md-2 col-sm-2 col-xs-2 share-row" style="background-color:<%= @business.business_category.color %>;">
                                 <div class="dropup">
-                                    <a href="" class="share-socials dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Partager sur
-                                        <i class="fa fa-share-alt fa-2x" aria-hidden="true"></i>
+                                    <a href="" class="share-socials dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Partager <span class="not-on-mobile-device">sur
+                                        <i class="fa fa-share-alt" aria-hidden="true"></i></span></span>
                                     </a>
                                     <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                                         <li class="dropdown-socials">
