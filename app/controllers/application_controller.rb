@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   include Mobvious::Rails::Controller
   include Modules::ModuleSlack
   include Pundit
+  include ApplicationHelper
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
@@ -56,9 +57,12 @@ class ApplicationController < ActionController::Base
             member_user_dashboard_path(resource)
           end
         else
-         # Funnel subscritpion
+          # Funnel subscritpion
           new_member_subscribe_path
         end
+      elsif current_user.sign_in_count == 1
+        # Funnel subscritpion
+        new_member_subscribe_path
       elsif resource.supervisor
         member_user_supervisor_account_path(resource)
       else

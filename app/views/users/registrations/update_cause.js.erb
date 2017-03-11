@@ -1,22 +1,29 @@
-
 if (<%= !current_user.errors.any? %>) {
 
-  // animation and change button
+  if (<%= request.referer.include?("subscribe") %>) {
 
-  var $button = $('#submit');
+    // DISCLAIMER - DISPLAYED
+    $("#"+<%= current_user.cause_id %>+" .love-you").removeClass("hidden").addClass('love-it');
 
-  $button.val('');
-  setTimeout(function(){
-     $button.addClass('clicked');
-  }, 300);
+  } else {
 
-  $button.one('animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd', function(){
-    $(this).addClass('submited');
+    // VALIDATION - HIDDEN
+    // $(".popup-overlay").addClass("hidden");
+
+    var $button = $('#submit');
+
+    $button.val('');
     setTimeout(function(){
-      $('.dropdown').click();
-      $('.asso-button-v2').toggleClass('hidden');
-    }, 1500);
-  });
+       $button.addClass('clicked');
+    }, 300);
 
+    $button.one('animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd', function(){
+      $(this).addClass('submited');
+      setTimeout(function(){
+        $('.dropdown').click();
+        $('.asso-button-v2').toggleClass('hidden');
+      }, 1500);
+    });
+
+  }
 }
-

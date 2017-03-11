@@ -10,19 +10,9 @@
     end
 
     # Patch during VIDEO && SALON
-    if params[:lng].present? && params[:lat].present?
-      lat = params[:lat]
-      lng = params[:lng]
-    elsif (current_user.present? && current_user.email == "allan.floury@gmail.com") || !cookies[:coordinates].present?
-      lat = 44.837789
-      lng = -0.57918
-    else
-      coordinates = cookies[:coordinates].split('&')
-      lat = coordinates[0]
-      lng = coordinates[1]
-    end
+    @lat_lng = set_coordinates(params[:lat], params[:lng])
 
-    @businesses = Business.includes(:business_category, :perks_in_time, :uses, :main_address).active.for_map.with_perks_in_time.distinct.eager_load(:addresses_for_map).merge(Address.near([lat, lng], 10))
+    @businesses = Business.includes(:business_category, :perks_in_time, :uses, :main_address).active.for_map.with_perks_in_time.distinct.eager_load(:addresses_for_map).merge(Address.near(@lat_lng, 10))
     @geojson = {"type" => "FeatureCollection", "features" => []}
 
     @businesses.each do |business|
@@ -36,7 +26,7 @@
           "properties": {
             "marker-symbol": business.business_category.marker_symbol,
             "color": business.business_category.color,
-            "description": render_to_string(partial: "components/map_box", locals: { business: business, address: address, flash: false, lat: lat, lng: lng })
+            "description": render_to_string(partial: "components/map_box", locals: { business: business, address: address, flash: false, lat: @lat_lng[0], lng: @lat_lng[1] })
           }
         }
       end

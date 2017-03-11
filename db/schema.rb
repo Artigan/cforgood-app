@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170308142728) do
+ActiveRecord::Schema.define(version: 20170309215212) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -137,8 +137,8 @@ ActiveRecord::Schema.define(version: 20170308142728) do
     t.string   "url"
     t.string   "email"
     t.string   "telephone"
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
     t.string   "impact"
     t.integer  "cause_category_id"
     t.string   "facebook"
@@ -152,17 +152,18 @@ ActiveRecord::Schema.define(version: 20170308142728) do
     t.string   "representative_first_name"
     t.string   "representative_last_name"
     t.integer  "amount_impact"
-    t.boolean  "active",                    default: false, null: false
+    t.boolean  "active",                     default: false, null: false
     t.string   "link_video"
     t.string   "picture"
     t.string   "logo"
-    t.integer  "like",                      default: 0
-    t.integer  "unlike",                    default: 0
-    t.boolean  "mailing",                   default: true
-    t.boolean  "tax_receipt",               default: true
+    t.integer  "like",                       default: 0
+    t.integer  "unlike",                     default: 0
+    t.boolean  "mailing",                    default: true
+    t.boolean  "tax_receipt",                default: true
     t.string   "followers"
     t.string   "heard"
     t.integer  "supervisor_id"
+    t.text     "representative_testimonial"
     t.index ["cause_category_id"], name: "index_causes_on_cause_category_id", using: :btree
     t.index ["supervisor_id"], name: "index_causes_on_supervisor_id", using: :btree
   end

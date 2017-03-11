@@ -12,12 +12,9 @@
   <div class="dashboard dashboard-causes">
     <div class="mobile-menu-overlay hidden"></div>
 
-    <!-- MENU | CATEGORY FILTER -->
-    <%= render 'components/menu/index_causes_search_category' %>
-
     <div class="asso-header">
       <div class="asso-header-count-container">
-        <div class="asso-number"><%= @causes.count %></div>
+        <div class="asso-number"><%= @causes.size %></div>
         <div class="asso-text">Associations</div>
       </div>
     </div>
@@ -32,17 +29,9 @@
             <%= link_to cause_path(cause), class: "card-frame mix #{cause.cause_category_id}" do %>
               <!-- CARD HEADER -->
                 <div class="card-body" style="background-image: url('<%= cause.picture.url(:card) %>');">
-                  <div class="disque-item item-category" style="background-color: <%= cause.cause_category.color %>;">
-                    <%= image_tag cause.cause_category.picture %>
-                  </div>
                   <span class="name"><%= cause.name %></span>
-                  <div class="category hidden"><%= cause.cause_category.name %></div>
-                  <p><%= truncate(cause.description, length: 190) %></p>
-                  <div class="disque-item item-logo">
-                    <%= image_tag cause.logo %>
-                  </div>
+                  <span class="city"><%= cause.city %></span>
                 </div>
-
             <% end %>
             <!-- END | CARD BON PLAN -->
           <% end %>

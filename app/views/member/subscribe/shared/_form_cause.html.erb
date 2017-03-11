@@ -15,7 +15,7 @@
           <% end %>
         <% end %>
       </div>
-      <%= simple_form_for(current_user, url: member_update_cause_path, remote: true, authenticity_token: true, html: { method: :put, id: :update_cause_id }) do |f| %>
+      <%= simple_form_for(current_user, url: member_update_cause_path, method: :put, remote: true, authenticity_token: true, html: { id: :update_cause_id }) do |f| %>
         <%= f.input :cause_id, as: :hidden %>
         <%= f.submit "Soutenir cette cause", class: "user-button" %>
       <% end %>
@@ -43,7 +43,7 @@
       $(".signup-cause .signup-next").on("click", function(e) {
         e.preventDefault;
         var supervisorId = $(this).attr('class').split(" ")[1];
-        if (supervisorId !== undefined) {
+        if ( supervisorId != "" ) {
           window.location.href = "<%= member_user_dashboard_path(current_user) %>";
         } else {
           $(".choose-cause").addClass("ishidden");

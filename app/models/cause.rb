@@ -2,41 +2,42 @@
 #
 # Table name: causes
 #
-#  id                        :integer          not null, primary key
-#  name                      :string
-#  description               :text
-#  street                    :string
-#  zipcode                   :string
-#  city                      :string
-#  url                       :string
-#  email                     :string
-#  telephone                 :string
-#  created_at                :datetime         not null
-#  updated_at                :datetime         not null
-#  impact                    :string
-#  cause_category_id         :integer
-#  facebook                  :string
-#  twitter                   :string
-#  instagram                 :string
-#  description_impact        :string
-#  latitude                  :float
-#  longitude                 :float
-#  mangopay_id               :string
-#  wallet_id                 :string
-#  representative_first_name :string
-#  representative_last_name  :string
-#  amount_impact             :integer
-#  active                    :boolean          default(FALSE), not null
-#  link_video                :string
-#  picture                   :string
-#  logo                      :string
-#  like                      :integer          default(0)
-#  unlike                    :integer          default(0)
-#  mailing                   :boolean          default(TRUE)
-#  tax_receipt               :boolean          default(TRUE)
-#  followers                 :string
-#  heard                     :string
-#  supervisor_id             :integer
+#  id                         :integer          not null, primary key
+#  name                       :string
+#  description                :text
+#  street                     :string
+#  zipcode                    :string
+#  city                       :string
+#  url                        :string
+#  email                      :string
+#  telephone                  :string
+#  created_at                 :datetime         not null
+#  updated_at                 :datetime         not null
+#  impact                     :string
+#  cause_category_id          :integer
+#  facebook                   :string
+#  twitter                    :string
+#  instagram                  :string
+#  description_impact         :string
+#  latitude                   :float
+#  longitude                  :float
+#  mangopay_id                :string
+#  wallet_id                  :string
+#  representative_first_name  :string
+#  representative_last_name   :string
+#  amount_impact              :integer
+#  active                     :boolean          default(FALSE), not null
+#  link_video                 :string
+#  picture                    :string
+#  logo                       :string
+#  like                       :integer          default(0)
+#  unlike                     :integer          default(0)
+#  mailing                    :boolean          default(TRUE)
+#  tax_receipt                :boolean          default(TRUE)
+#  followers                  :string
+#  heard                      :string
+#  supervisor_id              :integer
+#  representative_testimonial :text
 #
 # Indexes
 #
@@ -70,6 +71,10 @@ class Cause < ApplicationRecord
   # validates :representative_first_name, presence: true
   # validates :representative_last_name, presence: true
 
+  geocoded_by :address
+
+  after_validation :geocode, if: :address_changed?
+
   before_save :format_facebook, if: :facebook_changed?
   before_save :format_twitter, if: :twitter_changed?
   before_save :format_instagram, if: :instagram_changed?
@@ -79,6 +84,14 @@ class Cause < ApplicationRecord
   after_save :update_data_intercom
 
   private
+
+  def address_changed?
+    street_changed? || zipcode_changed? || city_changed?
+  end
+
+  def address
+    "#{street}, #{zipcode} #{city}"
+  end
 
   def format_facebook
     self.facebook = self.facebook.split("facebook.com/").last

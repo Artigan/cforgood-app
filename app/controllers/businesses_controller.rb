@@ -1,7 +1,7 @@
 class BusinessesController < ApplicationController
 
   skip_before_action :authenticate_user!, only: [:index, :show]
-  before_action :set_coordinates, only: [:index, :show]
+  before_action :get_coordinates, only: [:index, :show]
   before_action :find_businesses_for_search, only: [:index, :show]
 
   def index
@@ -24,7 +24,6 @@ class BusinessesController < ApplicationController
   end
 
   def show
-
     # save request.referer when logout access
     if !user_signed_in?
       session[:referer] = request.url
@@ -56,14 +55,8 @@ class BusinessesController < ApplicationController
 
   private
 
-  def set_coordinates
-    if params[:lng].present? && params[:lat].present?
-      @lat_lng = [params[:lat], params[:lng]]
-    elsif (current_user.present? && current_user.email == "allan.floury@gmail.com") || !cookies[:coordinates].present?
-      @lat_lng = [44.837789, -0.57918]
-    else
-      @lat_lng = cookies[:coordinates].split('&')
-    end
+  def get_coordinates
+    @lat_lng = set_coordinates(params[:lat], params[:lng])
   end
 
   def find_businesses_for_search

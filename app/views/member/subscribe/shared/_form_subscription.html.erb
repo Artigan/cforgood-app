@@ -45,7 +45,7 @@
         <!-- PARTNER CODE -->
         <%= simple_form_for(current_user, url: member_update_profile_path, method: :put, remote: true, authenticity_token: true, html: { id: "update_subscription" } ) do |f| %>
           <div class="code-partner">
-            <%= f.input :code_partner, label: "Code Partenaire", input_html: { value: "" } %>
+            <%= f.input :code_partner, label: "Code Partenaire", input_html: { value: current_user.code_partner || "" } %>
           </div>
 
           <div class="offer-btn">

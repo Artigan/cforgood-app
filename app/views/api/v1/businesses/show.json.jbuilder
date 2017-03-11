@@ -48,7 +48,7 @@ json.labels do
 end
 
 json.perks do
-  json.array! @business.perks_in_time do |perk|
+  json.array! @business.perks do |perk|
     json.extract! perk,
       :id,
       :name,
@@ -66,5 +66,6 @@ json.perks do
       :all_day
     json.picture perk.picture.url(:card)
     json.offer perk.offer_type
+    json.usable_for_user perk.perk_in_time? && perk.perk_usable?(current_user)
   end
 end

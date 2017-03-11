@@ -1,15 +1,15 @@
-class UserPolicy < ApplicationPolicy
+class CausePolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope
     end
   end
 
-  def supervisor_account?
-    user == record
+  def index?
+    true
   end
 
-  def update?
+  def new?
     user == record
   end
 end

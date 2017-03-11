@@ -1,6 +1,7 @@
 class Api::V1::BaseController < ActionController::Base
   acts_as_token_authentication_handler_for User
   include Pundit
+  include ApplicationHelper
 
   after_action :verify_authorized, except: :show
   after_action :verify_policy_scoped, only: :whow

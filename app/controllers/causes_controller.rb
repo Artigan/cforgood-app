@@ -3,7 +3,12 @@ class CausesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    @causes = Cause.all.includes(:cause_category)
+    @lat_lng = set_coordinates(params[:lat], params[:lng])
+    if @partner && @partner.supervisor_id.present?
+      @causes = Cause.where(supervisor_id: @partner.supervisor_id)
+    else
+      @causes = Cause.where.not(id: ENV['CAUSE_ID_CFORGOOD'].to_i).near(@lat_lng, 9999, order: "distance")
+    end
   end
 
   def show

@@ -20,7 +20,7 @@ class PictureUploader < CarrierWave::Uploader::Base
   end
 
   version :avatar do |variable|
-    cloudinary_transformation :width => 100, :height => 100, :crop => :thumb, :gravity => :face, :dpr => 2.0
+    cloudinary_transformation :width => 100, :height => 100, :crop => :thumb, :gravity => :faces, :dpr => 2.0
   end
 
 end

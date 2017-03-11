@@ -103,6 +103,7 @@ Rails.application.routes.draw do
       resources :users, only: [ :show, :update ]
       resources :businesses, only: [ :index, :show ]
       resources :uses, only: [ :create, :update ]
+      resources :causes, only: [ :index, :show, :update ]
     end
   end
 

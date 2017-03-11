@@ -13,6 +13,7 @@ json.array! @businesses do |business|
   json.perks do
     json.array! business.perks_in_time do |perk|
       json.extract! perk, :id, :name, :flash
+      json.times perk.times - Use.where(perk_id: perk.id).count
       json.picture perk.picture.url(:card)
       json.offer perk.offer_type
     end
