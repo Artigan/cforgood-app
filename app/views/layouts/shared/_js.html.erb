@@ -33,5 +33,9 @@
 <!-- JS SCRIPTS -->
 <%= render "layouts/shared/js/smooth_scroll" %>
 <%= render "layouts/shared/js/typeform" %>
-<%= render "layouts/shared/js/intercom" %>
+<% if user_signed_in? || business_signed_in? %>
+  <%= render "layouts/shared/js/intercom" %>
+<% else %>
+  <%= render "layouts/shared/js/crisp" %>
+<% end %>
 
