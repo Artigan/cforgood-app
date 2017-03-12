@@ -7,38 +7,27 @@
 
   <% @business.perks_in_time.each do |perk| %>
 
-    <div class="mapboxv2">
-      <div class="pmls-modal" id="perk-modal-dynamic-<%= perk.id %>">
-          <i class="fa fa-plus"></i>
-      </div>
+  <div class="col-md-6 col-sm-6 col-xs-12 perk-carddd <%= !perk.perk_in_time? || !(user_signed_in? && perk.perk_usable?(current_user))  ? 'unavailable' : 'available' %>" id="perk-modal-dynamic-<%= perk.id %>">
 
-      <div class="mv2-photo" style="background-image: url('<%= @business.picture.url(:thumb) %>');"></div>
-
-      <div class="mv2-content">
-
-        <div class="mv2-content-top" style="background-color: <%= @business.business_category.color %>;">
-          <div class="mv2-content-top-top">
-            <div class="mv2-content-top-top-text" style="font-size: 12px;"><%= perk.name %></div>
+          <div class="card-perks">
+              <div class="bolt-icon">
+                  <i class="fa fa-bolt" aria-hidden="true"></i>
+              </div>
+              <% if perk.times > 0 %>
+              <p class="perks-number"><%= perk.times - Use.where(perk_id: perk.id).count %>
+                  restants.</p>
+              <% end %>
+              <div class="perks-offer-type" style="border-color: <%= @business.business_category.color %>;">
+                  <%= perk.offer_type? %>
+              </div>
+              <img  class="card-img-top img-responsive" src="<%= perk.picture.present? ? perk.picture.url(:card) : @business.picture.url(:card) %>" alt="perk picture">
+              <div class="card-block card-right">
+                  <p class="perk-description card-text text-center">
+                      <%= perk.name %>
+                  </p>
+              </div>
           </div>
-          <div class="mv2-content-top-bottom"></div>
-        </div>
-
-        <div class="mv2-content-bottom" style="background-color: <%= @business.business_category.color %>;">
-
-          <div class="mv2-content-bottom-left" style="background-color: rgba(55,55,55,0.2);">
-            <div class="pastille">
-              <%= image_tag perk.business.business_category.picture, size: "20x20" %>
-            </div>
-            <div class="business-on-perk"><%= @business.name %></div>
-          </div>
-
-          <div class="mv2-content-bottom-right" style="background-color: rgba(55,55,55,0.2);">
-            <%= image_tag "icons/heart.svg", class: "red-heart"%>
-            <div class="asso-firstblock-text-v2"><%= @business.sign_in_count %></div>
-          </div>
-        </div>
-      </div>
-    </div>
+  </div>
 
     <%= render "businesses/business_perk_show", perk: perk %>
 
