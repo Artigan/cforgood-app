@@ -14,8 +14,8 @@
 class BusinessCategory < ApplicationRecord
   has_many :businesses
 
-  validates_size_of :picture, maximum: 1.megabytes,
-    message: "Cette image dépasse 1 MG !", if: :picture_changed?
-  mount_uploader :picture, IconUploader
+  # validates_size_of :picture, maximum: 1.megabytes,
+  #   message: "Cette image dépasse 1 MG !", if: :picture_changed?
+  # mount_uploader :picture, IconUploader
 
 end

@@ -32,52 +32,52 @@ end
 # Création table LABEL_CATEGORIES
 #----------------------------------------------------
 
-LabelCategory.destroy_all
+# LabelCategory.destroy_all
 
-puts "--------CREATE LABEL CATEGORIES--------"
+# puts "--------CREATE LABEL CATEGORIES--------"
 
-action_locale = LabelCategory.create!({
-  name: "Action Locale",
-  picture: "labels/action_locale.svg",
- })
+# action_locale = LabelCategory.create!({
+#   name: "Action Locale",
+#   picture: "labels/action_locale.svg",
+#  })
 
-circuit_court = LabelCategory.create!({
-  name: "Circuit Court",
-  picture: "labels/circuit_court.svg",
- })
+# circuit_court = LabelCategory.create!({
+#   name: "Circuit Court",
+#   picture: "labels/circuit_court.svg",
+#  })
 
-engagement_social = LabelCategory.create!({
-  name: "Engagement social",
-  picture: "labels/engagement_social.svg",
- })
+# engagement_social = LabelCategory.create!({
+#   name: "Engagement social",
+#   picture: "labels/engagement_social.svg",
+#  })
 
-modele_collaboratif_participatif = LabelCategory.create!({
-  name: "Modèle collaboratif/participatif",
-  picture: "labels/modele_collaboratif-participatif.svg",
- })
+# modele_collaboratif_participatif = LabelCategory.create!({
+#   name: "Modèle collaboratif/participatif",
+#   picture: "labels/modele_collaboratif-participatif.svg",
+#  })
 
-monnaie_locale = LabelCategory.create!({
-  name: "Monnaie Locale",
-  picture: "labels/monnaie_locale.svg",
- })
+# monnaie_locale = LabelCategory.create!({
+#   name: "Monnaie Locale",
+#   picture: "labels/monnaie_locale.svg",
+#  })
 
-politique_anti_gaspillage = LabelCategory.create!({
-  name: "Politique anti-gaspillage",
-  picture: "labels/politique_anti-gaspillage.svg",
- })
+# politique_anti_gaspillage = LabelCategory.create!({
+#   name: "Politique anti-gaspillage",
+#   picture: "labels/politique_anti-gaspillage.svg",
+#  })
 
-produits_eco_responsables = LabelCategory.create!({
-  name: "Produits éco-responsables",
-  picture: "labels/produits_eco-responsables.svg",
- })
+# produits_eco_responsables = LabelCategory.create!({
+#   name: "Produits éco-responsables",
+#   picture: "labels/produits_eco-responsables.svg",
+#  })
 
-zero_dechet = LabelCategory.create!({
-  name: "Zéro déchet",
-  picture: "labels/zero_dechet.svg",
- })
+# zero_dechet = LabelCategory.create!({
+#   name: "Zéro déchet",
+#   picture: "labels/zero_dechet.svg",
+#  })
 
 
-puts "--------END LABEL CATEGORIES-----------"
+# puts "--------END LABEL CATEGORIES-----------"
 
 # #----------------------------------------------------
 # # Création table BUSINESS_CATEGORIES
@@ -149,6 +149,21 @@ puts "--------END LABEL CATEGORIES-----------"
 #   color: "#db6f3a",
 #   marker_symbol: "marker-restaurant"
 #  })
+
+
+mobilite = BusinessCategory.create!({
+  name: "Mobilité",
+  picture: "business_categories/mobilite",
+  color: "#867486",
+  marker_symbol: "marker-mobilite"
+ })
+
+artisanat = BusinessCategory.create!({
+  name: "Artisanat",
+  picture: "business_categories/artisanat",
+  color: "#1E71B9",
+  marker_symbol: "marker-artisanat"
+ })
 # puts "--------END BUSINESS CATEGORIES-----------"
 
 
@@ -158,15 +173,17 @@ puts "--------END LABEL CATEGORIES-----------"
 
 # # puts "--------READ BUSINESS CATEGORIES-----------"
 
-# # personel = BusinessCategory.find_by_name("Développement personnel")
-# # fitness = BusinessCategory.find_by_name("Santé & Fitness")
-# # epicerie = BusinessCategory.find_by_name("Marchés & Epiceries")
-# # shopping = BusinessCategory.find_by_name("Shopping")
-# # maison = BusinessCategory.find_by_name("Maison & Jardin")
-# # loisirs = BusinessCategory.find_by_name("Loisirs & Sorties")
-# # coffee = BusinessCategory.find_by_name("Cafés & Lieux de vie")
-# # beaute = BusinessCategory.find_by_name("Beauté & Bien Être")
-# # bars = BusinessCategory.find_by_name("Bars & Restaurants")
+personel = BusinessCategory.find_by_name("Développement personnel").update(picture: "business_categories/yoga")
+fitness = BusinessCategory.find_by_name("Santé & Fitness").update(picture: "business_categories/santeetbienetre.svg")
+epicerie = BusinessCategory.find_by_name("Marchés & Epiceries").update(picture: "business_categories/marcheetepicerie.svg")
+shopping = BusinessCategory.find_by_name("Shopping").update(picture: "business_categories/shopping.svg")
+maison = BusinessCategory.find_by_name("Maison & Jardin").update(picture: "business_categories/maisonetjardin.svg")
+loisirs = BusinessCategory.find_by_name("Loisirs & Sorties").update(picture: "business_categories/loisirs.svg")
+coffee = BusinessCategory.find_by_name("Cafés & Lieux de vie").update(picture: "business_categories/lieuxdevie.svg")
+beaute = BusinessCategory.find_by_name("Beauté & Bien Être").update(picture: "business_categories/beauteetbienetre.svg")
+bars = BusinessCategory.find_by_name("Bars & Restaurants").update(picture: "business_categories/restauration.svg")
+
+
 
 # # puts "--------END READ BUSINESS CATEGORIES------"
 
