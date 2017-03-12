@@ -13,7 +13,7 @@
     </div>
     <img class="card-img-top img-responsive" src="<%= perk.picture.present? ? perk.picture : perk.business.picture %>" alt="Card image cap">
     <div class="perks-offer-type-modal" style="border-color: <%= @business.business_category.color %>;">
-      <%= perk.offer_type? %>
+      <%= perk.offer_type %>
     </div>
     <div class="card-block">
 
