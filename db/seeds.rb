@@ -28,56 +28,56 @@ end
 # TABLES TECHNIQUES
 #----------------------------------------------------
 
-#----------------------------------------------------
-# Création table LABEL_CATEGORIES
-#----------------------------------------------------
+----------------------------------------------------
+Création table LABEL_CATEGORIES
+----------------------------------------------------
 
-# LabelCategory.destroy_all
+LabelCategory.destroy_all
 
-# puts "--------CREATE LABEL CATEGORIES--------"
+puts "--------CREATE LABEL CATEGORIES--------"
 
-# action_locale = LabelCategory.create!({
-#   name: "Action Locale",
-#   picture: "labels/action_locale.svg",
-#  })
+action_locale = LabelCategory.create!({
+  name: "Action Locale",
+  picture: "labels/action_locale.svg",
+ })
 
-# circuit_court = LabelCategory.create!({
-#   name: "Circuit Court",
-#   picture: "labels/circuit_court.svg",
-#  })
+circuit_court = LabelCategory.create!({
+  name: "Circuit Court",
+  picture: "labels/circuit_court.svg",
+ })
 
-# engagement_social = LabelCategory.create!({
-#   name: "Engagement social",
-#   picture: "labels/engagement_social.svg",
-#  })
+engagement_social = LabelCategory.create!({
+  name: "Engagement social",
+  picture: "labels/engagement_social.svg",
+ })
 
-# modele_collaboratif_participatif = LabelCategory.create!({
-#   name: "Modèle collaboratif/participatif",
-#   picture: "labels/modele_collaboratif-participatif.svg",
-#  })
+modele_collaboratif_participatif = LabelCategory.create!({
+  name: "Modèle collaboratif/participatif",
+  picture: "labels/modele_collaboratif-participatif.svg",
+ })
 
-# monnaie_locale = LabelCategory.create!({
-#   name: "Monnaie Locale",
-#   picture: "labels/monnaie_locale.svg",
-#  })
+monnaie_locale = LabelCategory.create!({
+  name: "Monnaie Locale",
+  picture: "labels/monnaie_locale.svg",
+ })
 
-# politique_anti_gaspillage = LabelCategory.create!({
-#   name: "Politique anti-gaspillage",
-#   picture: "labels/politique_anti-gaspillage.svg",
-#  })
+politique_anti_gaspillage = LabelCategory.create!({
+  name: "Politique anti-gaspillage",
+  picture: "labels/politique_anti-gaspillage.svg",
+ })
 
-# produits_eco_responsables = LabelCategory.create!({
-#   name: "Produits éco-responsables",
-#   picture: "labels/produits_eco-responsables.svg",
-#  })
+produits_eco_responsables = LabelCategory.create!({
+  name: "Produits éco-responsables",
+  picture: "labels/produits_eco-responsables.svg",
+ })
 
-# zero_dechet = LabelCategory.create!({
-#   name: "Zéro déchet",
-#   picture: "labels/zero_dechet.svg",
-#  })
+zero_dechet = LabelCategory.create!({
+  name: "Zéro déchet",
+  picture: "labels/zero_dechet.svg",
+ })
 
 
-# puts "--------END LABEL CATEGORIES-----------"
+puts "--------END LABEL CATEGORIES-----------"
 
 # #----------------------------------------------------
 # # Création table BUSINESS_CATEGORIES
