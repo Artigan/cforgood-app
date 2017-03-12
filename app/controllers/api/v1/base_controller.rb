@@ -24,6 +24,7 @@ class Api::V1::BaseController < ActionController::Base
 
   def internal_server_error(exception)
     if Rails.env.development?
+      binding.pry
       response = { type: exception.class.to_s, error: exception.message }
     else
       response = { error: "Internal Server Error" }
