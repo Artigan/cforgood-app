@@ -38,6 +38,7 @@
 #  heard                      :string
 #  supervisor_id              :integer
 #  representative_testimonial :text
+#  civility                   :integer
 #
 # Indexes
 #
@@ -67,6 +68,7 @@ class Cause < ApplicationRecord
   validates :name, presence: true
   validates :email, presence: true
   validates :url, format: { with: /\Ahttps?:\/\/[\S]+/, message: "Votre URL doit commencer par http:// ou https://" }, allow_blank: true
+  validates :civility, inclusion: { in: 1..2 }, allow_blank: true
 
   # validates :representative_first_name, presence: true
   # validates :representative_last_name, presence: true

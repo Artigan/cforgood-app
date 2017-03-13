@@ -12,4 +12,8 @@ class CausePolicy < ApplicationPolicy
   def new?
     user == record
   end
+
+  def create?
+    true
+  end
 end

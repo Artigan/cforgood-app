@@ -104,7 +104,8 @@ Rails.application.routes.draw do
       resources :business_categories, only: [ :index ]
       resources :businesses, only: [ :index, :show ]
       resources :uses, only: [ :create, :update ]
-      resources :causes, only: [ :index, :show, :update ]
+      resources :cause_categories, only: [ :index ]
+      resources :causes, only: [ :index, :show, :create ]
     end
   end
 

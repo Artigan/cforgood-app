@@ -1,6 +1,6 @@
 class Api::V1::CausesController < Api::V1::BaseController
 
-  before_action :set_cause, only: [ :show, :update ]
+  before_action :set_cause, only: [ :show ]
 
   def index
     @lat_lng = set_coordinates(params[:lat], params[:lng])
@@ -17,10 +17,37 @@ class Api::V1::CausesController < Api::V1::BaseController
   def show
   end
 
+  def create
+    @cause = Cause.new(cause_params)
+    authorize @cause
+    if @cause.save
+      render status: 200, json: { id: @cause.id }
+    else
+      render status: :unprocessable_entity, json: { error: @cause.errors.full_messages}
+    end
+  end
+
   private
 
   def set_cause
     @cause = Cause.includes(:cause_category).find(params[:id])
     authorize @cause
+  end
+
+  def cause_params
+    params.require(:cause).permit(
+      :id,
+      :civility,
+      :representative_first_name,
+      :representative_last_name,
+      :email,
+      :cause_category_id,
+      :name,
+      :impact,
+      :description,
+      :street,
+      :zipcode,
+      :city
+    )
   end
 end
