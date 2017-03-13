@@ -1,4 +1,12 @@
 /* Adrien CSS */
+
+
+.full-page {
+    background-color: white;
+    width: 100%;
+    height: 100%;
+}
+
 .main-card-left {
     border: 0.5px solid lightgrey;
     margin-left: 5.5%;
@@ -13,12 +21,6 @@ img.card-img-top {
     margin-left: 10%;
     margin-right: 2%;
     padding-bottom: 2%;
-}
-
-.full-page {
-    background-color: white;
-    width: 100%;
-    height: 100%;
 }
 
 .business-picture-row {
@@ -495,6 +497,13 @@ hr {
     }
 }
 @media screen and (min-width: 768px) and (max-width: 991px) {
+
+  .full-page {
+    width:auto;
+    margin: auto;
+    overflow: hidden;
+  }
+
     img.card-img-top {
         width: 100%;
         height: 50vw;
@@ -565,6 +574,13 @@ hr {
     }
 }
 @media screen and (min-width : 480px) and (max-width : 767px) {
+
+  .full-page {
+    width:auto;
+    margin: auto;
+    overflow: hidden;
+  }
+
     .main-card-left {
         margin-left: 0;
     }
@@ -696,6 +712,13 @@ hr {
     }
 }
 @media screen and (min-width : 320px) and (max-width : 479px) {
+
+    .full-page {
+      width:auto;
+      margin: auto;
+      overflow: hidden;
+    }
+
     .main-card-left {
         margin-left: 0;
     }
