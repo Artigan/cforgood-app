@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170309215212) do
+ActiveRecord::Schema.define(version: 20170313194636) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -108,11 +108,11 @@ ActiveRecord::Schema.define(version: 20170309215212) do
     t.string   "picture"
     t.string   "leader_picture"
     t.string   "logo"
-    t.boolean  "supervisor",             default: false
-    t.integer  "supervisor_id"
     t.integer  "like",                   default: 0
     t.integer  "unlike",                 default: 0
     t.string   "link_video"
+    t.boolean  "supervisor",             default: false
+    t.integer  "supervisor_id"
     t.boolean  "admin",                  default: false, null: false
     t.string   "activity"
     t.index ["business_category_id"], name: "index_businesses_on_business_category_id", using: :btree
@@ -164,6 +164,7 @@ ActiveRecord::Schema.define(version: 20170309215212) do
     t.string   "heard"
     t.integer  "supervisor_id"
     t.text     "representative_testimonial"
+    t.integer  "civility"
     t.index ["cause_category_id"], name: "index_causes_on_cause_category_id", using: :btree
     t.index ["supervisor_id"], name: "index_causes_on_supervisor_id", using: :btree
   end
@@ -251,13 +252,27 @@ ActiveRecord::Schema.define(version: 20170309215212) do
     t.index ["perk_detail_id"], name: "index_perks_on_perk_detail_id", using: :btree
   end
 
+  create_table "prospects", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "street"
+    t.string   "zipcode"
+    t.string   "city"
+    t.string   "leader_name"
+    t.string   "email"
+    t.boolean  "canvassed",   default: true, null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.index ["user_id"], name: "index_prospects_on_user_id", using: :btree
+  end
+
   create_table "timetables", force: :cascade do |t|
     t.integer  "address_id"
     t.integer  "day"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.time     "start_at"
-    t.time     "end_at"
+    t.datetime "start_at"
+    t.datetime "end_at"
     t.index ["address_id"], name: "index_timetables_on_address_id", using: :btree
   end
 
@@ -278,18 +293,18 @@ ActiveRecord::Schema.define(version: 20170309215212) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "",    null: false
-    t.string   "encrypted_password",     default: "",    null: false
+    t.string   "email",                             default: "",    null: false
+    t.string   "encrypted_password",                default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,     null: false
+    t.integer  "sign_in_count",                     default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
     t.string   "first_name"
     t.string   "last_name"
     t.string   "provider"
@@ -297,19 +312,19 @@ ActiveRecord::Schema.define(version: 20170309215212) do
     t.string   "name"
     t.string   "token"
     t.datetime "token_expiry"
-    t.boolean  "admin",                  default: false, null: false
+    t.boolean  "admin",                             default: false, null: false
     t.datetime "birthday"
     t.string   "nationality"
     t.string   "country_of_residence"
     t.string   "mangopay_id"
     t.string   "card_id"
     t.integer  "cause_id"
-    t.boolean  "member",                 default: false, null: false
+    t.boolean  "member",                            default: false, null: false
     t.string   "subscription"
-    t.boolean  "trial_done",             default: false, null: false
+    t.boolean  "trial_done",                        default: false, null: false
     t.datetime "date_subscription"
     t.datetime "date_last_payment"
-    t.boolean  "active",                 default: true,  null: false
+    t.boolean  "active",                            default: true,  null: false
     t.string   "street"
     t.string   "zipcode"
     t.string   "city"
@@ -321,13 +336,15 @@ ActiveRecord::Schema.define(version: 20170309215212) do
     t.integer  "amount"
     t.datetime "date_stop_subscription"
     t.string   "picture"
-    t.boolean  "ambassador",             default: false
-    t.integer  "ecosystem_id"
+    t.boolean  "ambassador",                        default: false
     t.string   "onesignal_id"
-    t.boolean  "supervisor",             default: false
+    t.integer  "ecosystem_id"
+    t.boolean  "supervisor",                        default: false
     t.integer  "supervisor_id"
     t.string   "telephone"
     t.string   "logo"
+    t.string   "authentication_token",   limit: 30
+    t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true, using: :btree
     t.index ["cause_id"], name: "index_users_on_cause_id", using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
@@ -356,6 +373,7 @@ ActiveRecord::Schema.define(version: 20170309215212) do
   add_foreign_key "payments", "causes"
   add_foreign_key "payments", "users"
   add_foreign_key "perks", "businesses"
+  add_foreign_key "prospects", "users"
   add_foreign_key "timetables", "addresses"
   add_foreign_key "user_histories", "causes"
   add_foreign_key "user_histories", "users"
