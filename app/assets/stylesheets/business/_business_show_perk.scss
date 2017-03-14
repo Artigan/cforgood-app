@@ -1,5 +1,17 @@
 /* Adrien CSS */
 
+#overlayyy {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 2;
+    left: 0;
+    top: 0;
+    // background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0, 0.7);
+    overflow: hidden;
+    transition: 2s;
+}
 
 .full-page {
     background-color: white;
@@ -37,7 +49,7 @@ img.card-img-top {
 }
 
 .share-row {
-    opacity: 0.90;
+    opacity: 0.9;
     height: 2.35vw;
     width: 20%;
 }
@@ -50,7 +62,7 @@ img.card-img-top {
 .share-socials span:not(.not-on-mobile-device) {
     color: white;
     margin-left: 10% !important;
-    margin-top: 200% !important;
+    // margin-top: 200% !important;
 }
 
 .not-on-mobile-device {
@@ -65,7 +77,7 @@ img.card-img-top {
     color: white;
 }
 
-.dropdown-menu {
+.dropdown-menu.socials {
     background-color: rgba(255,255,255,0.7);
     min-width: 0 !important;
     width: 180px;
@@ -89,29 +101,32 @@ img.card-img-top {
     height: 18px;
     width: 18px;
     border-radius: 50%;
-    margin-top: 2%;
+    margin-top: 13%;
 }
 
 .business-category {
-    margin-left: -20%;
+    margin-left: -18%;
+    margin-top: 2%;
 }
 
 .business-distance {
-    margin-top: -4%;
+    margin-top: -3%;
+    margin-left: -4%;
 }
 
 .business-category-image {
     margin-top: -20%;
+    margin-left: 35%;
 }
 
 .business-description {
     width: 92%;
-    padding-bottom: 20px;
     font-size: 1em;
     color: rgba(55,55,55,0.9);
 }
 
 hr {
+    border-color: lightgrey;
     -moz-border-bottom-colors: none;
     -moz-border-image: none;
     -moz-border-left-colors: none;
@@ -121,6 +136,8 @@ hr {
     border-style: solid none;
     border-width: 0.8px 0;
     margin-left: 0;
+    margin-top: 1.2%;
+    margin-bottom: 1%;
     width: 90%;
     background-color: rgba(128,128,128, 0.3);
 }
@@ -152,17 +169,25 @@ hr {
 .reach-uss i {
     display: inline-block;
     border-style: solid;
-    padding: 5px 6px;
+    padding: auto;
     border-width: 1.5px;
-    border-radius: 60px;
+    width: auto;
+    height: auto;
+    min-width: 35px;
+    min-height: 35px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 25px;
+    vertical-align: middle;
+    padding: 5px;
 }
 
 .reach-uss i:hover {
-    -webkit-transform: rotate(90deg);
-    -moz-transform: rotate(90deg);
-    -ms-transform: rotate(90deg);
-    -o-transform: rotate(90deg);
-    transform: rotate(90deg);
+    -webkit-transform: rotate(350deg);
+    -moz-transform: rotate(350deg);
+    -ms-transform: rotate(350deg);
+    -o-transform: rotate(350deg);
+    transform: rotate(350deg);
 }
 
 .reach-uss span {
@@ -171,21 +196,27 @@ hr {
 }
 
 .follow-uss a {
-    display: inline-block;
-    border-style: solid;
-    border-color: white;
-    color: white;
-    padding: 5px 11px;
-    border-width: 1.5px;
-    border-radius: 60px;
+  display: inline-block;
+  border-style: solid;
+  border-width: 1.5px;
+  width: auto;
+  height: auto;
+  min-width: 35px;
+  min-height: 35px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 22px;
+  vertical-align: middle;
+  padding: 5px;
+  color: white;
 }
 
 .follow-uss a:hover {
-    -webkit-transform: rotate(90deg);
-    -moz-transform: rotate(90deg);
-    -ms-transform: rotate(90deg);
-    -o-transform: rotate(90deg);
-    transform: rotate(90deg);
+    -webkit-transform: rotate(10deg);
+    -moz-transform: rotate(10deg);
+    -ms-transform: rotate(10deg);
+    -o-transform: rotate(10deg);
+    transform: rotate(10deg);
 }
 
 .follow-uss span:first-child {
@@ -277,8 +308,10 @@ hr {
 // perk modal //
 
 .perk-modalll {
-    width: 80%;
-    margin: 4% 5% 4% 3%;
+    width: 35%;
+    background-color: white;
+    margin-top: 5%;
+    margin-left: 58%;
     border: 0.2px solid lightgrey;
 }
 
@@ -298,19 +331,19 @@ hr {
 }
 
 .perk-modal-perk-name {
-    margin: 3% 0 0 7.5%;
+    margin: 3% 0 0 8%;
 }
 
 .perks-offer-type-modal {
     position: absolute;
-    z-index: 1;
-    margin-top: -8%;
-    margin-left: 65%;
+    z-index: 2;
+    margin-left: 30%;
+    margin-top: -4%;
     background-color: white;
     color: black;
     border: 6px solid;
     border-radius: 25px;
-    padding: 0.5% 2%;
+    padding: 0.2% 0.5%;
 }
 
 .perk-modal-hr {
@@ -319,6 +352,10 @@ hr {
 
 .perk-modal-alert p {
     font-size: 0.8em;
+}
+
+.perk-modal-bottom {
+  margin-bottom: 4%;
 }
 
 .perk-modal-alert i.fa-bell {
@@ -391,7 +428,7 @@ hr {
         font-size: 0.6em;
     }
 
-    .dropdown-menu {
+    .dropdown-menu.socials {
         width: 90px;
     }
 
@@ -401,6 +438,7 @@ hr {
 
     #business-name {
         font-size: 1.2em;
+        margin-bottom: -4%;
     }
 
     .business-category {
@@ -415,7 +453,8 @@ hr {
     }
 
     .business-category-image {
-        margin-top: -40%;
+        margin-top: -35%;
+        margin-left: 20%;
     }
 
     .business-description {
@@ -457,6 +496,21 @@ hr {
 
     .follow-uss {
         margin-left: 32%;
+        max-width: 40%;
+    }
+
+    .follow-uss a {
+      width: auto;
+      height: auto;
+      min-width: 50px;
+      min-height: 50px;
+      line-height: 25px;
+      padding: 5px;
+    }
+
+    .follow-uss a i {
+      font-size: 2em;
+      margin-top: 2.5px;
     }
 
     .leader-presentation img {
@@ -525,8 +579,12 @@ hr {
         font-size: 0.9em;
     }
 
-    .dropdown-menu {
+    .dropdown-menu.socials {
         width: 110px;
+    }
+
+    #business-name {
+        margin-bottom: -2%;
     }
 
     .map-details {
@@ -537,6 +595,20 @@ hr {
 
     .business-addresss {
         margin-left: -33%;
+    }
+
+    .follow-uss a {
+      width: auto;
+      height: auto;
+      min-width: 40px;
+      min-height: 40px;
+      line-height: 25px;
+      padding: 5px;
+    }
+
+    .follow-uss a i {
+      font-size: 1.3em;
+      margin-top: 4px;
     }
 
     .leader-presentation img {
@@ -575,14 +647,15 @@ hr {
 }
 @media screen and (min-width : 480px) and (max-width : 767px) {
 
-  .full-page {
-    width:auto;
-    margin: auto;
-    overflow: hidden;
-  }
+    .full-page {
+      width:auto;
+      margin: auto;
+      overflow: hidden;
+    }
 
     .main-card-left {
         margin-left: 0;
+        border: none;
     }
 
     img.card-img-top {
@@ -614,7 +687,7 @@ hr {
         font-size: 0.8em;
     }
 
-    .dropdown-menu {
+    .dropdown-menu.socials {
         width: 95px;
         margin-left: -20px;
     }
@@ -677,17 +750,27 @@ hr {
     }
 
     .follow-uss {
-        margin-left: 22%;
+        margin-left: 23%;
+        max-width: 45%;
     }
-
+    .find-us {
+      margin-left:13%;
+    }
     .follow-uss a {
-        font-size: 2em;
-        margin-right: 3%;
-        padding: 6px 12px;
-        border-width: 1.5px;
-        border-radius: 60px;
+      width: auto;
+      height: auto;
+      min-width: 60px;
+      min-height: 60px;
+      line-height: 25px;
+      padding: 5px;
+      margin-right: 10%;
+      margin-top: 1%;
     }
 
+    .follow-uss a i {
+      font-size: 2.5em;
+      margin-top: 2.5px;
+    }
     .leader-presentation h6,
     .leader-presentation p {
         text-align: center;
@@ -721,6 +804,7 @@ hr {
 
     .main-card-left {
         margin-left: 0;
+        border: none;
     }
 
     .business-category-image {
@@ -758,7 +842,7 @@ hr {
         font-size: 0.6em;
     }
 
-    .dropdown-menu {
+    .dropdown-menu.socials {
         width: 100px;
         margin-left: -20px;
     }
@@ -825,15 +909,26 @@ hr {
 
     .follow-uss {
         margin-left: 18%;
+        max-width: 70%;
     }
-
+    .find-us {
+        margin-left:10%;
+      }
     .follow-uss a {
-        font-size: 1.8em;
-        margin-right: 3%;
-        padding: 6px 12px;
-        border-width: 1.5px;
-        border-radius: 60px;
-    }
+        width: auto;
+        height: auto;
+        min-width: 50px;
+        min-height: 50px;
+        line-height: 25px;
+        padding: 5px;
+        margin-right: 10%;
+        margin-top: 2%;
+      }
+
+    .follow-uss a i {
+        font-size: 2em;
+        margin-top: 2.5px;
+      }
 
     .leader-presentation h6,
     .leader-presentation p {
