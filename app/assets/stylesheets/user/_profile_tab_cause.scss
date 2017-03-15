@@ -43,7 +43,7 @@
 
 /* TABS - CONTENT ****************************/
 .tab-content {
-  min-height: 100vh;
+  // min-height: 100vh;
 
   .tab-cause {
     .choose-cause {
@@ -201,11 +201,6 @@
 
     .offer-card {
        @media (max-width: 767px)  { margin-top: 20px !important; }
-    }
-
-    .btn-subscription {
-      margin-top: 25px;
-      width: 100%;
     }
 
     .btn-no-subscription {

@@ -23,7 +23,8 @@
 
     <div class="dash-fullpage-user-name">
       <div class="user-name"><%= name_user(current_user) %></div>
-      <div class="user-name-tooltip"><%= current_user.status %></div>
+      <p class="user-status"><%= current_user.status %></p>
+      <p class="user-city"><%= current_user.city.capitalize %></p>
     </div>
 
     <div class="tabs-dashboard">
@@ -32,26 +33,26 @@
         <li role="profile" class="active">
           <%= link_to "#profile", role: "tab", data_toggle: "tab" do %>
             <i class="fa fa-user" aria-hidden="true"></i>
-            <span>Mes informations</span>
+            <span>Profil</span>
           <% end %>
         </li>
         <li role="profile">
           <%= link_to "#cause", role: "tab", data_toggle: "tab" do %>
             <i class="fa fa-heart" aria-hidden="true"></i>
-            <span>Mon association</span>
+            <span>Association</span>
           <% end %>
         </li>
         <li role="profile">
           <%= link_to "#subscription", role: "tab", data_toggle: "tab" do %>
             <i class="fa fa-credit-card" aria-hidden="true"></i>
-            <span>Mon abonnement</span>
+            <span>Participation</span>
           <% end %>
         </li>
         <% if @payments.present? %>
           <li role="profile">
             <%= link_to "#list-payments", role: "tab", data_toggle: "tab" do %>
               <i class="fa fa-list" aria-hidden="true"></i>
-              <span>Mes contributions</span>
+              <span>Contribution</span>
             <% end %>
           </li>
         <% end %>

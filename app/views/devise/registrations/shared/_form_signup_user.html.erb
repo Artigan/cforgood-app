@@ -12,7 +12,9 @@
       <%= f.input :password, placeholder: '********', required: true, label: false %>
       <%= f.input :city, placeholder: 'Ville', required: true, label: false %>
       <%= f.input :zipcode, as: :hidden %>
-      <%= f.input :code_partner, placeholder: 'Code partenaire', label: false %>
+      <% if !request.path.include?('signup_gift') && !request.path.include?('signup_beneficiary') && !request.path.include?('signup_trial') %>
+        <%= f.input :code_partner, placeholder: 'Code partenaire', label: false %>
+      <% end %>
 
       <div class="subscribe-disclaimer">
         <p>En cliquant sur <strong>S'inscrire</strong> ou <strong>Facebook</strong> vous acceptez les <a type="href" class="" data-toggle="modal" data-target="#modal-cgu"><strong>CGU</strong></a> et certifiez avoir de plus de 18 ans.</p>

@@ -61,7 +61,6 @@
       .tab-content {
         padding: 20px 20px 120px;
         width: 100%;
-        min-height: 100vh;
         background-color: #fff;
 
         @media (min-width: 768px) {
@@ -773,6 +772,11 @@
   margin-top: 30px;
   padding-left: 30px;
   color: #656565;
+  margin-bottom: 40px;
+
+  @media (min-width: 768px) {
+    margin-bottom: 90px;
+  }
 
   .form-group {
     width: 100%;
@@ -785,8 +789,6 @@
   }
 
   input {
-    font-size: 16px;
-    font-weight: 400;
     padding: 0;
   }
 
@@ -802,7 +804,6 @@
   }
 
   input[type="submit"] {
-    font-size: 14px;
     padding: 5px;
   }
 }
@@ -818,7 +819,6 @@
   .profile-datas {
     flex-direction: column;
     align-items: center;
-    margin-bottom: 40px;
   }
 
   .profile-datas .picture-container,
@@ -828,10 +828,6 @@
     width: 100%;
     padding-left: 0px;
   }
-}
-
-.valid-profile {
-  width: 100%;
 }
 
 #select-labels {
