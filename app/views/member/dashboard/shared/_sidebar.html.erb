@@ -83,7 +83,7 @@
 
       <% end %>
        <div class="leftmenu-item intercom">
-          <a id="Intercom">
+          <a id=<%= user_signed_in? ? "Intercom" : "Crisp_button" %>>
             <div class="left-menu-svg-container" style="background-image: url(<%= asset_path "icons/intercom-chat-icon.svg" %>)"></div>
             <div class="left-menu-text">Support</div>
           </a>
@@ -105,6 +105,18 @@
         $(this).addClass('hidden');
         $('.mobile-menu').addClass('hidden');
       });
+
+      $('#Crisp_button').click(function(e) {
+          $crisp.push(['do', 'chat:open']);
+          $crisp.push(['do', 'chat:show']);
+      });
+
+      window.CRISP_READY_TRIGGER = function() {
+        if ($crisp.on("chat:close") === true) {
+          console.log('closed');
+        }
+      };
+
     });
 
   </script>

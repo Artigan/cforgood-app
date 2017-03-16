@@ -123,13 +123,13 @@
           <% end %>
         </div>
 
-        <li role="separator" class="divider"></li>
-        <li>
-          <%= link_to faq_connect_path do %>
-            <div class="droptext-opacity">Aide et conseils</div>
-          <% end %>
-        </li>
         <% if user_signed_in? || business_signed_in? %>
+          <li role="separator" class="divider"></li>
+          <li>
+            <%= link_to faq_connect_path do %>
+              <div class="droptext-opacity">Aide et conseils</div>
+            <% end %>
+          </li>
           <li>
             <%= link_to destroy_user_session_path, method: :delete do %>
               <div class="droptext-opacity">Déconnexion</div>

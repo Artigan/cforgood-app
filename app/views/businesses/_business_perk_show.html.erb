@@ -1,6 +1,6 @@
 <div class="pmdjs perk-modal-dynamic-<%= perk.id %> hidden">
 
-    <% @perk.update_nb_view! if @perk.present? && user_space? %>
+    <% perk.update_nb_view! if perk.present? && user_space? %>
 
     <div id="overlayyy">
         <div class="card perk-modalll" id="no-overlayyy">
@@ -51,7 +51,7 @@
                         style="background-color:<%= @business.business_category.color %>;"
                         target="_blank">
                         Nous écrire
-                        <%= simple_form_for :use, url: perk_uses_path(params[:perk_id]), method: :post, remote: true, authenticity_token: true do |f| %>
+                        <%= simple_form_for :use, url: perk_uses_path(perk), method: :post, remote: true, authenticity_token: true do |f| %>
                         <%= f.input :perk_id, as: :hidden, input_html: {value: params[:perk_id]} %>
                         <%= f.submit "", class: "btn-create-use", :style => "display: none;" %>
                         <% end %>
@@ -98,8 +98,8 @@
                     <% end %>
 
                     <% if current_user.member %>
-                    <%= render "components/member_card", business: @business, perk: perk %>
-                    <div class="container-feedback"></div>
+                      <%= render "components/member_card", business: @business, perk: perk %>
+                      <div class="container-feedback"></div>
                     <% end %>
 
                     <% end%>

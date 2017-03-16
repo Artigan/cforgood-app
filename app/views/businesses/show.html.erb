@@ -82,17 +82,19 @@
 
                     <div class="row"><hr class="horizontal-bar"></div>
 
-                    <h6>Leurs engagements</h6>
-                    <div class="row">
-                        <% @labels.each do |label| %>
-                        <div class="col-md-4 col-sm-6 col-xs-12">
-                            <p>
-                                <%= image_tag label.label_category.picture, size: "40x40" %>
-                                <%= label.label_category.name %>
-                            </p>
-                        </div>
-                        <% end %>
-                    </div><br>
+                    <% if @labels.present? %>
+                      <h6>Leurs engagements</h6>
+                      <div class="row">
+                          <% @labels.each do |label| %>
+                          <div class="col-md-4 col-sm-6 col-xs-12">
+                              <p>
+                                  <%= image_tag label.label_category.picture, size: "40x40" %>
+                                  <%= label.label_category.name %>
+                              </p>
+                          </div>
+                          <% end %>
+                      </div><br>
+                    <% end %>
 
                     <h6>En quelques mots</h6>
                     <p>
@@ -146,21 +148,23 @@
                         </div>
                     </div>
 
-                    <div class="row"><hr class="horizontal-bar"></div>
+                    <% if @business.leader_description.present? %>
+                      <div class="row"><hr class="horizontal-bar"></div>
 
-                    <div class="leader-presentation">
-                        <h6>Qui se cache derrière ?</h6><br>
-                        <div class="row">
-                            <div class="col-md-3 col-sm-4 col-xs-6">
-                                <img class="img-circle img-responsive" src="<%= @business.leader_picture %>" alt=""/>
-                            </div>
-                            <div class="col-md-9 col-sm-8 col-xs-12">
-                                <p><strong><%= @business.leader_first_name %>
-                                    <%= @business.leader_last_name %></strong></p><br>
-                                <p class="leader-description"><%= @business.leader_description %></p>
-                            </div>
-                        </div>
-                    </div>
+                      <div class="leader-presentation">
+                          <h6>Qui se cache derrière ?</h6><br>
+                          <div class="row">
+                              <div class="col-md-3 col-sm-4 col-xs-6">
+                                  <img class="img-circle img-responsive" src="<%= @business.leader_picture %>" alt=""/>
+                              </div>
+                              <div class="col-md-9 col-sm-8 col-xs-12">
+                                  <p><strong><%= @business.leader_first_name %>
+                                      <%= @business.leader_last_name %></strong></p><br>
+                                  <p class="leader-description"><%= @business.leader_description %></p>
+                              </div>
+                          </div>
+                      </div>
+                    <% end %>
                 </div>
             </div>
         </div>
@@ -171,16 +175,16 @@
             <h2 style="border-color: <%= @business.business_category.color %>;">Nos bons plans
             </h2><br>
             <% @business.perks.active.each do |perk| %>
-            <div class="">
-                <%= render "businesses/business_card", business: @business, address: @address, perk: perk, index_view: false %>
-            </div>
-            <div class="">
+              <div class="">
+                  <%= render "businesses/business_card", business: @business, address: @address, perk: perk, index_view: false %>
+              </div>
+              <div class="">
                 <% if !user_signed_in? %>
-                <%= render "businesses/business_perk_not_member", perk: perk %>
-            <% else %>
-                <%= render "businesses/business_perk_show", perk: perk %>
+                  <%= render "businesses/business_perk_not_member", perk: perk %>
+                <% else %>
+                  <%= render "businesses/business_perk_show", perk: perk %>
                 <% end %>
-            </div>
+              </div>
             <% end %>
         </div>
 
@@ -191,7 +195,6 @@
             <%= render "businesses/mobile_perks_list" %>
         </div>
     </div>
-</div>
 </div>
 
 <% content_for :after_js do %>

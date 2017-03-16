@@ -22,6 +22,8 @@
   <div class="follow-uss">
     <span class="find-us">Retrouvez-nous :</span><br>
 
+    <div class="detail-follow-uss">
+
       <% if @business.url.present? %>
         <span>
           <a href="<%= @business.url %>" style="background-color: <%= @business.business_category.color %>;" target="_blank">
@@ -53,5 +55,8 @@
           </a>
         </span>
       <% end %>
+
+    </div>
+
   </div>
 </div>

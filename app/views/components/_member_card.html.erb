@@ -31,7 +31,7 @@
 
   <div>"La carte de membre doit être montrée au commerçant avant la prise de commande, cliquez ensuite sur "Terminer" pour valider votre bon plan."  </div>
 
-  <%= simple_form_for :use, url: perk_uses_path(params[:perk_id]), method: :post, remote: true, authenticity_token: true do |f| %>
+  <%= simple_form_for :use, url: perk_uses_path(perk.id), method: :post, remote: true, authenticity_token: true do |f| %>
       <%= f.input :perk_id, as: :hidden, input_html: {value: params[:perk_id]} %>
       <%= f.submit "Terminer", class: "button-gradient" %>
   <% end %>
