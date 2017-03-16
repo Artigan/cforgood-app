@@ -212,17 +212,14 @@ setRoutePathFromLocation()
 
 <script>
 $(document).ready(function () {
-
     $('.perk-carddd.available').click(function () {
         var classModal = $(this).attr('id');
         $('.' + classModal).removeClass("hidden");
         $('#overlayyy').css('width', '100%');
     });
-
     $(".mobile-perks-list").click(function () {
         $('.perk-modal-mobile-member').removeClass("hidden");
     });
-
     // $(".use-button-logout").click(function() {   $('.use-overlay').removeClass('hidden');   // EVENT AMPLITUDE USER_C_BENEFIT   amplitude.logEvent('USER_C_BENEFIT_LOGOUT'); }); $(".btn-use-button").click(function() {   // EVENT AMPLITUDE
     // USER_C_BENEFIT   amplitude.logEvent('USER_C_BENEFIT'); });
 });
