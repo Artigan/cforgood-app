@@ -271,11 +271,11 @@
 }
 
 .button-validation-modal {
-  position: fixed;
+  position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: calc(50% - 45px);
+  width: 100%;
   height: 50px;
   bottom: 0;
   right: 0;
@@ -290,7 +290,7 @@
   }
 
   @media (max-width: 767px) {
-    width: 100%;
+    position: fixed;
   }
 }
 

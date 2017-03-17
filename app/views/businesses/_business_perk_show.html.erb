@@ -1,132 +1,126 @@
 <div class="pmdjs perk-modal-dynamic-<%= perk.id %> hidden">
 
-    <% perk.update_nb_view! if perk.present? && user_space? %>
+  <% perk.update_nb_view! if perk.present? && user_space? %>
 
-    <div id="overlayyy">
-        <div class="card perk-modalll" id="no-overlayyy">
-            <div class="card-block row">
-                <div class="col-md-4 col-sm-4 col-xs-4">
-                    <h5 style="border-color: <%= @business.business_category.color %>" class="card-text">Bon plan</h5>
-                </div>
-                <div class="col-md-4 col-sm-4 col-xs-4 col-md-offset-4 col-sm-offset-4 col-xs-offset-4">
-                    <button type="button" class="closed-perk-on-modal close-button">&times;</button>
-                </div>
-            </div>
-            <img class="card-img-top img-responsive" src="<%= perk.picture.present? ? perk.picture : perk.business.picture %>" alt="Card image cap">
-            <div class="perks-offer-type-modal" style="border-color: <%= @business.business_category.color %>;">
-                <%= perk.offer_type %>
-            </div>
-            <div class="card-block">
-
-                <div class="perk-modal-perk-name">
-                    <%= perk.name %>
-                </div>
-                <div class="pmdjs-perk-description">
-                    <p><%= perk.description %>.</p>
-                </div><br>
-
-                <div class="perk-modal-alert">
-                    <% if perk.appel %>
-                    <p class="text-center">
-                        <i class="fa fa-bell text-center" style="background-color: <%= @business.business_category.color %>;" aria-hidden="true"></i>
-                        Ce bon plan n'est valable qu'une seule fois.
-                    </p>
-                    <% end %>
-                </div>
-
-                <div class="perk-modal-hr"><hr></div>
-
-                <div class="perk-modal-bottom">
-
-                    <p class="text-center perk-modal-question">Envie d'en profiter ?</p>
-
-                    <% if user_signed_in? %>
-
-                    <% if perk.perk_detail.name == "email" %>
-                    <p class="text-center perk-modal-answer">Envoyez-nous un email pour réserver votre bon plan</p>
-                    <a
-                        href="mailto:<%= @business.email %>?subject=Nouvelle demande de bon plan CforGood !&body=Bonjour <%= @business.leader_first_name if @business.leader_first_name.present? %>,%0D%0A<%= @business.name %> semble sympa comme tout !%0D%0AJe souhaiterais bénéficier du bon plan « <%= perk.name.gsub(/%/, "
-                        %25").upcase %> » (Code : <%= perk.perk_code %>), pouvez-vous me dire comment procéder ?%0D%0A Merci par avance !%0D%0A<%= current_user.first_name.capitalize if current_user.first_name.present? %> <%= current_user.last_name.capitalize if current_user.last_name.present? %>"
-                        class="button-validation-modal send-mail"
-                        style="background-color:<%= @business.business_category.color %>;"
-                        target="_blank">
-                        Nous écrire
-                        <%= simple_form_for :use, url: perk_uses_path(perk), method: :post, remote: true, authenticity_token: true do |f| %>
-                        <%= f.input :perk_id, as: :hidden, input_html: {value: params[:perk_id]} %>
-                        <%= f.submit "", class: "btn-create-use", :style => "display: none;" %>
-                        <% end %>
-                    </a>
-
-                    <% elsif @business.online %>
-                    <div class="perk-modal-answer">CODE PROMO :
-                        <stong><%= perk.perk_code.upcase %></strong>
-                    </div>
-                    <button class="button-validation-modal send-to-shop" style="background-color:<%= @business.business_category.color %>;">
-                        <p>Affichez ma carte pour valider</p>
-                        <span>(seulement chez le commerçant)</span>
-                    </button>
-                    <%= link_to "#{@business.url}", class: "send-to-shop", target: "_blank" do %>
-                    Me rendre sur le site
-                    <% end %>
-                </button>
-                <%= simple_form_for :use, url: perk_uses_path(params[:perk_id]), method: :post, remote: true, authenticity_token: true do |f| %>
-                <%= f.input :perk_id, as: :hidden, input_html: {value: params[:perk_id]} %>
-                <%= f.submit "", class: "btn-create-use", :style => "display: none;" %>
-                <% end %>
-
-                <% elsif device_type != :mobile %>
-                <p class="text-center">Rendez-vous en magasin avec votre smartphone</p>
-                <div class="row">
-                    <div class="col-md-2 col-md-offset-6 col-sm-2 col-sm-offset-6 col-xs-2 col-xs-offset-6">
-                        <%= link_to "http://maps.google.com/maps", class: "itinary-arrow", id: "link-map", disabled: true, data: { locale: I18n.locale, destination: { latitude: @business.latitude, longitude: @business.longitude } }, :target => "_blank" do %>
-                        <i class="fa fa-location-arrow fa-2x"></i>
-                        <% end %>
-                    </div>
-                </div>
-
-            <% else %>
-                <p>Montrez votre carte de membre au commerçant.</p>
-                <div class="row">
-                    <div class="col-md-2 col-md-offset-6 col-sm-2 col-sm-offset-6 col-xs-2 col-xs-offset-6">
-                        <%= link_to "http://maps.google.com/maps", class: "itinary-arrow", id: "link-map", disabled: true, data: { locale: I18n.locale, destination: { latitude: @business.latitude, longitude: @business.longitude } }, :target => "_blank" do %>
-                        <i class="fa fa-location-arrow fa-2x"></i>
-                        <% end %>
-                    </div>
-                </div>
-                <span class="label-itinary">Afficher l'itinéraire</span>
-                <button class="button-validation-modal btn-show-card" style="background-color:<%= @business.business_category.color %>;">
-                    <% end %>
-
-                    <% if current_user.member %>
-                      <%= render "components/member_card", business: @business, perk: perk %>
-                      <div class="container-feedback"></div>
-                    <% end %>
-
-                    <% end%>
-
-                </div>
-            </div>
-        </div>
+  <div class="overlayyy hidden"></div>
+  <div class="card perk-modalll">
+    <div class="card-block row">
+      <div class="col-md-4 col-sm-4 col-xs-4">
+        <h5 style="border-color: <%= @business.business_category.color %>" class="card-text">Bon plan</h5>
+      </div>
+      <div class="col-md-4 col-sm-4 col-xs-4 col-md-offset-4 col-sm-offset-4 col-xs-offset-4">
+        <button type="button" class="closed-perk-on-modal close-button">&times;</button>
+      </div>
     </div>
+    <img class="card-img-top img-responsive" src="<%= perk.picture.present? ? perk.picture : perk.business.picture %>" alt="Card image cap">
+    <div class="perks-offer-type-modal" style="border-color: <%= @business.business_category.color %>;">
+      <%= perk.offer_type %>
+    </div>
+    <div class="card-block">
+
+      <div class="perk-modal-perk-name">
+        <%= perk.name %>
+      </div>
+      <div class="pmdjs-perk-description">
+        <p><%= perk.description %>.</p>
+      </div><br>
+
+      <div class="perk-modal-alert">
+        <% if perk.appel %>
+        <p class="text-center">
+          <i class="fa fa-bell text-center" style="background-color: <%= @business.business_category.color %>;" aria-hidden="true"></i>
+          Ce bon plan n'est valable qu'une seule fois.
+        </p>
+        <% end %>
+      </div>
+
+      <div class="perk-modal-hr"><hr></div>
+
+      <div class="perk-modal-bottom">
+
+        <p class="text-center perk-modal-question">Envie d'en profiter ?</p>
+
+        <!-- PERK EMAIL -->
+        <% if perk.perk_detail.name == "email" %>
+          <p class="text-center perk-modal-answer">Envoyez-nous un email pour réserver votre bon plan.</p>
+          <a href='mailto:<%= @business.email %>?subject=Nouvelle demande de bon plan CforGood !&body=Bonjour <%= @business.leader_first_name if @business.leader_first_name.present? %>,%0D%0A<%= @business.name %> semble sympa comme tout !%0D%0AJe souhaiterais bénéficier du bon plan « <%= Perk.find(params[:perk_id]).name.gsub(/%/, "%25").upcase %> » (Code : <%= Perk.find(params[:perk_id]).perk_code %>), pouvez-vous me dire comment procéder ?%0D%0A Merci par avance !%0D%0A<%= current_user.first_name.capitalize if current_user.first_name.present? %> <%= current_user.last_name.capitalize if current_user.last_name.present? %>' class="button-validation-modal send-email" style="background-color:<%= @business.business_category.color %>;" target="_blank">
+            Nous envoyer un mail
+          </a>
+          <%= simple_form_for :use, url: perk_uses_path(perk), method: :post, remote: true, authenticity_token: true do |f| %>
+          <%= f.input :perk_id, as: :hidden, input_html: {value: params[:perk_id]} %>
+          <%= f.submit "", class: "btn-create-use", :style => "display: none;" %>
+        <% end %>
+
+        <!-- PERK ONLINE -->
+        <% elsif @business.online %>
+          <div class="perk-modal-answer">CODE PROMO : <strong><%= perk.perk_code.upcase %></strong></div>
+
+          <%= link_to "#{@business.url}", class: "button-validation-modal send-to-shop", target: "_blank" do %>
+            Me rendre sur le site
+          <% end %>
+
+          <%= simple_form_for :use, url: perk_uses_path(params[:perk_id]), method: :post, remote: true, authenticity_token: true do |f| %>
+            <%= f.input :perk_id, as: :hidden, input_html: {value: params[:perk_id]} %>
+            <%= f.submit "", class: "btn-create-use", :style => "display: none;" %>
+          <% end %>
+
+        <!-- PERK MEMBER CARD DESKTOP -->
+        <% elsif device_type != :mobile %>
+        <p class="text-center">Rendez-vous en magasin avec votre smartphone</p>
+          <div class="row">
+            <div class="col-md-2 col-md-offset-6 col-sm-2 col-sm-offset-6 col-xs-2 col-xs-offset-6">
+              <%= link_to "http://maps.google.com/maps", class: "itinary-arrow", id: "link-map", disabled: true, data: { locale: I18n.locale, destination: { latitude: @business.latitude, longitude: @business.longitude } }, :target => "_blank" do %>
+              <i class="fa fa-location-arrow fa-2x"></i>
+              <% end %>
+              <span class="label-itinary">Afficher l'itinéraire</span>
+            </div>
+          </div>
+
+        <!-- PERK MEMBER CARD MOBILE -->
+        <% else %>
+          <p class="text-center">Montrez votre carte de membre au commerçant.</p>
+          <div class="row">
+            <div class="col-md-2 col-md-offset-6 col-sm-2 col-sm-offset-6 col-xs-2 col-xs-offset-6">
+              <%= link_to "http://maps.google.com/maps", class: "itinary-arrow", id: "link-map", disabled: true, data: { locale: I18n.locale, destination: { latitude: @business.latitude, longitude: @business.longitude } }, :target => "_blank" do %>
+              <i class="fa fa-location-arrow fa-2x"></i>
+              <% end %>
+              <span class="label-itinary">Afficher l'itinéraire</span>
+            </div>
+          </div>
+          <span class="label-itinary">Afficher l'itinéraire</span>
+          <% if current_user.member %>
+          <%= render "components/member_card", business: @business, perk: perk %>
+          <% end %>
+          <button class="button-validation-modal btn-show-card" style="background-color:<%= @business.business_category.color %>;">
+            <p>Afficher ma carte pour valider</p>
+            <span>(Seulement chez le commerçant)</span>
+          </button>
+        <% end %>
+
+        <div class="container-feedback"></div>
+      </div>
+    </div>
+  </div>
 </div>
+
 
 <% content_for :after_js do %>
 <script>
-    $(document).ready(function () {
+$(document).ready(function () {
 
-        $('.closed-perk-on-modal').click(function () {
-            $(this).closest(".pmdjs").addClass('hidden');
-            $('#overlayyy').css('width', '0');
-        });
+  $('.closed-perk-on-modal').click(function () {
+    $(this).closest(".pmdjs").addClass('hidden');
+    $(this).closest(".overlayyy").addClass('hidden');
+  });
 
-        $('.send-mail, send-to-shop').click(function () {
-            $(this).closest('.btn-create-use').click();
-        });
+  $('.send-mail, send-to-shop').click(function () {
+    $(this).closest('.btn-create-use').click();
+  });
 
-        $('.btn-show-card').click(function () {
-            $('.popup-member-card').removeClass('hidden');
-        });
+  $('.btn-show-card').click(function () {
+    $('.popup-member-card').removeClass('hidden');
+  });
 
-    });
+});
 </script>
 <% end %>

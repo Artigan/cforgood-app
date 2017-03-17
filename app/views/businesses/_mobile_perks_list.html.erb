@@ -10,13 +10,11 @@
     <div class="col-md-6 col-sm-6 col-xs-12 perk-carddd <%= !perk.perk_in_time? || !(user_signed_in? && perk.perk_usable?(current_user))  ? 'unavailable' : 'available' %>" id="perk-modal-dynamic-<%= perk.id %>">
         <%= render "businesses/business_card", business: @business, address: @address, perk: perk, index_view: false %>
     </div>
-    <div class="">
-      <% if !user_signed_in? %>
-        <%= render "businesses/business_perk_not_member", perk: perk %>
-      <% else %>
-        <%= render "businesses/business_perk_show", perk: perk %>
-      <% end %>
-    </div>
+    <% if !user_signed_in? %>
+      <%= render "businesses/business_perk_not_member", perk: perk %>
+    <% else %>
+      <%= render "businesses/business_perk_show", perk: perk %>
+    <% end %>
 
   <% end %>
 
@@ -28,15 +26,10 @@
 
     $(document).ready(function(){
 
-      $(".pmls-modal").click(function() {
-        var classModal = $(this).attr('id');
-        $('.' + classModal).removeClass("hidden");
-      });
-
-      $('.closed-perk-modal-mobile-member').click(function() {
-         // console.log($(this).closest(".pmdjs"));
-        $(".perk-modal-mobile-member").addClass('hidden');
-      });
+      // $('.closed-perk-modal-mobile-member').click(function() {
+      //    // console.log($(this).closest(".pmdjs"));
+      //   $(".perk-modal-mobile-member").addClass('hidden');
+      // });
 
       // $(".use-button-logout").click(function() {
       //   $('.use-overlay').removeClass('hidden');

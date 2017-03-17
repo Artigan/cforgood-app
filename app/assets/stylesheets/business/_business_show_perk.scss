@@ -2,7 +2,7 @@
 
 #overlayyy {
     height: 100%;
-    width: 0;
+    width: 100%;
     position: fixed;
     z-index: 2;
     left: 0;
@@ -308,11 +308,18 @@ hr {
 // perk modal //
 
 .perk-modalll {
+    position: relative;
     width: 35%;
     background-color: white;
     margin-top: 5%;
     margin-left: 58%;
+    padding-bottom: 5%;
     border: 0.2px solid lightgrey;
+
+    @media (max-width: 767px) {
+      width: 100%;
+      margin: 0;
+    }
 }
 
 .perk-modalll h5 {
@@ -1170,16 +1177,6 @@ hr {
                         }
                     }
                     /* BLOCK - MAP **************************/
-                    #map-perk {
-                        margin-top: 15px;
-                        height: 120px;
-                        opacity: 0.4;
-
-                        .mapboxgl-ctrl-attrib {
-                            display: none;
-                        }
-                    }
-
                     .business-address {
                         position: absolute;
                         bottom: 5px;
@@ -1257,16 +1254,6 @@ hr {
 
                             .slick-slide {
                                 padding: 0 10px;
-
-                                #map-perk {
-                                    margin-top: 15px;
-                                    height: 120px;
-                                    opacity: 0.4;
-
-                                    .mapboxgl-ctrl-attrib {
-                                        display: none;
-                                    }
-                                }
 
                                 ul {
                                     display: flex;
