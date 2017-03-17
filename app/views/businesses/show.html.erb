@@ -6,216 +6,204 @@
 <%= render "member/dashboard/shared/sidebar" %>
 
 <div class="container-fluid full-page">
-    <div class="row" style="margin-top: 2.5%;">
-        <!-- This is the left side of the page (business infos) -->
-        <div class="col-md-6 col-sm-12 col-xs-12 left-side">
-            <div class="main-card-left">
-                <div class="row">
-                    <div class="col-md-12 col-sm-12 col-xs-12">
-                        <img class="card-img-top img-responsive" src="<%= @business.picture.url(:medium) %>" alt="Business picture">
-
-                        <div class="row business-picture-row">
-                            <div class="col-md-10 col-sm-10 col-xs-10 col socials-row">
-                                <p class= "likes">
-
-                                    <% if @business.like == 1 %>
-                                    <%= image_tag "icons/heart.svg", class: "red-heart"%>
-                                    <p><%= "#{@business.like} personne aime" %></p>
-                                    <% elsif @business.like > 1 %>
-                                    <%= image_tag "icons/heart.svg", class: "red-heart"%>
-                                    <p><%= "#{@business.like} personnes aiment" %></p>
-                                    <% end %>
-                                  </p>
-
-                                <p class="likes align-middle"><%= @business.name %></p>
-                            </div>
-                            <div class="col-md-2 col-sm-2 col-xs-2 share-row" style="background-color:<%= @business.business_category.color %>;">
-                                <div class="dropup">
-                                    <a href="" class="share-socials dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Partager <span class="not-on-mobile-device">sur
-                                        <i class="fa fa-share-alt" aria-hidden="true"></i></span></span>
-                                    </a>
-                                    <ul class="dropdown-menu socials" role="menu" aria-labelledby="dLabel">
-                                        <li class="dropdown-socials">
-                                            <a href="https://www.facebook.com/sharer.php?s=<%= request.url %>&title=CforGood" target="_blank">
-                                                Facebook
-                                                <i class="fa fa-facebook" aria-hidden="true"></i>
-                                            </a>
-                                        </li>
-                                        <li class="dropdown-socials">
-                                            <a href="http://twitter.com/home?status=CforGood+<%= request.url %>" target="_blank">
-                                                Twitter
-                                                <i class="fa fa-twitter" aria-hidden="true"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card-block card-left">
-                    <span>{business.opening}</span>
-                    <h1 class="card-text" id="business-name"><%= @business.name %></h1><br>
-                    <div class="row">
-                        <div class="business-specs">
-                            <div class="col-md-1 col-sm-1 col-xs-1">
-                                <div class="round-icon" style="background-color:<%= @business.business_category.color %>;"></div>
-                            </div>
-                            <div class="col-md-3 col-sm-3 col-xs-5">
-                                <p class="business-category"><%= @business.business_category.name %></p>
-                            </div>
-                            <div class="col-md-3 col-sm-3 col-xs-5">
-                                <p class="business-distance">
-                                    <i style="color:<%= @business.business_category.color %>;" class="fa fa-map-marker fa-2x" aria-hidden="true"></i>
-                                    à
-                                    <%= display_distance(@address.distance_from(@lat_lng)) %>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-md-offset-1 col-sm-4 col-sms-offset1 col-xs-12">
-                            <div class="business-category-image img-responsive">
-                                <%= image_tag @business.business_category.picture, size: "80x80" %>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row"><hr class="horizontal-bar"></div>
-
-                    <% if @labels.present? %>
-                      <h6>Leurs engagements</h6>
-                      <div class="row">
-                          <% @labels.each do |label| %>
-                          <div class="col-md-4 col-sm-6 col-xs-12">
-                              <p>
-                                  <%= image_tag label.label_category.picture, size: "40x40" %>
-                                  <%= label.label_category.name %>
-                              </p>
-                          </div>
-                          <% end %>
-                      </div><br>
-                    <% end %>
-
-                    <h6>En quelques mots</h6>
-                    <p>
-                        <% if @business.description.present? %>
-                        <div class="business-description">
-                            <%= @business.description %>
-                        </div>
-                    <% else %>
-                        <div class="business-descritption">Profil en construction</div>
-                        <% end %>
-                    </p>
-
-                    <div class="row"><hr class="horizontal-bar"></div>
-
-                    <div class="row details">
-                        <h6>Détails</h6>
-                        <div class="col-md-4 col-sm-4 col-xs-12">
-                            <div class="map-details">
-                                <div id="map-perk-desktop"></div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-4 col-xs-12 business-informations">
-                            <div class="row">
-                                <div class="col-md-12 col-sm-12 col-xs-6">
-                                    <div class="row business-address-row">
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <i class="fa fa-map-o fa-2x" style="color:<%= @business.business_category.color %>;"></i>
-                                        </div>
-                                        <div class="col-md-6 col-sm-6 col-xs-12 business-addresss">
-                                            <span><%= @address.present? ? @address.street : @business.street %></span>
-                                            <span><%= @address.present? ? @address.zipcode : @business.zipcode %>
-                                                <%= @address.present? ? @address.city : @business.city %></span>
-                                        </div>
-                                    </div>
-                                </div><br>
-                                <div class="col-md-12 col-sm-12 col-xs-6">
-                                    <ul class="business-opening-hours">
-                                        <li>{Lundi}</li>
-                                        <li>{Mardi}</li>
-                                        <li>{Mercredi}</li>
-                                        <li>{Jeudi}</li>
-                                        <li>{Vendredi}</li>
-                                        <li>{Samedi}</li>
-                                        <li>{Dimanche}</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="business-contacts col-md-4 col-sm-4 col-xs-12">
-                            <%= render "pro/dashboard/shared/business_links" %>
-                        </div>
-                    </div>
-
-                    <% if @business.leader_description.present? %>
-                      <div class="row"><hr class="horizontal-bar"></div>
-
-                      <div class="leader-presentation">
-                          <h6>Qui se cache derrière ?</h6><br>
-                          <div class="row">
-                              <div class="col-md-3 col-sm-4 col-xs-6">
-                                  <img class="img-circle img-responsive" src="<%= @business.leader_picture %>" alt=""/>
-                              </div>
-                              <div class="col-md-9 col-sm-8 col-xs-12">
-                                  <p><strong><%= @business.leader_first_name %>
-                                      <%= @business.leader_last_name %></strong></p><br>
-                                  <p class="leader-description"><%= @business.leader_description %></p>
-                              </div>
-                          </div>
-                      </div>
-                    <% end %>
-                </div>
-            </div>
-        </div>
-
-        <!-- This is the right side of the page (perks from the business) -->
-
-        <% if device_type != :mobile %>
-          <div class=" col-md-6 col-sm-12 col-xs-12 right-side">
-              <h2 style="border-color: <%= @business.business_category.color %>;">Nos bons plans
-              </h2><br>
-              <% @perks.active.each do |perk| %>
-                  <%= render "businesses/business_card", business: @business, address: @address, perk: perk, index_view: false %>
-                  <% if !user_signed_in? %>
-                    <%= render "businesses/business_perk_not_member", perk: perk %>
-                  <% else %>
-                    <%= render "businesses/business_perk_show", perk: perk %>
+  <div class="row" style="margin-top: 2.5%;">
+    <!-- This is the left side of the page (business infos) -->
+    <div class="col-md-6 col-sm-12 col-xs-12 left-side">
+      <div class="main-card-left">
+        <div class="row">
+          <div class="background-main-img img-responsive" style="background-image: url('<%= @business.picture.url(:medium) %>');" alt="Business picture">
+            <div class=" business-picture-row">
+              <div class="socials-row">
+                <span class="likes">
+                  <% if @business.like == 1 %>
+                  <%= image_tag "icons/heart.svg", class: "red-heart"%>
+                  <p><%= "#{@business.like} personne aime #{@business.name}" %></p>
+                  <% elsif @business.like > 1 %>
+                  <%= image_tag "icons/heart.svg", class: "red-heart"%>
+                  <p><%= "#{@business.like} personnes aiment #{@business.name}" %></p>
                   <% end %>
-              <% end %>
+                </span>
+              </div>
+              <div class="share-row" style="background-color:<%= @business.business_category.color %>;">
+                <div class="dropup">
+                  <a href="" class="share-socials dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span>Partager
+                      <span class="not-on-mobile-device">sur
+                        <i class="fa fa-share-alt" aria-hidden="true"></i>
+                      </span>
+                    </span>
+                  </a>
+                  <ul class="dropdown-menu socials" role="menu" aria-labelledby="dLabel">
+                    <li class="dropdown-socials">
+                      <a href="https://www.facebook.com/sharer.php?s=<%= request.url %>&title=CforGood" target="_blank">
+                        Facebook
+                        <i class="fa fa-facebook" aria-hidden="true"></i>
+                      </a>
+                    </li>
+                    <li class="dropdown-socials">
+                      <a href="http://twitter.com/home?status=CforGood+<%= request.url %>" target="_blank">
+                        Twitter
+                        <i class="fa fa-twitter" aria-hidden="true"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
+        </div>
+        <div class="card-block card-left">
+          <span>{business.opening}</span>
+          <h1 id="business-name"><%= @business.name %></h1><br>
+
+          <div class="business-specs">
+            <div class="round-icon" style="background-color:<%= @business.business_category.color %>;"></div>
+            <div class="business-category">
+              <%= @business.business_category.name %>
+            </div>
+            <div class="business-distance">
+              <span>
+                <i style="color:<%= @business.business_category.color %>;" class="fa fa-map-marker fa-2x" aria-hidden="true"></i>
+                à
+                <%= display_distance(@address.distance_from(@lat_lng)) %>
+              </span>
+            </div>
+            <div class="business-category-image img-responsive">
+              <%= image_tag @business.business_category.picture, size: "80x80" %>
+            </div>
+          </div>
+
+          <div class="row"><hr class="horizontal-bar"></div>
+
+          <% if @labels.present? %>
+          <h6>Leurs engagements</h6>
+          <div class="business-beliefs">
+            <% @labels.each do |label| %>
+            <div class="business-belief">
+              <%= image_tag label.label_category.picture, size: "40x40" %>
+              <%= label.label_category.name %>
+            </div>
+            <% end %>
+          </div>
+          <% end %>
+
+          <h6>En quelques mots</h6>
+          <p>
+            <% if @business.description.present? %>
+            <div class="business-description">
+              <%= @business.description %>
+            </div>
+            <% else %>
+            <div class="business-descritption">Profil en construction</div>
+            <% end %>
+          </p>
+
+          <div class="row"><hr class="horizontal-bar"></div>
+
+          <h6>Détails</h6>
+          <div class=" details">
+            <div class="map-details">
+              <div class="business-map">
+                <div id="map-perk-desktop"></div>
+              </div>
+            </div>
+
+            <div class=" business-informations">
+
+              <div class="business-address-column">
+
+                <div class="business-address-icon">
+                  <img src="<%= asset_path 'icons/map-location.svg' %>" style="color:<%= @business.business_category.color %>;">
+                </div>
+
+                <div class=" business-addresss">
+                  <span><%= @address.present? ? @address.street : @business.street %></span>
+                  <span><%= @address.present? ? @address.zipcode : @business.zipcode %><%= @address.present? ? @address.city : @business.city %></span>
+                </div>
+
+                <ul class="business-opening-hours">
+                  <li>{Lundi - Fermé}</li>
+                  <li>{Mardi - 9h00 | 19h00}</li>
+                  <li>{Mercredi - 9h00 | 19h00}</li>
+                  <li>{Jeudi - 9h00 | 19h00}</li>
+                  <li>{Vendredi - 9h00 | 19h00}</li>
+                  <li>{Samedi - 10h00 | 19h00}</li>
+                  <li>{Dimanche - Fermé}</li>
+                </ul>
+              </div>
+
+              <div class="business-contacts">
+                <%= render "pro/dashboard/shared/business_links" %>
+              </div>
+            </div>
+
+            <% if @business.leader_description.present? %>
+            <div class="row"><hr class="horizontal-bar"></div>
+
+            <div class="leader-presentation">
+              <h6>Qui se cache derrière ?</h6><br>
+              <div class="row">
+                <div class="col-md-3 col-sm-4 col-xs-6">
+                  <img class="img-circle img-responsive" src="<%= @business.leader_picture %>" alt=""/>
+                </div>
+                <div class="col-md-9 col-sm-8 col-xs-12">
+                  <p><strong><%= @business.leader_first_name %>
+                    <%= @business.leader_last_name %></strong>
+                  </p><br>
+                  <p class="leader-description"><%= @business.leader_description %></p>
+                </div>
+              </div>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <!-- This is the right side of the page (perks from the business) -->
+
+      <% if device_type != :mobile %>
+      <div class=" col-md-6 col-sm-12 col-xs-12 right-side">
+        <h2 style="border-color: <%= @business.business_category.color %>;">Nos bons plans</h2><br>
+        <% @perks.active.each do |perk| %>
+        <%= render "businesses/business_card", business: @business, address: @address, perk: perk, index_view: false %>
+        <% if !user_signed_in? %>
+        <%= render "businesses/business_perk_not_member", perk: perk %>
         <% else %>
-          <div class="mobile_perks_list">
-              <button class="button-validation-modal mobile-perks-list" style="background-color:<%= @business.business_category.color %>;">
-                  Voir nos bons plans
-              </button>
-              <%= render "businesses/mobile_perks_list" %>
-          </div>
+        <%= render "businesses/business_perk_show", perk: perk %>
         <% end %>
+        <% end %>
+      </div>
+      <% else %>
+      <div class="mobile_perks_list">
+        <button class="button-validation-modal mobile-perks-list" style="background-color:<%= @business.business_category.color %>;">
+          Voir nos bons plans
+        </button>
+        <%= render "businesses/mobile_perks_list" %>
+      </div>
+      <% end %>
     </div>
+  </div>
 </div>
+
 
 <% content_for :after_js do %>
 
-<script type="text/javascript">
-setRoutePathFromLocation()
-</script>
+<script type="text/javascript">setRoutePathFromLocation()</script>
 
 <%= render 'components/map_show', geojson: @geojson, container: 'map-perk-desktop' %>
 
 <script>
-$(document).ready(function () {
+$(document).ready(function () {s
 
-    $(".mobile-perks-list").click(function () {
-        $('.perk-modal-mobile-member').removeClass("hidden");
-    });
+  $(".mobile-perks-list").click(function () {
+    $('.perk-modal-mobile-member').removeClass("hidden");
+  });
 
-    $('.perk-carddd.available').click(function () {
-        var classModal = $(this).attr('id');
-        $('.' + classModal).removeClass("hidden");
-        $('.' + classModal).closest('.overlayyy').removeClass("hidden");
-    });
-
+  $('.perk-carddd.available').click(function () {
+    var classModal = $(this).attr('id');
+    $('.' + classModal).removeClass("hidden");
+    $('.' + classModal).closest('.overlayyy').removeClass("hidden");
+  });
     // $(".use-button-logout").click(function() {   $('.use-overlay').removeClass('hidden');   // EVENT AMPLITUDE USER_C_BENEFIT   amplitude.logEvent('USER_C_BENEFIT_LOGOUT'); }); $(".btn-use-button").click(function() {   // EVENT AMPLITUDE
     // USER_C_BENEFIT   amplitude.logEvent('USER_C_BENEFIT'); });
 });
