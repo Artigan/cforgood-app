@@ -1,5 +1,4 @@
 /* Adrien CSS */
-
 #overlayyy {
     height: 100%;
     width: 0;
@@ -20,13 +19,17 @@
 }
 
 .main-card-left {
+    width: 900px;
     border: 0.5px solid lightgrey;
     margin-left: 5.5%;
 }
 
-img.card-img-top {
-    width: 100%;
-    height: 28vw;
+.background-main-img {
+    background-size: cover;
+    height: 500px;
+    width: 900px;
+    display: flex;
+    align-items: flex-end;
 }
 
 .card-left {
@@ -36,37 +39,33 @@ img.card-img-top {
 }
 
 .business-picture-row {
-    width: 100%;
-    height: 2vw;
-    margin-top: -5%;
+    width: 900px;
+    height: 50px;
+    display: flex;
 }
 
 .socials-row {
     background-color: rgba(255,255,255,0.9);
     opacity: 0.85;
-    height: 2.35vw;
-    width: 80%;
+    flex-grow: 9;
+    display: flex;
+    align-items: center;
 }
 
 .share-row {
     opacity: 0.9;
-    height: 2.35vw;
-    width: 20%;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .likes {
-    margin-left: 12.5%;
-    margin-bottom: 1%;
+    padding-left: 13.1%;
 }
 
-.share-socials span:not(.not-on-mobile-device) {
+.share-socials {
     color: white;
-    margin-left: 10% !important;
-    // margin-top: 200% !important;
-}
-
-.not-on-mobile-device {
-    //     margin-left: -35% !important;
 }
 
 .share-socials:hover {
@@ -89,34 +88,54 @@ img.card-img-top {
 }
 
 #business-name {
-    padding-bottom: 2%;
     font-size: 2.5em;
     color: black;
     font-weight: 600;
     text-transform: lowercase;
     text-transform: capitalize;
+    padding-bottom: -2%;
+}
+
+.business-specs {
+    display: flex;
+    align-items: center;
+    width: 90%;
+    height: 50px;
+    padding-bottom: 1%;
 }
 
 .round-icon {
     height: 18px;
     width: 18px;
     border-radius: 50%;
-    margin-top: 13%;
+    margin-top: 1%;
 }
 
 .business-category {
-    margin-left: -18%;
-    margin-top: 2%;
-}
+    flex-grow: 1;
+    padding-left: 1%;
+    margin-top: 1%;
+  }
 
 .business-distance {
-    margin-top: -3%;
-    margin-left: -4%;
+    flex-grow: 2;
 }
 
 .business-category-image {
-    margin-top: -20%;
-    margin-left: 35%;
+    display: flex;
+    flex-grow: 4;
+    justify-content: flex-end;
+}
+
+.business-beliefs {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.business-belief {
+    width: 300px;
+    flex-grow: 1;
 }
 
 .business-description {
@@ -138,32 +157,76 @@ hr {
     margin-left: 0;
     margin-top: 1.2%;
     margin-bottom: 1%;
-    width: 90%;
+    width: 95%;
     background-color: rgba(128,128,128, 0.3);
+}
+
+.details {
+    display: flex;
+    width: 90%;
+    margin-bottom: 2%;
+}
+
+.map-details {
+  flex-grow: 3;
+}
+
+.business-map {
+  width: 210px;
+  height: 190px;
+}
+
+.business-informations {
+  flex-grow : 3;
+  padding-left: 3%;
+  width: 30%;
+  height: 190px;
+}
+
+.business-address-column {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+
+.business-address-icon img {
+  width: 50px;
+}
+
+.business-addresss span {
+  font-size: 0.75em;
+  margin-left: -13%;
+}
+
+.business-opening-hours {
+  margin-top: 7%;
+  font-size: 0.75em;
+}
+
+.business-opening-hours li {
+  margin-bottom: -3%;
+}
+
+.business-contacts {
+  flex-grow: 3;
+  width: 30%;
+  height: 190px;
 }
 
 .business-opening-hours li {
     list-style-type: none;
 }
 
-.map-details {
-    width: 11vw;
-    height: 10vw;
-    margin-top: 2%;
-    background-color: #fff;
-}
-
-.business-informations {
-    padding-left: 2%;
-    font-size: 0.8em;
-}
-
-.business-contacts {
-    margin-left: -3%;
+.business-links {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 190px;
 }
 
 .reach-uss {
     list-style-type: none;
+    margin-bottom: 3.5%;
 }
 
 .reach-uss i {
@@ -195,20 +258,31 @@ hr {
     font-size: 0.8em;
 }
 
+.follow-uss {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+span.find-us {
+  margin-right: 2%;
+}
+
 .follow-uss a {
-  display: inline-block;
-  border-style: solid;
-  border-width: 1.5px;
-  width: auto;
-  height: auto;
-  min-width: 35px;
-  min-height: 35px;
-  border-radius: 50%;
-  text-align: center;
-  line-height: 22px;
-  vertical-align: middle;
-  padding: 5px;
-  color: white;
+    display: inline-block;
+    border-style: solid;
+    border-width: 1.5px;
+    width: auto;
+    height: auto;
+    min-width: 35px;
+    min-height: 35px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 22px;
+    vertical-align: middle;
+    padding: 5px;
+    color: white;
 }
 
 .follow-uss a:hover {
@@ -355,7 +429,7 @@ hr {
 }
 
 .perk-modal-bottom {
-  margin-bottom: 4%;
+    margin-bottom: 4%;
 }
 
 .perk-modal-alert i.fa-bell {
@@ -389,7 +463,6 @@ hr {
         background-color: #ccc;
     }
 }
-
 // Media Queries //
 @media screen and (min-width: 1221px) {
     .business-addresss {
@@ -412,21 +485,24 @@ hr {
         margin-left: 14%;
     }
 
-    .socials-row {
-        height: 2.15vw;
+    .background-main-img {
+        background-size: cover;
+        height: 250px;
+        width: 450px;
     }
 
-    .share-row {
-        height: 2.15vw;
+    .business-picture-row {
+        width: 450px;
+        height: 35px;
     }
 
     .likes {
-        margin-bottom: 0;
-        font-size: 0.6em;
+        font-size: 0.8em;
+        padding-left: 14.1%;
     }
 
-    .share-socials span:not(.not-on-mobile-device) {
-        font-size: 0.6em;
+    .share-socials {
+        font-size: 0.8em;
     }
 
     .dropdown-menu.socials {
@@ -501,17 +577,17 @@ hr {
     }
 
     .follow-uss a {
-      width: auto;
-      height: auto;
-      min-width: 50px;
-      min-height: 50px;
-      line-height: 25px;
-      padding: 5px;
+        width: auto;
+        height: auto;
+        min-width: 50px;
+        min-height: 50px;
+        line-height: 25px;
+        padding: 5px;
     }
 
     .follow-uss a i {
-      font-size: 2em;
-      margin-top: 2.5px;
+        font-size: 2em;
+        margin-top: 2.5px;
     }
 
     .leader-presentation img {
@@ -552,32 +628,30 @@ hr {
     }
 }
 @media screen and (min-width: 768px) and (max-width: 991px) {
+    .full-page {
+        width: auto;
+        margin: auto;
+        overflow: hidden;
+    }
 
-  .full-page {
-    width:auto;
-    margin: auto;
-    overflow: hidden;
-  }
-
-    img.card-img-top {
+    .background-main-img {
+        background-size: cover;
+        height: 450px;
         width: 100%;
-        height: 50vw;
     }
 
-    .socials-row {
-        height: 4.8vw;
-    }
-
-    .share-row {
-        height: 4.8vw;
+    .business-picture-row {
+        width: 100%;
+        height: 40px;
     }
 
     .likes {
-        font-size: 0.9em;
+        font-size: 0.8em;
+        padding-left: 13.1%;
     }
 
-    .share-socials span {
-        font-size: 0.9em;
+    .share-socials {
+        font-size: 0.8em;
     }
 
     .dropdown-menu.socials {
@@ -599,17 +673,17 @@ hr {
     }
 
     .follow-uss a {
-      width: auto;
-      height: auto;
-      min-width: 40px;
-      min-height: 40px;
-      line-height: 25px;
-      padding: 5px;
+        width: auto;
+        height: auto;
+        min-width: 40px;
+        min-height: 40px;
+        line-height: 25px;
+        padding: 5px;
     }
 
     .follow-uss a i {
-      font-size: 1.3em;
-      margin-top: 4px;
+        font-size: 1.3em;
+        margin-top: 4px;
     }
 
     .leader-presentation img {
@@ -647,44 +721,38 @@ hr {
     }
 }
 @media screen and (min-width : 480px) and (max-width : 767px) {
-
     .full-page {
-      width:auto;
-      margin: auto;
-      overflow: hidden;
+        width: 100% auto;
+        margin: 0 auto;
+        overflow: hidden;
     }
 
     .main-card-left {
-        margin-left: 0;
+        margin: 0;
+        padding: 0;
         border: none;
     }
 
-    img.card-img-top {
+    .left-side {
+        padding: 0;
+    }
+
+    .background-main-img {
+        background-size: cover;
+        height: 450px;
         width: 100%;
-        height: 65vw;
     }
 
     .business-picture-row {
-        margin-top: -6%;
-    }
-
-    .socials-row {
-        height: 5.2vw;
-    }
-
-    .share-row {
-        height: 5.2vw;
-    }
-
-    .not-on-mobile-device {
-        display: none;
+        width: 100%;
+        height: 40px;
     }
 
     .likes {
         font-size: 0.8em;
     }
 
-    .share-socials span {
+    .share-socials {
         font-size: 0.8em;
     }
 
@@ -754,24 +822,27 @@ hr {
         margin-left: 23%;
         max-width: 45%;
     }
+
     .find-us {
-      margin-left:13%;
+        margin-left: 13%;
     }
+
     .follow-uss a {
-      width: auto;
-      height: auto;
-      min-width: 60px;
-      min-height: 60px;
-      line-height: 25px;
-      padding: 5px;
-      margin-right: 10%;
-      margin-top: 1%;
+        width: auto;
+        height: auto;
+        min-width: 60px;
+        min-height: 60px;
+        line-height: 25px;
+        padding: 5px;
+        margin-right: 10%;
+        margin-top: 1%;
     }
 
     .follow-uss a i {
-      font-size: 2.5em;
-      margin-top: 2.5px;
+        font-size: 2.5em;
+        margin-top: 2.5px;
     }
+
     .leader-presentation h6,
     .leader-presentation p {
         text-align: center;
@@ -798,49 +869,42 @@ hr {
 @media screen and (min-width : 320px) and (max-width : 479px) {
 
     .full-page {
-      width:auto;
-      margin: auto;
-      overflow: hidden;
+        width: 100% auto;
+        margin: 0 auto;
+        overflow: hidden;
     }
 
     .main-card-left {
-        margin-left: 0;
+        margin: 0;
+        padding: 0;
         border: none;
+    }
+
+    .left-side {
+        padding: 0;
+    }
+
+    .background-main-img {
+        background-size: cover;
+        height: 300px;
+        width: 100%;
+    }
+
+    .business-picture-row {
+        width: 100%;
+        height: 35px;
+    }
+
+    .likes {
+        font-size: 0.75em;
+    }
+
+    .share-socials {
+        font-size: 0.75em;
     }
 
     .business-category-image {
         display: none;
-    }
-
-    img.card-img-top {
-        height: 65vw;
-    }
-
-    .business-picture-row {
-        margin-top: -8.8%;
-    }
-
-    .socials-row {
-        height: 7vw;
-        width: 70%;
-    }
-
-    .share-row {
-        height: 7vw;
-        width: 30%;
-    }
-
-    .not-on-mobile-device {
-        display: none;
-    }
-
-    .likes {
-        font-size: 0.6em;
-        margin-left: 0;
-    }
-
-    .share-socials span {
-        font-size: 0.6em;
     }
 
     .dropdown-menu.socials {
@@ -912,9 +976,11 @@ hr {
         margin-left: 18%;
         max-width: 70%;
     }
+
     .find-us {
-        margin-left:10%;
-      }
+        margin-left: 10%;
+    }
+
     .follow-uss a {
         width: auto;
         height: auto;
@@ -924,12 +990,12 @@ hr {
         padding: 5px;
         margin-right: 10%;
         margin-top: 2%;
-      }
+    }
 
     .follow-uss a i {
         font-size: 2em;
         margin-top: 2.5px;
-      }
+    }
 
     .leader-presentation h6,
     .leader-presentation p {

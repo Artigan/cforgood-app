@@ -11,13 +11,10 @@
         <div class="col-md-6 col-sm-12 col-xs-12 left-side">
             <div class="main-card-left">
                 <div class="row">
-                    <div class="col-md-12 col-sm-12 col-xs-12">
-                        <img class="card-img-top img-responsive" src="<%= @business.picture.url(:medium) %>" alt="Business picture">
-
-                        <div class="row business-picture-row">
-                            <div class="col-md-10 col-sm-10 col-xs-10 col socials-row">
-                                <p class="likes">
-
+                    <div class="background-main-img img-responsive" style="background-image: url('<%= @business.picture.url(:medium) %>');" alt="Business picture">
+                        <div class=" business-picture-row">
+                            <div class="socials-row">
+                                <span class="likes">
                                     <% if @business.like == 1 %>
                                     <%= image_tag "icons/heart.svg", class: "red-heart"%>
                                     <p><%= "#{@business.like} personne aime" %></p>
@@ -25,11 +22,10 @@
                                     <%= image_tag "icons/heart.svg", class: "red-heart"%>
                                     <p><%= "#{@business.like} personnes aiment" %></p>
                                     <% end %>
-                                </p>
 
-                                <p class="likes align-middle"><%= @business.name %></p>
+                                    <%= @business.name %></span>
                             </div>
-                            <div class="col-md-2 col-sm-2 col-xs-2 share-row" style="background-color:<%= @business.business_category.color %>;">
+                            <div class="share-row" style="background-color:<%= @business.business_category.color %>;">
                                 <div class="dropup">
                                     <a href="" class="share-socials dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <span>Partager
@@ -57,46 +53,38 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="card-block card-left">
                     <span>{business.opening}</span>
-                    <h1 class="card-text" id="business-name"><%= @business.name %></h1><br>
-                    <div class="row">
-                        <div class="business-specs">
-                            <div class="col-md-1 col-sm-1 col-xs-1">
-                                <div class="round-icon" style="background-color:<%= @business.business_category.color %>;"></div>
-                            </div>
-                            <div class="col-md-3 col-sm-3 col-xs-5">
-                                <p class="business-category"><%= @business.business_category.name %></p>
-                            </div>
-                            <div class="col-md-3 col-sm-3 col-xs-5">
-                                <p class="business-distance">
-                                    <i style="color:<%= @business.business_category.color %>;" class="fa fa-map-marker fa-2x" aria-hidden="true"></i>
-                                    à
-                                    <%= display_distance(@address.distance_from(@lat_lng)) %>
-                                </p>
-                            </div>
+                    <h1 id="business-name"><%= @business.name %></h1><br>
+
+                    <div class="business-specs">
+                        <div class="round-icon" style="background-color:<%= @business.business_category.color %>;"></div>
+                        <div class="business-category">
+                            <%= @business.business_category.name %>
                         </div>
-                        <div class="col-md-4 col-md-offset-1 col-sm-4 col-sms-offset1 col-xs-12">
-                            <div class="business-category-image img-responsive">
-                                <%= image_tag @business.business_category.picture, size: "80x80" %>
-                            </div>
+                        <div class="business-distance">
+                            <span>
+                                <i style="color:<%= @business.business_category.color %>;" class="fa fa-map-marker fa-2x" aria-hidden="true"></i>
+                                à
+                                <%= display_distance(@address.distance_from(@lat_lng)) %>
+                            </span>
+                        </div>
+                        <div class="business-category-image img-responsive">
+                            <%= image_tag @business.business_category.picture, size: "80x80" %>
                         </div>
                     </div>
 
                     <div class="row"><hr class="horizontal-bar"></div>
 
                     <h6>Leurs engagements</h6>
-                    <div class="row">
+                    <div class="business-beliefs">
                         <% @labels.each do |label| %>
-                        <div class="col-md-4 col-sm-6 col-xs-12">
-                            <p>
-                                <%= image_tag label.label_category.picture, size: "40x40" %>
-                                <%= label.label_category.name %>
-                            </p>
+                        <div class="business-belief">
+                            <%= image_tag label.label_category.picture, size: "40x40" %>
+                            <%= label.label_category.name %>
                         </div>
                         <% end %>
-                    </div><br>
+                    </div>
 
                     <h6>En quelques mots</h6>
                     <p>
@@ -111,41 +99,39 @@
 
                     <div class="row"><hr class="horizontal-bar"></div>
 
-                    <div class="row details">
-                        <h6>Détails</h6>
-                        <div class="col-md-4 col-sm-4 col-xs-12">
-                            <div class="map-details">
+                    <h6>Détails</h6>
+                    <div class=" details">
+                        <div class="map-details">
+                            <div class="business-map">
                                 <div id="map-perk-desktop"></div>
                             </div>
                         </div>
-                        <div class="col-md-4 col-sm-4 col-xs-12 business-informations">
-                            <div class="row">
-                                <div class="col-md-12 col-sm-12 col-xs-6">
-                                    <div class="row business-address-row">
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <i class="fa fa-map-o fa-2x" style="color:<%= @business.business_category.color %>;"></i>
-                                        </div>
-                                        <div class="col-md-6 col-sm-6 col-xs-12 business-addresss">
-                                            <span><%= @address.present? ? @address.street : @business.street %></span>
-                                            <span><%= @address.present? ? @address.zipcode : @business.zipcode %>
-                                                <%= @address.present? ? @address.city : @business.city %></span>
-                                        </div>
-                                    </div>
-                                </div><br>
-                                <div class="col-md-12 col-sm-12 col-xs-6">
-                                    <ul class="business-opening-hours">
-                                        <li>{Lundi}</li>
-                                        <li>{Mardi}</li>
-                                        <li>{Mercredi}</li>
-                                        <li>{Jeudi}</li>
-                                        <li>{Vendredi}</li>
-                                        <li>{Samedi}</li>
-                                        <li>{Dimanche}</li>
-                                    </ul>
+
+                        <div class=" business-informations">
+
+                            <div class="business-address-column">
+
+                                <div class="business-address-icon"><img src="<%= asset_path 'icons/map-location.svg' %>" style="color:<%= @business.business_category.color %>;"></div>
+
+                                <div class=" business-addresss">
+                                    <span><%= @address.present? ? @address.street : @business.street %></span>
+                                    <span><%= @address.present? ? @address.zipcode : @business.zipcode %>
+                                        <%= @address.present? ? @address.city : @business.city %></span>
                                 </div>
                             </div>
+
+                            <ul class="business-opening-hours">
+                                <li>{Lundi - Fermé}</li>
+                                <li>{Mardi - 9h00 | 19h00}</li>
+                                <li>{Mercredi - 9h00 | 19h00}</li>
+                                <li>{Jeudi - 9h00 | 19h00}</li>
+                                <li>{Vendredi - 9h00 | 19h00}</li>
+                                <li>{Samedi - 10h00 | 19h00}</li>
+                                <li>{Dimanche - Fermé}</li>
+                            </ul>
+
                         </div>
-                        <div class="business-contacts col-md-4 col-sm-4 col-xs-12">
+                        <div class="business-contacts">
                             <%= render "pro/dashboard/shared/business_links" %>
                         </div>
                     </div>
@@ -178,9 +164,9 @@
             </h2><br>
             <% @business.perks.active.each do |perk| %>
             <!-- <div> -->
-                <div class=" col-md-6 col-sm-6 col-xs-12">
-                    <%= render "businesses/business_card", business: @business, address: @address, perk: perk, index_view: false %>
-                </div>
+            <div class=" col-md-6 col-sm-6 col-xs-12">
+                <%= render "businesses/business_card", business: @business, address: @address, perk: perk, index_view: false %>
+            </div>
             <!-- </div> -->
             <div>
                 <% if !user_signed_in? %>

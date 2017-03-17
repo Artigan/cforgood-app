@@ -1,5 +1,6 @@
 <!-- LINKS | FIND THEM -->
 <div class="business-links">
+  <div class= "flexbox-contacts">
   <ul>
     <li class="reach-uss">
       <% if @business.email.present? %>
@@ -8,7 +9,7 @@
           <span><%= @business.email %></span>
         </a>
       <% end %>
-    </li><br>
+    </li>
     <li class="reach-uss">
       <% if @business.telephone.present? %>
         <a href="tel:<%= @business.telephone %>" style="color: <%= @business.business_category.color %>;" target="_blank" data-hint="<%= @business.telephone %>">
@@ -17,10 +18,11 @@
         </a>
       <% end %>
     </li>
-  </ul><br>
+  </ul>
+</div>
   <!-- DESKTOP -->
   <div class="follow-uss">
-    <span class="find-us">Retrouvez-nous :</span><br>
+    <span class="find-us">Retrouvez-nous : </span>
 
       <% if @business.url.present? %>
         <span>
