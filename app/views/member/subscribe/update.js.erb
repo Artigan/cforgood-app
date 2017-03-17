@@ -18,12 +18,12 @@ if (<%= !current_user.errors.any? %>) {
     }
 
     // DISCLAIMER - DISPLAYED
-    $(".done-overlay").removeClass("hidden");
+    $(".updated-done-overlay").removeClass("hidden");
     $('.show-payment.btn').removeClass("disabled");
 
     window.setTimeout(function(){
       // DISCLAIMER - HIDDEN
-      $(".done-overlay").addClass("hidden");
+      $(".updated-done-overlay").addClass("hidden");
     }, 3000);
   }
 

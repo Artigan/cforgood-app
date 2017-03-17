@@ -59,14 +59,14 @@
             </div>
             <% if current_user.member %>
               <% if current_user.code_partner.present? %>
-                <%= f.submit "M'abonner", class: "cta-button btn-subscription"%>
+                <%= f.submit "M'abonner", class: "button-gradient btn-subscription"%>
               <% else %>
-                <%= f.submit "Sauvegarder", class: "cta-button btn-subscription"%>
+                <%= f.submit "Sauvegarder", class: "button-gradient btn-subscription"%>
               <% end %>
             <% elsif current_user.date_stop_subscription.present? %>
-              <%= f.submit "Me réabonner", class: "cta-button btn-subscription"%>
+              <%= f.submit "Me réabonner", class: "button-gradient btn-subscription"%>
             <% else %>
-              <%= f.submit "M'abonner", class: "cta-button btn-subscription"%>
+              <%= f.submit "M'abonner", class: "button-gradient btn-subscription"%>
             <% end %>
           <% end %>
         </div>

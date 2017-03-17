@@ -28,7 +28,7 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 
 <!-- Geolocalisation -->
-<script>getGeolocation()</script>
+<script>getGeolocation();</script>
 
 <!-- JS SCRIPTS -->
 <%= render "layouts/shared/js/smooth_scroll" %>
@@ -36,6 +36,5 @@
 <% if user_signed_in? || business_signed_in? %>
   <%= render "layouts/shared/js/intercom" %>
 <% else %>
-  <%= render "layouts/shared/js/crisp" %>
 <% end %>
 

@@ -18,8 +18,8 @@
       flex-direction: column;
       box-sizing: border-box;
       position: relative;
-      width: 100%;
-      margin-right: 13px;
+      width: 46%;
+      margin-right: 4%;
       margin-bottom: 20px;
       background-color: #fff;
       border-radius: 3px;
@@ -36,7 +36,7 @@
         flex-direction: column;
         position: relative;
         padding: 20px;
-        height: 220px;
+        height: 260px;
         width: 100%;
         border-radius: 3px;
         background-size: cover;
@@ -155,7 +155,7 @@
       justify-content: space-around;
 
       .card-frame {
-        width: 31.33333%;
+        width: 46%;
         margin: 1%;
 
         .card-body {

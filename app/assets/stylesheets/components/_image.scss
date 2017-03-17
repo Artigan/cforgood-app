@@ -25,6 +25,7 @@
   height: auto;
   max-width: 100px;
   max-height: 100px;
+  padding: 4px;
 }
 
 .avatar-citoyen, .connexion-citoyen, .pastille-citoyen {
@@ -34,7 +35,6 @@
 }
 
 .avatar-user, .pastille-user {
-  padding: 1px;
   border-radius: 50%;
   background: #fff;
 }

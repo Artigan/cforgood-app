@@ -5,31 +5,18 @@
     <div class="title-fri-underline" style="border-color: <%= @business.business_category.color %>;"><%= "Les bons plans de #{@business.name}" %></div>
   </div>
 
-  <% @business.perks_in_time.each do |perk| %>
+  <% @business.perks.active.each do |perk| %>
 
-  <div class="col-md-6 col-sm-6 col-xs-12 perk-carddd <%= !perk.perk_in_time? || !(user_signed_in? && perk.perk_usable?(current_user))  ? 'unavailable' : 'available' %>" id="perk-modal-dynamic-<%= perk.id %>">
-
-          <div class="card-perks">
-              <div class="bolt-icon">
-                  <i class="fa fa-bolt" aria-hidden="true"></i>
-              </div>
-              <% if perk.times > 0 %>
-              <p class="perks-number"><%= perk.times - Use.where(perk_id: perk.id).count %>
-                  restants.</p>
-              <% end %>
-              <div class="perks-offer-type" style="border-color: <%= @business.business_category.color %>;">
-                  <%= perk.offer_type %>
-              </div>
-              <img  class="card-img-top img-responsive" src="<%= perk.picture.present? ? perk.picture.url(:card) : @business.picture.url(:card) %>" alt="perk picture">
-              <div class="card-block card-right">
-                  <p class="perk-description card-text text-center">
-                      <%= perk.name %>
-                  </p>
-              </div>
-          </div>
-  </div>
-
-    <%= render "businesses/business_perk_show", perk: perk %>
+    <div class="col-md-6 col-sm-6 col-xs-12 perk-carddd <%= !perk.perk_in_time? || !(user_signed_in? && perk.perk_usable?(current_user))  ? 'unavailable' : 'available' %>" id="perk-modal-dynamic-<%= perk.id %>">
+        <%= render "businesses/business_card", business: @business, address: @address, perk: perk, index_view: false %>
+    </div>
+    <div class="">
+      <% if !user_signed_in? %>
+        <%= render "businesses/business_perk_not_member", perk: perk %>
+      <% else %>
+        <%= render "businesses/business_perk_show", perk: perk %>
+      <% end %>
+    </div>
 
   <% end %>
 

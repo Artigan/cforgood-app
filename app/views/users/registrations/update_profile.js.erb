@@ -20,10 +20,10 @@ if (<%= !current_user.errors.any? %>) {
       $("#menu a.show-payment").tab('show');
     } else {
      // DISCLAIMER - DISPLAYED
-      $(".done-overlay").removeClass("hidden");
+      $(".updated-done-overlay").removeClass("hidden");
       window.setTimeout(function(){
         // DISCLAIMER - HIDDEN
-        $(".done-overlay").addClass("hidden");
+        $(".updated-done-overlay").addClass("hidden");
       }, 3000);
     }
   }

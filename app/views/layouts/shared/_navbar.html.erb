@@ -98,12 +98,13 @@
         <div class="drop-header-container">
           <% if user_signed_in? %>
             <% if !current_user.supervisor %>
-              <%= link_to "Mes informations", member_user_profile_path(current_user, anchor: 'profile' ), class: "droptext-bold profile-tab" %>
-              <%= link_to "Mon association", member_user_profile_path(current_user, anchor: 'cause'), class: "droptext-bold profile-tab" %>
-              <%= link_to "Mon abonnement", member_user_profile_path(current_user,  anchor: 'subscription'), class: "droptext-bold profile-tab" %>
+              <%= link_to "Profil", member_user_profile_path(current_user, anchor: 'profile' ), class: "droptext-bold profile-tab" %>
+              <%= link_to "Association", member_user_profile_path(current_user, anchor: 'cause'), class: "droptext-bold profile-tab" %>
+              <%= link_to "Participation", member_user_profile_path(current_user,  anchor: 'subscription'), class: "droptext-bold profile-tab" %>
               <% if current_user.date_last_payment.present? %>
-                <%= link_to "Mes contributions", member_user_profile_path(current_user, anchor: 'list-payments'),  class: "droptext-bold profile-tab" %>
+                <%= link_to "Contributions", member_user_profile_path(current_user, anchor: 'list-payments'),  class: "droptext-bold profile-tab" %>
               <% end %>
+              <%= link_to "Plaisir d'offrir", member_user_gift_path(current_user), class: "droptext-bold profile-tab" %>
             <% end %>
           <% elsif business_signed_in? %>
             <%= link_to "Mes informations", pro_business_profile_path(current_business, anchor: 'business' ), class: "droptext-bold profile-tab" %>
@@ -122,13 +123,13 @@
           <% end %>
         </div>
 
-        <li role="separator" class="divider"></li>
-        <li>
-          <%= link_to faq_connect_path do %>
-            <div class="droptext-opacity">Aide et conseils</div>
-          <% end %>
-        </li>
         <% if user_signed_in? || business_signed_in? %>
+          <li role="separator" class="divider"></li>
+          <li>
+            <%= link_to faq_connect_path do %>
+              <div class="droptext-opacity">Aide et conseils</div>
+            <% end %>
+          </li>
           <li>
             <%= link_to destroy_user_session_path, method: :delete do %>
               <div class="droptext-opacity">Déconnexion</div>
