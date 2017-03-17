@@ -52,7 +52,7 @@
           <li role="profile">
             <%= link_to "#list-payments", role: "tab", data_toggle: "tab" do %>
               <i class="fa fa-list" aria-hidden="true"></i>
-              <span>Contribution</span>
+              <span>Contributions</span>
             <% end %>
           </li>
         <% end %>
@@ -71,7 +71,7 @@
         <div role="tabpanel" class="tab-pane tab-profile tab-payment" id="subscription">
           <%= render "member/dashboard/shared/form_subscription" %>
         </div>
-        <div role="tabpanel" class="tab-pane tab-profile hidden" id="payment">
+        <div role="tabpanel" class="tab-pane tab-profile tab-bank-details hidden" id="payment">
           <%= render "member/dashboard/shared/form_payment" %>
         </div>
         <% if @payments.present? %>

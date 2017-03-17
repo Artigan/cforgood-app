@@ -1,4 +1,4 @@
-  class Member::DashboardController < ApplicationController
+class Member::DashboardController < ApplicationController
 
   skip_before_action :authenticate_user!, only: [:dashboard]
   before_action :find_businesses_for_search, only: [:profile, :gift, :ambassador]
