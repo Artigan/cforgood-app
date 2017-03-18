@@ -2,7 +2,6 @@
 
   <% perk.update_nb_view! if perk.present? && user_space? %>
 
-  <div class="overlayyy hidden"></div>
   <div class="card perk-modalll">
     <div class="card-block row">
       <div class="col-md-4 col-sm-4 col-xs-4">
@@ -110,7 +109,6 @@ $(document).ready(function () {
 
   $('.closed-perk-on-modal').click(function () {
     $(this).closest(".pmdjs").addClass('hidden');
-    $(this).closest(".overlayyy").addClass('hidden');
   });
 
   $('.send-mail, send-to-shop').click(function () {
