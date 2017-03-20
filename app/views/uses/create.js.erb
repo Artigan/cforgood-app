@@ -3,7 +3,6 @@
     $('.member-card-open').addClass('hidden').removeClass('member-card-open');
 
     var containerFeedback = ".container-feedback-" + <%= @use.perk_id %>;
-    console.log(containerFeedback);
     $(".container-feedback-" + <%= @use.perk_id %>).html("<%= j(render 'uses/form/feedback') %>");
 
     // EVENT AMPLITUDE : USER_PERK_VALIDATED - CARD-MEMBER
