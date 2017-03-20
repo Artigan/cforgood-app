@@ -1,5 +1,5 @@
 <!-- MEMBER CARD -->
-<div class="pmdjs popup-member-card hidden">
+<div class="pmdjs popup-member-card popup-member-card-<%= perk.id%> hidden">
 
   <button type="button" class="closed-modal-member-card close-button">&times;</button>
 
@@ -32,23 +32,17 @@
   <div>"La carte de membre doit être montrée au commerçant avant la prise de commande, cliquez ensuite sur "Terminer" pour valider votre bon plan."  </div>
 
   <%= simple_form_for :use, url: perk_uses_path(perk.id), method: :post, remote: true, authenticity_token: true do |f| %>
-      <%= f.input :perk_id, as: :hidden, input_html: {value: params[:perk_id]} %>
+      <%= f.input :perk_id, as: :hidden, input_html: {value: perk.id} %>
       <%= f.submit "Terminer", class: "button-gradient" %>
   <% end %>
 </div>
-
-<div class="container-feedback"></div>
 
 <% content_for :after_js do %>
   <script>
     $(document).ready(function(){
 
       $('.closed-modal-member-card').click(function() {
-        $(this).closest(".pmdjs").addClass('hidden');
-      });
-
-      $('.btn-show-card').click(function() {
-        $('.popup-member-card').removeClass('hidden');
+        $(".card-member-open").addClass('hidden').removeClass('card-member-open');
       });
 
     });

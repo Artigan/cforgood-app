@@ -1,5 +1,9 @@
 
     <% params[:id] = @use.id %>
-    $(".container-feedback").html("<%= j(render 'uses/form/feedback') %>");
+    $('.member-card-open').addClass('hidden').removeClass('member-card-open');
+
+    var containerFeedback = ".container-feedback-" + <%= @use.perk_id %>;
+    $(".container-feedback-" + <%= @use.perk_id %>).html("<%= j(render 'uses/form/feedback') %>");
+
     // EVENT AMPLITUDE : USER_PERK_VALIDATED - CARD-MEMBER
     amplitude.logEvent('USER_PERK_VALIDATED');
