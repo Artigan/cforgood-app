@@ -57,7 +57,9 @@ end
 
 json.uses_without_feedback do
   json.array! @uses_without_feedback do |uses_without_feedback|
-    json.extract! uses_without_feedback, :id, :perk_name, :business_name, :created_at
+    json.perk_name uses_without_feedback.perk.name
+    json.business_name uses_without_feedback.perk.business.name
+    json.created_at uses_without_feedback.created_at
   end
 end
 
