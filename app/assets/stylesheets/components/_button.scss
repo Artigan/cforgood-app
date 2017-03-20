@@ -283,6 +283,7 @@
   outline: none;
   cursor: pointer;
   color: white;
+  box-shadow:  0px 2px 2px rgba(0,0,0,0.3);
   z-index: 10;
 
   &:hover, &:focus {

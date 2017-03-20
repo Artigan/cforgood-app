@@ -38,4 +38,8 @@
     $('#use_like, #use_unlike').val('false');
     $('#use_' + feedback).val('true');
   });
+
+  $('.perk-modal-close').click(function() {
+    $('this').closest('.perk-modal.feedback').addClass('hidden');
+  });
 </script>
