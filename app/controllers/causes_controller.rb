@@ -7,7 +7,7 @@ class CausesController < ApplicationController
     if @partner && @partner.supervisor_id.present?
       @causes = Cause.where(supervisor_id: @partner.supervisor_id)
     else
-      @causes = Cause.where.not(id: ENV['CAUSE_ID_CFORGOOD'].to_i).near(@lat_lng, 9999, order: "distance")
+      @causes = Cause.where.not(id: ENV['CAUSE_ID_CFORGOOD'].to_i).near(@lat_lng, 9999, order: "distance").includes(:cause_category)
     end
   end
 

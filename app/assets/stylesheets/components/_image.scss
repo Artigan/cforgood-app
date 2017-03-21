@@ -40,8 +40,10 @@
 }
 
 .pastille {
-  width: 20px;
-  height: 20px;
+  width: auto;
+  height: auto;
+  min-width: 20px;
+  max-height: 20px;
   border-radius: 50%;
   background-color: white;
   display: flex;
@@ -49,4 +51,3 @@
   align-items: center;
   margin-right: 5px;
 }
-
