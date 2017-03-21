@@ -103,43 +103,43 @@
 
           <h6>Détails</h6>
           <div class=" details">
-            <div class=" details">
-              <div class="map-details">
-                <div class="business-map">
-                  <div id="map-perk-desktop"></div>
+
+            <div class="map-details">
+              <div class="business-map">
+                <div id="map-perk-desktop"></div>
+              </div>
+            </div>
+
+            <div class=" business-informations">
+
+              <div class="business-address-column">
+
+                <div class="business-address-icon"><img src="<%= asset_path 'icons/map-location.svg' %>" style="color:<%= @business.business_category.color %>;"></div>
+
+                <div class=" business-addresss">
+                  <span><%= @address.present? ? @address.street : @business.street %></span>
+                  <span><%= @address.present? ? @address.zipcode : @business.zipcode %>
+                    <%= @address.present? ? @address.city : @business.city %></span>
                 </div>
               </div>
 
-              <div class=" business-informations">
+              <ul class="business-opening-hours">
+                <li>{Lundi - Fermé}</li>
+                <li>{Mardi - 9h00 | 19h00}</li>
+                <li>{Mercredi - 9h00 | 19h00}</li>
+                <li>{Jeudi - 9h00 | 19h00}</li>
+                <li>{Vendredi - 9h00 | 19h00}</li>
+                <li>{Samedi - 10h00 | 19h00}</li>
+                <li>{Dimanche - Fermé}</li>
+              </ul>
+            </div>
 
-                <div class="business-address-column">
+            <div class="business-contacts">
+              <%= render "pro/dashboard/shared/business_links" %>
+            </div>
 
-                  <div class="business-address-icon"><img src="<%= asset_path 'icons/map-location.svg' %>" style="color:<%= @business.business_category.color %>;"></div>
 
-                  <div class=" business-addresss">
-                    <span><%= @address.present? ? @address.street : @business.street %></span>
-                    <span><%= @address.present? ? @address.zipcode : @business.zipcode %>
-                      <%= @address.present? ? @address.city : @business.city %></span>
-                    </div>
-                  </div>
-
-                  <ul class="business-opening-hours">
-                    <li>{Lundi - Fermé}</li>
-                    <li>{Mardi - 9h00 | 19h00}</li>
-                    <li>{Mercredi - 9h00 | 19h00}</li>
-                    <li>{Jeudi - 9h00 | 19h00}</li>
-                    <li>{Vendredi - 9h00 | 19h00}</li>
-                    <li>{Samedi - 10h00 | 19h00}</li>
-                    <li>{Dimanche - Fermé}</li>
-                  </ul>
-
-                </div>
-                <div class="business-contacts">
-                  <%= render "pro/dashboard/shared/business_links" %>
-                </div>
-              </div>
-
-              <% if @business.leader_description.present? %>
+            <% if @business.leader_description.present? %>
               <div class="row"><hr class="horizontal-bar"></div>
 
               <div class="leader-presentation">
@@ -156,38 +156,37 @@
                   </div>
                 </div>
               </div>
-              <% end %>
-            </div>
+            <% end %>
           </div>
         </div>
       </div>
-
-      <!-- This is the right side of the page (perks from the business) -->
-      <% if device_type != :mobile %>
-        <div class="col-md-6 col-sm-12 col-xs-12 right-side">
-          <h2 style="border-color: <%= @business.business_category.color %>;">Nos bons plans</h2><br>
-          <% @perks.active.each do |perk| %>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-              <%= render "businesses/business_card", business: @business, address: @address, perk: perk, index_view: false %>
-            </div>
-            <% if !user_signed_in? %>
-              <%= render "businesses/business_perk_not_member", perk: perk %>
-            <% else %>
-              <%= render "businesses/business_perk_show", perk: perk %>
-            <% end %>
-          <% end %>
-        </div>
-      <% else %>
-        <div class="mobile_perks_list">
-          <button class="button-validation-modal mobile-perks-list" style="background-color:<%= @business.business_category.color %>;">
-            Voir nos bons plans
-          </button>
-          <%= render "businesses/mobile_perks_list" %>
-        </div>
-      <% end %>
     </div>
+    <!-- This is the right side of the page (perks from the business) -->
+    <% if device_type != :mobile %>
+      <div class="col-md-6 col-sm-12 col-xs-12 right-side">
+        <h2 style="border-color: <%= @business.business_category.color %>;">Nos bons plans</h2><br>
+        <% @perks.active.each do |perk| %>
+          <div class="col-md-6 col-sm-6 col-xs-12">
+            <%= render "businesses/business_card", business: @business, address: @address, perk: perk, index_view: false %>
+          </div>
+          <% if !user_signed_in? %>
+            <%= render "businesses/business_perk_not_member", perk: perk %>
+          <% else %>
+            <%= render "businesses/business_perk_show", perk: perk %>
+          <% end %>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="mobile_perks_list">
+        <button class="button-validation-modal mobile-perks-list" style="background-color:<%= @business.business_category.color %>;">
+          Voir nos bons plans
+        </button>
+        <%= render "businesses/mobile_perks_list" %>
+      </div>
+    <% end %>
   </div>
 </div>
+
 
 
 <% content_for :after_js do %>
