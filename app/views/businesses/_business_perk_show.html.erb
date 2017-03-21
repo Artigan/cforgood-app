@@ -86,9 +86,8 @@
               <span class="label-itinary">Afficher l'itinéraire</span>
             </div>
           </div>
-          <span class="label-itinary">Afficher l'itinéraire</span>
           <% if current_user.member %>
-          <%= render "components/member_card", business: @business, perk: perk %>
+            <%= render "components/member_card", business: @business, perk: perk %>
           <% end %>
           <button class="button-validation-modal btn-show-card" id="popup-member-card-<%= perk.id %>" style="background-color:<%= @business.business_category.color %>;">
             <p>Afficher ma carte de membre</p>

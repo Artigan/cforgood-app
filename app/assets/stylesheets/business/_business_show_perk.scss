@@ -396,11 +396,26 @@ span.find-us {
 // PERKS MODAL //
 
 .perk-modalll {
+    // Fred - jour de printemps - start
+      position: absolute;
+    // Fred - jour de printemps - end
     width: 35%;
     background-color: white;
     margin-top: 5%;
-    margin-left: 58%;
+    // Fred - jour de printemps - start
+      // margin-left: 58%;
+     right: 7.5%;
+    // Fred - jour de printemps - end
     border: 0.2px solid lightgrey;
+
+   // Fred - jour de printemps - start
+      @media (max-width: 767px) {
+        width: 100%;
+        height: 100%;
+        margin-top: 0;
+        right: 0;
+      }
+    // Fred - jour de printemps - end
 }
 
 .perk-modalll h5 {
@@ -2491,19 +2506,31 @@ span.find-us {
     position: fixed;
     height: 100%;
     overflow-y: scroll;
-    width: calc(50% - 45px);
+    // Fred - jour de printemps - start
+      // width: calc(50% - 45px);
+      width: 100%;
+    // Fred - jour de printemps - end
     z-index: 5555;
     top: 50px;
     right: 0;
-    background-color: white;
+    // Fred - jour de printemps - start
+      // background-color: white;
+      background-color: rgba(0, 0, 0, 0.7);
+    // Fred - jour de printemps - end
     padding-bottom: 25px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    @media (max-width: 767px) {
-        width: 100%;
-    }
+
+    // Fred - jour de printemps - start
+      @media (max-width: 767px) {
+          width: 100%;
+      }
+    // Fred - jour de printemps - end
+  &.popup-member-card {
+    background-color: rgba(255, 255, 255, 0.9);
+  }
 }
 
 .pmdjs-header {
