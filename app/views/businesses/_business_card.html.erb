@@ -9,12 +9,13 @@
             restants</p>
         <% end %>
         <% end %>
-        <div class="perks-offer-type" style="border-color: <%= business.business_category.color %>;">
-            <%= perk.offer_type %>
+        <div class=" background-image-perk card-img-top img-responsive" style="background-image: url('<%= perk.picture.present? ? perk.picture.url(:card) : business.picture.url(:card) %>');" alt="perk picture">
+          <div class="perks-offer-type" style="border-color: <%= business.business_category.color %>;">
+              <%= perk.offer_type %>
+          </div>
         </div>
-        <img class="card-img-top img-responsive" src="<%= perk.picture.present? ? perk.picture.url(:card) : business.picture.url(:card) %>" alt="perk picture">
-        <div class="card-block card-right">
-            <p class="perk-description card-text text-center"><%= perk.name %></p>
+        <div class="card-perk-description">
+            <p class="perk-description"><%= perk.name %></p>
         </div>
     </div>
 </div>
