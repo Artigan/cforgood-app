@@ -19,6 +19,8 @@ class Api::V1::UsersController < Api::V1::BaseController
   def update
     if user_params[:subscription] == "X"
       render status: 200, json: { status: "updated" }
+    elsif user_params[:cause_id] == "" || user_params[:cause_id] == nil
+       render status: :unprocessable_entity, json: { error: "Cause_id present but null"}
     elsif (user_params[:subscription].present?  && ((user_params[:subscription] != "M" && user_params[:subscription] != "Y") || !user_params[:amount].present? || user_params[:amount] == 0)) || (user_params[:amount].present? && !user_params[:subscription].present?)
       render status: :unprocessable_entity, json: { error: "Inconsistent parameters"}
     elsif @user.update(user_params)
@@ -46,6 +48,7 @@ class Api::V1::UsersController < Api::V1::BaseController
       :street,
       :zipcode,
       :city,
-      :cause_id)
+      :cause_id,
+      :picture)
   end
 end

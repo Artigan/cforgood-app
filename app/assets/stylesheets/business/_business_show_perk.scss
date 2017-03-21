@@ -1,7 +1,7 @@
 /* Adrien CSS */
 #overlayyy {
     height: 100%;
-    width: 100%;
+    width: 0;
     position: fixed;
     z-index: 2;
     left: 0;
@@ -18,45 +18,26 @@
     height: 100%;
 }
 
-.left-side  {
-  width: calc(50% - 45px);
-  float: left;
-  margin-left: 90px;
-
-  @media (max-width: 767px) {
-    width: 100%;
-    margin-left: 0;
-  }
-}
-
 .main-card-left {
-    display: flex;
-    flex-direction: column;
-    // width: 900px;
-    min-height: 100vh;
     border: 0.5px solid lightgrey;
-    // margin-left: 5.5%;
+    margin-left: 90px;
 }
 
 .background-main-img {
     background-size: cover;
-    // height: 500px;
-    // width: 900px;
-    height: 300px;
+    min-height: 500px;
+    width: 100%;
     display: flex;
     align-items: flex-end;
 }
 
 .card-left {
-    display: flex;
-    flex-direction: column;
-    margin-left: 10%;
-    margin-right: 10%;
+    margin-left: 4%;
+    margin-right: 2%;
     padding-bottom: 2%;
 }
 
 .business-picture-row {
-    // width: 900px;
     width: 100%;
     height: 50px;
     display: flex;
@@ -79,7 +60,7 @@
 }
 
 .likes {
-    padding-left: 13.1%;
+    padding-left: 4%;
 }
 
 .share-socials {
@@ -117,7 +98,7 @@
 .business-specs {
     display: flex;
     align-items: center;
-    // width: 90%;
+    width: 95%;
     height: 50px;
     padding-bottom: 1%;
 }
@@ -131,22 +112,18 @@
 
 .business-category {
     flex-grow: 1;
-    padding-left: 2%;
+    padding-left: 1%;
     margin-top: 1%;
-    line-height: 14px;
   }
 
 .business-distance {
     flex-grow: 2;
-    margin-left: 5%;
-    padding-left: 2%;
 }
 
 .business-category-image {
     display: flex;
     flex-grow: 4;
     justify-content: flex-end;
-    margin-bottom: 5%;
 }
 
 .business-beliefs {
@@ -161,8 +138,8 @@
 }
 
 .business-description {
-    width: 92%;
-    font-size: 1em;
+    width: 95%;
+    font-size: 0.9em;
     color: rgba(55,55,55,0.9);
 }
 
@@ -179,18 +156,19 @@ hr {
     margin-left: 0;
     margin-top: 1.2%;
     margin-bottom: 1%;
-    // width: 95%;
+    width: 95%;
     background-color: rgba(128,128,128, 0.3);
 }
 
 .details {
     display: flex;
-    // width: 90%;
+    width: 95%;
     margin-bottom: 2%;
+    flex-wrap: wrap;
 }
 
 .map-details {
-  flex-grow: 3;
+  flex-grow: 1;
 }
 
 .business-map {
@@ -199,7 +177,7 @@ hr {
 }
 
 .business-informations {
-  flex-grow : 3;
+  flex-grow : 1;
   padding-left: 3%;
   width: 30%;
   height: 190px;
@@ -207,7 +185,6 @@ hr {
 
 .business-address-column {
   display: flex;
-  flex-direction: column;
   align-items: flex-end;
   justify-content: flex-start;
 }
@@ -217,8 +194,10 @@ hr {
 }
 
 .business-addresss span {
-  font-size: 0.75em;
-  margin-left: -13%;
+  font-size: 0.6em;
+  display: flex;
+  flex-wrap: wrap;
+  // margin-left: 1%;
 }
 
 .business-opening-hours {
@@ -231,7 +210,7 @@ hr {
 }
 
 .business-contacts {
-  flex-grow: 3;
+  flex-grow: 1;
   width: 30%;
   height: 190px;
 }
@@ -289,7 +268,8 @@ hr {
 }
 
 span.find-us {
-  margin-right: 2%;
+  text-align: center;
+  font-size: 0.7em;
 }
 
 .follow-uss a {
@@ -325,36 +305,35 @@ span.find-us {
     color: white;
 }
 
-.leader-presentation p {
-    margin-left: -10%;
-    margin-right: 10%;
-    font-size: 1em;
+.business-leader-section {
+  display: flex;
+  align-items: center;
+  width: 90%;
+  margin-top: 2%;
+  flex-wrap: wrap;
 }
 
-.leader-presentation p:first-child {
-    margin-top: 4%;
+.business-leader-picture {
+  border-radius: 50%;
+  background-position: center;
+  background-size: cover;
+  width: 140px;
+  height: 140px;
+  flex-wrap: wrap;
 }
 
-.leader-presentation img {
-    width: 100%;
+.business-leader-decription {
+  padding-left: 5%;
+}
+
+.leader-description {
+  font-size: 0.9em;
 }
 // This is the right side of the page (perks from the business) //
 
 .right-side {
-  position: relative;
-  width: calc(50% - 45px);
-  float: right;
-  padding-top: 2%;
-  padding-left: 3%;
-
-  .perk-carddd {
-    width: 50%;
-    float: left;
-
-    @media (max-width: 767px) {
-      width: 100%;
-    }
-  }
+    padding-top: 2%;
+    padding-left: 3%;
 }
 
 .right-side h2 {
@@ -363,24 +342,17 @@ span.find-us {
 }
 
 .card-perks {
-    position: relative;
     width: 90%;
     margin: 3% 0.5%;
     border: 0.2px solid lightgrey;
-
-    @media (max-width: 767px) {
-      width: 100%;
-    }
 }
 
 .card-perks img {
     width: 100%;
-    height: 12vw;
+    height: 200px;
 }
 
 .perk-description {
-    height: 30px;
-    line-height: 14px;
     padding: 4% 3% 3%;
 }
 
@@ -401,10 +373,8 @@ span.find-us {
 .perks-offer-type {
     position: absolute;
     z-index: 1;
-    right: 4%;
-    bottom: 35px;
-    // margin-top: 38%;
-    // margin-left: 66%;
+    margin-top: 38%;
+    margin-left: 66%;
     background-color: white;
     color: black;
     border: 6px solid;
@@ -426,19 +396,26 @@ span.find-us {
 // PERKS MODAL //
 
 .perk-modalll {
-    position: absolute;
+    // Fred - jour de printemps - start
+      position: absolute;
+    // Fred - jour de printemps - end
     width: 35%;
     background-color: white;
-    right: 5%;
-    // margin-left: 58%;
-    padding-bottom: 5%;
+    margin-top: 5%;
+    // Fred - jour de printemps - start
+      // margin-left: 58%;
+     right: 7.5%;
+    // Fred - jour de printemps - end
     border: 0.2px solid lightgrey;
 
-    @media (max-width: 767px) {
-      width: 100%;
-      height: 100vh;
-      right: 0;
-    }
+   // Fred - jour de printemps - start
+      @media (max-width: 767px) {
+        width: 100%;
+        height: 100%;
+        margin-top: 0;
+        right: 0;
+      }
+    // Fred - jour de printemps - end
 }
 
 .perk-modalll h5 {
@@ -487,9 +464,16 @@ span.find-us {
 .perk-modal-alert i.fa-bell {
     display: inline-block;
     border-style: solid;
-    padding: 5px 6px 6px;
-    border-width: 0;
-    border-radius: 60px;
+    width: auto;
+    height: auto;
+    min-width: 35px;
+    min-height: 35px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 22px;
+    vertical-align: middle;
+    padding: 4px;
+    color: white;
 }
 
 .itinary-arrow {
@@ -515,169 +499,10 @@ span.find-us {
         background-color: #ccc;
     }
 }
-// Media Queries //
-@media screen and (min-width: 1221px) {
-    .business-addresss {
-        // margin-top: -13%;
-        margin-left: 18%;
-        width: 130%;
-        font-size: 0.8em;
-    }
 
-    .leader-description {
-        margin-top: -5%;
-    }
-
-    .leader-presentation p {
-        margin-left: 7%;
-    }
-}
 @media screen and (min-width: 992px) and (max-width: 1220px) {
-    // .main-card-left {
-    //     margin-left: 14%;
-    // }
 
-    // .background-main-img {
-        // background-size: cover;
-        // height: 250px;
-        // width: 450px;
-    // }
 
-    .business-picture-row {
-        // width: 450px;
-        height: 35px;
-    }
-
-    .likes {
-        font-size: 0.8em;
-        padding-left: 14.1%;
-    }
-
-    .share-socials {
-        font-size: 0.8em;
-    }
-
-    .dropdown-menu.socials {
-        width: 90px;
-    }
-
-    .dropdown-socials {
-        font-size: 0.7em;
-    }
-
-    #business-name {
-        font-size: 1.2em;
-        margin-bottom: -4%;
-    }
-
-    .business-category {
-        font-size: 0.75em;
-        // margin-left: -10%;
-        // width: 150%;
-    }
-
-    .business-distance {
-        font-size: 0.75em;
-        // margin-left: 10%;
-    }
-
-    .business-category-image {
-        // margin-top: -35%;
-        // margin-left: 20%;
-    }
-
-    .business-description {
-        font-size: 0.6em;
-    }
-
-    .map-details {
-        width: 17vw;
-        height: 18vw;
-        margin-top: 2%;
-    }
-
-    .business-informations {
-        padding-left: 15%;
-        font-size: 0.6em;
-        width: 50%;
-    }
-
-    .business-informations.fa-map-o {
-        font-size: 1.2em;
-    }
-
-    .business-opening-hours {
-        margin-top: -5%;
-    }
-
-    .business-addresss {
-        margin-top: -20%;
-        // margin-left: 20%;
-        width: 150%;
-        font-size: 1em;
-    }
-
-    .business-contacts {
-        margin-left: 0;
-        padding-top: 2%;
-        width: 100%;
-    }
-
-    .follow-uss {
-        margin-left: 32%;
-        max-width: 40%;
-    }
-
-    .follow-uss a {
-        width: auto;
-        height: auto;
-        min-width: 50px;
-        min-height: 50px;
-        line-height: 25px;
-        padding: 5px;
-    }
-
-    .follow-uss a i {
-        font-size: 2em;
-        margin-top: 2.5px;
-    }
-
-    .leader-presentation img {
-        width: 140%;
-    }
-
-    .leader-presentation p {
-        margin-left: 7%;
-    }
-
-    p.leader-description {
-        margin-top: -12%;
-        font-size: 0.6em;
-    }
-
-    .right-side {
-        padding-top: 5%;
-    }
-
-    .right-side h2 {
-        margin-right: 70%;
-        font-size: 1em;
-    }
-
-    .perks-offer-type {
-        // margin-top: 33%;
-        // margin-left: 60%;
-        font-size: 0.7em;
-    }
-
-    .perks-number {
-        margin-left: 20%;
-        font-size: 0.8em;
-    }
-
-    .perk-description {
-        font-size: 0.7em;
-    }
 }
 @media screen and (min-width: 768px) and (max-width: 991px) {
     .full-page {
@@ -686,16 +511,16 @@ span.find-us {
         overflow: hidden;
     }
 
-    // .background-main-img {
-    //     background-size: cover;
-    //     height: 450px;
-    //     width: 100%;
-    // }
+    .background-main-img {
+        background-size: cover;
+        height: 450px;
+        width: 100%;
+    }
 
-    // .business-picture-row {
-    //     width: 100%;
-    //     height: 40px;
-    // }
+    .business-picture-row {
+        width: 100%;
+        height: 40px;
+    }
 
     .likes {
         font-size: 0.8em;
@@ -721,7 +546,7 @@ span.find-us {
     }
 
     .business-addresss {
-        // margin-left: -33%;
+        margin-left: -33%;
     }
 
     .follow-uss a {
@@ -767,8 +592,8 @@ span.find-us {
     }
 
     .perks-offer-type {
-        // margin-top: 34%;
-        // margin-left: 50%;
+        margin-top: 34%;
+        margin-left: 50%;
         font-size: 0.7em;
     }
 }
@@ -780,21 +605,20 @@ span.find-us {
     }
 
     .main-card-left {
-        width: 100%;
         margin: 0;
         padding: 0;
         border: none;
     }
 
-    // .left-side {
-    //     padding: 0;
-    // }
+    .left-side {
+        padding: 0;
+    }
 
-    // .background-main-img {
-    //     background-size: cover;
-    //     height: 450px;
-    //     width: 100%;
-    // }
+    .background-main-img {
+        background-size: cover;
+        height: 450px;
+        width: 100%;
+    }
 
     .business-picture-row {
         width: 100%;
@@ -824,18 +648,17 @@ span.find-us {
     }
 
     .business-specs {
-        // margin-left: -5%;
+        margin-left: -5%;
         margin-top: -4%;
     }
 
     .business-category {
         font-size: 0.9em;
-        // margin-left: -10%;
+        margin-left: -10%;
     }
 
     .business-distance {
         font-size: 0.9em;
-        text-align: right;
     }
 
     .business-description {
@@ -860,7 +683,7 @@ span.find-us {
     }
 
     .business-addresss {
-        // margin-top: 2%;
+        margin-top: 2%;
     }
 
     .business-opening-hours {
@@ -929,15 +752,14 @@ span.find-us {
     }
 
     .main-card-left {
-        width: 100%;
         margin: 0;
         padding: 0;
         border: none;
     }
 
-    // .left-side {
-    //     padding: 0;
-    // }
+    .left-side {
+        padding: 0;
+    }
 
     .background-main-img {
         background-size: cover;
@@ -973,19 +795,18 @@ span.find-us {
     }
 
     .business-specs {
-        // margin-left: -5%;
+        margin-left: -5%;
         margin-top: -4%;
     }
 
     .business-category {
         font-size: 0.75em;
-        // margin-left: -15%;
+        margin-left: -15%;
     }
 
     .business-distance {
         font-size: 0.75em;
-        text-align: right;
-        // margin-left: -10%;
+        margin-left: -10%;
     }
 
     .business-description {
@@ -1293,6 +1114,16 @@ span.find-us {
                         }
                     }
                     /* BLOCK - MAP **************************/
+                    #map-perk {
+                        margin-top: 15px;
+                        height: 120px;
+                        opacity: 0.4;
+
+                        .mapboxgl-ctrl-attrib {
+                            display: none;
+                        }
+                    }
+
                     .business-address {
                         position: absolute;
                         bottom: 5px;
@@ -1370,6 +1201,16 @@ span.find-us {
 
                             .slick-slide {
                                 padding: 0 10px;
+
+                                #map-perk {
+                                    margin-top: 15px;
+                                    height: 120px;
+                                    opacity: 0.4;
+
+                                    .mapboxgl-ctrl-attrib {
+                                        display: none;
+                                    }
+                                }
 
                                 ul {
                                     display: flex;
@@ -2665,20 +2506,28 @@ span.find-us {
     position: fixed;
     height: 100%;
     overflow-y: scroll;
-    width: 100%;
+    // Fred - jour de printemps - start
+      // width: calc(50% - 45px);
+      width: 100%;
+    // Fred - jour de printemps - end
     z-index: 5555;
     top: 50px;
     right: 0;
-    background-color: rgba(0, 0, 0, 0.7);
+    // Fred - jour de printemps - start
+      // background-color: white;
+      background-color: rgba(0, 0, 0, 0.7);
+    // Fred - jour de printemps - end
     padding-bottom: 25px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    @media (max-width: 767px) {
-        width: 100%;
-    }
 
+    // Fred - jour de printemps - start
+      @media (max-width: 767px) {
+          width: 100%;
+      }
+    // Fred - jour de printemps - end
   &.popup-member-card {
     background-color: rgba(255, 255, 255, 0.9);
   }

@@ -1,5 +1,4 @@
 <div class="perk-modal feedback">
-  <button type="button" class="perk-modal-close close-button">&times;</button>
   <div class="perk-modal-header">
     <div class="perk-modal-illustration"><%= image_tag "business_categories/yoga.svg" %></div>
     <div class="perk-modal-header-text feedback">Avez-vous appréciez ce bon plan ?</div>
@@ -20,6 +19,13 @@
         </div>
       </div>
     </div>
+    <div class="perk-modal-hr"><hr></div>
+    <div class="input-container">
+      <input id="unused" class="radio-button" type="radio" name="radio" />
+      <div class="radio-tile">
+        Je n’ai pas utilisé ma carte de membre
+      </div>
+    </div>
   </div>
 
   <div class="perk-modal-valid-feedback">
@@ -27,7 +33,8 @@
       <%= f.input :feedback, as: :hidden, input_html: { value: true } %>
       <%= f.input :like, as: :hidden, input_html: { value: false } %>
       <%= f.input :unlike, as: :hidden, input_html: { value: false } %>
-      <%= f.submit "Valider", class: "button-submit"%>
+      <%= f.input :unused, as: :hidden, input_html: { value: false } %>
+      <%= f.submit "", class: "submit-feedback", :style => "display: none;" %>
     <% end %>
   </div>
 </div>
@@ -35,11 +42,8 @@
 <script type="text/javascript">
   $('.radio-button').click(function() {
     feedback = $('.radio-button:checked').attr('id');
-    $('#use_like, #use_unlike').val('false');
+    $('#use_like, #use_unlike, #use_unused').val('false');
     $('#use_' + feedback).val('true');
-  });
-
-  $('.perk-modal-close').click(function() {
-    $('this').closest('.perk-modal.feedback').addClass('hidden');
+    $('.submit-feedback').click();
   });
 </script>
