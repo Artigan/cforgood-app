@@ -1,64 +1,26 @@
-<!-- FORM SELECT CAUSE -->
 <div class="choose-cause">
-  <div class="user-cause">
-  <!-- USER SUPPORT -->
-  <span class="tab-subtitle">Votre engagement</span>
-    <div class="user-support">
-      <div class="user-cause-container" style="background-image: url('<%= current_user.cause.picture.url(:card) %>');">
-
-        <div class="user-cause-content">
-          <div class="pictures-container">
-            <div class="picture-container">
-              <% if current_user.picture? %>
-                <%= image_tag current_user.picture.url(:avatar), class: 'user-picture' %>
-              <% else %>
-                <div class="picture-none">
-                  <%= image_tag "citoyen.svg", class: "avatar-citoyen" %>
-                </div>
-              <% end %>
+  <ul class="cause-cards">
+      <li class="cause-cards-item">
+          <%= link_to cause_path(@cause) do %>
+            <div class="cause-card">
+              <div class="cause-picture" style="background-image: url('<%= @cause.picture.url(:card) %>');">
+                <span class="cause-name"><%= @cause.name %></span>
+                <span class="cause-city"><%= @cause.city %></span>
+              </div>
             </div>
-            <div class="picture-container-cause">
-              <% if current_user.cause_id.present? %>
-                <%= image_tag current_user.cause.logo.url(:thumb), class: 'cause-picture' %>
-              <% else %>
-                <div class="picture-none">
-                  <%= image_tag "citoyen.svg", class: "avatar-citoyen" %>
-                </div>
-              <% end %>
+          <% end %>
+      </li>
+      <li class="cause-cards-item">
+        <%= link_to cause_path(@cause) do %>
+            <div class="cause-card new">
+              <div class="cause-picture" style="border: 1px solid rgba(213,213,213,1);">
+                <p class="cause-question">Soutenir<br> une autre association ?</p>
+                <%= link_to causes_path do %>
+                  <%= image_tag "icons/more.svg", class: "causes-path" %>
+                <% end %>
+              </div>
             </div>
-          </div>
-          <div class="user-cause-disclaimer">
-            <% if current_user.cause_id.present? %>
-              Vous soutenez actuellement<br><i><%= current_user.cause.name %></i>.
-            <% else %>
-              Choisissez une association à soutenir !
-            <% end %>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="change-cause">
-    <%= link_to "Soutenir une autre cause ?", causes_path, class: "tab-subtitle" %>
-  </div>
+          <% end %>
+      </li>
+  </ul>
 </div>
-
-<% content_for :after_js do %>
-  <script>
-    $(document).ready(function() {
-      $(".user-button").on("click", function(e) {
-        e.preventDefault;
-        var causeId = $('.cause-presentation.slick-active').val('div').attr('id');
-        var causeName = $('.cause-presentation.slick-active .card-cause span').html();
-        $(".popup-overlay").toggleClass("hidden");
-        $("#user_cause_id").val(causeId);
-        $('.cause-confirmation span.cause-name').html(causeName);
-
-        // EVENT AMPLITUDE : USER_C_PROFILE_MYCAUSE_SUPPORT
-        amplitude.logEvent('USER_C_PROFILE_MYCAUSE_SUPPORT');
-      });
-    });
-  </script>
-<% end %>
-

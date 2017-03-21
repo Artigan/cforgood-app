@@ -61,11 +61,7 @@ class Member::DashboardController < ApplicationController
 
   def profile
     @partner = Partner.find_by_code_partner(current_user.code_partner.upcase) if current_user.code_partner.present?
-    if @partner && @partner.supervisor_id.present?
-      @causes = Cause.where(supervisor_id: @partner.supervisor_id).includes(:cause_category)
-    else
-      @causes = Cause.all.includes(:cause_category)
-    end
+    @cause = current_user.cause
     @payments = Payment.where(user_id: current_user.id).includes(:cause)
   end
 
