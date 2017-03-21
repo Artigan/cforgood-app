@@ -18,13 +18,12 @@ class Api::V1::UsersController < Api::V1::BaseController
 
   def update
     if user_params[:subscription] == "X"
-      if @user.stop_subscription!
-        render status: 200, json: { status: "updated" }
-      else
-        render status: :unprocessable_entity, json: { error: @user.errors.full_messages}
-      end
-    elsif user_params[:cause_id] == "" || user_params[:cause_id] == nil
+      @user.stop_subscription!
+      render status: 200, json: { status: "updated" }
+    elsif user_params[:cause_id].present? && (user_params[:cause_id] == "" || user_params[:cause_id] == nil)
        render status: :unprocessable_entity, json: { error: "Cause_id present but null"}
+    elsif user_params[:code_partner].present? && @user.code_partner.present?
+      render status: :unprocessable_entity, json: { error: "A code_partner already filled"}
     elsif (user_params[:subscription].present?  && ((user_params[:subscription] != "M" && user_params[:subscription] != "Y") || !user_params[:amount].present? || user_params[:amount] == 0)) || (user_params[:amount].present? && !user_params[:subscription].present?)
       render status: :unprocessable_entity, json: { error: "Inconsistent parameters"}
     elsif @user.update(user_params)
