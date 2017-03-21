@@ -9,7 +9,6 @@ class Member::DashboardController < ApplicationController
       session[:logout] = true
     end
 
-    # Patch during VIDEO && SALON
     @lat_lng = set_coordinates(params[:lat], params[:lng])
 
     @businesses = Business.includes(:business_category, :perks_in_time, :uses, :main_address).active.for_map.with_perks_in_time.distinct.eager_load(:addresses_for_map).merge(Address.near(@lat_lng, 10))
@@ -26,7 +25,7 @@ class Member::DashboardController < ApplicationController
           "properties": {
             "marker-symbol": business.business_category.marker_symbol,
             "color": business.business_category.color,
-            "description": render_to_string(partial: "components/map_box", locals: { business: business, address: address, flash: false, lat: @lat_lng[0], lng: @lat_lng[1] })
+            "description": render_to_string(partial: "components/map_box", locals: { business: business, address: address, flash: false, lat_lng: @lat_lng })
           }
         }
       end

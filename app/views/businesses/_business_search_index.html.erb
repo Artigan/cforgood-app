@@ -3,31 +3,35 @@
   <div class="text-count-container">
     <div class="text-count"></div>
   </div>
-  <div class="business-search-close-button-mobile">
+<!--   <div class="business-search-close-button-mobile">
     <div>Annuler la recherche</div>
-  </div>
+  </div> -->
 
   <div class="bsmd-container">
     <div id="business-search-modal">
       <ul class="list">
         <% @businesses.each do |business| %>
           <%= link_to business_path(business, address_id: business.main_address.id) do %>
-            <div class="business-index-card">
+            <div class="business-index-card" style="border-bottom-color: <%= business.business_category.color %>;">
               <div class="bic-left">
                 <div class="bic-photo" style="background-image: url('<%= business.picture %>');"></div>
               </div>
               <div class="bic-middle">
                 <div class="bic-middle-top">
-                  <div class="business-name"><%= business.name %></div>
+                  <div class="pastille" style="background-color:<%= business.business_category.color %>;"></div>
+                  <div class="business-category-name"><%= business.business_category.name %></div>
+                </div>
+                <div class="bic-middle-center">
+                  <div class="business-name"><%= business.name.titleize %></div>
+                  <div class="business-activity"><%= business.activity %></div>
                 </div>
                 <div class="bic-middle-bottom">
-                  <div class="pastille" style="background-color:<%= business.business_category.color %>;">
-                    <%= image_tag business.business_category.picture, size: "20x20" %>
-                  </div>
-                  <div class="category-name category" style="color: grey;"><%= business.business_category.name %></div>
+                  <span>
+                    <i style="color:<%= business.business_category.color %>;" class="fa fa-map-marker fa-2x" aria-hidden="true"></i>
+                    à <%= display_distance(business.main_address.distance_from(@lat_lng)) %>
+                  </span>
                 </div>
               </div>
-              <div class="bic-right">+</div>
             </div>
           <% end %>
         <% end %>

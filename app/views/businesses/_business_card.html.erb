@@ -1,13 +1,16 @@
 <div class="perk-carddd <%= !perk.perk_in_time? || !(user_signed_in? && perk.perk_usable?(current_user))  ? 'unavailable' : 'available' %>" id="perk-modal-dynamic-<%= perk.id %>">
     <div class="card-perks">
-        <% if perk.flash %>
-        <div class="bolt-icon">
-            <i class="fa fa-bolt" aria-hidden="true"></i>
-        </div>
-        <% if perk.times > 0 %>
-        <p class="perks-number"><%= perk.times - Use.where(perk_id: perk.id).count %>
-            restants</p>
+        <% if index_view == true %>
+          <div class="business-name"><%= business.name %></div>
+          <div class="business-activity"><%= business.activity %></div>
         <% end %>
+        <% if perk.flash %>
+          <div class="bolt-icon">
+              <i class="fa fa-bolt" aria-hidden="true"></i>
+          </div>
+          <% if perk.times > 0 %>
+            <p class="perks-number"><%= perk.times - Use.where(perk_id: perk.id).count %> restants</p>
+          <% end %>
         <% end %>
         <div class="perks-offer-type" style="border-color: <%= business.business_category.color %>;">
             <%= perk.offer_type %>
