@@ -1,6 +1,7 @@
 class Member::DashboardController < ApplicationController
 
   skip_before_action :authenticate_user!, only: [:dashboard]
+  before_action :get_coordinates, only: [:dashboard, :profile, :gift, :ambassador]
   before_action :find_businesses_for_search, only: [:profile, :gift, :ambassador]
 
   def dashboard
@@ -8,8 +9,6 @@ class Member::DashboardController < ApplicationController
     if !user_signed_in?
       session[:logout] = true
     end
-
-    @lat_lng = set_coordinates(params[:lat], params[:lng])
 
     @businesses = Business.includes(:business_category, :perks_in_time, :uses, :main_address).active.for_map.with_perks_in_time.distinct.eager_load(:addresses_for_map).merge(Address.near(@lat_lng, 10))
     @geojson = {"type" => "FeatureCollection", "features" => []}
@@ -71,6 +70,10 @@ class Member::DashboardController < ApplicationController
   end
 
   private
+
+  def get_coordinates
+    @lat_lng = set_coordinates(params[:lat], params[:lng])
+  end
 
   def find_businesses_for_search
     @businesses = Business.includes(:business_category, :main_address).active.with_perks_in_time.distinct
