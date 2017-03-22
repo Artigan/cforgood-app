@@ -64,8 +64,7 @@
             <div class="business-distance">
               <span>
                 <i style="color:<%= @business.business_category.color %>;" class="fa fa-map-marker fa-2x" aria-hidden="true"></i>
-                à
-                <%= display_distance(@address.distance_from(@lat_lng)) %>
+                à <%= display_distance(@address.distance_from(@lat_lng)) %>
               </span>
             </div>
             <div class="business-category-image img-responsive">
