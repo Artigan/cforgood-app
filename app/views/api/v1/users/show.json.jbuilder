@@ -1,4 +1,4 @@
-json.extract! @user, :id, :first_name, :last_name, :name, :ambassador
+json.extract! @user, :id, :email, :first_name, :last_name, :name, :ambassador
 json.picture @user.picture.url(:card)
 json.extract! @user, :member, :trial_done, :birthday, :subscription, :amount, :street, :zipcode, :city, :code_partner
 json.status @user.status
