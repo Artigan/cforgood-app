@@ -11,6 +11,7 @@
 /tags
 /tmp/*
 /config/application.yml
+/config/database.yml
 # Ignore application configuration
 /config/application.yml
 /config/database.yml
