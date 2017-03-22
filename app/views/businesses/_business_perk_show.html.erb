@@ -3,26 +3,27 @@
   <% perk.update_nb_view! if perk.present? && user_space? %>
 
   <div class="card perk-modalll">
-    <div class="card-block row">
-      <div class="col-md-4 col-sm-4 col-xs-4">
+    <div class="card-block perk-modal-top-block">
+      <div class=" perk-modal-main-title">
         <h5 style="border-color: <%= @business.business_category.color %>" class="card-text">Bon plan</h5>
       </div>
-      <div class="col-md-4 col-sm-4 col-xs-4 col-md-offset-4 col-sm-offset-4 col-xs-offset-4">
+      <div class="perk-modal-close-button">
         <button type="button" class="closed-perk-on-modal close-button">&times;</button>
       </div>
     </div>
-    <img class="card-img-top img-responsive" src="<%= perk.picture.present? ? perk.picture : perk.business.picture %>" alt="Card image cap">
+    <div class="background-image-perk-modal card-img-top img-responsive" style="background-image: url('<%= perk.picture.present? ? perk.picture : perk.business.picture %>');" alt="perk picture">
     <div class="perks-offer-type-modal" style="border-color: <%= @business.business_category.color %>;">
       <%= perk.offer_type %>
     </div>
-    <div class="card-block">
+  </div>
+    <div class="card-block block-text-modal">
 
       <div class="perk-modal-perk-name">
         <%= perk.name %>
       </div>
       <div class="pmdjs-perk-description">
         <p><%= perk.description %>.</p>
-      </div><br>
+      </div>
 
       <div class="perk-modal-alert">
         <% if perk.appel %>
@@ -65,26 +66,26 @@
 
         <!-- PERK MEMBER CARD DESKTOP -->
         <% elsif device_type != :mobile %>
-          <p class="text-center">Rendez-vous en magasin avec votre smartphone</p>
-          <div class="row">
-            <div class="col-md-2 col-md-offset-6 col-sm-2 col-sm-offset-6 col-xs-2 col-xs-offset-6">
+          <p class="text-center perk-modal-answer">Rendez-vous en magasin avec votre smartphone</p>
+          <div class="itinary-modal-section">
+            <div class="itinary-modal-arrow">
               <%= link_to "http://maps.google.com/maps", class: "itinary-arrow", id: "link-map", disabled: true, data: { locale: I18n.locale, destination: { latitude: @business.latitude, longitude: @business.longitude } }, :target => "_blank" do %>
               <i class="fa fa-location-arrow fa-2x"></i>
               <% end %>
-              <span class="label-itinary">Afficher l'itinéraire</span>
             </div>
+              <p class="label-itinary">Afficher l'itinéraire</p>
           </div>
 
         <!-- PERK MEMBER CARD MOBILE -->
         <% else %>
-          <p class="text-center">Montrez votre carte de membre au commerçant.</p>
-          <div class="row">
-            <div class="col-md-2 col-md-offset-6 col-sm-2 col-sm-offset-6 col-xs-2 col-xs-offset-6">
+          <p class="text-center perk-modal-answer">Montrez votre carte de membre au commerçant.</p>
+          <div class="itinary-modal-section">
+            <div class="itinary-modal-arrow">
               <%= link_to "http://maps.google.com/maps", class: "itinary-arrow", id: "link-map", disabled: true, data: { locale: I18n.locale, destination: { latitude: @business.latitude, longitude: @business.longitude } }, :target => "_blank" do %>
               <i class="fa fa-location-arrow fa-2x"></i>
               <% end %>
-              <span class="label-itinary">Afficher l'itinéraire</span>
             </div>
+              <p class="label-itinary">Afficher l'itinéraire</p>
           </div>
           <% if current_user.member %>
             <%= render "components/member_card", business: @business, perk: perk %>
