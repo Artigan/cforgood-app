@@ -21,7 +21,7 @@
         <div class="bic-middle-bottom">
           <span>
             <i style="color:<%= business.business_category.color %>;" class="fa fa-map-marker fa-2x" aria-hidden="true"></i>
-            à <%= display_distance(business.main_address.distance_from(lat_lng)) %>
+            à <%= display_distance(business.address.distance_from(lat_lng)) %>
           </span>
         </div>
       </div>

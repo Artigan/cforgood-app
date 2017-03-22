@@ -1,9 +1,9 @@
 class CausesController < ApplicationController
 
   skip_before_action :authenticate_user!, only: [:index, :show]
+  before_action :get_coordinates, only: [:index, :show]
 
   def index
-    @lat_lng = set_coordinates(params[:lat], params[:lng])
     if @partner && @partner.supervisor_id.present?
       @causes = Cause.where(supervisor_id: @partner.supervisor_id)
     else
@@ -37,10 +37,13 @@ class CausesController < ApplicationController
 
   private
 
-    def cause_params
-    params.require(:cause).permit(:name, :description, :street, :zipcode, :city, :url, :email, :telephone, :impact, :cause_category_id, :facebook, :twitter, :instagram, :description_impact,
-:representative_first_name, :representative_last_name, :amount_impact, :active, :link_video, :picture, :picture_cache, :logo, :logo_cache, :mailing, :tax_receipt, :followers, :heard)
+    def get_coordinates
+      @lat_lng = set_coordinates(params[:lat], params[:lng])
+    end
 
+    def cause_params
+      params.require(:cause).permit(:name, :description, :street, :zipcode, :city, :url, :email, :telephone, :impact, :cause_category_id, :facebook, :twitter, :instagram, :description_impact,
+:representative_first_name, :representative_last_name, :amount_impact, :active, :link_video, :picture, :picture_cache, :logo, :logo_cache, :mailing, :tax_receipt, :followers, :heard)
     end
 
 end
