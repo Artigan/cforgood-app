@@ -235,6 +235,7 @@ class User < ApplicationRecord
     self.date_last_payment = nil
     code_partner_save = self.code_partner
     self.code_partner = nil
+    self.ecosystem_id = nil
     self.date_end_partner = nil
     self.save
     # SEND EVENT TO INTERCOM
@@ -314,6 +315,7 @@ class User < ApplicationRecord
           start_date = Time.now
         end
         self.date_end_partner = start_date + Partner.find_by_code_partner(self.code_partner).nb_month.month
+        self.ecosystem_id = @partner.supervisor_id
       end
     end
   end
@@ -371,7 +373,13 @@ class User < ApplicationRecord
     # UPDATE CUSTOM ATTRIBUTES ON INTERCOM
 
     intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
-    promo = Partner.find_by_code_partner(self.code_partner).try(:promo) || false
+    @partner = Partner.find_by_code_partner(self.code_partner)
+    promo = false
+    ecosystem = nil
+    if @partner
+      promo = @partner.promo
+      ecosystem = Business.find(@partner.supervisor_id).name
+    end
     begin
       user = intercom.users.find(:user_id => self.id)
       user.custom_attributes["user_type"] = 'user'
@@ -385,6 +393,7 @@ class User < ApplicationRecord
       user.custom_attributes['code_promo'] = promo
       user.custom_attributes['date_end_trial'] = self.date_end_partner
       user.custom_attributes['ambassador'] = self.ambassador
+      user.custom_attributes['ecosystem'] = ecosystem
       intercom.users.save(user)
     rescue Intercom::IntercomError => e
       begin
@@ -404,7 +413,8 @@ class User < ApplicationRecord
             'code_partner' => self.code_partner,
             'code_promo' => promo,
             'date_end_trial' => self.date_end_partner,
-            'ambassador' => self.ambassador
+            'ambassador' => self.ambassador,
+            'ecosystem' => ecosystem
           }
         )
       rescue Intercom::IntercomError => e
@@ -457,8 +467,8 @@ class User < ApplicationRecord
   end
 
   def assign_ecosystem
-    ecosystem_address = Address.main.joins(:business).merge(Business.supervisor_not_admin).near([self.latitude, self.longitude], 10).first
-    self.ecosystem = ecosystem_address.business if ecosystem_address
+    # ecosystem_address = Address.main.joins(:business).merge(Business.supervisor_not_admin).near([self.latitude, self.longitude], 10).first
+    # self.ecosystem = ecosystem_address.business if ecosystem_address
   end
 
   def save_onesignal_id

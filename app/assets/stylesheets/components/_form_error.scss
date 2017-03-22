@@ -26,14 +26,31 @@ span.help-block, label.error {
 
 .alert {
   position: absolute;
-  background: transparent;
+  background: rgba(255, 255, 255, 0.95);
   border-color: transparent;
-  color: orange;
+  border-radius: 0;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
   text-align: left;
+  color: orange;
+  z-index: 500;
+}
+
+.close-alert {
+  position: absolute;
+  padding: 0;
+  top: 0;
+  right: 7px;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  -webkit-appearance: none;
+  font-size: 20px;
+  font-weight: 100;
+  color: #666;
 }
 
 #error_explanation {
-  z-index: 500;
+  display: inline;
 
   li.alert-message {
     border: none;
