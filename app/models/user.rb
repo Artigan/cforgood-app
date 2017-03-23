@@ -101,6 +101,7 @@ class User < ApplicationRecord
   # validates :city, presence: true
 
   validate :code_partner?, if: :code_partner_changed?
+  validate :amount?, if: :amount_changed?
 
   validates_size_of :picture, maximum: 2.megabytes,
     message: "Cette image dépasse 2 MG !", if: :picture_changed?
@@ -320,6 +321,16 @@ class User < ApplicationRecord
     end
   end
 
+  def amount?
+    if subscription == 'M'
+      errors.add(:amount, "La participation mensuelle minimum est 1€") if amount < 1
+      errors.add(:amount, "La participation mensuelle maximum est 50€") if amount > 50
+    else
+      errors.add(:amount, "La participation annuelle minimum est 30€") if amount < 30
+      errors.add(:amount, "La participation annuelle maximum est 500€") if amount > 500
+    end
+  end
+
   def address_changed?
     street_changed? || zipcode_changed? || city_changed?
   end
@@ -378,7 +389,7 @@ class User < ApplicationRecord
     ecosystem = nil
     if @partner
       promo = @partner.promo
-      ecosystem = Business.find(@partner.supervisor_id).name
+      ecosystem = Business.find(@partner.supervisor_id).name if @partner.supervisor_id
     end
     begin
       user = intercom.users.find(:user_id => self.id)

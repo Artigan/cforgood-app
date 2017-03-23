@@ -25,11 +25,11 @@
       <% end %>
     </li>
     <li id="data-used">
-      <% if @business.businesses_perks_uses.count == 0 %>
-        <span class="number number-inactive"><%= @business.businesses_perks_uses.count %></span>
+      <% if @business.businesses_perks_uses.used.count == 0 %>
+        <span class="number number-inactive"><%= @business.businesses_perks_uses.used.count %></span>
         <span class="label number-inactive">Bons plans utlisés</span>
       <% else %>
-        <span class="number"><%= @business.businesses_perks_uses.count %></span>
+        <span class="number"><%= @business.businesses_perks_uses.used.count %></span>
         <span class="label">Bons plans utlisés</span>
       <% end %>
     </li>
@@ -43,11 +43,11 @@
       <% end %>
     </li>
     <li id="data-causes">
-      <% if @business.causes_count == 0 %>
-        <span class="number number-inactive"><%= @business.causes_count %></span>
+      <% if @business.causes.count == 0 %>
+        <span class="number number-inactive"><%= @business.causes.count %></span>
         <span class="label number-inactive">Nombre d'associations</span>
       <% else %>
-        <span class="number"><%= @business.causes_count %></span>
+        <span class="number"><%= @business.causes.count %></span>
         <span class="label">Nombre d'associations</span>
       <% end %>
     </li>
