@@ -29,7 +29,7 @@
 
 .background-main-img {
     background-size: cover;
-    min-height: 500px;
+    min-height: 400px;
     width: 100%;
     display: flex;
     align-items: flex-end;
@@ -50,15 +50,16 @@
 .socials-row {
     background-color: rgba(255,255,255,0.9);
     opacity: 0.85;
-    flex-grow: 9;
+    flex-grow: 8;
     display: flex;
     align-items: center;
 }
 
 .share-row {
     opacity: 0.9;
-    flex-grow: 1;
+    flex-grow: 2;
     display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
 }
@@ -67,14 +68,27 @@
     padding-left: 4%;
     display: flex;
     align-items: center;
+    font-size: 0.8em;
 }
 
 .share-socials {
     color: white;
+    font-size: 0.8em;
+}
+
+.share-call-to-action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+i.fa-share-alt {
+  font-size: 2em;
+  padding-left: 5%;
 }
 
 .share-socials:hover {
-    color: lightgrey;
+    color: white;
 }
 
 .share-socials:focus {
@@ -88,43 +102,31 @@
     margin-bottom: -0.6% !important;
 }
 
-.dropdown-menu.socials {
-  margin-left: -20%;
-  margin-bottom: 40%;
-}
-
-.dropdown-socials {
-  padding-left: 10%;
-}
 
 #business-name {
     font-size: 2.5em;
     color: black;
     font-weight: 600;
-    text-transform: lowercase;
-    text-transform: capitalize;
     margin-bottom: -2%;
 }
 
 .business-specs {
     display: flex;
-    align-items: center;
+    align-items:flex-end;
     width: 100%;
     height: 50px;
-    padding-bottom: 1%;
 }
 
 .round-icon {
     height: 18px;
     width: 18px;
     border-radius: 50%;
-    margin-top: 1%;
+    margin-bottom: 0.5%;
 }
 
 .business-category {
     flex-grow: 1;
     padding-left: 1%;
-    margin-top: 1%;
   }
 
 .business-distance {
@@ -135,6 +137,7 @@
     display: flex;
     flex-grow: 4;
     justify-content: flex-end;
+    margin-bottom: -1.5%;
 }
 
 .business-beliefs {
@@ -174,70 +177,65 @@ hr {
 .details {
     display: flex;
     width: 100%;
-    padding-bottom: 4%;
     flex-wrap: wrap;
 }
 
 .map-details {
+  width: 180px;
+  height: 200px;
   flex-grow: 1;
 }
 
 .business-map {
-  width: 200px;
-  height: 190px;
+  width: 170px;
+  height: 160px;
 }
 
-.business-informations {
-  flex-grow : 1;
-  padding-left: 3%;
-  width: 30%;
-  height: 190px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.business-address-column {
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-start;
-}
-
-.business-address-icon img {
-  width: 50px;
-}
-
-.business-addresss span {
-  font-size: 0.6em;
-  display: flex;
-  flex-wrap: wrap;
-  line-height: normal;
-  padding-left: 5%;
-  width: 80%;
+.business-opening-hours {
+    width: 160px;
+    height: 200px;
+    flex-grow: 1;
 }
 
 .business-opening-hours li {
     list-style-type: none;
-    margin-bottom: -4%;
     font-size: 0.7em;
 }
 
-.business-contacts {
-  flex-grow: 1;
-  width: 30%;
-  height: 190px;
+.business-informations {
+  flex-grow : 1;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.business-address-row {
+  display: flex;
+  margin-bottom: 3%;
+  padding-left: 1%;
+}
+
+.business-address-icon img {
+  width: 30px;
+}
+
+.business-addresss span {
+  font-size: 0.7em;
+  display: flex;
+  margin-left: 3%;
+  flex-wrap: wrap;
+  line-height: 16px;
 }
 
 .business-links {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  height: 190px;
 }
 
 .reach-uss {
     list-style-type: none;
-    margin-bottom: 3.5%;
+    margin-bottom: 3%;
 }
 
 .reach-uss i {
@@ -266,7 +264,7 @@ hr {
 
 .reach-uss span {
     color: black;
-    font-size: 0.8em;
+    font-size: 0.7em;
 }
 
 .follow-uss {
@@ -274,11 +272,6 @@ hr {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-}
-
-span.find-us {
-  text-align: center;
-  font-size: 0.7em;
 }
 
 .follow-uss a {
@@ -307,7 +300,7 @@ span.find-us {
 
 .follow-uss span:first-child {
     color: black;
-    font-size: 0.8em;
+    font-size: 0.7em;
 }
 
 .follow-uss span {
@@ -327,8 +320,8 @@ span.find-us {
   border-radius: 50%;
   background-position: center;
   background-size: cover;
-  width: 140px;
-  height: 140px;
+  width: 120px;
+  height: 120px;
 }
 
 .business-leader-decription {
@@ -337,7 +330,7 @@ span.find-us {
 }
 
 .leader-description {
-  font-size: 0.9em;
+  font-size: 0.8em;
 }
 // This is the right side of the page (perks from the business) //
 
@@ -348,8 +341,10 @@ span.find-us {
 }
 
 .right-side h2 {
-    width: 210px;
+    width: 212px;
     border-bottom: 10px solid;
+    line-height: 16px;
+    font-weight: bold;
 }
 
 .card-perks {
@@ -362,10 +357,51 @@ span.find-us {
   background-position: center;
   background-size: cover;
   display: flex;
+  flex-direction: column;
   align-items: flex-end;
-  justify-content: flex-end;
+  justify-content: space-between;
   width: 100%;
-  height: 230px;
+  height: 190px;
+}
+
+.perk-flash {
+  display: flex;
+  align-items: baseline;
+  margin-top: 2%;
+  margin-right: 2%;
+}
+
+.bolt-icon {
+    font-size: 0.8em;
+    color: grey;
+    display: inline-block;
+    padding: 2px 8px;
+    background-color: white;
+    width: auto;
+    height: auto;
+    min-width: 15px;
+    min-height: 15px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 19px;
+    vertical-align: middle;
+}
+
+.perks-number {
+    color: white;
+    font-size: 0.7em;
+    padding-left: 4%;
+}
+
+.perks-offer-type {
+    display: flex;
+    margin-bottom: 0;
+    background-color: white;
+    color: black;
+    border: 6px solid;
+    border-radius: 25px;
+    padding: 0.5% 2%;
+    margin: 2%;
 }
 
 .card-perk-description {
@@ -378,40 +414,7 @@ span.find-us {
 
 .card-perk-description p {
   margin: 0 !important;
-  text-transform: lowercase;
-  text-transform: capitalize;
-}
-
-.bolt-icon {
-    position: absolute;
-    z-index: 1;
-    margin-top: 2%;
-    margin-left: 4%;
-    color: grey;
-    display: inline-block;
-    border-style: solid;
-    padding: 3px 12px;
-    border-width: 0;
-    border-radius: 60px;
-    background-color: white;
-}
-
-.perks-offer-type {
-    position: absolute;
-    background-color: white;
-    color: black;
-    border: 6px solid;
-    border-radius: 25px;
-    padding: 0.5% 2%;
-    margin: -2%;
-}
-
-.perks-number {
-    color: white;
-    position: absolute;
-    z-index: 1;
-    margin-top: 2.5%;
-    margin-left: 12%;
+  font-size: 0.9em;
 }
 
 .perk-carddd.available {
@@ -451,13 +454,15 @@ span.find-us {
   margin-right: 5%;
 }
 
-.perk-modal-main-title h5 {
-  border-bottom: 6px solid;
-  font-weight: bold;
+.perk-modal-main-title {
+  width: 85px;
 }
 
-.perk-modal-main-title {
-  width: 80px;
+.perk-modal-main-title h5 {
+  border-bottom: 8px solid;
+  line-height: 14px;
+  font-weight: bold;
+  font-size: 1.2em;
 }
 
 .background-image-perk-modal {
@@ -544,6 +549,10 @@ span.find-us {
     transform: rotate(-45deg);
     width: auto;
     height: auto;
+}
+
+.itinary-arrow:hover, .itinary-arrow:focus {
+  color: white;
 }
 
 #link-map.unable {
@@ -850,12 +859,12 @@ span.find-us {
   }
 
   .details {
-
-      // padding-bottom: 4%;
+    flex-direction: column;
   }
 
   .map-details {
-    width: 100%
+    width: 100%;
+    height: 130px;
   }
 
   .business-map {
@@ -863,42 +872,61 @@ span.find-us {
     height: 120px;
   }
 
-  .business-informations {
-    padding-left: 0;
-    width: 100%;
-    height: 190px;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-    // margin-top: 2%
+  .business-opening-hours {
+    align-self: flex-end;
+    width: 150px;
+    margin-top: 5%;
   }
 
-  .business-address-column {
+  .business-informations {
+    display: block;
+    width: 100%;
+    // margin-top: 30%;
+  }
+
+  .business-address-row {
+    width: 150px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: center;
+    margin-top: -52%;
   }
 
   .business-address-icon img {
-    width: 120px;
+    width: 100px;
   }
 
-  .business-addresss span {
-    font-size: 0.6em;
-    align-self: flex-end;
-    text-align: center;
-    width: 100%;
+  .business-addresss {
+    width: 100px;
   }
 
   .business-contacts {
-    width: 100%;
-    margin-left: 15%;
-    margin-right: 15%;
+    margin-left: 20%;
+    margin-right: 20%;
+  }
+
+  .flexbox-contacts {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
   }
 
   .business-links {
-    justify-content: space-around;
+    margin-top: 26%;
+    width: 100%;
+    align-items: center;
+  }
+
+  .reach-uss span {
+      font-size: 0.6em;
+  }
+
+  .follow-uss {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
   }
 
   .business-leader-section {

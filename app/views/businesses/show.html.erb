@@ -27,11 +27,11 @@
                             <div class="share-row" style="background-color:<%= @business.business_category.color %>;">
                                 <div class="dropup">
                                     <a href="" class="share-socials dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <span>Partager
-                                            <span class="not-on-mobile-device">sur
-                                                <i class="fa fa-share-alt" aria-hidden="true"></i>
-                                            </span>
-                                        </span>
+                                      <div class="share-call-to-action">
+                                        <span>Partager sur </span>
+                                        <i class="fa fa-share-alt" aria-hidden="true"></i>
+                                      </div>
+
                                     </a>
                                     <ul class="dropdown-menu socials" role="menu" aria-labelledby="dLabel">
                                         <li class="dropdown-socials">
@@ -54,7 +54,7 @@
                 </div>
                 <div class="card-block card-left">
                     <span>{business.opening}</span>
-                    <h1 id="business-name"><%= @business.name %></h1><br>
+                    <h1 id="business-name"><%= @business.name.downcase.titleize %></h1><br>
 
                     <div class="business-specs">
                         <div class="round-icon" style="background-color:<%= @business.business_category.color %>;"></div>
@@ -110,20 +110,9 @@
                             </div>
                         </div>
 
-                        <div class=" business-informations">
-
-                            <div class="business-address-column">
-
-                                <div class="business-address-icon"><img src="<%= asset_path 'icons/map-location.svg' %>" style="color:<%= @business.business_category.color %>;"></div>
-
-                                <div class=" business-addresss">
-                                    <span><%= @address.present? ? @address.street : @business.street %></span>
-                                    <span><%= @address.present? ? @address.zipcode : @business.zipcode %>
-                                        <%= @address.present? ? @address.city : @business.city %></span>
-                                </div>
-                            </div>
-
-                            <ul class="business-opening-hours">
+                        
+                        <div class="business-opening-hours">
+                            <ul>
                                 <li>{Lundi - Fermé}</li>
                                 <li>{Mardi - 9h00 | 19h00}</li>
                                 <li>{Mercredi - 9h00 | 19h00}</li>
@@ -134,37 +123,48 @@
                             </ul>
                         </div>
 
-                        <div class="business-contacts">
-                            <%= render "pro/dashboard/shared/business_links" %>
+                        <div class=" business-informations">
+                            <div class="business-address-row">
+                                <div class="business-address-icon"><img src="<%= asset_path 'icons/map-location.svg' %>" style=" color:<%= @business.business_category.color %>;"></div>
+                                  <div class=" business-addresss">
+                                      <span> <%= @address.present? ? @address.street : @business.street %>
+                                      <%= @address.present? ? @address.zipcode : @business.zipcode %>
+                                        <%= @address.present? ? @address.city : @business.city %></span>
+                                  </div>
+                            </div>
+
+                            <div class="business-contacts">
+                                <%= render "pro/dashboard/shared/business_links" %>
+                            </div>
                         </div>
                     </div>
 
                     <% if @business.leader_description.present? %>
                     <div class="row"><hr class="horizontal-bar"></div>
-                        <h6 class="business-leader-title">Qui se cache derrière ?</h6>
+                    <h6 class="business-leader-title">Qui se cache derrière ?</h6>
 
-                            <div class="business-leader-section">
-                                <div class="business-leader-picture img-responsive" style="background-image: url('<%= @business.leader_picture %>');"/></div>
+                    <div class="business-leader-section">
+                        <div class="business-leader-picture img-responsive" style="background-image: url('<%= @business.leader_picture %>');"/></div>
 
-                            <div class="business-leader-decription">
-                                <p>
-                                    <strong><%= @business.leader_first_name %>
-                                        <%= @business.leader_last_name %></strong>
-                                </p>
-                                <p class="leader-description"><%= @business.leader_description %></p>
-                            </div>
-
-                        </div>
-
-                    <% end %>
+                    <div class="business-leader-decription">
+                        <p>
+                            <strong><%= @business.leader_first_name %>
+                                <%= @business.leader_last_name %></strong>
+                        </p>
+                        <p class="leader-description"><%= @business.leader_description %></p>
+                    </div>
 
                 </div>
+
+                <% end %>
+
             </div>
         </div>
-        <!-- This is the right side of the page (perks from the business) -->
-        <% if device_type != :mobile %>
-        <div class="col-md-6 col-sm-12 col-xs-12">
-          <div class= "right-side">
+    </div>
+    <!-- This is the right side of the page (perks from the business) -->
+    <% if device_type != :mobile %>
+    <div class="col-md-6 col-sm-12 col-xs-12">
+        <div class="right-side">
             <h2 style="border-color: <%= @business.business_category.color %>;">Nos bons plans</h2><br>
             <% @perks.active.each do |perk| %>
             <div class="col-md-6 col-sm-6 col-xs-12">
@@ -177,40 +177,40 @@
             <% end %>
             <% end %>
         </div>
-      </div>
-    <% else %>
-        <div class="mobile_perks_list">
-            <button class="button-validation-modal mobile-perks-list" style="background-color:<%= @business.business_category.color %>;">
-                Voir nos bons plans
-            </button>
-            <%= render "businesses/mobile_perks_list" %>
-        </div>
-        <% end %>
     </div>
+<% else %>
+    <div class="mobile_perks_list">
+        <button class="button-validation-modal mobile-perks-list" style="background-color:<%= @business.business_category.color %>;">
+            Voir nos bons plans
+        </button>
+        <%= render "businesses/mobile_perks_list" %>
+    </div>
+    <% end %>
+</div>
 </div>
 
 <% content_for :after_js do %>
 
 <script type="text/javascript">
-    setRoutePathFromLocation()
+setRoutePathFromLocation()
 </script>
 
 <%= render 'components/map_show', geojson: @geojson, container: 'map-perk-desktop' %>
 
 <script>
-    $(document).ready(function () {
+$(document).ready(function () {
 
-        $(".mobile-perks-list").click(function () {
-            $('.perk-modal-mobile-member').removeClass("hidden");
-        });
-
-        $('.perk-carddd.available').click(function () {
-            var classModal = $(this).attr('id');
-            $('.' + classModal).removeClass("hidden");
-        });
-        // $(".use-button-logout").click(function() {   $('.use-overlay').removeClass('hidden');   // EVENT AMPLITUDE USER_C_BENEFIT   amplitude.logEvent('USER_C_BENEFIT_LOGOUT'); }); $(".btn-use-button").click(function() {   // EVENT AMPLITUDE
-        // USER_C_BENEFIT   amplitude.logEvent('USER_C_BENEFIT'); });
+    $(".mobile-perks-list").click(function () {
+        $('.perk-modal-mobile-member').removeClass("hidden");
     });
+
+    $('.perk-carddd.available').click(function () {
+        var classModal = $(this).attr('id');
+        $('.' + classModal).removeClass("hidden");
+    });
+    // $(".use-button-logout").click(function() {   $('.use-overlay').removeClass('hidden');   // EVENT AMPLITUDE USER_C_BENEFIT   amplitude.logEvent('USER_C_BENEFIT_LOGOUT'); }); $(".btn-use-button").click(function() {   // EVENT AMPLITUDE
+    // USER_C_BENEFIT   amplitude.logEvent('USER_C_BENEFIT'); });
+});
 </script>
 
 <% end %>
