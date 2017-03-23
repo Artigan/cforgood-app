@@ -54,19 +54,22 @@
 #  telephone              :string
 #  logo                   :string
 #  authentication_token   :string(30)
+#  business_supervisor_id :integer
 #
 # Indexes
 #
-#  index_users_on_authentication_token  (authentication_token) UNIQUE
-#  index_users_on_cause_id              (cause_id)
-#  index_users_on_email                 (email) UNIQUE
-#  index_users_on_reset_password_token  (reset_password_token) UNIQUE
-#  index_users_on_supervisor_id         (supervisor_id)
+#  index_users_on_authentication_token    (authentication_token) UNIQUE
+#  index_users_on_business_supervisor_id  (business_supervisor_id)
+#  index_users_on_cause_id                (cause_id)
+#  index_users_on_email                   (email) UNIQUE
+#  index_users_on_reset_password_token    (reset_password_token) UNIQUE
+#  index_users_on_supervisor_id           (supervisor_id)
 #
 # Foreign Keys
 #
 #  fk_rails_130d5504e9  (cause_id => causes.id)
 #  fk_rails_3972f91257  (supervisor_id => users.id)
+#  fk_rails_a4d8477c38  (business_supervisor_id => businesses.id)
 #
 
 class User < ApplicationRecord
@@ -81,6 +84,7 @@ class User < ApplicationRecord
 
   belongs_to :cause
   belongs_to :ecosystem, class_name: 'Business', foreign_key: 'ecosystem_id'
+  belongs_to :business_supervisor, class_name: 'Business', foreign_key: 'business_supervisor_id'
   belongs_to :manager, class_name: 'User', foreign_key: 'supervisor_id'
   has_many :users, class_name: 'User', foreign_key: 'supervisor_id'
   has_many :uses, dependent: :destroy
@@ -236,7 +240,7 @@ class User < ApplicationRecord
     self.date_last_payment = nil
     code_partner_save = self.code_partner
     self.code_partner = nil
-    self.ecosystem_id = nil
+    self.business_supervisor_id = nil
     self.date_end_partner = nil
     self.save
     # SEND EVENT TO INTERCOM
@@ -316,7 +320,7 @@ class User < ApplicationRecord
           start_date = Time.now
         end
         self.date_end_partner = start_date + Partner.find_by_code_partner(self.code_partner).nb_month.month
-        self.ecosystem_id = @partner.supervisor_id
+        self.business_supervisor_id = @partner.supervisor_id
       end
     end
   end
@@ -355,6 +359,7 @@ class User < ApplicationRecord
   def send_code_partner_slack
     if self.code_partner.present?
       message = find_name_or_email + " a utilisé le code partenaire : #{self.code_partner}"
+      message += " (code supervisé par *#{self.business_supervisor.name}*)" if self.business_supervisor_id
       send_message_to_slack(ENV['SLACK_WEBHOOK_USER_URL'], message)
     end
   end
@@ -389,7 +394,7 @@ class User < ApplicationRecord
     ecosystem = nil
     if @partner
       promo = @partner.promo
-      ecosystem = Business.find(@partner.supervisor_id).name if @partner.supervisor_id
+      business_supervisor = Business.find(@partner.supervisor_id).name if @partner.supervisor_id
     end
     begin
       user = intercom.users.find(:user_id => self.id)
@@ -404,7 +409,7 @@ class User < ApplicationRecord
       user.custom_attributes['code_promo'] = promo
       user.custom_attributes['date_end_trial'] = self.date_end_partner
       user.custom_attributes['ambassador'] = self.ambassador
-      user.custom_attributes['ecosystem'] = ecosystem
+      user.custom_attributes['business_supervisor'] = business_supervisor
       intercom.users.save(user)
     rescue Intercom::IntercomError => e
       begin
@@ -425,7 +430,7 @@ class User < ApplicationRecord
             'code_promo' => promo,
             'date_end_trial' => self.date_end_partner,
             'ambassador' => self.ambassador,
-            'ecosystem' => ecosystem
+            'ecosystem' => business_supervisor
           }
         )
       rescue Intercom::IntercomError => e
@@ -478,8 +483,8 @@ class User < ApplicationRecord
   end
 
   def assign_ecosystem
-    # ecosystem_address = Address.main.joins(:business).merge(Business.supervisor_not_admin).near([self.latitude, self.longitude], 10).first
-    # self.ecosystem = ecosystem_address.business if ecosystem_address
+    ecosystem_address = Address.main.joins(:business).merge(Business.supervisor_not_admin).near([self.latitude, self.longitude], 10).first
+    self.ecosystem = ecosystem_address.business if ecosystem_address
   end
 
   def save_onesignal_id

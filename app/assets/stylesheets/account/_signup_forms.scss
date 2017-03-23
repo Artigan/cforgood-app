@@ -337,6 +337,10 @@
         bottom: 5px;
         right: -20px;
       }
+
+      &:hover, &:focus, &:active {
+        outline: none;
+      }
     }
 
     /* CHOOSE A CARD */
@@ -598,6 +602,10 @@
     margin: 0;
     bottom: 0;
     z-index: 10;
+
+    &:hover, &:focus, &:active {
+      outline: none;
+    }
 
     @media (max-width: 767px) { bottom: 12vh; }
     @media (max-width: 320px) { bottom: 10vh; }
@@ -1080,6 +1088,10 @@
 
         @media (max-width: 767px) { left: 30px; }
         @media (max-width: 320px) { left: 20px; }
+      }
+
+      &:hover, &:focus, &:active {
+        outline: none;
       }
     }
 
