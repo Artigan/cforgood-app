@@ -12,9 +12,11 @@
                 <% end %>
                 <% end %>
             </div>
+            <% if device_type != :mobile %>
             <div class="business-name-card-mobile-list">
-              <h6><%= @business.name.downcase.titleize %></h6>
+              <h6> <%= business.name.downcase.titleize %> </h6>
             </div>
+            <% end %>
             <div class="perks-offer-type" style="border-color: <%= business.business_category.color %>;">
                 <%= perk.offer_type %>
             </div>
