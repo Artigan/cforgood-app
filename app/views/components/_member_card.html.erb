@@ -3,8 +3,8 @@
 
   <button type="button" class="closed-modal-member-card close-button">&times;</button>
 
-  <div><%= business.name %></div>
-  <div><%= perk.name %></div>
+  <div class="business-name-popup-member-card"><h6> <%= business.name %> </h6></div>
+  <div class="perk-name-popup-member-card"><%= perk.name.downcase %></div>
 
   <div class="member-card">
     <div class="validation-date">
@@ -29,7 +29,7 @@
     </div>
   </div>
 
-  <div>"La carte de membre doit être montrée au commerçant avant la prise de commande, cliquez ensuite sur "Terminer" pour valider votre bon plan."  </div>
+  <div class= "member-card-instructions">"La carte de membre doit être montrée au commerçant avant la prise de commande, cliquez ensuite sur "Terminer" pour valider votre bon plan."  </div>
 
   <%= simple_form_for :use, url: perk_uses_path(perk.id), method: :post, remote: true, authenticity_token: true do |f| %>
       <%= f.input :perk_id, as: :hidden, input_html: {value: perk.id} %>

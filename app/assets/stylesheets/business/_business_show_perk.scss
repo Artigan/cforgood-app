@@ -14,26 +14,30 @@
 
 .full-page {
     background-color: white;
-    width: 100%;
-    height: 100%;
+    width: auto;
+    height: auto;
+    overflow-x: hidden;
+    margin-top: 50px;
+    margin-left: 90px;
 }
 
 .main-card-left {
     border: 0.5px solid lightgrey;
-    margin-left: 90px;
+    margin-top: 0;
+    width: 98%;
 }
 
 .background-main-img {
     background-size: cover;
-    min-height: 500px;
+    min-height: 400px;
     width: 100%;
     display: flex;
     align-items: flex-end;
 }
 
 .card-left {
-    margin-left: 4%;
-    margin-right: 2%;
+    margin-left: 5%;
+    margin-right: 5%;
     padding-bottom: 2%;
 }
 
@@ -55,20 +59,36 @@
     opacity: 0.9;
     flex-grow: 1;
     display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
 }
 
 .likes {
     padding-left: 4%;
+    display: flex;
+    align-items: center;
+    font-size: 0.8em;
 }
 
 .share-socials {
     color: white;
+    font-size: 0.8em;
+}
+
+.share-call-to-action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+i.fa-share-alt {
+  font-size: 2em;
+  padding-left: 5%;
 }
 
 .share-socials:hover {
-    color: lightgrey;
+    color: white;
 }
 
 .share-socials:focus {
@@ -78,42 +98,35 @@
 .dropdown-menu.socials {
     background-color: rgba(255,255,255,0.7);
     min-width: 0 !important;
-    width: 180px;
-    margin-bottom: -0.6% !important;
+    width: 30px;
+    // margin-bottom: -0.6% !important;
 }
 
-.dropdown-socials {
-    margin-left: 3%;
-}
 
 #business-name {
     font-size: 2.5em;
     color: black;
     font-weight: 600;
-    text-transform: lowercase;
-    text-transform: capitalize;
-    padding-bottom: -2%;
+    margin-bottom: -2%;
 }
 
 .business-specs {
     display: flex;
-    align-items: center;
-    width: 95%;
+    align-items:flex-end;
+    width: 100%;
     height: 50px;
-    padding-bottom: 1%;
 }
 
 .round-icon {
     height: 18px;
     width: 18px;
     border-radius: 50%;
-    margin-top: 1%;
+    margin-bottom: 0.5%;
 }
 
 .business-category {
     flex-grow: 1;
     padding-left: 1%;
-    margin-top: 1%;
   }
 
 .business-distance {
@@ -124,6 +137,7 @@
     display: flex;
     flex-grow: 4;
     justify-content: flex-end;
+    margin-bottom: -1.5%;
 }
 
 .business-beliefs {
@@ -133,12 +147,12 @@
 }
 
 .business-belief {
-    width: 300px;
+    width: 30%;
     flex-grow: 1;
 }
 
 .business-description {
-    width: 95%;
+    width: 100%;
     font-size: 0.9em;
     color: rgba(55,55,55,0.9);
 }
@@ -156,79 +170,72 @@ hr {
     margin-left: 0;
     margin-top: 1.2%;
     margin-bottom: 1%;
-    width: 95%;
+    width: 100%;
     background-color: rgba(128,128,128, 0.3);
 }
 
 .details {
     display: flex;
-    width: 95%;
-    margin-bottom: 2%;
+    width: 100%;
     flex-wrap: wrap;
 }
 
 .map-details {
+  width: 180px;
+  height: 200px;
   flex-grow: 1;
 }
 
 .business-map {
-  width: 210px;
-  height: 190px;
-}
-
-.business-informations {
-  flex-grow : 1;
-  padding-left: 3%;
-  width: 30%;
-  height: 190px;
-}
-
-.business-address-column {
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-start;
-}
-
-.business-address-icon img {
-  width: 50px;
-}
-
-.business-addresss span {
-  font-size: 0.6em;
-  display: flex;
-  flex-wrap: wrap;
-  // margin-left: 1%;
+  width: 170px;
+  height: 160px;
 }
 
 .business-opening-hours {
-  margin-top: 7%;
-  font-size: 0.75em;
-}
-
-.business-opening-hours li {
-  margin-bottom: -3%;
-}
-
-.business-contacts {
-  flex-grow: 1;
-  width: 30%;
-  height: 190px;
+    width: 160px;
+    height: 200px;
+    flex-grow: 1;
 }
 
 .business-opening-hours li {
     list-style-type: none;
+    font-size: 0.7em;
+}
+
+.business-informations {
+  flex-grow : 1;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.business-address-row {
+  display: flex;
+  margin-bottom: 3%;
+  padding-left: 1%;
+}
+
+.business-address-icon img {
+  width: 30px;
+}
+
+.business-addresss span {
+  font-size: 0.7em;
+  display: flex;
+  margin-left: 3%;
+  flex-wrap: wrap;
+  line-height: 16px;
 }
 
 .business-links {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  height: 190px;
 }
 
 .reach-uss {
     list-style-type: none;
-    margin-bottom: 3.5%;
+    margin-bottom: 3%;
 }
 
 .reach-uss i {
@@ -257,7 +264,7 @@ hr {
 
 .reach-uss span {
     color: black;
-    font-size: 0.8em;
+    font-size: 0.7em;
 }
 
 .follow-uss {
@@ -267,9 +274,8 @@ hr {
   justify-content: center;
 }
 
-span.find-us {
-  text-align: center;
-  font-size: 0.7em;
+.detail-follow-uss {
+  display: flex;
 }
 
 .follow-uss a {
@@ -298,7 +304,7 @@ span.find-us {
 
 .follow-uss span:first-child {
     color: black;
-    font-size: 0.8em;
+    font-size: 0.7em;
 }
 
 .follow-uss span {
@@ -308,86 +314,115 @@ span.find-us {
 .business-leader-section {
   display: flex;
   align-items: center;
-  width: 90%;
+  justify-content: space-between;
+  width: 100%;
   margin-top: 2%;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 
 .business-leader-picture {
   border-radius: 50%;
   background-position: center;
   background-size: cover;
-  width: 140px;
-  height: 140px;
-  flex-wrap: wrap;
+  width: 120px;
+  height: 120px;
 }
 
 .business-leader-decription {
-  padding-left: 5%;
+  width: 80%;
+  padding-left: 2%;
 }
 
 .leader-description {
-  font-size: 0.9em;
+  font-size: 0.8em;
 }
 // This is the right side of the page (perks from the business) //
 
 .right-side {
-    padding-top: 2%;
-    padding-left: 3%;
+    margin-left: 4%;
+    margin-right: 4%;
+    margin-top: 4%;
 }
 
 .right-side h2 {
-    margin-right: 65%;
+    width: 212px;
     border-bottom: 10px solid;
+    line-height: 16px;
+    font-weight: bold;
 }
 
 .card-perks {
-    width: 90%;
-    margin: 3% 0.5%;
     border: 0.2px solid lightgrey;
+    width: 95%;
+    margin-bottom: 10%;
 }
 
-.card-perks img {
-    width: 100%;
-    height: 200px;
+.background-image-perk {
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
+  height: 190px;
 }
 
-.perk-description {
-    padding: 4% 3% 3%;
+.perk-flash {
+  display: flex;
+  align-items: baseline;
+  margin-top: 2%;
+  margin-right: 2%;
+}
+
+.business-name-card-mobile-list {
+  display: none;
 }
 
 .bolt-icon {
-    position: absolute;
-    z-index: 1;
-    margin-top: 2%;
-    margin-left: 4%;
+    font-size: 0.8em;
     color: grey;
     display: inline-block;
-    border-style: solid;
-    padding: 3px 12px;
-    border-width: 0;
-    border-radius: 60px;
+    padding: 2px 8px;
     background-color: white;
+    width: auto;
+    height: auto;
+    min-width: 15px;
+    min-height: 15px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 19px;
+    vertical-align: middle;
+}
+
+.perks-number {
+    color: white;
+    font-size: 0.7em;
+    padding-left: 4%;
 }
 
 .perks-offer-type {
-    position: absolute;
-    z-index: 1;
-    margin-top: 38%;
-    margin-left: 66%;
+    display: flex;
+    margin-bottom: 0;
     background-color: white;
     color: black;
     border: 6px solid;
     border-radius: 25px;
     padding: 0.5% 2%;
+    margin: 2%;
 }
 
-.perks-number {
-    color: white;
-    position: absolute;
-    z-index: 1;
-    margin-top: 2.5%;
-    margin-left: 12%;
+.card-perk-description {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3%;
+}
+
+.card-perk-description p {
+  margin: 0 !important;
+  font-size: 0.9em;
 }
 
 .perk-carddd.available {
@@ -406,7 +441,7 @@ span.find-us {
       // margin-left: 58%;
      right: 7.5%;
     // Fred - jour de printemps - end
-    border: 0.2px solid lightgrey;
+    // border: 0.2px solid lightgrey;
 
    // Fred - jour de printemps - start
       @media (max-width: 767px) {
@@ -418,47 +453,74 @@ span.find-us {
     // Fred - jour de printemps - end
 }
 
-.perk-modalll h5 {
-    margin-right: 60%;
-    margin-left: 5%;
-    border-bottom: 10px solid;
+.perk-modal-top-block {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: auto;
+  margin-left: 5%;
+  margin-right: 5%;
 }
 
-.close-button {
-    margin-right: 4%;
+.perk-modal-main-title {
+  width: 85px;
 }
 
-.perk-modalll img {
+.perk-modal-main-title h5 {
+  border-bottom: 8px solid;
+  line-height: 14px;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.background-image-perk-modal {
     width: 100%;
-    height: 20vw;
-}
-
-.perk-modal-perk-name {
-    margin: 3% 0 0 8%;
+    height: 250px;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
 }
 
 .perks-offer-type-modal {
-    position: absolute;
-    z-index: 2;
-    margin-left: 30%;
-    margin-top: -4%;
     background-color: white;
     color: black;
     border: 6px solid;
     border-radius: 25px;
     padding: 0.2% 0.5%;
+    margin: 2%;
 }
 
-.perk-modal-hr {
-    margin-left: 8%;
+.block-text-modal {
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.perk-modal-perk-name {
+  margin-top: 4%;
+  text-transform: lowercase;
+  text-transform: capitalize;
+  font-weight: bold;
+}
+
+.perk-modal-bottom {
+  height: 160px;
+}
+
+.pmdjs-perk-description {
+  margin: 0;
+  font-size: 0.9em;
+  margin-top: 3%;
+  margin-bottom: 2%;
 }
 
 .perk-modal-alert p {
     font-size: 0.8em;
 }
 
-.perk-modal-bottom {
-    margin-bottom: 4%;
+.perk-modal-question {
+  font-weight: bold;
 }
 
 .perk-modal-alert i.fa-bell {
@@ -476,6 +538,14 @@ span.find-us {
     color: white;
 }
 
+.itinary-modal-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0;
+}
+
 .itinary-arrow {
     display: inline-block;
     border-style: solid;
@@ -487,7 +557,10 @@ span.find-us {
     transform: rotate(-45deg);
     width: auto;
     height: auto;
-    margin-left: -8%;
+}
+
+.itinary-arrow:hover, .itinary-arrow:focus {
+  color: white;
 }
 
 #link-map.unable {
@@ -500,404 +573,542 @@ span.find-us {
     }
 }
 
+    .label-itinary {
+        font-size: 0.8em;
+        color: rgba(55, 55, 55, 0.9);
+        margin-bottom: 100px;
+        text-align: center;
+        margin-top: 2%;
+    }
+
+    // POP UP MEMBER CARD //
+
+    .popup-member-card .business-name-popup-member-card h6{
+      font-weight: bold;
+      margin-bottom: -3%;
+    }
+
+    .perk-name-popup-member-card {
+      font-size: 0.8em;
+      margin-bottom: 3%;
+    }
+
+    .popup-member-card .member-card-instructions {
+      text-align: center;
+      width: 90%;
+      font-size: 0.8em;
+      margin-top: 5%;
+      margin-left: 2%;
+      margin-right: 2%;
+    }
+
+    // END POP UP MEMBER CARD //
+
+    // MOBILE PERKS LIST //
+
+    .perk-modal-mobile-member {
+          position: fixed;
+          height: 100%;
+          overflow-y: scroll;
+          width: 100%;
+          z-index: 5555;
+          background-color: white;
+          margin-bottom: 25%;
+    }
+
+    .perk-modal-member-header {
+        width: 100%;
+        height: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .perk-title-mobile-list {
+        width: 90%;
+        display: flex;
+        justify-content: center;
+        padding-left: 10%;
+    }
+
+    .perk-mobile-list-closing-button {
+      width: 10%;
+      display: flex;
+      justify-content: flex-end;
+      padding-right: 10%;
+    }
+
+    button.closed-perk-modal-mobile-member.close-button{
+      position: static;
+    }
+
+    .perk-title-mobile-list h2 {
+        border-bottom: 8px solid;
+        text-align: center;
+        font-weight: bold;
+        line-height: 14px;
+        padding: 0;
+        margin: 0;
+    }
+
+    .business-name-card-mobile-list {
+      display: flex;
+      width: 100%;
+      align-self: center;
+    }
+
+    .business-name-card-mobile-list h6 {
+      margin: 0;
+      width: 100%;
+      font-weight: bolder;
+      text-align: center;
+      color: white;
+      font-size: 0.8em;
+    }
+
+    .perk-modal-mobile-member .card-perks {
+      width: 90%;
+      margin-left: 5%;
+      margin-right: 5%;
+      border: none;
+      margin-bottom: 2%;
+    }
+
+    .perk-modal-mobile-member .card-perks .background-image-perk {
+      height: 90px;
+    }
+
+    .perk-modal-mobile-member .card-perks .perk-flash {
+      right: 0;
+    }
+
+    .perk-modal-mobile-member .card-perks .bolt-icon {
+      font-size: 0.6em;
+      padding: 1px 6px;
+      line-height: 15px;
+    }
+
+    .perk-modal-mobile-member .card-perks p.perks-number {
+      font-size: 0.55em;
+      padding-left: 0;
+    }
+
+    .perk-modal-mobile-member .card-perks .perks-offer-type {
+      font-size: 0.6em;
+
+    }
+
+
 @media screen and (min-width: 992px) and (max-width: 1220px) {
+
+  .background-main-img {
+      min-height: 300px;
+  }
+
+  .business-picture-row {
+      height: 30px;
+  }
+
+  .socials-row span, .share-row span:not(.not-on-mobile-device) {
+    font-size: 0.8em;
+  }
+
+  #business-name {
+      font-size: 1.5em;
+      margin-bottom: -5%;
+  }
+
+  .business-specs, .business-beliefs, .business-description, .business-leader-decription {
+      font-size: 0.75em;
+  }
+
+  .business-map {
+    width: 190px;
+    height: 180px;
+  }
+
+  .business-informations {
+    justify-content: center;
+  }
+
+  .business-addresss span {
+    font-size: 0.55em;
+    line-height: 12px;
+  }
+
+  .business-opening-hours li {
+      font-size: 0.6em;
+  }
+
+  .business-links {
+    justify-content: center;
+  }
+
+  .reach-uss span {
+      font-size: 0.7em;
+  }
+
+  span.find-us {
+    font-size: 0.6em;
+  }
+
+  .business-leader-picture {
+    width: 120px;
+    height: 110px;
+  }
+
+  .right-side h2 {
+      width: 140px;
+      font-size: 1.2em
+  }
+
+  .background-image-perk {
+    height: 130px;
+  }
+
+  .card-perk-description p {
+    font-size: 0.7em;
+  }
+
+  .perks-offer-type {
+      font-size: 0.7em;
+      padding: 0.2% 1.5%;
+      border: 3px solid;
+  }
+
+  .background-image-perk-modal {
+      height: 220px;
+  }
+
+  .perks-offer-type-modal {
+      border: 4px solid;
+      padding: 0.2% 0.5%;
+      font-size: 0.6em;
+  }
+
+  .perk-modal-main-title h5 {
+    font-size: 0.8em;
+  }
+
+  .perk-modal-perk-name, .pmdjs-perk-description p, .perk-modal-answer, .perk-modal-alert p, .perk-modal-question, .label-itinary  {
+    font-size: 0.7em;
+  }
+
+  .perk-modal-bottom {
+    height: 180px;
+  }
 
 
 }
 @media screen and (min-width: 768px) and (max-width: 991px) {
-    .full-page {
-        width: auto;
-        margin: auto;
-        overflow: hidden;
-    }
 
-    .background-main-img {
-        background-size: cover;
-        height: 450px;
-        width: 100%;
-    }
+  .main-card-left {
+      border: none;
+      width: 100%;
+  }
 
-    .business-picture-row {
-        width: 100%;
-        height: 40px;
-    }
+  .background-main-img {
+      min-height: 400px;
+  }
 
-    .likes {
-        font-size: 0.8em;
-        padding-left: 13.1%;
-    }
+  .business-picture-row {
+      height: 40px;
+  }
 
-    .share-socials {
-        font-size: 0.8em;
-    }
+  .reach-uss span {
+      font-size: 0.75em;
+  }
 
-    .dropdown-menu.socials {
-        width: 110px;
-    }
+  .business-leader-picture {
+    width: 110px;
+    height: 110px;
+  }
 
-    #business-name {
-        margin-bottom: -2%;
-    }
+  .right-side {
+      margin-left: 2%;
+      margin-right: 2%;
+      margin-top: 1%;
+  }
 
-    .map-details {
-        width: 27vw;
-        height: 26vw;
-        margin-top: 2%;
-    }
+  .background-image-perk {
+    height: 200px;
+  }
 
-    .business-addresss {
-        margin-left: -33%;
-    }
+  .card-perk-description p {
+    font-size: 0.8em;
+  }
 
-    .follow-uss a {
-        width: auto;
-        height: auto;
-        min-width: 40px;
-        min-height: 40px;
-        line-height: 25px;
-        padding: 5px;
-    }
-
-    .follow-uss a i {
-        font-size: 1.3em;
-        margin-top: 4px;
-    }
-
-    .leader-presentation img {
-        width: 70%;
-    }
-
-    .leader-description {
-        margin-top: -5%;
-    }
-
-    .right-side {
-        margin-left: 11.5%;
-    }
-
-    .card-perks {
-        width: 75%;
-        margin-left: 0;
-        margin-right: 0;
-    }
-
-    .card-perks img {
-        width: 100%;
-        height: 22vw;
-    }
-
-    .perks-number {
-        margin-left: 15%;
-        font-size: 0.95em;
-    }
-
-    .perks-offer-type {
-        margin-top: 34%;
-        margin-left: 50%;
-        font-size: 0.7em;
-    }
 }
 @media screen and (min-width : 480px) and (max-width : 767px) {
-    .full-page {
-        width: 100% auto;
-        margin: 0 auto;
-        overflow: hidden;
-    }
 
-    .main-card-left {
-        margin: 0;
-        padding: 0;
-        border: none;
-    }
+  .full-page {
+      margin-top: 50px;
+      margin-left: 0;
+  }
 
-    .left-side {
-        padding: 0;
-    }
+  .main-card-left {
+      border: none;
+      width: 100%;
+  }
 
-    .background-main-img {
-        background-size: cover;
-        height: 450px;
-        width: 100%;
-    }
+  .background-main-img {
+      min-height: 300px;
+  }
 
-    .business-picture-row {
-        width: 100%;
-        height: 40px;
-    }
+  .card-left {
+      margin-left: 2%;
+      margin-right: 2%;
+      padding-bottom: 1%;
+  }
 
-    .likes {
-        font-size: 0.8em;
-    }
+  .business-picture-row {
+      height: 30px;
+  }
+  .business-category-image {
+      display: none;
+  }
 
-    .share-socials {
-        font-size: 0.8em;
-    }
+  .socials-row span, .share-row span:not(.not-on-mobile-device) {
+    font-size: 0.8em;
+  }
 
-    .dropdown-menu.socials {
-        width: 95px;
-        margin-left: -20px;
-    }
+  #business-name {
+      font-size: 1.5em;
+  }
 
-    #business-name {
-        font-size: 1.4em;
-        padding-top: -3%;
-    }
+  .business-addresss {
+    font-size: 0.7em;
+  }
 
-    .business-category-image {
-        display: none;
-    }
+  .business-opening-hours li {
+    font-size: 0.6em;
+  }
 
-    .business-specs {
-        margin-left: -5%;
-        margin-top: -4%;
-    }
+  .reach-uss span {
+      font-size: 0.6em;
+  }
 
-    .business-category {
-        font-size: 0.9em;
-        margin-left: -10%;
-    }
+  .business-leader-section {
+    margin-bottom: 8%;
+  }
 
-    .business-distance {
-        font-size: 0.9em;
-    }
+  .business-leader-picture {
+    width: 100px;
+    height: 100px;
+  }
 
-    .business-description {
-        font-size: 0.8em;
-    }
+  .right-side h2 {
+      width: 140px;
+      font-size: 1.2em
+  }
 
-    .map-details {
-        width: 100%;
-        height: 20vw;
-        margin-top: 1%;
-        margin-left: -5%;
-    }
+  .card-left {
+      margin-left: 2%;
+      margin-right: 2%;
+      padding-bottom: 1%;
+  }
 
-    .business-informations {
-        padding-top: 5%;
-        margin-left: -4%;
-    }
-
-    .business-informations i.fa-map-o {
-        font-size: 8em;
-        margin-top: 10%;
-    }
-
-    .business-addresss {
-        margin-top: 2%;
-    }
-
-    .business-opening-hours {
-        margin-top: -10%;
-    }
-
-    .business-contacts {
-        margin-left: 10%;
-        padding-top: 3%;
-    }
-
-    .follow-uss {
-        margin-left: 23%;
-        max-width: 45%;
-    }
-
-    .find-us {
-        margin-left: 13%;
-    }
-
-    .follow-uss a {
-        width: auto;
-        height: auto;
-        min-width: 60px;
-        min-height: 60px;
-        line-height: 25px;
-        padding: 5px;
-        margin-right: 10%;
-        margin-top: 1%;
-    }
-
-    .follow-uss a i {
-        font-size: 2.5em;
-        margin-top: 2.5px;
-    }
-
-    .leader-presentation h6,
-    .leader-presentation p {
-        text-align: center;
-    }
-
-    .leader-presentation img {
-        margin-left: 75%;
-        width: 70%;
-    }
-
-    .leader-presentation p {
-        margin-left: 10%;
-    }
-
-    .leader-presentation p:first-child {
-        margin-top: 3%;
-    }
-
-    .leader-description {
-        margin-bottom: 13%;
-        margin-top: -5%;
-    }
 }
 @media screen and (min-width : 320px) and (max-width : 479px) {
 
-    .full-page {
-        width: 100% auto;
-        margin: 0 auto;
-        overflow: hidden;
-    }
+  .full-page {
+      margin-top: 50px;
+      margin-left: 0;
+  }
 
-    .main-card-left {
-        margin: 0;
-        padding: 0;
-        border: none;
-    }
+  .left-side {
+    padding: 0;
+  }
 
-    .left-side {
-        padding: 0;
-    }
+  .main-card-left {
+      border: none;
+      width: 100%;
+  }
 
-    .background-main-img {
-        background-size: cover;
-        height: 300px;
-        width: 100%;
-    }
+  .background-main-img {
+      min-height: 200px;
+  }
 
-    .business-picture-row {
-        width: 100%;
-        height: 35px;
-    }
+  .card-left {
+      margin-left: 5%;
+      margin-right: 5%;
+      padding-bottom: 1%;
+  }
 
-    .likes {
-        font-size: 0.75em;
-    }
+  .business-picture-row {
+      display: none;
+  }
 
-    .share-socials {
-        font-size: 0.75em;
-    }
+  .business-category-image {
+      display: none;
+  }
 
-    .business-category-image {
-        display: none;
-    }
+  #business-name {
+      font-size: 1.3em;
+      padding-bottom: -3%;
+  }
 
-    .dropdown-menu.socials {
-        width: 100px;
-        margin-left: -20px;
-    }
+  .business-specs {
+      height: 30px;
+  }
 
-    #business-name {
-        font-size: 1.1em;
-        padding-top: -3%;
-    }
+  .business-distance {
+      display: flex;
+      justify-content: flex-end;
+  }
 
-    .business-specs {
-        margin-left: -5%;
-        margin-top: -4%;
-    }
+  .business-specs, .business-beliefs, .business-description, .business-leader-decription {
+      font-size: 0.7em;
+  }
 
-    .business-category {
-        font-size: 0.75em;
-        margin-left: -15%;
-    }
+  .details-mobile {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
 
-    .business-distance {
-        font-size: 0.75em;
-        margin-left: -10%;
-    }
+  .details-mobile-first-row {
+    width: 100%;
+    height: 130px;
+    margin-bottom: 5%;
+  }
 
-    .business-description {
-        font-size: 0.8em;
-    }
+  .business-map-mobile {
+    height: 120px;
+  }
 
-    .map-details {
-        width: 100%;
-        height: 20vw;
-        margin-top: 1%;
-        margin-left: -5%;
-    }
+  .details-mobile-second-row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 5%;
+  }
 
-    .business-informations {
-        padding-top: 3%;
-        margin-left: -15%;
-    }
+  .business-address-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1%;
+  }
 
-    .business-informations i.fa-map-o {
-        font-size: 7em;
-        margin-top: 10%;
-        margin-left: 5%;
-    }
+  .business-address-icon img {
+    width: 120px;
+  }
 
-    .business-addresss {
-        margin-top: 2%;
-        font-size: 0.8em;
-        width: 130%;
-    }
+  .business-addresss {
+    display: flex;
+    align-self: flex-end;
+    padding-top: 10%;
+    font-size: 0.7em;
+    text-align: center;
+    width: 120px;
+  }
 
-    .business-opening-hours {
-        margin-top: -20%;
-        margin-left: 25%;
-        font-size: 0.8em;
-        height: 50%;
-    }
+  .business-opening-hours-mobile li {
+    list-style-type: none;
+    font-size: 0.6em;
+  }
 
-    .business-contacts {
-        margin-left: 7%;
-        padding-top: 3%;
-    }
+  .details-mobile-third-row {
+    width: 100%;
+  }
 
-    .follow-uss {
-        margin-left: 18%;
-        max-width: 70%;
-    }
+  .business-links {
+    margin-left: 15%;
+    margin-right: 15%;
+  }
+  .follow-uss {
+    width: 90%;
+    margin-left: 5%;
+  }
 
-    .find-us {
-        margin-left: 10%;
-    }
+  .business-leader-section {
+    margin-bottom: 14%;
+  }
 
-    .follow-uss a {
-        width: auto;
-        height: auto;
-        min-width: 50px;
-        min-height: 50px;
-        line-height: 25px;
-        padding: 5px;
-        margin-right: 10%;
-        margin-top: 2%;
-    }
+  .business-leader-title {
+    text-align: center;
+  }
 
-    .follow-uss a i {
-        font-size: 2em;
-        margin-top: 2.5px;
-    }
+  .business-leader-section {
+    flex-direction: column;
+  }
 
-    .leader-presentation h6,
-    .leader-presentation p {
-        text-align: center;
-    }
+  .business-leader-picture {
+    width: 120px;
+    height: 110px;
+  }
 
-    .leader-presentation img {
-        margin-left: 65%;
-        margin-top: -10%;
-    }
+  .business-leader-decription {
+    text-align: center;
+    width: 100%;
+    padding-left: 0;
+    margin-top: 3%;
+  }
 
-    .leader-presentation p {
-        margin-left: 10%;
-    }
+  .background-image-perk {
+    height: 130px;
+  }
+  .card-perk-description p {
+    font-size: 0.8em;
+  }
 
-    .leader-presentation p:first-child {
-        margin-top: 2%;
-    }
+  .perks-offer-type {
+      font-size: 0.7em;
+      padding: 0.2% 1.5%;
+      border: 3px solid;
+  }
 
-    .leader-description {
-        margin-bottom: 22%;
-        margin-top: -5%;
-        font-size: 0.8em;
-    }
-    @media screen and (max-width : 319px) {}
+  .background-image-perk-modal {
+      height: 220px;
+  }
+
+  .perks-offer-type-modal {
+      border: 4px solid;
+      padding: 0.2% 0.7%;
+      font-size: 0.6em;
+  }
+
+  .perk-modal-main-title {
+    width: 60px;
+  }
+
+  .perk-modal-main-title h5 {
+    font-size: 0.8em;
+  }
+
+  .perk-modal-perk-name, .pmdjs-perk-description p, .perk-modal-answer, .perk-modal-alert p, .perk-modal-question, .label-itinary  {
+    font-size: 0.8em;
+  }
+
+  .perk-modal-bottom {
+    height: 180px;
+  }
+
+  // MOBILE PERK LIST //
+
+  .business-name-card-mobile-list {
+    display: flex;
+    width: 100%;
+    align-self: center;
+  }
+
+  .business-name-card-mobile-list h6 {
+    margin: 0;
+    width: 100%;
+    font-weight: bolder;
+    text-align: center;
+    color: white;
+    font-size: 0.8em;
+  }
+
+  // END MOBILE PERK LIST //
+
+}
+@media screen and (max-width : 319px) {
+
 }
 // End Adrien CSS //
 /* SHOW - PERK ****************************************************************/
@@ -2328,11 +2539,6 @@ span.find-us {
     }
 }
 
-.label-itinary {
-    font-size: 12px;
-    color: rgba(55, 55, 55, 0.9);
-    margin-bottom: 100px;
-}
 
 .btn-show-card {
     display: flex;
@@ -2430,54 +2636,46 @@ span.find-us {
         color: rgba(55,55,55,0.9);
     }
 }
+//
+// .perk-modal-mobile-member {
+//     position: fixed;
+//     height: 100%;
+//     overflow-y: scroll;
+//     width: 100%;
+//     z-index: 5555;
+//     top: 50px;
+//     left: 0;
+//     background-color: white;
+//     padding-left: 8%;
+//     padding-right: 8%;
+//     padding-bottom: 25px;
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: flex-start;
+//     align-items: center;
+// }
+//
+// .perk-modal-close-mobile-member {
+//     position: absolute;
+//     top: 25px;
+//     right: 25px;
+//     font-size: 17px;
+//     color: rgba(55,55,55,0.6);
+//     border-radius: 50%;
+//     padding-bottom: 2px;
+//     width: 30px;
+//     height: 30px;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     transition: 0.5s ease;
+//     cursor: pointer;
+//
+//     &:hover {
+//         color: rgba(55,55,55,0.9);
+//     }
+// }
 
-.perk-modal-mobile-member {
-    position: fixed;
-    height: 100%;
-    overflow-y: scroll;
-    width: 100%;
-    z-index: 5555;
-    top: 50px;
-    left: 0;
-    background-color: white;
-    padding-left: 8%;
-    padding-right: 8%;
-    padding-bottom: 25px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-}
-
-.perk-modal-close-mobile-member {
-    position: absolute;
-    top: 25px;
-    right: 25px;
-    font-size: 17px;
-    color: rgba(55,55,55,0.6);
-    border-radius: 50%;
-    padding-bottom: 2px;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: 0.5s ease;
-    cursor: pointer;
-
-    &:hover {
-        color: rgba(55,55,55,0.9);
-    }
-}
-
-.perk-modal-member-header {
-    width: 100%;
-    height: 80px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    margin-bottom: 50px;
-}
 
 .member-header-text {
     color: rgba(55,55,55,0.8);
@@ -2524,7 +2722,7 @@ span.find-us {
       }
     // Fred - jour de printemps - end
   &.popup-member-card {
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.92);
   }
 }
 
@@ -2563,26 +2761,26 @@ span.find-us {
     margin-top: 20px;
 }
 
-.pmdjs-perk-name {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-    font-weight: 600px;
-}
-
-.pmdjs-perk-description {
-    width: 100%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    padding-left: 8% !important;
-    padding-right: 8%;
-    padding-top: 10px;
-    padding-right: 10px !important;
-    font-size: 13px;
-}
+// .pmdjs-perk-name {
+//     width: 100%;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     margin-top: 20px;
+//     font-weight: 600px;
+// }
+//
+// .pmdjs-perk-description {
+//     width: 100%;
+//     display: flex;
+//     justify-content: flex-start;
+//     align-items: center;
+//     padding-left: 8% !important;
+//     padding-right: 8%;
+//     padding-top: 10px;
+//     padding-right: 10px !important;
+//     font-size: 13px;
+// }
 
 ul.reach-us {
     list-style: none;

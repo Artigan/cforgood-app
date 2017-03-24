@@ -5,108 +5,75 @@
 }
 
 .container-perks-main-page {
-    margin-left: 8%;
-    margin-right: 6%;
+    width: 100%;
+}
+
+.container-perks-main-page .card-perks {
+  margin-left: 2.5%;
+  margin-right: 2.5%;
+
 }
 
 .perky {
     margin-top: 1%;
+    margin-bottom: -3%
 }
 
 .perky .card-perks {
     background-color: white;
 }
 
-.container-perks-main-page img {
+.container-perks-main-page .background-image-perk {
     width: 100%;
-    height: 16vw;
+    height: 250px;
 }
 
-.container-perks-main-page .perks-offer-type {
-    margin-top: 54%;
+.container-perks-main-page p.perk-description {
+  background-color: white;
+  height: 100%;
 }
 
-.container-perks-main-page .perk-description {
+ .container-perks-main-page p.perk-description, .container-perks-main-page p.perk-description:hover, .container-perks-main-page p.perk-description:focus {
     font-size: 0.95em;
-    background-color: white;
-    height: 100%;
+    color: black;
 }
-@media screen and (min-width: 992px) and (max-width: 1220px) {
-    .container-perks-main-page .perks-offer-type {
-        margin-top: 52%;
-    }
 
-    .container-perks-main-page .perk-description {
-        font-size: 0.7em;
-    }
+@media screen and (min-width: 992px) and (max-width: 1220px) {
+
+  .container-perks-main-page .background-image-perk {
+      height: 200px;
+  }
 }
 @media screen and (min-width: 768px) and (max-width: 991px) {
-
-    .container-perks-main-page {
-        margin-left: 10%;
-    }
 
     .perky {
         margin-top: 2%;
     }
 
-    .perky .card-perks {
-        width: 90%;
-    }
-
-    .container-perks-main-page .perks-offer-type {
-        margin-top: 35%;
-        margin-left: 60%;
-    }
-
-    .container-perks-main-page .perk-description {
+    p.perk-description {
         font-size: 0.7em;
     }
 }
 @media screen and (min-width : 480px) and (max-width : 767px) {
 
-    .container-perks-main-page {
-        margin-left: 5%;
-      }
 
-    .perky .card-perks {
-        width: 100%;
+    .container-perks-main-page .background-image-perk {
+        height: 220px;
     }
 
-    .container-perks-main-page img {
-        width: 100%;
-        height: 45vw;
-    }
-
-    .container-perks-main-page .perks-offer-type {
-        margin-top: 45%;
-        margin-left: 65%;
-    }
 }
 
 @media screen and (min-width : 320px) and (max-width : 479px) {
 
       .container-perks-main-page {
-          margin-left: 0;
-          margin-right:8.5%;
+          margin-top: 2%;
         }
 
-      .perky .card-perks {
-          width: 110%;
+      .container-perks-main-page .background-image-perk {
+          height: 180px;
       }
 
-      .container-perks-main-page img {
-          width: 100%;
-          height: 48vw;
-      }
-
-      .container-perks-main-page .perks-offer-type {
-          margin-top: 44%;
-          margin-left: 60%;
-          font-size: 0.8em;
-      }
-
-      .container-perks-main-page .perk-description {
+      .container-perks-main-page p.perk-description {
           font-size: 0.75em;
       }
 }
