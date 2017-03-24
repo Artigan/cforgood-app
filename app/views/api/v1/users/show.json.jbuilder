@@ -20,8 +20,8 @@ json.donation_attributes do
   json.array! @payments do |payment|
     json.cause_name payment.cause.name
     json.created_at payment.created_at
-    json.donation payment.donation
     json.amount payment.amount
+    json.donation payment.donation
   end
 end
 
