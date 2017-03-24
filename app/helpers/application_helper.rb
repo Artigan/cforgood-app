@@ -105,9 +105,9 @@ module ApplicationHelper
 
   def navbar_logo
     if devise_or_pages_controller?
-      "logo-white.png"
+      "logo_thumb_white.svg"
     else
-      "cforgood_logo.png"
+      "logo_horizontal.svg"
     end
   end
 

@@ -23,25 +23,33 @@ class ImportUsers < ApplicationJob
       report << "ERROR FTP | #{e} |"
     end
 
-    ko, ok = 0, 0
+    ko, ok, nb_read = 0, 0, 0
 
     CSV.foreach(csv_file, { headers: true, header_converters: :symbol, col_sep: ';' }) do |row|
 
+      nb_read += 1
+
       begin
-        row[:supervisor_id] = User.find(row[:supervisor_id].to_i).id
+        @supervisor = User.find(row[:supervisor_id].to_i)
+        if !@supervisor.supervisor
+          ko += 1
+          report << "ERROR User create | #{row[:email]} | Supervisor is not a supervisor"
+          next
+        end
         # password automatique de devise
         # TODO: s'assurer que l'utilisateur recoit un email pour changer de mdp
         # ou set choisir un mdp
         row[:password] = Devise.friendly_token.first(8)
-        User.create!(row.to_h)
+        @employee = User.create!(row.to_h)
         ok += 1
       rescue ActiveRecord::RecordNotFound, ActiveRecord::RecordInvalid => e
         ko += 1
-        report << "ERROR User create | #{e} | #{row[:email]}"
+        report << "ERROR User create | #{row[:email]} | #{e} "
       end
     end
 
     report << "-----------------------------------------"
+    report << "Nb user read : #{nb_read}"
     report << "Nb user create OK : #{ok}"
     report << "Nb user create KO : #{ko}"
     report << "-----------------------------------------"

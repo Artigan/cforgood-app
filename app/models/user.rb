@@ -118,11 +118,11 @@ class User < ApplicationRecord
   after_validation :geocode, if: :address_changed?
 
   before_create :default_cause_id!
+  before_create :subscription!, if: :supervisor_id
 
   before_save :subscription!, if: :subscription_changed?
   before_save :subscription!, if: :code_partner_changed?
   before_save :date_support!, if: :cause_id_changed?
-
   before_save :assign_ecosystem, if: :address_changed?
 
   after_save :create_partner_for_third_use_code_partner, if: :code_partner_changed?
@@ -281,8 +281,12 @@ class User < ApplicationRecord
       @mangopay_user = MangopayServices.new(self).create_mangopay_natural_user
       self.mangopay_id = @mangopay_user["Id"]
     end
+    if self.supervisor_id.present?
+      self.subscription = self.manager.subscription
+      self.amount = self.manager.amount
+    end
     self.date_subscription = Time.now if subscription_was == nil
-    self.member = true if code_partner.present? || supervising?(self)
+    self.member = true if code_partner.present? || supervisor_id.present?
   end
 
   def date_support!
@@ -353,7 +357,7 @@ class User < ApplicationRecord
     message = find_name_or_email
     message += ", *#{city}*," if city.present?
     message += " a rejoint la communauté !"
-    message += "Merci à #{self.manager.name}" if self.supervisor_id
+    message += " (supervisé par *#{self.manager.name}*)" if self.supervisor_id
     send_message_to_slack(ENV['SLACK_WEBHOOK_USER_URL'], message)
   end
 
@@ -435,7 +439,7 @@ class User < ApplicationRecord
             'date_end_trial' => self.date_end_partner,
             'ambassador' => self.ambassador,
             'business_supervisor' => business_supervisor,
-            'supervisor' => self.manager.name
+            'supervisor' => manager_name
           }
         )
       rescue Intercom::IntercomError => e
