@@ -98,8 +98,8 @@ i.fa-share-alt {
 .dropdown-menu.socials {
     background-color: rgba(255,255,255,0.7);
     min-width: 0 !important;
-    width: 180px;
-    margin-bottom: -0.6% !important;
+    width: 30px;
+    // margin-bottom: -0.6% !important;
 }
 
 
@@ -272,6 +272,10 @@ hr {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+}
+
+.detail-follow-uss {
+  display: flex;
 }
 
 .follow-uss a {
@@ -647,20 +651,20 @@ hr {
         margin: 0;
     }
 
-    // .business-name-card-mobile-list {
-    //   display: flex;
-    //   width: 100%;
-    //   align-self: center;
-    // }
-    //
-    // .business-name-card-mobile-list h6 {
-    //   margin: 0;
-    //   width: 100%;
-    //   font-weight: bolder;
-    //   text-align: center;
-    //   color: white;
-    //   font-size: 0.8em;
-    // }
+    .business-name-card-mobile-list {
+      display: flex;
+      width: 100%;
+      align-self: center;
+    }
+
+    .business-name-card-mobile-list h6 {
+      margin: 0;
+      width: 100%;
+      font-weight: bolder;
+      text-align: center;
+      color: white;
+      font-size: 0.8em;
+    }
 
     .perk-modal-mobile-member .card-perks {
       width: 90%;
