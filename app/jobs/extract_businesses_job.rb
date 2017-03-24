@@ -121,8 +121,8 @@ class ExtractBusinessesJob < ApplicationJob
     # Write file on FTP
 
     begin
-      ftp = Net::FTP.new('ftp.cluster007.hosting.ovh.net')
-      ftp.login("cforgoodny", "Bethechange85")
+      ftp = Net::FTP.new(ENV['FTP_URL'])
+      ftp.login(ENV['FTP_LOGIN'], ENV['FTP_PASSWORD'])
       ftp.chdir("datas/business")
       ftp.passive = true
       ftp.puttextfile(path + filename, filename)

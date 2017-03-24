@@ -282,7 +282,7 @@ class User < ApplicationRecord
       self.mangopay_id = @mangopay_user["Id"]
     end
     self.date_subscription = Time.now if subscription_was == nil
-    self.member = true if code_partner.present?
+    self.member = true if code_partner.present? || supervising?(self)
   end
 
   def date_support!
@@ -329,7 +329,7 @@ class User < ApplicationRecord
     if subscription == 'M'
       errors.add(:amount, "La participation mensuelle minimum est 1€") if amount < 1
       errors.add(:amount, "La participation mensuelle maximum est 50€") if amount > 50
-    else
+    elsif subscription == 'Y'
       errors.add(:amount, "La participation annuelle minimum est 30€") if amount < 30
       errors.add(:amount, "La participation annuelle maximum est 500€") if amount > 500
     end
@@ -353,6 +353,7 @@ class User < ApplicationRecord
     message = find_name_or_email
     message += ", *#{city}*," if city.present?
     message += " a rejoint la communauté !"
+    message += "Merci à #{self.manager.name}" if self.supervisor_id
     send_message_to_slack(ENV['SLACK_WEBHOOK_USER_URL'], message)
   end
 
@@ -391,11 +392,13 @@ class User < ApplicationRecord
     intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
     @partner = Partner.find_by_code_partner(self.code_partner)
     promo = false
-    ecosystem = nil
+    business_supervisor = nil
     if @partner
       promo = @partner.promo
       business_supervisor = Business.find(@partner.supervisor_id).name if @partner.supervisor_id
     end
+    manager_name = self.manager.present? ? self.manager.name : nil
+
     begin
       user = intercom.users.find(:user_id => self.id)
       user.custom_attributes["user_type"] = 'user'
@@ -410,6 +413,7 @@ class User < ApplicationRecord
       user.custom_attributes['date_end_trial'] = self.date_end_partner
       user.custom_attributes['ambassador'] = self.ambassador
       user.custom_attributes['business_supervisor'] = business_supervisor
+      user.custom_attributes['supervisor'] = manager_name
       intercom.users.save(user)
     rescue Intercom::IntercomError => e
       begin
@@ -430,7 +434,8 @@ class User < ApplicationRecord
             'code_promo' => promo,
             'date_end_trial' => self.date_end_partner,
             'ambassador' => self.ambassador,
-            'ecosystem' => business_supervisor
+            'business_supervisor' => business_supervisor,
+            'supervisor' => self.manager.name
           }
         )
       rescue Intercom::IntercomError => e
