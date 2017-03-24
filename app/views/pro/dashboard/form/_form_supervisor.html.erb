@@ -6,15 +6,15 @@
       <div class="col-1">
         <label>Photo</label>
         <div class="picture-container">
-          <% if @business.leader_picture? %>
-            <%= image_tag @business.leader_picture.url(:avatar), class: 'picture-owner' %>
+          <% if @business.logo? %>
+            <%= image_tag @business.logo.url(:avatar), class: 'picture-business' %>
           <% else %>
             <div class="picture-none">
               <%= image_tag "citoyen.svg", class: "avatar-citoyen" %>
             </div>
           <% end %>
         </div>
-        <%= f.input :leader_picture, as: :file, required: false, label: 'Sélectionner une nouvelle image' %>
+        <%= f.input :logo, as: :file, required: false, label: 'Sélectionner une nouvelle image' %>
       </div>
       <div class="col-1">
         <%= f.input :name, placeholder: "Nom de l'établissement", required: true, label: "Nom de l'établissement" %>
@@ -44,20 +44,20 @@
       function readURL(input) {
         var reader = new FileReader();
           reader.onload = function (e) {
-            if ($('#business.picture-business').attr('src') === undefined) {
-              $("#business.picture-none").remove();
-              $('#business.picture-container').append('<img src=" " class="picture-business" >')
+            if ($('#business .picture-business').attr('src') === undefined) {
+              $("#business .picture-none").remove();
+              $('#business .picture-container').append('<img src=" " class="picture-business" >')
             };
-            $('#business.picture-business').attr('src', e.target.result);
+            $('#business .picture-business').attr('src', e.target.result);
           }
         reader.readAsDataURL(input);
       }
 
       $('#profile-tab').addClass('active');
-      $(".business_leader_picture").on("change", function(e) {
+      $(".business_logo").on("change", function(e) {
         e.preventDefault();
-        var newFile = document.querySelector('#shop input[type=file]').files[0];
-        $(".business_leader_picture").children().html(newFile.name);
+        var newFile = document.querySelector('#business input[type=file]').files[0];
+        $(".business_logo").children().html(newFile.name);
         readURL(newFile);
       });
 

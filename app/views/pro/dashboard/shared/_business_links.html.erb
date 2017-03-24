@@ -1,25 +1,25 @@
 <!-- LINKS | FIND THEM -->
 <div class="business-links">
   <div class= "flexbox-contacts">
-  <ul>
-    <li class="reach-uss">
-      <% if @business.email.present? %>
-        <a href="mailto:<%= @business.email %>" style="color: <%= @business.business_category.color %>;" target="_blank">
-          <i class="fa fa-envelope"></i>
-          <span><%= @business.email %></span>
-        </a>
-      <% end %>
-    </li>
-    <li class="reach-uss">
-      <% if @business.telephone.present? %>
-        <a href="tel:<%= @business.telephone %>" style="color: <%= @business.business_category.color %>;" target="_blank" data-hint="<%= @business.telephone %>">
-          <i class="fa fa-phone"></i>
-          <span><%= @business.telephone %></span>
-        </a>
-      <% end %>
-    </li>
-  </ul>
-</div>
+    <ul>
+      <li class="reach-uss">
+        <% if @business.email.present? %>
+          <a href="mailto:<%= @business.email %>" style="color: <%= @business.business_category.color %>;" target="_blank">
+            <i class="fa fa-envelope"></i>
+            <span><%= @business.email %></span>
+          </a>
+        <% end %>
+      </li>
+      <li class="reach-uss">
+        <% if @business.telephone.present? %>
+          <a href="tel:<%= @business.telephone %>" style="color: <%= @business.business_category.color %>;" target="_blank" data-hint="<%= @business.telephone %>">
+            <i class="fa fa-phone"></i>
+            <span><%= @business.telephone %></span>
+          </a>
+        <% end %>
+      </li>
+    </ul>
+  </div>
   <!-- DESKTOP -->
   <div class="follow-uss">
     <span class="find-us">Retrouvez-nous : </span>

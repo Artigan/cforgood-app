@@ -1,6 +1,7 @@
 $(".alert").remove();
 
-if (<%= !current_user.errors.any? %>) {
+if (<%= !current_user.errors.any? && !flash[:alert].present? %>) {
+
   if (<%= !current_user.card_id.present? %>) {
     $("#payment").removeClass('hidden');
     $("#menu a.show-payment").tab('show');
@@ -27,8 +28,13 @@ if (<%= !current_user.errors.any? %>) {
     }, 3000);
   }
 
-} else {
+} else if (<%= current_user.errors.any? %>) {
 
   $(document).find("form").prepend('<%= j render("components/error_messages", resource: current_user, formats: [:html]) %>');
 
+} else {
+  $(".error-message").html("<%= flash[:alert] %>");
+  $(".signup-done-overlay.ko").removeClass('hidden');
 }
+
+

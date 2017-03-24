@@ -1,5 +1,6 @@
 <div class="container" id="error_explanation">
   <div class="alert alert-danger alert-dismissible" role="alert">
+    <button type="button" class="close-alert">&times;</button>
     Le formulaire contient <%= pluralize(resource.errors.count, "erreur") %>.
     <ul>
       <% resource.errors.full_messages.each do |msg| %>
@@ -8,3 +9,10 @@
     </ul>
   </div>
 </div>
+
+<script>
+  $(".close-alert").click(function () {
+    $(this).closest(".alert").remove();
+  });
+</script>
+

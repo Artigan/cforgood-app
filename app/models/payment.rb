@@ -10,6 +10,7 @@
 #  updated_at   :datetime         not null
 #  done         :boolean          default(FALSE), not null
 #  subscription :string
+#  donation     :float
 #
 # Indexes
 #
@@ -33,7 +34,13 @@ class Payment < ApplicationRecord
   validates :amount, presence: true
   validates :subscription, presence: true
 
+  before_create :set_donation
+
   after_create :create_event_intercom, :send_payment_slack
+
+  def set_donation
+    self.donation = SetDonation.new(self.amount, self.subscription).set_donation
+  end
 
   private
 

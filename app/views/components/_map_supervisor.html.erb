@@ -33,6 +33,7 @@
 
     markers.features.forEach(function(feature) {
       var symbol = feature.properties['marker-symbol'];
+      var color = feature.properties['color'];
       var layerID = 'layer-' + symbol;
 
       // Add a layer for this symbol type if it hasn't been added already.
@@ -42,15 +43,16 @@
         // Add Layer
         map.addLayer({
           "id": layerID,
-          "type": "symbol",
           "source": "markers",
           "interactive": true,
-          "layout": {
-            "icon-image": symbol,
-            "icon-offset": [0,-20],
-            "icon-allow-overlap": true
+          "type": "circle",
+          "paint": {
+            "circle-radius": initialRadius,
+            "circle-color": color,
+            "circle-stroke-width" : 2,
+            "circle-stroke-color" : "#FFF"
           },
-          "filter": ["==", "marker-symbol", symbol]
+           "filter": ["==", "marker-symbol", symbol]
         });
       }
     });

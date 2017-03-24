@@ -260,13 +260,15 @@
           }
 
           .business_picture,
-          .business_leader_picture {
+          .business_leader_picture,
+          .business_logo {
             width: 100%;
             margin: 0 0 20px;
           }
 
           .business_picture,
-          .business_leader_picture {
+          .business_leader_picture,
+          .business_logo {
             label {
               padding: 10px 20px;
               border: 1px solid #f4f4f4;
@@ -277,7 +279,8 @@
           }
 
           #business_picture,
-          #business_leader_picture {
+          #business_leader_picture,
+          #business_logo {
             width: 0.1px;
             height: 0.1px;
             opacity: 0;

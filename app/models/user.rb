@@ -54,19 +54,22 @@
 #  telephone              :string
 #  logo                   :string
 #  authentication_token   :string(30)
+#  business_supervisor_id :integer
 #
 # Indexes
 #
-#  index_users_on_authentication_token  (authentication_token) UNIQUE
-#  index_users_on_cause_id              (cause_id)
-#  index_users_on_email                 (email) UNIQUE
-#  index_users_on_reset_password_token  (reset_password_token) UNIQUE
-#  index_users_on_supervisor_id         (supervisor_id)
+#  index_users_on_authentication_token    (authentication_token) UNIQUE
+#  index_users_on_business_supervisor_id  (business_supervisor_id)
+#  index_users_on_cause_id                (cause_id)
+#  index_users_on_email                   (email) UNIQUE
+#  index_users_on_reset_password_token    (reset_password_token) UNIQUE
+#  index_users_on_supervisor_id           (supervisor_id)
 #
 # Foreign Keys
 #
 #  fk_rails_130d5504e9  (cause_id => causes.id)
 #  fk_rails_3972f91257  (supervisor_id => users.id)
+#  fk_rails_a4d8477c38  (business_supervisor_id => businesses.id)
 #
 
 class User < ApplicationRecord
@@ -81,6 +84,7 @@ class User < ApplicationRecord
 
   belongs_to :cause
   belongs_to :ecosystem, class_name: 'Business', foreign_key: 'ecosystem_id'
+  belongs_to :business_supervisor, class_name: 'Business', foreign_key: 'business_supervisor_id'
   belongs_to :manager, class_name: 'User', foreign_key: 'supervisor_id'
   has_many :users, class_name: 'User', foreign_key: 'supervisor_id'
   has_many :uses, dependent: :destroy
@@ -101,6 +105,7 @@ class User < ApplicationRecord
   # validates :city, presence: true
 
   validate :code_partner?, if: :code_partner_changed?
+  validate :amount?, if: :amount_changed?
 
   validates_size_of :picture, maximum: 2.megabytes,
     message: "Cette image dépasse 2 MG !", if: :picture_changed?
@@ -113,11 +118,11 @@ class User < ApplicationRecord
   after_validation :geocode, if: :address_changed?
 
   before_create :default_cause_id!
+  before_create :subscription!, if: :supervisor_id
 
   before_save :subscription!, if: :subscription_changed?
   before_save :subscription!, if: :code_partner_changed?
   before_save :date_support!, if: :cause_id_changed?
-
   before_save :assign_ecosystem, if: :address_changed?
 
   after_save :create_partner_for_third_use_code_partner, if: :code_partner_changed?
@@ -235,6 +240,7 @@ class User < ApplicationRecord
     self.date_last_payment = nil
     code_partner_save = self.code_partner
     self.code_partner = nil
+    self.business_supervisor_id = nil
     self.date_end_partner = nil
     self.save
     # SEND EVENT TO INTERCOM
@@ -275,8 +281,12 @@ class User < ApplicationRecord
       @mangopay_user = MangopayServices.new(self).create_mangopay_natural_user
       self.mangopay_id = @mangopay_user["Id"]
     end
+    if self.supervisor_id.present?
+      self.subscription = self.manager.subscription
+      self.amount = self.manager.amount
+    end
     self.date_subscription = Time.now if subscription_was == nil
-    self.member = true if code_partner.present?
+    self.member = true if code_partner.present? || supervisor_id.present?
   end
 
   def date_support!
@@ -314,7 +324,18 @@ class User < ApplicationRecord
           start_date = Time.now
         end
         self.date_end_partner = start_date + Partner.find_by_code_partner(self.code_partner).nb_month.month
+        self.business_supervisor_id = @partner.supervisor_id
       end
+    end
+  end
+
+  def amount?
+    if subscription == 'M'
+      errors.add(:amount, "La participation mensuelle minimum est 1€") if amount < 1
+      errors.add(:amount, "La participation mensuelle maximum est 50€") if amount > 50
+    elsif subscription == 'Y'
+      errors.add(:amount, "La participation annuelle minimum est 30€") if amount < 30
+      errors.add(:amount, "La participation annuelle maximum est 500€") if amount > 500
     end
   end
 
@@ -336,12 +357,14 @@ class User < ApplicationRecord
     message = find_name_or_email
     message += ", *#{city}*," if city.present?
     message += " a rejoint la communauté !"
+    message += " (supervisé par *#{self.manager.name}*)" if self.supervisor_id
     send_message_to_slack(ENV['SLACK_WEBHOOK_USER_URL'], message)
   end
 
   def send_code_partner_slack
     if self.code_partner.present?
       message = find_name_or_email + " a utilisé le code partenaire : #{self.code_partner}"
+      message += " (code supervisé par *#{self.business_supervisor.name}*)" if self.business_supervisor_id
       send_message_to_slack(ENV['SLACK_WEBHOOK_USER_URL'], message)
     end
   end
@@ -371,7 +394,15 @@ class User < ApplicationRecord
     # UPDATE CUSTOM ATTRIBUTES ON INTERCOM
 
     intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
-    promo = Partner.find_by_code_partner(self.code_partner).try(:promo) || false
+    @partner = Partner.find_by_code_partner(self.code_partner)
+    promo = false
+    business_supervisor = nil
+    if @partner
+      promo = @partner.promo
+      business_supervisor = Business.find(@partner.supervisor_id).name if @partner.supervisor_id
+    end
+    manager_name = self.manager.present? ? self.manager.name : nil
+
     begin
       user = intercom.users.find(:user_id => self.id)
       user.custom_attributes["user_type"] = 'user'
@@ -385,6 +416,8 @@ class User < ApplicationRecord
       user.custom_attributes['code_promo'] = promo
       user.custom_attributes['date_end_trial'] = self.date_end_partner
       user.custom_attributes['ambassador'] = self.ambassador
+      user.custom_attributes['business_supervisor'] = business_supervisor
+      user.custom_attributes['supervisor'] = manager_name
       intercom.users.save(user)
     rescue Intercom::IntercomError => e
       begin
@@ -404,7 +437,9 @@ class User < ApplicationRecord
             'code_partner' => self.code_partner,
             'code_promo' => promo,
             'date_end_trial' => self.date_end_partner,
-            'ambassador' => self.ambassador
+            'ambassador' => self.ambassador,
+            'business_supervisor' => business_supervisor,
+            'supervisor' => manager_name
           }
         )
       rescue Intercom::IntercomError => e

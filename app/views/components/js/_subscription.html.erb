@@ -65,6 +65,24 @@
       }
     }
 
+    $.validator.addMethod("minimumAmount",function(value, element) {
+      if (subscription == "monthly") {
+        return value >= 1 && value <= 50;
+      } else {
+        return value >= 30 && value <= 500;
+      }
+    }, subscription == "monthly" ? "La participation mensuelle doit être comprise entre 1 et 50€." : "La participation mensuelle doit être comprise entre 30 et 500€.");
+
+    $("#update_subscription").validate({
+      lang: 'fr',
+      rules: {
+        user_amount: {
+          required: true,
+          minimumAmount: true
+        }
+      }
+    });
+
     var amountInit = parseInt($("#user_amount").val());
     subscriptionInit = $('.switch input:checked').attr('id');
     var subscription = subscriptionInit;

@@ -83,7 +83,8 @@ class Business < ApplicationRecord
   has_many :businesses, class_name: 'Business', foreign_key: 'supervisor_id'
   has_many :businesses_perks, through: :businesses, source: :perks
   has_many :businesses_perks_uses, through: :businesses_perks, source: :uses
-  has_many :members, class_name: 'User', foreign_key: 'supervisor_id'
+  has_many :members, class_name: 'User', foreign_key: 'ecosystem_id'
+  has_many :causes, class_name: 'Cause', foreign_key: 'supervisor_id'
 
   scope :active, -> { where(active: true) }
   scope :for_map, -> { where(shop:true).or(where(itinerant: true)) }
@@ -130,10 +131,6 @@ class Business < ApplicationRecord
 
   def perks_new_users
     perks.reduce(0) { |sum, perk| sum + perk.uses.used.select(:user_id).distinct.count }
-  end
-
-  def causes_count
-    0
   end
 
   def amount_donation

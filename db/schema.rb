@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170313194636) do
+ActiveRecord::Schema.define(version: 20170324114151) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -212,6 +212,7 @@ ActiveRecord::Schema.define(version: 20170313194636) do
     t.datetime "updated_at",                   null: false
     t.boolean  "done",         default: false, null: false
     t.string   "subscription"
+    t.float    "donation"
     t.index ["cause_id"], name: "index_payments_on_cause_id", using: :btree
     t.index ["user_id"], name: "index_payments_on_user_id", using: :btree
   end
@@ -344,7 +345,9 @@ ActiveRecord::Schema.define(version: 20170313194636) do
     t.string   "telephone"
     t.string   "logo"
     t.string   "authentication_token",   limit: 30
+    t.integer  "business_supervisor_id"
     t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true, using: :btree
+    t.index ["business_supervisor_id"], name: "index_users_on_business_supervisor_id", using: :btree
     t.index ["cause_id"], name: "index_users_on_cause_id", using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
@@ -377,6 +380,7 @@ ActiveRecord::Schema.define(version: 20170313194636) do
   add_foreign_key "timetables", "addresses"
   add_foreign_key "user_histories", "causes"
   add_foreign_key "user_histories", "users"
+  add_foreign_key "users", "businesses", column: "business_supervisor_id"
   add_foreign_key "users", "causes"
   add_foreign_key "users", "users", column: "supervisor_id"
   add_foreign_key "uses", "perks"

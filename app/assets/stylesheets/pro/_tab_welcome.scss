@@ -303,6 +303,8 @@
 
         .business-links {
           display: flex;
+          flex-direction: inherit;
+          height: 100%;
           padding-bottom: 20px;
 
           ul.network-items {

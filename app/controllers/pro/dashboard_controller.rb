@@ -37,27 +37,16 @@ class Pro::DashboardController < Pro::ProController
     end
 
     @businesses.each do |business|
-      # BUSINESS ADDRESSES
-      addresses = []
-      # Other addresses
       business.addresses.each do |address|
-        # shop
-        addresses << [address.longitude, address.latitude] if business.shop and !address.day.present?
-        # itinerant
-        addresses << [address.longitude, address.latitude] if business.itinerant and address.day.present?
-      end
-
-      # LOAD ADDRESSES
-      addresses.uniq!
-      addresses.each do |address|
         @geojson["features"] << {
           "type": 'Feature',
           "geometry": {
             "type": 'Point',
-            "coordinates": [address[0], address[1]],
+            "coordinates": [address.longitude, address.latitude]
           },
           "properties": {
-            "marker-symbol": business.business_category.marker_symbol
+            "marker-symbol": business.business_category.marker_symbol,
+            "color": business.business_category.color
           }
         }
       end

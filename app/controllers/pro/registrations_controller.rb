@@ -1,7 +1,7 @@
 class Pro::RegistrationsController < Devise::RegistrationsController
 
   def update_business
-    if session[:impersonate_id].present?
+    if !request.referer.include?('/supervisor_dashboard') && session[:impersonate_id].present?
       @business = Business.find(session[:impersonate_id])
     else
       @business = current_business
@@ -46,6 +46,7 @@ class Pro::RegistrationsController < Devise::RegistrationsController
       :shop,
       :online,
       :itinerant,
+      :logo,
       label_category_ids: [],
       addresses_attributes: [ :_destroy, :id, :street, :zipcode, :city,
         timetables_attributes: [ :_destroy, :id, :day, :start_at_hour, :start_at_min, :end_at_hour, :end_at_min]

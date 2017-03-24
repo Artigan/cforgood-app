@@ -3,9 +3,9 @@ json.picture @user.picture.url(:card)
 json.extract! @user, :member, :trial_done, :birthday, :subscription, :amount, :street, :zipcode, :city, :code_partner
 json.status @user.status
 if @user.supervisor_id.present?
-  json.logo_member_card @user.supervisor_id.logo.url(:thumb)
-elsif @user.ecosystem_id.present?
-  json.logo_member_card Business.find(ecosystem_id).logo.url(:thumb)
+  json.logo_member_card @user.supervisor.logo.url(:thumb)
+elsif @user.business_supervisor_id.present?
+  json.logo_member_card @user.business_supervisor.logo.url(:thumb)
 else
   json.logo_member_card nil
 end
@@ -20,6 +20,7 @@ json.donation_attributes do
   json.array! @payments do |payment|
     json.cause_name payment.cause.name
     json.created_at payment.created_at
+    json.donation payment.donation
     json.amount payment.amount
   end
 end
