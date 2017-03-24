@@ -497,8 +497,8 @@ class User < ApplicationRecord
     binding.pry
 
     if supervisor_id.present?
-      reset_password_token = Devise.friendly_token.first(20)
-      reset_password_url = Rails.application.routes.url_helpers.edit_user_password_path(reset_password_token: reset_password_token)
+      reset_password_token = self.reset_password_token
+      reset_password_url = Rails.root.join(Rails.application.routes.url_helpers.edit_user_password_path(reset_password_token: reset_password_token))
 
       intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
       begin

@@ -32,7 +32,7 @@ class BusinessesController < ApplicationController
     end
     @business = Business.includes(:business_category).joins(:perks).find(params[:id])
     @perks = @business.perks.includes(:perk_detail).active
-    @address = @business.addresses.find(params[:address_id])
+    @address = @business.addresses.includes(:timetables).find(params[:address_id])
     @labels = @business.labels.includes(:label_category)
 
 

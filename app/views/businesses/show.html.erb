@@ -51,7 +51,11 @@
                     </div>
                 </div>
                 <div class="card-block card-left">
-                    <span>{business.opening}</span>
+                    <% if @address.open? == true %>
+                      <span class="opening true">Ouvert</span>
+                    <% else %>
+                      <span class="opening false">Fermé</span>
+                    <% end %>
                     <h1 id="business-name"><%= @business.name.downcase.titleize %></h1><br>
                     <div class="business-specs">
                         <div class="round-icon" style="background-color:<%= @business.business_category.color %>;"></div>
@@ -110,13 +114,12 @@
 
                         <div class="business-opening-hours">
                             <ul>
-                                <li>{Lundi - Fermé}</li>
-                                <li>{Mardi - 9h00 | 19h00}</li>
-                                <li>{Mercredi - 9h00 | 19h00}</li>
-                                <li>{Jeudi - 9h00 | 19h00}</li>
-                                <li>{Vendredi - 9h00 | 19h00}</li>
-                                <li>{Samedi - 10h00 | 19h00}</li>
-                                <li>{Dimanche - Fermé}</li>
+                                <% if @address.timetables.present? %>
+                                  <% (1..6).each do |i| %>
+                                    <li><%= I18n.t("date.day_names")[i].capitalize %> - <%= @address.timetables.find_by_day(i).present? ? @address.timetables.find_by_day(i).start_at_hour.to_s + "h" + pad0(@address.timetables.find_by_day(i).start_at_min.to_s) + " | " + @address.timetables.find_by_day(i).end_at_hour.to_s + "h" + pad0(@address.timetables.find_by_day(i).end_at_min.to_s) : 'Fermé' %><li>
+                                  <% end %>
+                                  <li><%= I18n.t("date.day_names")[0].capitalize %> - <%= @address.timetables.find_by_day(0).present? ? @address.timetables.find_by_day(0).start_at_hour.to_s + "h" + pad0(@address.timetables.find_by_day(0).start_at_min.to_s) + " | " + @address.timetables.find_by_day(0).end_at_hour.to_s + "h" + pad0(@address.timetables.find_by_day(0).end_at_min.to_s) : 'Fermé' %></li>
+                                <% end %>
                             </ul>
                         </div>
 

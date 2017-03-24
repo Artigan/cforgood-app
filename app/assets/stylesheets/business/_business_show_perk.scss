@@ -41,6 +41,31 @@
     padding-bottom: 2%;
 }
 
+.opening {
+  position: relative;
+  top: 20px;
+  margin-left: 15px;
+  font-weight: 12px;
+
+  &:before {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    top: 7px;
+    margin-left: -15px;
+    border-radius: 50%;
+  }
+
+  &.true:before {
+    background-color: #7ED321;
+  }
+
+  &.false:before {
+    background-color: #9C270B;
+  }
+}
+
 .business-picture-row {
     width: 100%;
     height: 50px;
