@@ -12,6 +12,9 @@
                 <% end %>
                 <% end %>
             </div>
+            <div class="business-name-card-mobile-list">
+              <h6><%= @business.name.downcase.titleize %></h6>
+            </div>
             <div class="perks-offer-type" style="border-color: <%= business.business_category.color %>;">
                 <%= perk.offer_type %>
             </div>

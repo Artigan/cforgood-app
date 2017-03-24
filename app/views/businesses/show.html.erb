@@ -101,6 +101,7 @@
 
                     <div class="row"><hr class="horizontal-bar"></div>
 
+                    <% if device_type != :mobile %>
                     <h6>Détails</h6>
                     <div class="details">
 
@@ -110,7 +111,7 @@
                             </div>
                         </div>
 
-                        
+
                         <div class="business-opening-hours">
                             <ul>
                                 <li>{Lundi - Fermé}</li>
@@ -138,6 +139,50 @@
                             </div>
                         </div>
                     </div>
+                    
+                    <% else %>
+
+                    <h6>Détails</h6>
+                    <div class="details-mobile">
+
+                        <div class="details-mobile-first-row">
+                            <div class="business-map-mobile">
+                                <div id="map-perk-desktop"></div>
+                            </div>
+                        </div>
+
+                        <div class="details-mobile-second-row">
+                          <div class="business-address-row">
+                              <div class="business-address-icon"><img src="<%= asset_path 'icons/map-location.svg' %>" style=" color:<%= @business.business_category.color %>;"></div>
+                                <div class=" business-addresss">
+                                    <span> <%= @address.present? ? @address.street : @business.street %>
+                                    <%= @address.present? ? @address.zipcode : @business.zipcode %>
+                                      <%= @address.present? ? @address.city : @business.city %></span>
+                                </div>
+                          </div>
+                          <div class="business-opening-hours-mobile">
+                              <ul>
+                                  <li>{Lundi - Fermé}</li>
+                                  <li>{Mardi - 9h00 | 19h00}</li>
+                                  <li>{Mercredi - 9h00 | 19h00}</li>
+                                  <li>{Jeudi - 9h00 | 19h00}</li>
+                                  <li>{Vendredi - 9h00 | 19h00}</li>
+                                  <li>{Samedi - 10h00 | 19h00}</li>
+                                  <li>{Dimanche - Fermé}</li>
+                              </ul>
+                          </div>
+                      </div>
+
+                            <div class="details-mobile-third-row">
+                                <%= render "pro/dashboard/shared/business_links" %>
+                            </div>
+
+                    </div>
+
+
+
+
+                    <% end %>
 
                     <% if @business.leader_description.present? %>
                     <div class="row"><hr class="horizontal-bar"></div>
