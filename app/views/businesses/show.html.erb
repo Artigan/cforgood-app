@@ -111,7 +111,6 @@
                             </div>
                         </div>
 
-
                         <div class="business-opening-hours">
                             <ul>
                                 <% if @address.timetables.present? %>
@@ -125,7 +124,7 @@
 
                         <div class=" business-informations">
                             <div class="business-address-row">
-                                <div class="business-address-icon"><img src="<%= asset_path 'icons/map-location.svg' %>" style=" color:<%= @business.business_category.color %>;"></div>
+                                <div class="business-address-icon" style="background-color:<%= @business.business_category.color %>;"></div>
                                   <div class=" business-addresss">
                                       <span> <%= @address.present? ? @address.street : @business.street %>
                                       <%= @address.present? ? @address.zipcode : @business.zipcode %>
@@ -152,7 +151,7 @@
 
                         <div class="details-mobile-second-row">
                           <div class="business-address-row">
-                              <div class="business-address-icon"><img src="<%= asset_path 'icons/map-location.svg' %>" style=" color:<%= @business.business_category.color %>;"></div>
+                              <div class="business-address-icon" style="background-color:<%= @business.business_category.color %>;"></div>
                                 <div class=" business-addresss">
                                     <span> <%= @address.present? ? @address.street : @business.street %>
                                     <%= @address.present? ? @address.zipcode : @business.zipcode %>

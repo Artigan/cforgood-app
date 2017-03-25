@@ -392,7 +392,6 @@ class User < ApplicationRecord
   end
 
   def update_data_intercom
-    binding.pry
     # UPDATE CUSTOM ATTRIBUTES ON INTERCOM
     intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
     @partner = Partner.find_by_code_partner(self.code_partner)
@@ -493,8 +492,6 @@ class User < ApplicationRecord
   end
 
   def create_event_employee
-
-    binding.pry
 
     if supervisor_id.present?
       reset_password_token = self.reset_password_token
