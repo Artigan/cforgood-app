@@ -224,7 +224,8 @@ class User < ApplicationRecord
   end
 
   def trial_done?
-    if self.code_partner.present? && !self.trial_done
+    #trial_done is true after the popud is display
+    if self.code_partner.present? && self.trial_done == false
       self.trial_done = true
       return self.save
     end

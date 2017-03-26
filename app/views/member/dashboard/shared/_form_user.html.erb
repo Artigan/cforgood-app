@@ -38,11 +38,11 @@
       function readURL(input) {
         var reader = new FileReader();
           reader.onload = function (e) {
-            if ($('.user-picture').attr('src') === undefined) {
-              $(".picture-none").remove();
-              $('.picture-container').append('<img src=" " class="user-picture" >')
+            if ($('.pastille-user').attr('src') === undefined) {
+              $(".pastille-citoyen").remove();
+              $('.picture-container').append('<img src=" " class="pastille-user" >')
             };
-            $('.user-picture').attr('src', e.target.result).addClass("thumb-crop");
+            $('.pastille-user').attr('src', e.target.result).addClass("thumb-crop");
           }
         reader.readAsDataURL(input);
       }
