@@ -8,7 +8,7 @@
 #  code_partner     :string
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
-#  nb_month         :integer          default(1)
+#  nb_months        :integer          default(1)
 #  times            :integer          default(0)
 #  promo            :boolean          default(FALSE)
 #  date_start_promo :date
@@ -17,6 +17,7 @@
 #  exclusive        :boolean          default(FALSE), not null
 #  shared           :boolean          default(FALSE), not null
 #  supervisor_id    :integer
+#  nb_days          :integer
 #
 # Indexes
 #
