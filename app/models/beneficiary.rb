@@ -52,7 +52,7 @@ class Beneficiary < ApplicationRecord
           first_name: self.first_name,
           last_name: self.last_name,
           email: self.email,
-          nb_month: self.nb_month,
+          nb_months: self.nb_months,
           url: "https://app.cforgood.com/signup_beneficiary/?#{self.id}"
         }
       )
@@ -61,7 +61,7 @@ class Beneficiary < ApplicationRecord
     end
 
     # SEND EVENT TO SLACK
-    message =  user.find_name_or_email + " a offert *" + self.nb_month.to_s + "* mois gratuit(s) à " + self.first_name + ' ' + self.last_name
+    message =  user.find_name_or_email + " a offert *" + self.nb_months.to_s + "* mois gratuit(s) à " + self.first_name + ' ' + self.last_name
     send_message_to_slack(ENV['SLACK_WEBHOOK_USER_URL'], message)
 
   end

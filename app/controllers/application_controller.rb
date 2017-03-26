@@ -51,7 +51,7 @@ class ApplicationController < ActionController::Base
           elsif request.referer.include?('signup_beneficiary')
             # Only for beneficiary signup
             @beneficiary =  Beneficiary.find(request.referer.split("?")[1].to_i)
-            current_user.code_partner = "GIFT" + @beneficiary.nb_month.to_s + "MONTH"
+            current_user.code_partner = "GIFT" + @beneficiary.nb_months.to_s + "MONTH"
             current_user.save
             @beneficiary.update(used: true)
             member_user_dashboard_path(resource)

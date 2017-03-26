@@ -7,19 +7,19 @@
       <div class="input-container">
         <input id="3.15" class="radio-button" type="radio" name="radio" />
         <div class="radio-tile">
-          <%= image_tag 'icons/present_3month.svg', class: "present-3month" %>
+          <%= image_tag 'icons/present_3months.svg', class: "present-3months" %>
         </div>
       </div>
       <div class="input-container">
         <input id="6.30" class="radio-button" type="radio" name="radio" />
         <div class="radio-tile">
-          <%= image_tag 'icons/present_6month.svg' %>
+          <%= image_tag 'icons/present_6months.svg' %>
         </div>
       </div>
       <div class="input-container">
         <input id="12.50" class="radio-button" type="radio" name="radio" checked="checked"/>
         <div class="radio-tile">
-          <%= image_tag 'icons/present_12month.svg' %>
+          <%= image_tag 'icons/present_12months.svg' %>
         </div>
       </div>
     </div>
@@ -40,7 +40,7 @@
       <%= f.input :first_name, placeholder: 'Prénom', required: true, label: false %>
       <%= f.input :last_name, placeholder: 'Nom', required: true, label: false %>
       <%= f.input :email, placeholder: 'Adresse email', required: true, label: false %>
-      <%= f.input :nb_month, as: :hidden, input_html: { value: 12 }  %>
+      <%= f.input :nb_months, as: :hidden, input_html: { value: 12 }  %>
       <%= f.input :amount, as: :hidden, input_html: { value: 50 } %>
 
       <p>On s'occupe de tout ! Le 25 décembre, le personne recevra un joli mail qui lui annoncera la bonne nouvelle et lui permettra de s'inscrire pour bénéficier de tous nos avantages immédiatement :)</p>
@@ -72,7 +72,7 @@
       });
 
       $('.radio-button').on('click', function() {
-        $('#beneficiary_nb_month').val($('.radio-button:checked').attr('id').split('.')[0]);
+        $('#beneficiary_nb_months').val($('.radio-button:checked').attr('id').split('.')[0]);
         $('#beneficiary_amount').val($('.radio-button:checked').attr('id').split('.')[1]);
       });
 
