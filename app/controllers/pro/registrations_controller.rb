@@ -33,6 +33,7 @@ class Pro::RegistrationsController < Devise::RegistrationsController
       :description,
       :picture,
       :business_category_id,
+      :activity,
       :facebook,
       :twitter,
       :instagram,

@@ -1,5 +1,5 @@
 json.array! @businesses do |business|
-  json.extract! business, :id, :name, :activity
+  json.extract! business, :id, :email, :name, :activity
   json.picture business.picture.url(:card)
   json.business_category_id business.business_category.id
   json.like business.like
