@@ -326,7 +326,9 @@ class User < ApplicationRecord
           start_date = Time.now
         end
         @partner = Partner.find_by_code_partner(self.code_partner)
-        self.date_end_partner = start_date + @partner.nb_months.month + @partner.nb_days.day
+        self.date_end_partner = start_date
+        self.date_end_partner += @partner.nb_months.month if @partner.nb_months
+        @partner.nb_months += @partner.nb_days.day if @partner.nb_days
         self.business_supervisor_id = @partner.supervisor_id
       end
     end
