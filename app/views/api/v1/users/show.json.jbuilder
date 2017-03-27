@@ -1,18 +1,23 @@
 json.extract! @user, :id, :email, :first_name, :last_name, :name, :ambassador
 json.picture @user.picture.url(:card)
-json.extract! @user, :member, :trial_done, :birthday, :subscription, :amount, :street, :zipcode, :city, :code_partner
+json.extract! @user, :member
+json.trial_done @user.trial_done?
+json.extract! @user, :birthday, :subscription, :amount, :street, :zipcode, :city, :code_partner
 json.status @user.status
 if @user.supervisor_id.present?
-  json.logo_member_card @user.supervisor.logo.url(:thumb)
+  json.supervisor_name @user.manager.name
+  json.supervisor_logo @user.manager.logo.url(:thumb)
 elsif @user.business_supervisor_id.present?
-  json.logo_member_card @user.business_supervisor.logo.url(:thumb)
+  json.supervisor_name @user.business_supervisor.name
+  json.supervisor_logo @user.business_supervisor.logo.url(:thumb)
 else
-  json.logo_member_card nil
+  json.supervisor_name nil
+  json.supervisor_logo nil
 end
-
 json.cause_attributes do
-  json.extract! @cause, :name, :city
+  json.extract! @cause, :id, :name, :city
   json.picture @cause.picture.url(:card)
+  json.logo @cause.logo.url(:thumb)
   json.total_donation @total_donation
 end
 

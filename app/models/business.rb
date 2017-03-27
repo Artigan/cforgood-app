@@ -92,6 +92,7 @@ class Business < ApplicationRecord
   scope :shop, -> { where(shop: true) }
   scope :itinerant, -> { where(itinerant: true) }
   scope :supervisor, -> { where(supervisor: true) }
+  scope :not_supervisor, -> { where(supervisor: false) }
   scope :admin, -> { where(admin: true) }
   scope :supervisor_not_admin, -> { where(supervisor: true, admin: false) }
 

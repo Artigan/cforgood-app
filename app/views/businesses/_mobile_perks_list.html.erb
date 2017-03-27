@@ -1,21 +1,17 @@
 <div class="perk-modal-mobile-member hidden">
-  <button type="button" class="closed-perk-modal-mobile-member close-button">&times;</button>
 
   <div class="perk-modal-member-header">
-    <div class="title-fri-underline" style="border-color: <%= @business.business_category.color %>;"><%= "Les bons plans de #{@business.name}" %></div>
+    <div class="perk-title-mobile-list"> <h2 style="border-color: <%= @business.business_category.color %>;">Les bons plans</h2></div>
+    <div class="perk-mobile-list-closing-button"><button type="button" class="closed-perk-modal-mobile-member close-button">&times;</button></div>
   </div>
 
   <% @business.perks.active.each do |perk| %>
-
-    <div class="col-md-6 col-sm-6 col-xs-12 perk-carddd <%= !perk.perk_in_time? || !(user_signed_in? && perk.perk_usable?(current_user))  ? 'unavailable' : 'available' %>" id="perk-modal-dynamic-<%= perk.id %>">
-        <%= render "businesses/business_card", business: @business, address: @address, perk: perk, index_view: false %>
-    </div>
+    <%= render "businesses/business_card", business: @business, address: @address, perk: perk, index_view: false %>
     <% if !user_signed_in? %>
       <%= render "businesses/business_perk_not_member", perk: perk %>
     <% else %>
       <%= render "businesses/business_perk_show", perk: perk %>
     <% end %>
-
   <% end %>
 
 </div>
@@ -28,6 +24,8 @@
 
       $('.closed-perk-modal-mobile-member').click(function() {
         $(".perk-modal-mobile-member").addClass('hidden');
+        $('.perk-modal-mobile-member').attr('style', 'position: fixed;');
+        $('.left-side').attr('style', 'position: absolute;');
       });
 
       // $(".use-button-logout").click(function() {

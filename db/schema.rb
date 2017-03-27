@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170324114151) do
+ActiveRecord::Schema.define(version: 20170326172739) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 20170324114151) do
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.boolean  "paid",       default: false, null: false
-    t.integer  "nb_month"
+    t.integer  "nb_months"
     t.integer  "amount"
     t.index ["user_id"], name: "index_beneficiaries_on_user_id", using: :btree
   end
@@ -191,7 +191,7 @@ ActiveRecord::Schema.define(version: 20170324114151) do
     t.string   "code_partner"
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
-    t.integer  "nb_month",         default: 1
+    t.integer  "nb_months",        default: 1
     t.integer  "times",            default: 0
     t.boolean  "promo",            default: false
     t.date     "date_start_promo"
@@ -200,6 +200,7 @@ ActiveRecord::Schema.define(version: 20170324114151) do
     t.boolean  "exclusive",        default: false, null: false
     t.boolean  "shared",           default: false, null: false
     t.integer  "supervisor_id"
+    t.integer  "nb_days"
     t.index ["supervisor_id"], name: "index_partners_on_supervisor_id", using: :btree
     t.index ["user_id"], name: "index_partners_on_user_id", using: :btree
   end

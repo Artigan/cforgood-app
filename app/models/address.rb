@@ -56,7 +56,9 @@ class Address < ApplicationRecord
   before_save :assign_business_supervisor, if: :address_changed?
 
   def open?
-    #self.timetables.today.open.present? ? true : false
+    today = self.timetables.find_by_day(Time.now.wday)
+    return (today.start_at..today.end_at).cover?(Time.now) if today
+    true
   end
 
   private

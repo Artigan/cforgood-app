@@ -101,7 +101,7 @@
               <%= link_to "Profil", member_user_profile_path(current_user, anchor: 'profile' ), class: "droptext-bold profile-tab" %>
               <%= link_to "Association", member_user_profile_path(current_user, anchor: 'cause'), class: "droptext-bold profile-tab" %>
               <%= link_to "Participation", member_user_profile_path(current_user,  anchor: 'subscription'), class: "droptext-bold profile-tab" %>
-              <% if current_user.date_last_payment.present? %>
+              <% if current_user.payments.present? %>
                 <%= link_to "Contributions", member_user_profile_path(current_user, anchor: 'list-payments'),  class: "droptext-bold profile-tab" %>
               <% end %>
               <%= link_to "Plaisir d'offrir", member_user_gift_path(current_user), class: "droptext-bold profile-tab" %>

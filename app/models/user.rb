@@ -127,6 +127,7 @@ class User < ApplicationRecord
 
   after_save :create_partner_for_third_use_code_partner, if: :code_partner_changed?
   after_save :send_code_partner_slack, if: :code_partner_changed?
+  after_save :update_data_intercom, :create_event_employee, if: :supervisor_id_changed?
   after_save :save_history
 
   after_commit :update_data_intercom
@@ -223,7 +224,8 @@ class User < ApplicationRecord
   end
 
   def trial_done?
-    if self.code_partner.present? && !self.trial_done
+    #trial_done is true after the popud is display
+    if self.code_partner.present? && self.trial_done == false
       self.trial_done = true
       return self.save
     end
@@ -323,7 +325,8 @@ class User < ApplicationRecord
         else
           start_date = Time.now
         end
-        self.date_end_partner = start_date + Partner.find_by_code_partner(self.code_partner).nb_month.month
+        @partner = Partner.find_by_code_partner(self.code_partner)
+        self.date_end_partner = start_date + @partner.nb_months.month + @partner.nb_days.day
         self.business_supervisor_id = @partner.supervisor_id
       end
     end
@@ -392,7 +395,6 @@ class User < ApplicationRecord
 
   def update_data_intercom
     # UPDATE CUSTOM ATTRIBUTES ON INTERCOM
-
     intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
     @partner = Partner.find_by_code_partner(self.code_partner)
     promo = false
@@ -488,6 +490,48 @@ class User < ApplicationRecord
       )
     rescue Intercom::IntercomError => e
       puts e
+    end
+  end
+
+  def create_event_employee
+
+    if supervisor_id.present?
+      reset_password_token = self.reset_password_token
+      reset_password_url = Rails.root.join(Rails.application.routes.url_helpers.edit_user_password_path(reset_password_token: reset_password_token))
+
+      intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
+      begin
+        intercom.events.create(
+          event_name: "new_employee",
+          created_at: Time.now.to_i,
+          user_id: self.id,
+          email: self.email,
+          metadata: {
+            supervisor: self.manager.name,
+            reset_password: reset_password_url
+          }
+        )
+      rescue Intercom::IntercomError => e
+        puts e
+      end
+
+    else
+
+      intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
+      begin
+        intercom.events.create(
+          event_name: "delete_employee",
+          created_at: Time.now.to_i,
+          user_id: self.id,
+          email: self.email,
+          metadata: {
+            supervisor: self.manager.name,
+          }
+        )
+      rescue Intercom::IntercomError => e
+        puts e
+      end
+
     end
   end
 
