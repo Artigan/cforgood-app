@@ -240,10 +240,12 @@ $(document).ready(function () {
         $('.left-side').attr('style', 'position: fixed;');
     });
 
-    $('.perk-carddd.available').click(function () {
+    $('.perk-carddd').click(function () {
         var classModal = $(this).attr('id');
         $('.' + classModal).removeClass("hidden");
     });
+
+
     // $(".use-button-logout").click(function() {   $('.use-overlay').removeClass('hidden');   // EVENT AMPLITUDE USER_C_BENEFIT   amplitude.logEvent('USER_C_BENEFIT_LOGOUT'); }); $(".btn-use-button").click(function() {   // EVENT AMPLITUDE
     // USER_C_BENEFIT   amplitude.logEvent('USER_C_BENEFIT'); });
 });
