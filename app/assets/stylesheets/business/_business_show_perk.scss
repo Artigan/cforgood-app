@@ -122,10 +122,38 @@
   }
 
   .dropdown-menu.socials {
-    background-color: rgba(255,255,255,0.7);
+    background-color: rgba(255,255,255,0);
     min-width: 0 !important;
-    width: 30px;
-    // margin-bottom: -0.6% !important;
+    height: 100px;
+    margin-left: 65%;
+    margin-bottom: 18%;
+  }
+
+  .dropdown-socials {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 50px;
+    min-width: 50px;
+    border: 0.1px solid white;
+    top: 100px;
+  }
+
+  .dropdown-socials i {
+    color: white;
+  }
+
+
+  // .dropdown-socials a:hover, .dropdown-socials a:focus {
+  //   background-color: rgba(255,255,255,0);
+  // }
+
+  .dropdown-socials:first-child {
+  background-color: #3B5999;
+  }
+
+  .dropdown-socials:nth-child(2) {
+  background-color: #4099FF;
   }
 
 
@@ -684,6 +712,16 @@
     }
 
     // END POP UP MEMBER CARD //
+    .perk-modal-feedback-background-image {
+      background-position: center;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    // POP UP FEEDBACK //
+
+    // END POP UP FEED BACK //
 
     // MOBILE PERKS LIST //
 
@@ -835,7 +873,7 @@
       }
 
       .business-leader-picture {
-        width: 120px;
+        width: 110px;
         height: 110px;
       }
 
@@ -1120,7 +1158,7 @@
       }
 
       .business-leader-picture {
-        width: 120px;
+        width: 110px;
         height: 110px;
       }
 
@@ -1196,6 +1234,9 @@
 
 }
 // End Adrien CSS //
+
+
+
 /* SHOW - PERK ****************************************************************/
 .dashboard-perk {
   min-height: 100%;
