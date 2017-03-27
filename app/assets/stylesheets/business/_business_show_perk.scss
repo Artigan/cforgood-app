@@ -2525,8 +2525,7 @@
   }
 
   .perk-modal-header-text {
-    font-size: 17px;
-    text-transform: uppercase;
+    font-size: 16px;
 
     &.feedback {
       max-width: 210px;
@@ -2534,12 +2533,12 @@
   }
 
   .perk-modal-icon {
-    background-image: image-url("logo.svg");
+    background-image: image-url("logo_vertical.png");
     background-size: cover;
     background-position: center center;
-    width: 70px;
-    height: 70px;
-    margin-bottom: 20px;
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
   }
 
   .perk-modal-illustration {
@@ -2551,38 +2550,24 @@
     }
   }
 
-  .perk-modal-title-dotted {
-    height: 40px;
+  .perk-modal-content {
+    display: flex;
     width: 100%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    margin-bottom: 5px;
-  }
-
-  .perk-modal-yellow-dot {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    color: white;
-    font-size: 9px;
-    font-weight: 600;
-    background-color: #FFD00C;
-    display: flex;
+    padding: 5%;
+    flex-direction: column;
+    align-item: center;
     justify-content: center;
-    align-items: center;
-    margin-right: 10px;
-  }
-
-  .perk-modal-title-text {
-    font-size: 14px;
-    font-weight: 600;
-  }
-
-  .perk-modal-description {
-    width: 100%;
+    text-align: center;
     font-size: 12px;
-    margin-bottom: 15px;
+  }
+
+  .perk-modal-content-text {
+    font-size: 16px;
+    font-weight: 600;
+
+    p {
+      font-size: 12px;
+    }
   }
 
   .perk-modal-button-signup {
