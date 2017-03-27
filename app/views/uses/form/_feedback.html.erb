@@ -1,49 +1,61 @@
 <div class="perk-modal feedback">
-  <div class="perk-modal-header">
-    <div class="perk-modal-illustration"><%= image_tag "business_categories/yoga.svg" %></div>
-    <div class="perk-modal-header-text feedback">Avez-vous appréciez ce bon plan ?</div>
-  </div>
-
-  <div class="perk-modal-feedback">
-    <div class="radio-tile-group">
-      <div class="input-container">
-        <input id="like" class="radio-button" type="radio" name="radio" />
-        <div class="radio-tile">
-          <%= image_tag "heart_like.svg" %>
-        </div>
-      </div>
-      <div class="input-container">
-        <input id="unlike" class="radio-button" type="radio" name="radio" />
-        <div class="radio-tile">
-          <%= image_tag "heart_dislike.svg" %>
-        </div>
-      </div>
+<!--
+    <div class="perk-modal-feedback-background-image" style="background-image: url('<%#= @perk.picture.present? ? @perk.picture.url(:card) : @business.picture.url(:card) %>');">
+        <h6>
+            <%#= business.name.downcase.titleize %>
+        </h6>
     </div>
-    <div class="perk-modal-hr"><hr></div>
-    <div class="input-container">
-      <input id="unused" class="radio-button" type="radio" name="radio" />
-      <div class="radio-tile">
-        Je n’ai pas utilisé ma carte de membre
-      </div>
-    </div>
-  </div>
 
-  <div class="perk-modal-valid-feedback">
-    <%= simple_form_for :use, url: perk_use_path(params[:perk_id], params[:id]), method: :put do |f| %>
-      <%= f.input :feedback, as: :hidden, input_html: { value: true } %>
-      <%= f.input :like, as: :hidden, input_html: { value: false } %>
-      <%= f.input :unlike, as: :hidden, input_html: { value: false } %>
-      <%= f.input :unused, as: :hidden, input_html: { value: false } %>
-      <%= f.submit "", class: "submit-feedback", :style => "display: none;" %>
-    <% end %>
-  </div>
+    <div class="perk-modal-feedback-perk-name">
+        <p>
+            <%#= @perk.name %>
+        </p>
+    </div> -->
+
+    <div class="perk-modal-feedback">
+        <p>
+            Avez-vous appréciez ce bon plan ?
+        </p>
+        <div class="radio-tile-group">
+            <div class="input-container">
+                <input id="like" class="radio-button" type="radio" name="radio"/>
+                <div class="radio-tile">
+                    <%= image_tag "heart_like.svg" %>
+                </div>
+            </div>
+            <div class="input-container">
+                <input id="unlike" class="radio-button" type="radio" name="radio"/>
+                <div class="radio-tile">
+                    <%= image_tag "heart_dislike.svg" %>
+                </div>
+            </div>
+        </div>
+        <div class="perk-modal-hr"><hr></div>
+        <div class="input-container">
+            <input id="unused" class="radio-button" type="radio" name="radio"/>
+            <div class="radio-tile">
+                Je n’ai pas utilisé ma carte de membre
+            </div>
+        </div>
+    </div>
+
+    <div class="perk-modal-valid-feedback">
+        <%= simple_form_for :use, url: perk_use_path(params[:perk_id], params[:id]), method: :put do |f| %>
+        <%= f.input :feedback, as: :hidden, input_html: { value: true } %>
+        <%= f.input :like, as: :hidden, input_html: { value: false } %>
+        <%= f.input :unlike, as: :hidden, input_html: { value: false } %>
+        <%= f.input :unused, as: :hidden, input_html: { value: false } %>
+        <%= f.submit "", class: "submit-feedback", :style => "display: none;" %>
+        <% end %>
+    </div>
+
 </div>
 
 <script type="text/javascript">
-  $('.radio-button').click(function() {
-    feedback = $('.radio-button:checked').attr('id');
-    $('#use_like, #use_unlike, #use_unused').val('false');
-    $('#use_' + feedback).val('true');
-    $('.submit-feedback').click();
-  });
+    $('.radio-button').click(function () {
+        feedback = $('.radio-button:checked').attr('id');
+        $('#use_like, #use_unlike, #use_unused').val('false');
+        $('#use_' + feedback).val('true');
+        $('.submit-feedback').click();
+    });
 </script>
