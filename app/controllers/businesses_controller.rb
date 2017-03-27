@@ -62,6 +62,6 @@ class BusinessesController < ApplicationController
   end
 
   def find_businesses_for_search
-    @businesses = Business.includes(:business_category, :main_address).active.with_perks_in_time.distinct.eager_load(:addresses_for_map).merge(Address.near(@lat_lng, 9999, order: "distance"))
+    @businesses = Business.not_supervisor.includes(:business_category, :main_address).active.with_perks_in_time.distinct.eager_load(:addresses_for_map).merge(Address.near(@lat_lng, 9999, order: "distance"))
   end
 end

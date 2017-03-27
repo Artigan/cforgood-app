@@ -1,188 +1,189 @@
 /* Adrien CSS */
 #overlayyy {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 2;
-    left: 0;
-    top: 0;
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 2;
+  left: 0;
+  top: 0;
     // background-color: rgb(0,0,0);
     background-color: rgba(0,0,0, 0.7);
     overflow: hidden;
     transition: 2s;
-}
+  }
 
-.full-page {
+  .full-page {
     background-color: white;
     width: auto;
     height: auto;
     overflow-x: hidden;
     margin-top: 50px;
     margin-left: 90px;
-}
+  }
 
-.main-card-left {
+  .main-card-left {
     border: 0.5px solid lightgrey;
     margin-top: 0;
     width: 98%;
-}
+    background: #fff;
+  }
 
-.background-main-img {
+  .background-main-img {
     background-size: cover;
     min-height: 400px;
     width: 100%;
     display: flex;
     align-items: flex-end;
-}
+  }
 
-.card-left {
+  .card-left {
     margin-left: 5%;
     margin-right: 5%;
     padding-bottom: 2%;
-}
-
-.opening {
-  position: relative;
-  top: 20px;
-  margin-left: 15px;
-  font-weight: 12px;
-
-  &:before {
-    content: "";
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    top: 7px;
-    margin-left: -15px;
-    border-radius: 50%;
   }
 
-  &.true:before {
-    background-color: #7ED321;
+  .opening {
+    position: relative;
+    top: 20px;
+    margin-left: 15px;
+    font-weight: 12px;
+
+    &:before {
+      content: "";
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      top: 7px;
+      margin-left: -15px;
+      border-radius: 50%;
+    }
+
+    &.true:before {
+      background-color: #7ED321;
+    }
+
+    &.false:before {
+      background-color: #9C270B;
+    }
   }
 
-  &.false:before {
-    background-color: #9C270B;
-  }
-}
-
-.business-picture-row {
+  .business-picture-row {
     width: 100%;
     height: 50px;
     display: flex;
-}
+  }
 
-.socials-row {
+  .socials-row {
     background-color: rgba(255,255,255,0.9);
     opacity: 0.85;
     flex-grow: 9;
     display: flex;
     align-items: center;
-}
+  }
 
-.share-row {
+  .share-row {
     opacity: 0.9;
     flex-grow: 1;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-}
+  }
 
-.likes {
+  .likes {
     padding-left: 4%;
     display: flex;
     align-items: center;
     font-size: 0.8em;
-}
+  }
 
-.share-socials {
+  .share-socials {
     color: white;
     font-size: 0.8em;
-}
+  }
 
-.share-call-to-action {
+  .share-call-to-action {
     display: flex;
     align-items: center;
     justify-content: center;
-}
+  }
 
-i.fa-share-alt {
-  font-size: 2em;
-  padding-left: 5%;
-}
+  i.fa-share-alt {
+    font-size: 2em;
+    padding-left: 5%;
+  }
 
-.share-socials:hover {
+  .share-socials:hover {
     color: white;
-}
+  }
 
-.share-socials:focus {
+  .share-socials:focus {
     color: white;
-}
+  }
 
-.dropdown-menu.socials {
+  .dropdown-menu.socials {
     background-color: rgba(255,255,255,0.7);
     min-width: 0 !important;
     width: 30px;
     // margin-bottom: -0.6% !important;
-}
+  }
 
 
-#business-name {
+  #business-name {
     font-size: 2.5em;
     color: black;
     font-weight: 600;
     margin-bottom: -2%;
-}
+  }
 
-.business-specs {
+  .business-specs {
     display: flex;
     align-items:flex-end;
     width: 100%;
     height: 50px;
-}
+  }
 
-.round-icon {
+  .round-icon {
     height: 18px;
     width: 18px;
     border-radius: 50%;
     margin-bottom: 0.5%;
-}
+  }
 
-.business-category {
+  .business-category {
     flex-grow: 1;
     padding-left: 1%;
   }
 
-.business-distance {
+  .business-distance {
     flex-grow: 2;
-}
+  }
 
-.business-category-image {
+  .business-category-image {
     display: flex;
     flex-grow: 4;
     justify-content: flex-end;
     margin-bottom: -1.5%;
-}
+  }
 
-.business-beliefs {
+  .business-beliefs {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-}
+  }
 
-.business-belief {
+  .business-belief {
     width: 30%;
     flex-grow: 1;
-}
+  }
 
-.business-description {
+  .business-description {
     width: 100%;
     font-size: 0.9em;
     color: rgba(55,55,55,0.9);
-}
+  }
 
-hr {
+  hr {
     border-color: lightgrey;
     -moz-border-bottom-colors: none;
     -moz-border-image: none;
@@ -197,79 +198,79 @@ hr {
     margin-bottom: 1%;
     width: 100%;
     background-color: rgba(128,128,128, 0.3);
-}
+  }
 
-.details {
+  .details {
     display: flex;
     width: 100%;
     flex-wrap: wrap;
-}
+  }
 
-.map-details {
-  width: 180px;
-  height: 200px;
-  flex-grow: 1;
-}
+  .map-details {
+    width: 180px;
+    height: 200px;
+    flex-grow: 1;
+  }
 
-.business-map {
-  width: 170px;
-  height: 160px;
-}
+  .business-map {
+    width: 170px;
+    height: 160px;
+  }
 
-.business-opening-hours {
+  .business-opening-hours {
     width: 160px;
     height: 200px;
     flex-grow: 1;
-}
+  }
 
-.business-opening-hours li {
+  .business-opening-hours li {
     list-style-type: none;
     font-size: 0.7em;
-}
+  }
 
-.business-informations {
-  flex-grow : 1;
-  width: 200px;
-  height: 200px;
-  display: flex;
-  flex-direction: column;
-}
+  .business-informations {
+    flex-grow : 1;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+  }
 
-.business-address-row {
-  display: flex;
-  margin-bottom: 3%;
-  padding-left: 1%;
-}
+  .business-address-row {
+    display: flex;
+    margin-bottom: 3%;
+    padding-left: 1%;
+  }
 
-.business-address-icon {
-  width: 30px;
-  height: 30px;
-  display: inline-block;
-  -webkit-mask: url(icons/map-location.svg) no-repeat 50% 50%;
-  mask: url(icons/map-location.svg) no-repeat 50% 50%;
-  -webkit-mask-size: cover;
-  mask-size: cover;
-}
+  .business-address-icon {
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    -webkit-mask: url(icons/map-location.svg) no-repeat 50% 50%;
+    mask: url(icons/map-location.svg) no-repeat 50% 50%;
+    -webkit-mask-size: cover;
+    mask-size: cover;
+  }
 
-.business-addresss span {
-  font-size: 0.7em;
-  display: flex;
-  margin-left: 3%;
-  flex-wrap: wrap;
-  line-height: 16px;
-}
+  .business-addresss span {
+    font-size: 0.7em;
+    display: flex;
+    margin-left: 3%;
+    flex-wrap: wrap;
+    line-height: 16px;
+  }
 
-.business-links {
-  display: flex;
-  flex-direction: column;
-}
+  .business-links {
+    display: flex;
+    flex-direction: column;
+  }
 
-.reach-uss {
+  .reach-uss {
     list-style-type: none;
     margin-bottom: 3%;
-}
+  }
 
-.reach-uss i {
+  .reach-uss i {
     display: inline-block;
     border-style: solid;
     padding: auto;
@@ -283,33 +284,33 @@ hr {
     line-height: 25px;
     vertical-align: middle;
     padding: 5px;
-}
+  }
 
-.reach-uss i:hover {
+  .reach-uss i:hover {
     -webkit-transform: rotate(350deg);
     -moz-transform: rotate(350deg);
     -ms-transform: rotate(350deg);
     -o-transform: rotate(350deg);
     transform: rotate(350deg);
-}
+  }
 
-.reach-uss span {
+  .reach-uss span {
     color: black;
     font-size: 0.7em;
-}
+  }
 
-.follow-uss {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-}
+  .follow-uss {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
 
-.detail-follow-uss {
-  display: flex;
-}
+  .detail-follow-uss {
+    display: flex;
+  }
 
-.follow-uss a {
+  .follow-uss a {
     display: inline-block;
     border-style: solid;
     border-width: 1.5px;
@@ -323,72 +324,98 @@ hr {
     vertical-align: middle;
     padding: 5px;
     color: white;
-}
+  }
 
-.follow-uss a:hover {
+  .follow-uss a:hover {
     -webkit-transform: rotate(10deg);
     -moz-transform: rotate(10deg);
     -ms-transform: rotate(10deg);
     -o-transform: rotate(10deg);
     transform: rotate(10deg);
-}
+  }
 
-.follow-uss span:first-child {
+  .follow-uss span:first-child {
     color: black;
     font-size: 0.7em;
-}
+  }
 
-.follow-uss span {
+  .follow-uss span {
     color: white;
-}
+  }
 
-.business-leader-section {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  margin-top: 2%;
-  flex-wrap: nowrap;
-}
+  .business-leader-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 2%;
+    flex-wrap: nowrap;
+  }
 
-.business-leader-picture {
-  border-radius: 50%;
-  background-position: center;
-  background-size: cover;
-  width: 120px;
-  height: 120px;
-}
+  .business-leader-picture {
+    border-radius: 50%;
+    background-position: center;
+    background-size: cover;
+    width: 120px;
+    height: 120px;
+  }
 
-.business-leader-decription {
-  width: 80%;
-  padding-left: 2%;
-}
+  .business-leader-decription {
+    width: 80%;
+    padding-left: 2%;
+  }
 
-.leader-description {
-  font-size: 0.8em;
-}
+  .leader-description {
+    font-size: 0.8em;
+  }
 // This is the right side of the page (perks from the business) //
+.side-right {
+  position: fixed;
+  width: calc(50% - 45px);
+  top: 50px;
+  left: calc(50% + 45px);
+
+  @media (max-width: 767px) {
+    width: 100%;
+  }
+}
 
 .right-side {
-    margin-left: 4%;
-    margin-right: 4%;
-    margin-top: 4%;
+  margin-left: 4%;
+  margin-right: 4%;
+  margin-top: 4%;
 }
 
 .right-side h2 {
-    width: 212px;
-    border-bottom: 10px solid;
-    line-height: 16px;
-    font-weight: bold;
+  width: 212px;
+  border-bottom: 10px solid;
+  line-height: 16px;
+  font-weight: bold;
 }
 
 .card-perks {
-    border: 0.2px solid lightgrey;
-    width: 95%;
-    margin-bottom: 10%;
+  display: flex;
+  flex-direction: column;
+  border: 0.2px solid lightgrey;
+  width: 95%;
+  margin-bottom: 10%;
+}
+
+.overlay-unavailable {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.6);
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 100;
 }
 
 .background-image-perk {
+  position: relative;
   background-position: center;
   background-size: cover;
   display: flex;
@@ -407,40 +434,66 @@ hr {
 }
 
 .business-name-card-mobile-list {
-  display: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.business-name-card-mobile-list h6 {
+  margin: 0;
+  width: 100%;
+  font-weight: bolder;
+  text-align: center;
+  color: white;
+  font-size: 0.8em;
+}
+
+.business-name-card-mobile-list p {
+  margin: 0;
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-size: 0.6em;
 }
 
 .bolt-icon {
-    font-size: 0.8em;
-    color: grey;
-    display: inline-block;
-    padding: 2px 8px;
-    background-color: white;
-    width: auto;
-    height: auto;
-    min-width: 15px;
-    min-height: 15px;
-    border-radius: 50%;
-    text-align: center;
-    line-height: 19px;
-    vertical-align: middle;
+  font-size: 0.8em;
+  color: grey;
+  display: inline-block;
+  padding: 2px 8px;
+  background-color: white;
+  width: auto;
+  height: auto;
+  min-width: 15px;
+  min-height: 15px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 19px;
+  vertical-align: middle;
 }
 
 .perks-number {
-    color: white;
-    font-size: 0.7em;
-    padding-left: 4%;
+  color: white;
+  font-size: 0.7em;
+  padding-left: 4%;
 }
 
 .perks-offer-type {
-    display: flex;
-    margin-bottom: 0;
-    background-color: white;
-    color: black;
-    border: 6px solid;
-    border-radius: 25px;
-    padding: 0.5% 2%;
-    margin: 2%;
+  position: absolute;
+  display: flex;
+  margin-bottom: 0;
+  bottom: -11px;
+  right: 7px;
+  background-color: white;
+  color: black;
+  font-size: 0.7em;
+  border: 3px solid;
+  border-radius: 25px;
+  padding: 0.5% 4%;
+  // margin: 2%;
 }
 
 .card-perk-description {
@@ -449,6 +502,7 @@ hr {
   align-items: center;
   justify-content: center;
   padding: 3%;
+  z-index: 2;
 }
 
 .card-perk-description p {
@@ -457,54 +511,47 @@ hr {
 }
 
 .perk-carddd.available {
-    cursor: pointer;
+  cursor: pointer;
 }
 // PERKS MODAL //
 
 .perk-modalll {
-    // Fred - jour de printemps - start
-      position: absolute;
-    // Fred - jour de printemps - end
+
+    position: absolute;
     width: 35%;
     background-color: white;
     margin-top: 5%;
-    // Fred - jour de printemps - start
-      // margin-left: 58%;
-     right: 7.5%;
-    // Fred - jour de printemps - end
-    // border: 0.2px solid lightgrey;
+    right: 7.5%;
 
-   // Fred - jour de printemps - start
-      @media (max-width: 767px) {
-        width: 100%;
-        height: 100%;
-        margin-top: 0;
-        right: 0;
-      }
-    // Fred - jour de printemps - end
-}
+    @media (max-width: 767px) {
+      width: 100%;
+      min-height: 100%;
+      margin-top: 0;
+      right: 0;
+    }
+  }
 
-.perk-modal-top-block {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: auto;
-  margin-left: 5%;
-  margin-right: 5%;
-}
+  .perk-modal-top-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: auto;
+    margin-left: 5%;
+    margin-right: 5%;
+  }
 
-.perk-modal-main-title {
-  width: 85px;
-}
+  .perk-modal-main-title {
+    width: 85px;
+  }
 
-.perk-modal-main-title h5 {
-  border-bottom: 8px solid;
-  line-height: 14px;
-  font-weight: bold;
-  font-size: 1.2em;
-}
+  .perk-modal-main-title h5 {
+    border-bottom: 8px solid;
+    line-height: 14px;
+    font-weight: bold;
+    font-size: 1.2em;
+  }
 
-.background-image-perk-modal {
+  .background-image-perk-modal {
     width: 100%;
     height: 250px;
     background-position: center;
@@ -512,49 +559,49 @@ hr {
     display: flex;
     align-items: flex-end;
     justify-content: flex-end;
-}
+  }
 
-.perks-offer-type-modal {
+  .perks-offer-type-modal {
     background-color: white;
     color: black;
     border: 6px solid;
     border-radius: 25px;
     padding: 0.2% 0.5%;
     margin: 2%;
-}
+  }
 
-.block-text-modal {
-  margin-left: 5%;
-  margin-right: 5%;
-}
+  .block-text-modal {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
 
-.perk-modal-perk-name {
-  margin-top: 4%;
-  text-transform: lowercase;
-  text-transform: capitalize;
-  font-weight: bold;
-}
+  .perk-modal-perk-name {
+    margin-top: 4%;
+    text-transform: lowercase;
+    text-transform: capitalize;
+    font-weight: bold;
+  }
 
-.perk-modal-bottom {
-  height: 160px;
-}
+  .perk-modal-bottom {
+    height: 160px;
+  }
 
-.pmdjs-perk-description {
-  margin: 0;
-  font-size: 0.9em;
-  margin-top: 3%;
-  margin-bottom: 2%;
-}
+  .pmdjs-perk-description {
+    margin: 0;
+    font-size: 0.9em;
+    margin-top: 3%;
+    margin-bottom: 2%;
+  }
 
-.perk-modal-alert p {
+  .perk-modal-alert p {
     font-size: 0.8em;
-}
+  }
 
-.perk-modal-question {
-  font-weight: bold;
-}
+  .perk-modal-question {
+    font-weight: bold;
+  }
 
-.perk-modal-alert i.fa-bell {
+  .perk-modal-alert i.fa-bell {
     display: inline-block;
     border-style: solid;
     width: auto;
@@ -567,17 +614,17 @@ hr {
     vertical-align: middle;
     padding: 4px;
     color: white;
-}
+  }
 
-.itinary-modal-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 0;
-}
+  .itinary-modal-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0;
+  }
 
-.itinary-arrow {
+  .itinary-arrow {
     display: inline-block;
     border-style: solid;
     padding: 5px 8px 3px;
@@ -588,29 +635,29 @@ hr {
     transform: rotate(-45deg);
     width: auto;
     height: auto;
-}
+  }
 
-.itinary-arrow:hover, .itinary-arrow:focus {
-  color: white;
-}
+  .itinary-arrow:hover, .itinary-arrow:focus {
+    color: white;
+  }
 
-#link-map.unable {
+  #link-map.unable {
     pointer-events: none;
     cursor: default;
     border-color: #ccc;
 
     .fa {
-        background-color: #ccc;
+      background-color: #ccc;
     }
-}
+  }
 
-    .label-itinary {
-        font-size: 0.8em;
-        color: rgba(55, 55, 55, 0.9);
-        margin-bottom: 100px;
-        text-align: center;
-        margin-top: 2%;
-    }
+  .label-itinary {
+    font-size: 0.8em;
+    color: rgba(55, 55, 55, 0.9);
+    margin-bottom: 100px;
+    text-align: center;
+    margin-top: 2%;
+  }
 
     // POP UP MEMBER CARD //
 
@@ -638,28 +685,27 @@ hr {
     // MOBILE PERKS LIST //
 
     .perk-modal-mobile-member {
-          position: fixed;
-          height: 100%;
-          overflow-y: scroll;
-          width: 100%;
-          z-index: 5555;
-          background-color: white;
-          margin-bottom: 25%;
+      position: fixed;
+      height: 100%;
+      overflow-y: scroll;
+      width: 100%;
+      z-index: 5555;
+      background-color: white;
     }
 
     .perk-modal-member-header {
-        width: 100%;
-        height: 60px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+      width: 100%;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     .perk-title-mobile-list {
-        width: 90%;
-        display: flex;
-        justify-content: center;
-        padding-left: 10%;
+      width: 90%;
+      display: flex;
+      justify-content: center;
+      padding-left: 10%;
     }
 
     .perk-mobile-list-closing-button {
@@ -674,28 +720,30 @@ hr {
     }
 
     .perk-title-mobile-list h2 {
-        border-bottom: 8px solid;
-        text-align: center;
-        font-weight: bold;
-        line-height: 14px;
-        padding: 0;
-        margin: 0;
-    }
-
-    .business-name-card-mobile-list {
-      display: flex;
-      width: 100%;
-      align-self: center;
-    }
-
-    .business-name-card-mobile-list h6 {
-      margin: 0;
-      width: 100%;
-      font-weight: bolder;
+      border-bottom: 8px solid;
       text-align: center;
-      color: white;
-      font-size: 0.8em;
+      font-weight: bold;
+      line-height: 14px;
+      padding: 0;
+      margin: 0;
     }
+
+    // .business-name-card-mobile-list {
+    //   display: flex;
+    //   flex-direction: column;
+    //   width: 100%;
+    //   justify-content: center;
+    //   align-item: center;
+    // }
+
+    // .business-name-card-mobile-list h6 {
+    //   margin: 0;
+    //   width: 100%;
+    //   font-weight: bolder;
+    //   text-align: center;
+    //   color: white;
+    //   font-size: 0.8em;
+    // }
 
     .perk-modal-mobile-member .card-perks {
       width: 90%;
@@ -730,411 +778,413 @@ hr {
     }
 
 
-@media screen and (min-width: 992px) and (max-width: 1220px) {
-
-  .background-main-img {
-      min-height: 300px;
-  }
-
-  .business-picture-row {
-      height: 30px;
-  }
-
-  .socials-row span, .share-row span:not(.not-on-mobile-device) {
-    font-size: 0.8em;
-  }
-
-  #business-name {
-      font-size: 1.5em;
-      margin-bottom: -5%;
-  }
-
-  .business-specs, .business-beliefs, .business-description, .business-leader-decription {
-      font-size: 0.75em;
-  }
-
-  .business-map {
-    width: 190px;
-    height: 180px;
-  }
-
-  .business-informations {
-    justify-content: center;
-  }
-
-  .business-addresss span {
-    font-size: 0.55em;
-    line-height: 12px;
-  }
-
-  .business-opening-hours li {
-      font-size: 0.6em;
-  }
-
-  .business-links {
-    justify-content: center;
-  }
-
-  .reach-uss span {
-      font-size: 0.7em;
-  }
-
-  span.find-us {
-    font-size: 0.6em;
-  }
-
-  .business-leader-picture {
-    width: 120px;
-    height: 110px;
-  }
-
-  .right-side h2 {
-      width: 140px;
-      font-size: 1.2em
-  }
-
-  .background-image-perk {
-    height: 130px;
-  }
-
-  .card-perk-description p {
-    font-size: 0.7em;
-  }
-
-  .perks-offer-type {
-      font-size: 0.7em;
-      padding: 0.2% 1.5%;
-      border: 3px solid;
-  }
-
-  .background-image-perk-modal {
-      height: 220px;
-  }
-
-  .perks-offer-type-modal {
-      border: 4px solid;
-      padding: 0.2% 0.5%;
-      font-size: 0.6em;
-  }
-
-  .perk-modal-main-title h5 {
-    font-size: 0.8em;
-  }
-
-  .perk-modal-perk-name, .pmdjs-perk-description p, .perk-modal-answer, .perk-modal-alert p, .perk-modal-question, .label-itinary  {
-    font-size: 0.7em;
-  }
-
-  .perk-modal-bottom {
-    height: 180px;
-  }
-
-
-}
-@media screen and (min-width: 768px) and (max-width: 991px) {
-
-  .main-card-left {
-      border: none;
-      width: 100%;
-  }
-
-  .background-main-img {
-      min-height: 400px;
-  }
-
-  .business-picture-row {
-      height: 40px;
-  }
-
-  .reach-uss span {
-      font-size: 0.75em;
-  }
-
-  .business-leader-picture {
-    width: 110px;
-    height: 110px;
-  }
-
-  .right-side {
-      margin-left: 2%;
-      margin-right: 2%;
-      margin-top: 1%;
-  }
-
-  .background-image-perk {
-    height: 200px;
-  }
-
-  .card-perk-description p {
-    font-size: 0.8em;
-  }
-
-}
-@media screen and (min-width : 480px) and (max-width : 767px) {
-
-  .full-page {
-      margin-top: 50px;
-      margin-left: 0;
-  }
-
-  .main-card-left {
-      border: none;
-      width: 100%;
-  }
-
-  .background-main-img {
-      min-height: 300px;
-  }
-
-  .card-left {
-      margin-left: 2%;
-      margin-right: 2%;
-      padding-bottom: 1%;
-  }
-
-  .business-picture-row {
-      height: 30px;
-  }
-  .business-category-image {
-      display: none;
-  }
-
-  .socials-row span, .share-row span:not(.not-on-mobile-device) {
-    font-size: 0.8em;
-  }
-
-  #business-name {
-      font-size: 1.5em;
-  }
-
-  .business-addresss {
-    font-size: 0.7em;
-  }
-
-  .business-opening-hours li {
-    font-size: 0.6em;
-  }
-
-  .reach-uss span {
-      font-size: 0.6em;
-  }
-
-  .business-leader-section {
-    margin-bottom: 8%;
-  }
-
-  .business-leader-picture {
-    width: 100px;
-    height: 100px;
-  }
-
-  .right-side h2 {
-      width: 140px;
-      font-size: 1.2em
-  }
-
-  .card-left {
-      margin-left: 2%;
-      margin-right: 2%;
-      padding-bottom: 1%;
-  }
-
-}
-@media screen and (min-width : 320px) and (max-width : 479px) {
-
-  .full-page {
-      margin-top: 50px;
-      margin-left: 0;
-  }
-
-  .left-side {
-    padding: 0;
-  }
-
-  .main-card-left {
-      border: none;
-      width: 100%;
-  }
-
-  .background-main-img {
-      min-height: 200px;
-  }
-
-  .card-left {
-      margin-left: 5%;
-      margin-right: 5%;
-      padding-bottom: 1%;
-  }
-
-  .business-picture-row {
-      display: none;
-  }
-
-  .business-category-image {
-      display: none;
-  }
-
-  #business-name {
-      font-size: 1.3em;
-      padding-bottom: -3%;
-  }
-
-  .business-specs {
-      height: 30px;
-  }
-
-  .business-distance {
-      display: flex;
-      justify-content: flex-end;
-  }
-
-  .business-specs, .business-beliefs, .business-description, .business-leader-decription {
-      font-size: 0.7em;
-  }
-
-  .details-mobile {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .details-mobile-first-row {
-    width: 100%;
-    height: 130px;
-    margin-bottom: 5%;
-  }
-
-  .business-map-mobile {
-    height: 120px;
-  }
-
-  .details-mobile-second-row {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 5%;
-  }
-
-  .business-address-row {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    padding-top: 1%;
-  }
-
-  .business-address-icon {
-    width: 120px;
-    height: 120px;
-  }
-
-  .business-addresss {
-    display: flex;
-    align-self: flex-end;
-    padding-top: 10%;
-    font-size: 0.7em;
-    text-align: center;
-    width: 120px;
-  }
-
-  .business-opening-hours-mobile li {
-    list-style-type: none;
-    font-size: 0.6em;
-  }
-
-  .details-mobile-third-row {
-    width: 100%;
-  }
-
-  .business-links {
-    margin-left: 15%;
-    margin-right: 15%;
-  }
-  .follow-uss {
-    width: 90%;
-    margin-left: 5%;
-  }
-
-  .business-leader-section {
-    margin-bottom: 14%;
-  }
-
-  .business-leader-title {
-    text-align: center;
-  }
-
-  .business-leader-section {
-    flex-direction: column;
-  }
-
-  .business-leader-picture {
-    width: 120px;
-    height: 110px;
-  }
-
-  .business-leader-decription {
-    text-align: center;
-    width: 100%;
-    padding-left: 0;
-    margin-top: 3%;
-  }
-
-  .background-image-perk {
-    height: 130px;
-  }
-  .card-perk-description p {
-    font-size: 0.8em;
-  }
-
-  .perks-offer-type {
-      font-size: 0.7em;
-      padding: 0.2% 1.5%;
-      border: 3px solid;
-  }
-
-  .background-image-perk-modal {
-      height: 220px;
-  }
-
-  .perks-offer-type-modal {
-      border: 4px solid;
-      padding: 0.2% 0.7%;
-      font-size: 0.6em;
-  }
-
-  .perk-modal-main-title {
-    width: 60px;
-  }
-
-  .perk-modal-main-title h5 {
-    font-size: 0.8em;
-  }
-
-  .perk-modal-perk-name, .pmdjs-perk-description p, .perk-modal-answer, .perk-modal-alert p, .perk-modal-question, .label-itinary  {
-    font-size: 0.8em;
-  }
-
-  .perk-modal-bottom {
-    height: 180px;
-  }
+    @media screen and (min-width: 992px) and (max-width: 1220px) {
+
+      .background-main-img {
+        min-height: 300px;
+      }
+
+      .business-picture-row {
+        height: 30px;
+      }
+
+      .socials-row span, .share-row span:not(.not-on-mobile-device) {
+        font-size: 0.8em;
+      }
+
+      #business-name {
+        font-size: 1.5em;
+        margin-bottom: -5%;
+      }
+
+      .business-specs, .business-beliefs, .business-description, .business-leader-decription {
+        font-size: 0.75em;
+      }
+
+      .business-map {
+        width: 190px;
+        height: 180px;
+      }
+
+      .business-informations {
+        justify-content: center;
+      }
+
+      .business-addresss span {
+        font-size: 0.55em;
+        line-height: 12px;
+      }
+
+      .business-opening-hours li {
+        font-size: 0.6em;
+      }
+
+      .business-links {
+        justify-content: center;
+      }
+
+      .reach-uss span {
+        font-size: 0.7em;
+      }
+
+      span.find-us {
+        font-size: 0.6em;
+      }
+
+      .business-leader-picture {
+        width: 120px;
+        height: 110px;
+      }
+
+      .right-side h2 {
+        width: 140px;
+        font-size: 1.2em
+      }
+
+      .background-image-perk {
+        height: 130px;
+      }
+
+      .card-perk-description p {
+        font-size: 0.7em;
+      }
+
+      // .perks-offer-type {
+      //   font-size: 0.7em;
+      //   padding: 0.2% 4%;
+      //   border: 3px solid;
+      // }
+
+      .background-image-perk-modal {
+        height: 220px;
+      }
+
+      .perks-offer-type-modal {
+        border: 4px solid;
+        padding: 0.2% 0.5%;
+        font-size: 0.6em;
+      }
+
+      .perk-modal-main-title h5 {
+        font-size: 0.8em;
+      }
+
+      .perk-modal-perk-name, .pmdjs-perk-description p, .perk-modal-answer, .perk-modal-alert p, .perk-modal-question, .label-itinary  {
+        font-size: 0.7em;
+      }
+
+      .perk-modal-bottom {
+        height: 180px;
+      }
+
+
+    }
+    @media screen and (min-width: 768px) and (max-width: 991px) {
+
+      .main-card-left {
+        border: none;
+        width: 100%;
+      }
+
+      .background-main-img {
+        min-height: 400px;
+      }
+
+      .business-picture-row {
+        height: 40px;
+      }
+
+      .reach-uss span {
+        font-size: 0.75em;
+      }
+
+      .business-leader-picture {
+        width: 110px;
+        height: 110px;
+      }
+
+      .right-side {
+        margin-left: 2%;
+        margin-right: 2%;
+        margin-top: 1%;
+      }
+
+      .background-image-perk {
+        height: 200px;
+      }
+
+      .card-perk-description p {
+        font-size: 0.8em;
+      }
+
+    }
+    @media screen and (min-width : 480px) and (max-width : 767px) {
+
+      .full-page {
+        margin-top: 50px;
+        margin-left: 0;
+      }
+
+      .main-card-left {
+        border: none;
+        width: 100%;
+      }
+
+      .background-main-img {
+        min-height: 300px;
+      }
+
+      .card-left {
+        margin-left: 2%;
+        margin-right: 2%;
+        padding-bottom: 1%;
+      }
+
+      .business-picture-row {
+        height: 30px;
+      }
+      .business-category-image {
+        display: none;
+      }
+
+      .socials-row span, .share-row span:not(.not-on-mobile-device) {
+        font-size: 0.8em;
+      }
+
+      #business-name {
+        font-size: 1.5em;
+      }
+
+      .business-addresss {
+        font-size: 0.7em;
+      }
+
+      .business-opening-hours li {
+        font-size: 0.6em;
+      }
+
+      .reach-uss span {
+        font-size: 0.6em;
+      }
+
+      .business-leader-section {
+        margin-bottom: 8%;
+      }
+
+      .business-leader-picture {
+        width: 100px;
+        height: 100px;
+      }
+
+      .right-side h2 {
+        width: 140px;
+        font-size: 1.2em
+      }
+
+      .card-left {
+        margin-left: 2%;
+        margin-right: 2%;
+        padding-bottom: 1%;
+      }
+
+    }
+    @media screen and (min-width : 320px) and (max-width : 479px) {
+
+      .full-page {
+        margin-top: 50px;
+        margin-left: 0;
+      }
+
+      .left-side {
+        padding: 0;
+      }
+
+      .main-card-left {
+        border: none;
+        width: 100%;
+      }
+
+      .background-main-img {
+        min-height: 200px;
+      }
+
+      .card-left {
+        margin-left: 5%;
+        margin-right: 5%;
+        padding-bottom: 1%;
+      }
+
+      .business-picture-row {
+        display: none;
+      }
+
+      .business-category-image {
+        display: none;
+      }
+
+      #business-name {
+        font-size: 1.3em;
+        padding-bottom: -3%;
+      }
+
+      .business-specs {
+        height: 30px;
+      }
+
+      .business-distance {
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      .business-specs, .business-beliefs, .business-description, .business-leader-decription {
+        font-size: 0.7em;
+      }
+
+      .details-mobile {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .details-mobile-first-row {
+        width: 100%;
+        height: 130px;
+        margin-bottom: 5%;
+      }
+
+      .business-map-mobile {
+        height: 120px;
+      }
+
+      .details-mobile-second-row {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 5%;
+      }
+
+      .business-address-row {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 1%;
+      }
+
+      .business-address-icon {
+        width: 120px;
+        height: 120px;
+      }
+
+      .business-addresss {
+        display: flex;
+        align-self: flex-end;
+        padding-top: 10%;
+        font-size: 0.7em;
+        text-align: center;
+        width: 120px;
+      }
+
+      .business-opening-hours-mobile li {
+        list-style-type: none;
+        font-size: 0.6em;
+      }
+
+      .details-mobile-third-row {
+        width: 100%;
+      }
+
+      .business-links {
+        margin-left: 15%;
+        margin-right: 15%;
+      }
+      .follow-uss {
+        width: 90%;
+        margin-left: 5%;
+      }
+
+      .business-leader-section {
+        margin-bottom: 14%;
+      }
+
+      .business-leader-title {
+        text-align: center;
+      }
+
+      .business-leader-section {
+        flex-direction: column;
+      }
+
+      .business-leader-picture {
+        width: 120px;
+        height: 110px;
+      }
+
+      .business-leader-decription {
+        text-align: center;
+        width: 100%;
+        padding-left: 0;
+        margin-top: 3%;
+      }
+
+      .background-image-perk {
+        height: 130px;
+      }
+      .card-perk-description p {
+        font-size: 0.8em;
+      }
+
+      // .perks-offer-type {
+      //   font-size: 0.7em;
+      //   padding: 0.2% 4%;
+      //   border: 3px solid;
+      // }
+
+      .background-image-perk-modal {
+        height: 220px;
+      }
+
+      .perks-offer-type-modal {
+        border: 4px solid;
+        padding: 0.2% 0.7%;
+        font-size: 0.6em;
+      }
+
+      .perk-modal-main-title {
+        width: 60px;
+      }
+
+      .perk-modal-main-title h5 {
+        font-size: 0.8em;
+      }
+
+      .perk-modal-perk-name, .pmdjs-perk-description p, .perk-modal-answer, .perk-modal-alert p, .perk-modal-question, .label-itinary  {
+        font-size: 0.8em;
+      }
+
+      .perk-modal-bottom {
+        height: 180px;
+      }
 
   // MOBILE PERK LIST //
 
-  .business-name-card-mobile-list {
-    display: flex;
-    width: 100%;
-    align-self: center;
-  }
+  // .business-name-card-mobile-list {
+  //   display: flex;
+  //   flex-direction: column;
+  //   justify-content: center;
+  //   align-item: center;
+  //   width: 100%;
+  // }
 
-  .business-name-card-mobile-list h6 {
-    margin: 0;
-    width: 100%;
-    font-weight: bolder;
-    text-align: center;
-    color: white;
-    font-size: 0.8em;
-  }
+  // .business-name-card-mobile-list h6 {
+  //   margin: 0;
+  //   width: 100%;
+  //   font-weight: bolder;
+  //   text-align: center;
+  //   color: white;
+  //   font-size: 0.8em;
+  // }
 
   // END MOBILE PERK LIST //
 
@@ -1145,528 +1195,161 @@ hr {
 // End Adrien CSS //
 /* SHOW - PERK ****************************************************************/
 .dashboard-perk {
-    min-height: 100%;
-    padding: 20px 20px 120px;
+  min-height: 100%;
+  padding: 20px 20px 120px;
 
-    .show-desktop {
-        display: none;
-    }
+  .show-desktop {
+    display: none;
+  }
     /*SHOW - MOBILE *************************************************************/
     .show-mobile {
         /* SWITCH CARD FACE *******************************************************/
         .switch-tab {
-            display: flex;
-            position: relative;
-            margin-bottom: 20px;
-            border: 2px solid #fff;
-            border-radius: 3px;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+          display: flex;
+          position: relative;
+          margin-bottom: 20px;
+          border: 2px solid #fff;
+          border-radius: 3px;
+          box-shadow: 0 1px 2px rgba(0,0,0,0.2);
 
-            .switch-active {
-                position: absolute;
-                width: 50%;
-                height: 100%;
-                background-color: #fff;
-                z-index: 0;
-                @include transition(all 0.3s ease-in-out);
-            }
+          .switch-active {
+            position: absolute;
+            width: 50%;
+            height: 100%;
+            background-color: #fff;
+            z-index: 0;
+            @include transition(all 0.3s ease-in-out);
+          }
 
-            .activated {
-                transform: translateX(100%);
-            }
+          .activated {
+            transform: translateX(100%);
+          }
 
-            .switch-button,
-            .switch-button:active,
-            .switch-button:focus,
-            .switch-button:hover {
-                padding: 5px 0;
-                width: 50%;
-                border: none;
-                background-color: transparent;
-                text-transform: uppercase;
-                font-size: 14px;
-                font-weight: 600;
-                color: #636363;
-                z-index: 1;
-                outline: none;
-            }
+          .switch-button,
+          .switch-button:active,
+          .switch-button:focus,
+          .switch-button:hover {
+            padding: 5px 0;
+            width: 50%;
+            border: none;
+            background-color: transparent;
+            text-transform: uppercase;
+            font-size: 14px;
+            font-weight: 600;
+            color: #636363;
+            z-index: 1;
+            outline: none;
+          }
         }
 
         .flip-container {
-            position: relative;
-            perspective: 1000px;
+          position: relative;
+          perspective: 1000px;
             /* CARD *******************************************************************/
             .flipper {
-                width: 100%;
-                height: 100%;
-                position: absolute;
-                transform-style: preserve-3d;
-                transition: all 1s;
+              width: 100%;
+              height: 100%;
+              position: absolute;
+              transform-style: preserve-3d;
+              transition: all 1s;
                 //backface-visibility: hidden;
                 figure {
-                    margin: 0;
-                    display: block;
-                    position: absolute;
-                    width: 100%;
-                    height: 100%;
-                    backface-visibility: hidden;
-                    z-index: 0;
+                  margin: 0;
+                  display: block;
+                  position: absolute;
+                  width: 100%;
+                  height: 100%;
+                  backface-visibility: hidden;
+                  z-index: 0;
                 }
                 /* CARD - FRONT & BACK COMMON STYLES*/
                 .perk-image {
-                    position: relative;
-                    background-size: cover;
-                    background-repeat: no-repeat;
-                    background-position: center;
-                    padding: 10px 10px 20px;
-                    width: 100%;
-                    height: auto;
-                    border-radius: 3px 3px 0 0;
-                    text-shadow: 1px 1px rgba(0, 0, 0, .5);
+                  position: relative;
+                  background-size: cover;
+                  background-repeat: no-repeat;
+                  background-position: center;
+                  padding: 10px 10px 20px;
+                  width: 100%;
+                  height: auto;
+                  border-radius: 3px 3px 0 0;
+                  text-shadow: 1px 1px rgba(0, 0, 0, .5);
 
-                    &:after {
-                        position: absolute;
-                        content: "";
-                        top: 0;
-                        bottom: 0;
-                        left: 0;
-                        right: 0;
-                        opacity: 0.6;
-                        background-color: rgba(0, 0, 0, 0.4);
+                  &:after {
+                    position: absolute;
+                    content: "";
+                    top: 0;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    opacity: 0.6;
+                    background-color: rgba(0, 0, 0, 0.4);
                         // background: -webkit-linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%);
                         // background: -webkit-linear-gradient(left, #00C9FF 10%, #80F2A4 90%);
                         // background: linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%);
                         border-radius: 3px 3px 0 0;
+                      }
                     }
-                }
                 /* CARD - FRONT FACE ****************************************************/
                 .front {
-                    min-height: 470px;
-                    margin-bottom: 120px;
+                  min-height: 470px;
+                  margin-bottom: 120px;
                     /* BLOCK - PERK **********************/
                     .perk-image {
                         /* IF FLASH **********************/
                         .flash-notification {
-                            position: relative;
-                            padding: 0 10px;
-                            left: -3px;
-                            border-radius: 20px;
-                            color: #fff;
-                            background-color: #f55b5b;
-                            z-index: 1;
+                          position: relative;
+                          padding: 0 10px;
+                          left: -3px;
+                          border-radius: 20px;
+                          color: #fff;
+                          background-color: #f55b5b;
+                          z-index: 1;
 
-                            .fa {
-                                margin-right: 5px;
-                                font-size: 14px;
-                            }
+                          .fa {
+                            margin-right: 5px;
+                            font-size: 14px;
+                          }
                         }
 
                         .availabilities {
-                            position: relative;
-                            display: block;
-                            margin-bottom: 10px;
-                            color: #fff;
-                            font-size: 12px;
-                            z-index: 1;
+                          position: relative;
+                          display: block;
+                          margin-bottom: 10px;
+                          color: #fff;
+                          font-size: 12px;
+                          z-index: 1;
                         }
 
                         h1 {
-                            position: relative;
-                            padding: 10px 0;
-                            margin: 0;
-                            left: 0;
-                            text-align: left;
-                            font-size: 20px;
-                            color: #fff;
-                            font-weight: 600;
-                            z-index: 10;
+                          position: relative;
+                          padding: 10px 0;
+                          margin: 0;
+                          left: 0;
+                          text-align: left;
+                          font-size: 20px;
+                          color: #fff;
+                          font-weight: 600;
+                          z-index: 10;
                         }
 
                         p {
-                            position: relative;
-                            padding: 10px 0;
-                            margin: 0;
-                            left: 0;
-                            font-size: 14px;
-                            color: #fff;
-                            text-align: left;
-                            z-index: 10;
+                          position: relative;
+                          padding: 10px 0;
+                          margin: 0;
+                          left: 0;
+                          font-size: 14px;
+                          color: #fff;
+                          text-align: left;
+                          z-index: 10;
                         }
                         /* USE BUTTON **********************/
                         .use-perk {
-                            position: relative;
-                            z-index: 15;
-                            margin-top: 10px;
+                          position: relative;
+                          z-index: 15;
+                          margin-top: 10px;
 
-                            .btn-use-button,
-                            button {
-                                padding: 10px 20px;
-                                margin: 0;
-                                width: 100%;
-                                background-color: green;
-                                color: #fff;
-                                text-transform: uppercase;
-                                border: none;
-                                background-color: #8BBD99;
-                                border-radius: 3px;
-                                font-size: 16px;
-                                font-weight: 600;
-                                outline: none;
-                            }
-
-                            .btn-use-button {
-                                text-shadow: none;
-                                background-color: #36d3da;
-                            }
-
-                            .empty {
-                                color: #cdcdcd;
-                                background-color: #f4f4f4;
-                            }
-                        }
-                    }
-                    /* BLOCK - OWNERS **********************/
-                    .perk-owner {
-                        position: relative;
-                        padding: 15px 10px 10px;
-                        background-color: #fff;
-                        border-radius: 0 0 3px 3px;
-                        overflow: hidden;
-
-                        .owner-details {
-                            display: flex;
-                            align-items: center;
-
-                            img {
-                                margin-right: 10px;
-                                height: 65px;
-                                min-width: 65px;
-                                border-radius: 50%;
-                            }
-
-                            span {
-                                font-weight: 600;
-                                text-transform: uppercase;
-                                color: #636363;
-
-                                small {
-                                    font-weight: 100;
-                                    text-transform: none;
-                                }
-                            }
-                        }
-                    }
-                    /* BLOCK - MAP **************************/
-                    #map-perk {
-                        margin-top: 15px;
-                        height: 120px;
-                        opacity: 0.4;
-
-                        .mapboxgl-ctrl-attrib {
-                            display: none;
-                        }
-                    }
-
-                    .business-address {
-                        position: absolute;
-                        bottom: 5px;
-                        font-size: 12px;
-                        right: 5px;
-                        background-color: #fff;
-                        padding: 5px 10px;
-                        border-radius: 3px 0 0 0;
-
-                        .fa {
-                            margin-right: 5px;
-                        }
-                    }
-                }
-                /* CARD - BACK FACE ****************************************************/
-                .back {
-                    display: flex;
-                    flex-direction: column;
-                    min-height: 470px;
-                    margin-bottom: 120px;
-                    background-color: #fff;
-                    border-radius: 3px;
-                    transform: rotateY( 180deg );
-
-                    .business-card {
-                        min-height: 470px;
-                        background-color: #fff;
-                        border-radius: 3px;
-
-                        .perk-image {
-                            height: 160px;
-
-                            h1 {
-                                position: absolute;
-                                padding: 10px 0;
-                                margin: 0;
-                                left: 125px;
-                                bottom: 0;
-                                text-align: left;
-                                font-size: 20px;
-                                color: #fff;
-                                font-weight: 600;
-                                z-index: 10;
-                            }
-
-                            img {
-                                position: absolute;
-                                width: 100px;
-                                height: 100px;
-                                bottom: -50px;
-                                border: 3px solid #fff;
-                                border-radius: 50%;
-                                z-index: 1;
-                            }
-                        }
-
-                        .profile-card {
-                            padding-top: 45px;
-
-                            h3 {
-                                text-transform: uppercase;
-                                font-size: 14px;
-                                font-weight: 600;
-                            }
-
-                            p {
-                                font-size: 14px;
-                            }
-                        }
-
-                        .slick-slider {
-                            margin-bottom: 90px;
-                            background-color: #fff;
-                            border-radius: 0 0 3px 3px;
-
-                            .slick-slide {
-                                padding: 0 10px;
-
-                                #map-perk {
-                                    margin-top: 15px;
-                                    height: 120px;
-                                    opacity: 0.4;
-
-                                    .mapboxgl-ctrl-attrib {
-                                        display: none;
-                                    }
-                                }
-
-                                ul {
-                                    display: flex;
-                                    list-style: none;
-                                    margin: 10px 0;
-
-                                    li {
-                                        display: flex;
-                                        justify-content: center;
-                                        align-items: center;
-                                        margin: 0 1px;
-                                        width: 25%;
-                                        background-color: #f4f4f4;
-
-                                        .business-link,
-                                        .business-link:active,
-                                        .business-link:focus {
-                                            padding: 10px;
-                                            width: 100%;
-                                            text-align: center;
-                                            color: #fff;
-                                        }
-
-                                        .link-website {
-                                            background-color: #636363;
-                                        }
-
-                                        .link-mailto {
-                                            background-color: #9ECE89;
-                                        }
-
-                                        .link-facebook {
-                                            background-color: #4a66a0;
-                                        }
-
-                                        .link-twitter {
-                                            background-color: #1da1f2;
-                                        }
-
-                                        .link-instagram {
-                                            background-color: #145889;
-                                        }
-                                    }
-
-                                    li:first-child {
-                                        margin: 0 1px 0 0;
-
-                                        a {
-                                            border-radius: 3px 0 0 3px;
-                                        }
-                                    }
-
-                                    li:last-child {
-                                        margin: 0 0 0 1px;
-
-                                        a {
-                                            border-radius: 0 3px 3px 0;
-                                        }
-                                    }
-                                }
-
-                                ul.reach-us {
-                                    li {
-                                        margin: 0;
-                                        width: 33.33333%;
-
-                                        span {
-                                            display: none;
-                                        }
-                                    }
-
-                                    li:nth-child(2) {
-                                        margin: 0 2px;
-                                    }
-                                }
-
-                                ul.follow-us {
-                                    display: none;
-                                }
-                            }
-                        }
-
-                        .slick-dots {
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            height: 30px;
-                            background-color: #636363;
-                            top: 0;
-
-                            li {
-                                margin: 0;
-                            }
-
-                            li button::before {
-                                font-size: 30px;
-                                color: #fff;
-                            }
-                        }
-                    }
-                }
-            }
-
-            .flipped {
-                transform: rotateY( 180deg );
-            }
-        }
-    }
-}
-@media only screen and (min-width:768px) {
-    /* SHOW - PERK ****************************************************************/
-    .dashboard-perk {
-        min-height: 100%;
-        padding: 20px 20px 120px;
-
-        .show-mobile {
-            display: none;
-        }
-        /*SHOW - MOBILE *************************************************************/
-        .show-desktop {
-            display: flex;
-            padding-top: 20px;
-
-            .perk-details {
-                margin-right: 1%;
-                width: 50%;
-                height: 320px;
-                box-shadow: 0 1px 2px rgba(0,0,0,0.2);
-
-                .perk-image {
-                    display: flex;
-                    flex-direction: column;
-                    position: relative;
-                    background-size: cover;
-                    background-repeat: no-repeat;
-                    background-position: center;
-                    padding: 20px;
-                    height: 100%;
-                    border-radius: 3px;
-                    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
-
-                    &:after {
-                        position: absolute;
-                        content: "";
-                        top: 0;
-                        bottom: 0;
-                        left: 0;
-                        right: 0;
-                        opacity: 0.6;
-                        background-color: rgba(0, 0, 0, 0.4);
-                        // background: -webkit-linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%);
-                        // background: -webkit-linear-gradient(left, #00C9FF 10%, #80F2A4 90%);
-                        // background: linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%);
-                        border-radius: 3px 3px 0 0;
-                    }
-                    /* IF FLASH **********************/
-                    .flash-notification {
-                        position: relative;
-                        padding: 0 10px;
-                        max-width: 30%;
-                        left: -3px;
-                        border-radius: 20px;
-                        color: #fff;
-                        background-color: #f55b5b;
-                        z-index: 1;
-
-                        .fa {
-                            margin-right: 5px;
-                            font-size: 14px;
-                        }
-                    }
-
-                    .availabilities {
-                        position: relative;
-                        display: block;
-                        margin-bottom: 10px;
-                        color: #fff;
-                        font-size: 12px;
-                        z-index: 1;
-                    }
-
-                    h1 {
-                        position: relative;
-                        padding: 10px 0;
-                        margin: 0;
-                        left: 0;
-                        text-align: left;
-                        font-size: 20px;
-                        color: #fff;
-                        font-weight: 600;
-                        z-index: 10;
-                    }
-
-                    p {
-                        position: relative;
-                        padding: 10px 0;
-                        margin: 0;
-                        left: 0;
-                        font-size: 14px;
-                        color: #fff;
-                        text-align: left;
-                        z-index: 10;
-                    }
-                    /* USE BUTTON **********************/
-                    .use-perk {
-                        position: absolute;
-                        margin: 0 auto;
-                        width: 90%;
-                        bottom: 20px;
-                        z-index: 15;
-
-                        .btn-use-button,
-                        button {
+                          .btn-use-button,
+                          button {
                             padding: 10px 20px;
                             margin: 0;
                             width: 100%;
@@ -1679,21 +1362,388 @@ hr {
                             font-size: 16px;
                             font-weight: 600;
                             outline: none;
-                        }
+                          }
 
-                        .btn-use-button {
+                          .btn-use-button {
                             text-shadow: none;
                             background-color: #36d3da;
-                        }
+                          }
 
-                        .empty {
+                          .empty {
                             color: #cdcdcd;
                             background-color: #f4f4f4;
+                          }
                         }
-                    }
-                }
+                      }
+                    /* BLOCK - OWNERS **********************/
+                    .perk-owner {
+                      position: relative;
+                      padding: 15px 10px 10px;
+                      background-color: #fff;
+                      border-radius: 0 0 3px 3px;
+                      overflow: hidden;
 
-                .perk-map {
+                      .owner-details {
+                        display: flex;
+                        align-items: center;
+
+                        img {
+                          margin-right: 10px;
+                          height: 65px;
+                          min-width: 65px;
+                          border-radius: 50%;
+                        }
+
+                        span {
+                          font-weight: 600;
+                          text-transform: uppercase;
+                          color: #636363;
+
+                          small {
+                            font-weight: 100;
+                            text-transform: none;
+                          }
+                        }
+                      }
+                    }
+                    /* BLOCK - MAP **************************/
+                    #map-perk {
+                      margin-top: 15px;
+                      height: 120px;
+                      opacity: 0.4;
+
+                      .mapboxgl-ctrl-attrib {
+                        display: none;
+                      }
+                    }
+
+                    .business-address {
+                      position: absolute;
+                      bottom: 5px;
+                      font-size: 12px;
+                      right: 5px;
+                      background-color: #fff;
+                      padding: 5px 10px;
+                      border-radius: 3px 0 0 0;
+
+                      .fa {
+                        margin-right: 5px;
+                      }
+                    }
+                  }
+                /* CARD - BACK FACE ****************************************************/
+                .back {
+                  display: flex;
+                  flex-direction: column;
+                  min-height: 470px;
+                  margin-bottom: 120px;
+                  background-color: #fff;
+                  border-radius: 3px;
+                  transform: rotateY( 180deg );
+
+                  .business-card {
+                    min-height: 470px;
+                    background-color: #fff;
+                    border-radius: 3px;
+
+                    .perk-image {
+                      height: 160px;
+
+                      h1 {
+                        position: absolute;
+                        padding: 10px 0;
+                        margin: 0;
+                        left: 125px;
+                        bottom: 0;
+                        text-align: left;
+                        font-size: 20px;
+                        color: #fff;
+                        font-weight: 600;
+                        z-index: 10;
+                      }
+
+                      img {
+                        position: absolute;
+                        width: 100px;
+                        height: 100px;
+                        bottom: -50px;
+                        border: 3px solid #fff;
+                        border-radius: 50%;
+                        z-index: 1;
+                      }
+                    }
+
+                    .profile-card {
+                      padding-top: 45px;
+
+                      h3 {
+                        text-transform: uppercase;
+                        font-size: 14px;
+                        font-weight: 600;
+                      }
+
+                      p {
+                        font-size: 14px;
+                      }
+                    }
+
+                    .slick-slider {
+                      margin-bottom: 90px;
+                      background-color: #fff;
+                      border-radius: 0 0 3px 3px;
+
+                      .slick-slide {
+                        padding: 0 10px;
+
+                        #map-perk {
+                          margin-top: 15px;
+                          height: 120px;
+                          opacity: 0.4;
+
+                          .mapboxgl-ctrl-attrib {
+                            display: none;
+                          }
+                        }
+
+                        ul {
+                          display: flex;
+                          list-style: none;
+                          margin: 10px 0;
+
+                          li {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            margin: 0 1px;
+                            width: 25%;
+                            background-color: #f4f4f4;
+
+                            .business-link,
+                            .business-link:active,
+                            .business-link:focus {
+                              padding: 10px;
+                              width: 100%;
+                              text-align: center;
+                              color: #fff;
+                            }
+
+                            .link-website {
+                              background-color: #636363;
+                            }
+
+                            .link-mailto {
+                              background-color: #9ECE89;
+                            }
+
+                            .link-facebook {
+                              background-color: #4a66a0;
+                            }
+
+                            .link-twitter {
+                              background-color: #1da1f2;
+                            }
+
+                            .link-instagram {
+                              background-color: #145889;
+                            }
+                          }
+
+                          li:first-child {
+                            margin: 0 1px 0 0;
+
+                            a {
+                              border-radius: 3px 0 0 3px;
+                            }
+                          }
+
+                          li:last-child {
+                            margin: 0 0 0 1px;
+
+                            a {
+                              border-radius: 0 3px 3px 0;
+                            }
+                          }
+                        }
+
+                        ul.reach-us {
+                          li {
+                            margin: 0;
+                            width: 33.33333%;
+
+                            span {
+                              display: none;
+                            }
+                          }
+
+                          li:nth-child(2) {
+                            margin: 0 2px;
+                          }
+                        }
+
+                        ul.follow-us {
+                          display: none;
+                        }
+                      }
+                    }
+
+                    .slick-dots {
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                      height: 30px;
+                      background-color: #636363;
+                      top: 0;
+
+                      li {
+                        margin: 0;
+                      }
+
+                      li button::before {
+                        font-size: 30px;
+                        color: #fff;
+                      }
+                    }
+                  }
+                }
+              }
+
+              .flipped {
+                transform: rotateY( 180deg );
+              }
+            }
+          }
+        }
+        @media only screen and (min-width:768px) {
+    /* SHOW - PERK ****************************************************************/
+    .dashboard-perk {
+      min-height: 100%;
+      padding: 20px 20px 120px;
+
+      .show-mobile {
+        display: none;
+      }
+        /*SHOW - MOBILE *************************************************************/
+        .show-desktop {
+          display: flex;
+          padding-top: 20px;
+
+          .perk-details {
+            margin-right: 1%;
+            width: 50%;
+            height: 320px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+
+            .perk-image {
+              display: flex;
+              flex-direction: column;
+              position: relative;
+              background-size: cover;
+              background-repeat: no-repeat;
+              background-position: center;
+              padding: 20px;
+              height: 100%;
+              border-radius: 3px;
+              box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+
+              &:after {
+                position: absolute;
+                content: "";
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                opacity: 0.6;
+                background-color: rgba(0, 0, 0, 0.4);
+                        // background: -webkit-linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%);
+                        // background: -webkit-linear-gradient(left, #00C9FF 10%, #80F2A4 90%);
+                        // background: linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%);
+                        border-radius: 3px 3px 0 0;
+                      }
+                    /* IF FLASH **********************/
+                    .flash-notification {
+                      position: relative;
+                      padding: 0 10px;
+                      max-width: 30%;
+                      left: -3px;
+                      border-radius: 20px;
+                      color: #fff;
+                      background-color: #f55b5b;
+                      z-index: 1;
+
+                      .fa {
+                        margin-right: 5px;
+                        font-size: 14px;
+                      }
+                    }
+
+                    .availabilities {
+                      position: relative;
+                      display: block;
+                      margin-bottom: 10px;
+                      color: #fff;
+                      font-size: 12px;
+                      z-index: 1;
+                    }
+
+                    h1 {
+                      position: relative;
+                      padding: 10px 0;
+                      margin: 0;
+                      left: 0;
+                      text-align: left;
+                      font-size: 20px;
+                      color: #fff;
+                      font-weight: 600;
+                      z-index: 10;
+                    }
+
+                    p {
+                      position: relative;
+                      padding: 10px 0;
+                      margin: 0;
+                      left: 0;
+                      font-size: 14px;
+                      color: #fff;
+                      text-align: left;
+                      z-index: 10;
+                    }
+                    /* USE BUTTON **********************/
+                    .use-perk {
+                      position: absolute;
+                      margin: 0 auto;
+                      width: 90%;
+                      bottom: 20px;
+                      z-index: 15;
+
+                      .btn-use-button,
+                      button {
+                        padding: 10px 20px;
+                        margin: 0;
+                        width: 100%;
+                        background-color: green;
+                        color: #fff;
+                        text-transform: uppercase;
+                        border: none;
+                        background-color: #8BBD99;
+                        border-radius: 3px;
+                        font-size: 16px;
+                        font-weight: 600;
+                        outline: none;
+                      }
+
+                      .btn-use-button {
+                        text-shadow: none;
+                        background-color: #36d3da;
+                      }
+
+                      .empty {
+                        color: #cdcdcd;
+                        background-color: #f4f4f4;
+                      }
+                    }
+                  }
+
+                  .perk-map {
                     position: relative;
                     padding: 10px;
                     margin-top: 20px;
@@ -1703,253 +1753,253 @@ hr {
                     border-radius: 3px;
                     /* BLOCK - MAP **************************/
                     #map-perk-desktop {
-                        height: 100%;
-                        opacity: 0.6;
+                      height: 100%;
+                      opacity: 0.6;
 
-                        .mapboxgl-ctrl-attrib {
-                            display: none;
-                        }
+                      .mapboxgl-ctrl-attrib {
+                        display: none;
+                      }
                     }
 
                     .business-address {
-                        position: absolute;
-                        bottom: 5px;
-                        font-size: 12px;
-                        right: 5px;
-                        background-color: #fff;
-                        padding: 5px 10px;
-                        border-radius: 3px 0 0 0;
+                      position: absolute;
+                      bottom: 5px;
+                      font-size: 12px;
+                      right: 5px;
+                      background-color: #fff;
+                      padding: 5px 10px;
+                      border-radius: 3px 0 0 0;
 
-                        .fa {
-                            margin-right: 5px;
-                        }
+                      .fa {
+                        margin-right: 5px;
+                      }
                     }
+                  }
                 }
-            }
 
-            .business-details {
-                position: relative;
-                width: 50%;
-                margin-left: 1%;
+                .business-details {
+                  position: relative;
+                  width: 50%;
+                  margin-left: 1%;
 
-                .business-misc {
+                  .business-misc {
                     min-height: 570px;
                     background-color: #fff;
                     box-shadow: 0 1px 2px rgba(0,0,0,0.2);
 
                     .perk-image {
-                        position: relative;
-                        background-size: cover;
-                        background-repeat: no-repeat;
-                        background-position: center;
-                        padding: 20px;
-                        height: 190px;
-                        border-radius: 3px 3px 0 0;
+                      position: relative;
+                      background-size: cover;
+                      background-repeat: no-repeat;
+                      background-position: center;
+                      padding: 20px;
+                      height: 190px;
+                      border-radius: 3px 3px 0 0;
 
-                        h1 {
-                            position: absolute;
-                            padding: 10px 0;
-                            margin: 0;
-                            left: 125px;
-                            bottom: 0;
-                            text-align: left;
-                            font-size: 20px;
-                            color: #fff;
-                            font-weight: 600;
-                            z-index: 10;
-                        }
+                      h1 {
+                        position: absolute;
+                        padding: 10px 0;
+                        margin: 0;
+                        left: 125px;
+                        bottom: 0;
+                        text-align: left;
+                        font-size: 20px;
+                        color: #fff;
+                        font-weight: 600;
+                        z-index: 10;
+                      }
 
-                        img {
-                            position: absolute;
-                            width: 100px;
-                            height: 100px;
-                            bottom: -50px;
-                            border: 3px solid #fff;
-                            border-radius: 50%;
-                            z-index: 1;
-                        }
+                      img {
+                        position: absolute;
+                        width: 100px;
+                        height: 100px;
+                        bottom: -50px;
+                        border: 3px solid #fff;
+                        border-radius: 50%;
+                        z-index: 1;
+                      }
                     }
 
                     .profile-card {
-                        padding-top: 45px;
+                      padding-top: 45px;
 
-                        h3 {
-                            text-transform: uppercase;
-                            font-size: 14px;
-                            font-weight: 600;
-                        }
+                      h3 {
+                        text-transform: uppercase;
+                        font-size: 14px;
+                        font-weight: 600;
+                      }
 
-                        p {
-                            font-size: 14px;
-                            line-height: 23.5px;
-                        }
+                      p {
+                        font-size: 14px;
+                        line-height: 23.5px;
+                      }
                     }
 
                     .slick-slider {
-                        margin-bottom: 0;
-                        background-color: #fff;
-                        border-radius: 0 0 3px 3px;
+                      margin-bottom: 0;
+                      background-color: #fff;
+                      border-radius: 0 0 3px 3px;
 
-                        .slick-slide {
-                            padding: 0 20px;
-                        }
+                      .slick-slide {
+                        padding: 0 20px;
+                      }
                     }
 
                     .slick-dots {
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        height: 30px;
-                        background-color: #36d3da;
-                        top: 0;
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                      height: 30px;
+                      background-color: #36d3da;
+                      top: 0;
 
-                        li {
-                            margin: 0;
-                        }
+                      li {
+                        margin: 0;
+                      }
 
-                        li button::before {
-                            font-size: 30px;
-                            color: #fff;
-                        }
+                      li button::before {
+                        font-size: 30px;
+                        color: #fff;
+                      }
                     }
-                }
+                  }
 
-                .business-contact {
+                  .business-contact {
                     padding: 10px 20px;
                     background-color: #fff;
 
                     h3 {
-                        margin-top: 0;
-                        text-transform: uppercase;
-                        font-size: 14px;
-                        font-weight: 600;
+                      margin-top: 0;
+                      text-transform: uppercase;
+                      font-size: 14px;
+                      font-weight: 600;
                     }
 
                     ul {
-                        display: flex;
-                        list-style: none;
+                      display: flex;
+                      list-style: none;
 
-                        .business-link {
-                            display: none;
-                            font-size: 14px;
-                        }
+                      .business-link {
+                        display: none;
+                        font-size: 14px;
+                      }
                     }
 
                     ul.reach-us {
-                        margin-bottom: 20px;
+                      margin-bottom: 20px;
 
-                        .direction {
+                      .direction {
+                        display: none;
+                      }
+
+                      li {
+                        margin-right: 10px;
+
+                        a {
+                          display: flex;
+                          align-items: center;
+                          color: #36d3da;
+
+                          .fa {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            position: relative;
+                            width: 30px;
+                            height: 30px;
+                            border-radius: 50%;
+                            background-color: #fff;
+                            border: 1px solid #36d3da;
+                            z-index: 1;
+                          }
+
+                          span {
                             display: none;
+                          }
                         }
-
-                        li {
-                            margin-right: 10px;
-
-                            a {
-                                display: flex;
-                                align-items: center;
-                                color: #36d3da;
-
-                                .fa {
-                                    display: flex;
-                                    align-items: center;
-                                    justify-content: center;
-                                    position: relative;
-                                    width: 30px;
-                                    height: 30px;
-                                    border-radius: 50%;
-                                    background-color: #fff;
-                                    border: 1px solid #36d3da;
-                                    z-index: 1;
-                                }
-
-                                span {
-                                    display: none;
-                                }
-                            }
-                        }
+                      }
                     }
 
                     ul.follow-us {
-                        li {
-                            position: relative;
-                            margin-right: 10px;
-                            background-color: #36d3da;
-                            height: 30px;
-                            width: 30px;
-                            border-radius: 50%;
-                            @include transition(all 0.3s ease-in-out);
+                      li {
+                        position: relative;
+                        margin-right: 10px;
+                        background-color: #36d3da;
+                        height: 30px;
+                        width: 30px;
+                        border-radius: 50%;
+                        @include transition(all 0.3s ease-in-out);
 
-                            a {
-                                display: flex;
-                                justify-content: center;
-                                align-items: center;
-                                width: 100%;
-                                height: 100%;
-                                color: #fff;
-                            }
-
-                            &:hover {
-                                background-color: #45EFF7;
-                            }
+                        a {
+                          display: flex;
+                          justify-content: center;
+                          align-items: center;
+                          width: 100%;
+                          height: 100%;
+                          color: #fff;
                         }
+
+                        &:hover {
+                          background-color: #45EFF7;
+                        }
+                      }
                     }
+                  }
                 }
+              }
             }
-        }
-    }
-}
-@media only screen and (min-width:1200px) {
-    .dashboard-perk {
-        .show-desktop {
-            .business-details {
-                .business-contact {
+          }
+          @media only screen and (min-width:1200px) {
+            .dashboard-perk {
+              .show-desktop {
+                .business-details {
+                  .business-contact {
                     ul.reach-us {
-                        li {
-                            a {
-                                span {
-                                    display: block;
-                                    padding: 3px 20px 3px 30px;
-                                    margin-left: -20px;
-                                    border: 1px solid #f4f4f4;
-                                    border-radius: 0 20px 20px 0;
-                                    background-color: #f4f4f4;
-                                    color: #636363;
-                                }
-                            }
+                      li {
+                        a {
+                          span {
+                            display: block;
+                            padding: 3px 20px 3px 30px;
+                            margin-left: -20px;
+                            border: 1px solid #f4f4f4;
+                            border-radius: 0 20px 20px 0;
+                            background-color: #f4f4f4;
+                            color: #636363;
+                          }
                         }
+                      }
                     }
+                  }
                 }
+              }
             }
-        }
-    }
-}
+          }
 
-#link-itinerary.unable {
+          #link-itinerary.unable {
     // background-color: #f4f4f4;
     pointer-events: none;
     cursor: default;
-}
+  }
 
-#link-map.unable {
+  #link-map.unable {
     pointer-events: none;
     cursor: default;
     border-color: #ccc;
     height: 44px;
 
     .fa {
-        background-color: #ccc;
+      background-color: #ccc;
     }
-}
+  }
 /* -------------------------------------
  * CSS code specific to business show
  * ------------------------------------- */
-.fullpage {
-    padding-left: 90px;
-    padding-top: 50px;
-    min-height: 100vh;
-    width: 100%;
-    display: flex;
+ .fullpage {
+  padding-left: 90px;
+  padding-top: 50px;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
 }
 
 .fullpage-left-item {
@@ -1960,16 +2010,16 @@ hr {
     flex-direction: column;
     justify-content: flex-start;
     background-color: white;
-}
+  }
 
-.fullpage-right-item {
+  .fullpage-right-item {
     flex: 6;
     background-color: rgba(155,155,155,0.1);
     display: flex;
     flex-direction: column;
-}
+  }
 
-.colored-banner {
+  .colored-banner {
     width: 100%;
     height: 350px;
     position: relative;
@@ -1980,9 +2030,9 @@ hr {
     padding-left: 10%;
     padding-right: 10%;
     padding-top: 30px;
-}
+  }
 
-.card-abs-banner {
+  .card-abs-banner {
     position: absolute;
     top: 120px;
     left: 10%;
@@ -1991,9 +2041,9 @@ hr {
     border-radius: 4px;
     display: flex;
     flex-direction: column;
-}
+  }
 
-.card-photo {
+  .card-photo {
     width: 100%;
     height: 87%;
     background-image: url("https://parisiansecrets.files.wordpress.com/2012/10/dsc_0361.jpg");
@@ -2001,42 +2051,42 @@ hr {
     background-position: center center;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
-}
+  }
 
-.card-bottom-links {
+  .card-bottom-links {
     width: 100%;
     height: 13%;
     border-bottom-right-radius: 4px;
     border-bottom-left-radius: 4px;
     display: flex;
-}
+  }
 
-.card-bottom-left-item {
+  .card-bottom-left-item {
     height: 100%;
     width: 50%;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     border-bottom-left-radius: 4px;
-}
+  }
 
-.card-bottom-right-item {
+  .card-bottom-right-item {
     height: 100%;
     width: 50%;
     display: flex;
     justify-content: flex-end;
-}
+  }
 
-.cbri-firstblock {
+  .cbri-firstblock {
     height: 100%;
     width: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: rgba(55,55,55,0.9);
-}
+  }
 
-.cbri-middleblock {
+  .cbri-middleblock {
     height: 100%;
     width: 25%;
     display: flex;
@@ -2045,9 +2095,9 @@ hr {
     background-color: $facebook;
     font-size: 22px;
     color: white;
-}
+  }
 
-.cbri-endblock {
+  .cbri-endblock {
     height: 100%;
     width: 25%;
     display: flex;
@@ -2057,130 +2107,130 @@ hr {
     background-color: $twitter;
     font-size: 22px;
     color: white;
-}
+  }
 
-.firstblock-text {
+  .firstblock-text {
     font-size: 12px;
     color: white;
     font-weight: 400;
-}
+  }
 
-.red-heart {
+  .red-heart {
     margin-right: 10px;
     margin-left: 10px;
     margin-top: 5px;
-}
+  }
 
-.banner-business-name {
+  .banner-business-name {
     width: 100%;
     display: flex;
     justify-content: flex-start;
     color: white;
     font-size: 28px;
     padding-bottom: 15px;
-}
+  }
 
-.banner-business-top-infos {
+  .banner-business-top-infos {
     width: 100%;
     height: 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
+  }
 
-.infos-left {
+  .infos-left {
     height: 100%;
     width: 170px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
-}
+  }
 
-.infos-right {
+  .infos-right {
     height: 100%;
     width: 150px;
     display: flex;
     justify-content: flex-end;
     align-items: center;
-}
+  }
 
-.dot-state {
+  .dot-state {
     width: 8px;
     height: 8px;
     border-radius: 50%;
     background-color: #60E550;
     margin-right: 10px;
     border: 1px solid white;
-}
+  }
 
-.dot-state-name {
+  .dot-state-name {
     font-size: 11px;
     color: white;
-}
+  }
 
-.category-icon {
+  .category-icon {
     width: 16px;
     height: 16px;
     border-radius: 50%;
     background-color: white;
     margin-right: 10px;
-}
+  }
 
-.fullpage-left-item-bottom {
+  .fullpage-left-item-bottom {
     width: 100%;
     padding: 120px 10%;
     min-height: 40%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-}
+  }
 
-.flib-header {
+  .flib-header {
     width: 100%;
     font-size: 11px;
     color: lightgrey;
     display: flex;
     justify-content: flex-start;
     height: 25px;
-}
+  }
 
-.flib-engages {
+  .flib-engages {
     display: flex;
     justify-content: flex-start;
     height: 30px;
     margin-bottom: 10px;
-}
+  }
 
-.flib-engages-item {
+  .flib-engages-item {
     display: flex;
     justify-content: flex-start;
     margin-right: 25px;
     align-items: center;
-}
+  }
 
-.flib-text {
+  .flib-text {
     font-size: 10px;
     font-style: italic;
     line-height: 12px;
     color: rgba(55,55,55,0.9);
-}
+  }
 
-.flib-icon {
+  .flib-icon {
     margin-right: 8px;
     height: 14px;
     width: 14px;
     border-radius: 50%;
     background-color: green;
-}
+  }
 
-.business-desc {
+  .business-desc {
     width: 100%;
     padding-bottom: 20px;
     font-size: 12px;
     color: rgba(55,55,55,0.9);
-}
+  }
 
-.title-fri-underline {
+  .title-fri-underline {
     height: 20px;
     margin-top: 12px;
     margin-left: 7%;
@@ -2188,87 +2238,87 @@ hr {
     line-height: 17px;
     font-weight: 600;
     border-bottom: 6px solid;
-}
+  }
 
-.perk-card-container {
+  .perk-card-container {
     height: 250px;
     transition: all 0.2s;
 
     &.open {
-        margin-bottom: 195px;
+      margin-bottom: 195px;
     }
-}
+  }
 
-.business-infos {
+  .business-infos {
     display: flex;
     justify-content: space-between;
     position: relative;
-}
+  }
 
-.perk-map {
+  .perk-map {
     width: 120px;
     height: 120px;
     border-width: 3px;
     border-style: solid;
     border-radius: 3px;
-}
+  }
 
-#map-perk-desktop {
+  #map-perk-desktop {
     width: 100%;
     height: 100%;
-}
+  }
 
-.business-address {
+  .business-address {
     display: flex;
     margin-left: 130px;
     width: 30%;
 
     .fa {
-        margin: 6px;
-        color: $white;
+      margin: 6px;
+      color: $white;
     }
 
     span {
-        font-size: 11px;
-        line-height: 13px;
-        font-weight: 400;
+      font-size: 11px;
+      line-height: 13px;
+      font-weight: 400;
     }
-}
+  }
 
-.fullpage-right-item {
+  .fullpage-right-item {
     .perk-card-container {
-        margin-top: 6%;
-        margin-left: 7%;
-        margin-right: 6%;
+      margin-top: 6%;
+      margin-left: 7%;
+      margin-right: 6%;
     }
-}
+  }
 
-.perk-card {
+  .perk-card {
     width: 100%;
     height: 100%;
     background-color: white;
     display: flex;
-}
+  }
 
-.perk-card.available {
+  .perk-card.available {
     cursor: pointer;
-}
+  }
 
-.perk-card-left-item {
+  .perk-card-left-item {
     height: 100%;
     width: 30%;
     background-color: #FFD00C;
     position: relative;
-}
+  }
 
-.perk-card-right-item {
+  .perk-card-right-item {
     height: 100%;
     width: 70%;
     display: flex;
     justify-content: flex-end;
-}
+  }
 
-.perk-card-absolute-photo {
+  .perk-card-absolute-photo {
     position: absolute;
     height: 76%;
     top: 12%;
@@ -2277,9 +2327,9 @@ hr {
     background-size: cover;
     background-position: center center;
     border-radius: 3px;
-}
+  }
 
-.pcri-container {
+  .pcri-container {
     height: 100%;
     width: 65%;
     padding-top: 7%;
@@ -2287,15 +2337,15 @@ hr {
     display: flex;
     flex-direction: column;
     color: rgba(55,55,55,0.7);
-}
+  }
 
-.pcri-offer {
+  .pcri-offer {
     width: 100%;
     display: flex;
     justify-content: flex-start;
-}
+  }
 
-.pcri-offer-tooltip {
+  .pcri-offer-tooltip {
     width: 52px;
     background-color: #FFD00C;
     border-radius: 3px;
@@ -2305,9 +2355,9 @@ hr {
     align-items: center;
     font-size: 11px;
     text-transform: uppercase;
-}
+  }
 
-.pcri-offer-flash {
+  .pcri-offer-flash {
     margin-left: 5px;
     padding: 1px;
     font-size: 10px;
@@ -2316,41 +2366,41 @@ hr {
     transform: translateY(6%);
 
     span {
-        display: flex;
+      display: flex;
     }
 
     .fa {
-        color: #fff;
-        display: flex;
+      color: #fff;
+      display: flex;
     }
-}
+  }
 
-.pcri-item {
+  .pcri-item {
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     color: rgba(55,55,55,0.7);
-}
+  }
 
-.pcri-item-name {
+  .pcri-item-name {
     width: 100%;
     margin-top: 5px;
     font-size: 11px;
     line-height: 15px;
     font-weight: bolder;
-}
+  }
 
-.pcri-item-text {
+  .pcri-item-text {
     width: 100%;
     margin-top: 3px;
     font-size: 11px;
     line-height: 15px;
     font-weight: lighter;
-}
+  }
 
-.pcri-uses {
+  .pcri-uses {
     margin-top: 7px;
     font-size: 9px;
     line-height: 10px;
@@ -2360,12 +2410,12 @@ hr {
     align-items: center;
 
     .fa {
-        font-size: 10px;
-        color: #fff;
+      font-size: 10px;
+      color: #fff;
     }
-}
+  }
 
-.perk-pseudo-modal-link {
+  .perk-pseudo-modal-link {
     position: absolute;
     right: 5%;
     bottom: 5%;
@@ -2375,29 +2425,29 @@ hr {
     color: rgba(55,55,55,0.9);
 
     &:after {
-        content: " >";
-        font-size: 13px;
+      content: " >";
+      font-size: 13px;
     }
-}
+  }
 
-.perk-modal-use {
+  .perk-modal-use {
     margin-left: 7%;
     margin-right: 6%;
     background-color: white;
     border-radius: 0 3px;
     box-shadow: 0 1px 2px rgba(0,0,0,0.2);
     display: flex;
-}
+  }
 
-.perk-modal-usage-slide {
+  .perk-modal-usage-slide {
     position: relative;
     width: 100%;
     padding: 25px;
     color: rgba(55,55,55,0.9);
     text-align: center;
-}
+  }
 
-.pmu-alert {
+  .pmu-alert {
     width: 100%;
     display: flex;
     align-items: center;
@@ -2409,36 +2459,36 @@ hr {
     color: rgba(0,0,0,0.3);
 
     .fa {
-        color: #fff;
+      color: #fff;
     }
 
     span {
-        display: flex;
+      display: flex;
     }
-}
+  }
 
-.divider-line {
+  .divider-line {
     width: 84%;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     margin-top: 10px;
     border-top: 1px solid rgba(0, 0, 0, 0.3);
-}
+  }
 
-.pmu-question {
+  .pmu-question {
     margin-top: 14px;
     margin-bottom: 0;
     font-size: 18px;
     color: rgba(55,55,55,0.9);
-}
+  }
 
-.pmu-answer {
+  .pmu-answer {
     font-size: 12px;
     margin-bottom: 20px;
-}
+  }
 
-.perk-modal {
+  .perk-modal {
     position: fixed;
     width: calc(50% - 45px);
     height: 100vh;
@@ -2452,16 +2502,16 @@ hr {
     padding: 20px 50px 50px;
     z-index: 200;
     @media all and (max-width: 767px) {
-        width: 100%;
+      width: 100%;
     }
-}
+  }
 
-.perk-modal-label {
+  .perk-modal-label {
     position: absolute;
     top: 10px;
-}
+  }
 
-.perk-modal-header {
+  .perk-modal-header {
     width: 100%;
     display: flex;
     min-height: 130px;
@@ -2469,45 +2519,45 @@ hr {
     justify-content: center;
     align-items: center;
     margin: 30px auto;
-}
+  }
 
-.perk-modal-header-text {
+  .perk-modal-header-text {
     font-size: 17px;
     text-transform: uppercase;
 
     &.feedback {
-        max-width: 210px;
+      max-width: 210px;
     }
-}
+  }
 
-.perk-modal-icon {
+  .perk-modal-icon {
     background-image: image-url("logo.svg");
     background-size: cover;
     background-position: center center;
     width: 70px;
     height: 70px;
     margin-bottom: 20px;
-}
+  }
 
-.perk-modal-illustration {
+  .perk-modal-illustration {
     margin-bottom: 20px;
 
     img {
-        width: 80px;
-        height: 80px;
+      width: 80px;
+      height: 80px;
     }
-}
+  }
 
-.perk-modal-title-dotted {
+  .perk-modal-title-dotted {
     height: 40px;
     width: 100%;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     margin-bottom: 5px;
-}
+  }
 
-.perk-modal-yellow-dot {
+  .perk-modal-yellow-dot {
     width: 20px;
     height: 20px;
     border-radius: 50%;
@@ -2519,20 +2569,20 @@ hr {
     justify-content: center;
     align-items: center;
     margin-right: 10px;
-}
+  }
 
-.perk-modal-title-text {
+  .perk-modal-title-text {
     font-size: 14px;
     font-weight: 600;
-}
+  }
 
-.perk-modal-description {
+  .perk-modal-description {
     width: 100%;
     font-size: 12px;
     margin-bottom: 15px;
-}
+  }
 
-.perk-modal-button-signup {
+  .perk-modal-button-signup {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -2540,25 +2590,25 @@ hr {
     margin-top: 20px;
 
     .dropdown-menu {
-        position: fixed;
-        width: calc(50% - 45px);
-        height: 100vh;
-        left: calc(50% + 45px);
-        padding-top: 30px;
-        background: white;
-        border-radius: 0;
+      position: fixed;
+      width: calc(50% - 45px);
+      height: 100vh;
+      left: calc(50% + 45px);
+      padding-top: 30px;
+      background: white;
+      border-radius: 0;
 
-        .sign-box {
-            padding: 10px 35px;
+      .sign-box {
+        padding: 10px 35px;
 
-            .form-card {
-                text-align: center;
-            }
+        .form-card {
+          text-align: center;
         }
+      }
     }
-}
+  }
 
-.pastille.itinary {
+  .pastille.itinary {
     width: auto;
     height: auto;
     min-width: 35px;
@@ -2567,57 +2617,57 @@ hr {
     background-color: #229FEC;
 
     .fa-location-arrow {
-        transform: rotate(-45deg);
+      transform: rotate(-45deg);
     }
-}
+  }
 
 
-.btn-show-card {
+  .btn-show-card {
     display: flex;
     flex-direction: column;
     line-height: 7px;
 
     span {
-        font-size: 11px;
-        font-weight: 100;
+      font-size: 11px;
+      font-weight: 100;
     }
-}
-@media all and (max-width: 767px) {
+  }
+  @media all and (max-width: 767px) {
     .fullpage {
-        padding-left: 0;
+      padding-left: 0;
     }
-}
-@media all and (max-width: 767px) {
+  }
+  @media all and (max-width: 767px) {
     .card-abs-banner {
-        width: 100%;
-        left: 0;
+      width: 100%;
+      left: 0;
     }
-}
-@media all and (max-width: 767px) {
+  }
+  @media all and (max-width: 767px) {
     .search-modal {
-        padding-left: 40px;
+      padding-left: 40px;
     }
-}
+  }
 
-.biz-avatar {
+  .biz-avatar {
     width: 30px;
     height: 30px;
     background-size: cover;
     background-position: center center;
     border-radius: 50%;
     margin-right: 15px;
-}
+  }
 
-.fixed-bottom-perk-link {
+  .fixed-bottom-perk-link {
     width: 100%;
     height: 100%;
     background-color: white;
     display: flex !important;
     justify-content: center;
     align-items: center;
-}
+  }
 
-.see-perk-button {
+  .see-perk-button {
     font-size: 13px;
     border-radius: 6px;
     color: white;
@@ -2626,22 +2676,22 @@ hr {
     display: flex;
     justify-content: center;
     align-items: center;
-}
+  }
 
-.fixed-bottom-container-button {
+  .fixed-bottom-container-button {
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
     height: 110px;
-}
-@media all and (min-width: 768px) {
+  }
+  @media all and (min-width: 768px) {
     .fixed-bottom-container-button {
-        display: none;
+      display: none;
     }
-}
+  }
 
-.perk-modal-mobile {
+  .perk-modal-mobile {
     position: fixed;
     height: 100%;
     overflow-y: scroll;
@@ -2653,9 +2703,9 @@ hr {
     padding-left: 8%;
     padding-right: 8%;
     padding-bottom: 25px;
-}
+  }
 
-.perk-modal-close-mobile {
+  .perk-modal-close-mobile {
     position: absolute;
     top: 25px;
     right: 25px;
@@ -2665,9 +2715,9 @@ hr {
     cursor: pointer;
 
     &:hover {
-        color: rgba(55,55,55,0.9);
+      color: rgba(55,55,55,0.9);
     }
-}
+  }
 //
 // .perk-modal-mobile-member {
 //     position: fixed;
@@ -2710,27 +2760,27 @@ hr {
 
 
 .member-header-text {
-    color: rgba(55,55,55,0.8);
-    font-size: 16px;
+  color: rgba(55,55,55,0.8);
+  font-size: 16px;
 }
 
 .pmls-modal {
-    position: absolute;
-    top: 15px;
-    right: 25px;
-    color: white;
-    font-size: 24px;
+  position: absolute;
+  top: 15px;
+  right: 25px;
+  color: white;
+  font-size: 24px;
 }
 
 .business-on-perk {
-    color: white;
-    font-size: 10px;
+  color: white;
+  font-size: 10px;
 }
 
 .pmdjs {
-    position: fixed;
-    height: 100%;
-    overflow-y: scroll;
+  position: fixed;
+  height: 100%;
+  overflow-y: scroll;
     // Fred - jour de printemps - start
       // width: calc(50% - 45px);
       width: 100%;
@@ -2749,21 +2799,21 @@ hr {
     align-items: center;
 
     // Fred - jour de printemps - start
-      @media (max-width: 767px) {
-          width: 100%;
-      }
+    @media (max-width: 767px) {
+      width: 100%;
+    }
     // Fred - jour de printemps - end
-  &.popup-member-card {
-    background-color: rgba(255, 255, 255, 0.92);
+    &.popup-member-card {
+      background-color: rgba(255, 255, 255, 0.92);
+    }
   }
-}
 
-.pmdjs-header {
+  .pmdjs-header {
     height: 60px;
     width: 100%;
-}
+  }
 
-.pmdjs-title-underline {
+  .pmdjs-title-underline {
     position: absolute;
     margin-top: 15px;
     left: 50%;
@@ -2773,17 +2823,17 @@ hr {
     line-height: 13px;
     color: rgba(55,55,55,0.9);
     border-bottom: 6px solid;
-}
+  }
 
-.pmdjs-photo {
+  .pmdjs-photo {
     width: 100%;
     height: 30vh;
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
-}
+  }
 
-.pmdjs-offers {
+  .pmdjs-offers {
     width: 100%;
     height: 30px;
     display: flex;
@@ -2791,7 +2841,7 @@ hr {
     align-items: center;
     padding-left: 8%;
     margin-top: 20px;
-}
+  }
 
 // .pmdjs-perk-name {
 //     width: 100%;
@@ -2815,91 +2865,91 @@ hr {
 // }
 
 ul.reach-us {
-    list-style: none;
-    font-size: 12px;
+  list-style: none;
+  font-size: 12px;
 
-    li {
-        position: relative;
-        margin-bottom: 10px;
+  li {
+    position: relative;
+    margin-bottom: 10px;
+    display: flex;
+
+    a {
+      display: flex;
+      align-items: center;
+
+      .fa {
         display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        width: 30px;
+        height: 30px;
+        color: #fff;
+        border-radius: 50%;
+        background-color: $asso;
+        z-index: 1;
+      }
 
-        a {
-            display: flex;
-            align-items: center;
-
-            .fa {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                position: relative;
-                width: 30px;
-                height: 30px;
-                color: #fff;
-                border-radius: 50%;
-                background-color: $asso;
-                z-index: 1;
-            }
-
-            span {
-                padding: 2px 10px 2px 20px;
-                margin-left: -15px;
-                border: 1px solid $asso;
-                border-radius: 0 20px 20px 0;
-                background-color: #f4f4f4;
-                color: #636363;
-            }
-        }
+      span {
+        padding: 2px 10px 2px 20px;
+        margin-left: -15px;
+        border: 1px solid $asso;
+        border-radius: 0 20px 20px 0;
+        background-color: #f4f4f4;
+        color: #636363;
+      }
     }
+  }
 
-    li.direction {
-        background-color: transparent;
-    }
+  li.direction {
+    background-color: transparent;
+  }
 
-    li:last-child {
-        margin-bottom: 0;
-    }
+  li:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .follow-us-title {
-    font-size: 11px;
-    font-weight: 100;
+  font-size: 11px;
+  font-weight: 100;
 }
 
 .follow-us {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  ul {
     display: flex;
-    justify-content: flex-end;
-    align-items: center;
+    list-style: none;
 
-    ul {
+    li {
+      position: relative;
+      margin-right: 10px;
+      height: 30px;
+      width: 30px;
+
+      a {
         display: flex;
-        list-style: none;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
 
-        li {
-            position: relative;
-            margin-right: 10px;
-            height: 30px;
-            width: 30px;
-
-            a {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                width: 100%;
-                height: 100%;
-                border-radius: 50%;
-
-                .fa {
-                    color: #fff;
-                }
-            }
+        .fa {
+          color: #fff;
         }
+      }
     }
+  }
 
-    li:first-child {
-        margin-left: 5px;
-    }
+  li:first-child {
+    margin-left: 5px;
+  }
 
-    li:last-child {
-        margin: 0;
-    }
+  li:last-child {
+    margin: 0;
+  }
 }

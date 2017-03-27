@@ -10,7 +10,7 @@ class Member::DashboardController < ApplicationController
       session[:logout] = true
     end
 
-    @businesses = Business.includes(:business_category, :perks_in_time, :uses, :main_address).active.for_map.with_perks_in_time.distinct.eager_load(:addresses_for_map).merge(Address.near(@lat_lng, 10))
+    @businesses = Business.not_supervisor.includes(:business_category, :perks_in_time, :uses, :main_address).active.for_map.with_perks_in_time.distinct.eager_load(:addresses_for_map).merge(Address.near(@lat_lng, 10))
     @geojson = {"type" => "FeatureCollection", "features" => []}
 
     @businesses.each do |business|
@@ -76,7 +76,7 @@ class Member::DashboardController < ApplicationController
   end
 
   def find_businesses_for_search
-    @businesses = Business.includes(:business_category, :main_address).active.with_perks_in_time.distinct
+    @businesses = Business.not_supervisor.includes(:business_category, :main_address).active.with_perks_in_time.distinct
   end
 
 end

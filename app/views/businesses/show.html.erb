@@ -76,34 +76,34 @@
                     <div class="row"><hr class="horizontal-bar"></div>
 
                     <% if @labels.present? %>
-                    <h6>Leurs engagements</h6>
-                    <div class="business-beliefs">
+                      <h6>Leurs engagements</h6>
+                      <div class="business-beliefs">
                         <% @labels.each do |label| %>
-                        <div class="business-belief">
-                            <%= image_tag label.label_category.picture, size: "40x40" %>
-                            <%= label.label_category.name %>
-                        </div>
+                          <div class="business-belief">
+                              <%= image_tag label.label_category.picture, size: "40x40" %>
+                              <%= label.label_category.name %>
+                          </div>
                         <% end %>
-                    </div>
-                    <div class="row"><hr class="horizontal-bar"></div>
+                      </div>
+                      <div class="row"><hr class="horizontal-bar"></div>
                     <% end %>
 
                     <h6>En quelques mots</h6>
                     <p>
                         <% if @business.description.present? %>
-                        <div class="business-description">
-                            <%= @business.description %>
-                        </div>
-                    <% else %>
-                        <div class="business-descritption">Profil en construction</div>
+                          <div class="business-description">
+                              <%= @business.description %>
+                          </div>
+                        <% else %>
+                          <div class="business-descritption">Profil en construction</div>
                         <% end %>
                     </p>
 
                     <div class="row"><hr class="horizontal-bar"></div>
 
                     <% if device_type != :mobile %>
-                    <h6>Détails</h6>
-                    <div class="details">
+                      <h6>Détails</h6>
+                      <div class="details">
 
                         <div class="map-details">
                             <div class="business-map">
@@ -115,7 +115,7 @@
                             <ul>
                                 <% if @address.timetables.present? %>
                                   <% (1..6).each do |i| %>
-                                    <li><%= I18n.t("date.day_names")[i].capitalize %> - <%= @address.timetables.find_by_day(i).present? ? @address.timetables.find_by_day(i).start_at_hour.to_s + "h" + pad0(@address.timetables.find_by_day(i).start_at_min.to_s) + " | " + @address.timetables.find_by_day(i).end_at_hour.to_s + "h" + pad0(@address.timetables.find_by_day(i).end_at_min.to_s) : 'Fermé' %><li>
+                                    <li><%= I18n.t("date.day_names")[i].capitalize %> - <%= @address.timetables.find_by_day(i).present? ? @address.timetables.find_by_day(i).start_at_hour.to_s + "h" + pad0(@address.timetables.find_by_day(i).start_at_min.to_s) + " | " + @address.timetables.find_by_day(i).end_at_hour.to_s + "h" + pad0(@address.timetables.find_by_day(i).end_at_min.to_s) : 'Fermé' %></li>
                                   <% end %>
                                   <li><%= I18n.t("date.day_names")[0].capitalize %> - <%= @address.timetables.find_by_day(0).present? ? @address.timetables.find_by_day(0).start_at_hour.to_s + "h" + pad0(@address.timetables.find_by_day(0).start_at_min.to_s) + " | " + @address.timetables.find_by_day(0).end_at_hour.to_s + "h" + pad0(@address.timetables.find_by_day(0).end_at_min.to_s) : 'Fermé' %></li>
                                 <% end %>
@@ -136,106 +136,98 @@
                                 <%= render "pro/dashboard/shared/business_links" %>
                             </div>
                         </div>
-                    </div>
+                      </div>
 
                     <% else %>
 
-                    <h6>Détails</h6>
-                    <div class="details-mobile">
+                      <h6>Détails</h6>
+                      <div class="details-mobile">
 
-                        <div class="details-mobile-first-row">
-                            <div class="business-map-mobile">
-                                <div id="map-perk-desktop"></div>
-                            </div>
-                        </div>
-
-                        <div class="details-mobile-second-row">
-                          <div class="business-address-row">
-                              <div class="business-address-icon" style="background-color:<%= @business.business_category.color %>;"></div>
-                                <div class=" business-addresss">
-                                    <span> <%= @address.present? ? @address.street : @business.street %>
-                                    <%= @address.present? ? @address.zipcode : @business.zipcode %>
-                                      <%= @address.present? ? @address.city : @business.city %></span>
-                                </div>
+                          <div class="details-mobile-first-row">
+                              <div class="business-map-mobile">
+                                  <div id="map-perk-desktop"></div>
+                              </div>
                           </div>
-                          <div class="business-opening-hours-mobile">
-                              <ul>
-                                <% if @address.timetables.present? %>
-                                  <% (1..6).each do |i| %>
-                                    <li><%= I18n.t("date.day_names")[i].capitalize %> - <%= @address.timetables.find_by_day(i).present? ? @address.timetables.find_by_day(i).start_at_hour.to_s + "h" + pad0(@address.timetables.find_by_day(i).start_at_min.to_s) + " | " + @address.timetables.find_by_day(i).end_at_hour.to_s + "h" + pad0(@address.timetables.find_by_day(i).end_at_min.to_s) : 'Fermé' %><li>
+
+                          <div class="details-mobile-second-row">
+                            <div class="business-address-row">
+                                <div class="business-address-icon" style="background-color:<%= @business.business_category.color %>;"></div>
+                                  <div class=" business-addresss">
+                                      <span> <%= @address.present? ? @address.street : @business.street %>
+                                      <%= @address.present? ? @address.zipcode : @business.zipcode %>
+                                        <%= @address.present? ? @address.city : @business.city %></span>
+                                  </div>
+                            </div>
+                            <div class="business-opening-hours-mobile">
+                                <ul>
+                                  <% if @address.timetables.present? %>
+                                    <% (1..6).each do |i| %>
+                                      <li><%= I18n.t("date.day_names")[i].capitalize %> - <%= @address.timetables.find_by_day(i).present? ? @address.timetables.find_by_day(i).start_at_hour.to_s + "h" + pad0(@address.timetables.find_by_day(i).start_at_min.to_s) + " | " + @address.timetables.find_by_day(i).end_at_hour.to_s + "h" + pad0(@address.timetables.find_by_day(i).end_at_min.to_s) : 'Fermé' %></li>
+                                    <% end %>
+                                    <li><%= I18n.t("date.day_names")[0].capitalize %> - <%= @address.timetables.find_by_day(0).present? ? @address.timetables.find_by_day(0).start_at_hour.to_s + "h" + pad0(@address.timetables.find_by_day(0).start_at_min.to_s) + " | " + @address.timetables.find_by_day(0).end_at_hour.to_s + "h" + pad0(@address.timetables.find_by_day(0).end_at_min.to_s) : 'Fermé' %></li>
                                   <% end %>
-                                  <li><%= I18n.t("date.day_names")[0].capitalize %> - <%= @address.timetables.find_by_day(0).present? ? @address.timetables.find_by_day(0).start_at_hour.to_s + "h" + pad0(@address.timetables.find_by_day(0).start_at_min.to_s) + " | " + @address.timetables.find_by_day(0).end_at_hour.to_s + "h" + pad0(@address.timetables.find_by_day(0).end_at_min.to_s) : 'Fermé' %></li>
-                                <% end %>
-                              </ul>
-                          </div>
-                      </div>
-
-                            <div class="details-mobile-third-row">
-                                <%= render "pro/dashboard/shared/business_links" %>
+                                </ul>
                             </div>
+                          </div>
 
-                    </div>
+                          <div class="details-mobile-third-row">
+                              <%= render "pro/dashboard/shared/business_links" %>
+                          </div>
 
-
-
+                      </div>
 
                     <% end %>
 
                     <% if @business.leader_description.present? %>
-                    <div class="row"><hr class="horizontal-bar"></div>
-                    <h6 class="business-leader-title">Qui se cache derrière ?</h6>
+                      <div class="row"><hr class="horizontal-bar"></div>
+                      <h6 class="business-leader-title">Qui se cache derrière ?</h6>
 
-                    <div class="business-leader-section">
+                      <div class="business-leader-section">
                         <div class="business-leader-picture img-responsive" style="background-image: url('<%= @business.leader_picture %>');"/></div>
 
-                    <div class="business-leader-decription">
-                        <p>
+                        <div class="business-leader-decription">
+                          <p>
                             <strong><%= @business.leader_first_name %>
                                 <%= @business.leader_last_name %></strong>
-                        </p>
-                        <p class="leader-description"><%= @business.leader_description %></p>
-                    </div>
-
+                          </p>
+                          <p class="leader-description"><%= @business.leader_description %></p>
+                        </div>
+                    <% end %>
                 </div>
-
-                <% end %>
-
             </div>
         </div>
     </div>
     <!-- This is the right side of the page (perks from the business) -->
     <% if device_type != :mobile %>
-    <div class="col-md-6 col-sm-12 col-xs-12">
-        <div class="right-side">
-            <h2 style="border-color: <%= @business.business_category.color %>;">Nos bons plans</h2><br>
-            <% @perks.active.each do |perk| %>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-                <%= render "businesses/business_card", business: @business, address: @address, perk: perk, index_view: false %>
-            </div>
-            <% if !user_signed_in? %>
-            <%= render "businesses/business_perk_not_member", perk: perk %>
-        <% else %>
-            <%= render "businesses/business_perk_show", perk: perk %>
-            <% end %>
-            <% end %>
-        </div>
-    </div>
-<% else %>
-    <div class="mobile_perks_list">
+      <div class="col-md-6 col-sm-12 col-xs-12 side-right">
+          <div class="right-side">
+              <h2 style="border-color: <%= @business.business_category.color %>;">Nos bons plans</h2><br>
+              <% @perks.active.each do |perk| %>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <%= render "businesses/business_card", business: @business, address: @address, perk: perk, index_view: false %>
+                </div>
+                <% if !user_signed_in? %>
+                  <%= render "businesses/business_perk_not_member", perk: perk %>
+                <% else %>
+                  <%= render "businesses/business_perk_show", perk: perk %>
+                <% end %>
+              <% end %>
+          </div>
+      </div>
+    <% else %>
+      <div class="mobile_perks_list">
         <button class="button-validation-modal mobile-perks-list" style="background-color:<%= @business.business_category.color %>;">
             Voir nos bons plans
         </button>
         <%= render "businesses/mobile_perks_list" %>
-    </div>
+      </div>
     <% end %>
 </div>
-</div>
+
 
 <% content_for :after_js do %>
 
-<script type="text/javascript">
-setRoutePathFromLocation()
-</script>
+<script type="text/javascript">setRoutePathFromLocation()</script>
 
 <%= render 'components/map_show', geojson: @geojson, container: 'map-perk-desktop' %>
 
@@ -244,6 +236,8 @@ $(document).ready(function () {
 
     $(".mobile-perks-list").click(function () {
         $('.perk-modal-mobile-member').removeClass("hidden");
+        $('.perk-modal-mobile-member').attr('style', 'position: absolute;');
+        $('.left-side').attr('style', 'position: fixed;');
     });
 
     $('.perk-carddd.available').click(function () {
