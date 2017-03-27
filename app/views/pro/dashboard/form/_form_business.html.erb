@@ -31,7 +31,8 @@
       </div>
 
       <div class="select-wrapper">
-        <%= f.input :business_category_id, required: true, label: 'Activité', collection: BusinessCategory.all %>
+        <%= f.input :business_category_id, required: true, label: "Catégorie d'activité", collection: BusinessCategory.all %>
+        <%= f.input :activity, label: "Libellé d'activité" %>
       </div>
       <label>Vos engagements</label>
       <div id="select-labels">

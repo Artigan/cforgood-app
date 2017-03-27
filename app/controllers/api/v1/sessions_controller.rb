@@ -5,7 +5,7 @@ class  Api::V1::SessionsController < Devise::SessionsController
   acts_as_token_authentication_handler_for User
 
   def create
-    email = request.headers.env["HTTP_EMAIL"]
+    email = request.headers.env["HTTP_EMAIL"].downcase
     password = request.headers.env["HTTP_PASSWORD"]
 
     if email.nil? or password.nil?

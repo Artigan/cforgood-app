@@ -35,12 +35,12 @@
                                     </a>
                                     <ul class="dropdown-menu socials" role="menu" aria-labelledby="dLabel">
                                         <li class="dropdown-socials">
-                                            <a style="background-color: #3B5999; color:white" href="https://www.facebook.com/sharer.php?s=<%= request.url %>&title=CforGood" target="_blank">
+                                            <a  href="https://www.facebook.com/sharer.php?s=<%= request.url %>&title=CforGood" target="_blank">
                                                 <i class="fa fa-facebook" aria-hidden="true"></i>
                                             </a>
                                         </li>
                                         <li class="dropdown-socials">
-                                            <a style="background-color:#4099FF; color:white" href="http://twitter.com/home?status=CforGood+<%= request.url %>" target="_blank">
+                                            <a href="http://twitter.com/home?status=CforGood+<%= request.url %>" target="_blank">
                                                 <i class="fa fa-twitter" aria-hidden="true"></i>
                                             </a>
                                         </li>
@@ -240,10 +240,12 @@ $(document).ready(function () {
         $('.left-side').attr('style', 'position: fixed;');
     });
 
-    $('.perk-carddd.available').click(function () {
+    $('.perk-carddd').click(function () {
         var classModal = $(this).attr('id');
         $('.' + classModal).removeClass("hidden");
     });
+
+
     // $(".use-button-logout").click(function() {   $('.use-overlay').removeClass('hidden');   // EVENT AMPLITUDE USER_C_BENEFIT   amplitude.logEvent('USER_C_BENEFIT_LOGOUT'); }); $(".btn-use-button").click(function() {   // EVENT AMPLITUDE
     // USER_C_BENEFIT   amplitude.logEvent('USER_C_BENEFIT'); });
 });

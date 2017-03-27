@@ -2,7 +2,7 @@ json.extract! @user, :id, :email, :first_name, :last_name, :name, :ambassador
 json.picture @user.picture.url(:card)
 json.extract! @user, :member
 json.trial_done @user.trial_done?
-json.extract! @user, :birthday, :subscription, :amount, :street, :zipcode, :city, :code_partner
+json.extract! @user, :birthday, :subscription, :date_subscription, :amount, :street, :zipcode, :city, :code_partner
 json.status @user.status
 if @user.supervisor_id.present?
   json.supervisor_name @user.manager.name

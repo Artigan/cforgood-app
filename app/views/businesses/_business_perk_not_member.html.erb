@@ -1,37 +1,32 @@
-<div class="perk-modal-dynamic-<%= perk.id %> hidden">
-  <button type="button" class="perk-modal-close close-button">&times;</button>
-  <div class="perk-modal-label">
-    <%= image_tag 'logo.svg' %>
-    <span class="label-info">Espace réservé aux abonnés</span>
-  </div>
+<div class="pmdjs perk-modal-dynamic-<%= perk.id %> hidden">
+  <div class="card perk-modalll">
+    <button type="button" class="perk-modal-close close-button">&times;</button>
 
-  <div class="perk-modal-header">
-    <div class="perk-modal-icon"></div>
-    <div class="perk-modal-header-text">REJOIGNEZ LA REVOLUTION POSITIVE</div>
-  </div>
+    <div class="perk-modal-header">
+      <div class="perk-modal-icon"></div>
+      <div class="perk-modal-header-text">Espace réservé aux abonnés</div>
+    </div>
 
-  <div class="perk-modal-title-dotted">
-    <div class="perk-modal-yellow-dot" style="background-color:<%= @business.business_category.color %>;">1</div>
-    <div class="perk-modal-title-text">Découvrez votre ville autrement</div>
-  </div>
+    <div class="perk-modal-content">
+      <h6 class="perk-modal-content-text">Rejoignez la révolution positive</h6>
+      <p>Je trouve de nouveaux commerçants responsables, des associations engagées et des événements enthousiasmant chez moi ou dans les autres villes où je me rends.</p>
+    </div>
 
-  <div class="perk-modal-description">
-    Je trouve de nouveaux commerçants responsables, des associations engagées et des événements enthousiasmant chez moi ou dans les autres villes où je me rends.
-  </div>
+    <div class="perk-modal-button-signup">
+      <%= link_to signup_path do %>
+        <div class="cta-button" style="background-color:<%= @business.business_category.color %>;">S'inscrire</div>
+      <% end %>
+    </div>
 
-  <div class="perk-modal-button-signup">
-    <%= link_to signup_path do %>
-      <div class="cta-button" style="background-color:<%= @business.business_category.color %>;">S'inscrire</div>
-    <% end %>
-  </div>
-
-  <div class="perk-modal-button-signup dropdown">
-    <div class="cta-button dropdown-toggle" data-toggle="dropdown" style="background-color: #3E4149;">Se connecter</div>
-  <!-- SIGNIN -->
-  <div class="dropdown-menu">
-    <div class="sign-box">
-      <button type="button" class="perk-modal-close-signin close-button">&times;</button>
-      <%= render "devise/sessions/shared/form_signin", resource: User.new, resource_name: :user%>
+    <div class="perk-modal-button-signup dropdown">
+      <div class="cta-button dropdown-toggle" data-toggle="dropdown" style="background-color: #3E4149;">Se connecter</div>
+      <!-- SIGNIN -->
+      <div class="dropdown-menu">
+        <div class="sign-box">
+          <button type="button" class="perk-modal-close-signin close-button">&times;</button>
+          <%= render "devise/sessions/shared/form_signin", resource: User.new, resource_name: :user%>
+        </div>
+      </div>
     </div>
   </div>
 </div>
