@@ -196,7 +196,7 @@
                 </div>
             </div>
         </div>
-    </div>
+
     <!-- This is the right side of the page (perks from the business) -->
     <% if device_type != :mobile %>
       <div class="col-md-6 col-sm-12 col-xs-12 side-right">
@@ -222,6 +222,7 @@
         <%= render "businesses/mobile_perks_list" %>
       </div>
     <% end %>
+  </div>
 </div>
 
 
@@ -240,10 +241,12 @@ $(document).ready(function () {
         $('.left-side').attr('style', 'position: fixed;');
     });
 
-    $('.perk-carddd.available').click(function () {
+    $('.perk-carddd').click(function () {
         var classModal = $(this).attr('id');
         $('.' + classModal).removeClass("hidden");
     });
+
+
     // $(".use-button-logout").click(function() {   $('.use-overlay').removeClass('hidden');   // EVENT AMPLITUDE USER_C_BENEFIT   amplitude.logEvent('USER_C_BENEFIT_LOGOUT'); }); $(".btn-use-button").click(function() {   // EVENT AMPLITUDE
     // USER_C_BENEFIT   amplitude.logEvent('USER_C_BENEFIT'); });
 });
