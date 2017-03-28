@@ -675,7 +675,7 @@
   #link-map.unable {
     pointer-events: none;
     cursor: default;
-    border-color: #ccc;
+    background-color: #ccc;
 
     .fa {
       background-color: #ccc;
@@ -756,9 +756,9 @@
       padding-right: 10%;
     }
 
-    button.closed-perk-modal-mobile-member.close-button{
-      position: static;
-    }
+    // button.closed-perk-modal-mobile-member.close-button{
+    //   position: static;
+    // }
 
     .perk-title-mobile-list h2 {
       border-bottom: 8px solid;
@@ -2028,8 +2028,8 @@
   #link-map.unable {
     pointer-events: none;
     cursor: default;
-    border-color: #ccc;
-    height: 44px;
+    background-color: #ccc;
+    margin-right: 10px;
 
     .fa {
       background-color: #ccc;
