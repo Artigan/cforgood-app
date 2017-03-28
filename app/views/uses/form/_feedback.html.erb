@@ -1,6 +1,5 @@
 <div class="perk-modal feedback">
-
-
+  <div class ="card-modal-feedback">
     <div class="perk-modal-feedback-background-image" style="background-image: url('<%= @use.perk.picture.present? ? @use.perk.picture.url(:card) : @use.perk.business.picture.url(:card) %>');">
         <h6>
             <%= @use.perk.business.name.downcase.titleize %>
@@ -9,7 +8,7 @@
 
     <div class="perk-modal-feedback-perk-name">
         <p>
-            <%= @use.perk.name %>
+            <%= @use.perk.name.downcase.capitalize %>
         </p>
     </div>
 
@@ -35,7 +34,7 @@
         <div class="input-container">
             <input id="unused" class="radio-button" type="radio" name="radio"/>
             <div class="radio-tile">
-                Je n’ai pas utilisé ma carte de membre
+                <p>Je n’ai pas utilisé ma carte de membre</p>
             </div>
         </div>
     </div>
@@ -49,7 +48,7 @@
         <%= f.submit "", class: "submit-feedback", :style => "display: none;" %>
         <% end %>
     </div>
-
+  </div>
 </div>
 
 <script type="text/javascript">
