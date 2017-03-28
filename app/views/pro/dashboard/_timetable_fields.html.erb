@@ -1,8 +1,9 @@
 <!-- FORM HOUR -->
 <div class="day-container">
-  <!-- <div class="day-name"><%#= f.object.present ? I18n.t("date.day_names")[f.object.day] %></div> -->
+  <div class="day-name">
+    <%= f.input :day, label: false, collection: [["lundi", 1], ["mardi", 2], ["mercredi", 3], ["jeudi", 4], ["vendredi", 5], ["samedi", 6], ["dimanche", 0]], selected: f.object.day.present? ?  f.object.day.to_i : "1" %>
+  </div>
   <div class="day-hours">
-    <%= f.input :day, label: false, collection: I18n.t("date.day_names").each, selected: f.object.day.present? ?  I18n.t("date.day_names")[f.object.day] : "" %>
     <%= f.input :start_at_hour, label: false, collection: pad0(0..23), selected: f.object.start_at_hour.present? ? pad0(f.object.start_at_hour) : "00"  %>
     <%= f.input :start_at_min, label: false, collection: pad0([0, 15, 30, 45]), selected: f.object.start_at_min.present? ? pad0(f.object.start_at_min)  : "00" %>
     <%= f.input :end_at_hour, label: false, collection: pad0(0..23), selected: f.object.end_at_hour.present? ? pad0(f.object.end_at_hour)  : "00" %>

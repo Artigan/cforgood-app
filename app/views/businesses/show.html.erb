@@ -115,9 +115,23 @@
                             <ul>
                                 <% if @address.timetables.present? %>
                                   <% (1..6).each do |i| %>
-                                    <li><%= I18n.t("date.day_names")[i].capitalize %> - <%= @address.timetables.find_by_day(i).present? ? @address.timetables.find_by_day(i).start_at_hour.to_s + "h" + pad0(@address.timetables.find_by_day(i).start_at_min.to_s) + " | " + @address.timetables.find_by_day(i).end_at_hour.to_s + "h" + pad0(@address.timetables.find_by_day(i).end_at_min.to_s) : 'Fermé' %></li>
+                                    <% if !@address.timetables.where(day: i).first.present? %>
+                                      <li><%= I18n.t("date.day_names")[i].capitalize %> - 'Fermé' %></li>
+                                    <% else %>
+                                      <li><%= I18n.t("date.day_names")[i].capitalize %> - <%= @address.timetables.where(day: i).first.start_at_hour.to_s + "h" + pad0(@address.timetables.where(day: i).first.start_at_min.to_s) + " | " + @address.timetables.where(day: i).first.end_at_hour.to_s + "h" + pad0(@address.timetables.where(day: i).first.end_at_min.to_s) %></li>
+                                      <% if @address.timetables.where(day: i).second.present? %>
+                                        <li><%= @address.timetables.where(day: i).second.start_at_hour.to_s + "h" + pad0(@address.timetables.where(day: i).second.start_at_min.to_s) + " | " + @address.timetables.where(day: i).second.end_at_hour.to_s + "h" + pad0(@address.timetables.where(day: i).second.end_at_min.to_s) %></li>
+                                      <% end %>
+                                    <% end %>
                                   <% end %>
-                                  <li><%= I18n.t("date.day_names")[0].capitalize %> - <%= @address.timetables.find_by_day(0).present? ? @address.timetables.find_by_day(0).start_at_hour.to_s + "h" + pad0(@address.timetables.find_by_day(0).start_at_min.to_s) + " | " + @address.timetables.find_by_day(0).end_at_hour.to_s + "h" + pad0(@address.timetables.find_by_day(0).end_at_min.to_s) : 'Fermé' %></li>
+                                  <% if !@address.timetables.where(day: 0).first.present? %>
+                                      <li><%= I18n.t("date.day_names")[0].capitalize %> - 'Fermé' %></li>
+                                    <% else %>
+                                      <li><%= I18n.t("date.day_names")[0].capitalize %> - <%= @address.timetables.where(day: 0).first.start_at_hour.to_s + "h" + pad0(@address.timetables.where(day: 0).first.start_at_min.to_s) + " | " + @address.timetables.where(day: 0).first.end_at_hour.to_s + "h" + pad0(@address.timetables.where(day: 0).first.end_at_min.to_s) %></li>
+                                      <% if @address.timetables.where(day: 0).second.present? %>
+                                        <li><%= @address.timetables.where(day: 0).second.start_at_hour.to_s + "h" + pad0(@address.timetables.where(day: 0).second.start_at_min.to_s) + " | " + @address.timetables.where(day: 0).second.end_at_hour.to_s + "h" + pad0(@address.timetables.where(day: 0).second.end_at_min.to_s) %></li>
+                                      <% end %>
+                                  <% end %>
                                 <% end %>
                             </ul>
                         </div>

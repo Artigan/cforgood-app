@@ -11,13 +11,13 @@
   <div class="timetables-overlay hidden">
     <div class="timetables-container">
       <!-- CLOSE BUTTON -->
-      <button type="button" class="close-button"><i class="fa fa-times"></i></button>
+      <button type="button" class="return-button"></button>
       <span>Horaires</span>
       <%= f.simple_fields_for :timetables do |timetable| %>
         <%= render 'pro/dashboard/timetable_fields', f: timetable %>
       <% end %>
       <div class="links">
-        <%= link_to_add_association '+', f, :timetables, class: 'button-address-more on-left' %>
+        <%= link_to_add_association '+', f, :timetables, class: 'button-address-more' %>
       </div>
     </div>
   </div>
@@ -31,7 +31,7 @@
         $(this).next("div.timetables-overlay").removeClass("hidden");
       });
 
-      $('.close-button').on("click", function(e) {
+      $('.return-button').on("click", function(e) {
         e.preventDefault();
         $(this).closest("div.timetables-overlay").addClass("hidden");
       });

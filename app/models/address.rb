@@ -29,7 +29,7 @@
 
 class Address < ApplicationRecord
   belongs_to :business
-  has_many :timetables, dependent: :destroy
+  has_many :timetables, -> { order(day: :asc, start_at: :asc) }
   accepts_nested_attributes_for :timetables, :allow_destroy => true, :reject_if => :blank_hours?
 
   extend TimeSplitter::Accessors
@@ -56,9 +56,13 @@ class Address < ApplicationRecord
   before_save :assign_business_supervisor, if: :address_changed?
 
   def open?
-    today = self.timetables.find_by_day(Time.now.wday)
-    return (today.start_at..today.end_at).cover?(Time.now) if today
-    true
+    todays = self.timetables.where(day: Time.now.wday)
+    todays.each do |today|
+      if (today.start_at..today.end_at).cover?(Time.now)
+        return true
+      end
+    end
+    false
   end
 
   private
