@@ -13,20 +13,12 @@
       <!-- CLOSE BUTTON -->
       <button type="button" class="close-button"><i class="fa fa-times"></i></button>
       <span>Horaires</span>
-      <% for i in 0..6 do %>
-        <% if f.object.timetables.where(day: i).present?  %>
-          <%= f.simple_fields_for :timetables,  f.object.timetables.where(day: i) do |timetable| %>
-            <%= render 'pro/dashboard/timetable_fields', f: timetable  %>
-          <% end %>
-        <% else %>
-          <div class="links">
-          <%= f.simple_fields_for :timetables, Timetable.new do |timetable| %>
-            <% timetable.object.day = i %>
-            <%= render 'pro/dashboard/timetable_fields', f: timetable  %>
-          <% end %>
-          </div>
-        <% end %>
+      <%= f.simple_fields_for :timetables do |timetable| %>
+        <%= render 'pro/dashboard/timetable_fields', f: timetable %>
       <% end %>
+      <div class="links">
+        <%= link_to_add_association '+', f, :timetables, class: 'button-address-more on-left' %>
+      </div>
     </div>
   </div>
 </div>
