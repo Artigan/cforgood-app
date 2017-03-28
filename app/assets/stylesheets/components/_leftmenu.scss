@@ -21,6 +21,9 @@
   transition: 0.4s ease;
   flex-direction: column;
   cursor: pointer;
+
+  @media (max-width: 320px) { height: 69px; }
+  @media (min-width: 321px) and (max-width: 767px) { height: 80px; }
 }
 
 .leftmenu-item:hover,
@@ -167,4 +170,6 @@
   position: absolute;
   left: 25px;
   font-size: 13px;
+  top: 50%;
+  transform: translateY(-50%);
 }
