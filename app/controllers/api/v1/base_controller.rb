@@ -4,7 +4,7 @@ class Api::V1::BaseController < ActionController::Base
   include ApplicationHelper
 
   after_action :verify_authorized, except: :show
-  after_action :verify_policy_scoped, only: :whow
+  after_action :verify_policy_scoped, only: :show
 
   rescue_from StandardError,                with: :internal_server_error
   rescue_from Pundit::NotAuthorizedError,   with: :user_not_authorized
