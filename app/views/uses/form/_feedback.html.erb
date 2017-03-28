@@ -1,17 +1,17 @@
 <div class="perk-modal feedback">
-  <% binding.pry %>
-<!--
-    <div class="perk-modal-feedback-background-image" style="background-image: url('<%#= @perk.picture.present? ? @perk.picture.url(:card) : @business.picture.url(:card) %>');">
+
+
+    <div class="perk-modal-feedback-background-image" style="background-image: url('<%= @use.perk.picture.present? ? @use.perk.picture.url(:card) : @use.perk.business.picture.url(:card) %>');">
         <h6>
-            <%#= business.name.downcase.titleize %>
+            <%= @use.perk.business.name.downcase.titleize %>
         </h6>
     </div>
 
     <div class="perk-modal-feedback-perk-name">
         <p>
-            <%#= @perk.name %>
+            <%= @use.perk.name %>
         </p>
-    </div> -->
+    </div>
 
     <div class="perk-modal-feedback">
         <p>
