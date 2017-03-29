@@ -10,7 +10,7 @@
     <% if !user_signed_in? %>
       <%= render "businesses/business_perk_not_member", perk: perk %>
     <% else %>
-      <%= render "businesses/business_perk_show", perk: perk %>
+      <%= render "businesses/business_perk_show",  business: @business, address: @address, perk: perk, first_offer: false %>
     <% end %>
   <% end %>
 

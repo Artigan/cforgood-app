@@ -36,6 +36,14 @@ class Member::DashboardController < ApplicationController
       @uses_without_feedback = current_user.uses.without_feedback
       @beneficiary = Beneficiary.includes(:users).find_by_email(current_user.email)
       @user_offering = @beneficiary.try(:users)
+
+      if !current_user.uses.first.present?
+        if !current_user.member
+          @first_perk_offer = Business.find(ENV['BUSINESS_ID_CFORGOOD'].to_i).perks.active.first
+        elsif current_user.business_supervisor_id
+          @first_perk_offer = Business.find(business_supervisor_id).perks.active.first
+        end
+      end
     end
 
     respond_to do |format|
