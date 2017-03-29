@@ -466,8 +466,23 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    margin-top: 2%;
+    margin-top: 4%;
+    margin-bottom: 4%;
     flex-wrap: nowrap;
+    background: linear-gradient(to right, white 0%,white 14%,#000000 14%,#EEEEEE 14%,#EEEEEE 100%);
+    border-radius: 18px;
+
+    @media (min-width: 1360px) {
+      background: linear-gradient(to right, white 0%,white 9%,#000000 9%,#EEEEEE 9%,#EEEEEE 100%);
+    }
+
+    @media (min-width: 480px) and (max-width: 991px) {
+      background: linear-gradient(to right, white 0%,white 5%,#000000 5%,#EEEEEE 5%,#EEEEEE 100%);
+    }
+
+    @media (max-width: 479px) {
+      background: linear-gradient(to bottom, white 0%,white 40%,#000000 40%,#EEEEEE 40%,#EEEEEE 100%);
+    }
   }
 
   .business-leader-picture {
@@ -476,16 +491,33 @@
     background-size: cover;
     width: 120px;
     height: 120px;
+    border: 4px solid white;
+
+    @media (max-width: 479px) {
+      border: 8px solid white;
+    }
   }
 
   .business-leader-decription {
     width: 80%;
     padding-left: 2%;
+    padding-right: 2%;
+    @media (max-width: 479px) {
+      padding-right: 6%;
+      padding-left: 6%;
+    }
   }
 
   .leader-description {
     font-size: 0.8em;
+    line-height: 19px;
   }
+
+  .business-leader-full-name {
+    line-height: 8px;
+    padding-top: 3%;
+  }
+
 // This is the right side of the page (perks from the business) //
 .side-right {
   position: fixed;
@@ -1332,18 +1364,21 @@
       .business-links {
         margin-left: 15%;
         margin-right: 15%;
+        margin-bottom: 3%;
       }
+
       .follow-uss {
         width: 90%;
         margin-left: 5%;
       }
 
       .business-leader-section {
-        margin-bottom: 14%;
+        margin-bottom: 18%;
       }
 
       .business-leader-title {
         text-align: center;
+        margin-bottom: -2%;
       }
 
       .business-leader-section {
@@ -1351,8 +1386,9 @@
       }
 
       .business-leader-picture {
-        width: 110px;
-        height: 110px;
+        width: 160px;
+        height: 160px;
+        border: 20px solid white;
       }
 
       .business-leader-decription {
