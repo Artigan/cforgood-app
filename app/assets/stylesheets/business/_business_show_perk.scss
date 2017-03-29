@@ -69,7 +69,7 @@
 
   .business-picture-row {
     width: 100%;
-    height: 50px;
+    height: 40px;
     display: flex;
   }
 
@@ -125,8 +125,31 @@
     background-color: rgba(255,255,255,0);
     min-width: 0 !important;
     height: 100px;
-    margin-left: 65%;
-    margin-bottom: 18%;
+    margin-left: 62.5%;
+    margin-bottom: 12%;
+
+    @media (min-width: 1221px) and (max-width: 1430px) {
+      margin-left: 57.5%;
+    }
+    @media (min-width: 623px) and (max-width: 767px) {
+      height: 80px;
+      margin-left: 63%;
+      margin-bottom: 8.5%;
+    }
+
+    @media (min-width: 480px) and (max-width: 623px) {
+      height: 80px;
+      margin-left: 54%;
+      margin-bottom: 8.5%;
+    }
+  }
+
+  .dropdown-menu.socials > li > a {
+    font-size: 1.5em;
+  }
+
+  .dropdown-menu.socials > li > a:hover, .dropdown-menu.socials > li > a:focus {
+    background-color: inherit;
   }
 
   .dropdown-socials {
@@ -218,7 +241,7 @@
   }
 
   #business-name {
-    font-size: 2.5em;
+    font-size: 2em;
     color: black;
     font-weight: 600;
     margin-bottom: -2%;
@@ -390,12 +413,18 @@
   .follow-uss {
     display: flex;
     flex-wrap: wrap;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
   }
 
   .detail-follow-uss {
     display: flex;
+    flex-wrap: wrap;
+  }
+
+  .social-links {
+    padding-left: 4%;
   }
 
   .follow-uss a {
@@ -425,6 +454,7 @@
   .follow-uss span:first-child {
     color: black;
     font-size: 0.7em;
+    text-align: center;
   }
 
   .follow-uss span {
@@ -626,7 +656,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: auto;
+    height: 50px;
     margin-left: 5%;
     margin-right: 5%;
   }
@@ -655,19 +685,24 @@
   .perks-offer-type-modal {
     background-color: white;
     color: black;
-    border: 6px solid;
+    border: 4px solid;
     border-radius: 25px;
     padding: 0.2% 0.5%;
-    margin: 2%;
+    position: relative;
+    right: 10px;
+    bottom: -10px;
+    margin-bottom: 0;
   }
 
-  .block-text-modal {
+  .card-block.block-text-modal {
     margin-left: 5%;
     margin-right: 5%;
+    z-index: 5;
+    background-color: white;
   }
 
   .perk-modal-perk-name {
-    margin-top: 4%;
+    padding-top: 4%;
     text-transform: lowercase;
     text-transform: capitalize;
     font-weight: bold;
@@ -951,10 +986,14 @@
         font-size: 0.8em;
       }
 
+      .dropdown-menu.socials > li > a {
+        font-size: 1.3em;
+      }
+
       .dropdown-menu.socials {
         height: 80px;
-        margin-left: 61%;
-        margin-bottom: 10%;
+        margin-left: 55%;
+        margin-bottom: 9%;
       }
 
       .dropdown-socials {
@@ -1126,13 +1165,6 @@
 
       .business-picture-row {
         height: 30px;
-      }
-
-
-      .dropdown-menu.socials {
-        height: 80px;
-        margin-left: 63%;
-        margin-bottom: 8.5%;
       }
 
       .dropdown-socials {
