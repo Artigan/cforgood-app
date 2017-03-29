@@ -4,16 +4,21 @@ json.extract! @user, :member
 json.trial_done @user.trial_done?
 json.extract! @user, :birthday, :subscription, :date_subscription, :amount, :street, :zipcode, :city, :code_partner
 json.status @user.status
-if @user.supervisor_id.present?
-  json.supervisor_name @user.manager.name
-  json.supervisor_logo @user.manager.logo.url(:thumb)
-elsif @user.business_supervisor_id.present?
-  json.supervisor_name @user.business_supervisor.name
-  json.supervisor_logo @user.business_supervisor.logo.url(:thumb)
-else
-  json.supervisor_name nil
-  json.supervisor_logo nil
+
+json.supervisor_attributes do
+  if @user.supervisor_id.present?
+    json.supervisor_name @user.manager.name
+    json.supervisor_logo @user.manager.logo.url(:thumb)
+  end
 end
+
+json.business_supervisor_attributes do
+  if @user.business_supervisor_id.present?
+    json.supervisor_name @user.business_supervisor.name
+    json.supervisor_logo @user.business_supervisor.logo.url(:thumb)
+  end
+end
+
 json.cause_attributes do
   json.extract! @cause, :id, :name, :city
   json.picture @cause.picture.url(:card)
