@@ -27,7 +27,7 @@
     <div class="detail-follow-uss">
 
       <% if @business.url.present? %>
-        <span>
+        <span class="social-links">
           <a href="<%= @business.url %>" style="background-color: <%= @business.business_category.color %>;" target="_blank">
             <i class="fa fa-globe"></i>
           </a>
@@ -35,7 +35,7 @@
       <% end %>
 
       <% if @business.facebook.present? %>
-        <span>
+        <span class="social-links">
           <a href="http://facebook.com/<%= @business.facebook %>" style="background-color: <%= @business.business_category.color %>;" target="_blank">
             <i class="fa fa-facebook"></i>
           </a>
@@ -43,7 +43,7 @@
       <% end %>
 
       <% if @business.twitter.present? %>
-        <span>
+        <span class="social-links">
           <a href="http://twitter.com/<%= @business.twitter %>" style="background-color: <%= @business.business_category.color %>;" target="_blank">
               <i class="fa fa-twitter"></i>
           </a>
@@ -51,7 +51,7 @@
       <% end %>
 
       <% if @business.instagram.present? %>
-        <span>
+        <span class="social-links">
           <a href="http://instagram.com/<%= @business.instagram %>" style="background-color: <%= @business.business_category.color %>;" target="_blank">
             <i class="fa fa-instagram"></i>
           </a>

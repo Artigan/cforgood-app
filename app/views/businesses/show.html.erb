@@ -12,6 +12,7 @@
             <div class="main-card-left">
                 <div class="row">
                     <div class="background-main-img img-responsive" style="background-image: url('<%= @business.picture.url(:medium) %>');" alt="Business picture">
+                        <% if device_type != :mobile %>
                         <div class=" business-picture-row">
                             <div class="socials-row">
                                 <span class="likes">
@@ -48,6 +49,22 @@
                                 </div>
                             </div>
                         </div>
+                        <% else %>
+                        <div class="share-row-mobile-device">
+                            <div class="to-be-shown">
+                              <a  class="to-be-shown-fb" href="https://www.facebook.com/sharer.php?s=<%= request.url %>&title=CforGood" target="_blank">
+                                  <i class="fa fa-facebook" aria-hidden="true"></i>
+                              </a>
+                              <a class="to-be-shown-tw" href="http://twitter.com/home?status=CforGood+<%= request.url %>" target="_blank">
+                                  <i class="fa fa-twitter" aria-hidden="true"></i>
+                              </a>
+                            </div>
+                            <div class="already-shown">
+                              <span>Partager sur</span>
+                              <i class="fa fa-share-alt" aria-hidden="true"></i>
+                            </div>
+                      </div>
+                        <% end %>
                     </div>
                 </div>
                 <div class="card-block card-left">
@@ -200,7 +217,7 @@
                         <div class="business-leader-picture img-responsive" style="background-image: url('<%= @business.leader_picture %>');"/></div>
 
                         <div class="business-leader-decription">
-                          <p>
+                          <p class="business-leader-full-name">
                             <strong><%= @business.leader_first_name %>
                                 <%= @business.leader_last_name %></strong>
                           </p>
@@ -258,6 +275,16 @@ $(document).ready(function () {
         var classModal = $(this).attr('id');
         $('.' + classModal).removeClass("hidden");
     });
+
+
+    $( '.already-shown' ).click(function() {
+      if($('.to-be-shown').css('opacity') === '0') {
+    $('.to-be-shown').css('opacity', '1');
+  } else {
+    $('.to-be-shown').css('opacity', '0');
+    }
+  }
+);
 
 
     // $(".use-button-logout").click(function() {   $('.use-overlay').removeClass('hidden');   // EVENT AMPLITUDE USER_C_BENEFIT   amplitude.logEvent('USER_C_BENEFIT_LOGOUT'); }); $(".btn-use-button").click(function() {   // EVENT AMPLITUDE

@@ -7,8 +7,8 @@
 #  day        :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  start_at   :datetime
-#  end_at     :datetime
+#  start_at   :time
+#  end_at     :time
 #
 # Indexes
 #
