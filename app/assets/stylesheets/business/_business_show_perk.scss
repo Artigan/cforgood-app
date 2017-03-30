@@ -501,8 +501,8 @@
     padding-left: 2%;
     padding-right: 2%;
     @media (max-width: 479px) {
-      padding-right: 6%;
-      padding-left: 6%;
+      // padding-right: 6%;
+      // padding-left: 6%;
     }
   }
 
@@ -538,10 +538,11 @@
 }
 
 .right-side h2 {
-  width: 212px;
+  width: 170px;
   border-bottom: 10px solid;
   line-height: 16px;
   font-weight: bold;
+  font-size: 1.4em;
 }
 
 .card-perks {
@@ -596,10 +597,11 @@
 .business-name-card-mobile-list h6 {
   margin: 0;
   width: 100%;
-  font-weight: bolder;
+  font-weight: 900;
   text-align: center;
   color: white;
-  font-size: 0.8em;
+  font-size: 1.2em;
+  text-shadow: 2px 2px 4px #000000;
 }
 
 .business-name-card-mobile-list p {
@@ -722,11 +724,12 @@
     color: black;
     border: 3px solid;
     border-radius: 25px;
-    padding: 5px 10px;
+    padding: 1px 7px;
     position: relative;
     right: 10px;
     bottom: -10px;
     margin-bottom: 0;
+    font-size: 0.7em;
   }
 
   .card-block.block-text-modal {
@@ -1095,12 +1098,6 @@
         font-size: 0.7em;
       }
 
-      // .perks-offer-type {
-      //   font-size: 0.7em;
-      //   padding: 0.2% 4%;
-      //   border: 3px solid;
-      // }
-
       .background-image-perk-modal {
         height: 220px;
       }
@@ -1404,8 +1401,9 @@
       .business-leader-decription {
         text-align: center;
         width: 100%;
-        padding-left: 0;
         margin-top: 3%;
+        padding-left: 5%;
+        padding-right: 5%;
       }
 
       .background-image-perk {
@@ -1446,27 +1444,6 @@
       .perk-modal-bottom {
         height: 180px;
       }
-
-  // MOBILE PERK LIST //
-
-  // .business-name-card-mobile-list {
-  //   display: flex;
-  //   flex-direction: column;
-  //   justify-content: center;
-  //   align-item: center;
-  //   width: 100%;
-  // }
-
-  // .business-name-card-mobile-list h6 {
-  //   margin: 0;
-  //   width: 100%;
-  //   font-weight: bolder;
-  //   text-align: center;
-  //   color: white;
-  //   font-size: 0.8em;
-  // }
-
-  // END MOBILE PERK LIST //
 
 }
 @media screen and (max-width : 319px) {
