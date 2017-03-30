@@ -261,6 +261,8 @@
   }
 
   @media (max-width: 767px) {
+    display: inline-block;
+    text-align: center;
     width: 100%;
     left: 0;
     right: 0;
@@ -292,6 +294,8 @@
 
   @media (max-width: 767px) {
     position: fixed;
+    display: inline-block;
+    text-align: center;
   }
 }
 
@@ -314,6 +318,37 @@
   cursor: pointer;
   transition: 0.5s ease;
   z-index: 200;
+
+  &:hover {
+    color: rgba(55,55,55,0.9);
+    border-color: rgba(55,55,55,0.9);
+  }
+}
+
+.return-button {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  height: 35px;
+  width: 35px;
+  padding-left: 1px;
+  padding-right: 0;
+  padding-bottom: 3px;
+  font-size: 30px;
+  font-weight: 100;
+  color: rgba(55,55,55,0.4);
+  background: transparent;
+  border: 1px solid rgba(55,55,55,0.4);
+  border-radius: 50%;
+  outline: none;
+  cursor: pointer;
+
+  &:after {
+    content: "<";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
   &:hover {
     color: rgba(55,55,55,0.9);

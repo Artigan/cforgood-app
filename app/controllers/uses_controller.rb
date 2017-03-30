@@ -31,6 +31,12 @@ class UsesController < ApplicationController
   def create
     @use = current_user.uses.new(use_params)
     @use.save
+
+    #FIRST PERK OFFER
+    if @perk.business.id == ENV['BUSINESS_ID_CFORGOOD'].to_i
+      current_user.update(code_partner: @perk.perk_code)
+    end
+
     respond_to :js
   end
 

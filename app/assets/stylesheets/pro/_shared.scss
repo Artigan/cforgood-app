@@ -183,10 +183,10 @@
   .timetables-container {
     position: absolute;
     top: 60px;
-    height: 430px;
+    max-height: 100%;
     left: 50%;
     transform:translateX(calc(-50% + 45px));
-    padding: 45px 20px 20px;
+    padding: 65px 20px 20px;
     width: 300px;
     background-color: #fff;
     z-index: 500;
@@ -233,10 +233,8 @@
 
 .day-name {
   display: flex;
-  align-items: center;
-  margin-bottom: 8px;
-  font-size: 13px;
-  font-weight: 600;
+  width: 40%;
+  position: absolute;
 }
 
 .day-hours {
@@ -246,13 +244,19 @@
   right: 30px;
 }
 
+.business_addresses_timetables_day {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
 .business_addresses_timetables_start_at_hour,
 .business_addresses_timetables_start_at_min,
 .business_addresses_timetables_end_at_hour,
 .business_addresses_timetables_end_at_min {
   display: flex;
-  width: 40%;
-  margin-left: 10%;
   top: 0;
 }
 

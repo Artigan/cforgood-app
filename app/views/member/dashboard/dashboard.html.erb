@@ -27,8 +27,10 @@
     </div>
   <% else %>
     <% if user_signed_in? %>
-      <% if !current_user.member %>
-        <%= render 'components/popups/not_member_dashboard' %>
+      <% if @first_perk_offer %>
+          <%= render 'components/popups/member_first_perk_offer_dashboard', perk: @first_perk_offer %>
+      <% elsif !current_user.member %>
+          <%= render 'components/popups/not_member_dashboard' %>
       <% elsif current_user.trial_done? %>
          <!-- POPUP TRIAL -->
         <% if current_user.code_partner == "GIFT3MONTH" || current_user.code_partner == "GIFT6MONTH" || current_user.code_partner == "GIFT12MONTH" %>
