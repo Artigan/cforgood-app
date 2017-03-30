@@ -261,6 +261,8 @@
   }
 
   @media (max-width: 767px) {
+    display: inline-block;
+    text-align: center;
     width: 100%;
     left: 0;
     right: 0;
@@ -292,6 +294,8 @@
 
   @media (max-width: 767px) {
     position: fixed;
+    display: inline-block;
+    text-align: center;
   }
 }
 
