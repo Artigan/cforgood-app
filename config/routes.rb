@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get 'cgu',                      to: 'pages#cgu'
   get 'faq_connect',              to: 'pages#faq_connect'
   put 'newsletter',               to: 'pages#newsletter'
+  get 'maintenance',              to: 'pages#maintenance'
 
   resources :contact_forms, only: [:new, :create]
 
