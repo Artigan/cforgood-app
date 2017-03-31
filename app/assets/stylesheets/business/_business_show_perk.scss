@@ -354,8 +354,8 @@
     width: 30px;
     height: 30px;
     display: inline-block;
-    -webkit-mask: url(icons/map-location.svg) no-repeat 50% 50%;
-    mask: url(icons/map-location.svg) no-repeat 50% 50%;
+    -webkit-mask: image-url('icons/map-location.svg') no-repeat 50% 50%;
+    mask: image-url('icons/map-location.svg') no-repeat 50% 50%;
     -webkit-mask-size: cover;
     mask-size: cover;
   }
