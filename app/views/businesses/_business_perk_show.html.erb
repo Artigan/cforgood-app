@@ -122,6 +122,10 @@ $(document).ready(function () {
     $(this).closest(".pmdjs").addClass('hidden');
   });
 
+  // $('div').not('.card-block.block-text-modal').click(function () {
+  //   $(this).closest(".pmdjs").addClass('hidden');
+  // });
+
   $('.btn-first-offer').click(function () {
     $('.btn-create-first-use').click();
   });
@@ -139,6 +143,7 @@ $(document).ready(function () {
   $('.btn-show-card').click(function () {
      var classModal = $(this).attr('id');
      $('.'+classModal).removeClass('hidden').addClass('member-card-open');
+     $('.close-button').css('display', 'none');
   });
 
 });
