@@ -282,7 +282,6 @@
   }
 
   .business-belief {
-    // width: 30%;
     flex-grow: 1;
   }
 
@@ -827,22 +826,25 @@
     // POP UP MEMBER CARD //
 
     .popup-member-card .business-name-popup-member-card h6{
-      font-weight: bold;
-      margin-bottom: -3%;
+      font-weight: bolder;
+      margin-top: 10%;
+      font-size: 1.5em;
     }
 
     .perk-name-popup-member-card {
-      font-size: 0.8em;
-      margin-bottom: 3%;
+      font-size: 1em;
+      margin-bottom: 6%;
+      font-weight: 500;
     }
 
     .popup-member-card .member-card-instructions {
       text-align: center;
-      width: 90%;
-      font-size: 0.8em;
-      margin-top: 5%;
-      margin-left: 2%;
-      margin-right: 2%;
+      width: 80%;
+      font-size: 1em;
+      font-weight: 500;
+      margin-top: 10%;
+      margin-left: 10%;
+      margin-right: 10%;
     }
 
     // END POP UP MEMBER CARD //
@@ -960,23 +962,6 @@
       padding: 0;
       margin: 0;
     }
-
-    // .business-name-card-mobile-list {
-    //   display: flex;
-    //   flex-direction: column;
-    //   width: 100%;
-    //   justify-content: center;
-    //   align-item: center;
-    // }
-
-    // .business-name-card-mobile-list h6 {
-    //   margin: 0;
-    //   width: 100%;
-    //   font-weight: bolder;
-    //   text-align: center;
-    //   color: white;
-    //   font-size: 0.8em;
-    // }
 
     .perk-modal-mobile-member .card-perks {
       width: 90%;
@@ -2964,46 +2949,6 @@
       color: rgba(55,55,55,0.9);
     }
   }
-//
-// .perk-modal-mobile-member {
-//     position: fixed;
-//     height: 100%;
-//     overflow-y: scroll;
-//     width: 100%;
-//     z-index: 5555;
-//     top: 50px;
-//     left: 0;
-//     background-color: white;
-//     padding-left: 8%;
-//     padding-right: 8%;
-//     padding-bottom: 25px;
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: flex-start;
-//     align-items: center;
-// }
-//
-// .perk-modal-close-mobile-member {
-//     position: absolute;
-//     top: 25px;
-//     right: 25px;
-//     font-size: 17px;
-//     color: rgba(55,55,55,0.6);
-//     border-radius: 50%;
-//     padding-bottom: 2px;
-//     width: 30px;
-//     height: 30px;
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     transition: 0.5s ease;
-//     cursor: pointer;
-//
-//     &:hover {
-//         color: rgba(55,55,55,0.9);
-//     }
-// }
-
 
 .member-header-text {
   color: rgba(55,55,55,0.8);
@@ -3050,7 +2995,7 @@
     }
     // Fred - jour de printemps - end
     &.popup-member-card {
-      background-color: rgba(255, 255, 255, 0.92);
+      background-color: rgba(255, 255, 255, 1);
     }
   }
 
