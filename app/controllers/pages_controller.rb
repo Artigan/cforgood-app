@@ -19,7 +19,7 @@ class PagesController < ApplicationController
   private
 
   def redirect_to_dashboard!
-    if request['action'] != "faq_connect"
+    if request['action'] != "faq_connect" && request.fullpath != '/maintenance'
       return redirect_to(member_user_dashboard_path(current_user)) if user_signed_in?
       return redirect_to(pro_business_dashboard_path(current_business)) if business_signed_in?
     end

@@ -9,6 +9,8 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :null_session
 
+  before_filter :check_maintenance_mode
+
   before_action :prevent_signup
 
   before_action :set_layout
@@ -18,6 +20,12 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected
+
+  def check_maintenance_mode
+    if maintenance_mode? && request.fullpath != '/maintenance'
+      redirect_to maintenance_path
+    end
+  end
 
   def after_sign_in_path_for(resource)
 
@@ -98,7 +106,7 @@ class ApplicationController < ActionController::Base
   end
 
   def pages_admin?
-    controller_path.start_with?("admin/")
+    controller_path.start_with?("admin/") || request['action'] == "maintenance"
   end
 
   def user_not_authorized

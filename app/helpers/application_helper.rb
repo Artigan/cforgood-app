@@ -130,4 +130,8 @@ module ApplicationHelper
     Devise.mappings[:user]
   end
 
+  def maintenance_mode?
+    ENV['MAINTENANCE_MODE'] == "ON"
+  end
+
 end
