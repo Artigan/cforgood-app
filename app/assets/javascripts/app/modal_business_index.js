@@ -15,7 +15,7 @@ $(document).ready(function() {
 
 $(document).ready(function() {
     var options = {
-      valueNames: [ 'business-name' ]
+      valueNames: [ 'business-category-name', 'business-name', 'business-activity' ]
     };
 
     var userList = new List('business-search-modal', options);

@@ -116,17 +116,16 @@
       // TOOGLE CATEGORY MENU & HIDE NOTIFICATION CENTER
       $('#open-categories').click(function(event) {
         $('.search-category-overlay').toggleClass('hidden');
-        $('.notification-center-overlay').addClass('hidden');
         // TOOGLE CATEGORY MENU
         $('.search-category').toggleClass('is-open-max');
         $('.category-item').toggleClass('is-open-min');
       });
 
       // TOOGLE CATEGORY OVERLAY
-      $('.search-category-overlay').click(function(event) {
-        $(this).addClass('hidden');
+      $('.search-category-overlay, .close-button').click(function(event) {
         $('.search-category').removeClass('is-open-max');
         $('.category-item').removeClass('is-open-min');
+        $('.search-category-overlay').toggleClass('hidden');
       });
 
       // CLOSE BUTTON FOR POP_UP
