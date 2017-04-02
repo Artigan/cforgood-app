@@ -41,7 +41,7 @@ class Member::DashboardController < ApplicationController
         if !current_user.member
           @first_perk_offer = Business.find(ENV['BUSINESS_ID_CFORGOOD'].to_i).perks.active.first
         elsif current_user.business_supervisor_id
-          @first_perk_offer = Business.find(business_supervisor_id).perks.active.first
+          @first_perk_offer = Business.find(current_user.business_supervisor_id).perks.active.first
         end
       end
     end
