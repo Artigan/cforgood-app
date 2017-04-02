@@ -16,7 +16,7 @@
             </div>
             <% if index_view == true %>
               <div class="business-name-card-mobile-list">
-                <h6> <%= business.name.downcase.titleize %> </h6>
+                <h6 class="business-name"> <%= business.name.downcase.titleize %> </h6>
                 <% if device_type != :mobile %>
                   <p class="business-activity"><%= business.activity %></p>
                 <% end %>

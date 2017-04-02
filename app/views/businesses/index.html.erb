@@ -15,27 +15,22 @@ Découvrez notre liste de bons plans
 
         <div id="businesses">
             <div id="mixitup">
-
                 <div class="list">
                     <% @businesses.each do |business| %>
-                     <% (@addresses_id.select { |address_id| address_id[0] == business.id }).each do |address_id| %>
-                     <!-- COMPONENT | ADDRESSES -->
-                      <% business.perks.active.each do |perk| %>
-                      <!-- COMPONENT | CARD BON PLAN -->
-                      <%= link_to business_path(business, perk_id: perk.id, address_id: address_id[1]), class: " #{business.business_category_id} #{business.online? ? 'online' : ''}" do %>
-                      <%#= link_to business_path(business, perk_id: perk.id, address_id: address_id[1]), class: "card-frame mix #{business.business_category_id} #{business.online? ? 'online' : ''}" do %>
-                      <!-- CARD PERK -->
-                      <!-- <div class="perk-card-container perk-modal-use-<%= perk.id %>"> -->
-                      <div class="container-perks-main-page">
-                        <div class="perky col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                            <%= render "businesses/business_card", business: business, address: Address.find(address_id[1]), perk: perk, index_view: true %>
-                        </div>
-                    </div>
-                    <% end %>
-                    <!-- END | CARD BON PLAN -->
-                    <% end %>
-                    <!-- END | ADDRESSES -->
-                    <% end %>
+                      <% (@addresses_id.select { |address_id| address_id[0] == business.id }).each do |address_id| %>
+                      <!-- COMPONENT | ADDRESSES -->
+                        <% business.perks.active.each do |perk| %>
+                          <!-- COMPONENT | CARD BON PLAN -->
+                          <%= link_to business_path(business, perk_id: perk.id, address_id: address_id[1]), class: "perky col-lg-4 col-md-4 col-sm-6 col-xs-12 cardd-frame mix #{business.business_category_id} #{business.online? ? 'online' : ''}" do %>
+                            <!-- CARD PERK -->
+                            <div class="container-perks-main-page">
+                                <%= render "businesses/business_card", business: business, address: Address.find(address_id[1]), perk: perk, index_view: true %>
+                            </div>
+                          <% end %>
+                        <!-- END | CARD BON PLAN -->
+                        <% end %>
+                      <!-- END | ADDRESSES -->
+                      <% end %>
                     <% end %>
                 </div>
             </div>
@@ -60,8 +55,8 @@ Découvrez notre liste de bons plans
         });
 
         // TOOGLE CATEGORY OVERLAY
-        $('.search-category-overlay').click(function (event) {
-            $(this).addClass('hidden');
+        $('.search-category-overlay, .close-button').click(function (event) {
+            $('.search-category-overlay').addClass('hidden');
             $('.search-category').removeClass('is-open-max');
             $('.category-item').removeClass('is-open-min');
         });

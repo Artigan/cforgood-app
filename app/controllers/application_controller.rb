@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def check_maintenance_mode
-    if maintenance_mode? && request.fullpath != '/maintenance' && !request.fullpath.include?('/api/V1')
+    if maintenance_mode? && request.fullpath != '/maintenance' && !request.fullpath.include?('/api/v1')
       redirect_to maintenance_path
     end
   end
