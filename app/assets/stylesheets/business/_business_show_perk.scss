@@ -747,7 +747,7 @@
   }
 
   .perk-modal-bottom {
-    height: 160px;
+    height: 200px;
   }
 
   .pmdjs-perk-description {
@@ -824,6 +824,11 @@
   }
 
     // POP UP MEMBER CARD //
+
+    .popup-member-card .card-block {
+      text-align: center;
+
+    }
 
     .popup-member-card .business-name-popup-member-card h6{
       font-weight: bolder;
@@ -1089,7 +1094,7 @@
 
       .perks-offer-type-modal {
         font-size: 0.7em;
-        top: 20px;
+        top: 15px;
         margin-bottom: 4px;
         padding-top: 0px;
       }
@@ -1104,7 +1109,7 @@
       }
 
       .perk-modal-bottom {
-        height: 180px;
+        height: 200px;
       }
 
 
@@ -1431,7 +1436,7 @@
       }
 
       .perk-modal-bottom {
-        height: 180px;
+        height: 200px;
       }
 
 }
@@ -2976,30 +2981,19 @@
   position: fixed;
   height: 100%;
   overflow-y: scroll;
-    // Fred - jour de printemps - start
-      // width: calc(50% - 45px);
       width: 100%;
-    // Fred - jour de printemps - end
     z-index: 5555;
     top: 50px;
     right: 0;
-    // Fred - jour de printemps - start
-      // background-color: white;
-      background-color: rgba(0, 0, 0, 0.7);
-    // Fred - jour de printemps - end
+    background-color: rgba(0, 0, 0, 0.7);
     padding-bottom: 25px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
 
-    // Fred - jour de printemps - start
     @media (max-width: 767px) {
       width: 100%;
-    }
-    // Fred - jour de printemps - end
-    &.popup-member-card {
-      background-color: rgba(255, 255, 255, 1);
     }
   }
 
