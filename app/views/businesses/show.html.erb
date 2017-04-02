@@ -210,7 +210,7 @@
                     <% end %>
 
                     <% if @business.leader_description.present? %>
-                      <div class="row"><hr class="horizontal-bar"></div>
+                      <div class="row business-testimonial"><hr class="horizontal-bar"></div>
                       <h6 class="business-leader-title">Qui se cache derrière ?</h6>
 
                       <div class="business-leader-section">
@@ -271,7 +271,7 @@ $(document).ready(function () {
         $('.left-side').attr('style', 'position: fixed;');
     });
 
-    $('.perk-carddd').click(function () {
+    $('.perk-carddd.available').click(function () {
         var classModal = $(this).attr('id');
         $('.' + classModal).removeClass("hidden");
     });

@@ -136,38 +136,40 @@ Découvrez l'engagement de
 
                             <div class="contact-second-row">
                                 <!-- LINKS | SOCIAL NETWORKS -->
-                                <span class="asso-find-us-subtitle">Retrouvez-nous :
-                                </span>
-                                <ul class="network">
-                                    <% if @cause.facebook.present? %>
-                                    <li>
-                                        <a href="https://facebook.com/<%= @cause.facebook %>" target="_blank">
-                                            <i class="fa fa-facebook business-icon"></i>
-                                        </a>
-                                    </li>
-                                    <% end %>
-                                    <% if @cause.twitter.present? %>
-                                    <li>
-                                        <a href="https://twitter.com/<%= @cause.twitter %>" target="_blank">
-                                            <i class="fa fa-twitter" aria-hidden="true"></i>
-                                        </a>
-                                    </li>
-                                    <% end %>
-                                    <% if @cause.instagram.present? %>
-                                    <li>
-                                        <a href="https://instagram.com/<%= @cause.instagram %>" target="_blank">
-                                            <i class="fa fa-instagram" aria-hidden="true"></i>
-                                        </a>
-                                    </li>
-                                    <% end %>
-                                    <% if @cause.url.present? %>
-                                    <li>
-                                        <a href="<%= @cause.url %>" target="_blank">
-                                            <i class="fa fa-globe" aria-hidden="true"></i>
-                                        </a>
-                                    </li>
-                                    <% end %>
-                                </ul>
+                                <% if @cause.facebook.present? || @cause.twitter.present? || @cause.instagram.present? || @cause.url.present? %>
+                                  <span class="asso-find-us-subtitle">Retrouvez-nous :
+                                  </span>
+                                  <ul class="network">
+                                      <% if @cause.facebook.present? %>
+                                      <li>
+                                          <a href="https://facebook.com/<%= @cause.facebook %>" target="_blank">
+                                              <i class="fa fa-facebook business-icon"></i>
+                                          </a>
+                                      </li>
+                                      <% end %>
+                                      <% if @cause.twitter.present? %>
+                                      <li>
+                                          <a href="https://twitter.com/<%= @cause.twitter %>" target="_blank">
+                                              <i class="fa fa-twitter" aria-hidden="true"></i>
+                                          </a>
+                                      </li>
+                                      <% end %>
+                                      <% if @cause.instagram.present? %>
+                                      <li>
+                                          <a href="https://instagram.com/<%= @cause.instagram %>" target="_blank">
+                                              <i class="fa fa-instagram" aria-hidden="true"></i>
+                                          </a>
+                                      </li>
+                                      <% end %>
+                                      <% if @cause.url.present? %>
+                                      <li>
+                                          <a href="<%= @cause.url %>" target="_blank">
+                                              <i class="fa fa-globe" aria-hidden="true"></i>
+                                          </a>
+                                      </li>
+                                      <% end %>
+                                  </ul>
+                                <% end %>
                             </div>
                         </div>
                     </div>

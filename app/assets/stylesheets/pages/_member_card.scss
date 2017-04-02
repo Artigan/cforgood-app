@@ -7,6 +7,8 @@
   width: 100%;
   max-width: 320px;
   height: 200px;
+  left: 50%;
+  transform: translateX(-50%);
   background-color: #fff;
   border-radius: 10px;
   border: 0.5px solid lightgrey;
@@ -90,5 +92,14 @@
       margin-right: -20px;
       text-align: right;
     }
+  }
+}
+
+.button-gradient.for-member-card {
+  @media (min-width: 768px) {
+    position: inherit;
+    width: 100%;
+    transform: none;
+    margin-top: 85px;
   }
 }

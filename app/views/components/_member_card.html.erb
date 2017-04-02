@@ -2,39 +2,42 @@
 <div class="pmdjs popup-member-card popup-member-card-<%= perk.id%> hidden">
 
   <!-- <button type="button" class="closed-modal-member-card close-button">&times;</button> -->
+  <div class="card perk-modalll">
+    <div class="card-block">
+      <div class="business-name-popup-member-card"><h6> <%= business.name %> </h6></div>
+      <div class="perk-name-popup-member-card"><%= perk.name.downcase %></div>
 
-  <div class="business-name-popup-member-card"><h6> <%= business.name %> </h6></div>
-  <div class="perk-name-popup-member-card"><%= perk.name.downcase %></div>
+      <div class="member-card">
+        <div class="validation-date">
+          <span>Le <%= I18n.l DateTime.now.to_date, format: :short %> <%= DateTime.now.year %></span>
+        </div>
 
-  <div class="member-card">
-    <div class="validation-date">
-      <span>Le <%= I18n.l DateTime.now.to_date, format: :short %> <%= DateTime.now.year %></span>
+        <div class="logo">
+          <%= image_tag 'logo_vertical.png' %>
+        </div>
+
+        <div class="member-info">
+          <%= render partial: 'components/avatar_or_picture', locals: { resource: current_user, style: "avatar" } %>
+          <% if current_user.name.present? %>
+            <span class="user"><%= current_user.name %></span>
+          <% else %>
+            <span class="user"><%= current_user.first_name %> <%= current_user.last_name %></span>
+          <% end %>
+          <% if current_user.cause_id.present? %>
+              <span class="cause"><%= current_user.cause.name %></span>
+              <%= image_tag (current_user.cause.logo), class: "img-circle cause" %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class= "member-card-instructions">"La carte de membre doit être montrée au commerçant avant la prise de commande, cliquez ensuite sur "Terminer" pour valider votre bon plan."  </div>
     </div>
 
-    <div class="logo">
-      <%= image_tag 'logo_vertical.png' %>
-    </div>
-
-    <div class="member-info">
-      <%= render partial: 'components/avatar_or_picture', locals: { resource: current_user, style: "avatar" } %>
-      <% if current_user.name.present? %>
-        <span class="user"><%= current_user.name %></span>
-      <% else %>
-        <span class="user"><%= current_user.first_name %> <%= current_user.last_name %></span>
-      <% end %>
-      <% if current_user.cause_id.present? %>
-          <span class="cause"><%= current_user.cause.name %></span>
-          <%= image_tag (current_user.cause.logo), class: "img-circle cause" %>
-      <% end %>
-    </div>
+    <%= simple_form_for :use, url: perk_uses_path(perk.id), method: :post, remote: true, authenticity_token: true do |f| %>
+        <%= f.input :perk_id, as: :hidden, input_html: {value: perk.id} %>
+        <%= f.submit "Terminer", class: "button-gradient for-member-card" %>
+    <% end %>
   </div>
-
-  <div class= "member-card-instructions">"La carte de membre doit être montrée au commerçant avant la prise de commande, cliquez ensuite sur "Terminer" pour valider votre bon plan."  </div>
-
-  <%= simple_form_for :use, url: perk_uses_path(perk.id), method: :post, remote: true, authenticity_token: true do |f| %>
-      <%= f.input :perk_id, as: :hidden, input_html: {value: perk.id} %>
-      <%= f.submit "Terminer", class: "button-gradient" %>
-  <% end %>
 </div>
 
 <% content_for :after_js do %>

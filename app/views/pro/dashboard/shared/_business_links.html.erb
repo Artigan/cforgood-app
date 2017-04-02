@@ -22,43 +22,44 @@
   </div>
   <!-- DESKTOP -->
   <div class="follow-uss">
-    <span class="find-us">Retrouvez-nous : </span>
+    <% if @business.url.present? || @business.facebook.present? || @business.twitter.present? || @business.instagram.present?  %>
+      <span class="find-us">Retrouvez-nous : </span>
 
-    <div class="detail-follow-uss">
+      <div class="detail-follow-uss">
 
-      <% if @business.url.present? %>
-        <span class="social-links">
-          <a href="<%= @business.url %>" style="background-color: <%= @business.business_category.color %>;" target="_blank">
-            <i class="fa fa-globe"></i>
-          </a>
-        </span>
-      <% end %>
+        <% if @business.url.present? %>
+          <span class="social-links">
+            <a href="<%= @business.url %>" style="background-color: <%= @business.business_category.color %>;" target="_blank">
+              <i class="fa fa-globe"></i>
+            </a>
+          </span>
+        <% end %>
 
-      <% if @business.facebook.present? %>
-        <span class="social-links">
-          <a href="http://facebook.com/<%= @business.facebook %>" style="background-color: <%= @business.business_category.color %>;" target="_blank">
-            <i class="fa fa-facebook"></i>
-          </a>
-        </span>
-      <% end %>
+        <% if @business.facebook.present? %>
+          <span class="social-links">
+            <a href="http://facebook.com/<%= @business.facebook %>" style="background-color: <%= @business.business_category.color %>;" target="_blank">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </span>
+        <% end %>
 
-      <% if @business.twitter.present? %>
-        <span class="social-links">
-          <a href="http://twitter.com/<%= @business.twitter %>" style="background-color: <%= @business.business_category.color %>;" target="_blank">
-              <i class="fa fa-twitter"></i>
-          </a>
-        </span>
-      <% end %>
+        <% if @business.twitter.present? %>
+          <span class="social-links">
+            <a href="http://twitter.com/<%= @business.twitter %>" style="background-color: <%= @business.business_category.color %>;" target="_blank">
+                <i class="fa fa-twitter"></i>
+            </a>
+          </span>
+        <% end %>
 
-      <% if @business.instagram.present? %>
-        <span class="social-links">
-          <a href="http://instagram.com/<%= @business.instagram %>" style="background-color: <%= @business.business_category.color %>;" target="_blank">
-            <i class="fa fa-instagram"></i>
-          </a>
-        </span>
-      <% end %>
+        <% if @business.instagram.present? %>
+          <span class="social-links">
+            <a href="http://instagram.com/<%= @business.instagram %>" style="background-color: <%= @business.business_category.color %>;" target="_blank">
+              <i class="fa fa-instagram"></i>
+            </a>
+          </span>
+        <% end %>
 
-    </div>
-
+      </div>
+    <% end %>
   </div>
 </div>

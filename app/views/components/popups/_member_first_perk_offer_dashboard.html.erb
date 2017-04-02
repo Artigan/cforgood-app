@@ -13,7 +13,7 @@
         <div class="container-code gentleman">
           <span>Bon plan offert</span>
           <p>Pour bien commencer, nous vous offrons un bon plan chez l'un de nos commerçants</p>
-          <%= link_to "J'en profite !", "", class: "button-gentleman first-offer" %>
+          <button class="button-gentleman first-offer" id="perk-modal-dynamic-<%= perk.id %>">J'en profite</button>
         </div>
       </figure>
     </div>
@@ -27,8 +27,8 @@
     $(document).ready(function() {
 
       $(".button-gentleman.first-offer").on("click", function(e) {
-         e.preventDefault();
-        $(".pmdjs").removeClass('hidden');
+        var classModal = $(this).attr('id');
+        $('.' + classModal).removeClass("hidden");
       });
 
     });
