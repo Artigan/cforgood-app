@@ -1,8 +1,8 @@
-<div class="perk-carddd <%= index_view == false && ( perk.perk_in_time? && ( !user_signed_in? || ( user_signed_in? && perk.perk_usable?(current_user ) ) ) )  ? 'available' : 'unavailable' %>" id="perk-modal-dynamic-<%= perk.id %>">
+<div class="perk-carddd <%= index_view == true || ( perk.perk_in_time? && ( !user_signed_in? || ( user_signed_in? && perk.perk_usable?(current_user) ) ) )  ? 'available' : 'unavailable' %>" id="perk-modal-dynamic-<%= perk.id %>">
     <div class="card-perks">
 
         <div class="background-image-perk card-img-top img-responsive" style="background-image: url('<%= perk.picture.present? ? perk.picture.url(:card) : business.picture.url(:card) %>');" alt="perk picture">
-           <div class="overlay-unavailable <%= index_view == false && ( perk.perk_in_time? && ( !user_signed_in? || ( user_signed_in? && perk.perk_usable?(current_user ) ) ) ) ? 'hidden' : '' %>">Bon plan épuisé</div>
+           <div class="overlay-unavailable <%= index_view == true || ( perk.perk_in_time? && ( !user_signed_in? || ( user_signed_in? && perk.perk_usable?(current_user) ) ) ) ? 'hidden' : '' %>">Bon plan épuisé</div>
             <div class="perk-flash">
                 <% if perk.flash %>
                   <div class="bolt-icon">

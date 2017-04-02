@@ -644,10 +644,10 @@
   font-size: 0.7em;
   border: 3px solid;
   border-radius: 25px;
-  padding: 5px 10px;
+  padding: 5px 12px;
 
   span {
-    margin-top: -6px;
+    margin-top: -8px;
   }
 }
 
@@ -1310,6 +1310,10 @@
         margin-bottom: 5%;
       }
 
+      .business-testimonial {
+        margin-top: -50px;
+      }
+
       .business-map-mobile {
         height: 120px;
       }
@@ -1321,7 +1325,6 @@
         justify-content: space-between;
         margin-bottom: 5%;
       }
-
 
       .business-address-row {
         display: flex;
@@ -1362,6 +1365,7 @@
       .follow-uss {
         width: 90%;
         margin-left: 5%;
+        margin-bottom: 50px;
       }
 
       .business-leader-section {
