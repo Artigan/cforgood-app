@@ -16,6 +16,7 @@ json.array! @businesses do |business|
       json.picture perk.picture.url(:card)
       json.times_remaining perk.flash && perk.times > 0 ? perk.times - Use.where(perk_id: perk.id).count : 0
       json.offer perk.offer_type
+      json.usable_for_user perk.perk_in_time? && perk.perk_usable?(current_user)
     end
   end
 end
