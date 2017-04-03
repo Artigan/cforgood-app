@@ -102,6 +102,13 @@
   }
 }
 
+
+.first_offer .perk-modal.feedback {
+  position: absolute;
+  width: 100%;
+  max-height: 680px;
+}
+
 .button-gradient.for-member-card {
   @media (min-width: 768px) {
     position: inherit;
