@@ -23,6 +23,7 @@ ActiveAdmin.register User do
       f.input :city
       f.input :picture
       f.input :cause
+      f.input :logo, :as => :file
     end
     f.inputs "Admin" do
       f.input :admin
@@ -32,5 +33,5 @@ ActiveAdmin.register User do
     end
     f.actions
   end
-  permit_params :first_name, :last_name, :name, :email, :street, :zipcode, :city, :picture, :admin, :member, :active, :password, :cause_id, :ambassador
+  permit_params :first_name, :last_name, :name, :email, :street, :zipcode, :city, :picture, :admin, :member, :active, :password, :cause_id, :ambassador, :logo
 end

@@ -525,10 +525,7 @@ class User < ApplicationRecord
           event_name: "delete_employee",
           created_at: Time.now.to_i,
           user_id: self.id,
-          email: self.email,
-          metadata: {
-            supervisor: self.manager.name,
-          }
+          email: self.email
         )
       rescue Intercom::IntercomError => e
         puts e

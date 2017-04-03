@@ -8,6 +8,11 @@
       <div class="perk-name-popup-member-card"><%= perk.name.downcase %></div>
 
       <div class="member-card">
+        <% if current_user.supervisor_id.present? %>
+          <%= image_tag (current_user.manager.logo), class: "img-circle supervisor_logo" %>
+        <% elsif current_user.business_supervisor_id.present? %>
+          <%= image_tag (current_user.business_supervisor.logo), class: "img-circle supervisor_logo" %>
+        <% end %>
         <div class="validation-date">
           <span>Le <%= I18n.l DateTime.now.to_date, format: :short %> <%= DateTime.now.year %></span>
         </div>
