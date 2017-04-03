@@ -9,7 +9,6 @@ class Member::DashboardController < ApplicationController
     if !user_signed_in?
       session[:logout] = true
     end
-    binding.pry
     @businesses = Business.not_supervisor.includes(:business_category, :perks_in_time, :uses, :main_address).active.for_map.with_perks_in_time.distinct.eager_load(:addresses_for_map).merge(Address.near(@lat_lng, 1000))
     @geojson = {"type" => "FeatureCollection", "features" => []}
 
