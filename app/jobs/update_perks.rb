@@ -5,7 +5,7 @@ class UpdatePerks < ApplicationJob
 
   def perform(ftp_file)
     # il faut prendre le fichier depuis le ftp
-    ftp_path = 'datas/perks'
+    ftp_path = 'datas/perk'
     report = []
     report << "-----------------------------------------"
     report << "Report UPDATE PERKS JOB"
@@ -30,16 +30,16 @@ class UpdatePerks < ApplicationJob
       nb_read += 1
       # update user
       begin
-        @perk = Perk.find(row["Id"])
+        @perk = Perk.find(row[:id])
       rescue ActiveRecord::RecordNotFound
         nb_update_ko += 1
         report << "ERROR | #{row["Id"]} not found"
         next
       end
-      @perk.offer = row["Offer"]
-      @perk.value = row["Value"]
-      @perk.percent = row["Percent"]
-      @perk.amount = row["Amount"]
+      @perk.offer = row[:offer]
+      @perk.value = row[:value]
+      @perk.percent = row[:percent]
+      @perk.amount = row[:amount]
       if @perk.save
         nb_update_ok += 1
       else
