@@ -15,6 +15,7 @@ ActiveAdmin.register Business do
     f.inputs "Identity" do
       f.input :name
       f.input :business_category
+      f.input :activity
       f.input :email
       f.input :url
       f.input :description
@@ -51,5 +52,5 @@ ActiveAdmin.register Business do
     f.actions
   end
 
-  permit_params :name, :business_category_id, :email, :password, :url, :description, :street, :zipcode, :city, :facebook, :twitter, :instagram, :telephone, :picture, :latitude, :longitude, :active, :leader_picture, :leader_first_name, :leader_last_name, :leader_description, :leader_phone, :leader_email, :logo, :shop, :online, :itinerant, :like, :unlike, :link_video, :supervisor, :supervisor_id, :admin
+  permit_params :name, :business_category_id, :email, :password, :url, :description, :street, :zipcode, :city, :facebook, :twitter, :instagram, :telephone, :picture, :latitude, :longitude, :active, :leader_picture, :leader_first_name, :leader_last_name, :leader_description, :leader_phone, :leader_email, :logo, :shop, :online, :itinerant, :like, :unlike, :link_video, :supervisor, :supervisor_id, :admin, :activity
 end
