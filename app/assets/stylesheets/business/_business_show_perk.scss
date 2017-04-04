@@ -2924,6 +2924,11 @@
       background: white;
       border-radius: 0;
 
+      @media (max-width: 767px) {
+        width: 100%;
+        left: 0;
+      }
+
       .sign-box {
         padding: 10px 35px;
 
