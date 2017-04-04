@@ -9,6 +9,7 @@ class  Api::V1::SessionsController < Devise::SessionsController
     email = request.headers.env["HTTP_EMAIL"].downcase if request.headers.env["HTTP_EMAIL"].present?
     password = request.headers.env["HTTP_PASSWORD"]
 
+
     if email.nil? || password.nil?
       render status: 400, json: { message: 'The request MUST contains the user email and password.' }
       return

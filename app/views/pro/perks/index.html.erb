@@ -80,7 +80,7 @@
             </div>
             <div class="perk-actions">
               <!-- PERK PREVIEW -->
-              <%= link_to business_path(@business, perk_id: perk.id), target: "_blank", class: "perk-preview" do %>
+              <%= link_to business_path(@business, address_id: @business.main_address.id, perk_id: perk.id), target: "_blank", class: "perk-preview" do %>
                 <i class="fa fa-eye"></i>
               <% end %>
               <!-- PERK EDIT -->
