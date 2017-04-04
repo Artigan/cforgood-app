@@ -600,14 +600,14 @@
   background-size: cover;
   width: 100%;
   height: 190px;
-
 }
 
 .filterrr {
   background: rgba(0, 0, 0, 0.3);
   background-size: cover;
+  background-position: center;
   width: 100%;
-  height: 250px;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -627,11 +627,11 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100%;
+  height: 190px;
 }
 
 .business-name-card-mobile-list h6 {
-  margin: 0;
+  margin-bottom: 14%;
   width: 100%;
   font-weight: 900;
   text-align: center;
@@ -1094,11 +1094,9 @@
         justify-content: center;
       }
 
-
       .business-links {
         justify-content: center;
       }
-
 
       .business-leader-picture {
         width: 110px;
@@ -1111,6 +1109,14 @@
       }
 
       .background-image-perk {
+        height: 130px;
+      }
+
+      .business-name-card-mobile-list h6 {
+        margin-bottom: 19%;
+      }
+
+      .business-name-card-mobile-list {
         height: 130px;
       }
 
@@ -1129,7 +1135,6 @@
         padding-top: 0px;
       }
 
-
       .perk-modal-main-title h5 {
         font-size: 0.8em;
       }
@@ -1141,7 +1146,6 @@
       .perk-modal-bottom {
         height: 200px;
       }
-
 
     }
     @media screen and (min-width: 768px) and (max-width: 991px) {
@@ -1193,6 +1197,14 @@
       }
 
       .background-image-perk {
+        height: 200px;
+      }
+
+      .business-name-card-mobile-list h6 {
+        margin-bottom: 16%;
+      }
+
+      .business-name-card-mobile-list {
         height: 200px;
       }
 
@@ -1280,6 +1292,10 @@
         margin-left: 2%;
         margin-right: 2%;
         padding-bottom: 1%;
+      }
+
+      .business-name-card-mobile-list h6 {
+        margin-bottom: 10%;
       }
 
     }
@@ -1444,6 +1460,15 @@
       .background-image-perk {
         height: 130px;
       }
+
+      .business-name-card-mobile-list h6 {
+        margin-bottom: 20%;
+      }
+
+      .business-name-card-mobile-list {
+        height: 130px;
+      }
+
       .card-perk-description p {
         font-size: 0.8em;
       }
