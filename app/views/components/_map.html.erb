@@ -243,18 +243,18 @@
   });
 
   // Reload map when drag on
-  map.on('dragend', function (e) {
-    var newCenter = map.getCenter();
-    var url = window.location.href + "?" + "lng" + '=' + newCenter.lng + "&" + "lat" + '=' + newCenter.lat;
-    reloadMap(url, "point", "point1");
-  });
+  // map.on('dragend', function (e) {
+  //   var newCenter = map.getCenter();
+  //   var url = window.location.href + "?" + "lng" + '=' + newCenter.lng + "&" + "lat" + '=' + newCenter.lat;
+  //   reloadMap(url, "point", "point1");
+  // });
 
   // Reload map when drag on
-  map.on('zoomend', function (e) {
-    var newCenter = map.getCenter();
-    var url = window.location.href + "?" + "lng" + '=' + newCenter.lng + "&" + "lat" + '=' + newCenter.lat;
-    reloadMap(url, "point", "point1");
-  });
+  // map.on('zoomend', function (e) {
+  //   var newCenter = map.getCenter();
+  //   var url = window.location.href + "?" + "lng" + '=' + newCenter.lng + "&" + "lat" + '=' + newCenter.lat;
+  //   reloadMap(url, "point", "point1");
+  // });
 
   // Reinit center map on user position
   $('#reinit-position').click(function () {
