@@ -93,7 +93,7 @@
                     <div class="row"><hr class="horizontal-bar"></div>
 
                     <% if @labels.present? %>
-                      <h6>Leurs engagements</h6>
+                      <h6 class="business-subtitle">Leurs engagements</h6>
                       <div class="business-beliefs">
                         <% @labels.each do |label| %>
                           <div class="business-belief">
@@ -105,7 +105,7 @@
                       <div class="row"><hr class="horizontal-bar"></div>
                     <% end %>
 
-                    <h6>En quelques mots</h6>
+                    <h6 class="business-subtitle">En quelques mots</h6>
                     <p>
                         <% if @business.description.present? %>
                           <div class="business-description">
@@ -119,7 +119,7 @@
                     <div class="row"><hr class="horizontal-bar"></div>
 
                     <% if device_type != :mobile %>
-                      <h6>Détails</h6>
+                      <h6 class="business-subtitle">Détails</h6>
                       <div class="details">
 
                         <div class="map-details">
@@ -171,7 +171,7 @@
 
                     <% else %>
 
-                      <h6>Détails</h6>
+                      <h6 class="business-subtitle">Détails</h6>
                       <div class="details-mobile">
 
                           <div class="details-mobile-first-row">
@@ -184,7 +184,7 @@
                             <div class="business-address-row">
                                 <div class="business-address-icon" style="background-color:<%= @business.business_category.color %>;"></div>
                                   <div class=" business-addresss">
-                                      <span> <%= @address.present? ? @address.street : @business.street %>
+                                      <span> <%= @address.present? ? @address.street : @business.street %><br>
                                       <%= @address.present? ? @address.zipcode : @business.zipcode %>
                                         <%= @address.present? ? @address.city : @business.city %></span>
                                   </div>
@@ -211,7 +211,7 @@
 
                     <% if @business.leader_description.present? %>
                       <div class="row business-testimonial"><hr class="horizontal-bar"></div>
-                      <h6 class="business-leader-title">Qui se cache derrière ?</h6>
+                      <h6 class="business-subtitle business-leader-title">Qui se cache derrière ?</h6>
 
                       <div class="business-leader-section">
                         <div class="business-leader-picture img-responsive" style="background-image: url('<%= @business.leader_picture %>');"/></div>
