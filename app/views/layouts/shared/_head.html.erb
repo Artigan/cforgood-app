@@ -164,9 +164,5 @@
 <!-- Script for AMPLITUDE -->
 <%= render "layouts/shared/js/amplitude" %>
 
-<% if !user_signed_in? && !business_signed_in? %>
-  <%= render "layouts/shared/js/crisp" %>
-<% end %>
-
 <%= stylesheet_link_tag :application, media: "all" %>
 <%= csrf_meta_tags %>

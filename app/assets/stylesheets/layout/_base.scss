@@ -67,11 +67,8 @@ section {
   }
 }
 
-#intercom-container .intercom-launcher-frame {
-  display: none !important;
+#intercom-container {
+  .intercom-launcher-frame, .intercom-launcher-badge {
+    // display: none !important;
+  }
 }
-
-.crisp-client .crisp-26 {
-  display: none !important;
-}
-

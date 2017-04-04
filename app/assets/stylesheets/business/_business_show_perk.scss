@@ -94,12 +94,12 @@
     padding-left: 4%;
     display: flex;
     align-items: center;
-    font-size: 0.8em;
+    font-size: 1em;
   }
 
   .share-socials {
     color: white;
-    font-size: 0.8em;
+    font-size: 1em;
   }
 
   .share-call-to-action {
@@ -125,12 +125,18 @@
     background-color: rgba(255,255,255,0);
     min-width: 0 !important;
     height: 100px;
-    margin-left: 62.5%;
-    margin-bottom: 12%;
+    margin-left: 66%;
+    margin-bottom: 7%;
 
     @media (min-width: 1221px) and (max-width: 1430px) {
-      margin-left: 57.5%;
+      margin-left: 62%;
     }
+
+    @media (min-width: 992px) and (max-width: 1220px) {
+      margin-left: 64%;
+      margin-bottom: 4%;
+    }
+
     @media (min-width: 623px) and (max-width: 767px) {
       height: 80px;
       margin-left: 63%;
@@ -242,7 +248,7 @@
     font-size: 2em;
     color: black;
     font-weight: 600;
-    margin-bottom: -2%;
+    margin-bottom: -3.5%;
   }
 
   .business-specs {
@@ -275,6 +281,11 @@
     margin-bottom: -1.5%;
   }
 
+  .business-subtitle {
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+
   .business-beliefs {
     display: flex;
     align-items: center;
@@ -287,7 +298,7 @@
 
   .business-description {
     width: 100%;
-    font-size: 0.9em;
+    font-size: 1.2em;
     color: rgba(55,55,55,0.9);
   }
 
@@ -306,23 +317,26 @@
     margin-bottom: 1%;
     width: 100%;
     background-color: rgba(128,128,128, 0.3);
+    margin-top: 15px;
+    margin-bottom: 15px;
   }
 
   .details {
     display: flex;
     width: 100%;
     flex-wrap: wrap;
+    margin-bottom: 2%;
   }
 
   .map-details {
-    width: 180px;
-    height: 200px;
+    width: 240px;
+    height: 240px;
     flex-grow: 1;
   }
 
   .business-map {
-    width: 170px;
-    height: 160px;
+    width: 240px;
+    height: 240px;
   }
 
   .business-opening-hours {
@@ -333,26 +347,31 @@
 
   .business-opening-hours li {
     list-style-type: none;
-    font-size: 0.7em;
+    font-size: 0.8em;
   }
 
   .business-informations {
     flex-grow : 1;
     width: 200px;
-    height: 200px;
+    max-height: 300px;
     display: flex;
     flex-direction: column;
   }
 
   .business-address-row {
     display: flex;
-    margin-bottom: 3%;
-    padding-left: 1%;
+    align-items: center;
+    margin-bottom: 4.5%;
+    margin-left: 0;
+    @media (min-width: 976px) and (max-width: 1454px) {
+       margin-top: 5%;
+       margin-left: 0;
+    }
   }
 
   .business-address-icon {
-    width: 30px;
-    height: 30px;
+    width: 45px;
+    height: 45px;
     display: inline-block;
     -webkit-mask: image-url('icons/map-location.svg') no-repeat 50% 50%;
     mask: image-url('icons/map-location.svg') no-repeat 50% 50%;
@@ -361,11 +380,12 @@
   }
 
   .business-addresss span {
-    font-size: 0.7em;
+    font-size: 0.85em;
     display: flex;
     margin-left: 3%;
     flex-wrap: wrap;
     line-height: 16px;
+    margin-bottom: -3%;
   }
 
   .business-links {
@@ -378,20 +398,28 @@
     margin-bottom: 3%;
   }
 
+  li.reach-uss a {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+  }
+
   .reach-uss i {
+    font-size: 1.3em;
     display: inline-block;
     border-style: solid;
     padding: auto;
     border-width: 1.5px;
     width: auto;
     height: auto;
-    min-width: 35px;
-    min-height: 35px;
+    min-width: 45px;
+    min-height: 45px;
     border-radius: 50%;
     text-align: center;
-    line-height: 25px;
+    line-height: 33px;
     vertical-align: middle;
     padding: 5px;
+    margin-right: 1%;
   }
 
   .reach-uss i:hover {
@@ -404,7 +432,7 @@
 
   .reach-uss span {
     color: black;
-    font-size: 0.7em;
+    font-size: 0.85em;
   }
 
   .follow-uss {
@@ -417,7 +445,7 @@
 
   .detail-follow-uss {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
   }
 
   .social-links {
@@ -425,16 +453,17 @@
   }
 
   .follow-uss a {
+    font-size: 1.5em;
     display: inline-block;
     border-style: solid;
     border-width: 1.5px;
     width: auto;
     height: auto;
-    min-width: 35px;
-    min-height: 35px;
+    min-width: 45px;
+    min-height: 45px;
     border-radius: 50%;
     text-align: center;
-    line-height: 22px;
+    line-height: 32px;
     vertical-align: middle;
     padding: 5px;
     color: white;
@@ -450,7 +479,7 @@
 
   .follow-uss span:first-child {
     color: black;
-    font-size: 0.7em;
+    font-size: 0.85em;
     text-align: center;
   }
 
@@ -506,7 +535,7 @@
   }
 
   .leader-description {
-    font-size: 0.8em;
+    font-size: 1.1em;
     line-height: 19px;
   }
 
@@ -539,7 +568,7 @@
 .right-side h2 {
   width: 170px;
   border-bottom: 8px solid;
-  line-height: 16px;
+  line-height: 15px;
   font-weight: bold;
   font-size: 1.4em;
 }
@@ -569,12 +598,20 @@
   position: relative;
   background-position: center;
   background-size: cover;
+  width: 100%;
+  height: 190px;
+}
+
+.filterrr {
+  background: rgba(0, 0, 0, 0.3);
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   justify-content: space-between;
-  width: 100%;
-  height: 190px;
 }
 
 .perk-flash {
@@ -590,11 +627,11 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100%;
+  height: 190px;
 }
 
 .business-name-card-mobile-list h6 {
-  margin: 0;
+  margin-bottom: 14%;
   width: 100%;
   font-weight: 900;
   text-align: center;
@@ -698,14 +735,14 @@
   }
 
   .perk-modal-main-title {
-    width: 85px;
+    width: 100px;
   }
 
   .perk-modal-main-title h5 {
     border-bottom: 8px solid;
     line-height: 14px;
     font-weight: bold;
-    font-size: 1.2em;
+    font-size: 1.4em;
   }
 
   .background-image-perk-modal {
@@ -728,7 +765,7 @@
     right: 10px;
     bottom: -10px;
     margin-bottom: 0;
-    font-size: 0.7em;
+    font-size: 0.8em;
   }
 
   .card-block.block-text-modal {
@@ -752,17 +789,19 @@
 
   .pmdjs-perk-description {
     margin: 0;
-    font-size: 0.9em;
+    font-size: 1.1em;
     margin-top: 3%;
     margin-bottom: 2%;
   }
 
   .perk-modal-alert p {
-    font-size: 0.8em;
+    font-size: 1em;
   }
 
   .perk-modal-question {
     font-weight: bold;
+    margin-top: 5%;
+    margin-bottom: 4%;
   }
 
   .perk-modal-alert i.fa-bell {
@@ -816,12 +855,32 @@
   }
 
   .label-itinary {
-    font-size: 0.8em;
+    font-size: 0.9em;
     color: rgba(55, 55, 55, 0.9);
     margin-bottom: 100px;
     text-align: center;
     margin-top: 2%;
   }
+
+  //not member //
+
+  .subscribe-title, .connect-title {
+    color: black;
+    font-weight: bold;
+  }
+
+  .connect-title {
+    margin-top: -10%;
+    background-color: white !important;
+  }
+
+  .connect-title:hover {
+    cursor: pointer;
+  }
+
+   .perk-modal-header-text, .perk-modal-content-text {
+     font-size: 1.3em;
+   }
 
     // POP UP MEMBER CARD //
 
@@ -869,9 +928,9 @@
     }
 
     .card-modal-feedback {
-      width: 90%;
-      margin-left: 5%;
-      margin-right: 5%;
+      width: 80%;
+      margin-left: 10%;
+      margin-right: 10%;
       background-color: white;
       margin-top: 15%;
     }
@@ -1032,12 +1091,20 @@
       }
 
       #business-name {
-        font-size: 1.5em;
-        margin-bottom: -5%;
+        font-size: 1.8em;
+        margin-bottom: -7%;
       }
 
       .business-specs, .business-beliefs, .business-description, .business-leader-decription {
-        font-size: 0.75em;
+        font-size: 0.85em;
+      }
+
+      .business-category-image {
+        margin-bottom: -3%;
+      }
+
+      .business-subtitle {
+        font-size: 1em;
       }
 
       .business-map {
@@ -1049,25 +1116,8 @@
         justify-content: center;
       }
 
-      .business-addresss span {
-        font-size: 0.55em;
-        line-height: 12px;
-      }
-
-      .business-opening-hours li {
-        font-size: 0.6em;
-      }
-
       .business-links {
         justify-content: center;
-      }
-
-      .reach-uss span {
-        font-size: 0.7em;
-      }
-
-      span.find-us {
-        font-size: 0.6em;
       }
 
       .business-leader-picture {
@@ -1081,6 +1131,14 @@
       }
 
       .background-image-perk {
+        height: 130px;
+      }
+
+      .business-name-card-mobile-list h6 {
+        margin-bottom: 19%;
+      }
+
+      .business-name-card-mobile-list {
         height: 130px;
       }
 
@@ -1099,9 +1157,12 @@
         padding-top: 0px;
       }
 
-
       .perk-modal-main-title h5 {
-        font-size: 0.8em;
+        font-size: 1.1em;
+      }
+
+      .perk-modal-main-title {
+        width: 82px;
       }
 
       .perk-modal-perk-name, .pmdjs-perk-description p, .perk-modal-answer, .perk-modal-alert p, .perk-modal-question, .label-itinary  {
@@ -1111,7 +1172,6 @@
       .perk-modal-bottom {
         height: 200px;
       }
-
 
     }
     @media screen and (min-width: 768px) and (max-width: 991px) {
@@ -1131,8 +1191,8 @@
 
       .dropdown-menu.socials {
         height: 90px;
-        margin-left: 67%;
-        margin-bottom: 12%;
+        margin-left: 70%;
+        margin-bottom: 6%;
       }
 
       .dropdown-socials {
@@ -1141,8 +1201,14 @@
         top: 90px;
       }
 
-      .reach-uss span {
-        font-size: 0.75em;
+      .business-informations {
+        min-width: 51%;
+      }
+
+      .business-address-row {
+        margin-left: 0;
+        margin-bottom: 3.5%;
+        margin-top: 5%;
       }
 
       .business-leader-picture {
@@ -1157,6 +1223,14 @@
       }
 
       .background-image-perk {
+        height: 200px;
+      }
+
+      .business-name-card-mobile-list h6 {
+        margin-bottom: 16%;
+      }
+
+      .business-name-card-mobile-list {
         height: 200px;
       }
 
@@ -1191,6 +1265,11 @@
         height: 30px;
       }
 
+      .dropdown-menu.socials {
+        margin-left: 68%;
+        margin-bottom: 3.5%;
+      }
+
       .dropdown-socials {
         min-height: 40px;
         min-width: 40px;
@@ -1209,20 +1288,16 @@
         font-size: 1.5em;
       }
 
-      .business-addresss {
-        font-size: 0.7em;
-      }
-
-      .business-opening-hours li {
-        font-size: 0.6em;
-      }
-
-      .reach-uss span {
-        font-size: 0.6em;
-      }
 
       .business-informations {
-        margin-bottom: 3%;
+        margin-bottom: 0;
+        min-width: 51%;
+      }
+
+      .business-address-row {
+        margin-left: 0;
+        margin-bottom: 3.5%;
+        margin-top: 5%;
       }
 
       .business-leader-section {
@@ -1243,6 +1318,10 @@
         margin-left: 2%;
         margin-right: 2%;
         padding-bottom: 1%;
+      }
+
+      .business-name-card-mobile-list h6 {
+        margin-bottom: 10%;
       }
 
     }
@@ -1281,7 +1360,7 @@
       }
 
       #business-name {
-        font-size: 1.3em;
+        font-size: 1.5em;
         padding-bottom: -3%;
       }
 
@@ -1298,8 +1377,12 @@
         justify-content: flex-end;
       }
 
-      .business-specs, .business-beliefs, .business-description, .business-leader-decription {
-        font-size: 0.7em;
+      .business-specs, .business-beliefs, .business-leader-decription {
+        font-size: 0.9em;
+      }
+
+      .business-decription {
+        font-size: 1em;
       }
 
       .details-mobile {
@@ -1348,14 +1431,14 @@
         display: flex;
         align-self: flex-end;
         padding-top: 10%;
-        font-size: 0.7em;
+        font-size: 0.9em;
         text-align: center;
         width: 120px;
       }
 
       .business-opening-hours-mobile li {
         list-style-type: none;
-        font-size: 0.6em;
+        font-size: 0.8em;
       }
 
       .details-mobile-third-row {
@@ -1403,15 +1486,18 @@
       .background-image-perk {
         height: 130px;
       }
+
+      .business-name-card-mobile-list h6 {
+        margin-bottom: 20%;
+      }
+
+      .business-name-card-mobile-list {
+        height: 130px;
+      }
+
       .card-perk-description p {
         font-size: 0.8em;
       }
-
-      // .perks-offer-type {
-      //   font-size: 0.7em;
-      //   padding: 0.2% 4%;
-      //   border: 3px solid;
-      // }
 
       .background-image-perk-modal {
         height: 220px;
@@ -2837,6 +2923,11 @@
       padding-top: 30px;
       background: white;
       border-radius: 0;
+
+      @media (max-width: 767px) {
+        width: 100%;
+        left: 0;
+      }
 
       .sign-box {
         padding: 10px 35px;

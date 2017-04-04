@@ -4,7 +4,7 @@
       <% if current_user.picture.present? %>
         <%= image_tag avatar_url(current_user) %>
        <% else %>
-        <%= image_tag "default_pic.png" %>
+        <%= image_tag "citoyen.svg" %>
       <% end %>
      <span> Bienvenue
       <% if current_user.last_name.present? %>
