@@ -362,7 +362,7 @@
     display: flex;
     align-items: center;
     margin-bottom: 4.5%;
-    margin-left: 3%;
+    margin-left: 0;
     @media (min-width: 976px) and (max-width: 1454px) {
        margin-top: 5%;
        margin-left: 0;
@@ -568,7 +568,7 @@
 .right-side h2 {
   width: 170px;
   border-bottom: 8px solid;
-  line-height: 16px;
+  line-height: 15px;
   font-weight: bold;
   font-size: 1.4em;
 }
@@ -600,14 +600,14 @@
   background-size: cover;
   width: 100%;
   height: 190px;
-
 }
 
 .filterrr {
   background: rgba(0, 0, 0, 0.3);
   background-size: cover;
+  background-position: center;
   width: 100%;
-  height: 250px;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -627,11 +627,11 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100%;
+  height: 190px;
 }
 
 .business-name-card-mobile-list h6 {
-  margin: 0;
+  margin-bottom: 14%;
   width: 100%;
   font-weight: 900;
   text-align: center;
@@ -735,14 +735,14 @@
   }
 
   .perk-modal-main-title {
-    width: 85px;
+    width: 100px;
   }
 
   .perk-modal-main-title h5 {
     border-bottom: 8px solid;
     line-height: 14px;
     font-weight: bold;
-    font-size: 1.2em;
+    font-size: 1.4em;
   }
 
   .background-image-perk-modal {
@@ -765,7 +765,7 @@
     right: 10px;
     bottom: -10px;
     margin-bottom: 0;
-    font-size: 0.7em;
+    font-size: 0.8em;
   }
 
   .card-block.block-text-modal {
@@ -789,17 +789,19 @@
 
   .pmdjs-perk-description {
     margin: 0;
-    font-size: 0.9em;
+    font-size: 1.1em;
     margin-top: 3%;
     margin-bottom: 2%;
   }
 
   .perk-modal-alert p {
-    font-size: 0.8em;
+    font-size: 1em;
   }
 
   .perk-modal-question {
     font-weight: bold;
+    margin-top: 5%;
+    margin-bottom: 4%;
   }
 
   .perk-modal-alert i.fa-bell {
@@ -853,12 +855,32 @@
   }
 
   .label-itinary {
-    font-size: 0.8em;
+    font-size: 0.9em;
     color: rgba(55, 55, 55, 0.9);
     margin-bottom: 100px;
     text-align: center;
     margin-top: 2%;
   }
+
+  //not member //
+
+  .subscribe-title, .connect-title {
+    color: black;
+    font-weight: bold;
+  }
+
+  .connect-title {
+    margin-top: -10%;
+    background-color: white !important;
+  }
+
+  .connect-title:hover {
+    cursor: pointer;
+  }
+
+   .perk-modal-header-text, .perk-modal-content-text {
+     font-size: 1.3em;
+   }
 
     // POP UP MEMBER CARD //
 
@@ -906,9 +928,9 @@
     }
 
     .card-modal-feedback {
-      width: 90%;
-      margin-left: 5%;
-      margin-right: 5%;
+      width: 80%;
+      margin-left: 10%;
+      margin-right: 10%;
       background-color: white;
       margin-top: 15%;
     }
@@ -1094,11 +1116,9 @@
         justify-content: center;
       }
 
-
       .business-links {
         justify-content: center;
       }
-
 
       .business-leader-picture {
         width: 110px;
@@ -1111,6 +1131,14 @@
       }
 
       .background-image-perk {
+        height: 130px;
+      }
+
+      .business-name-card-mobile-list h6 {
+        margin-bottom: 19%;
+      }
+
+      .business-name-card-mobile-list {
         height: 130px;
       }
 
@@ -1129,9 +1157,12 @@
         padding-top: 0px;
       }
 
-
       .perk-modal-main-title h5 {
-        font-size: 0.8em;
+        font-size: 1.1em;
+      }
+
+      .perk-modal-main-title {
+        width: 82px;
       }
 
       .perk-modal-perk-name, .pmdjs-perk-description p, .perk-modal-answer, .perk-modal-alert p, .perk-modal-question, .label-itinary  {
@@ -1141,7 +1172,6 @@
       .perk-modal-bottom {
         height: 200px;
       }
-
 
     }
     @media screen and (min-width: 768px) and (max-width: 991px) {
@@ -1193,6 +1223,14 @@
       }
 
       .background-image-perk {
+        height: 200px;
+      }
+
+      .business-name-card-mobile-list h6 {
+        margin-bottom: 16%;
+      }
+
+      .business-name-card-mobile-list {
         height: 200px;
       }
 
@@ -1280,6 +1318,10 @@
         margin-left: 2%;
         margin-right: 2%;
         padding-bottom: 1%;
+      }
+
+      .business-name-card-mobile-list h6 {
+        margin-bottom: 10%;
       }
 
     }
@@ -1444,6 +1486,15 @@
       .background-image-perk {
         height: 130px;
       }
+
+      .business-name-card-mobile-list h6 {
+        margin-bottom: 20%;
+      }
+
+      .business-name-card-mobile-list {
+        height: 130px;
+      }
+
       .card-perk-description p {
         font-size: 0.8em;
       }
