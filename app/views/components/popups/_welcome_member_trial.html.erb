@@ -10,7 +10,7 @@
         <!-- TEXT -->
         <div class="container-code gentleman">
           <span>Félicitations !</span>
-          <p>Profite bien des <strong><%= (current_user.date_end_partner - Date.today).to_i %></strong> jours offert par <strong><%= Partner.find_by_code_partner(current_user.code_partner).name %></strong> pour découvrir la plateforme.</p>
+          <p>Profite bien des <strong><%= (current_user.date_end_partner - Date.today).to_i %></strong> jours offerts par <strong><%= Partner.find_by_code_partner(current_user.code_partner).name %></strong> pour découvrir la plateforme.</p>
             <%= link_to 'A toi de jouer !', "", class: "button-gentleman play-now" %>
         </div>
       </figure>

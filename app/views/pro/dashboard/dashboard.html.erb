@@ -32,7 +32,7 @@ Consultez vos chiffres
               <% if @business.leader_picture.present? %>
                 <%= image_tag @business.leader_picture.url(:avatar), class: 'business-owner' %>
               <% else %>
-                <%= image_tag 'default_pic.png', class: 'business-owner' %>
+                <%= image_tag 'citoyen.svg', class: 'business-owner default' %>
               <% end %>
               <span class="business-name"><%= @business.name %></span>
               <span class="business-location"><i class="fa fa-map-marker"></i><%= @business.city %></span>
@@ -226,7 +226,7 @@ Consultez vos chiffres
               <% if @business.leader_picture.present? %>
                 <%= image_tag @business.leader_picture.url(:avatar), class: 'business-owner' %>
               <% else %>
-                <%= image_tag 'default_pic.png', class: 'business-owner' %>
+                <%= image_tag 'citoyen.svg', class: 'business-owner default' %>
               <% end %>
               <% if !@business.active %>
                 <span class="business-message">Votre compte sera bientôt activé !</span>
