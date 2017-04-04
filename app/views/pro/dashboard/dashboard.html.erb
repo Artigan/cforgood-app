@@ -7,7 +7,7 @@ Consultez vos chiffres
 
 <div class="container-fluid admin">
   <!-- DISCLAIMER IF INACTIVE BUSINESS -->
-  <% if !current_business.active &&
+  <% if !current_business.active && !current_business.supervisor
     (request.referer == nil ||
      request.referer.include?("/pro/sign_up") ||
      request.referer.include?("/pro/sign_in")) %>
@@ -203,7 +203,7 @@ Consultez vos chiffres
                     </div>
                     <!-- PERK PREVIEW -->
                     <div class="perk-preview">
-                      <%= link_to business_path(@business, perk_id: perk.id), target: "_blank" do %>
+                      <%= link_to business_path(@business, address_id: @business.main_address.id, perk_id: perk.id), target: "_blank" do %>
                         <i class="fa fa-eye"></i>
                         <span>Aperçu</span>
                       <% end %>

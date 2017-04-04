@@ -47,6 +47,7 @@
 #  supervisor_id          :integer
 #  admin                  :boolean          default(FALSE), not null
 #  activity               :string
+#  hidden_email           :boolean          default(FALSE)
 #
 # Indexes
 #
@@ -100,6 +101,7 @@ class Business < ApplicationRecord
   validates :business_category_id, presence: true, unless: :supervisor
   validates :name, presence: true
   validates :url, format: { with: /\Ahttps?:\/\/[\S]+/, message: "Votre URL doit commencer par http:// ou https://" }, allow_blank: true
+  validates :activity, length: { maximum: 15 }
 
   validates_size_of :picture, maximum: 2.megabytes,
     message: "Cette image dépasse 2 MG !", if: :picture_changed?

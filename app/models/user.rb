@@ -55,6 +55,7 @@
 #  logo                   :string
 #  authentication_token   :string(30)
 #  business_supervisor_id :integer
+#  nothing_around         :integer
 #
 # Indexes
 #
