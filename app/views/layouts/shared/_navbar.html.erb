@@ -104,7 +104,7 @@
               <% if current_user.payments.present? %>
                 <%= link_to "Contributions", member_user_profile_path(current_user, anchor: 'list-payments'),  class: "droptext-bold profile-tab" %>
               <% end %>
-              <%= link_to "Plaisir d'offrir", member_user_gift_path(current_user), class: "droptext-bold profile-tab" %>
+              <%#= link_to "Plaisir d'offrir", member_user_gift_path(current_user), class: "droptext-bold profile-tab" %>
             <% end %>
           <% elsif business_signed_in? %>
             <%= link_to "Mes informations", pro_business_profile_path(current_business, anchor: 'business' ), class: "droptext-bold profile-tab" %>
