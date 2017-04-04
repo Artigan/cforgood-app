@@ -1,7 +1,7 @@
 // ADRIEN //
 
 .button-becoming-ambassador a.button-gradient {
-  font-size: 1.5em;
+  font-size: 1.2em;
   border-radius: 30px;
   margin-bottom: 50px;
   box-shadow: rgba(0, 0, 0, 0.6);
@@ -24,7 +24,7 @@
   }
 }
 
-// ADRIEN //
+// FIN ADRIEN //
 
 .ambassador {
   display: flex;
@@ -50,7 +50,7 @@
 
   h2 {
     margin-top: 60px;
-    font-size: 2em;
+    font-size: 2.2em;
     font-weight: 700;
     margin-bottom: 2%;
     @media (min-width : 320px) and (max-width : 479px) {
@@ -110,7 +110,10 @@
     }
 
     p.testimonial {
-      opacity: 1.5em;
+      color: #404040;
+      padding-top: 2%;
+      padding-bottom: 2%;
+      // opacity: 1.5em;
       font-style : italic;
       font-weight: 200;
       @media (min-width : 320px) and (max-width : 479px) {

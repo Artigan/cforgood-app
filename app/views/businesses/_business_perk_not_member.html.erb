@@ -1,4 +1,4 @@
-<div class="pmdjs perk-modal-dynamic-<%= perk.id %> hidden">
+<div class="perk-modal-not_member pmdjs perk-modal-dynamic-<%= perk.id %> hidden">
   <div class="card perk-modalll">
     <button type="button" class="perk-modal-close close-button">&times;</button>
 
@@ -14,12 +14,14 @@
 
     <div class="perk-modal-button-signup">
       <%= link_to signup_path do %>
-        <div class="cta-button" style="background-color:<%= @business.business_category.color %>;">S'inscrire</div>
+        <div class="subscribe-title">S'inscrire</div>
       <% end %>
     </div>
 
+    <p style= "text-align: center;"> ou </p>
+
     <div class="perk-modal-button-signup dropdown">
-      <div class="cta-button dropdown-toggle" data-toggle="dropdown" style="background-color: #3E4149;">Se connecter</div>
+      <div class=" connect-title dropdown-toggle" data-toggle="dropdown" style="background-color: #3E4149;">Se connecter</div>
       <!-- SIGNIN -->
       <div class="dropdown-menu">
         <div class="sign-box">
