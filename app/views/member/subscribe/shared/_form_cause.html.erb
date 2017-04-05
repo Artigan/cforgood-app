@@ -20,7 +20,7 @@
         <%= f.submit "Soutenir cette cause", class: "user-button" %>
       <% end %>
       <p class="comment-cause">Sans choix de votre part, c'est CforGood qui bénéficiera de votre soutien. Vous pourrez toujours modifier votre choix depuis votre profil.</p>
-      <button class="signup-next <%= @partner.supervisor_id if @partner %>">Suivant</button>
+      <button class="signup-next <%= @partner.supervisor_id if @partner %> <%= "signup_app_mobile" if session[:signup_app_mobile] == true %>">Suivant</button>
     </div>
   </div>
 </div>
@@ -43,8 +43,13 @@
       $(".signup-cause .signup-next").on("click", function(e) {
         e.preventDefault;
         var supervisorId = $(this).attr('class').split(" ")[1];
+        var signupAppMobile = $(this).attr('class').split(" ")[2]
         if ( supervisorId != "" ) {
-          window.location.href = "<%= member_user_dashboard_path(current_user) %>";
+          if ( signupAppMobile == "signup_app_mobile" ) {
+            window.location.href = "<%= member_user_dashboard_path(current_user, email: current_user.email, authentication_token: current_user.authentication_token) %>";
+          } else {
+            window.location.href = "<%= member_user_dashboard_path(current_user) %>";
+          }
         } else {
           $(".choose-cause").addClass("ishidden");
           $(".signup-plan").removeClass("ishidden").addClass("slideup");

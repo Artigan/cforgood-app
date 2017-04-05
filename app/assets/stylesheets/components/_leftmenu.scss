@@ -167,8 +167,10 @@
 }
 
 #open-leftmenu img {
-  width: 20px;
-  margin-left: -20px;
-  margin-top: 10px;
-  padding: 2px;
+    width: 20px;
+    padding: 2px;
+    position: absolute;
+    display: flex;
+    left: 36px;
+    top: 16px;
 }

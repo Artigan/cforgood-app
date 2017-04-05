@@ -115,6 +115,9 @@ class ApplicationController < ActionController::Base
   end
 
   def prevent_signup
+
+    session[:signup_app_mobile] = true if request.path.include?('signup_app_mobile')
+
     if request.path.include?("/signup_beneficiary")
       @beneficiary = Beneficiary.find_by_id(request.env['QUERY_STRING'].to_i)
       if @beneficiary.present? && !@beneficiary.used

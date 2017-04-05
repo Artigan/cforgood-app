@@ -1,6 +1,5 @@
+<div class="branch-journeys-top"></div>
 <div class="navbar-v2">
-
-  <div class="branch-journeys-top"></div>
 
   <% if user_signed_in? %>
     <%= link_to member_user_dashboard_path(current_user) do %>
@@ -16,7 +15,7 @@
     <% end %>
   <% end %>
 
-  <span id="open-leftmenu"><div class="visible-xs"><%= image_tag 'icons/menu_burger.svg' %></div></span>
+  <div id="open-leftmenu" class="visible-xs"><%= image_tag 'icons/menu_burger.svg' %></div>
 
   <!-- Impersonnate businesses -->
   <% if business_signed_in? && pro_space? && current_business.supervisor %>
