@@ -168,10 +168,12 @@ class User < ApplicationRecord
     else
       registred_user = User.where(:email => data.email).first
       if registred_user
-        self.provider = access_token.provider if
-        self.uid = access_token.uid
-        self.token = access_token.credentials.token
-        self.save
+        if registred_user.provider != access_token.provider || registred_user.uid != access_token.uid || registred_user.token != access_token.credentials.token
+          registred_user.provider = access_token.provider
+          registred_user.uid = access_token.uid
+          registred_user.token = access_token.credentials.token
+          registred_user.save
+        end
         return registred_user
       else
         user = User.create(
@@ -182,7 +184,7 @@ class User < ApplicationRecord
           provider: access_token.provider,
           email: data.email,
           uid: access_token.uid,
-          token: access_token.credentials.token
+          token: access_token.credentials.token,
           picture: data.image,
           password: Devise.friendly_token[0,20],
         )
