@@ -35,10 +35,17 @@
   left: 101px;
   bottom: 130px;
   cursor: pointer;
+  background-color: white;
+  border-radius: 50%;
+  min-width: 50px;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   @media (max-width: 767px) {
     left: 11px;
-    bottom: 50px;
+    bottom: 15px;
   }
 
   .pastille {
@@ -46,5 +53,10 @@
     max-height: 30px;
     padding: 8px;
   }
-}
 
+  .pastille-gps {
+    max-width: 45px;
+    max-height: 45px;
+    padding: 10px;
+  }
+}
