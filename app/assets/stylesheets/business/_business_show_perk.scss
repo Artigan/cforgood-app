@@ -928,11 +928,26 @@
     }
 
     .card-modal-feedback {
-      width: 80%;
-      margin-left: 10%;
-      margin-right: 10%;
+      width: 86%;
+      margin-left: 7%;
+      margin-right: 7%;
       background-color: white;
-      margin-top: 15%;
+      margin-top: 8%;
+      @media (min-width: 992px) and (max-width:1220px) {
+        width: 89%;
+        margin-left: 4%;
+        margin-right: 5%;
+      }
+      @media screen and (min-width: 768px) and (max-width: 991px) {
+        width: 92%;
+        margin-left: 1%;
+        margin-right: 5%;
+      }
+      @media screen and (min-width: 480px) and (max-width: 767px) {
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+      }
     }
 
     .perk-modal-feedback-background-image {
@@ -953,7 +968,22 @@
 
     .perk-modal-feedback-perk-name p, .perk-modal-feedback p, .radio-tile p {
       text-align: center;
-      font-size: 0.8em;
+      font-size: 1.2em;
+    }
+
+    p.unused-description {
+      margin-top: 0;
+      padding-bottom: 3%;
+      color: gray;
+      @media (min-width: 992px) and (max-width:1220px) {
+        margin-top: -4%;
+        padding-bottom: 4%;
+      }
+    }
+
+    p.unused-description:hover, p.unused-description:focus {
+      color: black;
+      cursor: pointer;
     }
 
     .perk-modal-feedback-perk-name p {
@@ -965,6 +995,12 @@
       position: relative;
       width:  100%;
       margin: 0;
+    }
+
+    .perk-modal-hr {
+      width: 90%;
+      margin-left: 5%;
+      margin-right: 5%;
     }
 
       //make actual radio input invisible
@@ -1014,9 +1050,6 @@
       padding-right: 10%;
     }
 
-    // button.closed-perk-modal-mobile-member.close-button{
-    //   position: static;
-    // }
 
     .perk-title-mobile-list h2 {
       border-bottom: 8px solid;
