@@ -13,7 +13,7 @@ class Api::V1::UsersController < Api::V1::BaseController
       if !current_user.member
         @first_perk_offer = Business.find(ENV['BUSINESS_ID_CFORGOOD']).perks.active.first
       elsif current_user.business_supervisor_id
-        @first_perk_offer = Business.find(business_supervisor_id).perks.active.first
+        @first_perk_offer = Business.find(current_user.business_supervisor_id).perks.active.first
       end
     end
     @uses_without_feedback = @user.uses.without_feedback
