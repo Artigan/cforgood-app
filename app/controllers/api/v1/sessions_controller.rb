@@ -8,7 +8,7 @@ class  Api::V1::SessionsController < Devise::SessionsController
 
     email = request.headers.env["HTTP_EMAIL"].downcase if request.headers.env["HTTP_EMAIL"].present?
     password = request.headers.env["HTTP_PASSWORD"] if request.headers.env["HTTP_EMAIL"].present?
-    access_token = request.headers.env["HTTP_ACCES_TOKEN"] if request.headers.env["HTTP_ACCES_TOKEN"].present?
+    access_token = request.headers.env["HTTP_ACCESS_TOKEN"] if request.headers.env["HTTP_ACCESS_TOKEN"].present?
 
     if ! (email.present? && ( password.present? || access_token.present? ))
       return render status: 400, json: { message: 'The request MUST contains the user email and password or facebook_token.' }
