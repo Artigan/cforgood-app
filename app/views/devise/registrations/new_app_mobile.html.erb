@@ -1,0 +1,23 @@
+<% content_for :meta_title, "Inscription - CforGood" %>
+<% content_for :meta_description %>
+<% content_for :meta_image %>
+
+<div class="connexion signup app-mobile">
+  <div class="sign-box signup translate"> <!-- Return to SIGNUP -->
+      <%= link_to "", signup_path, class: "close-sign-box" %>
+      <!-- SIGNUP FORM BUSINESS -->
+      <%= render "devise/registrations/shared/form_signup_user", resource: User.new, resource_name: :user %>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL CGU CFORGOOD -->
+<%= render "components/modals/signup_cgu" %>
+
+<% content_for :after_js do %>
+
+  <script>
+
+  </script>
+
+<% end %>

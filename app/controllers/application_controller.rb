@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :null_session
 
-  before_filter :check_maintenance_mode
+  before_action :check_maintenance_mode
 
   before_action :prevent_signup
 

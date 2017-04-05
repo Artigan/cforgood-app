@@ -36,6 +36,8 @@ Rails.application.routes.draw do
     post 'signup_gift',             to: 'devise/registrations#create_gift'
     get 'signup_beneficiary',       to: 'devise/registrations#new_gift'
     post 'signup_beneficiary',      to: 'devise/registrations#create_gift'
+    get 'signup_app_mobile',        to: 'devise/registrations#new_app_mobile'
+    post 'signup_app_mobile',       to: 'devise/registrations#create_app_mobile'
     get "member/sent_mail",         to: "devise/passwords#sent_mail"
     put "member/update_cause",      to: "member/registrations#update_cause"
     put "member/update_profile",    to: "member/registrations#update_profile"
