@@ -68,10 +68,12 @@
                     </div>
                 </div>
                 <div class="card-block card-left">
-                    <% if @address.open? == true %>
-                      <span class="opening true">Ouvert</span>
-                    <% else %>
-                      <span class="opening false">Fermé</span>
+                    <% if @address.timetables.present? %>
+                      <% if @address.open? == true %>
+                        <span class="opening true">Ouvert</span>
+                      <% else %>
+                        <span class="opening false">Fermé</span>
+                      <% end %>
                     <% end %>
                     <h1 id="business-name"><%= @business.name.downcase.titleize %></h1><br>
                     <div class="business-specs">
