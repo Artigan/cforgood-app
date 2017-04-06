@@ -15,9 +15,11 @@
     <div id="assos">
 
       <div class="container-cause-cards">
-        <ul class="cause-cards list">
+        <!-- <div class="cause-cards list"> -->
+          <div class="row">
           <% @causes.each do |cause| %>
-            <li class="cause-cards-item">
+          <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12">
+            <div class="cause-cards-item">
               <% if cause.id != ENV['CAUSE_ID_CFORGOOD'].to_i %>
                 <%= link_to cause_path(cause), class: "cause-card" do %>
                   <!-- CARD HEADER -->
@@ -28,9 +30,11 @@
                   </div>
                 <% end %>
               <% end %>
-            </li>
+            </div>
+          </div>
+            <!-- </div> -->
           <% end %>
-        </ul>
+        </div>
       </div>
     </div>
   </div>
