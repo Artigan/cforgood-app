@@ -47,8 +47,8 @@ json.labels do
   end
 end
 
-json.perks.active do
-  json.array! @business.perks do |perk|
+json.perks do
+  json.array! @business.perks.active do |perk|
     json.extract! perk,
       :id,
       :name,
