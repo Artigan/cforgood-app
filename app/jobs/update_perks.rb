@@ -36,11 +36,10 @@ class UpdatePerks < ApplicationJob
         report << "ERROR | #{row["Id"]} not found"
         next
       end
-      @perk.name = row[:name]
       @perk.offer = row[:offer]
       @perk.value = row[:value]
       @perk.percent = row[:percent]
-      @perk.amount = "- " + row[:amount].to_s if row[:amount].present?
+      @perk.amount = row[:amount]
       if @perk.save
         nb_update_ok += 1
       else
