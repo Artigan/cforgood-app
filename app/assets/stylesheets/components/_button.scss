@@ -239,9 +239,9 @@
 
 .button-gradient {
   position: fixed;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: inline-block;
+  // justify-content: center;
+  // align-items: center;
   height: 50px;
   min-width: 150px;
   bottom: 10px;
@@ -296,8 +296,7 @@
 
   @media (max-width: 767px) {
     position: fixed;
-    display: inline-flex;
-    text-align: center;
+    display: inline-block;
   }
 }
 
