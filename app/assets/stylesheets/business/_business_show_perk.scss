@@ -682,6 +682,8 @@
   border: 3px solid;
   border-radius: 25px;
   padding: 5px 12px;
+  width: 55px;
+  justify-content: center;
 
   span {
     margin-top: -8px;
@@ -763,9 +765,16 @@
     padding: 1px 7px;
     position: relative;
     right: 10px;
-    bottom: -10px;
+    bottom: -15px;
     margin-bottom: 0;
-    font-size: 0.8em;
+    font-size: 0.7em;
+    width: 55px;
+    text-align: center;
+
+    span {
+      bottom: 3px;
+      position: relative;
+    }
   }
 
   .card-block.block-text-modal {
@@ -1535,12 +1544,6 @@
 
       .background-image-perk-modal {
         height: 220px;
-      }
-
-      .perks-offer-type-modal {
-        border: 3px solid;
-        padding: 5px 10px ;
-        font-size: 0.6em;
       }
 
       .perk-modal-main-title {
