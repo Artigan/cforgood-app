@@ -106,8 +106,9 @@
           $(this).toggleClass('is-selected');
           $('#categories-all').removeClass('is-selected');
         } else {
-          $('.category-item').removeClass('is-selected');
-          $('#categories-all').addClass('is-selected');
+          // $('.category-item').removeClass('is-selected');
+          $('.category-item').toggleClass('is-selected');
+          $('#categories-all').toggleClass('is-selected');
         }
         // SET VISIBLE OR NOT LAYERS ON MAP
         setLayerVisibilty();

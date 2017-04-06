@@ -22,7 +22,7 @@
             <div class="input-container">
                 <input id="like" class="radio-button" type="radio" name="radio"/>
                 <div class="background-border">
-                <div class="radio-tile">
+                <div class="radio-tile radio-tile-like">
                     <%= image_tag "heart_like.svg" %>
                 </div>
               </div>
@@ -66,4 +66,12 @@
         $('#use_' + feedback).val('true');
         $('.submit-feedback').click();
     });
+
+    $('.radio-tile-unlike').mouseover(function() {
+      $('.background-border').css('filter', 'grayscale(100%)');
+    });
+    $('.radio-tile-unlike').mouseout(function() {
+      $('.background-border').css('filter', 'grayscale(0)');
+    });
+
 </script>
