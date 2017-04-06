@@ -566,7 +566,7 @@
 }
 
 .right-side h2 {
-  width: 170px;
+  width: 173px;
   border-bottom: 8px solid;
   line-height: 15px;
   font-weight: bold;
@@ -737,7 +737,7 @@
   }
 
   .perk-modal-main-title {
-    width: 100px;
+    width: 102px;
   }
 
   .perk-modal-main-title h5 {
@@ -878,9 +878,19 @@
     font-weight: bold;
   }
 
+  .subscribe-title {
+  @media (min-width: 320px) and (max-width: 479px) {
+    margin-top: -30%;
+    }
+  }
   .connect-title {
     margin-top: -10%;
     background-color: white !important;
+    margin-bottom: 5%;
+    @media (min-width: 320px) and (max-width: 479px) {
+      margin-top: -5%;
+      margin-bottom: 8%;
+    }
   }
 
   .connect-title:hover {
@@ -889,6 +899,32 @@
 
    .perk-modal-header-text, .perk-modal-content-text {
      font-size: 1.3em;
+   }
+
+  .perk-modal-content {
+    @media (min-width: 320px) and (max-width: 479px) {
+    margin-top: -10%;
+    }
+  }
+
+
+   .subtitle-or {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     width: 100%;
+     height: 45px;
+     margin-bottom: 8%;
+     @media (min-width: 320px) and (max-width: 479px) {
+       margin-bottom: -3%;
+       height: 35px;
+     }
+   }
+
+   .box-subscribe-connect {
+     @media (min-width: 320px) and (max-width: 479px) {
+       margin-bottom: 10%;
+     }
    }
 
     // POP UP MEMBER CARD //
@@ -982,7 +1018,7 @@
 
     p.unused-description {
       margin-top: 0;
-      padding-bottom: 3%;
+      padding-bottom: 5%;
       color: gray;
       @media (min-width: 992px) and (max-width:1220px) {
         margin-top: -4%;
