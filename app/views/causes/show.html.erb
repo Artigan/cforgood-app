@@ -1,3 +1,4 @@
+
 <%= content_for(:title) do %>
 <%= @cause.name %>
 <% end %>
@@ -123,8 +124,8 @@ Découvrez l'engagement de
                                         <i class="fa fa-phone" aria-hidden="true"></i>
                                         <span><%= @cause.telephone %></span>
                                     </a>
-                                </div>
                                 <% end %>
+                                  </div>
                                 <div class="items-contact-first-row">
                                     <% if @cause.email.present? %>
                                     <a href="mailto:<%= @cause.email %>" target="_blank">
@@ -224,12 +225,10 @@ Découvrez l'engagement de
 
 <script>
 $(document).ready(function () {
-
     $(".validate-choice-button").on("click", function () {
         // EVENT AMPLITUDE : USER_C_CAUSE_SUPPORT
         amplitude.logEvent('USER_C_CAUSE_SUPPORT');
     });
-
     $( '.already-shown' ).click(function() {
       if($('.to-be-shown').css('opacity') === '0') {
     $('.to-be-shown').css('opacity', '1');
@@ -238,7 +237,6 @@ $(document).ready(function () {
     }
   }
 );
-
 });
 </script>
 
