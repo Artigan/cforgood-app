@@ -1,9 +1,9 @@
 class Api::V1::BaseController < ActionController::Base
-  acts_as_token_authentication_handler_for User
+  acts_as_token_authentication_handler_for User, except: [ :create ]
   include Pundit
   include ApplicationHelper
 
-  after_action :verify_authorized, except: :show
+  after_action :verify_authorized
 
   rescue_from StandardError,                with: :internal_server_error
   rescue_from Pundit::NotAuthorizedError,   with: :user_not_authorized

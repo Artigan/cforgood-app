@@ -2,6 +2,16 @@ class Api::V1::UsersController < Api::V1::BaseController
 
   before_action :set_user, only: [ :show, :update ]
 
+  def create
+    @user = User.new(user_params)
+    authorize @user
+    if @user.save
+      render status: 200, json: { id: @user.id }
+    else
+      render status: :unprocessable_entity, json: { error: @user.errors.full_messages}
+    end
+  end
+
   def show
     @cause = current_user.cause
     @payments = current_user.payments
@@ -54,6 +64,7 @@ class Api::V1::UsersController < Api::V1::BaseController
       :email,
       :first_name,
       :last_name,
+      :password,
       :birthday,
       :subscription,
       :amount,

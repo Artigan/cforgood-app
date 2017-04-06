@@ -5,6 +5,10 @@ class UserPolicy < ApplicationPolicy
     end
   end
 
+  def create?
+    true
+  end
+
   def supervisor_account?
     user == record
   end

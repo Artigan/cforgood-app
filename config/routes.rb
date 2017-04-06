@@ -103,7 +103,7 @@ Rails.application.routes.draw do
         post "/", :to => 'sessions#create'
         delete "/logout", :to => 'session#destroy'
       end
-      resources :users, only: [ :show, :update ]
+      resources :users, only: [ :create, :show, :update ]
       resources :business_categories, only: [ :index ]
       resources :businesses, only: [ :index, :show ]
       resources :perks, only: [:show]
