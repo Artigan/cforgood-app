@@ -210,6 +210,7 @@
       border-radius: 50%;
       padding: 1rem;
       transition: transform 300ms ease;
+      cursor: pointer;
 
       img {
         width: 100%;
@@ -239,6 +240,9 @@
       filter:grayscale(0);
       cursor: pointer;
       background-color: white;
+      .radio-tile {
+        filter: grayscale(100%);
+      }
     }
 
     .present-3months {
