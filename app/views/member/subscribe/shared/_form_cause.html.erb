@@ -45,8 +45,7 @@
         var supervisorId = $(this).attr('class').split(" ")[1];
         var signupAppMobile = $(this).attr('class').split(" ")[2]
         if ( supervisorId != "" ) {
-            window.location.href = "<%= member_user_dashboard_path(current_user) %>";
-          }
+          window.location.href = "<%= member_user_dashboard_path(current_user) %>";
         } else {
           $(".choose-cause").addClass("ishidden");
           $(".signup-plan").removeClass("ishidden").addClass("slideup");

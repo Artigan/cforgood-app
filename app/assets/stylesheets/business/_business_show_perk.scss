@@ -683,6 +683,7 @@
   border-radius: 25px;
   padding: 5px 12px;
   justify-content: center;
+  width: 55px;
 
   span {
     margin-top: -8px;
@@ -963,6 +964,7 @@
       background-image: -webkit-gradient(linear, left bottom, right top, color-stop(0.1, #00C9FF ), color-stop(0.9, #80F2A4));
       background-image: -moz-linear-gradient(center bottom, #00C9FF 10%, #80F2A4 90%);
       padding: 3px;
+      padding-bottom: 14px;
     }
 
     .perk-modal-feedback-text-content {
@@ -1035,7 +1037,7 @@
       padding-top: 2%;
     }
 
-    .input-container-unused {
+    .input-container.unused {
       position: relative;
       width:  100%;
       margin: 0;
@@ -1046,19 +1048,6 @@
       margin-left: 5%;
       margin-right: 5%;
     }
-
-      //make actual radio input invisible
-      // + stretch to fill container
-      .radio-button.unused {
-        opacity: 0;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 60px;
-        margin: 0;
-        cursor: pointer;
-      }
 
     // END POP UP FEED BACK //
 
@@ -3026,8 +3015,8 @@
 
 
   .btn-show-card {
-    display: flex;
-    flex-direction: column;
+    display: inline-block;
+    text-align: center;
     line-height: 7px;
 
     span {
@@ -3121,6 +3110,19 @@
       color: rgba(55,55,55,0.9);
     }
   }
+
+.dashboard .perk-modal {
+  position: absolute;
+  left: 50%;
+  height: auto;
+  background: transparent;
+  transform: translateX(calc(-50% + 45px));
+  border-left: none;
+
+  @media (max-width: 767px) {
+    transform: translateX(-50%);
+  }
+}
 
 .member-header-text {
   color: rgba(55,55,55,0.8);

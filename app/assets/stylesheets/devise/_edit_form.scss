@@ -156,15 +156,27 @@
 
     //make actual radio input invisible
     // + stretch to fill container
-    .radio-button {
-      opacity: 0;
+    button {
       position: absolute;
       top: 0;
       left: 0;
-      height: 100%;
-      width: 100%;
+      height: 50px;
+      width: 50px;
       margin: 0;
+      padding: 0;
       cursor: pointer;
+      background-color: transparent;
+      border: none;
+
+      &.unused {
+        width: 100%;
+      }
+
+      &:active,
+      &:focus,
+      &:hover {
+        outline: none;
+      }
     }
 
     //default tile styles
