@@ -1,5 +1,6 @@
 class Api::V1::CausesController < Api::V1::BaseController
 
+  acts_as_token_authentication_handler_for User
   before_action :set_cause, only: [ :show ]
 
   def index
