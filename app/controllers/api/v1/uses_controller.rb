@@ -1,5 +1,6 @@
 class Api::V1::UsesController < Api::V1::BaseController
 
+  acts_as_token_authentication_handler_for User
   before_action :set_use, only: [ :update ]
 
   def create

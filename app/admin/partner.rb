@@ -25,9 +25,10 @@ ActiveAdmin.register Partner do
       f.input :user_id
       f.input :exclusive
       f.input :shared
+      f.input :supervisor_id
     end
     f.actions
   end
 
-permit_params :name, :email, :code_partner, :nb_months, :nb_days, :times, :promo, :date_start_promo, :date_end_promo, :user_id, :exclusive, :shared
+permit_params :name, :email, :code_partner, :nb_months, :nb_days, :times, :promo, :date_start_promo, :date_end_promo, :user_id, :exclusive, :shared, :supervisor_id
 end
