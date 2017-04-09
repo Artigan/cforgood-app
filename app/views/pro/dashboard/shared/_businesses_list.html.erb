@@ -33,6 +33,9 @@
           <span><%= link_to  business.name, pro_business_impersonation_path(impersonate_id: business.id), method: :post %></span>
           <ul class="data-business">
             <li>
+              <span class="number"><%= business.active ? "Actif" : "Non actifé" %></span>
+            </li>
+            <li>
               <i class="fa fa-tag"></i>
               <span class="number"><%= business.perks.count %></span>
             </li>

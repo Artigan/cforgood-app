@@ -1,14 +1,14 @@
-class UpdatePerks < ApplicationJob
+class UpdateBusinesses < ApplicationJob
   require 'csv'
   require 'net/ftp'
   queue_as :default
 
   def perform(ftp_file)
     # il faut prendre le fichier depuis le ftp
-    ftp_path = 'datas/perk'
+    ftp_path = 'datas/business'
     report = []
     report << "-----------------------------------------"
-    report << "Report UPDATE PERKS JOB"
+    report << "Report UPDATE BUSINESSES JOB"
     report << "-----------------------------------------"
 
     begin
@@ -28,23 +28,20 @@ class UpdatePerks < ApplicationJob
     CSV.foreach(csv_file, { headers: true, header_converters: :symbol, col_sep: ';' }) do |row|
 
       nb_read += 1
-      # update perk
+      # update business
       begin
-        @perk = Perk.find(row[:id])
+        @business = Business.find(row[:id])
       rescue ActiveRecord::RecordNotFound
         nb_update_ko += 1
         report << "ERROR | #{row["Id"]} not found"
         next
       end
-      @perk.offer = row[:offer]
-      @perk.value = row[:value]
-      @perk.percent = row[:percent]
-      @perk.amount = row[:amount]
-      if @perk.save
+
+      if BUSINESSE.save
         nb_update_ok += 1
       else
         nb_update_ko += 1
-        report << "ERROR | #{row["Id"]} not updated | #{@perk.errors.full_messages}"
+        report << "ERROR | #{row["Id"]} not updated | # BUSINESSE.errors.full_messages}"
       end
     end
 
@@ -64,11 +61,11 @@ class UpdatePerks < ApplicationJob
     if Rails.env.production?
       notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_JOB_URL']
       attachment = {
-        fallback: "Report UPDATE PERKS JOB",
+        fallback: "Report UPDAT BUSINESSES JOB",
         fields: fields,
         color: "good"
       }
-      notifier.ping "Report UPDATE PERKS JOB", attachments: [attachment]
+      notifier.ping "Report UPDAT BUSINESSES JOB", attachments: [attachment]
     end
 
   end
