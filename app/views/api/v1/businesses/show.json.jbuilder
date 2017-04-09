@@ -49,24 +49,51 @@ end
 
 json.perks do
   json.array! @business.perks.active do |perk|
-    json.extract! perk,
-      :id,
-      :name,
-      :description,
-      :times,
-      :start_date,
-      :end_date,
-      :active,
-      :perk_code,
-      :nb_views,
-      :appel,
-      :durable,
-      :flash,
-      :perk_detail_id,
-      :all_day
-    json.picture perk.picture.url(:card)
-    json.times_remaining perk.flash && perk.times > 0 ? perk.times - Use.where(perk_id: perk.id).count : 0
-    json.offer perk.offer_type
-    json.usable_for_user perk.perk_in_time? && perk.perk_usable?(current_user)
+    if perk.perk_in_time? && perk.perk_usable?(current_user)
+      json.extract! perk,
+        :id,
+        :name,
+        :description,
+        :times,
+        :start_date,
+        :end_date,
+        :active,
+        :perk_code,
+        :nb_views,
+        :appel,
+        :durable,
+        :flash,
+        :perk_detail_id,
+        :all_day
+      json.picture perk.picture.url(:card)
+      json.times_remaining perk.flash && perk.times > 0 ? perk.times - Use.where(perk_id: perk.id).count : 0
+      json.offer perk.offer_type
+      json.usable_for_user true
+    end
+  end
+
+  json.array! @business.perks.active do |perk|
+    if !(perk.perk_in_time? && perk.perk_usable?(current_user))
+      json.extract! perk,
+        :id,
+        :name,
+        :description,
+        :times,
+        :start_date,
+        :end_date,
+        :active,
+        :perk_code,
+        :nb_views,
+        :appel,
+        :durable,
+        :flash,
+        :perk_detail_id,
+        :all_day
+      json.picture perk.picture.url(:card)
+      json.times_remaining perk.flash && perk.times > 0 ? perk.times - Use.where(perk_id: perk.id).count : 0
+      json.offer perk.offer_type
+      json.usable_for_user false
+    end
   end
 end
+
