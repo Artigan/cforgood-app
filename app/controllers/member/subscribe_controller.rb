@@ -16,7 +16,6 @@ class Member::SubscribeController < ApplicationController
       current_user.update_attribute("card_id", params[:card][:id])
       execute_payin
     end
-    binding.pry
     respond_to :js
   end
 
