@@ -19,7 +19,6 @@ class Api::V1::UsersController < Api::V1::BaseController
     @partner = Partner.find_by_code_partner(@user.code_partner) if @user.code_partner
     @beneficiary = Beneficiary.includes(:users).find_by_email(@user.email)
     @user_offering = @beneficiary.try(:users)
-    binding.pry
     if !current_user.uses.first.present?
       if !current_user.member
         @first_perk_offer = Business.find(ENV['BUSINESS_ID_CFORGOOD']).perks.active.first
