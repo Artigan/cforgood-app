@@ -171,7 +171,7 @@ Consultez vos chiffres
           <div class="list-perks">
             <span class="list-title">Vos bons plans récents <%= link_to new_pro_business_perk_path(current_business) do %><i class="fa fa-plus"></i><% end %>
             </span>
-            <% if @perks.count == 0 %>
+            <% if @perks.count == 0 && !current_business.supervisor %>
               <div class="no-content big">
                 <div class="wrapper">
                   <%= render "shared/icons/wand" %>
