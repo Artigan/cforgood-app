@@ -30,8 +30,11 @@ ActiveAdmin.register User do
       f.input :member
       f.input :active
       f.input :ambassador
+      f.input :supervisor
+      f.input :supervisor_id
+      f.input :business_supervisor_id
     end
     f.actions
   end
-  permit_params :first_name, :last_name, :name, :email, :street, :zipcode, :city, :picture, :admin, :member, :active, :password, :cause_id, :ambassador, :logo
+  permit_params :first_name, :last_name, :name, :email, :street, :zipcode, :city, :picture, :admin, :member, :active, :password, :cause_id, :ambassador, :logo, :supervisor, :supervisor_id, :business_supervisor_id
 end
