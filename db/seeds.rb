@@ -32,49 +32,64 @@ end
 # Création table LABEL_CATEGORIES
 # ----------------------------------------------------
 
-LabelCategory.destroy_all
+# LabelCategory.destroy_all
 
 puts "--------CREATE LABEL CATEGORIES--------"
 
-action_locale = LabelCategory.create!({
-  name: "Action Locale",
-  picture: "labels/action_locale.svg",
- })
+#action_locale = LabelCategory.create!({
+#  name: "Action Locale",
+#  picture: "labels/action_locale.svg",
+# })
+#
+#circuit_court = LabelCategory.create!({
+#  name: "Circuit Court",
+#  picture: "labels/circuit_court.svg",
+# })
+#
+#engagement_social = LabelCategory.create!({
+#  name: "Engagement social",
+#  picture: "labels/engagement_social.svg",
+# })
+#
+#modele_collaboratif_participatif = LabelCategory.create!({
+#  name: "Modèle collaboratif/participatif",
+#  picture: "labels/modele_collaboratif-participatif.svg",
+# })
+#
+#monnaie_locale = LabelCategory.create!({
+#  name: "Monnaie Locale",
+#  picture: "labels/monnaie_locale.svg",
+# })
+#
+#polit#ique_anti_gaspillage = LabelCategory.create!({
+#  name: "Politique anti-gaspillage",
+#  picture: "labels/politique_anti-gaspillage.svg",
+# })
+#
+#produits_eco_responsables = LabelCategory.create!({
+#  name: "Produits éco-responsables",
+#  picture: "labels/produits_eco-responsables.svg",
+# })
+#
+#zero_dechet = LabelCategory.create!({
+#  name: "Zéro déchet",
+#  picture: "labels/zero_dechet.svg",
+#})
 
-circuit_court = LabelCategory.create!({
-  name: "Circuit Court",
-  picture: "labels/circuit_court.svg",
- })
+energies_renouvelables = LabelCategory.create!({
+ name: "Énergies renouvelables",
+ picture: "labels/energies_renouvelables.svg",
+})
 
-engagement_social = LabelCategory.create!({
-  name: "Engagement social",
-  picture: "labels/engagement_social.svg",
- })
+epanouissement_personnel = LabelCategory.create!({
+ name: "Épanouissement personnel",
+ picture: "labels/epanouissement_personnel.svg",
+})
 
-modele_collaboratif_participatif = LabelCategory.create!({
-  name: "Modèle collaboratif/participatif",
-  picture: "labels/modele_collaboratif-participatif.svg",
- })
-
-monnaie_locale = LabelCategory.create!({
-  name: "Monnaie Locale",
-  picture: "labels/monnaie_locale.svg",
- })
-
-politique_anti_gaspillage = LabelCategory.create!({
-  name: "Politique anti-gaspillage",
-  picture: "labels/politique_anti-gaspillage.svg",
- })
-
-produits_eco_responsables = LabelCategory.create!({
-  name: "Produits éco-responsables",
-  picture: "labels/produits_eco-responsables.svg",
- })
-
-zero_dechet = LabelCategory.create!({
-  name: "Zéro déchet",
-  picture: "labels/zero_dechet.svg",
- })
+animation_culturelle = LabelCategory.create!({
+ name: "Animation culturelle",
+ picture: "labels/animation_culturelle.svg",
+})
 
 
 puts "--------END LABEL CATEGORIES-----------"
@@ -151,19 +166,19 @@ puts "--------END LABEL CATEGORIES-----------"
 #  })
 
 
-mobilite = BusinessCategory.create!({
-  name: "Mobilité",
-  picture: "business_categories/mobilite",
-  color: "#867486",
-  marker_symbol: "marker-mobilite"
- })
+# mobilite = BusinessCategory.create!({
+#   name: "Mobilité",
+#   picture: "business_categories/mobilite",
+#   color: "#867486",
+#   marker_symbol: "marker-mobilite"
+#  })
 
-artisanat = BusinessCategory.create!({
-  name: "Artisanat",
-  picture: "business_categories/artisanat",
-  color: "#1E71B9",
-  marker_symbol: "marker-artisanat"
- })
+# artisanat = BusinessCategory.create!({
+#   name: "Artisanat",
+#   picture: "business_categories/artisanat",
+#   color: "#1E71B9",
+#   marker_symbol: "marker-artisanat"
+#  })
 # puts "--------END BUSINESS CATEGORIES-----------"
 
 
@@ -173,15 +188,15 @@ artisanat = BusinessCategory.create!({
 
 # # puts "--------READ BUSINESS CATEGORIES-----------"
 
-personel = BusinessCategory.find_by_name("Développement personnel").update(picture: "business_categories/yoga")
-fitness = BusinessCategory.find_by_name("Santé & Fitness").update(picture: "business_categories/santeetbienetre.svg")
-epicerie = BusinessCategory.find_by_name("Marchés & Epiceries").update(picture: "business_categories/marcheetepicerie.svg")
-shopping = BusinessCategory.find_by_name("Shopping").update(picture: "business_categories/shopping.svg")
-maison = BusinessCategory.find_by_name("Maison & Jardin").update(picture: "business_categories/maisonetjardin.svg")
-loisirs = BusinessCategory.find_by_name("Loisirs & Sorties").update(picture: "business_categories/loisirs.svg")
-coffee = BusinessCategory.find_by_name("Cafés & Lieux de vie").update(picture: "business_categories/lieuxdevie.svg")
-beaute = BusinessCategory.find_by_name("Beauté & Bien Être").update(picture: "business_categories/beauteetbienetre.svg")
-bars = BusinessCategory.find_by_name("Bars & Restaurants").update(picture: "business_categories/restauration.svg")
+# personel = BusinessCategory.find_by_name("Développement personnel").update(picture: "business_categories/yoga")
+# fitness = BusinessCategory.find_by_name("Santé & Fitness").update(picture: "business_categories/santeetbienetre.svg")
+# epicerie = BusinessCategory.find_by_name("Marchés & Epiceries").update(picture: "business_categories/marcheetepicerie.svg")
+# shopping = BusinessCategory.find_by_name("Shopping").update(picture: "business_categories/shopping.svg")
+# maison = BusinessCategory.find_by_name("Maison & Jardin").update(picture: "business_categories/maisonetjardin.svg")
+# loisirs = BusinessCategory.find_by_name("Loisirs & Sorties").update(picture: "business_categories/loisirs.svg")
+# coffee = BusinessCategory.find_by_name("Cafés & Lieux de vie").update(picture: "business_categories/lieuxdevie.svg")
+# beaute = BusinessCategory.find_by_name("Beauté & Bien Être").update(picture: "business_categories/beauteetbienetre.svg")
+# bars = BusinessCategory.find_by_name("Bars & Restaurants").update(picture: "business_categories/restauration.svg")
 
 
 
