@@ -16,6 +16,7 @@ class Member::SubscribeController < ApplicationController
       current_user.update_attribute("card_id", params[:card][:id])
       execute_payin
     end
+    binding.pry
     respond_to :js
   end
 
@@ -63,11 +64,15 @@ class Member::SubscribeController < ApplicationController
             flash[:success] = "Votre paiement a été pris en compte."
           else
             flash[:alert] = "Erreur lors de l'enregistrement de votre paiement."
+            message = current_user.find_name_or_email + ": *erreur lors du paiement* :" + (result["ResultMessage"] || "")
+            send_message_to_slack(ENV['SLACK_WEBHOOK_USER_URL'], message)
+            create_event_intercom
           end
         else
           flash[:alert] = result["ResultMessage"]
           message = current_user.find_name_or_email + ": *erreur lors du paiement* :" + (result["ResultMessage"] || "")
           send_message_to_slack(ENV['SLACK_WEBHOOK_USER_URL'], message)
+          create_event_intercom
         end
       elsif current_user.subscription.present?
         flash[:success] = "Vos données bancaires ont bien été enregistrées."
@@ -82,5 +87,19 @@ class Member::SubscribeController < ApplicationController
 
   def user_params
     params.require(:user).permit(:subscription, :amount, :code_partner)
+  end
+
+  def create_event_intercom
+    intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
+    begin
+      intercom.events.create(
+        event_name: "ERROR-PAYMENT-SUBSCRIPTION",
+        created_at: Time.now.to_i,
+        user_id: current_user.id,
+        email: current_user.email
+      )
+    rescue Intercom::IntercomError => e
+      puts e
+    end
   end
 end
