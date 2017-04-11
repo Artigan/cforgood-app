@@ -17,7 +17,7 @@ class UpdateBusinesses < ApplicationJob
       ftp.chdir(ftp_path)
       ftp.passive = true
       fileList= ftp.nlst
-      ftp.gettextfile(ftp_file, csv_file = File.basename(ftp_file))
+      ftp.getbinaryfile(ftp_file, csv_file = File.basename(ftp_file))
       ftp.close
     rescue Exception => e
       report << "ERROR FTP | #{e} |"
@@ -50,7 +50,8 @@ class UpdateBusinesses < ApplicationJob
       end
 
       # @business.name = @business.name if @business.name != @business.name
-      @business.activity = @business.activity
+      @business.name = row[:name] if row[:name]
+      @business.activity = row[:activity] if row[:activity]
       @business.labels.build(label_category_id: action_local).save if row[:action_local] == "1"
       @business.labels.build(label_category_id: circuit_court).save if row[:circuit_court] == "1"
       @business.labels.build(label_category_id: engagement_social).save if row[:engagement_social] == "1"
@@ -67,14 +68,14 @@ class UpdateBusinesses < ApplicationJob
         nb_update_ok += 1
       else
         nb_update_ko += 1
-        report << "ERROR | #{row["Id"]} not updated | # BUSINESSE.errors.full_messages}"
+        report << "ERROR | #{row["Id"]} not updated | #{@business.errors.full_messages}"
       end
     end
 
     report << "-----------------------------------------"
-    report << "Nb user read : #{nb_read}"
-    report << "Nb user create OK : #{nb_update_ok}"
-    report << "Nb user create KO : #{nb_update_ko}"
+    report << "Nb business read : #{nb_read}"
+    report << "Nb business update OK : #{nb_update_ok}"
+    report << "Nb business update KO : #{nb_update_ko}"
     report << "-----------------------------------------"
 
     # Edit report + Send to slack
@@ -87,11 +88,11 @@ class UpdateBusinesses < ApplicationJob
     if Rails.env.production?
       notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_JOB_URL']
       attachment = {
-        fallback: "Report UPDAT BUSINESSES JOB",
+        fallback: "Report UPDATE BUSINESSES JOB",
         fields: fields,
         color: "good"
       }
-      notifier.ping "Report UPDAT BUSINESSES JOB", attachments: [attachment]
+      notifier.ping "Report UPDATE BUSINESSES JOB", attachments: [attachment]
     end
 
   end
