@@ -102,13 +102,20 @@
 
       // TOOGLE FLASH PERKS LAYER ON MAP
       $('.category-item').click(function(event) {
-        if ($(this).val('div').attr('id') != 'categories-all') {
-          $(this).toggleClass('is-selected');
+        if ($(this).val('div').attr('id') != 'categories-all' && $('#categories-all').hasClass('is-selected')){
+          $('.category-item').not(this).toggleClass('is-selected');
+          // $(this).toggleClass('.is-selected');
           $('#categories-all').removeClass('is-selected');
+
+        } else if ($(this).val('div').attr('id') != 'categories-all') {
+          $(this).toggleClass('is-selected');
+
         } else {
           // $('.category-item').removeClass('is-selected');
-          $('.category-item').toggleClass('is-selected');
-          $('#categories-all').toggleClass('is-selected');
+          $('.category-item').addClass('is-selected');
+          // $('.category-item').toggleClass('is-selected');
+          // $('#categories-all').toggleClass('is-selected');
+          $('#categories-all').addClass('is-selected');
         }
         // SET VISIBLE OR NOT LAYERS ON MAP
         setLayerVisibilty();
