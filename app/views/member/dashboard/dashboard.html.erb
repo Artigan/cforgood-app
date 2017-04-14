@@ -130,7 +130,7 @@
       });
 
       // TOOGLE CATEGORY OVERLAY
-      $('.search-category-overlay, .close-button').click(function(event) {
+      $('.search-category-overlay, .close-button, .button-apply-filters').click(function(event) {
         $('.search-category').removeClass('is-open-max');
         $('.category-item').removeClass('is-open-min');
         $('.search-category-overlay').toggleClass('hidden');
@@ -139,6 +139,7 @@
       // CLOSE BUTTON FOR POP_UP
       $(".close-button").click(function() {
         $('.use-overlay').addClass('hidden');
+        console.log("kirikou");
       });
 
       // DISPLAY FIRST POPUP FEEDBACK
