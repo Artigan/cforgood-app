@@ -36,5 +36,3 @@ if (<%= !current_user.errors.any? && !flash[:alert].present? %>) {
   $(".error-message").html("<%= flash[:alert] %>");
   $(".signup-done-overlay.ko").removeClass('hidden');
 }
-
-

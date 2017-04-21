@@ -21,10 +21,10 @@ if (<%= !current_user.errors.any? %>) {
     } else {
      // DISCLAIMER - DISPLAYED
       $(".updated-done-overlay").removeClass("hidden");
-      window.setTimeout(function(){
-        // DISCLAIMER - HIDDEN
-        $(".updated-done-overlay").addClass("hidden");
-      }, 3000);
+      // window.setTimeout(function(){
+      //   // DISCLAIMER - HIDDEN
+      //   $(".updated-done-overlay").addClass("hidden");
+      // }, 3000);
     }
   }
 } else {
@@ -34,3 +34,9 @@ if (<%= !current_user.errors.any? %>) {
     $(document).find("form").prepend('<%= j render("components/error_messages", resource: current_user, formats: [:html]) %>');
   }
 }
+
+
+$(".close-button").click(function() {
+  $(".updated-done-overlay").toggleClass("hidden");
+  console.log("gentil chameau");
+})
