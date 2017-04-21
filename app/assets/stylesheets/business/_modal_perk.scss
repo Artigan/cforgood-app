@@ -1,5 +1,60 @@
 /* MODAL - USE CODE  **********************************************************/
 
+
+//ADRIEN CSS //
+
+.member-card-update-profil-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.member-card-update-profil {
+  width: 100px;
+  height: 100px;
+  -webkit-mask: image-url('icons/id-card.svg') no-repeat 50% 50%;
+  mask: image-url('icons/id-card.svg') no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+  mask-size: cover;
+}
+
+.pencil-image {
+  width: 20px;
+  height: 20px;
+  -webkit-mask: image-url('icons/pencil.svg') no-repeat 50% 50%;
+  mask: image-url('icons/pencil.svg') no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+  mask-size: cover;
+}
+
+.text-button-not-member-yet {
+  width: 200px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.border-gradient {
+  background-image: -webkit-gradient(linear, left bottom, right top, color-stop(0.1, #00C9FF ), color-stop(0.9, #80F2A4));
+  background-image: -moz-linear-gradient(center bottom, #00C9FF 10%, #80F2A4 90%);
+  padding: 3px;
+}
+
+.hourglass {
+  width: 100px;
+  height: 100px;
+  -webkit-mask: image-url('icons/hourglass.svg') no-repeat 50% 50%;
+  mask: image-url('icons/hourglass.svg') no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+  mask-size: cover;
+}
+
+
+
+
+
+// FIN ADRIEN CSS //
+
 .use-overlay {
   display: flex;
   justify-content: center;
@@ -52,14 +107,28 @@
 
         .close-button {
           position: absolute;
-          color: #636363;
-          background: transparent;
-          border: none;
           top: 10px;
           right: 10px;
-          font-size: 40px;
+          height: 35px;
+          width: 35px;
+          padding-left: 1px;
+          padding-right: 0;
+          padding-bottom: 3px;
+          font-size: 30px;
           font-weight: 100;
+          color: rgba(55,55,55,0.4);
+          background: transparent;
+          border: 1px solid rgba(55,55,55,0.4);
+          border-radius: 50%;
+          outline: none;
+          cursor: pointer;
+          transition: 0.5s ease;
           z-index: 200;
+
+          &:hover {
+            color: rgba(55,55,55,0.9);
+            border-color: rgba(55,55,55,0.9);
+          }
         }
 
         .wrapper {
@@ -75,7 +144,7 @@
         }
 
         span {
-          text-transform: uppercase;
+          // text-transform: uppercase;
           font-weight: 600;
           font-size: 20px;
           text-align: center;
@@ -154,6 +223,10 @@
 
         .container-code {
           text-align: center;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
 
           p {
             margin: 15px 0 15px;
@@ -188,7 +261,7 @@
             width: 100%;
             border-radius: 0 0 3px 3px;
             color: #fff;
-            text-transform: uppercase;
+            // text-transform: uppercase;
             background: #9FD6AE;
             border: none;
             font-size: 14px;
@@ -213,8 +286,12 @@
           flex-direction: column;
           margin: 30px 0 0;
 
+          .text-infos-not-member-yet {
+            margin-bottom: 20%;
+          }
+
           p {
-            margin: 0 0 30px;
+            margin: 10% 0 15%;
             font-size: 14px;
           }
 
@@ -224,12 +301,41 @@
             border: none;
             outline: none;
             color: #fff;
-            text-transform: uppercase;
+            // text-transform: uppercase;
             font-size: 14px;
             font-weight: 600;
             background-color: #9FD6AE;
             transition: all, 0.3s, ease-in-out;
           }
+
+          .button-gradient-not-member-yet {
+            position: fixed;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            height: 50px;
+            min-width: 150px;
+            bottom: 20px;
+            // left: (50%);
+            padding: 20px;
+            // transform: translateX(calc(-50% + 45px));
+            border: none;
+            border-radius: 25px;
+            outline: none;
+            cursor: pointer;
+            color: white;
+            line-height: 9px;
+            box-shadow:  0px 2px 2px rgba(0,0,0,0.3);
+            background: linear-gradient(to right, #64B9EA, #36D7B7, #33CC66);
+            z-index: 10;
+            font-weight: bolder;
+            margin-top: 5%;
+
+            &:hover, &:focus {
+              color: white;
+            }
+          }
+
         }
 
         .container-legend {

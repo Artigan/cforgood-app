@@ -2,20 +2,34 @@
   <div class="flip-container-mobile">
     <div class="flipper-mobile">
       <!-- FRONT CARD-->
+      <div class="border-gradient">
       <figure class="front">
         <!-- CLOSE BUTTON-->
         <button type="button" class="close-button">&times;</button>
         <!-- ILLUSTRATION-->
-        <div class="wrapper">
-          <%= render "shared/icons/bowtie" %>
+        <!-- <div class="wrapper">
+          <%#= render "shared/icons/bowtie" %>
+        </div> -->
+        <div class="member-card-update-profil-wrapper">
+          <div class="member-card-update-profil" style="background-color: lightgrey"></div>
         </div>
         <!-- CTA-->
         <div class="container-code gentleman">
-          <span>Oh mince...</span>
-          <p>Tu es bien inscrit, mais pas encore membre, alors pour finaliser ton inscription et soutenir l'association de ton choix</p>
-          <%= link_to "Clique ici !", member_user_profile_path(current_user, anchor: 'subscription'), class: "button-gentleman not-member" %>
+          <!-- <span>Oh mince...</span>
+          <p>Tu es bien inscrit, mais pas encore membre, alors pour finaliser ton inscription et soutenir l'association de ton choix</p> -->
+          <div class="text-infos-not-member-yet">
+          <span>Ha Ha... :-)<br><br><small>Vous êtes bien inscrit, mais pas encore membre !</small></span>
+          <p>Encore quelques clics et c'est bon.</p>
+          </div>
+          <%= link_to member_user_profile_path(current_user, anchor: 'subscription'), class: "button-gradient-not-member-yet not-member" do %>
+          <div class="text-button-not-member-yet">
+              <div>Je deviens membre </div>
+              <div class="pencil-image" style="background-color: white"></div>
+          </div>
+          <% end %>
         </div>
       </figure>
+    </div>
     </div>
   </div>
 </div>
@@ -24,7 +38,7 @@
   <script>
     $(document).ready(function() {
 
-      $(".button-gentleman.not-member").on("click", function() {
+      $(".button-gradient.not-member").on("click", function() {
         // EVENT AMPLITUDE : USER_C_SIGNUP_POPUP_DASHBOARD
         amplitude.logEvent('USER_C_SIGNUP_POPUP_DASHBOARD');
       });
