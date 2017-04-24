@@ -49,6 +49,24 @@
   mask-size: cover;
 }
 
+.first-perk-gift {
+  width: 100px;
+  height: 100px;
+  -webkit-mask: image-url('icons/gift.svg') no-repeat 50% 50%;
+  mask: image-url('icons/gift.svg') no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+  mask-size: cover;
+}
+
+.thumb-up-image {
+  width: 20px;
+  height: 20px;
+  -webkit-mask: image-url('icons/hand-like.svg') no-repeat 50% 50%;
+  mask: image-url('icons/hand-like.svg') no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+  mask-size: cover;
+}
+
 
 
 
