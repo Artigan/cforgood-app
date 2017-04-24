@@ -1,36 +1,51 @@
 <div class="use-overlay">
-  <div class="flip-container-mobile">
-    <div class="flipper-mobile">
-      <!-- FRONT CARD-->
-      <figure class="front">
-        <!-- CLOSE BUTTON-->
-        <button type="button" class="close-button">&times;</button>
-        <!-- ILLUSTRATION-->
-        <div class="wrapper">
+    <div class="flip-container-mobile">
+        <div class="flipper-mobile">
+            <!-- FRONT CARD-->
+            <div class="border-gradient">
+                <figure class="front">
+                    <!-- CLOSE BUTTON-->
+                    <button type="button" class="close-button">&times;</button>
+                    <!-- ILLUSTRATION-->
+                    <!-- <div class="wrapper">
           <%= render "shared/icons/bowtie" %>
+        </div> -->
+                    <div class="member-card-update-profil-wrapper">
+                        <div class="first-perk-gift" style="background-color: lightgrey"></div>
+                    </div>
+
+                    <!-- CTA-->
+                    <div class="container-code gentleman">
+                        <div class="text-infos-not-member-yet">
+                            <span>C'est parti !<br><br>
+                                <small>Bon plan offert</small>
+                            </span>
+                            <p>Pour bien commencer, nous vous offrons un bon plan chez un de nos commerçants.</p>
+                        </div>
+                        <div class="button-gradient-not-member-yet first-offer" id="perk-modal-dynamic-<%= perk.id %>">
+                            <div class="text-button-not-member-yet">
+                                <div>J'en profite !</div>
+                                <div class="thumb-up-image" style="background-color: white"></div>
+                            </div>
+                        </div>
+                    </div>
+                </figure>
+            </div>
         </div>
-        <!-- CTA-->
-        <div class="container-code gentleman">
-          <span>Bon plan offert</span>
-          <p>Pour bien commencer, nous vous offrons un bon plan chez l'un de nos commerçants</p>
-          <button class="button-gentleman first-offer" id="perk-modal-dynamic-<%= perk.id %>">J'en profite</button>
-        </div>
-      </figure>
     </div>
-  </div>
 </div>
 
 <%= render "businesses/business_perk_show", business: perk.business, address: perk.business.main_address, perk: perk, first_offer: true %>
 
 <% content_for :after_js do %>
-  <script>
-    $(document).ready(function() {
+<script>
+    $(document).ready(function () {
 
-      $(".button-gentleman.first-offer").on("click", function(e) {
-        var classModal = $(this).attr('id');
-        $('.' + classModal).removeClass("hidden");
-      });
+        $(".button-gentleman.first-offer").on("click", function (e) {
+            var classModal = $(this).attr('id');
+            $('.' + classModal).removeClass("hidden");
+        });
 
     });
-  </script>
+</script>
 <% end %>
