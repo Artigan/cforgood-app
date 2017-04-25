@@ -71,7 +71,13 @@
   background-image: url('logo_vertical.png');
   background-position: center;
   background-repeat: no-repeat;
+  background-size: 200px;
 }
+
+// .test-filter-background {
+//   background-color: (255,255,255,0.5);
+//   width: 100%;
+// }
 
 
 
@@ -125,7 +131,8 @@
         flex-direction: column;
         position: relative;
         padding: 35px 20px 20px;
-        background-color: #fff;
+        // background-color: #fff;
+        background-color: rgba(255,255,255,0.7);
         border-radius: 3px;
         @include transition(all, 0.3s, ease-in-out);
 
