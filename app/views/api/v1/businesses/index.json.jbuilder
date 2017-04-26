@@ -3,6 +3,7 @@ json.array! @businesses do |business|
   json.picture business.picture.url(:card)
   json.business_category_id business.business_category.id
   json.like business.like
+  json.online business.online
 
   json.addresses do
     json.array! business.addresses do |address|
