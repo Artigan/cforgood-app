@@ -128,7 +128,7 @@ class MonthlyPayinJob < ApplicationJob
       index = Time.now.prev_month.end_of_month.day - Time.now.end_of_month.day
 
       (1..index).each do |i|
-        @user_member_should_payin << User.member_should_payin(-i)
+        @user_member_should_payin << User.member_should_payin(-i) if User.member_should_payin(-i).exists?
       end
 
       @user_member_should_payin = @user_member_should_payin.reject(&:empty?)
@@ -163,7 +163,7 @@ class MonthlyPayinJob < ApplicationJob
       index = Time.now.prev_month.end_of_month.day - Time.now.end_of_month.day
 
       (1..index).each do |i|
-        @user_member_should_payin_J_7 << User.member_should_payin_J_7(7-i)
+        @user_member_should_payin_J_7 << User.member_should_payin_J_7(7-i) if User.member_should_payin(7-i).exists?
       end
 
       @user_member_should_payin_J_7 = @user_member_should_payin_J_7.reject(&:empty?)
