@@ -3,8 +3,13 @@ json.extract! @business,
   :name,
   :activity,
   :url,
-  :telephone,
-  :email,
+  :telephone
+if !@business.hidden_email
+  json.email @business.email
+else
+  json.email nil
+end
+json.extract! @business,
   :description,
   :business_category_id,
   :facebook,
