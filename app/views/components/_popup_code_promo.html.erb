@@ -1,0 +1,54 @@
+<!-- MEMBER CARD -->
+<div class="pmdjs popup-code-promo-<%= perk.id%> hidden">
+
+    <div class="card perk-modalll code-promo-modal">
+        <div class="card-block">
+            <div class="card-block block-text-modal">
+                <button type="button" class="closed-modal-code-promo close-button">&times;</button>
+
+                <div class="business-name-popup-code-promo">
+                    <h6>
+                        <%= business.name %>
+                    </h6>
+                </div>
+                <div class="perk-name-popup-code-promo"><%= perk.name.downcase %></div>
+
+                <div class="code-promo">
+                    <div class="business-name-popup-code-promo">
+                        <h6>CODE PROMO</h6>
+                    </div>
+                    <div class="background-gradient-border-perk-code">
+                        <div class="perk-code"><%= perk.perk_code %></div>
+                    </div>
+                </div>
+
+                <div class="popup-code-promo-description">"<span>Copier ce code</span>, avant de vous rendre sur le site en ligne du commerçant, afin d'en profiter."</div>
+            </div>
+
+            <%= link_to "Me rendre sur le site", "#{business.url}", class: " button-validation-modal-code-promo send-to-shop #{perk.id}", target:"_blank"  %>
+            <%= simple_form_for :use, url: perk_uses_path(perk.id), method: :post, remote: true, authenticity_token: true do |f| %>
+            <%= f.input :perk_id, as: :hidden, input_html: {value: perk.id} %>
+            <%= f.submit "", class: "btn-create-use-#{perk.id}", :style => "display: none;" %>
+            <% end %>
+        </div>
+    </div>
+</div>
+
+<% content_for :after_js do %>
+<script>
+    $(document).ready(function () {
+
+        $('.closed-modal-code-promo').click(function () {
+            $(".code-promo-open").addClass('hidden').removeClass('code-promo-open');
+            $('.closed-perk-on-modal').css('display', 'inherit');
+        });
+
+        $('.send-to-shop').click(function () {
+            var perkId = $(this).attr('class').split('send-to-shop ')[1];
+            $('.btn-create-use-' + perkId).click();
+            $(".code-promo-open").addClass('hidden').removeClass('code-promo-open');
+        });
+
+    });
+</script>
+<% end %>

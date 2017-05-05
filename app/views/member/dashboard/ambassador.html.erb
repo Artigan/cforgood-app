@@ -21,20 +21,26 @@
           <%= image_tag current_user.picture.url(:avatar), class: "img-circle user" %>
         <% else %>
           <!-- <div class="picture-none"> -->
-            <%= image_tag "citoyen.svg", class: "pastille-citoyen"%>
+            <%#= image_tag "ambassadeur.svg", class: "pastille-citoyen"%>
+            <%= image_tag "ambassadeur.svg", class: "ambassador-img"%>
           <!-- </div> -->
         <% end %>
       </div>
       <h2> Rejoignez la communauté<br>Cforgood</h2>
-      <p class="testimonial">« Ils sont écolos, végétariens, trient leurs déchets, aiment les médecines alternatives… OU PAS ! <br>
+      <!-- <p class="testimonial">« Ils sont écolos, végétariens, trient leurs déchets, aiment les médecines alternatives… OU PAS ! <br>
       Ils sont surtout à l'affût, conscients des enjeux et ont envie de changement à leur échelle.
-      Grâce à eux, la Révolution Positive est possible. »</p>
+      Grâce à eux, la Révolution Positive est possible. »</p> -->
 
-      <p class="testi-bis">Rejoignez la communauté des Ambassadeurs et participez à la Révolution Positive en détectant et en impliquant les acteurs qui vont dans le bon sens autour de vous.
+      <p class="testi-bis">Rejoignez la communauté des Ambassadeurs et participez à la Révolution Positive en détectant et en impliquant les acteurs qui vont dans le bon sens autour de vous.</p>
 
-      Vous allez vivre de l'intérieur cette révolution et aurez plus que jamais la parole pour faire grandir CforGood.
+    <p class="testimonial"> "Vous allez vivre de l'intérieur cette révolution et aurez plus que jamais la parole pour faire grandir CforGood.
 
-      On vous promet une aventure folle pleine de rencontres bienveillantes, de bonnes idées, de surprises, de challenges et d'événements enthousiasmants !</p>
+      Nous vous promettons une aventure folle pleine de rencontres bienveillantes, de bonnes idées, de surprises, de challenges et d'événements enthousiasmants !"</p>
+
+      <div class="signature-mat">
+          <div> <%= image_tag ("cforgood_mathilde.jpeg"), class: "img-circle img-mathilde-circle" %> </div>
+          <p>Mathilde, Community Manager chez CforGood</p>
+      </div>
       <!-- <span class="label-info">Demande en cours de modération</span> -->
       <div class="button-becoming-ambassador"><a class="button-gradient" href="https://cforgood1.typeform.com/to/iZ5QFx" data-mode="1" target="_blank">Devenir Ambassadeur</a></div>
 

@@ -8,12 +8,12 @@
          <div class="subscription-form">
            <%= simple_form_for(@employee, url: member_users_path) do |f| %>
            <%= f.hidden_field :supervisor_id, value: current_user.id %>
-           <%= f.input :email %>
-           <%= f.input :first_name %>
-           <%= f.input :last_name %>
-           <%= f.input :city %>
-           <%= f.hidden_field :zipcode %>
-           <%= f.submit %>
+           <%= f.input :email , :style => 'margin-top: 10%%'%>
+           <%= f.input :first_name , :style => 'margin-top: 10%' %>
+           <%= f.input :last_name , :style => 'margin-top: 10%'%>
+           <%= f.input :city , :style => 'margin-top: 10%'%>
+           <%= f.hidden_field :zipcode , :style => 'margin-top: 10%'%>
+           <%= f.submit :class => 'validate-form', :style => 'margin-top: 10%' %>
            <% end %>
          </div>
        </div>
