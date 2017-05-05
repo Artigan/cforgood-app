@@ -17,7 +17,7 @@
         </a>
         <% BusinessCategory.all.each do |category| %>
         <a href="#" class="filter-category current">
-            <li id="<%= " layer-"+category.marker_symbol %>" class="category-item is-selected">
+            <li id="<%= "layer-"+category.marker_symbol %>" class="category-item is-selected">
                 <div class="container-icon" style="border-color: <%= category.color %>;">
                     <%= image_tag category.picture %>
                 </div>
