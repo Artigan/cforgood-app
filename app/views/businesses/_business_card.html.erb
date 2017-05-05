@@ -4,7 +4,7 @@
         <div class="background-image-perk card-img-top img-responsive" style="background-image: url('<%= perk.picture.present? ? perk.picture.url(:card) : business.picture.url(:card) %>');" alt="perk picture">
           <div class="filterrr">
            <div class="overlay-unavailable <%= index_view == true || ( perk.perk_in_time? && ( !user_signed_in? || ( user_signed_in? && perk.perk_usable?(current_user) ) ) ) ? 'hidden' : '' %>">Bon plan épuisé</div>
-            <div class="perk-flash">
+            <div class="card-perk-flash">
                 <% if perk.flash %>
                   <div class="bolt-icon">
                       <i class="fa fa-bolt" aria-hidden="true"></i>

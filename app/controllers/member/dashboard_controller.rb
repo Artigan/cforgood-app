@@ -10,7 +10,7 @@ class Member::DashboardController < ApplicationController
     if !user_signed_in?
       session[:logout] = true
     end
-    @businesses = Business.not_supervisor.includes(:business_category, :perks_in_time, :uses, :main_address).active.for_map.with_perks_in_time.distinct.eager_load(:addresses_for_map).merge(Address.near(@lat_lng, 1000))
+    @businesses = Business.not_supervisor.includes(:business_category, :perks_in_time, :uses, :main_address).active.for_map.with_perks_in_time.distinct.eager_load(:addresses_for_map).merge(Address.near(@lat_lng, 99999))
     @geojson = {"type" => "FeatureCollection", "features" => []}
 
     @businesses.each do |business|
@@ -68,7 +68,7 @@ class Member::DashboardController < ApplicationController
   def profile
     @partner = Partner.find_by_code_partner(current_user.code_partner.upcase) if current_user.code_partner.present?
     @cause = current_user.cause
-    @payments = Payment.where(user_id: current_user.id).includes(:cause)
+    @payments = Payment.where(user_id: current_user.id).includes(:cause).order('created_at asc')
   end
 
   def gift

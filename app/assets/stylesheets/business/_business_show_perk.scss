@@ -616,7 +616,7 @@
   justify-content: space-between;
 }
 
-.perk-flash {
+.card-perk-flash {
   display: flex;
   align-items: baseline;
   margin-top: 2%;
@@ -1107,7 +1107,7 @@
       height: 90px;
     }
 
-    .perk-modal-mobile-member .card-perks .perk-flash {
+    .perk-modal-mobile-member .card-perks .card-perk-flash {
       right: 0;
     }
 

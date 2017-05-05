@@ -114,10 +114,11 @@
     <label class="hint--top-right" data-hint="Précisez le contenu de votre offre">Description *</label>
     <%= f.input :description, label: false, placeholder: "Dites-nous tout...", required: true, :input_html => { :rows => 3, maxlength: 220 } %>
     <label class="hint--top-right" data-hint="Déterminez une période de disponibilité">Période *</label>
-    <%= f.input :start_date_date, as: :string, label: false, placeholder: "Début", input_html: {"data-provide" => "datepicker", "data-date-language" => "fr", value: f.object.start_date.try(:strftime, '%d/%m/%Y') } %>
+    <%= f.input :start_date_date, as: :string, label: false, placeholder: "Début", input_html: {"data-provide" => "datepicker", "data-date-language" => "fr" } %>
+    <!-- , value: f.object.start_date.try(:strftime, '%d/%m/%Y') || nil } %> -->
     <%= f.input :start_date_hour, collection: pad0(0..23), label: false, selected: pad0(f.object.start_date_hour || 00) %>
     <%= f.input :start_date_min, collection: pad0([0, 15, 30, 45]), label: false, selected: pad0(f.object.start_date_min || 00) %>
-    <%= f.input :end_date_date, as: :string, label: false, placeholder: "Fin", :input_html => {"data-provide" => "datepicker", "data-date-language" => "fr", value: f.object.end_date.try(:strftime, '%d/%m/%Y') } %>
+    <%= f.input :end_date_date, as: :string, label: false, placeholder: "Fin", :input_html => {"data-provide" => "datepicker", "data-date-language" => "fr", value: f.object.end_date.try(:strftime, '%d/%m/%Y') || nil } %>
     <%= f.input :end_date_hour, collection: pad0(0..23), label: false, selected: pad0(f.object.end_date_hour || 23) %>
     <%= f.input :end_date_min, collection:  pad0([0, 15, 30, 45]), label: false, selected: pad0(f.object.end_date_min || 00) %>
     <%= f.input :all_day, label: "Toute la journée", as: :boolean, checked: f.object.all_day %>
