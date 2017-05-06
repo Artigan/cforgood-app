@@ -64,6 +64,7 @@ class Cause < ApplicationRecord
     message: "Cette image dépasse 1 MG !", if: :logo_changed?
   mount_uploader :logo, IconUploader
 
+  scope :active, -> { where(active: true) }
 
   validates :name, presence: true
   validates :email, presence: true

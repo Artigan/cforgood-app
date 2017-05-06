@@ -8,9 +8,9 @@ class Api::V1::CausesController < Api::V1::BaseController
 
     @partner = Partner.find_by_code_partner(current_user.code_partner.upcase) if current_user.code_partner.present?
     if @partner && @partner.supervisor_id.present?
-      @causes = Cause.where(supervisor_id: @partner.supervisor_id)
+      @causes = Cause.active.where(supervisor_id: @partner.supervisor_id)
     else
-      @causes = Cause.where.not(id: ENV['CAUSE_ID_CFORGOOD'].to_i).near(@lat_lng, 99999, order: "distance")
+      @causes = Cause.active.where.not(id: ENV['CAUSE_ID_CFORGOOD'].to_i).near(@lat_lng, 99999, order: "distance")
     end
     authorize @causes
   end
