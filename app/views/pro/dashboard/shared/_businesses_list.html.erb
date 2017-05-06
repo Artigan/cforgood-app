@@ -15,11 +15,11 @@
         </li>
         <li>
           <i class="fa fa-tag"></i>
-          <span class="number"><%= @business.businesses_perks.count %></span>
+          <span class="number"><%= businesses.sum { |b| b.businesses_perks.count } %></span>
         </li>
         <li>
           <i class="fa fa-eye"></i>
-          <span class="number"><%= @business.businesses_perks.sum(&:nb_views) %></span>
+          <span class="number"><%= businesses.sum { |b| b.businesses_perks.sum(&:nb_views) } %></span>
         </li>
         <li>
           <i class="fa fa-shopping-basket"></i>
