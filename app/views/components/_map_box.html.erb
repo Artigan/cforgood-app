@@ -4,7 +4,7 @@
     <i class="fa fa-caret-up" aria-hidden="true"></i>
   </div>
 
-  <%= link_to business_path(business, address_id: business.main_address.id) do %>
+  <%= link_to business_path(business, address_id: address) do %>
     <div class="business-index-card" style="border-bottom-color: <%= business.business_category.color %>;">
       <div class="bic-left">
         <div class="bic-photo" style="background-image: url('<%= business.picture %>');"></div>
