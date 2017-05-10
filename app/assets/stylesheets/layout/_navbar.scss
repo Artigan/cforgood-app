@@ -406,9 +406,11 @@
 }
 
 .current-impersonation {
+  display: flex;
   background-color: #8460AA;
   color: white;
-  padding: 5px 15px;
+  margin-left: 10px;
+  padding: 5px 5px 5px 15px;
   border-radius: 4px;
   height: 28px;
   font-size: 12px;
@@ -416,6 +418,20 @@
   font-weight: 100;
   text-transform: uppercase;
   z-index: 1;
+}
+
+.reset-impersonation {
+  font-size: 20px;
+  font-weight: 100;
+  line-height: 18px;
+  padding-top: 0;
+  padding-left: 30px;
+  color: white;
+  background: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  z-index: 200;
 }
 
 /* JS ANIMATIONS */

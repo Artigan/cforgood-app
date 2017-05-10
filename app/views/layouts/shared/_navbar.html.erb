@@ -24,9 +24,13 @@
       <% if current_impersonation %>
         <div class="current-impersonation">
           Vous agissez en tant que <%= current_impersonation.name %>
+          <%= link_to pro_business_reset_impersonation_path(current_business), method: :post do %>
+            <button type="button" class="reset-impersonation">&times;</button>
+          <% end %>
         </div>
       <% end %>
     </div>
+
   <% end %>
 
   <div class="navbar-right-item">

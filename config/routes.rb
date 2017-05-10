@@ -71,9 +71,10 @@ Rails.application.routes.draw do
     resources :businesses, only: [:show, :update, :new, :create] do
       resources :addresses
       resources :perks, only: [:index, :new, :create, :update]
-      get 'dashboard',  to: 'dashboard#dashboard'
-      post 'impersonation', to: 'dashboard#set_impersonation'
-      get "profile",    to: "dashboard#profile"
+      get 'dashboard',            to: 'dashboard#dashboard'
+      post 'impersonation',       to: 'dashboard#set_impersonation'
+      post 'reset_impersonation', to: 'dashboard#reset_impersonation'
+      get "profile",              to: "dashboard#profile"
       get "supervisor_dashboard", to: "dashboard#supervisor_dashboard"
     end
     resources :perks, only: [:show, :edit, :update, :destroy]
