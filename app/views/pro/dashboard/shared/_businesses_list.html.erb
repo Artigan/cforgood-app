@@ -15,22 +15,22 @@
         </li>
         <li>
           <i class="fa fa-tag"></i>
-          <span class="number"><%= businesses.sum { |b| b.businesses_perks.count } %></span>
+          <span class="number"><%= Perk.where(business_id: businesses).count %></span>
         </li>
         <li>
           <i class="fa fa-eye"></i>
-          <span class="number"><%= businesses.sum { |b| b.businesses_perks.sum(&:nb_views) } %></span>
+          <span class="number"><%= Perk.where(business_id: businesses).sum(&:nb_views) %></span>
         </li>
         <li>
           <i class="fa fa-shopping-basket"></i>
-          <span class="number"><%= @business.businesses_perks_uses.count %></span>
+          <span class="number"><%= Perk.where(business_id: businesses).reduce(0) { |sum, perk| sum + perk.uses.used.count }  %></span>
         </li>
       </ul>
     </h3>
     <ul class="data-list">
       <% businesses.each do |business| %>
         <li >
-          <span><%= link_to  business.name, pro_business_impersonation_path(impersonate_id: business.id), method: :post %></span>
+          <span><%= link_to business.name, pro_business_impersonation_path(impersonate_id: business.id), method: :post %></span>
           <ul class="data-business">
             <li>
               <span class="number"><%= business.active ? "Actif" : "Non actif" %></span>
@@ -41,7 +41,7 @@
             </li>
             <li>
               <i class="fa fa-eye"></i>
-              <span class="number"><%= business.perks_views_count %></span>
+              <span class="number"><%= Perk.where(business_id: business.id).sum(&:nb_views) %></span>
             </li>
             <li>
               <i class="fa fa-shopping-basket"></i>
@@ -58,7 +58,7 @@
 
  <script>
   $( function() {
-    $( "#accordion" ).accordion(
+    $( "#accordion").accordion(
       { active: false, collapsible: true }
     );
   } );
