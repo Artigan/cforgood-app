@@ -149,10 +149,14 @@
 }
 
 .business-button {
-  background-color: #9fd6ae;
+  background: linear-gradient(to right, #64B9EA, #36D7B7, #33CC66);
   &:hover {
     background-color: #8BBD99;
   }
+}
+
+.supervisor-save-button {
+  background: linear-gradient(to right, #64B9EA, #36D7B7, #33CC66);
 }
 
 .button-log {

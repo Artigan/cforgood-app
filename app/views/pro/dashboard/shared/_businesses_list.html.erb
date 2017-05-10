@@ -8,21 +8,21 @@
        <div class="icon-category" style="background-color: <%= BusinessCategory.find(business_category).color %>;">
         <%= image_tag BusinessCategory.find(business_category).picture, size: "30x30" %>
       </div>
-      <div class="data-business">
-        <li>
-          <i class="fa fa-home"></i>
+      <ul class="data-business">
+        <li class="data-business-item">
+          <i class="fa fa-home"><span class="tooltiptext">Nombre de commerces</span></i>
           <span class="number"><%= businesses.count %></span>
         </li>
-        <li>
-          <i class="fa fa-tag"></i>
+        <li class= "data-business-item">
+          <i class="fa fa-tag"><span class="tooltiptext">Nombre de bons plans</span></i>
           <span class="number"><%= @business.businesses_perks.count %></span>
         </li>
-        <li>
-          <i class="fa fa-eye"></i>
+        <li class= "data-business-item">
+          <i class="fa fa-eye"><span class="tooltiptext">Nombres de vues</span></i>
           <span class="number"><%= @business.businesses_perks.sum(&:nb_views) %></span>
         </li>
-        <li>
-          <i class="fa fa-shopping-basket"></i>
+        <li class= "data-business-item">
+          <i class="fa fa-shopping-basket"><span class="tooltiptext">Nombre d'utilisations de bons plans</span></i>
           <span class="number"><%= @business.businesses_perks_uses.count %></span>
         </li>
       </ul>
@@ -65,4 +65,3 @@
   </script>
 
 <% end %>
-
