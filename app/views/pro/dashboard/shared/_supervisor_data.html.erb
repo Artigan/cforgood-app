@@ -9,55 +9,55 @@
     <li id="data-businesses">
       <% if @business.businesses.count == 0 %>
         <span class="number number-inactive"><%= @business.businesses.count %></span>
-        <span class="label number-inactive">Nombre de commerces</span>
+        <span class="label number-inactive">Nombre de<br> commerces</span>
       <% else %>
         <span class="number"><%= @business.businesses.count %></span>
-        <span class="label">Nombre de commerces</span>
+        <span class="label">Nombre de<br> commerces</span>
       <% end %>
     </li>
      <li id="data-create">
       <% if @business.businesses_perks.count == 0 %>
         <span class="number number-inactive"><%= @business.businesses_perks.count %></span>
-        <span class="label number-inactive">Bons plans créés</span>
+        <span class="label number-inactive">Bons plans<br> créés</span>
       <% else %>
         <span class="number"><%= @business.businesses_perks.count %></span>
-        <span class="label">Bons plans créés</span>
+        <span class="label">Bons plans<br> créés</span>
       <% end %>
     </li>
     <li id="data-used">
       <% if @business.businesses_perks_uses.used.count == 0 %>
         <span class="number number-inactive"><%= @business.businesses_perks_uses.used.count %></span>
-        <span class="label number-inactive">Bons plans utlisés</span>
+        <span class="label number-inactive">Bons plans<br> utlisés</span>
       <% else %>
         <span class="number"><%= @business.businesses_perks_uses.used.count %></span>
-        <span class="label">Bons plans utlisés</span>
+        <span class="label">Bons plans<br> utlisés</span>
       <% end %>
     </li>
     <li id="data-users">
       <% if @business.members.count == 0 %>
         <span class="number number-inactive"><%= @business.members.count %></span>
-        <span class="label number-inactive">Nombre de membres</span>
+        <span class="label number-inactive">Nombre de<br> membres</span>
       <% else %>
         <span class="number"><%= @business.members.count %></span>
-        <span class="label">Nombre de membres</span>
+        <span class="label">Nombre de<br> membres</span>
       <% end %>
     </li>
     <li id="data-causes">
       <% if @business.causes.count == 0 %>
         <span class="number number-inactive"><%= @business.causes.count %></span>
-        <span class="label number-inactive">Nombre d'associations</span>
+        <span class="label number-inactive">Nombre<br> d'associations</span>
       <% else %>
         <span class="number"><%= @business.causes.count %></span>
-        <span class="label">Nombre d'associations</span>
+        <span class="label">Nombre<br> d'associations</span>
       <% end %>
     </li>
     <li id="data-donation">
       <% if @business.amount_donation == 0 %>
         <span class="number number-inactive"><%= @business.amount_donation %></span>
-        <span class="label number-inactive">Montant donation</span>
+        <span class="label number-inactive">Montant<br> donation</span>
       <% else %>
         <span class="number"><%= @business.amount_donation %></span>
-        <span class="label">Montant donation</span>
+        <span class="label">Montant<br> donation</span>
       <% end %>
     </li>
   </ul>
