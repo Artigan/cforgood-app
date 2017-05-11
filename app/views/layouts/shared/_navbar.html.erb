@@ -112,8 +112,10 @@
               <%#= link_to "Plaisir d'offrir", member_user_gift_path(current_user), class: "droptext-bold profile-tab" %>
             <% end %>
           <% elsif business_signed_in? %>
-            <%= link_to "Mes informations", pro_business_profile_path(current_business, anchor: 'business' ), class: "droptext-bold profile-tab" %>
-            <%= link_to "Mon commerce", pro_business_profile_path(current_business, anchor: 'shop'), class: "droptext-bold profile-tab" %>
+            <% if !current_business.supervisor %>
+              <%= link_to "Mes informations", pro_business_profile_path(current_business, anchor: 'business' ), class: "droptext-bold profile-tab" %>
+              <%= link_to "Mon commerce", pro_business_profile_path(current_business, anchor: 'shop'), class: "droptext-bold profile-tab" %>
+            <% end %>
           <% else %>
             <%= link_to signup_path do %>
               <div class="droptext">

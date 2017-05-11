@@ -35,6 +35,15 @@
           <% end %>
         </div>
 
+        <% if current_business.supervisor %>
+          <div class="leftmenu-item pro <%= active_class(pro_business_profile_path(current_business))%>">
+            <%= link_to pro_business_profile_path(current_business) do %>
+              <div class="left-menu-svg-container" style="background-image: url(<%= asset_path "commercant.svg" %>)"></div>
+              <div class="left-menu-text">Son profil</div>
+            <% end %>
+          </div>
+        <% end %>
+
         <div class="leftmenu-item intercom">
           <a id="Intercom">
             <div class="left-menu-svg-container" style="background-image: url(<%= asset_path "icons/intercom-chat-icon.svg" %>)"></div>
