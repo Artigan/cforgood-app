@@ -74,14 +74,99 @@
   background-size: 200px;
 }
 
-// .test-filter-background {
-//   background-color: (255,255,255,0.5);
-//   width: 100%;
-// }
 
 
+.flip-container-mobile-dl {
+  border-radius: 3px;
+  position: relative;
+  perspective: 1000px;
 
+  &.flip-signin {
+    width: 90%;
+  }
 
+  .front {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    min-width: 600px;
+    min-height: 350px;
+    // background-color: #fff;
+    background-color: rgba(255,255,255,1);
+    border-radius: 10px;
+    background-image: image-url('background-dl-app.png');
+    background-position: center;
+    background-size: cover;
+    @include transition(all, 0.3s, ease-in-out);
+}
+.left-container-flex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 300px;
+  height: 100%;
+  padding-left: 6%;
+}
+
+.logo-cforgood-white {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 6%;
+  margin-top: -20%;
+  background-image: image-url('logo-cforgood-white.png');
+  background-position: center;
+  background-size: cover;
+}
+
+.left-container-flex h6 {
+  color: white;
+  font-size:1.2em;
+  font-weight: bold;
+  margin-top: 4%;
+  margin-bottom: 8%;
+  text-align: center;
+  line-height: 30px;
+}
+
+.container-dl-badges {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: -20%;
+}
+
+.app-store-badge {
+  min-height: 50px;
+  min-width: 160px;
+  background-image: image-url('app-store-badge.png');
+  background-position: center;
+  background-size: cover;
+  border-radius: 5px;
+  margin-right: 2%;
+}
+
+.play-store-badge {
+  min-height: 75px;
+  min-width: 160px;
+  background-image: image-url('google-play-badge.png');
+  background-position: center;
+  background-size: cover;
+  border-radius: 20px;
+  margin-left: 2%;
+}
+
+h6.close-tag {
+  position: absolute;
+  color: white;
+  font-size:1em;
+  bottom: 5px;
+  right: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  }
+}
 
 // FIN ADRIEN CSS //
 

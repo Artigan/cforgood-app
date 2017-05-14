@@ -32,18 +32,18 @@
         <li >
           <span><%= link_to  business.name, pro_business_impersonation_path(impersonate_id: business.id), method: :post %></span>
           <ul class="data-business">
-            <li>
+            <li class="data-business-item">
               <span class="number"><%= business.active ? "Actif" : "Non actif" %></span>
             </li>
-            <li>
+            <li class="data-business-item">
               <i class="fa fa-tag"></i>
               <span class="number"><%= business.perks.count %></span>
             </li>
-            <li>
+            <li class="data-business-item">
               <i class="fa fa-eye"></i>
               <span class="number"><%= business.perks_views_count %></span>
             </li>
-            <li>
+            <li class="data-business-item">
               <i class="fa fa-shopping-basket"></i>
               <span class="number"><%= business.perks_uses_count %></span>
             </li>

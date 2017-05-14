@@ -10,6 +10,11 @@
 <%= render 'businesses/business_search_index'%>
 
 <div class="container-fluid admin">
+
+  <div class="dl">
+  <%= render 'components/popups/download_the_app'%>
+  <div>
+
   <% if user_signed_in? and !current_user.active %>
     <div class="done-overlay waiting connexion-user">
       <div class="done-container">
