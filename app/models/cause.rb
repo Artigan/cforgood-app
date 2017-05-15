@@ -39,6 +39,7 @@
 #  supervisor_id              :integer
 #  representative_testimonial :text
 #  civility                   :integer
+#  national                   :boolean          default(FALSE)
 #
 # Indexes
 #
@@ -65,6 +66,8 @@ class Cause < ApplicationRecord
   mount_uploader :logo, IconUploader
 
   scope :active, -> { where(active: true) }
+  scope :national, -> { where(national: true) }
+  scope :around_me, -> (coordinates) { where(national: false).near(coordinates, 50, order: "distance")}
 
   validates :name, presence: true
   validates :email, presence: true
@@ -76,6 +79,7 @@ class Cause < ApplicationRecord
 
   geocoded_by :address
 
+  before_validation :format_city, if: :national_changed?
   after_validation :geocode, if: :address_changed?
 
   before_save :format_facebook, if: :facebook_changed?
@@ -94,6 +98,10 @@ class Cause < ApplicationRecord
 
   def address
     "#{street}, #{zipcode} #{city}"
+  end
+
+  def format_city
+    self.city = "National" if national
   end
 
   def format_facebook

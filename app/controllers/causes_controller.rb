@@ -7,7 +7,8 @@ class CausesController < ApplicationController
     if @partner && @partner.supervisor_id.present?
       @causes = Cause.active.where(supervisor_id: @partner.supervisor_id)
     else
-      @causes = Cause.active.where.not(id: ENV['CAUSE_ID_CFORGOOD'].to_i).near(@lat_lng, 99999, order: "distance").includes(:cause_category)
+      @causes = Cause.active.where.not(id: ENV['CAUSE_ID_CFORGOOD'].to_i).around_me(@lat_lng).includes(:cause_category)
+      @causes += Cause.active.national
     end
   end
 
@@ -43,7 +44,7 @@ class CausesController < ApplicationController
 
     def cause_params
       params.require(:cause).permit(:name, :description, :street, :zipcode, :city, :url, :email, :telephone, :impact, :cause_category_id, :facebook, :twitter, :instagram, :description_impact,
-:representative_first_name, :representative_last_name, :amount_impact, :active, :link_video, :picture, :picture_cache, :logo, :logo_cache, :mailing, :tax_receipt, :followers, :heard)
+:representative_first_name, :representative_last_name, :amount_impact, :active, :link_video, :picture, :picture_cache, :logo, :logo_cache, :mailing, :tax_receipt, :followers, :heard, :national)
     end
 
 end

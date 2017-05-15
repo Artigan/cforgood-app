@@ -11,6 +11,12 @@ json.array! @businesses do |business|
     end
   end
 
+  json.labels do
+    json.array! business.label_categories do |label_category|
+      json.extract! label_category, :name
+    end
+  end
+
   json.perks do
     json.array! business.perks.active do |perk|
       json.extract! perk, :id, :name, :flash

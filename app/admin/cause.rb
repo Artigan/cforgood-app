@@ -39,11 +39,12 @@ ActiveAdmin.register Cause do
     end
     f.inputs "Admin" do
       f.input :active
+      f.input :national
     end
     f.actions
   end
 
   permit_params :name, :email, :cause_category_id, :impact, :url, :latitude, :longitude, :description, :amount_impact, :description_impact, :street, :zipcode, :city, :telephone, :facebook, :twitter, :instagram, :picture, :logo, :active, :representative_first_name,
- :representative_last_name, :link_video, :like, :unlike
+ :representative_last_name, :link_video, :like, :unlike, :national
 
 end
