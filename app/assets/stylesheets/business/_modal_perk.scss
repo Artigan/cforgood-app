@@ -135,26 +135,26 @@
   align-items: center;
   justify-content: center;
   margin-bottom: -20%;
+  margin-left: -8%;
 }
 
 .app-store-badge {
-  min-height: 50px;
-  min-width: 160px;
+  min-height: 40px;
+  min-width: 140px;
   background-image: image-url('app-store-badge.png');
   background-position: center;
   background-size: cover;
   border-radius: 5px;
-  margin-right: 2%;
 }
 
 .play-store-badge {
-  min-height: 75px;
-  min-width: 160px;
+  min-height: 62px;
+  min-width: 140px;
   background-image: image-url('google-play-badge.png');
   background-position: center;
   background-size: cover;
   border-radius: 20px;
-  margin-left: 2%;
+  margin-left: 16%;
 }
 
 h6.close-tag {

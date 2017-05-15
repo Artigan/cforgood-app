@@ -33,6 +33,19 @@ $(document).ready(function () {
     console.log("kirikou, il pleut")
   })
 
+  // Prevent events from getting pass .popup
+  $('.front').click(function(e){
+    e.stopPropagation();
+  });
+
+  $('body').click(function(){
+  $('.use-overlay').addClass('hidden');
+});
+
+
+
+
+
 });
 </script>
 <% end %>
