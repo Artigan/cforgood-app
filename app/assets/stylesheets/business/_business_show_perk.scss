@@ -99,22 +99,22 @@
 
   .share-socials {
     color: white;
-    font-size: 1.1em;
+    font-size: 0.7em;
     width: 100%;
-  @media screen and (max-width:1300px) {
-    font-size: 0.9em;
-    }
+  // @media screen and (max-width:1300px) {
+  //   font-size: 0.9em;
+  //   }
   }
 
   .share-call-to-action {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
+    width: 90px;
   }
 
   i.fa-share-alt {
-    font-size: 2em;
+    font-size: 1.6em;
     padding-left: 5%;
   }
 
@@ -522,8 +522,8 @@
     border-radius: 50%;
     background-position: center;
     background-size: cover;
-    width: 120px;
-    height: 120px;
+    width: 140px;
+    height: 140px;
     border: 4px solid white;
 
     @media (max-width: 479px) {
@@ -542,13 +542,14 @@
   }
 
   .leader-description {
-    font-size: 1em;
+    font-size: 0.8em;
     line-height: 19px;
   }
 
   .business-leader-full-name {
     line-height: 8px;
     padding-top: 3%;
+    font-size: 0.8em;
   }
 
 // This is the right side of the page (perks from the business) //
@@ -1293,10 +1294,10 @@
         justify-content: center;
       }
 
-      .business-leader-picture {
-        width: 110px;
-        height: 110px;
-      }
+      // .business-leader-picture {
+      //   width: 110px;
+      //   height: 110px;
+      // }
 
       .right-side h2 {
         width: 150px;
