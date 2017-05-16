@@ -556,6 +556,11 @@
   }
 }
 
+.name-navbar {
+  min-width: 400px;
+  text-align: right;
+}
+
 .avatar-navbar {
   margin-left: 15px;
 
@@ -809,4 +814,3 @@
   display: flex;
   align-items: center;
 }
-
