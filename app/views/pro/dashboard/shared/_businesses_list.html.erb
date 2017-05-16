@@ -33,7 +33,9 @@
           <span><%= link_to  business.name, pro_business_impersonation_path(impersonate_id: business.id), method: :post %></span>
           <ul class="data-business">
             <li class="data-business-item">
-              <span class="number"><%= business.active ? "Actif" : "Non actif" %></span>
+              <!-- <span class="number"><%#= business.active ? "Actif" : "Non actif" %></span> -->
+
+              <span class="number <%= business.active ? 'green-active' : 'red-inactive' %>"><%= business.active ? "Actif" : "Non actif" %></span> 
             </li>
             <li class="data-business-item">
               <i class="fa fa-tag"></i>
