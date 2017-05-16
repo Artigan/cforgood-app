@@ -466,18 +466,22 @@
           }
 
           .ui-accordion-header-active {
-            background-color: #9fd6ae;
-            border: none;
+            // background:linear-gradient(to right, #64B9EA, #36D7B7, #33CC66);
+            background-color: #f6f6f6;
+            border-left: 3px solid #23D2E7;
             outline: none;
             border-radius: 2px 2px 0 0;
+            color: black;
 
             li {
               i {
-                border: 1px solid #8bbd99;
+                border: 1px solid lightgrey;
+                color: black;
               }
 
               .number {
-                background-color: #8bbd99;
+                background-color: lightgrey;
+                color: black;
               }
             }
           }
@@ -517,6 +521,65 @@
             }
           }
         }
+
+        .tooltiptext {
+        visibility: hidden;
+        width: 120px;
+        background-color: lightgrey;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
+        bottom: 130%;
+        margin-left: -60px;
+
+        /* Position the tooltip */
+        position: absolute;
+        z-index: 1;
+        }
+
+        .fa-home:hover .tooltiptext{
+          visibility: visible;
+        }
+
+        .fa-tag:hover .tooltiptext{
+          visibility: visible;
+        }
+
+        .fa-shopping-basket:hover .tooltiptext {
+          visibility: visible;
+        }
+
+        .fa-eye:hover .tooltiptext {
+          visibility: visible;
+        }
+
+        li.data-business-item {
+          margin-right: 16% !important;
+            @media (min-width: 992px) and (max-width:1220px) {
+              margin-right: 14% !important;
+            }
+            @media screen and (min-width: 768px) and (max-width: 991px) {
+              margin-right: 10% !important;
+            }
+            @media screen and (min-width : 320px) and (max-width : 479px) {
+              margin-right: 0 !important;
+            }
+        }
+
+        ul.data-business {
+          margin-right: 9%;
+          @media (min-width: 992px) and (max-width:1220px) {
+            margin-right: 12%;
+          }
+          @media screen and (min-width: 768px) and (max-width: 991px) {
+            margin-right: 18%;
+          }
+          @media screen and (min-width : 320px) and (max-width : 479px) {
+            margin-right: 20%;
+          }
+        }
+
 
         /* PROFILE - TIMETABLES *********************************************/
 
@@ -852,4 +915,3 @@
     margin-left: 10px;
   }
 }
-

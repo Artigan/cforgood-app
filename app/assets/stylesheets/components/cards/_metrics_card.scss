@@ -20,6 +20,10 @@
     text-transform: uppercase;
   }
 
+  .data-title-gradient {
+    background:  linear-gradient(to right, #64B9EA, #36D7B7, #33CC66);
+  }
+
   li {
     flex-grow: 1;
     display: flex;

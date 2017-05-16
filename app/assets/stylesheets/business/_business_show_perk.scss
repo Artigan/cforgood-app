@@ -99,17 +99,22 @@
 
   .share-socials {
     color: white;
-    font-size: 1em;
+    font-size: 0.7em;
+    width: 100%;
+  // @media screen and (max-width:1300px) {
+  //   font-size: 0.9em;
+  //   }
   }
 
   .share-call-to-action {
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 90px;
   }
 
   i.fa-share-alt {
-    font-size: 2em;
+    font-size: 1.6em;
     padding-left: 5%;
   }
 
@@ -298,7 +303,7 @@
 
   .business-description {
     width: 100%;
-    font-size: 1.1em;
+    font-size: 1em;
     line-height: 26px;
     color: #919191;
     // color: rgba(55,55,55,0.9);
@@ -382,12 +387,12 @@
   }
 
   .business-addresss span {
-    font-size: 0.85em;
+    font-size: 0.75em;
     display: flex;
     margin-left: 3%;
     flex-wrap: wrap;
     line-height: 16px;
-    margin-bottom: -3%;
+    margin-bottom: -5%;
   }
 
   .business-links {
@@ -517,8 +522,8 @@
     border-radius: 50%;
     background-position: center;
     background-size: cover;
-    width: 120px;
-    height: 120px;
+    width: 140px;
+    height: 140px;
     border: 4px solid white;
 
     @media (max-width: 479px) {
@@ -537,13 +542,14 @@
   }
 
   .leader-description {
-    font-size: 1.1em;
+    font-size: 0.8em;
     line-height: 19px;
   }
 
   .business-leader-full-name {
     line-height: 8px;
     padding-top: 3%;
+    font-size: 0.8em;
   }
 
 // This is the right side of the page (perks from the business) //
@@ -1238,9 +1244,9 @@
         height: 30px;
       }
 
-      .socials-row span, .share-row span:not(.not-on-mobile-device) {
-        font-size: 0.8em;
-      }
+      // .socials-row span, .share-row span:not(.not-on-mobile-device) {
+      //   font-size: 0.8em;
+      // }
 
       .dropdown-menu.socials > li > a {
         font-size: 1.3em;
@@ -1288,10 +1294,10 @@
         justify-content: center;
       }
 
-      .business-leader-picture {
-        width: 110px;
-        height: 110px;
-      }
+      // .business-leader-picture {
+      //   width: 110px;
+      //   height: 110px;
+      // }
 
       .right-side h2 {
         width: 150px;

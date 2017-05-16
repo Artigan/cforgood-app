@@ -10,6 +10,7 @@
 <%= render 'businesses/business_search_index'%>
 
 <div class="container-fluid admin">
+
   <% if user_signed_in? and !current_user.active %>
     <div class="done-overlay waiting connexion-user">
       <div class="done-container">
@@ -70,6 +71,13 @@
     </div>
   <% end %>
 </div>
+
+
+<% if device_type != :mobile %>
+<div class="dl">
+<%= render 'components/popups/download_the_app'%>
+<div>
+  <% end %>
 
 <% content_for(:after_js) do %>
 
