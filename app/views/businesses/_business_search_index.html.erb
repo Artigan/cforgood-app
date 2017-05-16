@@ -3,9 +3,6 @@
   <div class="text-count-container">
     <div class="text-count"></div>
   </div>
-<!--   <div class="business-search-close-button-mobile">
-    <div>Annuler la recherche</div>
-  </div> -->
 
   <div class="bsmd-container">
     <div id="business-search-modal">
@@ -31,6 +28,11 @@
                     à <%= display_distance(business.main_address.distance_from(@lat_lng)) %>
                   </span>
                 </div>
+                <% business.labels.each do |label| %>
+                  <% if label.label_category.name == "Monnaie Locale" %>
+                    <div class="label-category hidden"><%= label.label_category.name %></div>
+                  <% end %>
+                <% end %>
               </div>
             </div>
           <% end %>

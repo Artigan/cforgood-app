@@ -29,20 +29,6 @@
   cursor: pointer;
 }
 
-.business-search-close-button-mobile {
-  background-color: grey;
-  height: 60px;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-
-  @media (min-width: 768px) {
-    display: none;
-  }
-}
-
 .bsmd-container {
   padding-left: 8%;
   padding-right: 8%;
