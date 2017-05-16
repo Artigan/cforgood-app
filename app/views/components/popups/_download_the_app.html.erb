@@ -1,4 +1,4 @@
-<div class="use-overlay">
+<div class="use-overlay overlay-download-popup">
     <div class="flip-container-mobile-dl">
         <div class="flipper-mobile-dl">
             <!-- FRONT CARD-->
@@ -29,7 +29,7 @@
 $(document).ready(function () {
 
   $('.close-tag').click(function(){
-    $('.use-overlay').addClass('hidden');
+    $('.overlay-download-popup').addClass('hidden');
   })
 
   // Prevent events from getting pass .front
@@ -38,7 +38,7 @@ $(document).ready(function () {
   });
 
   $('body').click(function(){
-  $('.use-overlay').addClass('hidden');
+  $('.overlay-download-popup').addClass('hidden');
 });
 
 
