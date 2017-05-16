@@ -528,6 +528,14 @@
           }
         }
 
+        .green-active {
+          background-color: #7FEDA7 !important;
+        }
+
+        .red-inactive {
+          background-color: #FF4545 !important;
+        }
+
         .tooltiptext {
         visibility: hidden;
         width: 130px;
