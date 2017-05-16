@@ -24,7 +24,7 @@ Découvrez notre liste de bons plans
                           <%= link_to business_path(business, perk_id: perk.id, address_id: address_id[1]), class: "perky col-lg-4 col-md-4 col-sm-6 col-xs-12 cardd-frame mix #{business.business_category_id} #{business.online? ? 'online' : ''}" do %>
                             <!-- CARD PERK -->
                             <div class="container-perks-main-page">
-                                <%= render "businesses/business_card", business: business, address: Address.find(address_id[1]), perk: perk, index_view: true %>
+                                <%= render "businesses/business_card", business: business, address: address_id[1], perk: perk, index_view: true %>
                             </div>
                           <% end %>
                         <!-- END | CARD BON PLAN -->

@@ -343,6 +343,8 @@ hr {
               }
 
           span {
+            display: flex;
+            align-items: center;
             padding-left: 10px;
             font-size: 1em;
             line-height: 20px;

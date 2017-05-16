@@ -1,6 +1,6 @@
 class Pro::DashboardController < Pro::ProController
 
-  skip_after_action :verify_authorized, only: :set_impersonation
+  skip_after_action :verify_authorized, only: [:set_impersonation, :reset_impersonation]
   before_action :find_business, only: [:dashboard, :profile]
 
   def set_impersonation
@@ -9,6 +9,11 @@ class Pro::DashboardController < Pro::ProController
     else
       session[:impersonate_id] = nil
     end
+    redirect_to pro_business_dashboard_path(current_business)
+  end
+
+  def reset_impersonation
+    session[:impersonate_id] = nil
     redirect_to pro_business_dashboard_path(current_business)
   end
 

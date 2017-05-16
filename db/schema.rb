@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170404153226) do
+ActiveRecord::Schema.define(version: 20170512160831) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -108,11 +108,11 @@ ActiveRecord::Schema.define(version: 20170404153226) do
     t.string   "picture"
     t.string   "leader_picture"
     t.string   "logo"
-    t.boolean  "supervisor",             default: false
-    t.integer  "supervisor_id"
     t.integer  "like",                   default: 0
     t.integer  "unlike",                 default: 0
     t.string   "link_video"
+    t.boolean  "supervisor",             default: false
+    t.integer  "supervisor_id"
     t.boolean  "admin",                  default: false, null: false
     t.string   "activity"
     t.boolean  "hidden_email",           default: false
@@ -166,6 +166,7 @@ ActiveRecord::Schema.define(version: 20170404153226) do
     t.integer  "supervisor_id"
     t.text     "representative_testimonial"
     t.integer  "civility"
+    t.boolean  "national",                   default: false
     t.index ["cause_category_id"], name: "index_causes_on_cause_category_id", using: :btree
     t.index ["supervisor_id"], name: "index_causes_on_supervisor_id", using: :btree
   end
@@ -255,13 +256,27 @@ ActiveRecord::Schema.define(version: 20170404153226) do
     t.index ["perk_detail_id"], name: "index_perks_on_perk_detail_id", using: :btree
   end
 
+  create_table "prospects", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "street"
+    t.string   "zipcode"
+    t.string   "city"
+    t.string   "leader_name"
+    t.string   "email"
+    t.boolean  "canvassed",   default: true, null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.index ["user_id"], name: "index_prospects_on_user_id", using: :btree
+  end
+
   create_table "timetables", force: :cascade do |t|
     t.integer  "address_id"
     t.integer  "day"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.time     "start_at"
-    t.time     "end_at"
+    t.datetime "start_at"
+    t.datetime "end_at"
     t.index ["address_id"], name: "index_timetables_on_address_id", using: :btree
   end
 
@@ -326,8 +341,8 @@ ActiveRecord::Schema.define(version: 20170404153226) do
     t.datetime "date_stop_subscription"
     t.string   "picture"
     t.boolean  "ambassador",                        default: false
-    t.integer  "ecosystem_id"
     t.string   "onesignal_id"
+    t.integer  "ecosystem_id"
     t.boolean  "supervisor",                        default: false
     t.integer  "supervisor_id"
     t.string   "telephone"
@@ -365,6 +380,7 @@ ActiveRecord::Schema.define(version: 20170404153226) do
   add_foreign_key "payments", "causes"
   add_foreign_key "payments", "users"
   add_foreign_key "perks", "businesses"
+  add_foreign_key "prospects", "users"
   add_foreign_key "timetables", "addresses"
   add_foreign_key "user_histories", "causes"
   add_foreign_key "user_histories", "users"

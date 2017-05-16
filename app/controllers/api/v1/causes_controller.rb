@@ -9,10 +9,13 @@ class Api::V1::CausesController < Api::V1::BaseController
     @partner = Partner.find_by_code_partner(current_user.code_partner.upcase) if current_user.code_partner.present?
     if @partner && @partner.supervisor_id.present?
       @causes = Cause.active.where(supervisor_id: @partner.supervisor_id)
+      authorize @causes
     else
-      @causes = Cause.active.where.not(id: ENV['CAUSE_ID_CFORGOOD'].to_i).near(@lat_lng, 99999, order: "distance")
+      @causes_around_me = Cause.active.where.not(id: ENV['CAUSE_ID_CFORGOOD'].to_i).around_me(@lat_lng)
+      authorize @causes_around_me
+      @causes_national = Cause.active.national
+      authorize @causes_national
     end
-    authorize @causes
   end
 
   def show
@@ -48,7 +51,8 @@ class Api::V1::CausesController < Api::V1::BaseController
       :description,
       :street,
       :zipcode,
-      :city
+      :city,
+      :national
     )
   end
 end

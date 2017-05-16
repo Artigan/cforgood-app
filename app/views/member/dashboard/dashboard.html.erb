@@ -7,7 +7,7 @@
 
 <%= link_to "reload_map", user_signed_in? ? member_user_dashboard_path(current_user) : map_path, id:"reload_map", class: "hidden", remote: true %>
 
-<%= render 'businesses/business_search_index'%>
+<%= render 'businesses/business_search_index' %>
 
 <div class="container-fluid admin">
 
@@ -147,7 +147,6 @@
       // CLOSE BUTTON FOR POP_UP
       $(".close-button").click(function() {
         $('.use-overlay').addClass('hidden');
-        console.log("kirikou");
       });
 
       // DISPLAY FIRST POPUP FEEDBACK

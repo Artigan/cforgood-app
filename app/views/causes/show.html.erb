@@ -113,8 +113,12 @@ Découvrez l'engagement de
                                 <div class="items-contact-first-row">
                                     <% if @cause.city.present? %>
                                     <i class="fa fa-map-marker" aria-hidden="true"></i>
-                                    <span><%= @cause.street %><br><%= @cause.zipcode %>
+                                      <% if @cause.national %>
+                                         <span><%= @cause.city %></span>
+                                      <% else %>
+                                        <span><%= @cause.street %><br><%= @cause.zipcode %>
                                         <%= @cause.city %></span>
+                                      <% end %>
                                     <% end %>
                                 </div>
                                 <!-- LINKS | CONTACT -->
