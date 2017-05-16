@@ -6,7 +6,8 @@ $(document).ready(function() {
 
 $(document).ready(function() {
     $('.business-search-close-button-mobile, .business-search-close-button').click(function() {
-      $('#search-dashboard').val('');
+      $('#search-dashboard, #search-in-navbar-mobile, #search-in-navbar-mobile-perks').val('');
+      $('#search-in-navbar-mobile-perks').html('');
       $(".search-modal").addClass('hidden');
       $(".search-category-overlay").addClass('hidden');
       $(".business-search-index-js").addClass('hidden');
