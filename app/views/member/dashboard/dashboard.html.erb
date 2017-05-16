@@ -74,10 +74,13 @@
 
 
 <% if device_type != :mobile %>
-<div class="dl">
-<%= render 'components/popups/download_the_app'%>
-<div>
+  <% if !session[:download_app].present? || ( session[:download_app].present? && session[:download_app] <= Time.now - 1.day ) %>
+    <div class="dl">
+      <%= session[:download_app] = Time.now %>
+      <%= render 'components/popups/download_the_app'%>
+    <div>
   <% end %>
+<% end %>
 
 <% content_for(:after_js) do %>
 
