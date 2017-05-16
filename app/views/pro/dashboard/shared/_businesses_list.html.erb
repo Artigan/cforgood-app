@@ -8,22 +8,22 @@
        <div class="icon-category" style="background-color: <%= BusinessCategory.find(business_category).color %>;">
         <%= image_tag BusinessCategory.find(business_category).picture, size: "30x30" %>
       </div>
-      <div class="data-business">
-        <li>
-          <i class="fa fa-home"></i>
+      <ul class="data-business">
+        <li class="data-business-item">
+          <i class="fa fa-home"><span class="tooltiptext">Nombre de commerces</span></i>
           <span class="number"><%= businesses.count %></span>
         </li>
-        <li>
-          <i class="fa fa-tag"></i>
+        <li class= "data-business-item">
+          <i class="fa fa-tag"><span class="tooltiptext">Nombre de bons plans</span></i>
           <span class="number"><%= Perk.where(business_id: businesses).count %></span>
         </li>
-        <li>
-          <i class="fa fa-eye"></i>
+        <li class= "data-business-item">
+          <i class="fa fa-eye"><span class="tooltiptext">Nombres de vues</span></i>
           <span class="number"><%= Perk.where(business_id: businesses).sum(&:nb_views) %></span>
         </li>
-        <li>
-          <i class="fa fa-shopping-basket"></i>
-          <span class="number"><%= Perk.where(business_id: businesses).reduce(0) { |sum, perk| sum + perk.uses.used.count }  %></span>
+        <li class= "data-business-item">
+          <i class="fa fa-shopping-basket"><span class="tooltiptext">Nombre d'utilisations de bons plans</span></i>
+          <span class="number"><%= Perk.where(business_id: businesses).reduce(0) { |sum, perk| sum + perk.uses.used.count } %></span>
         </li>
       </ul>
     </h3>
@@ -32,18 +32,18 @@
         <li >
           <span><%= link_to business.name, pro_business_impersonation_path(impersonate_id: business.id), method: :post %></span>
           <ul class="data-business">
-            <li>
+            <li class="data-business-item">
               <span class="number"><%= business.active ? "Actif" : "Non actif" %></span>
             </li>
-            <li>
+            <li class="data-business-item">
               <i class="fa fa-tag"></i>
               <span class="number"><%= business.perks.count %></span>
             </li>
-            <li>
+            <li class="data-business-item">
               <i class="fa fa-eye"></i>
               <span class="number"><%= Perk.where(business_id: business.id).sum(&:nb_views) %></span>
             </li>
-            <li>
+            <li class="data-business-item">
               <i class="fa fa-shopping-basket"></i>
               <span class="number"><%= business.perks_uses_count %></span>
             </li>
@@ -65,4 +65,3 @@
   </script>
 
 <% end %>
-
