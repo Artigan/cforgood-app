@@ -180,7 +180,7 @@ h6.close-tag {
   right: 0;
   left: 90px;
   z-index: 200;
-  background-color: rgba(0,0,0,0.6);
+  background-color: rgba(0,0,0,0.7);
   @include transition(all, 0.3s, ease-in-out);
 
   .flip-container-mobile {
