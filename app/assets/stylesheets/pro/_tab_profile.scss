@@ -409,7 +409,7 @@
                 line-height: 15px;
                 border-radius: 0 3px 3px 0;
                 text-align: center;
-                min-width: 35px;
+                min-width: 70px;
               }
             }
           }
@@ -501,7 +501,7 @@
 
             .data-business {
               position: absolute;
-              right: 28px;
+              right: 30px;
 
               @media (max-width: 767px) {
                 left: 4px;
@@ -530,7 +530,7 @@
 
         .tooltiptext {
         visibility: hidden;
-        width: 120px;
+        width: 130px;
         background-color: lightgrey;
         color: #fff;
         text-align: center;
@@ -574,15 +574,15 @@
         }
 
         ul.data-business {
-          margin-right: 9%;
+          margin-right: 22%;
           @media (min-width: 992px) and (max-width:1220px) {
-            margin-right: 12%;
+            margin-right: 32%;
           }
           @media screen and (min-width: 768px) and (max-width: 991px) {
-            margin-right: 18%;
+            margin-right: 30%;
           }
           @media screen and (min-width : 320px) and (max-width : 479px) {
-            margin-right: 20%;
+            margin-right: 25%;
           }
         }
 
