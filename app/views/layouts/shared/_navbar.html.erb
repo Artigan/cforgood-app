@@ -61,13 +61,13 @@
     <div class="dropdown-navbar" id="button-dropdown-navbar">
 
       <% if user_signed_in? %>
-        <span class="hidden-xs"><%= name_user(current_user) %></span>
+        <span class="hidden-xs name-navbar"><%= name_user(current_user) %></span>
         <div class="avatar-navbar dropdown-toggle" data-toggle="dropdown">
           <%= render partial: 'components/avatar_or_picture', locals: { resource: current_user, style: "avatar" } %>
           <div class="caret"></div>
         </div>
       <% elsif business_signed_in? %>
-        <span class="hidden-xs"><%= current_business.name %></span>
+        <span class="hidden-xs name-navbar"><%= current_business.name %></span>
         <div class="avatar-navbar dropdown-toggle" data-toggle="dropdown">
           <%= render partial: 'components/avatar_or_picture', locals: { resource: current_business, style: "avatar" } %>
           <div class="caret"></div>
