@@ -46,7 +46,7 @@ gem "bootstrap-sass"
 gem "font-awesome-sass"
 gem "autoprefixer-rails"
 gem "geocoder"
-# gem 'forest_liana'
+gem 'forest_liana'
 gem "underscore-rails"
 gem "rails-erd"
 gem 'mobvious'

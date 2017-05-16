@@ -90,6 +90,8 @@ GEM
     arbre (1.1.1)
       activesupport (>= 3.0.0)
     arel (7.1.4)
+    arel-helpers (2.3.0)
+      activerecord (>= 3.1.0, < 6)
     autoprefixer-rails (6.5.1.1)
       execjs
     aws-sdk (1.66.0)
@@ -171,6 +173,15 @@ GEM
       thor (~> 0.14)
     font-awesome-sass (4.7.0)
       sass (>= 3.2)
+    forest_liana (1.6.6)
+      arel-helpers
+      bcrypt
+      groupdate
+      jsonapi-serializers (>= 0.14.0)
+      jwt
+      rack-cors
+      rails (>= 3.0)
+      useragent
     formtastic (3.1.4)
       actionpack (>= 3.2.13)
     formtastic_i18n (0.6.0)
@@ -180,6 +191,8 @@ GEM
       multi_json (>= 1.11.0)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
+    groupdate (3.2.0)
+      activesupport (>= 3)
     has_scope (0.6.0)
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
@@ -208,6 +221,8 @@ GEM
     jquery-ui-rails (5.0.5)
       railties (>= 3.2.16)
     json (1.8.3)
+    jsonapi-serializers (1.0.0)
+      activesupport
     jwt (1.5.6)
     kaminari (0.17.0)
       actionpack (>= 3.0.0)
@@ -298,6 +313,7 @@ GEM
       rack (>= 0.4)
     rack-contrib (1.2.0)
       rack (>= 0.9.1)
+    rack-cors (0.4.1)
     rack-test (0.6.3)
       rack (>= 1.0)
     rack-timeout (0.4.2)
@@ -413,6 +429,7 @@ GEM
     unf_ext (0.0.7.2)
     unicode_utils (1.4.0)
     uniform_notifier (1.10.0)
+    useragent (0.16.8)
     warden (1.2.6)
       rack (>= 1.0)
     websocket-driver (0.6.4)
@@ -443,6 +460,7 @@ DEPENDENCIES
   faker
   figaro
   font-awesome-sass
+  forest_liana
   geocoder
   gibbon
   high_voltage
