@@ -63,6 +63,17 @@
         width: 100%;
         background-color: #fff;
 
+        .employees-list-style {
+          color: #A9A9A9;
+        }
+
+        input.search {
+            color: #A9A9A9 !important;
+            border-radius: 5px;
+            margin-top: 1%;
+            margin-bottom: 1%;
+        }
+
         @media (min-width: 768px) {
           padding: 20px;
         }

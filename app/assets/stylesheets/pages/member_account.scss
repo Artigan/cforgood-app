@@ -9,10 +9,12 @@
   height: 100%;
   line-height: 50px;
   border-bottom: none;
+  color: #A9A9A9;
 
   span.number {
     display: block;
-    color: #41444a;
+    // color: #41444a;
+
     font-size: 30px;
     font-weight: 900;
   }
@@ -35,13 +37,23 @@
     flex-wrap: wrap;
     list-style: none;
   }
+
+  ul.flex-list-items {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .account-title {
   padding: 10px 20px;
   width: 100%;
   border-radius: 3px 3px 0 0;
-  background-color: #29B6F6;
+  // background-color: #29B6F6;
+  background: linear-gradient(to right, #64B9EA, #36D7B7, #33CC66);
+  color: white;
   font-weight: 600;
   font-size: 14px;
   text-transform: uppercase;
