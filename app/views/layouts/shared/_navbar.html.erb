@@ -67,7 +67,7 @@
           <div class="caret"></div>
         </div>
       <% elsif business_signed_in? %>
-        <span class="hidden-xs name-navbar-business"><%= current_business.name %></span>
+        <span class="hidden-xs name-navbar"><%= current_business.name %></span>
         <div class="avatar-navbar dropdown-toggle" data-toggle="dropdown">
           <%= render partial: 'components/avatar_or_picture', locals: { resource: current_business, style: "avatar" } %>
           <div class="caret"></div>
