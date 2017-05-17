@@ -76,7 +76,7 @@
 <% if device_type != :mobile %>
   <% if !session[:download_app].present? || ( session[:download_app].present? && session[:download_app] <= Time.now - 1.day ) %>
     <div class="dl">
-      <%= session[:download_app] = Time.now %>
+      <% session[:download_app] = Time.now %>
       <%= render 'components/popups/download_the_app'%>
     <div>
   <% end %>
@@ -141,7 +141,7 @@
       });
 
       // TOOGLE CATEGORY OVERLAY
-      $('.search-category-overlay, .close-button, .button-apply-filters').click(function(event) {
+      $('.search-category-overlay, .close-button.search, .button-apply-filters').click(function(event) {
         $('.search-category').removeClass('is-open-max');
         $('.category-item').removeClass('is-open-min');
         $('.search-category-overlay').toggleClass('hidden');

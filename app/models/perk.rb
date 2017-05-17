@@ -43,6 +43,7 @@ class Perk < ApplicationRecord
   belongs_to :business
   has_many :uses, dependent: :destroy
   belongs_to :perk_detail
+  has_one :business_category, through: :business
 
   scope :active, -> { where(active: true) }
   scope :flash, -> { where(flash: true) }

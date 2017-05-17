@@ -135,6 +135,7 @@ class User < ApplicationRecord
 
   after_create :send_registration_slack, :subscribe_to_newsletter_user, :create_event_amplitude, :save_onesignal_id
 
+
   def self.find_for_google_oauth2(access_token, signed_in_resourse=nil)
     data = access_token.info
     user = User.where(:provider => access_token.provider, :uid => access_token.uid).first
@@ -454,6 +455,7 @@ class User < ApplicationRecord
             'supervisor' => manager_name
           }
         )
+        create_code_partner_for_new_user
       rescue Intercom::IntercomError => e
         puts e
       end
@@ -474,6 +476,13 @@ class User < ApplicationRecord
     end
   end
 
+  def create_code_partner_for_new_user
+       binding.pry
+    code_partner = "1BP" + self.id.to_s
+    Partner.new.create_code_partner_user(self, code_partner, false, true)
+    create_event_intercom("code-partner-new-user", self, code_partner)
+  end
+
   def create_partner_for_third_use_code_partner
     if self.code_partner.present?
       @partner = Partner.find_by_code_partner(self.code_partner)
@@ -481,16 +490,16 @@ class User < ApplicationRecord
         @user = User.find(@partner.user_id)
         new_code_partner = "3CP" + @user.id.to_s
         Partner.new.create_code_partner_user(@user, new_code_partner, true, false)
-        create_event_intercom(@user, new_code_partner)
+        create_event_intercom("third-use-code-partner", @user, new_code_partner)
       end
     end
   end
 
-  def create_event_intercom(user, code_partner)
+  def create_event_intercom(event_name, user, code_partner)
     intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
     begin
       intercom.events.create(
-        event_name: "third-use-code-partner",
+        event_name: event_name,
         created_at: Time.now.to_i,
         user_id: user.id,
         email: user.email,
