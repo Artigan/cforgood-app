@@ -5,31 +5,101 @@
 .employee-display {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.employee-left{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  line-height: 26px;
+  min-width: 180px;
+
+  .first_name, .last_name, .employee-cause {
+    font-weight: bold;
+    text-shadow: -1px 0 #A9A9A9, 0 1px #A9A9A9, 1px 0 #A9A9A9, 0 -1px #A9A9A9;
+    color: white;
+    font-size: 1.1em;
+  }
+
+  .last_name {
+    margin-left: 1%;
+  }
+
+  .employee-cause {
+  margin-bottom: 2%;
+  }
 }
 
 .employee-right {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  min-width: 450px;
+  @media screen and (max-width: 600px){
+    min-width: 0;
+    flex-wrap: wrap;
+  }
+
   .data {
     display: flex;
+    justify-content: space-between;
 
     li {
       display: flex;
-      margin: 0 3px;
-
+      margin: 0 15px;
+      @media screen and (max-width: 992px){
+          margin: 0 5px;
+        }
+        @media screen and (max-width: 600px){
+          margin-bottom: 4%;
+        }
       i {
         padding: 5px;
-        border-radius: 3px 0 0 3px;
+        border-radius: 5px 0 0 5px;
         text-transform: uppercase;
+        border: white 2px solid;
       }
 
       .number {
+        min-width: 70px;
         padding: 5px;
         line-height: 15px;
-        border-radius: 0 3px 3px 0;
+        border-radius: 0 5px 5px 0;
         text-align: center;
+        border: white 2px solid;
+        background-color: white;
       }
     }
   }
+      .tooltiptext {
+        visibility: hidden;
+        width: 130px;
+        background-color: lightgrey;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
+        bottom: 130%;
+        margin-left: -60px;
+
+      /* Position the tooltip */
+        position: absolute;
+        z-index: 1;
+      }
+      .fa-tag:hover .tooltiptext{
+        visibility: visible;
+      }
+      .fa-eye:hover .tooltiptext {
+        visibility: visible;
+      }
+}
+
+li.list-group-item {
+ background-color:  #e6e6e6;
+}
+
+.btn-grad {
+  background: linear-gradient(to right, #64B9EA, #36D7B7, #33CC66) !important;
+  border: none !important;
 }

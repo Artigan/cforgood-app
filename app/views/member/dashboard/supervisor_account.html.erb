@@ -38,10 +38,12 @@
           <div class="account_container">
             <div class="flex-container">
               <span class="account-title">Résumé de l'activité de vos employés</span>
+              <ul class="flex-list-items">
               <li class="account-li">Nombre de bons plans utilisés : <span class="number"><%= @used_perks.count %></span></li>
               <li class="account-li">Nombre d'employés : <span class="number"><%= @user.users.size %></span></li>
               <li class="account-li">Nombre de likes : <span class="number"><%= @liked_perks.count %></span></li>
               <li class="account-li">Montant total : <span class="number"><%= @user.sum_payments %></span></li>
+            </ul>
             </div>
             <% unless @user.users.empty? %>
               <div class="pie_chart text-center">
@@ -63,10 +65,10 @@
         </div>
         <div role="tabpanel" class="tab-pane" id="employees">
           <div>
-            <%= link_to "Créer un employé", new_member_user_path, class: "btn btn-primary" %>
+            <%= link_to "Créer un employé", new_member_user_path, class: "btn btn-primary btn-grad" %>
           </div>
           <br>
-          <p>Liste des employés</p>
+          <p class="employees-list-style">Liste des employés</p>
 
           <div id="users">
             <input class="search" placeholder="Rechercher" />
@@ -75,22 +77,24 @@
                 <li class="list-group-item">
                   <div class="employee-display">
                     <div class="employee-left">
-                      <span class="first_name"><%= employee[:first_name] %></span>
-                      <span class="last_name"><%= employee[:last_name] %></span>
-                      - cause: <%= employee[:cause] %>
+                      <span class="first_name"> <%= employee[:first_name].capitalize %></span>
+                      <span class="last_name"> <%= employee[:last_name].capitalize %> </span><br>
+                      <span class="employee-cause">Cause: <%= employee[:cause] %> </span>
                     </div>
                     <div class="employee-right">
                       <ul class="data">
                         <li>
-                          <i class="fa fa-tag"></i>
+                          <i class="fa fa-tag"><span class="tooltiptext">Nombre de bons plans aimés</span></i>
+                          <!-- <i class="fa fa-tag"></i> -->
                           <span class="number"><%= employee[:likes_count] %></span>
                         </li>
                         <li>
-                          <i class="fa fa-eye"></i>
+                          <i class="fa fa-eye"><span class="tooltiptext">Nombres de bons plans utilisés</span></i>
+                          <!-- <i class="fa fa-eye"></i> -->
                           <span class="number"><%= employee[:uses_count] %></span>
                         </li>
                       </ul>
-                      <%= link_to "Supprimer l'employé", member_user_path(employee[:id]), method: :patch, class: "btn btn-primary" %>
+                      <%= link_to "Supprimer l'employé", member_user_path(employee[:id]), method: :patch, class: "btn btn-primary btn-grad" %>
                     </div>
                   </div>
                 </li>
@@ -117,7 +121,7 @@
             <%= f.input :street %>
             <%= f.input :zipcode %>
             <%= f.input :city %>
-            <%= f.submit %>
+            <%= f.submit :class => "btn-grad" %>
           <% end %>
         </div>
       </div>

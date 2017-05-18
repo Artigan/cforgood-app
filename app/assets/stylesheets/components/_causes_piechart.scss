@@ -17,6 +17,9 @@ main {
 
 .pie-container {
   padding: 40px;
+  u {
+    color: #A9A9A9;
+  }
 }
 
 .pieID {
@@ -86,6 +89,9 @@ main {
   margin-bottom: 0.7em;
   padding-left: 0.5em;
   border-left: 1.25em solid black;
+      @media screen and (min-width : 320px) and (max-width : 479px) {
+        width: 140px;
+      }
 }
 .legend em {
   font-style: normal;
