@@ -1,23 +1,29 @@
 <div class="container-fluid admin">
-  <!-- SIDEBAR -->
-  <%= render "member/dashboard/shared/sidebar" %>
-  <div class="connexion connexion-form-supervisor signup">
-    <div class="sign-box signup">
-      <div class="sign-user">
-        <div class="form-card">
-         <div class="subscription-form subscription-form-supervisor">
-           <%= simple_form_for(@employee, url: member_users_path) do |f| %>
-           <%= f.hidden_field :supervisor_id, value: current_user.id %>
-           <%= f.input :email , :class => 'input-form-supervisor'%>
-           <%= f.input :first_name , :class => 'input-form-supervisor' %>
-           <%= f.input :last_name , :class => 'input-form-supervisor'%>
-           <%= f.input :city , :class => 'input-form-supervisor'%>
-           <%= f.hidden_field :zipcode , :class => 'input-form-supervisor'%>
-           <%= f.submit :class => 'validate-form' %>
-           <% end %>
-         </div>
-       </div>
-      </div>
+    <!-- SIDEBAR -->
+    <%= render "member/dashboard/shared/sidebar" %>
+    <div class="connexion connexion-form-supervisor signup">
+      <div class="subscription-form-cancel-button">X Annuler</div>
+        <div class="sign-box signup">
+            <div class="sign-user">
+                <div class="form-card form-card-employee">
+                    <div class="avatar-employee">
+                        <%= render partial: 'components/avatar_or_picture', locals: { resource: current_user, style: "pastille" } %>
+                    </div>
+                    <div class="subscription-form subscription-form-supervisor">
+                        <%= simple_form_for(@employee, url: member_users_path) do |f| %>
+                        <%= f.hidden_field :supervisor_id, value: current_user.id %>
+                        <%= f.input :email , :class => 'input-form-supervisor'%>
+                        <%= f.input :first_name , :class => 'input-form-supervisor' %>
+                        <%= f.input :last_name , :class => 'input-form-supervisor'%>
+                        <%= f.input :city , :class => 'input-form-supervisor'%>
+                        <%= f.hidden_field :zipcode , :class => 'input-form-supervisor'%>
+                        <div class="flex-validate">
+                            <%= f.submit :class => 'validate-form' %>
+                        </div>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
