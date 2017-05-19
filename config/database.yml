@@ -19,8 +19,6 @@ development:
   encoding: unicode
   host: localhost
   database: cforgoodwebsite_development
-  username: cforgoodwebsite_development
-  password: "12345"
 
 
   # The specified database role being used to connect to postgres.
