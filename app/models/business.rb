@@ -205,7 +205,6 @@ class Business < ApplicationRecord
         user.custom_attributes["business_category"] = self.business_category.name
         intercom.users.save(user)
       rescue Intercom::IntercomError => e
-        binding.pry
         begin
           code_partner = Partner.find_by_email(self.email).code_partner if Partner.find_by_email(self.email)
           manager_name = self.manager.name if self.manager.present?
