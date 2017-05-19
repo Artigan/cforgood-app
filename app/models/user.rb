@@ -477,7 +477,6 @@ class User < ApplicationRecord
   end
 
   def create_code_partner_for_new_user
-       binding.pry
     code_partner = "1BP" + self.id.to_s
     Partner.new.create_code_partner_user(self, code_partner, false, true)
     create_event_intercom("code-partner-new-user", self, code_partner)
