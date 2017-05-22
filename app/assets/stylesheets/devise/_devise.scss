@@ -291,10 +291,50 @@
       margin-top: 10%;
     }
 
+    .subscription-form-supervisor .flex-validate {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+
     .subscription-form-supervisor .validate-form {
       height: 60px;
       margin-bottom: -12%;
       background: linear-gradient(to right, #64B9EA, #36D7B7, #33CC66) !important;
+    }
+
+     .subscription-form-cancel-button {
+      position: absolute;
+      top: 80px;
+      left: 10px;
+      height: 35px;
+      width: 35px;
+      // padding-left: 1px;
+      // padding-right: 0;
+      // padding-bottom: 3px;
+      font-size: 30px;
+      font-weight: 100;
+      color: rgba(55, 55, 55, 0.4);
+      // background: transparent;
+      // border: 1px solid rgba(55, 55, 55, 0.4);
+      // border-radius: 50%;
+      outline: none;
+      cursor: pointer;
+      -webkit-transition: 0.5s ease;
+      transition: 0.5s ease;
+      z-index: 200;
+    }
+
+   .avatar-employee img.pastille-citoyen {
+      border-radius: 50%;
+      border: 1px solid lightgrey !important;
+      width: 60px !important;
+      height: 60px !important;
+    }
+
+    div.form-card.form-card-employee{
+      padding: 0 !important;
     }
 
     // FIN ADRIEN CSS //
