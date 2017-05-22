@@ -12,7 +12,8 @@ class Member::UsersController < ActionController::Base
 
   def create
     @employee = current_user.users.build(users_params)
-    @employee.password = Devise.friendly_token.first(8)
+    @employee.password = "cforgood"
+    # @employee.password = Devise.friendly_token.first(8)
     if @employee.save
       redirect_to member_user_supervisor_account_path(current_user)
     else

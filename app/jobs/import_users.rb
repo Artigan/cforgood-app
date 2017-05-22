@@ -39,7 +39,8 @@ class ImportUsers < ApplicationJob
         # password automatique de devise
         # TODO: s'assurer que l'utilisateur recoit un email pour changer de mdp
         # ou set choisir un mdp
-        row[:password] = Devise.friendly_token.first(8)
+        row[:password] = "cforgood"
+        # row[:password] = Devise.friendly_token.first(8)
         @employee = User.create!(row.to_h)
         ok += 1
       rescue ActiveRecord::RecordNotFound, ActiveRecord::RecordInvalid => e

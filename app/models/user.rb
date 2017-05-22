@@ -285,7 +285,8 @@ class User < ApplicationRecord
   end
 
   def create_event_no_business(lat_lng)
-    # city = Geocoder.search(lat_lng).first.city
+    coordinates = [lat_lng[0].to_f, lat_lng[1].to_f].compact.join(',')
+    city = Geocoder.search(coordinates).first.try(:city)
     intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
     begin
       intercom.events.create(
@@ -532,9 +533,6 @@ class User < ApplicationRecord
   def create_event_employee
 
     if supervisor_id.present?
-      reset_password_token = self.reset_password_token
-      reset_password_url = Rails.root + Rails.application.routes.url_helpers.edit_user_password_path(reset_password_token: reset_password_token)
-
       intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
       begin
         intercom.events.create(
@@ -543,8 +541,7 @@ class User < ApplicationRecord
           user_id: self.id,
           email: self.email,
           metadata: {
-            supervisor: self.manager.name,
-            reset_password: reset_password_url
+            supervisor: self.manager.name
           }
         )
       rescue Intercom::IntercomError => e
