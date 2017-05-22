@@ -2,7 +2,7 @@
     <!-- SIDEBAR -->
     <%= render "member/dashboard/shared/sidebar" %>
     <div class="connexion connexion-form-supervisor signup">
-      <div class="subscription-form-cancel-button">X Annuler</div>
+      <div style="position:fixed; left: 120px; color: white; border: 2px solid white; border-radius: 5px; padding: 3px;font-weight:bolder; z-index: 1;" class="subscription-form-cancel-button"><i class="fa fa-arrow-left" aria-hidden="true"></i> <%= link_to "Retour", request.referer.present? ? request.referer : default_path, :style =>"color: white;" %></div>
         <div class="sign-box signup">
             <div class="sign-user">
                 <div class="form-card form-card-employee">
