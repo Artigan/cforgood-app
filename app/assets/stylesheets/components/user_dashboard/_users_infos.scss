@@ -2,6 +2,13 @@
   margin-top: 10px;
 }
 
+.create-an-employee-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 3%;
+}
+
 .employee-display {
   display: flex;
   justify-content: space-between;
@@ -10,13 +17,13 @@
 
 .employee-left{
   display: flex;
+  justify-content: space-between;;
   align-items: center;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   line-height: 26px;
-  min-width: 180px;
+  min-width: 300px;
 
   .first_name, .last_name, .employee-cause {
-    font-weight: bold;
     color: #666666;
     font-size: 1.1em;
   }
@@ -26,7 +33,47 @@
   }
 
   .employee-cause {
-  margin-bottom: 2%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 4%;
+
+  i {
+    padding: 5px;
+    border-radius: 5px 0 0 5px;
+    text-transform: uppercase;
+    border: white 2px solid;
+    font-size: 15px;
+    color: black;
+    }
+  .cartouche-cause {
+    font-size: 15px;
+    min-width: 70px;
+    padding: 5px;
+    line-height: 15px;
+    border-radius: 0 5px 5px 0;
+    text-align: center;
+    border: white 2px solid;
+    background-color: white;
+    }
+  }
+  .tooltiptext {
+    visibility: hidden;
+    width: 130px;
+    background-color: lightgrey;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    bottom: 130%;
+    margin-left: -60px;
+
+  /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+  }
+  .fa-heart:hover .tooltiptext {
+    visibility: visible;
   }
 }
 
@@ -92,6 +139,17 @@
       .fa-eye:hover .tooltiptext {
         visibility: visible;
       }
+}
+
+.btn-supervisor-save-container {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.btn-supervisor-save {
+  width: 320px !important;
 }
 
 li.list-group-item {

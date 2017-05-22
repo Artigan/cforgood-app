@@ -21,8 +21,9 @@
     left: 0;
     right: 0;
     opacity: 0.65;
-    background-image: url("cover-business.jpg");
-    filter: contrast(80%);
+    background-image: url("signin-background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
     // background: -webkit-linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* Chrome 10+, Saf5.1+ */
     // background: -moz-linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* FF3.6+ */
     // background: -ms-linear-gradient(90deg, #00C9FF 10%, #80F2A4 90%); /* IE10 */
@@ -328,16 +329,16 @@
       z-index: 200;
     }
 
-    // .form-card .avatar-employee img.pastille-citoyen {
-    //   border-radius: 50%;
-    //   border: 1px solid lightgrey !important;
-    //   width: 60px !important;
-    //   height: 60px !important;
-    // }
-    //
-    // div.form-card.form-card-employee{
-    //   padding: 0 !important;
-    // }
+   .avatar-employee img.pastille-citoyen {
+      border-radius: 50%;
+      border: 1px solid lightgrey !important;
+      width: 60px !important;
+      height: 60px !important;
+    }
+
+    div.form-card.form-card-employee{
+      padding: 0 !important;
+    }
 
     // FIN ADRIEN CSS //
     .subscription-form {
