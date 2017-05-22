@@ -285,8 +285,7 @@ class User < ApplicationRecord
   end
 
   def create_event_no_business(lat_lng)
-    binding.pry
-    city = Geocoder.search(lat_lng).first.city
+    # city = Geocoder.search(lat_lng).first.city
     intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
     begin
       intercom.events.create(
