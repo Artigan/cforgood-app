@@ -27,7 +27,8 @@ class Use < ApplicationRecord
   belongs_to :user
   belongs_to :perk
 
-  after_create :create_event_intercom
+  after_create :event_intercom_create
+  after_save :event_intercom_unlike, if: :unlike_changed?
 
   scope :without_feedback, -> { where(feedback: false) }
 
@@ -39,15 +40,27 @@ class Use < ApplicationRecord
   scope :used_by_users_for, -> (user) { used.includes(:user).where(user: user.users) }
   scope :liked_by_users_for, -> (user) { liked.includes(:user).where(user: user.users) }
 
+  def event_intercom_firstperk
+    send_event_intercom("use_firstperk_cforgood")
+  end
+
   private
 
-  def create_event_intercom
+  def event_intercom_create
+    send_event_intercom("use_perk")
+  end
+
+  def event_intercom_unlike
+    send_event_intercom("unlike_perk") if self.unlike
+  end
+
+  def send_event_intercom(event_name)
     @user = User.find(user_id)
     @perk = Perk.find(perk_id)
     intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
     begin
       intercom.events.create(
-        event_name: "use-perk",
+        event_name: event_name,
         created_at: Time.now.to_i,
         user_id: @user.id,
         email: @user.email,

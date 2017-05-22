@@ -35,6 +35,7 @@ class UsesController < ApplicationController
     #FIRST PERK OFFER
     if @perk.business.id == ENV['BUSINESS_ID_CFORGOOD'].to_i
       current_user.update(code_partner: @perk.perk_code)
+      @use.event_intercom_firstperk
     end
 
     respond_to :js

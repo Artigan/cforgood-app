@@ -284,6 +284,25 @@ class User < ApplicationRecord
     payments.sum(:amount)
   end
 
+  def create_event_no_business(lat_lng)
+    binding.pry
+    city = Geocoder.search(lat_lng).first.city
+    intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
+    begin
+      intercom.events.create(
+        event_name: "no_business_around",
+        created_at: Time.now.to_i,
+        user_id: self.id,
+        email: self.email,
+        metadata: {
+          city: city
+        }
+      )
+    rescue Intercom::IntercomError => e
+      puts e
+    end
+  end
+
   private
 
   def subscription!
