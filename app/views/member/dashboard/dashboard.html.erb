@@ -27,7 +27,7 @@
       </div>
     </div>
   <% else %>
-    <% if user_signed_in? %>
+    <% if user_signed_in? && !current_user.supervisor %>
       <% if @first_perk_offer %>
           <%= render 'components/popups/member_first_perk_offer_dashboard', perk: @first_perk_offer %>
       <% elsif !current_user.member %>
