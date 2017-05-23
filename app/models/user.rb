@@ -280,8 +280,27 @@ class User < ApplicationRecord
     send_message_to_slack(ENV['SLACK_WEBHOOK_USER_URL'], message)
   end
 
-  def sum_payments
-    payments.sum(:amount)
+  def sum_donations
+    payments.sum(:donation)
+  end
+
+  def create_event_no_business(lat_lng)
+    coordinates = [lat_lng[0].to_f, lat_lng[1].to_f].compact.join(',')
+    city = Geocoder.search(coordinates).first.try(:city)
+    intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
+    begin
+      intercom.events.create(
+        event_name: "no_business_around",
+        created_at: Time.now.to_i,
+        user_id: self.id,
+        email: self.email,
+        metadata: {
+          city: city
+        }
+      )
+    rescue Intercom::IntercomError => e
+      puts e
+    end
   end
 
   private
@@ -514,9 +533,6 @@ class User < ApplicationRecord
   def create_event_employee
 
     if supervisor_id.present?
-      reset_password_token = self.reset_password_token
-      reset_password_url = Rails.root.join(Rails.application.routes.url_helpers.edit_user_password_path(reset_password_token: reset_password_token))
-
       intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
       begin
         intercom.events.create(
@@ -525,8 +541,7 @@ class User < ApplicationRecord
           user_id: self.id,
           email: self.email,
           metadata: {
-            supervisor: self.manager.name,
-            reset_password: reset_password_url
+            supervisor: self.manager.name
           }
         )
       rescue Intercom::IntercomError => e

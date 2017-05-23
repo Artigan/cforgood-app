@@ -1,23 +1,80 @@
 <div class="container-fluid admin">
   <!-- SIDEBAR -->
   <%= render "member/dashboard/shared/sidebar" %>
-  <div class="connexion connexion-form-supervisor signup">
-    <div class="sign-box signup">
+  <div class="connexion connexion-form-supervisor signup" style="background-image: url(<%= image_url('signin-background.jpg') %>);">
+    <div class="sign-box signup-employee">
       <div class="sign-user">
-        <div class="form-card">
-         <div class="subscription-form subscription-form-supervisor">
-           <%= simple_form_for(@employee, url: member_users_path) do |f| %>
-           <%= f.hidden_field :supervisor_id, value: current_user.id %>
-           <%= f.input :email , :class => 'input-form-supervisor'%>
-           <%= f.input :first_name , :class => 'input-form-supervisor' %>
-           <%= f.input :last_name , :class => 'input-form-supervisor'%>
-           <%= f.input :city , :class => 'input-form-supervisor'%>
-           <%= f.hidden_field :zipcode , :class => 'input-form-supervisor'%>
-           <%= f.submit :class => 'validate-form' %>
-           <% end %>
-         </div>
-       </div>
+        <div class="form-card form-card-employee">
+          <button type="button" class="close-button">&times;</button>
+          <div class="avatar-employee">
+            <%= render partial: 'components/avatar_or_picture', locals: { resource: current_user, style: "pastille" } %>
+          </div>
+          <div class="subscription-form subscription-form-supervisor">
+            <%= simple_form_for(@employee, url: member_users_path) do |f| %>
+              <%= f.hidden_field :supervisor_id, value: current_user.id %>
+              <%= f.input :first_name, placeholder: 'Prénom', required: true, label: false %>
+              <%= f.input :last_name, placeholder: 'Nom', required: true, label: false %>
+              <%= f.input :email, placeholder: 'Adresse email', required: true, label: false %>
+              <%= f.input :city, placeholder: 'Ville', required: true, label: false %>
+              <%= f.input :zipcode, as: :hidden %>
+              <div class="flex-validate">
+                <%= f.submit "Validez", class: 'btn btn-connexion hint--top btn-user-connexion' %>
+              </div>
+            <% end %>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
+
+  <% content_for :after_js do %>
+
+  <script>
+
+  $(document).ready(function() {
+
+    var placesAutocomplete = places({
+      container: document.querySelector('#user_city'),
+      type: 'city',
+      aroundLatLngViaIP: false,
+      templates: {
+        value: function(suggestion) {
+          return suggestion.name;
+        }
+      }
+    });
+
+    placesAutocomplete.on('change', function resultSelected(e) {
+      document.querySelector('#user_zipcode').value = e.suggestion.postcode || '';
+    });
+
+    $("#new_user").validate({
+      lang: 'fr',
+      rules: {
+        first_name: {
+          required: true,
+        },
+        last_name: {
+          required: true,
+        },
+        city: {
+          required: true
+        }
+      }
+    });
+
+    $('.btn-user-connexion').on('click', function(e) {
+      if ( $('#user_zipcode').val() == "" || $('#user_zipcode').val() == null ) {
+        e.preventDefault();
+        $("#error-code").html('Sélectionnez une ville existante !');
+      }
+    });
+
+    $('.close-button').on('click', function(e) {
+      window.location.href = "<%= member_user_supervisor_account_path(current_user, anchor: 'employees') %>"
+    });
+  });
+
+  </script>
+
+  <% end %>

@@ -42,7 +42,7 @@
               <li class="account-li">Nombre de bons plans utilisés : <span class="number"><%= @used_perks.count %></span></li>
               <li class="account-li">Nombre d'employés : <span class="number"><%= @user.users.size %></span></li>
               <li class="account-li">Nombre de likes : <span class="number"><%= @liked_perks.count %></span></li>
-              <li class="account-li">Montant total : <span class="number"><%= @user.sum_payments %></span></li>
+              <li class="account-li">Total des dons : <span class="number"><%= @user.sum_donations %></span></li>
             </ul>
             </div>
             <% unless @user.users.empty? %>
@@ -64,22 +64,24 @@
           </div>
         </div>
         <div role="tabpanel" class="tab-pane" id="employees">
-          <div>
-            <%= link_to "Créer un employé", new_member_user_path, class: "btn btn-primary btn-grad" %>
-          </div>
           <br>
           <p class="employees-list-style">Liste des employés</p>
-
           <div id="users">
+            <div class="create-an-employee-flex">
             <input class="search" placeholder="Rechercher" />
+              <%= link_to "Créer un employé", new_member_user_path, class: "btn btn-primary btn-grad" %>
+            </div>
+
             <ul class="list list-group list-users">
               <% @employes_sorted_by_uses.each do |employee| %>
                 <li class="list-group-item">
                   <div class="employee-display">
                     <div class="employee-left">
-                      <span class="first_name"> <%= employee[:first_name].capitalize %></span>
-                      <span class="last_name"> <%= employee[:last_name].capitalize %> </span><br>
-                      <span class="employee-cause">Cause: <%= employee[:cause] %> </span>
+                      <div>
+                        <span class="first_name"> <%= employee[:first_name].capitalize %></span>
+                        <span class="last_name"> <%= employee[:last_name].capitalize %> </span>
+                    </div>
+                      <div class="employee-cause"><i class="fa fa-heart"><span class="tooltiptext">Sa cause</span></i><span class="cartouche-cause"><%= employee[:cause] %> </span></div>
                     </div>
                     <div class="employee-right">
                       <ul class="data">
@@ -121,7 +123,7 @@
             <%= f.input :street %>
             <%= f.input :zipcode %>
             <%= f.input :city %>
-            <%= f.submit :class => "btn-grad" %>
+            <div class="btn-supervisor-save-container"><%= f.submit "Sauvegarder", :class => "btn-grad btn-supervisor-save" %></div>
           <% end %>
         </div>
       </div>

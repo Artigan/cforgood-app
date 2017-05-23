@@ -35,7 +35,6 @@ class BusinessesController < ApplicationController
     @address = @business.addresses.includes(:timetables).find(params[:address_id])
     @labels = @business.labels.includes(:label_category)
 
-
     @geojson = {"type" => "FeatureCollection", "features" => []}
 
     @geojson["features"] << {
@@ -62,6 +61,6 @@ class BusinessesController < ApplicationController
   end
 
   def find_businesses_for_search
-    @businesses = Business.not_supervisor.includes(:business_category, :main_address, :perks, :labels).active.with_perks_in_time.distinct.eager_load(:addresses).merge(Address.near(@lat_lng, 99999, order: "distance"))
+    @businesses = Business.not_supervisor.includes(:business_category, :main_address, :perks, :labels, :label_categories).active.with_perks_in_time.distinct.eager_load(:addresses).merge(Address.near(@lat_lng, 99999, order: "distance"))
   end
 end
