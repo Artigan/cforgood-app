@@ -280,8 +280,8 @@ class User < ApplicationRecord
     send_message_to_slack(ENV['SLACK_WEBHOOK_USER_URL'], message)
   end
 
-  def sum_payments
-    payments.sum(:amount)
+  def sum_donations
+    payments.sum(:donation)
   end
 
   def create_event_no_business(lat_lng)

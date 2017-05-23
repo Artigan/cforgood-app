@@ -245,6 +245,10 @@
     }
   }
 
+  .signup-employee {
+    transform: translateX(calc(-50% + 45px)) translateY(-50%);
+  }
+
   .translate {
     @media (max-width: 767px) {
       transform: translateY(0%) translateX(0%);
@@ -281,10 +285,6 @@
     .connexion.connexion-form-supervisor {
       background: linear-gradient(to right, #64B9EA, #36D7B7, #33CC66) !important;
 
-    }
-
-    .subscription-form-supervisor input {
-      border-bottom: 2px solid lightgrey !important;
     }
 
     .subscription-form-supervisor .input-form-supervisor {

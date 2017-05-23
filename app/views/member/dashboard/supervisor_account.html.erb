@@ -42,7 +42,7 @@
               <li class="account-li">Nombre de bons plans utilisés : <span class="number"><%= @used_perks.count %></span></li>
               <li class="account-li">Nombre d'employés : <span class="number"><%= @user.users.size %></span></li>
               <li class="account-li">Nombre de likes : <span class="number"><%= @liked_perks.count %></span></li>
-              <li class="account-li">Montant total : <span class="number"><%= @user.sum_payments %></span></li>
+              <li class="account-li">Total des dons : <span class="number"><%= @user.sum_donations %></span></li>
             </ul>
             </div>
             <% unless @user.users.empty? %>
