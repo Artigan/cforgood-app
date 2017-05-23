@@ -6,7 +6,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-right: 3%;
+  padding-right: 18px;
+  .btn {
+    width: 182px;
+  }
 }
 
 .employee-display {

@@ -2,7 +2,7 @@
   <!-- SIDEBAR -->
   <%= render "member/dashboard/shared/sidebar" %>
   <div class="connexion connexion-form-supervisor signup" style="background-image: url(<%= image_url('signin-background.jpg') %>);">
-    <div class="sign-box signup-employee">
+    <div class="sign-box signup-employee front-employee">
       <div class="sign-user">
         <div class="form-card form-card-employee">
           <button type="button" class="close-button">&times;</button>
@@ -18,7 +18,7 @@
               <%= f.input :city, placeholder: 'Ville', required: true, label: false %>
               <%= f.input :zipcode, as: :hidden %>
               <div class="flex-validate">
-                <%= f.submit "Validez", class: 'btn btn-connexion hint--top btn-user-connexion' %>
+                <%= f.submit "Valider", class: 'btn btn-connexion hint--top btn-user-connexion' %>
               </div>
             <% end %>
           </div>
