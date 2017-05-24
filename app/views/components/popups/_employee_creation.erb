@@ -1,0 +1,104 @@
+<div class="use-overlay ">
+    <div class="flip-container-mobile-dl">
+        <div class="flipper-mobile-dl">
+            <!-- FRONT CARD-->
+            <div class="front-create-employee">
+              <div class="sign-box signup-employee front-employee">
+                  <div class="sign-user">
+                      <div class="form-card form-card-employee">
+                          <div class="avatar-employee">
+                            <button type="button" class="close-button">&times;</button>
+                              <%= render partial: 'components/avatar_or_picture', locals: { resource: current_user, style: "pastille" } %>
+                          </div>
+                          <div class="subscription-form subscription-form-supervisor">
+                              <%= simple_form_for(employee, url: member_users_path) do |f| %>
+                              <%= f.hidden_field :supervisor_id, value: current_user.id %>
+                              <%= f.input :first_name, placeholder: 'Prénom', required: true, label: false %>
+                              <%= f.input :last_name, placeholder: 'Nom', required: true, label: false %>
+                              <%= f.input :email, placeholder: 'Adresse email', required: true, label: false %>
+                              <%= f.input :city, placeholder: 'Ville', required: true, label: false %>
+                              <%= f.input :zipcode, as: :hidden %>
+                              <div class="flex-validate">
+                                  <%= f.submit "Valider", class: 'btn btn-connexion hint--top btn-user-connexion' %>
+                              </div>
+                              <% end %>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<% content_for :after_js do %>
+<script>
+    $(document).ready(function () {
+
+      $('.close-button').click(function(){
+        $('#employee-pop-up').addClass('hidden');
+      })
+
+      var placesAutocomplete = places({
+          container: document.querySelector('#user_city'),
+          type: 'city',
+          aroundLatLngViaIP: false,
+          templates: {
+              value: function (suggestion) {
+                  return suggestion.name;
+              }
+          }
+      });
+
+      placesAutocomplete.on('change', function resultSelected(e) {
+          document.querySelector('#user_zipcode').value = e.suggestion.postcode || '';
+      });
+
+      $("#new_user").validate({
+          lang: 'fr',
+          rules: {
+              first_name: {
+                  required: true
+              },
+              last_name: {
+                  required: true
+              },
+              city: {
+                  required: true
+              }
+          }
+      });
+
+      $('.btn-user-connexion').on('click', function (e) {
+          if ($('#user_zipcode').val() == "" || $('#user_zipcode').val() == null) {
+              e.preventDefault();
+              $("#error-code").html('Sélectionnez une ville existante !');
+          }
+      });
+
+      $('.close-button').on('click', function (e) {
+          window.location.href = "<%= member_user_supervisor_account_path(current_user, anchor: 'employees') %>"
+      });
+
+
+
+
+        $('.close-tag').click(function () {
+            $('.overlay-download-popup').addClass('hidden');
+        })
+
+        // Prevent events from getting pass .front
+        $('.front').click(function (e) {
+            e.stopPropagation();
+        });
+
+        $('body').click(function () {
+            $('.overlay-download-popup').addClass('hidden');
+        });
+
+    });
+</script>
+<% end %>
