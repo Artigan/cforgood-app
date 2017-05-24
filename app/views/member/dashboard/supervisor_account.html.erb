@@ -1,163 +1,198 @@
 <%= content_for(:title) do %>
-  Mon compte
+Mon compte
 <% end %>
 <%= content_for(:description) do %>
-  Mon espace personnel
+Mon espace personnel
 <% end %>
 
 <div class="container-fluid admin">
-  <!-- SIDEBAR -->
-  <%= render "member/dashboard/shared/sidebar" %>
+    <!-- SIDEBAR -->
+    <%= render "member/dashboard/shared/sidebar" %>
 
-  <!-- DASHBOARD CONTAINER -->
-  <div class="dashboard">
-    <div class="mobile-menu-overlay hidden"></div>
+    <!-- DASHBOARD CONTAINER -->
+    <div class="dashboard">
+        <div class="mobile-menu-overlay hidden"></div>
 
-    <div class="tab-container">
-      <!-- Nav tabs -->
-      <ul id="menu" class="nav nav-tabs">
-        <li role="profile" class="active">
-          <%= link_to "#dashboard", role: "tab", data_toggle: "tab" do %>
-            <span>Dashboard</span>
-          <% end %>
-        </li>
-        <li role="profile">
-          <%= link_to "#employees", role: "tab", data_toggle: "tab" do %>
-            <span>Employés</span>
-          <% end %>
-        </li>
-        <li role="profile">
-          <%= link_to "#supervisor_account", role: "tab", data_toggle: "tab" do %>
-            <span>Mon compte</span>
-          <% end %>
-        </li>
-      </ul>
-      <!-- Tab panes -->
-      <div class="tab-content">
-        <div role="tabpanel" class="tab-pane active" id="dashboard">
-          <div class="account_container">
-            <div class="flex-container">
-              <span class="account-title">Résumé de l'activité de vos employés</span>
-              <ul class="flex-list-items">
-              <li class="account-li">Nombre de bons plans utilisés : <span class="number"><%= @used_perks.count %></span></li>
-              <li class="account-li">Nombre d'employés : <span class="number"><%= @user.users.size %></span></li>
-              <li class="account-li">Nombre de likes : <span class="number"><%= @liked_perks.count %></span></li>
-              <li class="account-li">Total des dons : <span class="number"><%= @user.sum_donations %></span></li>
-            </ul>
-            </div>
-            <% unless @user.users.empty? %>
-              <div class="pie_chart text-center">
-                <div class="pie-container">
-                  <p><u>Répartition par association</u></p>
-                  <div class="pieID pie"></div>
-                  <ul class="pieID legend">
-                    <% @data_for_chart.each do |cause, uses_count| %>
-                      <li>
-                        <em><%= cause %></em>
-                        <span><%= uses_count %></span>
-                      </li>
+        <div class="tab-container">
+            <!-- Nav tabs -->
+            <ul id="menu" class="nav nav-tabs">
+                <li role="profile" class="active">
+                    <%= link_to "#dashboard", role: "tab", data_toggle: "tab" do %>
+                    <span>Dashboard</span>
                     <% end %>
-                  </ul>
-                </div>
-              </div>
-            <% end %>
-          </div>
-        </div>
-        <div role="tabpanel" class="tab-pane" id="employees">
-          <br>
-          <p class="employees-list-style">Liste des employés</p>
-          <div id="users">
-            <div class="create-an-employee-flex">
-            <input class="search" placeholder="Rechercher" />
-              <%= link_to "Créer un employé", new_member_user_path, class: "btn btn-primary btn-grad" %>
-            </div>
-
-            <ul class="list list-group list-users">
-              <% @employes_sorted_by_uses.each do |employee| %>
-                <li class="list-group-item">
-                  <div class="employee-display">
-                    <div class="employee-left">
-                      <div>
-                        <span class="first_name"> <%= employee[:first_name].capitalize %></span>
-                        <span class="last_name"> <%= employee[:last_name].capitalize %> </span>
-                    </div>
-                      <div class="employee-cause"><i class="fa fa-heart"><span class="tooltiptext">Sa cause</span></i><span class="cartouche-cause"><%= employee[:cause] %> </span></div>
-                    </div>
-                    <div class="employee-right">
-                      <ul class="data">
-                        <li>
-                          <i class="fa fa-tag"><span class="tooltiptext">Nombre de bons plans aimés</span></i>
-                          <!-- <i class="fa fa-tag"></i> -->
-                          <span class="number"><%= employee[:likes_count] %></span>
-                        </li>
-                        <li>
-                          <i class="fa fa-eye"><span class="tooltiptext">Nombres de bons plans utilisés</span></i>
-                          <!-- <i class="fa fa-eye"></i> -->
-                          <span class="number"><%= employee[:uses_count] %></span>
-                        </li>
-                      </ul>
-                      <%= link_to "Supprimer l'employé", member_user_path(employee[:id]), method: :patch, class: "btn btn-primary btn-grad" %>
-                    </div>
-                  </div>
                 </li>
-              <% end %>
+                <li role="profile">
+                    <%= link_to "#employees", role: "tab", data_toggle: "tab" do %>
+                    <span>Employés</span>
+                    <% end %>
+                </li>
+                <li role="profile">
+                    <%= link_to "#supervisor_account", role: "tab", data_toggle: "tab" do %>
+                    <span>Mon compte</span>
+                    <% end %>
+                </li>
             </ul>
-          </div>
-        </div>
-        <div role="tabpanel" class="tab-pane" id="supervisor_account">
-          <%= simple_form_for(current_user, url: member_update_profile_path, method: :put) do |f| %>
-            <div class="picture-container">
-              <% if current_user.logo? %>
-                <%= image_tag current_user.logo.url(:avatar), class: 'user-picture'  %>
-              <% else %>
-                <div class="picture-none">
-                  <%= image_tag "citoyen.svg", class: "avatar-citoyen" %>
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="dashboard">
+                    <div class="account_container">
+                        <div class="flex-container">
+                            <span class="account-title">Résumé de l'activité de vos employés</span>
+                            <ul class="flex-list-items">
+                                <li class="account-li">Nombre de bons plans utilisés :
+                                    <span class="number"><%= @used_perks.count %></span>
+                                </li>
+                                <li class="account-li">Nombre d'employés :
+                                    <span class="number"><%= @user.users.size %></span>
+                                </li>
+                                <li class="account-li">Nombre de likes :
+                                    <span class="number"><%= @liked_perks.count %></span>
+                                </li>
+                                <li class="account-li">Total des dons :
+                                    <span class="number"><%= @user.sum_donations %></span>
+                                </li>
+                            </ul>
+                        </div>
+                        <% unless @user.users.empty? %>
+                        <div class="pie_chart text-center">
+                            <div class="pie-container">
+                                <p>
+                                    <u>Répartition par association</u>
+                                </p>
+                                <div class="pieID pie"></div>
+                                <ul class="pieID legend">
+                                    <% @data_for_chart.each do |cause, uses_count| %>
+                                    <li>
+                                        <em><%= cause %></em>
+                                        <span><%= uses_count %></span>
+                                    </li>
+                                    <% end %>
+                                </ul>
+                            </div>
+                        </div>
+                        <% end %>
+                    </div>
                 </div>
-              <% end %>
+                <div role="tabpanel" class="tab-pane" id="employees">
+                    <br>
+                    <p class="employees-list-style">Liste des employés</p>
+                    <div id="users">
+                        <div class="create-an-employee-flex">
+                            <input class="search" placeholder="Rechercher"/>
+                            <%#= link_to "Créer un employé", new_member_user_path, class: "btn btn-primary btn-grad" %>
+                            <div class="btn btn-primary btn-grad employee-trigger">Créer un employé</div>
+                        </div>
+
+                        <ul class="list list-group list-users">
+                            <% @employes_sorted_by_uses.each do |employee| %>
+                            <li class="list-group-item">
+                                <div class="employee-display">
+                                    <div class="employee-left">
+                                        <div>
+                                            <span class="first_name">
+                                                <%= employee[:first_name].capitalize %></span>
+                                            <span class="last_name">
+                                                <%= employee[:last_name].capitalize %>
+                                            </span>
+                                        </div>
+                                        <div class="employee-cause">
+                                            <i class="fa fa-heart">
+                                                <span class="tooltiptext">Sa cause</span>
+                                            </i>
+                                            <span class="cartouche-cause"><%= employee[:cause] %>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="employee-right">
+                                        <ul class="data">
+                                            <li>
+                                                <i class="fa fa-tag">
+                                                    <span class="tooltiptext">Nombre de bons plans aimés</span>
+                                                </i>
+                                                <!-- <i class="fa fa-tag"></i> -->
+                                                <span class="number"><%= employee[:likes_count] %></span>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-eye">
+                                                    <span class="tooltiptext">Nombres de bons plans utilisés</span>
+                                                </i>
+                                                <!-- <i class="fa fa-eye"></i> -->
+                                                <span class="number"><%= employee[:uses_count] %></span>
+                                            </li>
+                                        </ul>
+                                        <%= link_to "Supprimer l'employé", member_user_path(employee[:id]), method: :patch, class: "btn btn-primary btn-grad" %>
+                                    </div>
+                                </div>
+                            </li>
+                            <% end %>
+                        </ul>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="supervisor_account">
+                    <%= simple_form_for(current_user, url: member_update_profile_path, method: :put) do |f| %>
+                    <div class="picture-container">
+                        <% if current_user.logo? %>
+                        <%= image_tag current_user.logo.url(:avatar), class: 'user-picture'  %>
+                    <% else %>
+                        <div class="picture-none">
+                            <%= image_tag "citoyen.svg", class: "avatar-citoyen" %>
+                        </div>
+                        <% end %>
+                    </div>
+                    <%= f.input :logo %>
+                    <%= f.input :email %>
+                    <%= f.input :telephone %>
+                    <%= f.input :first_name %>
+                    <%= f.input :last_name %>
+                    <%= f.input :street %>
+                    <%= f.input :zipcode %>
+                    <%= f.input :city %>
+                    <div class="btn-supervisor-save-container"><%= f.submit "Sauvegarder", :class => "btn-grad btn-supervisor-save" %></div>
+                    <% end %>
+                </div>
             </div>
-            <%= f.input :logo %>
-            <%= f.input :email %>
-            <%= f.input :telephone %>
-            <%= f.input :first_name %>
-            <%= f.input :last_name %>
-            <%= f.input :street %>
-            <%= f.input :zipcode %>
-            <%= f.input :city %>
-            <div class="btn-supervisor-save-container"><%= f.submit "Sauvegarder", :class => "btn-grad btn-supervisor-save" %></div>
-          <% end %>
         </div>
-      </div>
     </div>
-  </div>
+</div>
+
+<div id="employee-pop-up" class="hidden">
+    <%= render 'components/popups/employee_creation', employee: User.new%>
 </div>
 
 <% content_for :after_js do %>
-  <script>
-    $(document).ready(function() {
-      $("#menu a").click(function (e) {
-        e.preventDefault();
-        $(".alert").remove();
-        $(this).tab('show');
-      });
+<script>
+    $(document).ready(function () {
 
-      // List JS for users list
-      var options = {
-        valueNames: [ 'first_name', 'last_name' ]
-      };
-      var userList = new List('users', options);
+        $('.employee-trigger').click(function () {
+            $('#employee-pop-up').toggleClass('hidden');
+            console.log("kirikou il fait beau");
+
+        })
+
+        $("#menu a").click(function (e) {
+            e.preventDefault();
+            $(".alert").remove();
+            $(this).tab('show');
+        });
+
+        // List JS for users list
+        var options = {
+            valueNames: ['first_name', 'last_name']
+        };
+        var userList = new List('users', options);
     });
 
     // store the currently selected tab in the hash value
-    $("#menu a").on("shown.bs.tab", function(e) {
-      var id = $(e.target).attr("href").substr(1);
-      // window.location.hash = id;
-      localStorage.setItem("id", id)
+    $("#menu a").on("shown.bs.tab", function (e) {
+        var id = $(e.target).attr("href").substr(1);
+        // window.location.hash = id;
+        localStorage.setItem("id", id)
     });
 
     // on load of the page: switch to the currently selected tab
     if (localStorage) {
-      var hash = localStorage.getItem("id");
-      $('#menu a[href="' + '#' + hash + '"]').tab('show');
+        var hash = localStorage.getItem("id");
+        $('#menu a[href="#' + hash + '"]').tab('show');
     }
-  </script>
+</script>
 <% end %>

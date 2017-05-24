@@ -1,3 +1,53 @@
+// ADRIEN modal creation d'un employee partie supervisor //
+
+.front-create-employee {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  min-width: 350px;
+  min-height: 350px;
+  background-color: white;
+  @include transition(all, 0.3s, ease-in-out);
+}
+
+.connexion.connexion-form-supervisor {
+  background: linear-gradient(to right, #64B9EA, #36D7B7, #33CC66) !important;
+
+}
+
+.subscription-form-supervisor .input-form-supervisor {
+  margin-top: 10%;
+}
+
+.subscription-form-supervisor .flex-validate {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.avatar-employee {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.avatar-employee img.pastille-citoyen {
+  width: 80px !important;
+  height: 80px !important;
+  margin-top: -100px;
+}
+
+.subscription-form-supervisor.btn {
+  margin-bottom: 0;
+}
+
+
+
+// FIN ADRIEN //
+
+
 .connexion {
   position: relative;
   padding: 70px 0;
@@ -277,48 +327,6 @@
 
     /* SIGNUP /  SIGNIN FORM */
 
-    // ADRIEN CSS //
-    .subscription-form-supervisor {
-      height: 400px;
-    }
-
-    .connexion.connexion-form-supervisor {
-      background: linear-gradient(to right, #64B9EA, #36D7B7, #33CC66) !important;
-
-    }
-
-    .subscription-form-supervisor .input-form-supervisor {
-      margin-top: 10%;
-    }
-
-    .subscription-form-supervisor .flex-validate {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-    }
-
-    .subscription-form-supervisor .validate-form {
-      height: 60px;
-      margin-bottom: -12%;
-      background: linear-gradient(to right, #64B9EA, #36D7B7, #33CC66) !important;
-    }
-
-   .avatar-employee img.pastille-citoyen {
-      width: 70px !important;
-      height: 70px !important;
-      margin-top: -105px;
-    }
-
-    div.form-card.form-card-employee{
-      padding: 0 !important;
-    }
-
-    .front-employee {
-      min-height: 500px !important;
-    }
-
-    // FIN ADRIEN CSS //
     .subscription-form {
       display: flex;
       justify-content: center;
