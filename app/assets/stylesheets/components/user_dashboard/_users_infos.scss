@@ -26,13 +26,19 @@
   line-height: 26px;
   min-width: 300px;
 
+  .employee-full-name {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+  }
+
   .first_name, .last_name, .employee-cause {
     color: #666666;
     font-size: 1.1em;
   }
 
   .last_name {
-    margin-left: 1%;
+    margin-left: 5%;
   }
 
   .employee-cause {
