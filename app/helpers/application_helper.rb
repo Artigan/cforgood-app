@@ -77,9 +77,10 @@ module ApplicationHelper
   end
 
   def set_coordinates (lat, lng)
-    if lat.present? && lng.present?
+    if current_user.present? && current_user.email == "allan.floury@gmail.com"
+      @lat_lng = [44.837789, -0.57918]
+    elsif lat.present? && lng.present?
       @lat_lng = [lat, lng]
-    # elsif (current_user.present? && current_user.email == "allan.floury@gmail.com") || !cookies[:coordinates].present?
     elsif !cookies[:coordinates].present?
       @lat_lng = [44.837789, -0.57918]
     else
