@@ -78,7 +78,7 @@ Mon espace personnel
                     <p class="employees-list-style">Liste des employés</p>
                     <div id="users">
                         <div class="create-an-employee-flex">
-                            <input class="search" placeholder="Rechercher"/>
+                            <input class="search search-employee" placeholder="Rechercher"/>
                             <%#= link_to "Créer un employé", new_member_user_path, class: "btn btn-primary btn-grad" %>
                             <div class="btn btn-primary btn-grad employee-trigger">Créer un employé</div>
                         </div>
@@ -88,7 +88,7 @@ Mon espace personnel
                             <li class="list-group-item">
                                 <div class="employee-display">
                                     <div class="employee-left">
-                                        <div>
+                                        <div class="employee-full-name">
                                             <span class="first_name">
                                                 <%= employee[:first_name].capitalize %></span>
                                             <span class="last_name">
@@ -139,7 +139,8 @@ Mon espace personnel
                         </div>
                         <% end %>
                     </div>
-                    <%= f.input :logo %>
+                    <div class= "btn btn-grad btn-upload-file">Uploadez votre logo</div>
+                    <%= f.input :logo, input_html: { class: 'hidden-upload-file' } %>
                     <%= f.input :email %>
                     <%= f.input :telephone %>
                     <%= f.input :first_name %>
