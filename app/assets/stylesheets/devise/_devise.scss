@@ -6,7 +6,7 @@
   align-items: center;
   position: relative;
   min-width: 350px;
-  min-height: 350px;
+  min-height: 400px;
   background-color: white;
   @include transition(all, 0.3s, ease-in-out);
 }
@@ -34,13 +34,89 @@
 }
 
 .avatar-employee img.pastille-citoyen {
-  width: 80px !important;
-  height: 80px !important;
-  margin-top: -100px;
+  width: 65px !important;
+  height: 65px !important;
+  margin-top: -145px;
 }
 
 .subscription-form-supervisor.btn {
   margin-bottom: 0;
+}
+
+.subscription-form.subscription-form-supervisor.from-control {
+  border-bottom: 1px solid #ccc !important;
+  // border-left: 1px solid #00c9ff !important;
+}
+
+.subscription-form.subscription-form-supervisor {
+  .user_first_name,
+  .user_last_name,
+  .user_email,
+  .user_password,
+  .user_password_confirmation,
+  .user_city,
+  .business_name,
+  .business_email,
+  .business_password,
+  .business_password_confirmation,
+  .business_city,
+  .business_business_category_id {
+    position: relative;
+    // border-bottom: 1px solid #ccc !important;
+
+    &:after {
+      font-family: FontAwesome;
+      position: absolute;
+      top: 10px;
+      right: 0;
+      color: #DCDCDC;
+    }
+  }
+
+  .user_first_name,
+  .business_name {
+    &:after {
+      content: '\f007';
+      font-size: 13px;
+    }
+  }
+
+  .user_last_name {
+    &:after {
+      content: '\f007';
+      font-size: 13px;
+    }
+  }
+
+  .user_email,
+  .business_email {
+    &:after {
+      content: '\f0e0';
+      font-size: 13px;
+    }
+  }
+
+  .user_password,
+  .user_password_confirmation,
+  .business_password,
+  .business_password_confirmation  {
+    &:after {
+      content: '\f023';
+    }
+  }
+
+  .user_city,
+  .business_city {
+    &:after {
+      content: '\f041';
+    }
+  }
+
+  .business_business_category_id {
+    &:after {
+      content: '\f0d7';
+    }
+  }
 }
 
 
