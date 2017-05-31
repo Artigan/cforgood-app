@@ -10,7 +10,7 @@
       <span class="message-subscription">Le paiement sera effectué le 15 janvier !</span>
     <% end %>
     <span class="message-subscription hidden">Rassurez-vous ! <br> Le prélèvement se fera dans <span class="days"></span> jours.</span>
-    <div class="subscription-form">
+    <!-- <div class="subscription-form">
       <form id="form-card-creation">
         <div class="form-group">
           <label for="card_number" class="control-label">Numéro de carte</label>
@@ -24,15 +24,28 @@
           <label for="card_cvx" class="control-label">Cryptogramme visuel</label>
           <input type="text" name="card_cvx" id="card_cvx" size="4" placeholder="123" class="form-control">
         </div>
-        <input type="submit" value="Validez" id="create-card" class="<%= request.path.include?("subscribe") ? 'btn-submit' : 'button-gradient' %>">
+        <input type="submit" value="Validez" id="create-card" class="<%#= request.path.include?("subscribe") ? 'btn-submit' : 'button-gradient' %>">
       </form>
       <div class="hidden">
-        <%= simple_form_for :card, url: member_subscribe_index_path, remote: true, method: :post, authenticity_token: true do |f| %>
-        <%= f.input :id, as: :hidden %>
-        <%= f.submit "", class: "btn-create-card", :style => "display: none;" %>
-        <% end %>
+        <%#= simple_form_for :card, url: member_subscribe_index_path, remote: true, method: :post, authenticity_token: true do |f| %>
+        <%#= f.input :id, as: :hidden %>
+        <%#= f.submit "", class: "btn-create-card", :style => "display: none;" %>
+        <%# end %>
       </div>
-    </div>
+    </div> -->
+
+  <%= form_tag member_subscribe_index_path(current_user) do %>
+
+   <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+    data-name="Ma participation"
+    data-email="<%= current_user.email %>"
+    data-description="Participation <%= current_user.subscription == "Y" ? "annuelle" : "mensuelle" %>"
+    data-amount="<%= current_user.amount %>"
+    data-currency="eur">
+  </script>
+  <% end %>
+
     <div class="card-authorized">
       <ul>
         <li><img src="<%= image_path 'cb.jpg' %>" alt="CB"></li>
