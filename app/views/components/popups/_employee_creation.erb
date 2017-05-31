@@ -16,7 +16,7 @@
                               <%= f.input :first_name, placeholder: 'Prénom', required: true, label: false %>
                               <%= f.input :last_name, placeholder: 'Nom', required: true, label: false %>
                               <%= f.input :email, placeholder: 'Adresse email', required: true, label: false %>
-                              <%= f.input :city, placeholder: 'Ville', required: true, label: false %>
+                              <%= f.input :city, placeholder: 'Ville', required: true, label: false, input_html: { class: 'employee_city' }  %>
                               <%= f.input :zipcode, as: :hidden %>
                               <div class="flex-validate">
                                   <%= f.submit "Valider", class: 'btn btn-connexion hint--top btn-user-connexion' %>
@@ -43,7 +43,7 @@
       })
 
       var placesAutocomplete = places({
-          container: document.querySelector('#user_city'),
+          container: document.querySelector('.employee_city'),
           type: 'city',
           aroundLatLngViaIP: false,
           templates: {
