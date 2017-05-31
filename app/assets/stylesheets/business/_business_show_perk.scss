@@ -151,7 +151,7 @@
     @media (min-width:527px) and (max-width: 1342px) {
       margin-bottom: -13%;
     }
-    // 
+    //
     // @media (min-width:843px) and (max-width: 1091px) {
     //   margin-bottom: -13%;
     // }
@@ -1641,6 +1641,10 @@
       .business-links {
         margin-left: 15%;
         margin-right: 15%;
+        @media screen and (max-width: 340px) {
+          margin-left: 5%;
+          margin-right: 5%;
+        }
       }
 
       .follow-uss {
