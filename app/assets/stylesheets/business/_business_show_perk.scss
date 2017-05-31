@@ -1131,6 +1131,9 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      @media screen and (max-width:340px) {
+        height: 120px;
+      }
     }
 
     .perk-modal-feedback-background-image h6 {
@@ -1142,6 +1145,9 @@
     .perk-modal-feedback-perk-name p, .perk-modal-feedback p, .radio-tile p {
       text-align: center;
       font-size: 1.2em;
+      @media screen and (max-width:340px) {
+        font-size: 0.9em;
+      }
     }
 
     p.unused-description {
