@@ -12,11 +12,12 @@ class Member::SubscribeController < ApplicationController
   end
 
   def create
-    if current_user.mangopay_id
-      current_user.update_attribute("card_id", params[:card][:id])
-      execute_payin
-    end
-    respond_to :js
+    binding.pry
+    # if current_user.mangopay_id
+    #   current_user.update_attribute("card_id", params[:card][:id])
+    #   execute_payin
+    # end
+    # respond_to :js
   end
 
   def update
