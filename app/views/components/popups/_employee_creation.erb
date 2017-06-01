@@ -17,7 +17,7 @@
                               <%= f.input :last_name, placeholder: 'Nom', required: true, label: false %>
                               <%= f.input :email, placeholder: 'Adresse email', required: true, label: false %>
                               <%= f.input :city, placeholder: 'Ville', required: true, label: false, input_html: { class: 'employee_city' }  %>
-                              <%= f.input :zipcode, as: :hidden %>
+                              <%= f.input :zipcode, as: :hidden, input_html: { class: 'employee_zipcode' } %>
                               <div class="flex-validate">
                                   <%= f.submit "Valider", class: 'btn btn-connexion hint--top btn-user-connexion' %>
                               </div>
@@ -42,6 +42,7 @@
         $('#employee-pop-up').addClass('hidden');
       })
 
+
       var placesAutocomplete = places({
           container: document.querySelector('.employee_city'),
           type: 'city',
@@ -54,7 +55,7 @@
       });
 
       placesAutocomplete.on('change', function resultSelected(e) {
-          document.querySelector('#user_zipcode').value = e.suggestion.postcode || '';
+          document.querySelector('.employee_zipcode').value = e.suggestion.postcode || '';
       });
 
       $("#new_user").validate({
@@ -73,7 +74,7 @@
       });
 
       $('.btn-user-connexion').on('click', function (e) {
-          if ($('#user_zipcode').val() == "" || $('#user_zipcode').val() == null) {
+          if ($('.employee_zipcode').val() == "" || $('.employee_zipcode').val() == null) {
               e.preventDefault();
               $("#error-code").html('Sélectionnez une ville existante !');
           }
@@ -83,21 +84,6 @@
           window.location.href = "<%= member_user_supervisor_account_path(current_user, anchor: 'employees') %>"
       });
 
-
-
-
-        $('.close-tag').click(function () {
-            $('.overlay-download-popup').addClass('hidden');
-        })
-
-        // Prevent events from getting pass .front
-        $('.front').click(function (e) {
-            e.stopPropagation();
-        });
-
-        $('body').click(function () {
-            $('.overlay-download-popup').addClass('hidden');
-        });
 
     });
 </script>
