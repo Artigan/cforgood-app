@@ -5,7 +5,6 @@ class Member::DashboardController < ApplicationController
   before_action :find_businesses_for_search, only: [:profile, :gift, :ambassador]
 
   def dashboard
-
     # save logout access
     if !user_signed_in?
       session[:logout] = true

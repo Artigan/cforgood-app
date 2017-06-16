@@ -11,7 +11,7 @@
     <% end %>
     <span class="message-subscription hidden">Rassurez-vous ! <br> Le prélèvement se fera dans <span class="days"></span> jours.</span>
 
-    <%= form_tag member_subscribe_index_path(current_user), id: "payment-form" do %>
+    <%= form_tag member_subscribe_index_path, id: "payment-form", remote: false, method: :post do %>
         <div class="form-row">
           <div id="card-element">
             <!-- a Stripe Element will be inserted here. -->
@@ -21,7 +21,7 @@
           <div id="card-errors" role="alert"></div>
         </div>
 
-        <button class="btn-submit">Valider</button>
+        <button class="<%= request.path.include?('subscribe') ? 'btn-submit' : 'button-gradient' %>">Valider</button>
     <% end %>
 
     <%= link_to "Je renseignerai plus tard mes données bancaires ", member_user_dashboard_path(current_user), class: "btn btn-no-bank-details" %>

@@ -41,7 +41,7 @@ class MangopayServices
       CreditedFunds: { Currency: 'EUR', Amount: credited_funds },
       Fees: { Currency: 'EUR', Amount: fees },
       CreditedWalletId: wallet_id,
-      CardId: @user.card_id,
+      CardId: @user.mangopay_card_id,
       SecureMode:"DEFAULT",
       SecureModeReturnURL:"https://www.cforgood.com",
       StatementDescriptor: "CFORGOOD"

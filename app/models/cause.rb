@@ -40,6 +40,7 @@
 #  representative_testimonial :text
 #  civility                   :integer
 #  national                   :boolean          default(FALSE)
+#  acct_id                    :string
 #
 # Indexes
 #

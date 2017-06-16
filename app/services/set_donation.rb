@@ -34,7 +34,5 @@ class SetDonation
         percent_asso = ((85-80.0)*((@amount-250)/(500-250)))+80
       end
     end
-
-    return @amount*percent_asso/100
   end
 end

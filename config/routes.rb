@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   mount ForestLiana::Engine => '/forest'
+
   ActiveAdmin.routes(self)
 
   # ROOT TO LANDING WEBSITE
@@ -18,6 +19,8 @@ Rails.application.routes.draw do
   get 'faq_connect',              to: 'pages#faq_connect'
   put 'newsletter',               to: 'pages#newsletter'
   get 'maintenance',              to: 'pages#maintenance'
+
+  post 'stripe/webhook',          to: 'stripe#webhook'
 
   resources :contact_forms, only: [:new, :create]
 

@@ -28,7 +28,8 @@
     };
 
     // Create an instance of the card Element
-    var card = elements.create('card', {style: style});
+    var card = elements.create('card', {style: style, hidePostalCode: true});
+
 
     // Add an instance of the card Element into the `card-element` <div>
     card.mount('#card-element');
@@ -49,7 +50,6 @@
       event.preventDefault();
 
       stripe.createToken(card).then(function(result) {
-        console.log(result.error);
         if (result.error) {
           // Inform the user if there was an error
           var errorElement = document.getElementById('card-errors');
@@ -69,7 +69,6 @@
       hiddenInput.setAttribute('name', 'stripeToken');
       hiddenInput.setAttribute('value', token.id);
       form.appendChild(hiddenInput);
-
       // Submit the form
       form.submit();
     }

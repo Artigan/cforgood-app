@@ -17,7 +17,7 @@ class MonthlyPayinJob < ApplicationJob
     nb_events_trial_J_7 = 0
 
     @user_trial_J_7.each do |user|
-      if !user.card_id.present?
+      if !user.mangopay_card_id.present?
         begin
           intercom.events.create(
             event_name: "TRIAL-J-7",
@@ -47,7 +47,7 @@ class MonthlyPayinJob < ApplicationJob
     nb_events_trial_J_3 = 0
 
     @user_trial_J_3.each do |user|
-      if !user.card_id.present?
+      if !user.mangopay_card_id.present?
         begin
           intercom.events.create(
             event_name: "TRIAL-J-3",
@@ -79,7 +79,7 @@ class MonthlyPayinJob < ApplicationJob
     nb_events_trial_J_0 = 0
 
     @user_trial_J_0.each do |user|
-      if user.card_id.present?
+      if user.mangopay_card_id.present?
         if monthly_payin(user)
           # Change subscription: Trial is done !
           nb_payin_trial_OK += 1

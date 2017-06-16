@@ -1,7 +1,9 @@
 class Member::RegistrationsController < Devise::RegistrationsController
 
   def update_cause
+    old_acct_id = current_user.cause.acct_id
     current_user.update_attribute("cause_id", user_params[:cause_id])
+    StripeServices.new(user: current_user, old_acct_id: old_acct_id).change_connected_account if current_user.subscription_id.present?
     respond_to do |format|
       format.html {redirect_to :back}
       format.js {}
