@@ -151,7 +151,7 @@
     @media (min-width:527px) and (max-width: 1342px) {
       margin-bottom: -13%;
     }
-    // 
+    //
     // @media (min-width:843px) and (max-width: 1091px) {
     //   margin-bottom: -13%;
     // }
@@ -1131,6 +1131,9 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      @media screen and (max-width:340px) {
+        height: 120px;
+      }
     }
 
     .perk-modal-feedback-background-image h6 {
@@ -1142,6 +1145,9 @@
     .perk-modal-feedback-perk-name p, .perk-modal-feedback p, .radio-tile p {
       text-align: center;
       font-size: 1.2em;
+      @media screen and (max-width:340px) {
+        font-size: 0.9em;
+      }
     }
 
     p.unused-description {
@@ -1641,6 +1647,10 @@
       .business-links {
         margin-left: 15%;
         margin-right: 15%;
+        @media screen and (max-width: 340px) {
+          margin-left: 5%;
+          margin-right: 5%;
+        }
       }
 
       .follow-uss {

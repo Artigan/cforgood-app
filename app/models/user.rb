@@ -27,7 +27,7 @@
 #  nationality            :string
 #  country_of_residence   :string
 #  mangopay_id            :string
-#  card_id                :string
+#  mangopay_card_id       :string
 #  cause_id               :integer
 #  member                 :boolean          default(FALSE), not null
 #  subscription           :string
@@ -56,6 +56,12 @@
 #  authentication_token   :string(30)
 #  business_supervisor_id :integer
 #  nothing_around         :integer
+#  customer_id            :string
+#  card_id                :string
+#  shared_customer_id     :string
+#  plan_id                :string
+#  subscription_id        :string
+#  forced_geoloc          :boolean          default(FALSE), not null
 #
 # Indexes
 #

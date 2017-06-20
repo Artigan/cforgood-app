@@ -164,10 +164,23 @@ Mon espace personnel
 <script>
     $(document).ready(function () {
 
+      var placesAutocomplete = places({
+        container: document.querySelector('#user_city'),
+        type: 'city',
+        aroundLatLngViaIP: false,
+        templates: {
+          value: function (suggestion) {
+            return suggestion.name;
+          }
+        }
+      });
+
+      placesAutocomplete.on('change', function resultSelected(e) {
+          document.querySelector('#user_zipcode').value = e.suggestion.postcode || '';
+      });
+
         $('.employee-trigger').click(function () {
             $('#employee-pop-up').toggleClass('hidden');
-            console.log("kirikou il fait beau");
-
         })
 
         $("#menu a").click(function (e) {

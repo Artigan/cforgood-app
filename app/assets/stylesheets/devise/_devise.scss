@@ -1,5 +1,19 @@
 // ADRIEN modal creation d'un employee partie supervisor //
 
+.subscription-form-supervisor .form-control {
+  border-bottom: 0.4px solid lightgrey;
+  width: 300px;
+  font-size: 0.8em;
+}
+
+.subscription-form-supervisor .form-control:focus {
+  border-left: 3px solid turquoise;
+}
+
+// .subscription-form-supervisor .employee_city {
+//   margin-bottom: 40px;
+// }
+
 .front-create-employee {
   display: flex;
   justify-content: center;
@@ -25,6 +39,7 @@
   justify-content: center;
   align-items: center;
   width: 100%;
+  padding-top: 45px;
 }
 
 .avatar-employee {
@@ -34,18 +49,13 @@
 }
 
 .avatar-employee img.pastille-citoyen {
-  width: 65px !important;
-  height: 65px !important;
-  margin-top: -145px;
+  width: 45px !important;
+  height: 45px !important;
+  margin-top: -103px;
 }
 
 .subscription-form-supervisor.btn {
   margin-bottom: 0;
-}
-
-.subscription-form.subscription-form-supervisor.from-control {
-  border-bottom: 1px solid #ccc !important;
-  // border-left: 1px solid #00c9ff !important;
 }
 
 .subscription-form.subscription-form-supervisor {
