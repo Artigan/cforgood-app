@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170609091350) do
+ActiveRecord::Schema.define(version: 20170620094055) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -168,6 +168,9 @@ ActiveRecord::Schema.define(version: 20170609091350) do
     t.integer  "civility"
     t.boolean  "national",                   default: false
     t.string   "acct_id"
+    t.datetime "representative_birthday"
+    t.boolean  "acceptance_stripe",          default: false, null: false
+    t.string   "bank_account_id"
     t.index ["cause_category_id"], name: "index_causes_on_cause_category_id", using: :btree
     t.index ["supervisor_id"], name: "index_causes_on_supervisor_id", using: :btree
   end

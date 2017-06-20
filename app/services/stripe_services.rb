@@ -7,9 +7,9 @@ class StripeServices
   include Modules::ModuleSlack
 
   def initialize(options = {})
-    @user = options[:user] || nil
-    @acct_id = options[:acct_id] || @user.present? ? @user.cause.acct_id : nil
-    @old_acct_id = options[:old_acct_id] || nil
+    @user = options[:user] ||= nil
+    @acct_id = options[:acct_id] ||= @user.present? ? @user.cause.acct_id : nil
+    @old_acct_id = options[:old_acct_id] ||= nil
   end
 
   def create_account(cause)

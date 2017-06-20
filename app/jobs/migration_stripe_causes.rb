@@ -15,7 +15,16 @@ class MigrationStripeCauses < ApplicationJob
 
       nb_causes_read += 1
 
-      account = StripeServices.new(nil).create_account(cause)
+      account = StripeServices.new().create_account(cause)
+      account.legal_entity.type = 'company'
+      legal_entity.address.line1 = cause.street
+      legal_entity.address.postal_code = cause.zipcode
+      legal_entity.address.city = cause.city
+      legal_entity.first_name = cause.representative_first_name
+      legal_entity.last_name = cause.representative_last_name
+      legal_entity.dob.day = cause.representative_birthday.day
+      legal_entity.dob.month = cause.representative_birthday.day
+      legal_entity.dob.year = cause.representative_birthday.day
 
         if account.try(:id)
           cause.update(acct_id: account.id)

@@ -41,6 +41,9 @@
 #  civility                   :integer
 #  national                   :boolean          default(FALSE)
 #  acct_id                    :string
+#  representative_birthday    :datetime
+#  acceptance_stripe          :boolean          default(FALSE), not null
+#  bank_account_id            :string
 #
 # Indexes
 #
