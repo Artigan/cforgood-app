@@ -72,8 +72,7 @@
   <% end %>
 </div>
 
-
-<% if device_type != :mobile %>
+<% if device_type != :mobile && ( !user_signed_in? || ( user_signed_in? && !current_user.supervisor ) ) %>
   <% if !session[:download_app].present? || ( session[:download_app].present? && session[:download_app] <= Time.now - 1.day ) %>
     <div class="dl">
       <% session[:download_app] = Time.now %>
