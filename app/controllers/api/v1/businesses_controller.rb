@@ -7,7 +7,7 @@ class Api::V1::BusinessesController < Api::V1::BaseController
     if params[:online].present? && params[:online] == "true"
       @businesses = Business.not_supervisor.includes(:business_category, :main_address, :labels, :label_categories).active.with_perks_in_time.distinct.eager_load(:addresses).merge(Address.near(@lat_lng, 99999, order: "distance"))
     else
-      @businesses = Business.not_supervisor.includes(:business_category, :perks_in_time, :uses, :main_address, :labels, :label_categories).active.for_map.with_perks_in_time.distinct.eager_load(:addresses_for_map).merge(Address.near(@lat_lng, 99999, order: "distance"))
+      @businesses = Business.not_supervisor.includes(:business_category, :main_address, :labels, :label_categories).active.for_map.with_perks_in_time.distinct.eager_load(:addresses_for_map).merge(Address.near(@lat_lng, 99999, order: "distance"))
     end
     authorize @businesses
     current_user.create_event_no_business(@lat_lng) if @businesses.empty?
