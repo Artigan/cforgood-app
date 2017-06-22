@@ -1,9 +1,5 @@
 class StripeServices
 
-  # def initialize()
-  #     @user = user
-  #     @acct_id = user.cause.acct_id if user
-  # end
   include Modules::ModuleSlack
 
   def initialize(options = {})
@@ -89,6 +85,7 @@ class StripeServices
     token = stripe_token_create(token_info, @acct_id)
 
     if token.try(:id)
+      binding.pry
 
       shared_customer = stripe_shared_customer_retrieve(@user.shared_customer_id, @acct_id)
 
@@ -131,21 +128,6 @@ class StripeServices
     stripe_subscription_create(subscription_info, @acct_id)
   end
 
-  def duplicate_subscription(customer_id, plan_id, subscription)
-
-    subscription_info = {
-      customer:  customer_id,
-      plan: plan_id,
-      application_fee_percent: subscription.application_fee_percent,
-      current_period_end: subscription.current_period_end,
-      current_period_start: subscription.current_period_start,
-      trial_end: subscription.trial_end,
-      trial_start: subscription.trial_start
-    }
-
-    stripe_subscription_create(subscription_info, @acct_id)
-  end
-
   def update_subscription(plan_id, fees)
     subscription = stripe_subscription_retrieve(@user.subscription_id, @acct_id)
     if subscription.try(:id)
@@ -160,6 +142,18 @@ class StripeServices
 
   def retrieve_subscription
     stripe_subscription_retrieve(@user.subcription_id, @acct_id)
+  end
+
+  def duplicate_subscription(customer_id, plan_id, subscription)
+
+    subscription_info = {
+      customer:  customer_id,
+      plan: plan_id,
+      application_fee_percent: subscription.application_fee_percent,
+      trial_end: subscription.current_period_end
+    }
+
+    stripe_subscription_create(subscription_info, @acct_id)
   end
 
   def delete_subscription
@@ -181,18 +175,17 @@ class StripeServices
     if !shared_customer_id.present?
       shared_customer = create_shared_customer
     else
+      @user.shared_customer_id = shared_customer_id
       shared_customer = update_shared_customer
     end
 
-    if shared_customer.try(:id)
-      # @user.shared_customer_id = shared_customer.id
-    else
+    if !shared_customer.try(:id)
       # flash[:error] = "Une erreur technique est survenue lors de l'enregistrement de vos données bancaires"
       error = shared_customer
       puts "Stripe Error: #{error.message}"
       message = @user.find_name_or_email + ": *Stripe : erreur lors du changement d'association* :" + (error.message || "")
       send_message_to_slack(ENV['SLACK_WEBHOOK_USER_URL'], message)
-      return
+      return false, message
     end
 
     plan_id = @user.subscription == "M" ? "#{@user.amount}-monthly" : "#{@user.amount}-yearly"
@@ -211,13 +204,14 @@ class StripeServices
 
     if subscription.try(:id)
       old_subscription.delete if old_subscription.try(:id)
-      # @user.subscription_id = subscription.id
+      return true, shared_customer, subscription
     else
       # flash[:error] = "Une erreur technique est survenue lors de la création de votre abonnement"
       error = subscription || old_subscription
       puts "Stripe Error: #{error.message}"
       message = @user.find_name_or_email + ": *Stripe : erreur lors du changement d'association* :" + (error.message || "")
       send_message_to_slack(ENV['SLACK_WEBHOOK_USER_URL'], message)
+      return false, message
     end
   end
 

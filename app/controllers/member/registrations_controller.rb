@@ -2,8 +2,16 @@ class Member::RegistrationsController < Devise::RegistrationsController
 
   def update_cause
     old_acct_id = current_user.cause.acct_id
-    current_user.update_attribute("cause_id", user_params[:cause_id])
-    StripeServices.new(user: current_user, old_acct_id: old_acct_id).change_connected_account if current_user.subscription_id.present?
+    current_user.update_attributes(cause_id: user_params[:cause_id])
+    if current_user.subscription_id.present?
+      result = StripeServices.new(user: current_user, acct_id: current_user.cause.acct_id, old_acct_id: old_acct_id).change_connected_account
+      if result[0]
+        shared_customer = result[1]
+        subscription = result[2]
+        binding.pry
+        current_user.update_attributes(shared_customer_id: shared_customer.id, card_id: shared_customer.default_source, subscription_id: subscription.id)
+      end
+    end
     respond_to do |format|
       format.html {redirect_to :back}
       format.js {}
