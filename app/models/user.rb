@@ -61,6 +61,7 @@
 #  shared_customer_id     :string
 #  plan_id                :string
 #  subscription_id        :string
+#  forced_geoloc          :boolean          default(FALSE), not null
 #
 # Indexes
 #

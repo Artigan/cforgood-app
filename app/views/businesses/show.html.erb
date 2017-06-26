@@ -216,7 +216,11 @@
                       <h6 class="business-subtitle business-leader-title">Qui se cache derrière ?</h6>
 
                       <div class="business-leader-section">
+                          <% if @business.leader_picture.present? %>
                         <div class="business-leader-picture img-responsive" style="background-image: url('<%= @business.leader_picture %>');"/></div>
+                          <% else %>
+                        <div class="business-leader-picture img-responsive" style="background-image: url('<%= @business.picture.url(:medium) %>');"/></div>
+                          <% end %>
 
                         <div class="business-leader-decription">
                           <p class="business-leader-full-name">

@@ -126,33 +126,62 @@
     color: white;
   }
 
+
+    .dropdown-socials {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      min-width: 50px;
+      border: 0;
+      top: 100px;
+    }
+
   .dropdown-menu.socials {
     background-color: rgba(255,255,255,0);
     min-width: 0 !important;
     height: 100px;
     margin-left: 66%;
-    margin-bottom: 7%;
+    margin-bottom: 15%;
 
-    @media (min-width: 1221px) and (max-width: 1430px) {
-      margin-left: 62%;
+    @media (min-width:1343px) and (max-width: 1476px) {
+      margin-bottom: 30%;
     }
 
-    @media (min-width: 992px) and (max-width: 1220px) {
-      margin-left: 64%;
-      margin-bottom: 4%;
+    @media (min-width:527px) and (max-width: 1342px) {
+      margin-bottom: -13%;
     }
+    //
+    // @media (min-width:843px) and (max-width: 1091px) {
+    //   margin-bottom: -13%;
+    // }
+    //
+    // @media (min-width: 527px) and (max-width: 842px) {
+    //   margin-bottom: -13%;
+    //   margin-left: 60%;
+    // }
 
-    @media (min-width: 623px) and (max-width: 767px) {
-      height: 80px;
-      margin-left: 63%;
-      margin-bottom: 8.5%;
-    }
 
-    @media (min-width: 480px) and (max-width: 623px) {
-      height: 80px;
-      margin-left: 54%;
-      margin-bottom: 8.5%;
-    }
+    // @media (min-width: 1092px) and (max-width: 1342px) {
+    //   margin-left: 64%;
+    //   margin-bottom: -13%;
+    // }
+    // @media (min-width: 845px) and (max-width: 1091px) {
+    //   margin-left: 64%;
+    //   margin-bottom: -8%;
+    // }
+    //
+    // @media (min-width: 623px) and (max-width: 767px) {
+    //   height: 80px;
+    //   margin-left: 63%;
+    //   margin-bottom: 8.5%;
+    // }
+    //
+    // @media (min-width: 480px) and (max-width: 623px) {
+    //   height: 80px;
+    //   margin-left: 54%;
+    //   margin-bottom: 8.5%;
+    // }
   }
 
   .dropdown-menu.socials > li > a {
@@ -161,16 +190,6 @@
 
   .dropdown-menu.socials > li > a:hover, .dropdown-menu.socials > li > a:focus {
     background-color: inherit;
-  }
-
-  .dropdown-socials {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 50px;
-    min-width: 50px;
-    border: 0;
-    top: 100px;
   }
 
   .dropdown-socials i {
@@ -1112,6 +1131,9 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      @media screen and (max-width:340px) {
+        height: 120px;
+      }
     }
 
     .perk-modal-feedback-background-image h6 {
@@ -1123,6 +1145,9 @@
     .perk-modal-feedback-perk-name p, .perk-modal-feedback p, .radio-tile p {
       text-align: center;
       font-size: 1.2em;
+      @media screen and (max-width:340px) {
+        font-size: 0.9em;
+      }
     }
 
     p.unused-description {
@@ -1252,11 +1277,11 @@
         font-size: 1.3em;
       }
 
-      .dropdown-menu.socials {
-        height: 80px;
-        margin-left: 55%;
-        margin-bottom: 9%;
-      }
+      // .dropdown-menu.socials {
+      //   height: 80px;
+      //   margin-left: 55%;
+      //   margin-bottom: 9%;
+      // }
 
       .dropdown-socials {
         min-height: 40px;
@@ -1363,11 +1388,11 @@
         height: 40px;
       }
 
-      .dropdown-menu.socials {
-        height: 90px;
-        margin-left: 70%;
-        margin-bottom: 6%;
-      }
+      // .dropdown-menu.socials {
+      //   height: 90px;
+      //   margin-left: 70%;
+      //   margin-bottom: 6%;
+      // }
 
       .dropdown-socials {
         min-height: 45px;
@@ -1439,10 +1464,10 @@
         height: 30px;
       }
 
-      .dropdown-menu.socials {
-        margin-left: 68%;
-        margin-bottom: 3.5%;
-      }
+      // .dropdown-menu.socials {
+      //   margin-left: 68%;
+      //   margin-bottom: 3.5%;
+      // }
 
       .dropdown-socials {
         min-height: 40px;
@@ -1622,6 +1647,10 @@
       .business-links {
         margin-left: 15%;
         margin-right: 15%;
+        @media screen and (max-width: 340px) {
+          margin-left: 5%;
+          margin-right: 5%;
+        }
       }
 
       .follow-uss {

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170620094055) do
+ActiveRecord::Schema.define(version: 20170620143442) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -359,6 +359,7 @@ ActiveRecord::Schema.define(version: 20170620094055) do
     t.string   "shared_customer_id"
     t.string   "plan_id"
     t.string   "subscription_id"
+    t.boolean  "forced_geoloc",                     default: false, null: false
     t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true, using: :btree
     t.index ["business_supervisor_id"], name: "index_users_on_business_supervisor_id", using: :btree
     t.index ["cause_id"], name: "index_users_on_cause_id", using: :btree

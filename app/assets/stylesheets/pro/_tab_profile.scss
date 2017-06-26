@@ -606,6 +606,20 @@
           }
         }
 
+        .btn.btn-grad.btn-upload-file {
+          position: relative;
+          color: white;
+          font-weight: 600;
+          top:70px;
+        }
+
+        .hidden-upload-file {
+          z-index: 100;
+          opacity: 0;
+          cursor: pointer !important;
+          margin-bottom: -1%;
+        }
+
 
         /* PROFILE - TIMETABLES *********************************************/
 
