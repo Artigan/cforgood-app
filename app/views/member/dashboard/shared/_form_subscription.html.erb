@@ -88,7 +88,7 @@
 </div>
 
 <!-- MODAL MESSAGES ERROR/INFORMATION -->
-<%= render "components/modals/payment" %>
+<%= render "components/popups/payment" %>
 <%= render 'components/popups/stop_subscription_validation' %>
 
 <% content_for :after_js do %>
@@ -107,7 +107,7 @@
 
       $(".stop-subscription").on("click", function(e) {
         e.preventDefault();
-        $(".popup-stop-confirmation").removeClass('hidden');
+        $(".overlay-stop-subscritpion").removeClass('hidden');
       });
 
     });

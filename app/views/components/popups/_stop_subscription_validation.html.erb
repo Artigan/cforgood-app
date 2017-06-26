@@ -1,25 +1,36 @@
-<div class="popup-overlay popup-stop-confirmation hidden">
-  <div class="popup-container">
-    <div class="close-popup"><i class="fa fa-times"></i></div>
-    <div class="wrapper">
-      <!-- ILLUSTRATION-->
-      <%= render 'shared/icons/danger' %>
-    </div>
-    <span>Souhaitez-vous vraiment vous désabonner ?</span>
+<div class="use-overlay overlay-stop-subscritpion hidden">
+  <div class="flip-container-mobile">
+    <div class="flipper-mobile">
+      <!-- FRONT CARD-->
+      <div class="border-gradient">
+        <figure class="front">
+          <!-- CLOSE BUTTON-->
+          <button type="button" class="close-button close-stop-subscription">&times;</button>
+          <div class="member-card-update-profil-wrapper">
+            <div class="danger-stop-subscription" style="background-color: lightgrey"></div>
+          </div>
+          <!-- CTA-->
+          <div class="container-code gentleman">
+            <div class="text-infos-not-member-yet">
+              <p>Souhaitez-vous vraiment vous désabonner ?</p>
 
-    <%= simple_form_for(current_user, url: member_stop_subscription_path, method: :put, remote: true, authenticity_token: true) do |f| %>
-      <%= f.submit "Valider", class: "user-button stop-confirmation-button" %>
-    <% end %>
+              <%= simple_form_for(current_user, url: member_stop_subscription_path, method: :put, remote: true, authenticity_token: true) do |f| %>
+                <%= f.submit "Valider", class: "button-gradient-not-member-yet stop-confirmation-button" %>
+              <% end %>
+            </div>
+          </div>
+        </figure>
+      </div>
+    </div>
   </div>
 </div>
 
 <% content_for :after_js do %>
   <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
 
-      $(".popup-stop-confirmation .close-popup").on("click", function(e) {
-        e.preventDefault();
-        $(".popup-stop-confirmation").addClass('hidden');
+      $(".close-stop-subscription").click(function() {
+        $('.overlay-stop-subscritpion').addClass('hidden');
       });
 
     });

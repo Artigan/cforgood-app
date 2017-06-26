@@ -1,47 +1,43 @@
 <div class="use-overlay overlay-download-popup">
-    <div class="flip-container-mobile-dl">
-        <div class="flipper-mobile-dl">
-            <!-- FRONT CARD-->
-            <div class="front">
-
-                <div class="left-container-flex">
-                    <div class="logo-cforgood-white"></div>
-                    <h6>L'application est arrivée !<br>
-                        Téléchargez la dès maintenant
-                    </h6>
-                    <div class="container-dl-badges">
-                        <a href="https://itunes.apple.com/fr/app/cforgood-bons-plans-de-commer%C3%A7ants-responsables/id1217246114?mt=8" target="_blank"><div class="app-store-badge"></div></a>
-                        <a href="https://play.google.com/store/apps/details?id=com.cforgood" target="_blank"><div class="play-store-badge"></div></a>
-                    </div>
-                </div>
-              <h6 class="close-tag">Fermer</h6>
-
-            </div>
+  <div class="flip-container-mobile-dl">
+    <div class="flipper-mobile-dl">
+      <!-- FRONT CARD-->
+      <div class="front">
+        <div class="left-container-flex">
+          <div class="logo-cforgood-white"></div>
+          <h6>L'application est arrivée !<br>
+            Téléchargez la dès maintenant
+          </h6>
+          <div class="container-dl-badges">
+            <a href="https://itunes.apple.com/fr/app/cforgood-bons-plans-de-commer%C3%A7ants-responsables/id1217246114?mt=8" target="_blank">
+              <div class="app-store-badge"></div>
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.cforgood" target="_blank">
+              <div class="play-store-badge"></div>
+            </a>
+          </div>
         </div>
-
+        <h6 class="close-tag">Fermer</h6>
+      </div>
     </div>
-</div>
-</div>
+  </div>
 </div>
 
 <% content_for :after_js do %>
-<script>
-$(document).ready(function () {
+  <script>
+    $(document).ready(function () {
+      $('.close-tag').click(function(){
+        $('.overlay-download-popup').addClass('hidden');
+      })
 
-  $('.close-tag').click(function(){
-    $('.overlay-download-popup').addClass('hidden');
-  })
+      // Prevent events from getting pass .front
+      $('.front').click(function(e){
+        e.stopPropagation();
+      });
 
-  // Prevent events from getting pass .front
-  $('.front').click(function(e){
-    e.stopPropagation();
-  });
-
-  $('body').click(function(){
-  $('.overlay-download-popup').addClass('hidden');
-});
-
-
-});
-</script>
+      $('body').click(function(){
+        $('.overlay-download-popup').addClass('hidden');
+      });
+    });
+  </script>
 <% end %>

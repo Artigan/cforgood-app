@@ -13,7 +13,11 @@ class Member::SubscribeController < ApplicationController
 
   def create
     execute_payin(params)
-    redirect_to member_user_dashboard_path(current_user)
+    if request.referer.include?("subscribe")
+      redirect_to member_user_dashboard_path(current_user)
+    else
+      redirect_to member_user_profile_path(current_user, anchor: 'subscription' )
+    end
   end
 
   def update
@@ -70,9 +74,8 @@ class Member::SubscribeController < ApplicationController
       if customer.try(:id)
         current_user.update_attributes(customer_id: customer.id, card_id: customer.default_source)
       else
-        flash[:error] = "Une erreur technique est survenue lors de l'enregistrement de vos données bancaires"
-        error = customer
-        puts "Stripe Error: #{error.message}"
+        manage_error(customer)
+        return
       end
 
     end
@@ -90,9 +93,8 @@ class Member::SubscribeController < ApplicationController
       if shared_customer.try(:id)
         current_user.update_attributes(shared_customer_id: shared_customer.id)
       else
-        flash[:error] = "Une erreur technique est survenue lors de l'enregistrement de vos données bancaires"
-        error = shared_customer
-        puts "Stripe Error: #{error.message}"
+        manage_error(share_customer)
+        return
       end
 
     end
@@ -120,23 +122,15 @@ class Member::SubscribeController < ApplicationController
       if subscription.try(:id)
         current_user.update_attributes(subscription_id: subscription.id, plan_id: plan_id)
       else
-        flash[:error] = "Une erreur technique est survenue lors de la création de votre abonnement"
-        error = subscription
-        puts "Stripe Error: #{error.message}"
+        manage_error(subscription)
+        return
       end
 
     end
 
     # change bank details
-    if !flash[:error].present?
-      current_user.member!
-      flash[:success] = "Vos coordonnées bancaires ont bien été prises en compte."
-    else
-      message = current_user.find_name_or_email + ": *erreur lors du paiement* :" + (error.message || "")
-      send_message_to_slack(ENV['SLACK_WEBHOOK_USER_URL'], message)
-      create_event_intercom
-    end
-
+    current_user.member!
+    flash[:success] = "Vos coordonnées bancaires ont bien été prises en compte."
   end
 
   def card_params
@@ -149,6 +143,14 @@ class Member::SubscribeController < ApplicationController
 
   def stripe_params
     params.permit :stripeToken
+  end
+
+  def manage_error(error)
+    flash[:error] = "Une erreur technique est survenue lors de l'enregistrement de vos données bancaires"
+    puts "Stripe Error: #{error.message}"
+    message = current_user.find_name_or_email + " : *erreur lors du paiement* : " + (error.message || "")
+    send_message_to_slack(ENV['SLACK_WEBHOOK_USER_URL'], message)
+    create_event_intercom
   end
 
   def create_event_intercom

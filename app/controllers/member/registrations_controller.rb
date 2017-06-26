@@ -8,8 +8,7 @@ class Member::RegistrationsController < Devise::RegistrationsController
       if result[0]
         shared_customer = result[1]
         subscription = result[2]
-        binding.pry
-        current_user.update_attributes(shared_customer_id: shared_customer.id, card_id: shared_customer.default_source, subscription_id: subscription.id)
+        current_user.update_attributes(shared_customer_id: shared_customer.id, subscription_id: subscription.id)
       end
     end
     respond_to do |format|
