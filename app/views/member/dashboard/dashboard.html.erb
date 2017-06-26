@@ -77,9 +77,12 @@
     <div class="dl">
       <% session[:download_app] = Time.now %>
       <%= render 'components/popups/download_the_app'%>
-    <div>
+    </div>
   <% end %>
 <% end %>
+
+<!-- MODAL MESSAGES ERROR/INFORMATION -->
+<%= render "components/popups/payment" %>
 
 <% content_for(:after_js) do %>
 

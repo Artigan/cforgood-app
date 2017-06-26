@@ -10,40 +10,42 @@
       <span class="message-subscription">Le paiement sera effectué le 15 janvier !</span>
     <% end %>
     <span class="message-subscription hidden">Rassurez-vous ! <br> Le prélèvement se fera dans <span class="days"></span> jours.</span>
-    <div class="subscription-form">
-      <form id="form-card-creation">
-        <div class="form-group">
-          <label for="card_number" class="control-label">Numéro de carte</label>
-          <input type="text" name="card_number" id="card_number" size="18" placeholder="**** **** **** ****" class="form-control">
+
+    <%= form_tag member_subscribe_index_path, id: "payment-form", remote: false, method: :post do %>
+
+<!--
+      <input type="hidden" name="token" />
+      <div class="group">
+        <label>
+          <span>Numéro de carte</span>
+          <div id="card-number-element" class="field"></div>
+        </label>
+        <label>
+          <span>Date d'expiration</span>
+          <div id="card-expiry-element" class="field"></div>
+        </label>
+        <label>
+          <span>Cryptogramme visuel</span>
+          <div id="card-cvc-element" class="field"></div>
+        </label>
+      </div> -->
+
+      <div class="form-row">
+        <div id="card-element">
+            <!-- a Stripe Element will be inserted here. -->
         </div>
-        <div class="form-group">
-          <label for="card_exp_date" class="control-label">Date d'expiration</label>
-          <input type="text" name="card_exp_date" id="card_exp_date" size="6" placeholder="mmaa" class="form-control">
-        </div>
-        <div class="form-group">
-          <label for="card_cvx" class="control-label">Cryptogramme visuel</label>
-          <input type="text" name="card_cvx" id="card_cvx" size="4" placeholder="123" class="form-control">
-        </div>
-        <input type="submit" value="Validez" id="create-card" class="<%= request.path.include?("subscribe") ? 'btn-submit' : 'button-gradient' %>">
-      </form>
-      <div class="hidden">
-        <%= simple_form_for :card, url: member_subscribe_index_path, remote: true, method: :post, authenticity_token: true do |f| %>
-        <%= f.input :id, as: :hidden %>
-        <%= f.submit "", class: "btn-create-card", :style => "display: none;" %>
-        <% end %>
+
+        <!-- Used to display form errors -->
+        <div id="card-errors" role="alert"></div>
       </div>
-    </div>
-    <div class="card-authorized">
-      <ul>
-        <li><img src="<%= image_path 'cb.jpg' %>" alt="CB"></li>
-        <li><img src="<%= image_path 'visa.jpg' %>" alt="VISA"></li>
-        <li><img src="<%= image_path 'mastercard2.jpg' %>" alt="MASTERCARD"></li>
-      </ul>
-    </div>
-    <div class="mangopay-disclaimer">
-      <img src="<%= image_path 'powered-by-mangopay.png' %>" alt="CB">
+
+      <button class="<%= request.path.include?('subscribe') ? 'btn-submit' : 'button-gradient' %>">Valider</button>
+    <% end %>
+
+    <div class="info-disclaimer">
       <%=link_to " Informations légales", "https://www.mangopay.com/terms/Mangopay_Terms-FR.pdf", target: "_blank" %>
     </div>
+
     <%= link_to "Je renseignerai plus tard mes données bancaires ", member_user_dashboard_path(current_user), class: "btn btn-no-bank-details" %>
     <button class="signup-prev">Retour</button>
     <div class="hidden">
@@ -56,9 +58,6 @@
 <div>
   <%= image_tag('icons/loading.gif', id: "loading-indicator", style: "display: none;") %>
 </div>
-
-<!-- MODAL MESSAGE INFORMATION -->
-<%= render "components/modals/payment" %>
 
 <% content_for :after_js do %>
 

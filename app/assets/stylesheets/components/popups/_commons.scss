@@ -141,11 +141,6 @@
     }
   }
 
-  /* STOP SUBSCRIPTION ********************************************************/
-  .stop-confirmation-button {
-    margin-top: 50px;
-  }
-
 
   /* NO PERKS *****************************************************************/
   .no-perks {
@@ -189,4 +184,9 @@
   .popup-overlay {
     left: 90px;
   }
+}
+
+/* STOP SUBSCRIPTION ********************************************************/
+.stop-confirmation-button {
+  position: inherit !important;
 }

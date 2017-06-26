@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>unchecked</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="unchecked">
+            <g id="Page-1">
+                <g id="Group">
+                    <path d="M31.998,0 C14.354,0 0,14.355 0,32 C0,49.645 14.354,64 31.998,64 C49.645,64 64,49.645 64,32 C64,14.355 49.645,0 31.998,0 Z M31.998,60 C16.561,60 4,47.439 4,32 C4,16.561 16.561,4 31.998,4 C47.438,4 60,16.561 60,32 C60,47.439 47.438,60 31.998,60 Z" id="Shape" fill="#1D1D1B" fill-rule="nonzero"></path>
+                    <path d="M46.5,18.5 L18.8865975,46.1134025" id="Line" stroke="#1D1D1B" stroke-width="4" stroke-linecap="round"></path>
+                    <path d="M18,18 L45.6134025,45.6134025" id="Line" stroke="#1D1D1B" stroke-width="4" stroke-linecap="round"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

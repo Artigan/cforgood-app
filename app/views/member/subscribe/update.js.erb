@@ -1,12 +1,14 @@
 $(".alert").remove();
 
-if (<%= !current_user.errors.any? && !flash[:alert].present? %>) {
+if (<%= !current_user.errors.any? && !flash[:alert].present? && !flash[:error].present? %>) {
 
   if (<%= !current_user.card_id.present? %>) {
     $("#payment").removeClass('hidden');
     $("#menu a.show-payment").tab('show');
   } else {
+
     if (<%= current_user.member %>) {
+      $(".btn-subscription").val("Sauvegarder");
       $(".stop-subscription").removeClass("disabled");
     }
 
@@ -19,12 +21,12 @@ if (<%= !current_user.errors.any? && !flash[:alert].present? %>) {
     }
 
     // DISCLAIMER - DISPLAYED
-    $(".updated-done-overlay").removeClass("hidden");
+    $(".updated-done-overlay.checked").removeClass("hidden");
     $('.show-payment.btn').removeClass("disabled");
 
     window.setTimeout(function(){
       // DISCLAIMER - HIDDEN
-      $(".updated-done-overlay").addClass("hidden");
+      $(".updated-done-overlay.checked").addClass("hidden");
     }, 3000);
   }
 
@@ -33,6 +35,6 @@ if (<%= !current_user.errors.any? && !flash[:alert].present? %>) {
   $(document).find("form").prepend('<%= j render("components/error_messages", resource: current_user, formats: [:html]) %>');
 
 } else {
-  $(".error-message").html("<%= flash[:alert] %>");
-  $(".signup-done-overlay.ko").removeClass('hidden');
+  $(".error-message").html("<%= flash[:alert].present? ? flash[:alert] : flash[:error] %>");
+  $(".updated-done-overlay.overlay-payment").removeClass('hidden');
 }

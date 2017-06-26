@@ -20,7 +20,7 @@ if (<%= !current_user.errors.any? %>) {
       $("#menu a.show-payment").tab('show');
     } else {
      // DISCLAIMER - DISPLAYED
-      $(".updated-done-overlay").removeClass("hidden");
+      $(".updated-done-overlay.checked").removeClass("hidden");
       // window.setTimeout(function(){
       //   // DISCLAIMER - HIDDEN
       //   $(".updated-done-overlay").addClass("hidden");
@@ -34,7 +34,3 @@ if (<%= !current_user.errors.any? %>) {
     $(document).find("form").prepend('<%= j render("components/error_messages", resource: current_user, formats: [:html]) %>');
   }
 }
-
-$(".close-button").click(function() {
-  $(".updated-done-overlay").toggleClass("hidden");
-})

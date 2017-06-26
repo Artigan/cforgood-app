@@ -8,7 +8,7 @@
 <% else %>
 
   $("#loading-indicator").hide();
-  $(".error-message").html("<%= flash[:alert] %>");
+  $(".error-message").html("<%= flash[:error] %>");
   $(".signup-done-overlay.ko").removeClass('hidden');
 
 <% end %>

@@ -38,38 +38,25 @@ class ApplicationController < ActionController::Base
     else
       if session[:referer]
         session[:referer]
-      elsif !current_user.mangopay_id.present?
-        begin
-          @mangopay_user = MangopayServices.new(current_user).create_mangopay_natural_user
-          current_user.update_attribute(:mangopay_id, @mangopay_user["Id"])
-        rescue MangoPay::ResponseError => e
-          puts e
-        end
-        if request.referer.present?
-          if request.referer.include?('signup_trial')
-            # Signup from the landing with automatic fill code_partner
-            current_user.code_partner = "SIGNUPTRIAL"
-            current_user.save
-            member_user_dashboard_path(resource)
-          elsif request.referer.include?('signup_gift')
-            # Signup to suscribe for gift > Funnel just for payment
-            current_user.code_partner = request.referer.split("?")[1].upcase
-            current_user.save
-            member_subscribe_gift_path
-          elsif request.referer.include?('signup_beneficiary')
-            # Only for beneficiary signup
-            @beneficiary =  Beneficiary.find(request.referer.split("?")[1].to_i)
-            current_user.code_partner = "GIFT" + @beneficiary.nb_months.to_s + "MONTH"
-            current_user.save
-            @beneficiary.update(used: true)
-            member_user_dashboard_path(resource)
-          end
-        else
-          # Funnel subscritpion
-          new_member_subscribe_path
-        end
+      elsif request.referer.present? && request.referer.include?('signup_trial')
+        # Signup from the landing with automatic fill code_partner
+        current_user.code_partner = "SIGNUPTRIAL"
+        current_user.save
+        member_user_dashboard_path(resource)
+      elsif request.referer.present? && request.referer.include?('signup_gift')
+        # Signup to suscribe for gift > Funnel just for payment
+        current_user.code_partner = request.referer.split("?")[1].upcase
+        current_user.save
+        member_subscribe_gift_path
+      elsif request.referer.present? && request.referer.include?('signup_beneficiary')
+        # Only for beneficiary signup
+        @beneficiary =  Beneficiary.find(request.referer.split("?")[1].to_i)
+        current_user.code_partner = "GIFT" + @beneficiary.nb_months.to_s + "MONTH"
+        current_user.save
+        @beneficiary.update(used: true)
+        member_user_dashboard_path(resource)
       elsif current_user.sign_in_count == 1
-        # Funnel subscritpion
+        # Funnel subscription
         new_member_subscribe_path
       elsif resource.supervisor
         member_user_supervisor_account_path(resource)

@@ -103,7 +103,7 @@ class User < ApplicationRecord
 
   scope :member, -> { where(member: true) }
 
-  scope :member_should_payin, -> (day) { member.where(subscription: "M", code_partner: [nil, ""], supervisor_id: nil, date_last_payment: (DateTime.now - 1.month - day.day).beginning_of_day..(DateTime.now - 1.month - day.day).end_of_day ) }
+  scope :member_should_payin, -> (day) { member.where.not(mangopay_id: nil, mangopay_card_id: nil).where(subscription: "M", code_partner: [nil, ""], supervisor_id: nil, date_last_payment: (DateTime.now - 1.month - day.day).beginning_of_day..(DateTime.now - 1.month - day.day).end_of_day ) }
   scope :member_on_trial_should_payin, -> (day) { member.where.not(code_partner: [nil, ""]).where(date_end_partner: Date.today + day.day) }
 
   validates :email, presence: true, uniqueness: true
@@ -222,11 +222,11 @@ class User < ApplicationRecord
     return "Abonné depuis le " + I18n.l(self.date_subscription.to_date, format: :long)
   end
 
-  def should_payin?
-    ( !self.code_partner.present? && ( ( self.subscription == "M" && ( !self.date_last_payment.present? || ( self.date_last_payment < Time.now - 1.month ) ) ) ||
-    ( self.subscription == "Y" && ( !self.date_last_payment.present? || ( self.date_last_payment < Time.now - 12.month ) ) ) ) ||
-    ( self.code_partner.present? && self.date_end_partner < Time.now ) )
-  end
+  # def should_payin?
+  #   ( !self.code_partner.present? && ( ( self.subscription == "M" && ( !self.date_last_payment.present? || ( self.date_last_payment < Time.now - 1.month ) ) ) ||
+  #   ( self.subscription == "Y" && ( !self.date_last_payment.present? || ( self.date_last_payment < Time.now - 12.month ) ) ) ) ||
+  #   ( self.code_partner.present? && self.date_end_partner < Time.now ) )
+  # end
 
   def find_name_or_email
     self.first_name + " " + self.last_name || self.name || self.email
@@ -259,6 +259,10 @@ class User < ApplicationRecord
     self.code_partner = nil
     self.business_supervisor_id = nil
     self.date_end_partner = nil
+    # Delete Subscription on stripe
+    subscription = StripeServices.new(user: self).delete_subscription
+    self.subscription_id = nil
+    self.plan_id = nil
     self.save
     # SEND EVENT TO INTERCOM
     intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
@@ -313,10 +317,10 @@ class User < ApplicationRecord
 
   def subscription!
     # IF NOT EXIST, CREATE NEW USER NATURAL FOR MANGOPAY
-    if !self.mangopay_id.present?
-      @mangopay_user = MangopayServices.new(self).create_mangopay_natural_user
-      self.mangopay_id = @mangopay_user["Id"]
-    end
+    # if !self.mangopay_id.present?
+    #   @mangopay_user = MangopayServices.new(self).create_mangopay_natural_user
+    #   self.mangopay_id = @mangopay_user["Id"]
+    # end
     if self.supervisor_id.present?
       self.subscription = self.manager.subscription
       self.amount = self.manager.amount

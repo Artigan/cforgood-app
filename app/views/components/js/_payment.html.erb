@@ -2,87 +2,148 @@
 
   $(document).ready(function() {
 
-    $.validator.addMethod("datePostToday",function(value, element) {
-      var today = new Date();
-      var todayMonth = today.getMonth()+1;
-      var todayYear = today.getFullYear().toString().substr(2,2);
-      var valueMonth = value.substr(0,2);
-      var valueYear = value.substr(2,2);
-      return (valueYear > todayYear || (valueYear == todayYear && valueMonth >= todayMonth));
-    }, "La date d'expiration ne doit pas être révolue");
+    // Stripe
+    var stripe = Stripe("<%= ENV['STRIPE_PUBLISHABLE_KEY']%>");
 
-    $("#form-card-creation").validate({
-      lang: 'fr',
-      rules: {
-        card_number: {
-          required: true,
-          digits: true,
-          minlength: 16,
-          maxlength: 16,
-        },
-        card_exp_date: {
-          required: true,
-          digits: true,
-          minlength: 4,
-          maxlength: 4,
-          datePostToday: true,
-        },
-        card_cvx: {
-          required: true,
-          digits: true,
-          minlength: 3,
-          maxlength: 3
+    // Create an instance of Elements
+    var elements = stripe.elements();
+
+    // Custom styling can be passed to options when creating an Element.
+    // (Note that this demo uses a wider set of styles than the guide below.)
+    var style = {
+      base: {
+        color: '#32325d',
+        lineHeight: '24px',
+        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+        fontSmoothing: 'antialiased',
+        fontSize: '16px',
+        '::placeholder': {
+          color: '#aab7c4'
         }
+      },
+      invalid: {
+        color: '#fa755a',
+        iconColor: '#fa755a'
+      }
+    };
+
+    // Create an instance of the card Element
+    var card = elements.create('card', {style: style, hidePostalCode: true});
+
+
+    // Add an instance of the card Element into the `card-element` <div>
+    card.mount('#card-element');
+
+    // Handle real-time validation errors from the card Element.
+    card.addEventListener('change', function(event) {
+      var displayError = document.getElementById('card-errors');
+      if (event.error) {
+        displayError.textContent = event.error.message;
+      } else {
+        displayError.textContent = '';
       }
     });
 
-    $("#form-card-creation").on("submit", function(e) {
-      e.preventDefault();
-      if ($("#form-card-creation").valid()) {
-        $("#loading-indicator").show();
-        var cardPreRegistration = <%= current_user.mangopay_id ? raw(MangopayServices.new(current_user).create_mangopay_card_pre_registration.to_json) : "null" %>;
+    // Handle form submission
+    var form = document.getElementById('payment-form');
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
 
-        // Initialize with card register data prepared on the server
-        mangoPay.cardRegistration.init({
-          cardRegistrationURL: cardPreRegistration.CardRegistrationURL,
-          preregistrationData: cardPreRegistration.PreregistrationData,
-          accessKey: cardPreRegistration.AccessKey,
-          Id: cardPreRegistration.Id
-        });
-
-        // Card data collected from the user
-        var cardData = {
-          cardNumber: $("#card_number").val(),
-          cardExpirationDate: $("#card_exp_date").val(),
-          cardCvx: $("#card_cvx").val(),
-          cardType: "CB_VISA_MASTERCARD"
-        };
-
-        // Set MangoPay API base URL and Client ID
-        mangoPay.cardRegistration.baseURL   = "<%= ENV['MANGOPAY_API_URL'] %>";
-        mangoPay.cardRegistration.clientId  = "<%= ENV['MANGOPAY_CLIENT_ID'] %>";
-        var validateCard = mangoPay.cardRegistration._validateCardData(cardData);
-
-        if (validateCard) {
-          // Register card
-          mangoPay.cardRegistration.registerCard(
-            cardData,
-            function(res) {
-              $("#card_id").val(res.CardId);
-              $(".btn-create-card").click();
-              // Success, you can use res.CardId now that points to registered card
-            },
-            function(res) {
-              $("#loading-indicator").hide();
-              $(".error-message").html(res.ResultMessage);
-              $(".signup-done-overlay.ko").removeClass('hidden');
-              // Handle error, see res.ResultCode and res.ResultMessage
-            }
-          );
-        };
-      };
+      stripe.createToken(card).then(function(result) {
+        if (result.error) {
+          // Inform the user if there was an error
+          var errorElement = document.getElementById('card-errors');
+          errorElement.textContent = result.error.message;
+        } else {
+          // Send the token to your server
+          stripeTokenHandler(result.token);
+        }
+      });
     });
 
+    function stripeTokenHandler(token) {
+      // Insert the token ID into the form so it gets submitted to the server
+      var form = document.getElementById('payment-form');
+      var hiddenInput = document.createElement('input');
+      hiddenInput.setAttribute('type', 'hidden');
+      hiddenInput.setAttribute('name', 'stripeToken');
+      hiddenInput.setAttribute('value', token.id);
+      form.appendChild(hiddenInput);
+      // Submit the form
+      form.submit();
+    }
+
+
+    // // Version 3 fields
+
+    // var style = {
+    //   base: {
+    //     iconColor: '#666EE8',
+    //     color: '#31325F',
+    //     lineHeight: '40px',
+    //     fontWeight: 300,
+    //     fontFamily: 'Helvetica Neue',
+    //     fontSize: '15px',
+
+    //     '::placeholder': {
+    //       color: '#CFD7E0',
+    //     },
+    //   },
+    // };
+
+    // var cardNumberElement = elements.create('cardNumber', {
+    //   style: style
+    // });
+    // cardNumberElement.mount('#card-number-element');
+
+    // var cardExpiryElement = elements.create('cardExpiry', {
+    //   style: style
+    // });
+    // cardExpiryElement.mount('#card-expiry-element');
+
+    // var cardCvcElement = elements.create('cardCvc', {
+    //   style: style
+    // });
+    // cardCvcElement.mount('#card-cvc-element');
+
+    // var postalCodeElement = elements.create('postalCode', {
+    //   style: style
+    // });
+    // postalCodeElement.mount('#postal-code-element');
+
+
+    // function setOutcome(result) {
+    //   var successElement = document.querySelector('.success');
+    //   var errorElement = document.querySelector('.error');
+    //   successElement.classList.remove('visible');
+    //   errorElement.classList.remove('visible');
+
+    //   if (result.token) {
+    //     // In this example, we're simply displaying the token
+    //     // successElement.querySelector('.token').textContent = result.token.id;
+    //     // successElement.classList.add('visible');
+
+    //     // In a real integration, you'd submit the form with the token to your backend server
+    //     var form = document.querySelector('form');
+    //     form.querySelector('input[name="token"]').setAttribute('value', result.token.id);
+    //     form.submit();
+    //   } else if (result.error) {
+    //     errorElement.textContent = result.error.message;
+    //     errorElement.classList.add('visible');
+    //   }
+    // }
+
+    // cardNumberElement.on('change', function(event) {
+    //   setOutcome(event);
+    // });
+
+    // document.querySelector('form').addEventListener('submit', function(e) {
+    //   e.preventDefault();
+    //   stripe.createToken(cardNumberElement).then(setOutcome);
+    // });
+
+
+    // Navigation
     $(".signup-payment .signup-prev").on("click", function(e) {
       e.preventDefault;
       $(".signup-payment").removeClass("slideup").addClass("ishidden");

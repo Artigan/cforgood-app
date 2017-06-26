@@ -67,14 +67,21 @@
   mask-size: cover;
 }
 
+.danger-stop-subscription {
+  width: 80px;
+  height: 80px;
+  -webkit-mask: image-url('icons/danger.svg') no-repeat 50% 50%;
+  mask: image-url('icons/danger.svg') no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+  mask-size: cover;
+}
+
 .background-logo-pop-up {
   background-image: url('logo_vertical.png');
   background-position: center;
   background-repeat: no-repeat;
   background-size: 200px;
 }
-
-
 
 .flip-container-mobile-dl {
   border-radius: 3px;
@@ -99,72 +106,73 @@
     background-position: center;
     background-size: cover;
     @include transition(all, 0.3s, ease-in-out);
-}
-.left-container-flex {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-width: 300px;
-  height: 100%;
-  padding-left: 6%;
-}
+  }
 
-.logo-cforgood-white {
-  width: 100px;
-  height: 100px;
-  margin-bottom: 6%;
-  margin-top: -20%;
-  background-image: image-url('logo-cforgood-white.png');
-  background-position: center;
-  background-size: cover;
-}
+  .left-container-flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 300px;
+    height: 100%;
+    padding-left: 6%;
+  }
 
-.left-container-flex h6 {
-  color: white;
-  font-size:1.2em;
-  font-weight: bold;
-  margin-top: 4%;
-  margin-bottom: 8%;
-  text-align: center;
-  line-height: 30px;
-}
+  .logo-cforgood-white {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 6%;
+    margin-top: -20%;
+    background-image: image-url('logo-cforgood-white.png');
+    background-position: center;
+    background-size: cover;
+  }
 
-.container-dl-badges {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: -20%;
-  margin-left: -8%;
-}
+  .left-container-flex h6 {
+    color: white;
+    font-size:1.2em;
+    font-weight: bold;
+    margin-top: 4%;
+    margin-bottom: 8%;
+    text-align: center;
+    line-height: 30px;
+  }
 
-.app-store-badge {
-  min-height: 40px;
-  min-width: 140px;
-  background-image: image-url('app-store-badge.png');
-  background-position: center;
-  background-size: cover;
-  border-radius: 5px;
-}
+  .container-dl-badges {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: -20%;
+    margin-left: -8%;
+  }
 
-.play-store-badge {
-  min-height: 62px;
-  min-width: 140px;
-  background-image: image-url('google-play-badge.png');
-  background-position: center;
-  background-size: cover;
-  border-radius: 20px;
-  margin-left: 16%;
-}
+  .app-store-badge {
+    min-height: 40px;
+    min-width: 140px;
+    background-image: image-url('app-store-badge.png');
+    background-position: center;
+    background-size: cover;
+    border-radius: 5px;
+  }
 
-h6.close-tag {
-  position: absolute;
-  color: white;
-  font-size:1em;
-  bottom: 5px;
-  right: 10px;
-  font-weight: bold;
-  cursor: pointer;
+  .play-store-badge {
+    min-height: 62px;
+    min-width: 140px;
+    background-image: image-url('google-play-badge.png');
+    background-position: center;
+    background-size: cover;
+    border-radius: 20px;
+    margin-left: 16%;
+  }
+
+  h6.close-tag {
+    position: absolute;
+    color: white;
+    font-size:1em;
+    bottom: 5px;
+    right: 10px;
+    font-weight: bold;
+    cursor: pointer;
   }
 }
 
@@ -233,6 +241,7 @@ h6.close-tag {
           font-size: 30px;
           font-weight: 100;
           color: rgba(55,55,55,0.4);
+          line-height: 0.85;
           background: transparent;
           border: 1px solid rgba(55,55,55,0.4);
           border-radius: 50%;
@@ -417,14 +426,13 @@ h6.close-tag {
             border: none;
             outline: none;
             color: #fff;
-            // text-transform: uppercase;
             font-size: 14px;
             font-weight: 600;
             background-color: #9FD6AE;
             transition: all, 0.3s, ease-in-out;
           }
 
-          .button-gradient-not-member-yet {
+          .button-gradient-not-member-yet, .button-gradient-not-member-yet:active {
             position: fixed;
             display: inline-flex;
             justify-content: center;
@@ -432,9 +440,7 @@ h6.close-tag {
             height: 50px;
             min-width: 150px;
             bottom: 20px;
-            // left: (50%);
             padding: 20px;
-            // transform: translateX(calc(-50% + 45px));
             border: none;
             border-radius: 25px;
             outline: none;

@@ -281,14 +281,15 @@
     }
   }
 
-  .mangopay-disclaimer {
-    margin-bottom: 30px;
+  .info-disclaimer {
+    margin-top: 20px;
+    margin-bottom: 10px;
     @media (max-width: 320px)  { margin-bottom: 0; }
   }
 
   .btn-no-bank-details {
     right: inherit !important;
-    bottom: 0 !important;
+    bottom: -40px !important;
     @media (max-width: 320px)  { bottom: -30px !important; }
   }
 
