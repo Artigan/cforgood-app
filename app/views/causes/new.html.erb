@@ -5,7 +5,7 @@
 <div class="profile-cause">
   <div class="profile-cause-container">
     <div class="form-edit">
-      <%= simple_form_for @cause, url: new_cause_path, method: :post do |f| %>
+      <%= simple_form_for @cause, url:  causes_path, method: :post do |f| %>
         <%= f.error_notification %>
         <div class="col-no-wrap asso">
           <label>A propos de l'association</label>

@@ -30,7 +30,7 @@ class CausesController < ApplicationController
   def create
     @cause = Cause.new(cause_params)
     if @cause.save
-      redirect_to "https://www.cforgood.com/associations/"
+      redirect_to "http://www.cforgood.com/association/"
     else
       render :new
     end
