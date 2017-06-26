@@ -20,6 +20,24 @@ class StripeServices
     stripe_account_create(account_info)
   end
 
+  def update_account(cause)
+
+    account = stripe_account_retrieve(cause.acct_id)
+
+    return account if !account.try(:id)
+
+    account.legal_entity.type = 'company'
+    account.legal_entity.address.line1 = cause.street
+    account.legal_entity.address.postal_code = cause.zipcode if cause.zipcode.present?
+    account.legal_entity.address.city = cause.city
+    account.legal_entity.first_name = cause.representative_first_name
+    account.legal_entity.last_name = cause.representative_last_name
+    account.legal_entity.dob.day = cause.representative_birthday.try(:day) if cause.representative_birthday.present?
+    account.legal_entity.dob.month = cause.representative_birthday.try(:month) if cause.representative_birthday.present?
+    account.legal_entity.dob.year = cause.representative_birthday.try(:year) if cause.representative_birthday.present?
+    account.save
+  end
+
   def create_customer(stripe_token)
 
     customer_info = {
@@ -36,9 +54,14 @@ class StripeServices
     customer = stripe_customer_retrieve(@user.customer_id)
 
     if customer.try(:id)
-      customer.sources.retrieve(@user.card_id).delete() if @user.card_id.present?
-      customer.sources.create(source: stripe_token)
-      customer.save
+      customer.sources.retrieve(@user.card_id).delete() if @user.card_id.present? && customer.sources.data[0].present?
+      source = stripe_source_create(customer, stripe_token)
+      if source.try(:id)
+        customer.save
+      else
+        return source
+      end
+      return customer
     end
   end
 
@@ -85,7 +108,6 @@ class StripeServices
     token = stripe_token_create(token_info, @acct_id)
 
     if token.try(:id)
-      binding.pry
 
       shared_customer = stripe_shared_customer_retrieve(@user.shared_customer_id, @acct_id)
 
@@ -93,9 +115,10 @@ class StripeServices
         shared_customer.sources.retrieve(shared_customer.sources.data[0].id).delete() if shared_customer.sources.data[0].id.present?
         shared_customer.sources.create(source: token.id)
         shared_customer.save
-        return shared_customer
       end
+      return shared_customer
     end
+    return token
   end
 
   def retrieve_plan(plan_id)
@@ -169,7 +192,6 @@ class StripeServices
 
     return if !customer.try(:id)
 
-    binding.pry
     #  control if shared customer already exist for new cause
     shared_customer_id = customer.metadata[@acct_id]
     if !shared_customer_id.present?
@@ -198,7 +220,6 @@ class StripeServices
     # retrieve old subscription
     old_subscription = stripe_subscription_retrieve(@user.subscription_id, @old_acct_id)
 
-    binding.pry
     # duplicate subscription
     subscription = duplicate_subscription(shared_customer.id, plan_id, old_subscription) if old_subscription.try(:id)
 
@@ -225,6 +246,14 @@ class StripeServices
     end
   end
 
+  def stripe_account_retrieve(account_id)
+    begin
+      Stripe::Account.retrieve(account_id)
+    rescue Stripe::StripeError => e
+      return e
+    end
+  end
+
   def stripe_customer_create(customer_info)
     begin
       Stripe::Customer.create(customer_info)
@@ -236,6 +265,14 @@ class StripeServices
   def stripe_customer_retrieve(customer_id)
     begin
       Stripe::Customer.retrieve(customer_id)
+    rescue Stripe::StripeError => e
+      return e
+    end
+  end
+
+  def stripe_source_create(customer, stripe_token)
+    begin
+      customer.sources.create(source: stripe_token)
     rescue Stripe::StripeError => e
       return e
     end

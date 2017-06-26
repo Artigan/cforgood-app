@@ -89,10 +89,11 @@ class Cause < ApplicationRecord
   before_save :format_facebook, if: :facebook_changed?
   before_save :format_twitter, if: :twitter_changed?
   before_save :format_instagram, if: :instagram_changed?
+  before_save :create_stripe_data!, if: :active_changed?
 
-  after_create :subscribe_to_newsletter_cause
-  after_save :create_mangopay_data!
+  after_create :send_registration_slack, :subscribe_to_newsletter_cause
   after_save :update_data_intercom
+  after_save :send_activation_slack, if: :active_changed?
 
   private
 
@@ -120,16 +121,21 @@ class Cause < ApplicationRecord
     self.instagram = self.instagram.split("instagram.com/").last
   end
 
-  def create_mangopay_data!
-    if !self.mangopay_id.present?
-      # CREATE LEGAL USER
-      @mangopay_user = MangopayServices.new(self).create_mangopay_legal_user
-      self.update_attributes(mangopay_id: @mangopay_user["Id"])
-      #CREATE WALLET
-      if self.mangopay_id.present?
-        @mangopay_wallet = MangopayServices.new(self).create_mangopay_wallet
-        self.update_attributes(wallet_id: @mangopay_wallet["Id"])
-      end
+  def create_stripe_data!
+
+    return if acct_id.present?
+    return unless active
+
+    account = StripeServices.new().create_account(self)
+
+    if account.try(:id)
+      self.acct_id = account.id
+      account = StripeServices.new().update_account(self)
+    end
+
+    if !account.try(:id)
+      message = self.name + ": *Stripe : erreur lors de la création ou mise à jour du compte :" + (error.message || "")
+      send_message_to_slack(ENV['SLACK_WEBHOOK_CAUSE_URL'], message)
     end
   end
 
@@ -137,6 +143,19 @@ class Cause < ApplicationRecord
     if Rails.env.production?
       SubscribeToNewsletterCause.new(self).run
     end
+  end
+
+  def send_registration_slack
+    message = self.name
+    message += ", *#{city}*," if city.present?
+    message += " a rejoint la communauté !"
+    send_message_to_slack(ENV['SLACK_WEBHOOK_CAUSE_URL'], message)
+  end
+
+  def send_activation_slack
+    return unless active
+    message = "*#{name}* a été activé !"
+    send_message_to_slack(ENV['SLACK_WEBHOOK_CAUSE_URL'], message)
   end
 
   def update_data_intercom
