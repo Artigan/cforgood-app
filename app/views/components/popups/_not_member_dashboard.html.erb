@@ -1,11 +1,11 @@
-<div class="use-overlay">
+<div class="use-overlay use-overlay-not-member">
   <div class="flip-container-mobile">
     <div class="flipper-mobile">
       <!-- FRONT CARD-->
       <div class="border-gradient">
       <figure class="front">
         <!-- CLOSE BUTTON-->
-        <button type="button" class="close-button">&times;</button>
+        <button type="button" class="close-button close-not-member">&times;</button>
         <!-- ILLUSTRATION-->
         <!-- <div class="wrapper">
           <%#= render "shared/icons/bowtie" %>
@@ -37,6 +37,10 @@
 <% content_for :after_js do %>
   <script>
     $(document).ready(function() {
+
+      $('.close-not-member').click(function(){
+        $('.use-overlay-not-member').addClass('hidden');
+      });
 
       $(".button-gradient.not-member").on("click", function() {
         // EVENT AMPLITUDE : USER_C_SIGNUP_POPUP_DASHBOARD

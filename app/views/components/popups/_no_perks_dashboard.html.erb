@@ -1,11 +1,11 @@
-<div class="use-overlay">
+<div class="use-overlay use-overlay-no-perks">
   <div class="flip-container-mobile">
     <div class="flipper-mobile">
       <!-- FRONT CARD-->
       <div class="border-gradient">
         <figure class="front">
           <!-- CLOSE BUTTON-->
-          <button type="button" class="close-button">&times;</button>
+          <button type="button" class="close-button close-button-no-perks">&times;</button>
           <div class="member-card-update-profil-wrapper">
             <div class="hourglass" style="background-color: lightgrey"></div>
           </div>
@@ -33,3 +33,17 @@
     </div>
   </div>
 </div>
+
+<% content_for(:after_js) do %>
+  <script>
+
+    $(document).ready(function() {
+
+      $(".close-button-no-perks").click(function() {
+        $('.use-overlay-no-perks').addClass('hidden');
+      });
+
+    });
+
+  </script>
+<% end %>

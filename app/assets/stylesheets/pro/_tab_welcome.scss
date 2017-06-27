@@ -1,54 +1,9 @@
-/* WELCOME | BUSINESS LANDING AFTER SIGNIN ************************************/
-
-/* IF INACTIVE ****************************************************************/
-// .whitebox-business-blur {
-//   position: absolute;
-//   height: 100%;
-//   width: 100%;
-//   background: rgba(255, 255, 255, 0.8);
-//   -webkit-filter: blur(3px);
-//   filter: url('/media/blur.svg#blur');
-//   filter: blur(3px);
-// }
-
-// .whitebox-business-msg {
-//   position: absolute;
-//   top: 30%;
-//   left: 40%;
-//   text-transform: uppercase;
-//   text-align: center;
-//   color: #fff;
-//   background-color: #9FD6AE;
-//   border: 1px solid #8BBD99;
-//   box-shadow: 0px 7px 16px rgba(0, 0, 0, 0.2);
-//   padding: 10px;
-//   border-radius: 3px;
-//   font-size: 14px;
-//   font-weight: 600px;
-
-//   img {
-//     height: 10%;
-//     width: 10%;
-//     margin-right: 10px;
-//   }
-
-//   &:hover {
-//     background-color: #8BBD99;
-//   }
-// }
-
 .done-overlay {
   .close-button {
-    position: absolute;
-    color: #636363;
-    background: transparent;
-    border: none;
     top: 10px;
     right: 10px;
-    font-size: 40px;
-    font-weight: 100;
-    outline: none;
   }
+
   a {
     line-height: 15px;
   }

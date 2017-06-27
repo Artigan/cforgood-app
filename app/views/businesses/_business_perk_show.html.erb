@@ -98,10 +98,12 @@
               <i class="fa fa-location-arrow fa-2x"></i>
               <% end %>
             </div>
-              <p class="label-itinary">Afficher l'itinéraire</p>
+            <p class="label-itinary">Afficher l'itinéraire</p>
           </div>
           <% if current_user.member %>
             <%= render "components/member_card", business: perk.business, perk: perk %>
+          <% else %>
+            <%= render "businesses/business_perk_not_member", perk: perk %>
           <% end %>
           <button class="button-validation-modal btn-show-card" id="popup-member-card-<%= perk.id %>" style="background-color:<%= business.business_category.color %>;">
             <p>Afficher ma carte de membre</p>
@@ -117,38 +119,38 @@
 
 
 <% content_for :after_js do %>
-<script>
-$(document).ready(function () {
+  <script>
+    $(document).ready(function () {
 
-  $('.closed-perk-on-modal').click(function () {
-    $(this).closest(".pmdjs").addClass('hidden');
-  });
+      $('.closed-perk-on-modal').click(function () {
+        $(this).closest(".pmdjs").addClass('hidden');
+      });
 
-  // $('div').not('.card-block.block-text-modal').click(function () {
-  //   $(this).closest(".pmdjs").addClass('hidden');
-  // });
+      // $('div').not('.card-block.block-text-modal').click(function () {
+      //   $(this).closest(".pmdjs").addClass('hidden');
+      // });
 
-  $('.btn-first-offer').click(function () {
-    $('.btn-create-first-use').click();
-  });
+      $('.btn-first-offer').click(function () {
+        $('.btn-create-first-use').click();
+      });
 
-  $('.send-email').click(function () {
-    var perkId = $(this).attr('class').split('send-email ')[1];
-    $('.btn-create-use-'+perkId).click();
-  });
+      $('.send-email').click(function () {
+        var perkId = $(this).attr('class').split('send-email ')[1];
+        $('.btn-create-use-'+perkId).click();
+      });
 
-  $('.btn-show-card').click(function () {
-     var classModal = $(this).attr('id');
-     $('.'+classModal).removeClass('hidden').addClass('member-card-open');
-     $('.close-button').css('display', 'none');
-  });
+      $('.btn-show-card').click(function () {
+         var classModal = $(this).attr('id');
+         $('.'+classModal).removeClass('hidden').addClass('member-card-open');
+         $('.close-button').css('display', 'none');
+      });
 
-  $('.send-to-code-promo').click(function () {
-     var classModal = $(this).attr('id');
-     $('.'+classModal).removeClass('hidden').addClass('code-promo-open');
-     $('.closed-perk-on-modal').css('display', 'none');
-  });
+      $('.send-to-code-promo').click(function () {
+         var classModal = $(this).attr('id');
+         $('.'+classModal).removeClass('hidden').addClass('code-promo-open');
+         $('.closed-perk-on-modal').css('display', 'none');
+      });
 
-});
-</script>
+    });
+  </script>
 <% end %>

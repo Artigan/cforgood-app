@@ -1,4 +1,4 @@
-<div class="use-overlay">
+<div class="use-overlay use-overlay-firstperk">
   <div class="flip-container-mobile">
     <div class="flipper-mobile">
       <!-- FRONT CARD-->
@@ -35,6 +35,10 @@
 <% content_for :after_js do %>
   <script>
     $(document).ready(function () {
+
+      $(".close-firstperk").click(function() {
+        $('.use-overlay-firstperk').addClass('hidden');
+      });
 
       $(".button-gradient-not-member-yet.first-offer").on("click", function (e) {
         var classModal = $(this).attr('id');
