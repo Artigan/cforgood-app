@@ -28,16 +28,16 @@
     $(document).ready(function () {
       $('.close-tag').click(function(){
         $('.overlay-download-popup').addClass('hidden');
-      })
+      });
 
       // Prevent events from getting pass .front
-      $('.front').click(function(e){
-        e.stopPropagation();
-      });
+      // $('.front').click(function(e){
+      //   e.stopPropagation();
+      // });
 
-      $('body').click(function(){
-        $('.overlay-download-popup').addClass('hidden');
-      });
+      // $('body').click(function(){
+      //   $('.overlay-download-popup').addClass('hidden');
+      // });
     });
   </script>
 <% end %>

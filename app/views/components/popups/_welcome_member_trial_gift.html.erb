@@ -1,35 +1,30 @@
-<div class="use-overlay">
+<div class="use-overlay use-overlay-gift">
   <div class="flip-container-mobile">
     <div class="flipper-mobile">
       <!-- FRONT CARD-->
       <div class="border-gradient">
-      <figure class="front">
-        <!-- ILLUSTRATION-->
-        <!-- <div class="wrapper">
-          <i><%#= image_tag 'icons/present.svg' %></i>
-        </div> -->
+        <figure class="front">
+          <!-- ILLUSTRATION-->
+          <div class="member-card-update-profil-wrapper">
+              <div class="first-perk-gift" style="background-color: lightgrey"></div>
+          </div>
 
-        <div class="member-card-update-profil-wrapper">
-            <div class="first-perk-gift" style="background-color: lightgrey"></div>
-        </div>
-
-        <!-- CTA-->
-        <div class="container-code gentleman">
+          <!-- CTA-->
+          <div class="container-code gentleman">
             <div class="text-infos-not-member-yet">
-                <span>Excellent !<br><br>
-                </span>
-                <p><strong><%= user_offering.first_name.capitalize + " " + user_offering.last_name.capitalize %></strong> vous a offert <strong> <%= beneficiary.nb_months %> mois</strong> d'accès à l'application <strong>CforGood</strong> pour une consommation plus positive ! </p>
+              <span>Excellent !<br><br></span>
+              <p><strong><%= user_offering.first_name.capitalize + " " + user_offering.last_name.capitalize %></strong> vous a offert <strong> <%= beneficiary.nb_months %> mois</strong> d'accès à l'application <strong>CforGood</strong> pour une consommation plus positive ! </p>
             </div>
             <%= link_to class: "button-gradient-not-member-yet play-now" do %>
-                <div class="text-button-not-member-yet">
-                    <div>A vous de jouer !</div>
-                    <div class="thumb-up-image" style="background-color: white"></div>
-                </div>
+              <div class="text-button-not-member-yet">
+                <div>A vous de jouer !</div>
+                <div class="thumb-up-image" style="background-color: white"></div>
+              </div>
             <% end %>
-        </div>
+          </div>
 
-      </figure>
-    </div>
+        </figure>
+      </div>
     </div>
   </div>
 </div>
@@ -41,7 +36,7 @@
 
       $(".play-now").click(function(e) {
         e.preventDefault();
-        $('.use-overlay').addClass('hidden');
+        $('.use-overlay-gift').addClass('hidden');
       });
 
     });

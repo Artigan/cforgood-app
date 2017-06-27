@@ -12,28 +12,30 @@
       <p>Je trouve de nouveaux commerçants responsables, des associations engagées et des événements enthousiasmant chez moi ou dans les autres villes où je me rends.</p>
     </div>
 
-    <div class="box-subscribe-connect">
-    <div class="perk-modal-button-signup">
-      <%= link_to signup_path do %>
-        <div class="subscribe-title">S'inscrire</div>
-      <% end %>
-    </div>
+    <% if !user_signed_in? %>
+      <div class="box-subscribe-connect">
+        <div class="perk-modal-button-signup">
+          <%= link_to signup_path do %>
+            <div class="subscribe-title">S'inscrire</div>
+          <% end %>
+        </div>
 
+        <div class="subtitle-or"><p> ou </p></div>
 
-    <div class="subtitle-or"><p> ou </p></div>
-
-    <div class="perk-modal-button-signup dropdown">
-      <div class=" connect-title dropdown-toggle" data-toggle="dropdown">Se connecter</div>
-      <!-- SIGNIN -->
-      <div class="dropdown-menu">
-        <div class="sign-box">
-          <button type="button" class="perk-modal-close-signin close-button">&times;</button>
-          <%= render "devise/sessions/shared/form_signin", resource: User.new, resource_name: :user%>
+        <div class="perk-modal-button-signup dropdown">
+          <div class="connect-title dropdown-toggle" data-toggle="dropdown">Se connecter</div>
+          <!-- SIGNIN -->
+          <div class="dropdown-menu">
+            <div class="sign-box">
+              <button type="button" class="perk-modal-close-signin close-button">&times;</button>
+                <%= render "devise/sessions/shared/form_signin", resource: User.new, resource_name: :user%>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-
+    <% else %>
+      <%= link_to "S'abonner", member_user_profile_path(current_user, anchor: 'subscription'), class: "subscribe-button" %>
+    <% end %>
   </div>
 </div>
 
