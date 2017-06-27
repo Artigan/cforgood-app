@@ -11,7 +11,7 @@ class MigrationStripeCauses < ApplicationJob
     nb_causes_ok = 0
     nb_causes_ko = 0
 
-    Cause.active.each do |cause|
+    Cause.active.where(acct_id: nil).each do |cause|
 
       nb_causes_read += 1
 
