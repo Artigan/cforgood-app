@@ -30,8 +30,8 @@ class StripeServices
     account.legal_entity.address.line1 = cause.street if cause.street.present?
     account.legal_entity.address.postal_code = cause.zipcode if cause.zipcode.present?
     account.legal_entity.address.city = cause.city if cause.city.present?
-    account.legal_entity.first_name = cause.representative_first_name if cause.first_name.present?
-    account.legal_entity.last_name = cause.representative_last_name if cause.last_name.present?
+    account.legal_entity.first_name = cause.representative_first_name if cause.representative_first_name.present?
+    account.legal_entity.last_name = cause.representative_last_name if cause.representative_last_name.present?
     account.legal_entity.dob.day = cause.representative_birthday.try(:day) if cause.representative_birthday.present?
     account.legal_entity.dob.month = cause.representative_birthday.try(:month) if cause.representative_birthday.present?
     account.legal_entity.dob.year = cause.representative_birthday.try(:year) if cause.representative_birthday.present?
