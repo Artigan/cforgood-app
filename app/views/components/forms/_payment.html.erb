@@ -11,7 +11,7 @@
     <% end %>
     <span class="message-subscription hidden">Rassurez-vous ! <br> Le prélèvement se fera dans <span class="days"></span> jours.</span>
 
-    <%= form_tag member_subscribe_index_path, id: "payment-form", remote: false, method: :post do %>
+    <%= form_tag member_subscribe_index_path, id: "payment-form", remote: true, method: :post do %>
 
 <!--
       <input type="hidden" name="token" />
@@ -55,9 +55,10 @@
       </div>
   </div>
 </div>
-<div>
-  <%= image_tag('icons/loading.gif', id: "loading-indicator", style: "display: none;") %>
-</div>
+
+<%= render "components/loader_spinner" %>
+<!-- Popup errorsuccess payment -->
+<%= render "components/popups/payment" %>
 
 <% content_for :after_js do %>
 

@@ -13,17 +13,14 @@ class Member::SubscribeController < ApplicationController
 
   def create
     execute_payin(params)
-    if request.referer.include?("subscribe")
-      redirect_to member_user_dashboard_path(current_user)
-    else
-      redirect_to member_user_profile_path(current_user, anchor: 'subscription' )
-    end
+    respond_to :js
   end
 
   def update
     if current_user.update_without_password(user_params)
       execute_payin(params)
     end
+    respond_to :js
   end
 
   def destroy

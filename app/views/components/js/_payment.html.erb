@@ -30,7 +30,6 @@
     // Create an instance of the card Element
     var card = elements.create('card', {style: style, hidePostalCode: true});
 
-
     // Add an instance of the card Element into the `card-element` <div>
     card.mount('#card-element');
 
@@ -48,6 +47,9 @@
     var form = document.getElementById('payment-form');
     form.addEventListener('submit', function(event) {
       event.preventDefault();
+
+      $('.spinner').removeClass('hidden');
+      $('.btn-submit').attr("disabled", true);
 
       stripe.createToken(card).then(function(result) {
         if (result.error) {
@@ -70,9 +72,8 @@
       hiddenInput.setAttribute('value', token.id);
       form.appendChild(hiddenInput);
       // Submit the form
-      form.submit();
+      // form.submit();
     }
-
 
     // // Version 3 fields
 

@@ -1,14 +1,16 @@
 
 <% if flash[:success].present? %>
 
-  $("#loading-indicator").hide();
-  $(".success-message").html("<%= flash[:success] %>");
-  $(".signup-done-overlay.ok").removeClass('hidden');
+  $(".spinner").addClass('hidden');
+  $('.btn-submit').attr("disabled", false);
+  $('.button-gradient').attr("disabled", false);
+  // $(".overlay-payment").removeClass('hidden');
 
 <% else %>
 
-  $("#loading-indicator").hide();
-  $(".error-message").html("<%= flash[:error] %>");
-  $(".signup-done-overlay.ko").removeClass('hidden');
+  $(".spinner").addClass('hidden');
+  $('.btn-submit').attr("disabled", false);
+  $(".overlay-payment").removeClass('hidden');
+  $('.button-gradient').attr("disabled", false);
 
 <% end %>
