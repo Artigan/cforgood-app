@@ -3,6 +3,12 @@
   top: 50%;
   left: 50%;
   transform: translateX(-50%);
+
+  &.profile {
+    @media (min-width: 768px) {
+      transform: translateX(calc(-50% + 45px));
+    }
+  }
 }
 
 .spinner > div {

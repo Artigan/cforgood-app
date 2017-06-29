@@ -85,12 +85,12 @@ Rails.application.configure do
 
 end
 
-class ActionDispatch::Request
-  def remote_ip
-    '192.168.0.30'
-  end
+# class ActionDispatch::Request
+#   def remote_ip
+#     '192.168.0.30'
+#   end
 
-  def ip
-    '192.168.0.30'
-  end
-end
+#   def ip
+#     '192.168.0.30'
+#   end
+# end

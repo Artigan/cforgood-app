@@ -48,15 +48,14 @@
     form.addEventListener('submit', function(event) {
       event.preventDefault();
 
-      $('.spinner').removeClass('hidden');
-      $('.btn-submit').attr("disabled", true);
-
       stripe.createToken(card).then(function(result) {
         if (result.error) {
           // Inform the user if there was an error
           var errorElement = document.getElementById('card-errors');
           errorElement.textContent = result.error.message;
         } else {
+          $('.spinner').removeClass('hidden');
+          $('.btn-submit').attr("disabled", true);
           // Send the token to your server
           stripeTokenHandler(result.token);
         }
@@ -72,7 +71,7 @@
       hiddenInput.setAttribute('value', token.id);
       form.appendChild(hiddenInput);
       // Submit the form
-      // form.submit();
+      form.submit();
     }
 
     // // Version 3 fields

@@ -13,7 +13,11 @@ class Member::SubscribeController < ApplicationController
 
   def create
     execute_payin(params)
-    respond_to :js
+    if request.referer.include?("subscribe")
+      redirect_to member_user_dashboard_path(current_user)
+    else
+      redirect_to member_user_profile_path(current_user, anchor: 'subscription' )
+    end
   end
 
   def update
@@ -69,7 +73,7 @@ class Member::SubscribeController < ApplicationController
       end
 
       if customer.try(:id)
-        current_user.update_attributes(customer_id: customer.id, card_id: customer.default_source)
+        current_user.update_attributes(customer_id: customer.id, card_id: customer.default_source, mangopay_id: nil, mangopay_card_id: nil)
       else
         manage_error(customer)
         return

@@ -377,7 +377,7 @@
   background-color: rgba(0,0,0,0.6);
   @include transition(all, 0.3s, ease-in-out);
 
-  @media only screen and (min-width:768px){ left: 95px; }
+  @media only screen and (min-width:768px){ left: 90px; }
 
   .done-container {
     display: flex;

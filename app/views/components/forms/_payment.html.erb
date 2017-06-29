@@ -11,24 +11,7 @@
     <% end %>
     <span class="message-subscription hidden">Rassurez-vous ! <br> Le prélèvement se fera dans <span class="days"></span> jours.</span>
 
-    <%= form_tag member_subscribe_index_path, id: "payment-form", remote: true, method: :post do %>
-
-<!--
-      <input type="hidden" name="token" />
-      <div class="group">
-        <label>
-          <span>Numéro de carte</span>
-          <div id="card-number-element" class="field"></div>
-        </label>
-        <label>
-          <span>Date d'expiration</span>
-          <div id="card-expiry-element" class="field"></div>
-        </label>
-        <label>
-          <span>Cryptogramme visuel</span>
-          <div id="card-cvc-element" class="field"></div>
-        </label>
-      </div> -->
+    <%= form_tag member_subscribe_index_path, id: "payment-form", remote: false, method: :post do %>
 
       <div class="form-row">
         <div id="card-element">
@@ -49,16 +32,16 @@
     <%= link_to "Je renseignerai plus tard mes données bancaires ", member_user_dashboard_path(current_user), class: "btn btn-no-bank-details" %>
     <button class="signup-prev">Retour</button>
     <div class="hidden">
-        <%= simple_form_for :rollback_code_partner, url: member_subscribe_path(current_user), remote: true, method: :delete do |f| %>
-        <%= f.submit "", class: "rollback_code_partner", :style => "display: none;" %>
-        <% end %>
-      </div>
+      <%= simple_form_for :rollback_code_partner, url: member_subscribe_path(current_user), remote: true, method: :delete do |f| %>
+      <%= f.submit "", class: "rollback_code_partner", :style => "display: none;" %>
+      <% end %>
+    </div>
   </div>
 </div>
 
 <%= render "components/loader_spinner" %>
 <!-- Popup errorsuccess payment -->
-<%= render "components/popups/payment" %>
+<%#= render "components/popups/payment" %>
 
 <% content_for :after_js do %>
 
