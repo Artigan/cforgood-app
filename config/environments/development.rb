@@ -84,3 +84,13 @@ Rails.application.configure do
   end
 
 end
+
+class ActionDispatch::Request
+  def remote_ip
+    '192.168.0.30'
+  end
+
+  def ip
+    '192.168.0.30'
+  end
+end

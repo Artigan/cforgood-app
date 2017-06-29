@@ -13,236 +13,230 @@ Découvrez l'engagement de
 
 <div class="asso-fullpage">
 
-    <div class="background-main-img img-responsive" style="background-image: url('<%= @cause.picture.url(:medium) %>');" alt="Business picture">
-        <% if device_type != :mobile %>
-        <div class=" business-picture-row">
-            <div class="socials-row">
-                <span class="likes">
-                    <% if @cause.like > 0 %>
-                    <%= image_tag "icons/heart.svg", class: "red-heart"%>
-                    <div class="asso-firstblock-text">
-                        <%= @cause.like > 1 ? "#{@cause.like} personnes aiment #{@cause.name}" : "#{@cause.like} personne aime #{@cause.name}" %>
-                    </div>
-                    <% end %>
-
-                </span>
-            </div>
-            <div class="share-row share-row-asso" style="background-color:<%= @cause.cause_category.color %>;">
-                <div class="dropup">
-                    <a href="" class="share-socials dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <div class="share-call-to-action">
-                            <span>Partager sur
-                            </span>
-                            <i class="fa fa-share-alt" aria-hidden="true"></i>
-                        </div>
-
-                    </a>
-                    <ul class="dropdown-menu socials" role="menu" aria-labelledby="dLabel">
-                        <li class="dropdown-socials">
-                            <a href="https://www.facebook.com/sharer.php?s=<%= request.url %>&title=CforGood" target="_blank">
-                                <i class="fa fa-facebook" aria-hidden="true"></i>
-                            </a>
-                        </li>
-                        <li class="dropdown-socials">
-                            <a href="http://twitter.com/home?status=CforGood+<%= request.url %>" target="_blank">
-                                <i class="fa fa-twitter" aria-hidden="true"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+  <div class="background-main-img img-responsive" style="background-image: url('<%= @cause.picture.url(:medium) %>');" alt="Business picture">
+    <% if device_type != :mobile %>
+      <div class=" business-picture-row">
+        <div class="socials-row">
+          <span class="likes">
+            <% if @cause.like > 0 %>
+              <%= image_tag "icons/heart.svg", class: "red-heart"%>
+              <div class="asso-firstblock-text">
+                <%= @cause.like > 1 ? "#{@cause.like} personnes aiment #{@cause.name}" : "#{@cause.like} personne aime #{@cause.name}" %>
+              </div>
+             <% end %>
+          </span>
         </div>
-    <% else %>
-        <div class="share-row-mobile-device">
-            <div class="to-be-shown">
-                <a class="to-be-shown-fb" href="https://www.facebook.com/sharer.php?s=<%= request.url %>&title=CforGood" target="_blank">
-                    <i class="fa fa-facebook" aria-hidden="true"></i>
-                </a>
-                <a class="to-be-shown-tw" href="http://twitter.com/home?status=CforGood+<%= request.url %>" target="_blank">
-                    <i class="fa fa-twitter" aria-hidden="true"></i>
-                </a>
-            </div>
-            <div class="already-shown">
+        <div class="share-row share-row-asso" style="background-color:<%= @cause.cause_category.color %>;">
+          <div class="dropup">
+            <a href="" class="share-socials dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <div class="share-call-to-action">
                 <span>Partager sur</span>
                 <i class="fa fa-share-alt" aria-hidden="true"></i>
-            </div>
-        </div>
-        <% end %>
-    </div>
+              </div>
 
-    <div class="asso-text-block">
-        <div class="asso-header-text-content">
-            <div class="asso-name">
-                <%= @cause.name %>
-            </div>
-            <div class="asso-impact">
-                <%= @cause.impact %>
-            </div>
-        </div>
-
-        <hr>
-
-        <div class="asso-bottom-container">
-
-            <div class="asso-description-container">
-                <div class="asso-description-title">En quelques mots</div>
-                <div class="asso-description">
-                    <%= @cause.description %>
-                </div>
-            </div>
-
-            <% if @cause.link_video.present? %>
-            <div class="cause-video">
-                <div class="embed-container video-mobile">
-                    <%= content_tag(:iframe, nil, src: "#{@cause.link_video}", allowfullscreen: "allowfullscreen") %>
-                </div>
-            </div>
-            <% end %>
-
-            <hr>
-
-            <div class="dashboard-causes">
-                <div class="cause-container">
-                    <div class="cause-content">
-                        <div class="cause-info">
-                            <div class="asso-contact-title">Contact</div>
-
-                            <div class="contact-first-row">
-                              <div class="contact-flexbox">
-                                <!-- INFO | ADRESSE -->
-                                <div class="items-contact-first-row">
-                                    <% if @cause.city.present? %>
-                                    <i class="fa fa-map-marker" aria-hidden="true"></i>
-                                      <% if @cause.national %>
-                                         <span><%= @cause.city %></span>
-                                      <% else %>
-                                        <span><%= @cause.street %><br><%= @cause.zipcode %>
-                                        <%= @cause.city %></span>
-                                      <% end %>
-                                    <% end %>
-                                </div>
-                                <!-- LINKS | CONTACT -->
-                                <div class="items-contact-first-row">
-                                    <% if @cause.telephone.present? %>
-                                    <a href="tel:<%= @cause.telephone %>" target="_blank">
-                                        <i class="fa fa-phone" aria-hidden="true"></i>
-                                        <span><%= @cause.telephone %></span>
-                                    </a>
-                                <% end %>
-                                  </div>
-                                <div class="items-contact-first-row">
-                                    <% if @cause.email.present? %>
-                                    <a href="mailto:<%= @cause.email %>" target="_blank">
-                                        <i class="fa fa-envelope" aria-hidden="true"></i>
-                                        <span><%= @cause.email %></span>
-                                    </a>
-                                    <% end %>
-                                </div>
-                            </div>
-                          </div>
-
-                            <div class="contact-second-row">
-                                <!-- LINKS | SOCIAL NETWORKS -->
-                                <% if @cause.facebook.present? || @cause.twitter.present? || @cause.instagram.present? || @cause.url.present? %>
-                                  <span class="asso-find-us-subtitle">Retrouvez-nous :
-                                  </span>
-                                  <ul class="network">
-                                      <% if @cause.facebook.present? %>
-                                      <li>
-                                          <a href="https://facebook.com/<%= @cause.facebook %>" target="_blank">
-                                              <i class="fa fa-facebook business-icon"></i>
-                                          </a>
-                                      </li>
-                                      <% end %>
-                                      <% if @cause.twitter.present? %>
-                                      <li>
-                                          <a href="https://twitter.com/<%= @cause.twitter %>" target="_blank">
-                                              <i class="fa fa-twitter" aria-hidden="true"></i>
-                                          </a>
-                                      </li>
-                                      <% end %>
-                                      <% if @cause.instagram.present? %>
-                                      <li>
-                                          <a href="https://instagram.com/<%= @cause.instagram %>" target="_blank">
-                                              <i class="fa fa-instagram" aria-hidden="true"></i>
-                                          </a>
-                                      </li>
-                                      <% end %>
-                                      <% if @cause.url.present? %>
-                                      <li>
-                                          <a href="<%= @cause.url %>" target="_blank">
-                                              <i class="fa fa-globe" aria-hidden="true"></i>
-                                          </a>
-                                      </li>
-                                      <% end %>
-                                  </ul>
-                                <% end %>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="asso-bottom-container-v2">
-        <div class="dropdown">
-            <div class="<%= user_signed_in? && current_user.cause == @cause ? '' : 'hidden' %> asso-button-v2 dropdown-toggle" data-toggle="dropdown">
-                <div class="red-heart"><%= inline_svg("icons/heart_pulse.svg") %></div>
-                <div class="asso-button-text">Je soutiens cette association</div>
-            </div>
-            <div class="<%= !user_signed_in? || current_user.cause != @cause ? '' : 'hidden' %> asso-button-v2 dropdown-toggle" data-toggle="dropdown">
-                <div class="red-heart"><%= inline_svg("icons/heart.svg") %></div>
-                <div class="asso-button-text">Soutenir cette association</div>
-            </div>
-            <ul class="dropdown-menu">
-                <div class="drop-display-flex">
-                    <div class="cool-things">VOUS ALLEZ FAIRE QUELQUE CHOSE DE CHOUETTE !</div>
-                    <div class="cool-things-small">En validant votre choix, vous allez soutenir
-                        <%= @cause.name %></div>
-                    <% if user_signed_in? %>
-                    <%= simple_form_for(current_user, url: member_update_cause_path, remote: true, method: :put) do |f| %>
-                    <%= f.input :cause_id, as: :hidden, input_html: {value: params[:id]}%>
-                    <div id="submit">
-                        <span class="icon">
-                            <i class="fa fa-check" aria-hidden="true"></i>
-                        </span>
-                        <%= f.submit "Je valide", class: "validate-choice-button" %>
-                        <span class="spinner">
-                            <svg width="44" height="44">
-                                <circle r="20" cx="22" cy="22"/>
-                            </svg>
-                        </span>
-                    </div>
-                    <% end %>
-                    <% end %>
-                </div>
+            </a>
+            <ul class="dropdown-menu socials" role="menu" aria-labelledby="dLabel">
+              <li class="dropdown-socials">
+                <a href="https://www.facebook.com/sharer.php?s=<%= request.url %>&title=CforGood" target="_blank">
+                  <i class="fa fa-facebook" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li class="dropdown-socials">
+                <a href="http://twitter.com/home?status=CforGood+<%= request.url %>" target="_blank">
+                  <i class="fa fa-twitter" aria-hidden="true"></i>
+                </a>
+              </li>
             </ul>
+          </div>
         </div>
+      </div>
+    <% else %>
+      <div class="share-row-mobile-device">
+        <div class="to-be-shown">
+          <a class="to-be-shown-fb" href="https://www.facebook.com/sharer.php?s=<%= request.url %>&title=CforGood" target="_blank">
+            <i class="fa fa-facebook" aria-hidden="true"></i>
+          </a>
+          <a class="to-be-shown-tw" href="http://twitter.com/home?status=CforGood+<%= request.url %>" target="_blank">
+            <i class="fa fa-twitter" aria-hidden="true"></i>
+          </a>
+        </div>
+        <div class="already-shown">
+          <span>Partager sur</span>
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="asso-text-block">
+    <div class="asso-header-text-content">
+      <div class="asso-name">
+        <%= @cause.name %>
+      </div>
+      <div class="asso-impact">
+        <%= @cause.impact %>
+      </div>
     </div>
-</div>
+
+    <hr>
+
+    <div class="asso-bottom-container">
+
+      <div class="asso-description-container">
+        <div class="asso-description-title">En quelques mots</div>
+        <div class="asso-description">
+          <%= @cause.description %>
+        </div>
+      </div>
+
+      <% if @cause.link_video.present? %>
+        <div class="cause-video">
+          <div class="embed-container video-mobile">
+            <%= content_tag(:iframe, nil, src: "#{@cause.link_video}", allowfullscreen: "allowfullscreen") %>
+          </div>
+        </div>
+      <% end %>
+
+      <hr>
+
+      <div class="dashboard-causes">
+        <div class="cause-container">
+          <div class="cause-content">
+            <div class="cause-info">
+              <div class="asso-contact-title">Contact</div>
+
+              <div class="contact-first-row">
+                <div class="contact-flexbox">
+                  <!-- INFO | ADRESSE -->
+                  <div class="items-contact-first-row">
+                    <% if @cause.city.present? %>
+                      <i class="fa fa-map-marker" aria-hidden="true"></i>
+                      <% if @cause.national %>
+                        <span><%= @cause.city %></span>
+                      <% else %>
+                        <span><%= @cause.street %><br><%= @cause.zipcode %>
+                        <%= @cause.city %></span>
+                      <% end %>
+                    <% end %>
+                  </div>
+                  <!-- LINKS | CONTACT -->
+                  <div class="items-contact-first-row">
+                    <% if @cause.telephone.present? %>
+                      <a href="tel:<%= @cause.telephone %>" target="_blank">
+                        <i class="fa fa-phone" aria-hidden="true"></i>
+                        <span><%= @cause.telephone %></span>
+                      </a>
+                    <% end %>
+                  </div>
+                  <div class="items-contact-first-row">
+                    <% if @cause.email.present? %>
+                      <a href="mailto:<%= @cause.email %>" target="_blank">
+                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                        <span><%= @cause.email %></span>
+                      </a>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+
+              <div class="contact-second-row">
+                <!-- LINKS | SOCIAL NETWORKS -->
+                <% if @cause.facebook.present? || @cause.twitter.present? || @cause.instagram.present? || @cause.url.present? %>
+                  <span class="asso-find-us-subtitle">Retrouvez-nous : </span>
+                  <ul class="network">
+                    <% if @cause.facebook.present? %>
+                      <li>
+                        <a href="https://facebook.com/<%= @cause.facebook %>" target="_blank">
+                          <i class="fa fa-facebook business-icon"></i>
+                        </a>
+                      </li>
+                    <% end %>
+                    <% if @cause.twitter.present? %>
+                      <li>
+                        <a href="https://twitter.com/<%= @cause.twitter %>" target="_blank">
+                          <i class="fa fa-twitter" aria-hidden="true"></i>
+                        </a>
+                      </li>
+                    <% end %>
+                    <% if @cause.instagram.present? %>
+                      <li>
+                        <a href="https://instagram.com/<%= @cause.instagram %>" target="_blank">
+                          <i class="fa fa-instagram" aria-hidden="true"></i>
+                        </a>
+                      </li>
+                    <% end %>
+                    <% if @cause.url.present? %>
+                      <li>
+                        <a href="<%= @cause.url %>" target="_blank">
+                          <i class="fa fa-globe" aria-hidden="true"></i>
+                        </a>
+                      </li>
+                    <% end %>
+                  </ul>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="asso-bottom-container-v2">
+    <div class="dropdown">
+      <div class="<%= user_signed_in? && current_user.cause == @cause ? '' : 'hidden' %> asso-button-v2 dropdown-toggle" data-toggle="dropdown">
+        <div class="red-heart"><%= inline_svg("icons/heart_pulse.svg") %></div>
+        <div class="asso-button-text">Je soutiens cette association</div>
+      </div>
+      <div class="<%= !user_signed_in? || current_user.cause != @cause ? '' : 'hidden' %> asso-button-v2 dropdown-toggle" data-toggle="dropdown">
+        <div class="red-heart"><%= inline_svg("icons/heart.svg") %></div>
+        <div class="asso-button-text">Soutenir cette association</div>
+      </div>
+      <ul class="dropdown-menu">
+        <div class="drop-display-flex">
+          <div class="cool-things">VOUS ALLEZ FAIRE QUELQUE CHOSE DE CHOUETTE !</div>
+          <div class="cool-things-small">En validant votre choix, vous allez soutenir
+            <%= @cause.name %></div>
+            <% if user_signed_in? %>
+              <%= simple_form_for(current_user, url: member_update_cause_path, remote: true, method: :put) do |f| %>
+                <%= f.input :cause_id, as: :hidden, input_html: {value: params[:id]}%>
+                <div id="submit">
+                  <span class="icon"><i class="fa fa-check" aria-hidden="true"></i></span>
+                  <%= f.submit "Je valide", class: "validate-choice-button" %>
+                  <span class="spinner">
+                    <svg width="44" height="44">
+                      <circle r="20" cx="22" cy="22"/>
+                    </svg>
+                  </span>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </ul>
+      </div>
+    </div>
+  </div>
 </div>
 
 <%# if user_signed_in? %>
 
 <% content_for :after_js do %>
 
-<script>
-$(document).ready(function () {
-    $(".validate-choice-button").on("click", function () {
+  <script>
+    $(document).ready(function () {
+      $(".validate-choice-button").on("click", function () {
         // EVENT AMPLITUDE : USER_C_CAUSE_SUPPORT
         amplitude.logEvent('USER_C_CAUSE_SUPPORT');
+      });
+      $( '.already-shown' ).click(function() {
+        if($('.to-be-shown').css('opacity') === '0') {
+          $('.to-be-shown').css('opacity', '1');
+        } else {
+          $('.to-be-shown').css('opacity', '0');
+        }
+      });
     });
-    $( '.already-shown' ).click(function() {
-      if($('.to-be-shown').css('opacity') === '0') {
-    $('.to-be-shown').css('opacity', '1');
-  } else {
-    $('.to-be-shown').css('opacity', '0');
-    }
-  }
-);
-});
-</script>
+  </script>
 
 <% end %>
 
