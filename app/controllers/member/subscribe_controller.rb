@@ -24,6 +24,7 @@ class Member::SubscribeController < ApplicationController
     if current_user.update_without_password(user_params)
       execute_payin(params)
     end
+    respond_to :js
   end
 
   def destroy
@@ -72,7 +73,7 @@ class Member::SubscribeController < ApplicationController
       end
 
       if customer.try(:id)
-        current_user.update_attributes(customer_id: customer.id, card_id: customer.default_source)
+        current_user.update_attributes(customer_id: customer.id, card_id: customer.default_source, mangopay_id: nil, mangopay_card_id: nil)
       else
         manage_error(customer)
         return

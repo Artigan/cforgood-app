@@ -1,14 +1,25 @@
 
-<% if flash[:success].present? %>
+if (<%= flash[:success].present? %>) {
 
-  $("#loading-indicator").hide();
-  $(".success-message").html("<%= flash[:success] %>");
-  $(".signup-done-overlay.ok").removeClass('hidden');
+  $(".spinner").addClass('hidden');
+  $('.btn-submit').attr("disabled", false);
+  $('.button-gradient').attr("disabled", false);
 
-<% else %>
+  if (<%= request.referer.include?("subscribe") %>) {
+    $(".overlay-payment.OK").removeClass('hidden');
+    window.setTimeout(function(){
+    // DISCLAIMER - HIDDEN
+      window.location.href = "<%= member_user_dashboard_path(current_user) %>";
+    }, 3000);
+  } else {
+    $(".updated-done-overlay.checked").removeClass("hidden");
+  }
 
-  $("#loading-indicator").hide();
-  $(".error-message").html("<%= flash[:error] %>");
-  $(".signup-done-overlay.ko").removeClass('hidden');
+} else {
 
-<% end %>
+  $(".spinner").addClass('hidden');
+  $('.btn-submit').attr("disabled", false);
+  $(".overlay-payment.KO").removeClass('hidden');
+  $('.button-gradient').attr("disabled", false);
+
+}

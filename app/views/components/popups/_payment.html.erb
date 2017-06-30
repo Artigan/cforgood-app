@@ -1,25 +1,30 @@
 <div class="updated-done-overlay overlay-payment <%= flash[:error].present? || flash[:success].present? ? ' ' : 'hidden' %>">
   <div class="border-gradient">
     <div class="done-container">
-      <button type="button" id="close-payment" class="close-button close-payment">&times;</button>
-      <% if flash[:success] %>
-        <div class="checked-marked-updated-profil" style="background-color: lightgrey"></div>
-        <span>Modifications à jour !<br>
-          <small>Vos données bancaires sont maintenant à jour sur l'application.</small>
-        </span><br>
-      <% end %>
+      <div class="close-button close-payment">&times;</div>
       <% if flash[:error] %>
         <div class="unchecked-marked-updated-profil" style="background-color: #e55d5d"></div>
         <span>Oups !<br>
           <small>Une erreur s'est produite lors de la prise en compte de vos données.<br>Notre équipe est informée.</small>
         </span><br>
+        <div class="logo-updated-profil-section">
+          <%= image_tag "logo_vertical.png" , :class => "logo-updated-profil" %>
+        </div>
       <% end %>
-      <!--     <p>Vous allez être automatiquement redirigé vers votre suivi.</p>
-    -->
-    <%#= link_to "Si rien ne se passe, cliquez-ici", pro_business_dashboard_path(current_business), class: "" %>
-      <div class="logo-updated-profil-section">
-        <%= image_tag "logo_vertical.png" , :class => "logo-updated-profil" %>
-      </div>
+      <% if flash[:success] %>
+        <div class="checked-marked-updated-profil" style="background-color: lightgrey"></div>
+        <% if request.referer.include?("subscribe") %>
+          <span>
+            <small>Votre compte est créé.</small><br>
+            Bienvenue <%= current_user.try(:first_name) %> !
+          </span><br>
+        <% else %>
+           <span><small>Vos coordonnées bancaires ont bien été prises en compte.</small><br><br></span>
+        <% end %>
+        <div class="logo-updated-profil-section">
+          <%= image_tag "logo_vertical.png" , :class => "logo-updated-profil" %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
@@ -29,8 +34,7 @@
 
     $(document).ready(function() {
 
-      $("#close-payment").click(function(e) {
-        e.stopPropagation();
+      $(".close-payment").click(function() {
         $('.overlay-payment').addClass('hidden');
       });
 

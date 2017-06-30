@@ -71,7 +71,7 @@ class Cause < ApplicationRecord
 
   scope :active, -> { where(active: true) }
   scope :national, -> { where(national: true) }
-  scope :around_me, -> (coordinates) { where(national: false).near(coordinates, 50, order: "distance")}
+  scope :around_me, -> (coordinates) { where(national: false).near(coordinates, 99999, order: "distance")}
 
   validates :name, presence: true
   validates :email, presence: true

@@ -30,7 +30,6 @@
     // Create an instance of the card Element
     var card = elements.create('card', {style: style, hidePostalCode: true});
 
-
     // Add an instance of the card Element into the `card-element` <div>
     card.mount('#card-element');
 
@@ -55,6 +54,8 @@
           var errorElement = document.getElementById('card-errors');
           errorElement.textContent = result.error.message;
         } else {
+          $('.spinner').removeClass('hidden');
+          $('.button-payment').attr("disabled", true);
           // Send the token to your server
           stripeTokenHandler(result.token);
         }
@@ -72,7 +73,6 @@
       // Submit the form
       form.submit();
     }
-
 
     // // Version 3 fields
 
