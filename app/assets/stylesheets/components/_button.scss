@@ -266,6 +266,12 @@
     color: white;
   }
 
+  &:disabled {
+    pointer-events: none;
+    cursor: default;
+    background: lightgrey;
+  }
+
   @media (max-width: 767px) {
     display: inline-block;
     text-align: center;

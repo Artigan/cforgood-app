@@ -55,7 +55,7 @@
           errorElement.textContent = result.error.message;
         } else {
           $('.spinner').removeClass('hidden');
-          $('.btn-submit').attr("disabled", true);
+          $('.button-payment').attr("disabled", true);
           // Send the token to your server
           stripeTokenHandler(result.token);
         }
