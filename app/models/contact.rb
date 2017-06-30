@@ -3,7 +3,7 @@
 # Table name: contacts
 #
 #  id         :integer          not null, primary key
-#  users_id   :integer
+#  user_id    :integer
 #  email      :string
 #  first_name :string
 #  last_name  :string
@@ -15,13 +15,15 @@
 #
 # Indexes
 #
-#  index_contacts_on_users_id  (users_id)
+#  index_contacts_on_user_id  (user_id)
 #
 # Foreign Keys
 #
-#  fk_rails_de1d4dcf7d  (users_id => users.id)
+#  fk_rails_de1d4dcf7d  (user_id => users.id)
 #
 
 class Contact < ApplicationRecord
-  belongs_to :users
+  belongs_to :users, class_name: 'User', foreign_key: 'user_id'
+
+  validates :email, presence: true, uniqueness: true
 end
