@@ -42,7 +42,7 @@ class StripeController < ApplicationController
 
   def handle_success_invoice(event_object)
     @user = User.find_by_subscription_id(event_object["lines"]["data"][0]["id"])
-    @payment = @user.paymentsnew(cause_id: @user.cause_id, amount: @user.amount, subscription: @user.subscription, done: true) if @user
+    @payment = @user.payments.new(cause_id: @user.cause_id, amount: @user.amount, subscription: @user.subscription, done: true) if @user
     if @payment.save
       @user.update(date_last_payment: Time.now, code_partner: nil, date_end_partner: nil)
     else

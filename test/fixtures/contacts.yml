@@ -1,0 +1,43 @@
+# == Schema Information
+#
+# Table name: contacts
+#
+#  id         :integer          not null, primary key
+#  users_id   :integer
+#  email      :string
+#  first_name :string
+#  last_name  :string
+#  city       :string
+#  telephone  :string
+#  used       :boolean          default(FALSE), not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+# Indexes
+#
+#  index_contacts_on_users_id  (users_id)
+#
+# Foreign Keys
+#
+#  fk_rails_de1d4dcf7d  (users_id => users.id)
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  users: one
+  email: MyString
+  first_name: MyString
+  last_name: MyString
+  city: MyString
+  telephone: MyString
+  used: false
+
+two:
+  users: two
+  email: MyString
+  first_name: MyString
+  last_name: MyString
+  city: MyString
+  telephone: MyString
+  used: false

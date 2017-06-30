@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170620143442) do
+ActiveRecord::Schema.define(version: 20170630093525) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -173,6 +173,19 @@ ActiveRecord::Schema.define(version: 20170620143442) do
     t.string   "bank_account_id"
     t.index ["cause_category_id"], name: "index_causes_on_cause_category_id", using: :btree
     t.index ["supervisor_id"], name: "index_causes_on_supervisor_id", using: :btree
+  end
+
+  create_table "contacts", force: :cascade do |t|
+    t.integer  "users_id"
+    t.string   "email"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "city"
+    t.string   "telephone"
+    t.boolean  "used",       default: false, null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.index ["users_id"], name: "index_contacts_on_users_id", using: :btree
   end
 
   create_table "label_categories", force: :cascade do |t|
@@ -384,6 +397,7 @@ ActiveRecord::Schema.define(version: 20170620143442) do
   add_foreign_key "addresses", "businesses"
   add_foreign_key "beneficiaries", "users"
   add_foreign_key "causes", "businesses", column: "supervisor_id"
+  add_foreign_key "contacts", "users", column: "users_id"
   add_foreign_key "labels", "businesses"
   add_foreign_key "labels", "label_categories"
   add_foreign_key "partners", "businesses", column: "supervisor_id"
