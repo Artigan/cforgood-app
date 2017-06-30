@@ -100,6 +100,7 @@ class User < ApplicationRecord
   has_many :payments, dependent: :destroy
   has_many :user_histories, dependent: :destroy
   has_many :beneficiaries
+  has_many :contacts
 
   scope :member, -> { where(member: true) }
 
