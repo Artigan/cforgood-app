@@ -314,6 +314,17 @@ class User < ApplicationRecord
     end
   end
 
+  def create_event_last_ecosystem(last_ecosystem)
+    intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
+    begin
+      user = intercom.users.find(:user_id => self.id)
+      user.custom_attributes["last_ecosystem"] = last_ecosystem
+      intercom.users.save(user)
+    rescue Intercom::IntercomError => e
+      puts e
+    end
+  end
+
   private
 
   def subscription!

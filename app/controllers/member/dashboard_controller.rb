@@ -5,6 +5,13 @@ class Member::DashboardController < ApplicationController
   before_action :find_businesses_for_search, only: [:profile, :gift, :ambassador]
 
   def dashboard
+
+    # Event intercom for last ecosystem request
+    if user_signed_in? && request.location.city.present? && ( !session[:last_ecosytem].present? || ( session[:last_ecosystem].present? && session[:last_ecosystem] <= Time.now - 1.day ) )
+      session[:last_ecosystem] = Time.now
+      current_user.create_event_last_ecosystem(request.location.city)
+    end
+
     # save logout access
     if !user_signed_in?
       session[:logout] = true
