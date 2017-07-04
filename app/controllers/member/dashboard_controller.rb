@@ -7,10 +7,10 @@ class Member::DashboardController < ApplicationController
   def dashboard
 
     # Event intercom for last ecosystem request
-    puts request.location
-    puts cookies[:coordinates]
-    @lat_lng = cookies[:coordinates].split('&')
-    puts Geocoder.search(@lat_lng).first.city
+    # puts request.location
+    # puts cookies[:coordinates]
+    # @lat_lng = cookies[:coordinates].split('&')
+    # puts Geocoder.search(@lat_lng).first.city
     # if user_signed_in? && request.location.city.present? && ( !session[:last_ecosytem].present? || ( session[:last_ecosystem].present? && session[:last_ecosystem] <= Time.now - 1.day ) )
     #   session[:last_ecosystem] = Time.now
     #   current_user.create_event_last_ecosystem(request.location.city)
