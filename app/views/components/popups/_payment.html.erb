@@ -13,7 +13,7 @@
       <% end %>
       <% if flash[:success] %>
         <div class="checked-marked-updated-profil" style="background-color: lightgrey"></div>
-        <% if request.referer.include?("subscribe") %>
+        <% if request.referer.present? && request.referer.include?("subscribe") %>
           <span>
             <small>Votre compte est créé.</small><br>
             Bienvenue <%= current_user.try(:first_name) %> !
