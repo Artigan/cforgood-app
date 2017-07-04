@@ -39,7 +39,7 @@ class Payment < ApplicationRecord
   after_create :create_event_intercom, :send_payment_slack
 
   def set_donation
-    self.donation = SetDonation.new(self.amount, self.subscription).set_donation
+    self.donation = set_donation(self.amount, self.subscription)
   end
 
   private

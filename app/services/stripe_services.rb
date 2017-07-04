@@ -6,6 +6,7 @@ class StripeServices
     @user = options[:user] ||= nil
     @acct_id = options[:acct_id] ||= @user.present? ? @user.cause.acct_id : nil
     @old_acct_id = options[:old_acct_id] ||= nil
+    @params = options[:params] ||= nil
   end
 
   def create_account(cause)
@@ -70,6 +71,8 @@ class StripeServices
   end
 
   def create_shared_customer
+
+    binding.pry
 
     token_info = {
       customer: @user.customer_id,
