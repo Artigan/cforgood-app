@@ -1,5 +1,7 @@
 class MangopayServices
 
+  include Modules::ModulePayment
+
   def initialize(current_user)
       @user = current_user
   end
@@ -32,7 +34,7 @@ class MangopayServices
   def create_mangopay_payin(wallet_id)
 
     debited_funds = @user.amount*100
-    credited_funds =  SetDonation.new(@user.amount, @user.subscription).set_donation*100
+    credited_funds =  set_donation(@user.amount, @user.subscription)*100
     fees = debited_funds - credited_funds
 
     payin_info = {
