@@ -36,8 +36,6 @@ module Modules
 
     def create_or_update_payment(current_user, params)
 
-      binding.pry
-
       new_card = new_cause = new_subscription = false
       new_card = true if params[:stripeToken].present?
       new_cause = true if current_user.user_histories.last(2).first.cause_id != current_user.cause_id

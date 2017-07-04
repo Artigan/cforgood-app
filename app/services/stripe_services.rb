@@ -72,8 +72,6 @@ class StripeServices
 
   def create_shared_customer
 
-    binding.pry
-
     token_info = {
       customer: @user.customer_id,
     }
