@@ -34,11 +34,11 @@ class Payment < ApplicationRecord
   validates :amount, presence: true
   validates :subscription, presence: true
 
-  before_create :set_donation
+  before_create :get_donation
 
   after_create :create_event_intercom, :send_payment_slack
 
-  def set_donation
+  def get_donation
     self.donation = set_donation(self.amount, self.subscription)
   end
 
@@ -75,7 +75,7 @@ class Payment < ApplicationRecord
       message = @user.find_name_or_email + " a souscrit une participation "
       message += self.subscription == "M" ? "mensuelle" : "annuelle"
       message += " de " + @user.amount.to_s + "€. |" + @user.email + "|"
-      send_message_to_slack(ENV['SLACK_WEBHOOK_USER_URL'], message)
+      send_message_to_slack(ENV['SLACK_WEBHOOK_PAYMENT_URL'], message)
     end
   end
 
