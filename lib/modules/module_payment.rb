@@ -120,7 +120,7 @@ module Modules
       flash[:error] = "Une erreur technique est survenue lors de l'enregistrement de vos données bancaires"
       puts "Stripe Error: #{error.message}"
       message = current_user.find_name_or_email + " : *erreur lors du paiement* : " + (error.message || "")
-      send_message_to_slack(ENV['SLACK_WEBHOOK_USER_URL'], message)
+      send_message_to_slack(ENV['SLACK_WEBHOOK_PAYMENT_URL'], message)
 
       # create_event_intercom
       intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
