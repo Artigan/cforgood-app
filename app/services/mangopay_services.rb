@@ -113,21 +113,21 @@ def create_mangopay_mandate
   def create_mangopay_bankwire_payin(wallet_id)
 
     if @user.amount <= 5
-      percent_asso = ((50-30)*((@user.amount-1)/(5.0-1.0)))+30;
+      percent_cause = ((50-30)*((@user.amount-1)/(5.0-1.0)))+30;
     elsif @user.amount <= 10
-      percent_asso = ((70-50)*((@user.amount-5)/(10.0-5.0)))+50;
+      percent_cause = ((70-50)*((@user.amount-5)/(10.0-5.0)))+50;
     elsif @user.amount <= 15
-      percent_asso = ((75-70)*((@user.amount-10)/(15.0-10.0)))+70;
+      percent_cause = ((75-70)*((@user.amount-10)/(15.0-10.0)))+70;
     elsif @user.amount <= 20
-      percent_asso = ((77.5-75)*((@user.amount-15)/(20.0-15.0)))+75;
+      percent_cause = ((77.5-75)*((@user.amount-15)/(20.0-15.0)))+75;
     elsif @user.amount <= 25
-      percent_asso = ((80-77.5)*((@user.amount-20)/(25.0-20.0)))+77.5;
+      percent_cause = ((80-77.5)*((@user.amount-20)/(25.0-20.0)))+77.5;
     elsif @user.amount <= 50
-      percent_asso = (((85-80)*((@user.amount-25)/(50.0-25.0)))+80);
+      percent_cause = (((85-80)*((@user.amount-25)/(50.0-25.0)))+80);
     end
 
     debited_funds = @user.amount*100
-    credited_funds =  debited_funds*percent_asso/100
+    credited_funds =  debited_funds*percent_cause/100
     fees = debited_funds - credited_funds
 
     payin_info = {

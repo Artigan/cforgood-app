@@ -79,7 +79,7 @@ class Member::DashboardController < ApplicationController
 
   def profile
     @partner = Partner.find_by_code_partner(current_user.code_partner.upcase) if current_user.code_partner.present?
-    @cause = current_user.cause
+    @cause = current_user.cause.includes(:cause_category)
     @payments = Payment.where(user_id: current_user.id).includes(:cause).order('created_at asc')
   end
 

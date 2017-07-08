@@ -203,14 +203,15 @@ class MonthlyPayinJob < ApplicationJob
       fields << { "value": line }
     end
 
-    notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_JOB_URL']
-    attachment = {
-      fallback: "Report MONTHLY PAYIN JOB",
-      fields: fields,
-      color: "good"
-    }
-    notifier.ping "Report MONTHLY PAYIN JOB", attachments: [attachment]
-
+    if Rails.env.production?
+      notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_JOB_URL']
+      attachment = {
+        fallback: "Report MONTHLY PAYIN JOB",
+        fields: fields,
+        color: "good"
+      }
+      notifier.ping "Report MONTHLY PAYIN JOB", attachments: [attachment]
+    end
 
   end
 
