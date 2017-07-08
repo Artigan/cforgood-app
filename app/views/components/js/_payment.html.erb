@@ -54,7 +54,7 @@
           var errorElement = document.getElementById('card-errors');
           errorElement.textContent = result.error.message;
         } else {
-          $('.spinner').removeClass('hidden');
+          $('.loader_spinner').removeClass('hidden');
           $('.button-payment').attr("disabled", true);
           // Send the token to your server
           stripeTokenHandler(result.token);

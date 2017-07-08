@@ -1,5 +1,7 @@
 class Api::V1::UsersController < Api::V1::BaseController
 
+  include Modules::ModulePayment
+
   before_action :set_user, only: [ :show, :update ]
 
   def create
@@ -45,10 +47,22 @@ class Api::V1::UsersController < Api::V1::BaseController
       render status: :unprocessable_entity, json: { error: "Invalid value of subscription or amount"}
     elsif user_params[:amount].present? && !user_params[:subscription].present?
         render status: :unprocessable_entity, json: { error: "Subscription required if Amount present"}
-    elsif @user.update(user_params)
-      render status: 200, json: { status: "updated" }
     else
-      render status: :unprocessable_entity, json: { error: @user.errors.full_messages}
+      binding.pry
+      params = user_params.except(:stripeToken)
+      if !@user.update(params)
+        render status: :unprocessable_entity, json: { error: @user.errors.full_messages}
+      else
+        if user_params[:stripeToken].present? or user_params[:cause_id].present? or user_params[:subscription].present? or user_params[:amount].present? or user_params[:code_partner].present?
+          if !create_or_update_payment(current_user, user_params)
+            render status: :unprocessable_entity, json: { error: flash[:error] }
+          else
+            render status: 200, json: { status: "updated" }
+          end
+        else
+            render status: 200, json: { status: "updated" }
+        end
+      end
     end
   end
 
@@ -73,6 +87,7 @@ class Api::V1::UsersController < Api::V1::BaseController
       :zipcode,
       :city,
       :cause_id,
-      :picture)
+      :picture,
+      :stripeToken)
   end
 end

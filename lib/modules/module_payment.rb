@@ -42,7 +42,7 @@ module Modules
       new_subscription = true if current_user.user_histories.last(2).first.subscription != current_user.subscription || current_user.user_histories.last(2).first.amount != current_user.amount || current_user.user_histories.last(2).first.code_partner != current_user.code_partner
 
       if !current_user.customer_id.present? && !new_card
-        return
+        return false
       end
 
       if new_card
@@ -58,7 +58,7 @@ module Modules
           current_user.update_attributes(customer_id: customer.id, card_id: customer.default_source, mangopay_id: nil, mangopay_card_id: nil)
         else
           manage_error(customer)
-          return
+          return false
         end
 
       end
@@ -76,8 +76,8 @@ module Modules
         if shared_customer.try(:id)
           current_user.update_attributes(shared_customer_id: shared_customer.id)
         else
-          manage_error(share_customer)
-          return
+          manage_error(shared_customer)
+          return false
         end
 
       end
@@ -106,7 +106,7 @@ module Modules
           current_user.update_attributes(subscription_id: subscription.id, plan_id: plan_id)
         else
           manage_error(subscription)
-          return
+          return false
         end
 
       end
@@ -114,11 +114,11 @@ module Modules
       # change bank details
       current_user.member!
       flash[:success] = "Vos coordonnées bancaires ont bien été prises en compte."
+      return true
     end
 
     def manage_error(error)
       flash[:error] = "Une erreur technique est survenue lors de l'enregistrement de vos données bancaires"
-      puts "Stripe Error: #{error.message}"
       message = current_user.find_name_or_email + " : *erreur lors du paiement* : " + (error.message || "")
       send_message_to_slack(ENV['SLACK_WEBHOOK_PAYMENT_URL'], message)
 

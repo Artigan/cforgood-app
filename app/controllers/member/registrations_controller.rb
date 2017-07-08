@@ -1,6 +1,7 @@
 class Member::RegistrationsController < Devise::RegistrationsController
 
   def update_cause
+    binding.pry
     old_acct_id = current_user.cause.acct_id
     current_user.update_attributes(cause_id: user_params[:cause_id])
     if current_user.subscription_id.present?

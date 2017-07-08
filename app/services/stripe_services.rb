@@ -189,6 +189,8 @@ class StripeServices
 
   def change_connected_account
 
+    binding.pry
+
     customer = stripe_customer_retrieve(@user.customer_id)
 
     return if !customer.try(:id)

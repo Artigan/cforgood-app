@@ -1,4 +1,4 @@
-.spinner {
+.loader_spinner {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -11,7 +11,7 @@
   }
 }
 
-.spinner > div {
+.loader_spinner > div {
   width: 18px;
   height: 18px;
   /*background-color: #333;*/
@@ -22,19 +22,19 @@
   animation: sk-bouncedelay 1.4s infinite ease-in-out both;
 }
 
-.spinner .bounce1 {
+.loader_spinner .bounce1 {
   background-color: #64B9EA;
   -webkit-animation-delay: -0.32s;
   animation-delay: -0.32s;
 }
 
-.spinner .bounce2 {
+.loader_spinner .bounce2 {
   background-color: #36D7B7;
   -webkit-animation-delay: -0.16s;
   animation-delay: -0.16s;
 }
 
-.spinner .bounce3 {
+.loader_spinner .bounce3 {
   background-color: #33CC66;
 }
 
