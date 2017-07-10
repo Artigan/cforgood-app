@@ -8,12 +8,12 @@ class Api::V1::CausesController < Api::V1::BaseController
 
     @partner = Partner.find_by_code_partner(current_user.code_partner.upcase) if current_user.code_partner.present?
     if @partner && @partner.supervisor_id.present?
-      @causes = Cause.active.where(supervisor_id: @partner.supervisor_id)
+      @causes = Cause.active.where(supervisor_id: @partner.supervisor_id).includes(:cause_category)
       authorize @causes
     else
-      @causes_around_me = Cause.active.where.not(id: ENV['CAUSE_ID_CFORGOOD'].to_i).around_me(@lat_lng)
+      @causes_around_me = Cause.active.where.not(id: ENV['CAUSE_ID_CFORGOOD'].to_i).includes(:cause_category).around_me(@lat_lng)
       authorize @causes_around_me
-      @causes_national = Cause.active.national
+      @causes_national = Cause.active.national.includes(:cause_category)
       authorize @causes_national
     end
   end

@@ -6,10 +6,10 @@ class CausesController < ApplicationController
   def index
     @partner = Partner.find_by_code_partner(current_user.code_partner.upcase) if current_user.try(:code_partner).present?
     if @partner && @partner.supervisor_id.present?
-      @causes = Cause.active.where(supervisor_id: @partner.supervisor_id)
+      @causes = Cause.active.where(supervisor_id: @partner.supervisor_id).includes(:cause_category)
     else
-      @causes = Cause.active.where.not(id: ENV['CAUSE_ID_CFORGOOD'].to_i).around_me(@lat_lng).includes(:cause_category)
-      @causes += Cause.active.national
+      @causes = Cause.active.where.not(id: ENV['CAUSE_ID_CFORGOOD'].to_i).includes(:cause_category).around_me(@lat_lng)
+      @causes += Cause.active.national.includes(:cause_category)
     end
   end
 
