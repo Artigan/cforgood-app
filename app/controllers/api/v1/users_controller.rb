@@ -48,7 +48,6 @@ class Api::V1::UsersController < Api::V1::BaseController
     elsif user_params[:amount].present? && !user_params[:subscription].present?
         render status: :unprocessable_entity, json: { error: "Subscription required if Amount present"}
     else
-      binding.pry
       params = user_params.except(:stripeToken)
       if !@user.update(params)
         render status: :unprocessable_entity, json: { error: @user.errors.full_messages}
@@ -60,7 +59,7 @@ class Api::V1::UsersController < Api::V1::BaseController
             render status: 200, json: { status: "updated" }
           end
         else
-            render status: 200, json: { status: "updated" }
+          render status: 200, json: { status: "updated" }
         end
       end
     end

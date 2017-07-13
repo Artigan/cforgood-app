@@ -2,7 +2,7 @@ $(".alert").remove();
 
 if (<%= !current_user.errors.any? %>) {
 
-  $(".overlay-stop-subscritpion").addClass('hidden');
+  $(".overlay-stop-subscription").addClass('hidden');
   $('.btn-subscription').val('Me réabonner');
   $("#user_code_partner").val("").removeAttr('disabled');
   $(".stop-subscription").addClass("disabled");

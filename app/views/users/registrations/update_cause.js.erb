@@ -8,8 +8,6 @@ if (<%= !current_user.errors.any? %>) {
   } else {
 
     // VALIDATION - HIDDEN
-    // $(".popup-overlay").addClass("hidden");
-
     var $button = $('#submit');
 
     $button.val('');
@@ -21,6 +19,7 @@ if (<%= !current_user.errors.any? %>) {
       $(this).addClass('submited');
       setTimeout(function(){
         $('.dropdown').click();
+        $('.asso-button-v2').addClass('my-cause disabled');
         $('.asso-button-v2').toggleClass('hidden');
       }, 1500);
     });

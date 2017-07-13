@@ -43,6 +43,11 @@ class StripeController < ApplicationController
   private
 
   def handle_success_invoice(event_object)
+
+    # no treatment if no amount
+    return if event_object["amount_due"] == 0
+
+    # save payment information
     @user = User.includes(:cause, :manager).find_by_subscription_id(event_object["lines"]["data"][0]["id"])
     if @user
       @payment = @user.payments.new(cause_id: @user.cause_id, amount: @user.amount, subscription: @user.subscription, done: true)
