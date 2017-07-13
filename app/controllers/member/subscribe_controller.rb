@@ -24,7 +24,7 @@ class Member::SubscribeController < ApplicationController
 
   def update
     if current_user.update_without_password(user_params)
-      execute_payin(params)
+      execute_payin(user_params)
     end
     respond_to :js
   end

@@ -4,7 +4,7 @@ class CausesController < ApplicationController
   before_action :get_coordinates, only: [:index, :show]
 
   def index
-    @partner = Partner.find_by_code_partner(current_user.code_partner.upcase) if current_user.code_partner.present?
+    @partner = Partner.find_by_code_partner(current_user.code_partner.upcase) if current_user.try(:code_partner).present?
     if @partner && @partner.supervisor_id.present?
       @causes = Cause.active.where(supervisor_id: @partner.supervisor_id).includes(:cause_category)
     else

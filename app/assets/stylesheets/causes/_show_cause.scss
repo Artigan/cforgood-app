@@ -417,6 +417,7 @@ hr {
 }
 
 .asso-button-text {
+  margin-right: 10px;
   color: white;
   font-size: 14px;
   font-weight: 500;
@@ -551,13 +552,17 @@ hr {
 
 .validate-choice-button {
   padding: 10px 40px 10px 40px;
-  background: $asso;
+  background-color: $asso;
   border-radius: 100px;
   border: none;
   color: #fff;
   font-size: 12px;
   text-transform: uppercase;
   outline: none;
+
+  &:disabled {
+    background-color: lightgrey;
+  }
 }
 
 .title-sub {
@@ -609,7 +614,6 @@ hr {
 }
 
 .asso-button-v2 {
-  // width: calc(100%- 90px);
   width: 300px;
   border-radius: 30px !important;
   margin-left: 90px;
@@ -627,6 +631,10 @@ hr {
     width: 100vh;
     margin-left: 0;
     border-radius: 0 !important;
+  }
+
+  &.my-cause {
+    cursor: default;
   }
 }
 

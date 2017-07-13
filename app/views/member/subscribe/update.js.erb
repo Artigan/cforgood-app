@@ -3,8 +3,10 @@ $(".alert").remove();
 if (<%= !current_user.errors.any? && !flash[:alert].present? && !flash[:error].present? %>) {
 
   if (<%= !current_user.card_id.present? %>) {
+
     $("#payment").removeClass('hidden');
     $("#menu a.show-payment").tab('show');
+
   } else {
 
     if (<%= current_user.member %>) {
@@ -35,6 +37,8 @@ if (<%= !current_user.errors.any? && !flash[:alert].present? && !flash[:error].p
   $(document).find("form").prepend('<%= j render("components/error_messages", resource: current_user, formats: [:html]) %>');
 
 } else {
+
   $(".error-message").html("<%= flash[:alert].present? ? flash[:alert] : flash[:error] %>");
   $(".updated-done-overlay.overlay-payment").removeClass('hidden');
+
 }

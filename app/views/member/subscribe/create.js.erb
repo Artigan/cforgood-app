@@ -1,7 +1,7 @@
 
 if (<%= flash[:success].present? %>) {
 
-  $(".spinner").addClass('hidden');
+  $(".loader_spinner").addClass('hidden');
   $('.btn-submit').attr("disabled", false);
   $('.button-gradient').attr("disabled", false);
 
@@ -17,7 +17,7 @@ if (<%= flash[:success].present? %>) {
 
 } else {
 
-  $(".spinner").addClass('hidden');
+  $(".loader_spinner").addClass('hidden');
   $('.btn-submit').attr("disabled", false);
   $(".overlay-payment.KO").removeClass('hidden');
   $('.button-gradient').attr("disabled", false);

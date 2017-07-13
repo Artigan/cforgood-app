@@ -39,7 +39,7 @@
         <% else %>
            <%= render 'components/popups/welcome_member_trial' %>
         <% end %>
-      <% elsif @businesses.size == 0 %>
+      <% elsif @businesses_around == 0 %>
         <%= render 'components/popups/no_perks_dashboard' %>
       <% end %>
     <% else %>

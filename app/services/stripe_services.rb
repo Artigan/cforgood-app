@@ -113,7 +113,7 @@ class StripeServices
       shared_customer = stripe_shared_customer_retrieve(@user.shared_customer_id, @acct_id)
 
       if shared_customer.try(:id)
-        shared_customer.sources.retrieve(shared_customer.sources.data[0].id).delete() if shared_customer.sources.data[0].id.present?
+        shared_customer.sources.retrieve(shared_customer.sources.data[0].id).delete() if shared_customer.sources.data[0].try(:id).present?
         shared_customer.sources.create(source: token.id)
         shared_customer.save
       end
@@ -165,11 +165,10 @@ class StripeServices
   end
 
   def retrieve_subscription
-    stripe_subscription_retrieve(@user.subcription_id, @acct_id)
+    stripe_subscription_retrieve(@user.subscription_id, @acct_id)
   end
 
   def duplicate_subscription(customer_id, plan_id, subscription)
-
     subscription_info = {
       customer:  customer_id,
       plan: plan_id,
@@ -184,56 +183,6 @@ class StripeServices
     subscription = stripe_subscription_retrieve(@user.subscription_id, @acct_id)
     if subscription.try(:id)
       subscription.delete
-    end
-  end
-
-  def change_connected_account
-
-    customer = stripe_customer_retrieve(@user.customer_id)
-
-    return if !customer.try(:id)
-
-    #  control if shared customer already exist for new cause
-    shared_customer_id = customer.metadata[@acct_id]
-    if !shared_customer_id.present?
-      shared_customer = create_shared_customer
-    else
-      @user.shared_customer_id = shared_customer_id
-      shared_customer = update_shared_customer
-    end
-
-    if !shared_customer.try(:id)
-      # flash[:error] = "Une erreur technique est survenue lors de l'enregistrement de vos données bancaires"
-      error = shared_customer
-      puts "Stripe Error: #{error.message}"
-      message = @user.find_name_or_email + ": *Stripe : erreur lors du changement d'association* :" + (error.message || "")
-      send_message_to_slack(ENV['SLACK_WEBHOOK_USER_URL'], message)
-      return false, message
-    end
-
-    plan_id = @user.subscription == "M" ? "#{@user.amount}-monthly" : "#{@user.amount}-yearly"
-    plan = stripe_plan_retrieve(plan_id, @acct_id)
-
-    debited_funds = @user.amount*100
-    # create plan
-    plan = create_plan(plan_id, debited_funds) if !plan.try(:id)
-
-    # retrieve old subscription
-    old_subscription = stripe_subscription_retrieve(@user.subscription_id, @old_acct_id)
-
-    # duplicate subscription
-    subscription = duplicate_subscription(shared_customer.id, plan_id, old_subscription) if old_subscription.try(:id)
-
-    if subscription.try(:id)
-      old_subscription.delete if old_subscription.try(:id)
-      return true, shared_customer, subscription
-    else
-      # flash[:error] = "Une erreur technique est survenue lors de la création de votre abonnement"
-      error = subscription || old_subscription
-      puts "Stripe Error: #{error.message}"
-      message = @user.find_name_or_email + ": *Stripe : erreur lors du changement d'association* :" + (error.message || "")
-      send_message_to_slack(ENV['SLACK_WEBHOOK_USER_URL'], message)
-      return false, message
     end
   end
 
