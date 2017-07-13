@@ -15,17 +15,17 @@ class Api::V1::UsersController < Api::V1::BaseController
   end
 
   def show
-    @cause = current_user.cause
-    @payments = current_user.payments.where(done: true).order('created_at asc')
+    @cause = @user.cause
+    @payments = @user.payments.where(done: true).order('created_at asc')
     @total_donation = @payments.sum(&:donation) if @payments.present?
     @partner = Partner.find_by_code_partner(@user.code_partner) if @user.code_partner
     @beneficiary = Beneficiary.includes(:users).find_by_email(@user.email)
     @user_offering = @beneficiary.try(:users)
-    if !current_user.uses.first.present?
-      if !current_user.member
+    if !@user.uses.first.present?
+      if !@user.member
         @first_perk_offer = Business.find(ENV['BUSINESS_ID_CFORGOOD']).perks.active.first
-      elsif current_user.business_supervisor_id
-        @first_perk_offer = Business.find(current_user.business_supervisor_id).perks.active.first
+      elsif @user.business_supervisor_id
+        @first_perk_offer = Business.find(@user.business_supervisor_id).perks.active.first
       end
     end
     @uses_without_feedback = @user.uses.without_feedback
@@ -48,12 +48,20 @@ class Api::V1::UsersController < Api::V1::BaseController
     elsif user_params[:amount].present? && !user_params[:subscription].present?
         render status: :unprocessable_entity, json: { error: "Subscription required if Amount present"}
     else
+      old_acct_id = @user.cause.acct_id
       params = user_params.except(:stripeToken)
       if !@user.update(params)
         render status: :unprocessable_entity, json: { error: @user.errors.full_messages}
       else
-        if user_params[:stripeToken].present? or user_params[:cause_id].present? or user_params[:subscription].present? or user_params[:amount].present? or user_params[:code_partner].present?
-          if !create_or_update_payment(current_user, user_params)
+        if user_params[:stripeToken].present? or user_params[:subscription].present? or user_params[:amount].present? or user_params[:code_partner].present?
+          if !create_or_update_payment(@user, user_params)
+            render status: :unprocessable_entity, json: { error: flash[:error] }
+          else
+            render status: 200, json: { status: "updated" }
+          end
+        elsif user_params[:cause_id].present?
+          binding.pry
+          if !change_connected_account(@user, @user.cause.acct_id, old_acct_id)
             render status: :unprocessable_entity, json: { error: flash[:error] }
           else
             render status: 200, json: { status: "updated" }
