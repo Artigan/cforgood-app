@@ -7,8 +7,8 @@ class Member::DashboardController < ApplicationController
   def dashboard
 
     # Event intercom for last ecosystem request
-    binding.pry
     if user_signed_in? && request.location.city.present?
+      puts "request.location.city : #{request.location.city}"
       # current_user.create_event_last_ecosystem_seen(request.location.city) if request.location.city != current_user.last_ecosystem_seen
     end
 
