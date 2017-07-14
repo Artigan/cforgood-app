@@ -62,6 +62,7 @@
 #  plan_id                :string
 #  subscription_id        :string
 #  forced_geoloc          :boolean          default(FALSE), not null
+#  last_ecosystem_seen    :string
 #
 # Indexes
 #
@@ -314,15 +315,17 @@ class User < ApplicationRecord
     end
   end
 
-  def create_event_last_ecosystem(last_ecosystem)
+  def create_event_last_ecosystem(new_ecosystem_seen)
     intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
     begin
       user = intercom.users.find(:user_id => self.id)
-      user.custom_attributes["last_ecosystem"] = last_ecosystem
+      user.custom_attributes["last_ecosystem_seen"] = new_ecosystem_seen
       intercom.users.save(user)
     rescue Intercom::IntercomError => e
       puts e
     end
+    self.last_ecosystem_seen = new_ecosystem_seen
+    self.save
   end
 
   private

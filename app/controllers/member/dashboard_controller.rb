@@ -7,9 +7,9 @@ class Member::DashboardController < ApplicationController
   def dashboard
 
     # Event intercom for last ecosystem request
-    if user_signed_in? && request.location.city.present? && ( !session[:last_ecosytem].present? || ( session[:last_ecosystem].present? && session[:last_ecosystem] <= Time.now - 1.day ) )
-      session[:last_ecosystem] = Time.now
-      current_user.create_event_last_ecosystem(request.location.city)
+    binding.pry
+    if user_signed_in? && request.location.city.present?
+      # current_user.create_event_last_ecosystem_seen(request.location.city) if request.location.city != current_user.last_ecosystem_seen
     end
 
     # save logout access

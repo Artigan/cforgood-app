@@ -60,7 +60,6 @@ class Api::V1::UsersController < Api::V1::BaseController
             render status: 200, json: { status: "updated" }
           end
         elsif user_params[:cause_id].present?
-          binding.pry
           if !change_connected_account(@user, @user.cause.acct_id, old_acct_id)
             render status: :unprocessable_entity, json: { error: flash[:error] }
           else
