@@ -37,7 +37,7 @@ gem 'carrierwave'
 gem "cloudinary"
 gem 'remotipart', '~> 1.2'
 gem "gibbon"
-gem 'postmark-rails', '~> 0.14.0'
+gem 'sendgrid-ruby'
 gem 'activeadmin', github: 'activeadmin'
 
 gem "jquery-rails"
