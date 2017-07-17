@@ -1,10 +1,10 @@
 # config/initializers/smtp.rb
 ActionMailer::Base.smtp_settings = {
-  address: 'smtp.postmarkapp.com',
-  port: '25',
+  user_name: ENV['SENDGRID_USERNAME'],
+  password: ENV['SENDGRID_PASSWORD'],
   domain: 'cforgoodwebsite-production.herokuapp.com',
-  user_name: ENV['POSTMARK_API_TOKEN'],
-  password: ENV['POSTMARK_API_TOKEN'],
-  authentication: :cram_md5,
+  address: 'smtp.sendgrid.net',
+  port: 587,
+  authentication: :plain,
   enable_starttls_auto: true
 }
