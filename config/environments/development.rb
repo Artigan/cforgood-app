@@ -55,8 +55,8 @@ Rails.application.configure do
   config.action_mailer.asset_host = ENV['ASSET_HOST']
 
   config.action_mailer.default_url_options = { host: ENV['HOST'] }
-  # config.action_mailer.delivery_method = :letter_opener
-  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.delivery_method = :letter_opener
+  # config.action_mailer.delivery_method = :smtp
   # config.action_mailer.delivery_method = :postmark
   # config.action_mailer.postmark_settings = { api_key: ENV['POSTMARK_API_TOKEN'] }
   # Use an evented file watcher to asynchronously detect changes in source code,
