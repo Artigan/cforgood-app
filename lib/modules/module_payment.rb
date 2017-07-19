@@ -76,7 +76,7 @@ module Modules
         if !current_user.subscription_id.present? || new_cause
           subscription = StripeServices.new(user: current_user).create_subscription(plan_id, fees)
         else
-          subscription = StripeServices.new(user: current_user).update_subscription(plan_id, fees)
+          subscription = StripeServices.new(user: current_user).update_subscription(pland_id: plan_id, fees: fees)
         end
 
         if subscription.try(:id)

@@ -1,7 +1,5 @@
 class Api::V1::UsersController < Api::V1::BaseController
 
-  include Modules::ModulePayment
-
   before_action :set_user, only: [ :show, :update ]
 
   def create

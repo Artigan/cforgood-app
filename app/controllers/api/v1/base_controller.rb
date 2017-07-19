@@ -3,6 +3,7 @@ class Api::V1::BaseController < ActionController::Base
   include Pundit
   include ApplicationHelper
   include Modules::ModuleSlack
+  include Modules::ModulePayment
 
   after_action :verify_authorized
 
