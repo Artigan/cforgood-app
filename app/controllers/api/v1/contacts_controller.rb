@@ -15,12 +15,32 @@ class Api::V1::ContactsController < Api::V1::BaseController
         break
       else
         nb_contacts += 1
+        # first needs to create a sms instance
+        sms = Octopush::SMS.new
+        # set your desired attributes
+        sms.sms_text = 'some text'
+        sms.sms_recipients = @contact.telephone
+        sms.sms_type = 'FR'
+        # then just send the sms with the client you created before
+        client.send_sms(sms)
       end
     end
     if errors
       render status: :unprocessable_entity, json: { error: @contact.email + " : " + errors}
     else
-      render status: 200, json: { nb_contacts: nb_contacts, quotas_reached: nb_contacts >= 5 ? true : false  }
+      if !current_user.sponsorship_done && nb_contacts >= 5
+        if manage_sponsorship
+          render status: 200, json: { nb_contacts: nb_contacts,
+                                      quotas_reached: nb_contacts >= 5 ? true : false,
+                                      sponsoring_done: current_user.sponsorship_done,
+                                      code_sponsor: "GOODSPONSOR" + current_user.id_ti_s }
+        else
+          render status: :unprocessable_entity, json: { error: "Error during sponsoring" }
+        end
+      else
+        render status: 200, json: { nb_contacts: nb_contacts,
+                                    quotas_reached: nb_contacts >= 5 ? true : false,
+                                    sponsoring_done: current_user.sponsorship_done }
     end
   end
 
@@ -38,6 +58,21 @@ class Api::V1::ContactsController < Api::V1::BaseController
         :telephone,
         :used)
     end
+  end
+
+  def manage_sponsorship
+    # create new sponsorship_code
+    code_partner = "GOODSPONSOR" + current_user.id.to_s
+    if Partner.new.create_code_partner_user(current_user, code_partner, false, true)
+      # assignment promo code for the sponsor
+      current_user.updates(code_partner: "SPONSORSHIP", sponsorship_done: true)
+      if current_user.subscription_id
+        return true if StripeServices.new(user: current_user).update_subscription()
+      else
+        return true
+      end
+    end
+    return false
   end
 end
 
