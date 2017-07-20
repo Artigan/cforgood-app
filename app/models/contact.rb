@@ -8,7 +8,7 @@
 #  first_name :string
 #  last_name  :string
 #  city       :string
-#  telephone  :string
+#  phone  :string
 #  used       :boolean          default(FALSE), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
@@ -39,7 +39,7 @@ class Contact < ApplicationRecord
     sms.sms_text = 'Dis, tu connais CforGood ? L’app pour consommer local et responsable. Il y a plein de bonnes adresses et de réductions exclusives ! Profites en gratuitement avec mon code : '
     sms.sms_text += "GOODSPONSOR" + user_id.to_s + ". "
     sms.sms_text += 'https://r53r.app.link'
-    sms.sms_recipients = telephone
+    sms.sms_recipients = phone
     sms.sms_type = 'FR'
     sms.sms_sender = 'CforGood'
     sms.transactional = '1'
@@ -48,7 +48,7 @@ class Contact < ApplicationRecord
       client.send_sms(sms)
     rescue Exception => e
       puts e
-      errors.add(:telephone, "Erreur envoi sms : #{e}")
+      errors.add(:phone, "Erreur envoi sms : #{e}")
       raise ActiveRecord::Rollback
     end
     send = true

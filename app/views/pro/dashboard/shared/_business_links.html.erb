@@ -11,10 +11,10 @@
         <% end %>
       </li>
       <li class="reach-uss">
-        <% if @business.telephone.present? %>
-          <a href="tel:<%= @business.telephone %>" style="color: <%= @business.business_category.color %>;" target="_blank" data-hint="<%= @business.telephone %>">
+        <% if @business.phone.present? %>
+          <a href="tel:<%= @business.phone %>" style="color: <%= @business.business_category.color %>;" target="_blank" data-hint="<%= @business.phone %>">
             <i class="fa fa-phone"></i>
-            <span><%= @business.telephone %></span>
+            <span><%= @business.phone %></span>
           </a>
         <% end %>
       </li>

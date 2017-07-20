@@ -56,7 +56,7 @@ class Member::RegistrationsController < Devise::RegistrationsController
       :city,
       :amount,
       :code_partner,
-      :telephone,
+      :phone,
       :logo
     )
   end

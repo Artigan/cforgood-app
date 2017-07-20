@@ -51,7 +51,7 @@
 #  ecosystem_id           :integer
 #  supervisor             :boolean          default(FALSE)
 #  supervisor_id          :integer
-#  telephone              :string
+#  phone                  :string
 #  logo                   :string
 #  authentication_token   :string(30)
 #  business_supervisor_id :integer
@@ -63,6 +63,7 @@
 #  subscription_id        :string
 #  forced_geoloc          :boolean          default(FALSE), not null
 #  last_ecosystem_seen    :string
+#  sponsorship_done       :boolean          default(FALSE), not null
 #
 # Indexes
 #

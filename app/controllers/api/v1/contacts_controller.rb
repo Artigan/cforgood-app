@@ -48,7 +48,7 @@ class Api::V1::ContactsController < Api::V1::BaseController
         :first_name,
         :last_name,
         :city,
-        :telephone,
+        :phone,
         :used)
     end
   end
