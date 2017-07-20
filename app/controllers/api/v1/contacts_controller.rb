@@ -15,14 +15,6 @@ class Api::V1::ContactsController < Api::V1::BaseController
         break
       else
         nb_contacts += 1
-        # first needs to create a sms instance
-        sms = Octopush::SMS.new
-        # set your desired attributes
-        sms.sms_text = 'some text'
-        sms.sms_recipients = @contact.telephone
-        sms.sms_type = 'FR'
-        # then just send the sms with the client you created before
-        client.send_sms(sms)
       end
     end
     if errors
@@ -41,6 +33,7 @@ class Api::V1::ContactsController < Api::V1::BaseController
         render status: 200, json: { nb_contacts: nb_contacts,
                                     quotas_reached: nb_contacts >= 5 ? true : false,
                                     sponsoring_done: current_user.sponsorship_done }
+      end
     end
   end
 

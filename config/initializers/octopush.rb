@@ -3,4 +3,3 @@ Octopush.configure do |config|
   config.api_key = ENV['OCTOPUSH_API_KEY']
 end
 
-client = Octopush::Client.new
