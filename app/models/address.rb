@@ -58,7 +58,7 @@ class Address < ApplicationRecord
   def open?
     todays = self.timetables.where(day: Time.now.wday)
     todays.each do |today|
-      if (today.start_at..today.end_at).cover?(Time.now)
+      if (today.start_at.to_s(:time)..today.end_at.to_s(:time)).cover?(Time.now.to_s(:time))
         return true
       end
     end
