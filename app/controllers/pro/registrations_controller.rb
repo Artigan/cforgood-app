@@ -27,7 +27,7 @@ class Pro::RegistrationsController < Devise::RegistrationsController
       :zipcode,
       :city,
       :url,
-      :telephone,
+      :phone,
       :email,
       :password,
       :description,

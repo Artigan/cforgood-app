@@ -8,8 +8,8 @@
 #  first_name :string
 #  last_name  :string
 #  city       :string
-#  telephone  :string
-#  used       :boolean          default(FALSE), not null
+#  phone      :string
+#  sms_sent   :boolean          default(FALSE), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
@@ -30,8 +30,8 @@ one:
   first_name: MyString
   last_name: MyString
   city: MyString
-  telephone: MyString
-  used: false
+  phone: MyString
+  sms_sent: false
 
 two:
   users: two
@@ -39,5 +39,5 @@ two:
   first_name: MyString
   last_name: MyString
   city: MyString
-  telephone: MyString
-  used: false
+  phone: MyString
+  sms_sent: false

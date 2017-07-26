@@ -103,7 +103,8 @@ Rails.application.routes.draw do
     namespace :v1 do
       devise_scope :user do
         post "/", :to => 'sessions#create'
-        delete "/logout", :to => 'session#destroy'
+        get '/check', :to => 'sessions#show'
+        delete "/logout", :to => 'sessions#destroy'
       end
       resources :users, only: [ :create, :show, :update ]
       resources :business_categories, only: [ :index ]

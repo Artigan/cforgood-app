@@ -152,11 +152,11 @@ class StripeServices
     stripe_subscription_create(subscription_info, @acct_id)
   end
 
-  def update_subscription(plan_id, fees)
+  def update_subscription(options = {})
     subscription = stripe_subscription_retrieve(@user.subscription_id, @acct_id)
     if subscription.try(:id)
-      subscription.plan = plan_id
-      subscription.application_fee_percent = fees
+      subscription.plan = options[:plan_id] if options[:plan_id].present?
+      subscription.application_fee_percent = options[:fees] if options[:fees].present?
       subscription.trial_end = @user.date_end_partner.to_time.to_i if @user.date_end_partner.present?
       subscription.prorate = false
       subscription.save

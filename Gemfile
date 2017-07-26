@@ -37,7 +37,6 @@ gem 'carrierwave'
 gem "cloudinary"
 gem 'remotipart', '~> 1.2'
 gem "gibbon"
-gem 'postmark-rails', '~> 0.14.0'
 gem 'activeadmin', github: 'activeadmin'
 
 gem "jquery-rails"
@@ -56,6 +55,7 @@ gem 'slack-notifier'
 gem 'amplitude-api'
 gem 'listjs-rails'
 gem 'one_signal'
+gem 'octopush-ruby'
 
 gem 'bootstrap-datepicker-rails'
 gem "time_splitter"

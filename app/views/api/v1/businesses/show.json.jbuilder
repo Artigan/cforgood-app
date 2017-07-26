@@ -3,7 +3,7 @@ json.extract! @business,
   :name,
   :activity,
   :url,
-  :telephone
+  :phone
 if !@business.hidden_email
   json.email @business.email
 else

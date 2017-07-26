@@ -121,10 +121,10 @@ Découvrez l'engagement de
                   </div>
                   <!-- LINKS | CONTACT -->
                   <div class="items-contact-first-row">
-                    <% if @cause.telephone.present? %>
-                      <a href="tel:<%= @cause.telephone %>" target="_blank">
+                    <% if @cause.phone.present? %>
+                      <a href="tel:<%= @cause.phone %>" target="_blank">
                         <i class="fa fa-phone" aria-hidden="true"></i>
-                        <span><%= @cause.telephone %></span>
+                        <span><%= @cause.phone %></span>
                       </a>
                     <% end %>
                   </div>

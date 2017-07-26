@@ -10,7 +10,7 @@
 #  city                       :string
 #  url                        :string
 #  email                      :string
-#  telephone                  :string
+#  phone                      :string
 #  created_at                 :datetime         not null
 #  updated_at                 :datetime         not null
 #  impact                     :string

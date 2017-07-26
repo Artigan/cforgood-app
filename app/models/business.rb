@@ -8,7 +8,7 @@
 #  zipcode                :string
 #  city                   :string
 #  url                    :string
-#  telephone              :string
+#  phone              :string
 #  email                  :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null

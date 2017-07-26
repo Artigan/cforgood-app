@@ -43,6 +43,9 @@ class Api::V1::UsesController < Api::V1::BaseController
   end
 
   def use_params
-    params.require(:use).permit(:id, :feedback, :perk_id)
+    params.require(:use).permit(
+      :id,
+      :feedback,
+      :perk_id)
   end
 end

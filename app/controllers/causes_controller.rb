@@ -44,7 +44,7 @@ class CausesController < ApplicationController
     end
 
     def cause_params
-      params.require(:cause).permit(:name, :description, :street, :zipcode, :city, :url, :email, :telephone, :impact, :cause_category_id, :facebook, :twitter, :instagram, :description_impact,
+      params.require(:cause).permit(:name, :description, :street, :zipcode, :city, :url, :email, :phone, :impact, :cause_category_id, :facebook, :twitter, :instagram, :description_impact,
 :representative_first_name, :representative_last_name, :amount_impact, :active, :link_video, :picture, :picture_cache, :logo, :logo_cache, :mailing, :tax_receipt, :followers, :heard, :national)
     end
 

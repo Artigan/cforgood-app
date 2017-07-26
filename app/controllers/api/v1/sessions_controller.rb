@@ -1,9 +1,9 @@
 class  Api::V1::SessionsController < Devise::SessionsController
 
-  skip_before_action :verify_authenticity_token, except: [ :create ]
+  skip_before_action :verify_authenticity_token, except: [ :create, :show ]
   skip_before_action :verify_signed_out_user
 
-  acts_as_token_authentication_handler_for User, except: [ :create ]
+  acts_as_token_authentication_handler_for User, except: [ :create, :show ]
 
   def create
     email = request.headers.env["HTTP_EMAIL"].downcase if request.headers.env["HTTP_EMAIL"].present?
@@ -34,7 +34,15 @@ class  Api::V1::SessionsController < Devise::SessionsController
     if @user.save
       render status: 200, json: { id: @user.id, email: @user.email, authentication_token: @user.authentication_token }
     end
+  end
 
+  def show
+    email = request.headers.env["HTTP_EMAIL"].downcase if request.headers.env["HTTP_EMAIL"].present?
+    if User.where(email: email).present?
+      render status: 200, json: { message: 'Email exist' }
+    else
+      render status: 404, json: { message: 'Email not found' }
+    end
   end
 
   def destroy

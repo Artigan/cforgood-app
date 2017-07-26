@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170713151509) do
+ActiveRecord::Schema.define(version: 20170720135007) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,7 +76,7 @@ ActiveRecord::Schema.define(version: 20170713151509) do
     t.string   "zipcode"
     t.string   "city"
     t.string   "url"
-    t.string   "telephone"
+    t.string   "phone"
     t.string   "email"
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
@@ -137,7 +137,7 @@ ActiveRecord::Schema.define(version: 20170713151509) do
     t.string   "city"
     t.string   "url"
     t.string   "email"
-    t.string   "telephone"
+    t.string   "phone"
     t.datetime "created_at",                                 null: false
     t.datetime "updated_at",                                 null: false
     t.string   "impact"
@@ -181,8 +181,8 @@ ActiveRecord::Schema.define(version: 20170713151509) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "city"
-    t.string   "telephone"
-    t.boolean  "used",       default: false, null: false
+    t.string   "phone"
+    t.boolean  "sms_sent",   default: false, null: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.index ["user_id"], name: "index_contacts_on_user_id", using: :btree
@@ -362,7 +362,7 @@ ActiveRecord::Schema.define(version: 20170713151509) do
     t.integer  "ecosystem_id"
     t.boolean  "supervisor",                        default: false
     t.integer  "supervisor_id"
-    t.string   "telephone"
+    t.string   "phone"
     t.string   "logo"
     t.string   "authentication_token",   limit: 30
     t.integer  "business_supervisor_id"
@@ -374,6 +374,7 @@ ActiveRecord::Schema.define(version: 20170713151509) do
     t.string   "subscription_id"
     t.boolean  "forced_geoloc",                     default: false, null: false
     t.string   "last_ecosystem_seen"
+    t.boolean  "sponsorship_done",                  default: false, null: false
     t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true, using: :btree
     t.index ["business_supervisor_id"], name: "index_users_on_business_supervisor_id", using: :btree
     t.index ["cause_id"], name: "index_users_on_cause_id", using: :btree

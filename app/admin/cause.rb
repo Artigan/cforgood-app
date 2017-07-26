@@ -6,7 +6,7 @@ ActiveAdmin.register Cause do
     column :cause_category
     column :impact
     column :email
-    column :telephone
+    column :phone
     column :created_at
     actions
   end
@@ -25,7 +25,7 @@ ActiveAdmin.register Cause do
       f.input :city
       f.input :representative_first_name
       f.input :representative_last_name
-      f.input :telephone
+      f.input :phone
       f.input :facebook
       f.input :twitter
       f.input :instagram
@@ -44,7 +44,7 @@ ActiveAdmin.register Cause do
     f.actions
   end
 
-  permit_params :name, :email, :cause_category_id, :impact, :url, :latitude, :longitude, :description, :amount_impact, :description_impact, :street, :zipcode, :city, :telephone, :facebook, :twitter, :instagram, :picture, :logo, :active, :representative_first_name,
+  permit_params :name, :email, :cause_category_id, :impact, :url, :latitude, :longitude, :description, :amount_impact, :description_impact, :street, :zipcode, :city, :phone, :facebook, :twitter, :instagram, :picture, :logo, :active, :representative_first_name,
  :representative_last_name, :link_video, :like, :unlike, :national
 
 end

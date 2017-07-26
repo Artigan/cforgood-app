@@ -51,7 +51,7 @@
 #  ecosystem_id           :integer
 #  supervisor             :boolean          default(FALSE)
 #  supervisor_id          :integer
-#  telephone              :string
+#  phone                  :string
 #  logo                   :string
 #  authentication_token   :string(30)
 #  business_supervisor_id :integer
@@ -63,6 +63,7 @@
 #  subscription_id        :string
 #  forced_geoloc          :boolean          default(FALSE), not null
 #  last_ecosystem_seen    :string
+#  sponsorship_done       :boolean          default(FALSE), not null
 #
 # Indexes
 #
@@ -262,7 +263,7 @@ class User < ApplicationRecord
     self.business_supervisor_id = nil
     self.date_end_partner = nil
     # Delete Subscription on stripe
-    subscription = StripeServices.new(user: self).delete_subscription
+    subscription = StripeServices.new(user: self).delete_subscription if subscription_id.present?
     self.subscription_id = nil
     self.plan_id = nil
     self.save
@@ -373,10 +374,10 @@ class User < ApplicationRecord
         self.code_partner.upcase!
         # Trial start after pay period if exist
         if date_last_payment.present? && ( ( subscription == "M" && date_last_payment + 1.month > Time.now ) || ( subscription == "Y" && date_last_payment + 1.year > Time.now ) )
-            start_date = date_last_payment + 1.month if subscription == "M"
-            start_date = date_last_payment + 1.year if subscription == "Y"
+          start_date = date_last_payment + 1.month if subscription == "M"
+          start_date = date_last_payment + 1.year if subscription == "Y"
         else
-          start_date = Time.now
+          start_date = self.date_end_partner ||= Time.now
         end
         @partner = Partner.find_by_code_partner(self.code_partner)
         self.date_end_partner = start_date
