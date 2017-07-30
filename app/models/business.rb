@@ -195,6 +195,7 @@ class Business < ApplicationRecord
       intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
       begin
         user = intercom.users.find(:user_id => 'B'+id.to_s)
+        user.custom_attributes["user_type"] = 'business'
         user.custom_attributes["user_active"] = self.active
         user.custom_attributes["first_name"] = self.leader_first_name
         user.custom_attributes["city"] = self.city
@@ -206,6 +207,7 @@ class Business < ApplicationRecord
         intercom.users.save(user)
       rescue Intercom::IntercomError => e
         begin
+          binding.pry
           code_partner = Partner.find_by_email(self.email).code_partner if Partner.find_by_email(self.email)
           manager_name = self.manager.name if self.manager.present?
           intercom.users.create(
