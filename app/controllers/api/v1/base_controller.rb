@@ -1,5 +1,5 @@
 class Api::V1::BaseController < ActionController::Base
-  acts_as_token_authentication_handler_for User, except: [ :create ]
+  acts_as_token_authentication_handler_for User, except: [ :create, :index ]
   include Pundit
   include ApplicationHelper
   include Modules::ModuleSlack
@@ -20,10 +20,12 @@ class Api::V1::BaseController < ActionController::Base
   end
 
   def not_found(exception)
+    binding.pry
     render json: { error: exception.message }, status: :not_found
   end
 
   def internal_server_error(exception)
+    return if response_body
     if Rails.env.development?
       response = { type: exception.class.to_s, error: exception.message }
     else
