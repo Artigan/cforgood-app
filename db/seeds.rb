@@ -12,17 +12,17 @@
 # picture = ftp.getbinaryfile("sante.png")
 # ftp.close
 
-require 'cloudinary'
-result = Cloudinary::Api.resources(type: :upload, prefix: "seed", max_results: 500)
+# require 'cloudinary'
+# result = Cloudinary::Api.resources(type: :upload, prefix: "seed", max_results: 500)
 
-images = []
-urls = []
+# images = []
+# urls = []
 
-result["resources"].each do |resource|
-  image = resource["url"].split('seed/')[1]
-  images << image
-  urls << resource["url"]
-end
+# result["resources"].each do |resource|
+#   image = resource["url"].split('seed/')[1]
+#   images << image
+#   urls << resource["url"]
+# end
 
 #----------------------------------------------------
 # TABLES TECHNIQUES
@@ -34,7 +34,7 @@ end
 
 # LabelCategory.destroy_all
 
-puts "--------CREATE LABEL CATEGORIES--------"
+# puts "--------CREATE LABEL CATEGORIES--------"
 
 #action_locale = LabelCategory.create!({
 #  name: "Action Locale",
@@ -76,23 +76,23 @@ puts "--------CREATE LABEL CATEGORIES--------"
 #  picture: "labels/zero_dechet.svg",
 #})
 
-energies_renouvelables = LabelCategory.create!({
- name: "Énergies renouvelables",
- picture: "labels/energies_renouvelables.svg",
-})
+# energies_renouvelables = LabelCategory.create!({
+#  name: "Énergies renouvelables",
+#  picture: "labels/energies_renouvelables.svg",
+# })
 
-epanouissement_personnel = LabelCategory.create!({
- name: "Épanouissement personnel",
- picture: "labels/epanouissement_personnel.svg",
-})
+# epanouissement_personnel = LabelCategory.create!({
+#  name: "Épanouissement personnel",
+#  picture: "labels/epanouissement_personnel.svg",
+# })
 
-animation_culturelle = LabelCategory.create!({
- name: "Animation culturelle",
- picture: "labels/animation_culturelle.svg",
-})
+# animation_culturelle = LabelCategory.create!({
+#  name: "Animation culturelle",
+#  picture: "labels/animation_culturelle.svg",
+# })
 
 
-puts "--------END LABEL CATEGORIES-----------"
+# puts "--------END LABEL CATEGORIES-----------"
 
 # #----------------------------------------------------
 # # Création table BUSINESS_CATEGORIES
@@ -357,7 +357,7 @@ puts "--------END LABEL CATEGORIES-----------"
 #     city: "Pessac",
 #     url: "http://eturecup.org",
 #     email: "hello@eturecup.org",
-#     telephone: "0951283415",
+#     phone: "0951283415",
 #     impact: "50€ financent un atelier participatif autour du bois, du textile, des vélo ou encore des appareils électriques ou électroniques.",
 #     remote_picture_url: urls.fetch(images.index("12068966_822561957864796_8248249322430945852_o.jpg")),
 #     cause_category_id: environnement.id,
@@ -375,7 +375,7 @@ puts "--------END LABEL CATEGORIES-----------"
 #     city: "Paris",
 #     url: "http://makesense.org/",
 #     email: "contact@makesense.org",
-#     telephone: "0663145359",
+#     phone: "0663145359",
 #     impact: "100€ permettent de former 20 bénévoles pour aider des entrepreneurs sociaux dans le monde !",
 #     remote_picture_url: urls.fetch(images.index("00._Fulltime_team__2017-07-20.jpg")),
 #     cause_category_id: entreprenariat.id,
@@ -394,7 +394,7 @@ puts "--------END LABEL CATEGORIES-----------"
 #     city: "Bègles",
 #     url: "http://fabrikadeclik.strikingly.com",
 #     email: "fabrikadeclik@gmail.com",
-#     telephone: "0661512420",
+#     phone: "0661512420",
 #     impact: "Révéler le potentiel des jeunes 18 - 30 ans",
 #     remote_picture_url: urls.fetch(images.index("thumbnail-osons.jpg")),
 #     cause_category_id: entreprenariat.id,
@@ -427,7 +427,7 @@ puts "--------END LABEL CATEGORIES-----------"
 #     description: "Ecolo Info est un média web spécialisé sur l'environnement, traitant de sujets de fond à travers le prisme et l’expérience de ses rédacteurs, toujours bénévoles. Outre les articles, l’équipe propose aussi une sélection thématique des meilleurs événements, sorties cinématographiques, sorties magazines, livres, vidéos, pétitions et tout coup de coeur en lien avec le développement durable. L'association propose aussi des événements pour sensibiliser le plus grand nombre à ces enjeux : apéros écolos, Place to B COP21...",
 #     url: "http://www.ecoloinfo.com",
 #     email: "sarah@ecoloinfo.com",
-#     telephone: "0646367273",
+#     phone: "0646367273",
 #     impact: "Chaque tranche de 100€ permet de couvrir nos frais techniques durant 1 mois pour continuer à communiquer et sensibiliser sur l'environnement.",
 #     remote_picture_url: urls.fetch(images.index("1c205cf0f1c9-groupe_EN.jpg")),
 #     cause_category_id: environnement.id,
@@ -446,7 +446,7 @@ puts "--------END LABEL CATEGORIES-----------"
 #     city: "Bordeaux",
 #     url: "http://discosoupe.org",
 #     email: "discosoupebordeaux@gmail.com",
-#     telephone: "0646367273",
+#     phone: "0646367273",
 #     impact: "100€ financent une disco soupe",
 #     remote_picture_url: urls.fetch(images.index("137add8de6c3-_MG_8580.jpg")),
 #     cause_category_id: environnement.id,
@@ -482,7 +482,7 @@ puts "--------END LABEL CATEGORIES-----------"
 #     city: "Bordeaux",
 #     url: "http://www.surfrider.eu",
 #     email: "contact@surfriderfoundation.fr",
-#     telephone: "05 59 23 54 99",
+#     phone: "05 59 23 54 99",
 #     remote_picture_url: urls.fetch(images.index("thumbnail-surfriderfoundation.jpg")),
 #     cause_category_id: environnement.id,
 #     facebook: "surfriderfoundationeurope",
@@ -515,7 +515,7 @@ puts "--------END LABEL CATEGORIES-----------"
 # zipcode: "33000",
 # city: "bordeaux",
 # url: "http://bordeaux-hypnose.org",
-# telephone: "0669353667",
+# phone: "0669353667",
 # email: "contact@bordeaux-hypnose.org",
 # description: "Je suis Sébastian Cantaut Hypnothérapeute à Darwin. Si vous avez des problèmes d'estime de soi, de confiance en soi, de stress, d'angoisse. Envie de changer certains de vos comportements. Préparation concours, coaxhing sportif. Une phobie. Envie d'apprendre à lâcher prise, à vous relaxer. L'hypnose peut être une aide efficace.",
 # remote_picture_url: urls.fetch(images.index("10452927_808594772534200_6256437646451254378_o.jpg")),
@@ -613,7 +613,7 @@ puts "--------END LABEL CATEGORIES-----------"
 # zipcode: "33100",
 # city: "Bordeaux",
 # url: "http://www.natureetpotagerenville.fr/",
-# telephone: "0 609 725 765",
+# phone: "0 609 725 765",
 # email: "contact@natureetpotagerenville.fr",
 # description: "Cultivez la biodiversité en ville en jardinant 100% éco-responsable ! Aménagements comestibles & Agriculture urbaine Mini-potagers - Semences bio - Arrosage économe&autonome - Vermicompost - Sac de culture en géotextile ",
 # remote_picture_url: urls.fetch(images.index("Marche-recadre.jpg")),
@@ -676,7 +676,7 @@ puts "--------END LABEL CATEGORIES-----------"
 # zipcode: "33300",
 # city: "Bordeaux",
 # url: "http://www.inspireself.org/",
-# telephone: "+33663075090",
+# phone: "+33663075090",
 # email: "info@inspireself.com",
 # description: "Nous offrons des produits efficaces, réduisant considérablement les effets nocifs (chaleur, maux de têtes, migraines, baisse d'énergie, perte d'équilibre, manque d'ancrage, stress ) générés par les pollutions éléctromagnétiques des téléphones portables, ordinateurs, box wifi, tablettes, montres connectées, DECT, écoutes -bébés, tv en fait tous appareils émettant des ondes éléctromagnétiques de très hautes ou très basses fréquences....",
 # remote_picture_url: urls.fetch(images.index("Inspireself.jpg")),
@@ -724,7 +724,7 @@ puts "--------END LABEL CATEGORIES-----------"
 # street: "5 Quai de la Monnaie",
 # zipcode: "33800",
 # city: "Bordeaux",
-# telephone: "0982371550",
+# phone: "0982371550",
 # email: "paloalto.bx@gmail.com",
 # description: "Le Palo Alto a été conçu comme un lieu où il est possible de venir à n'importe quel moment de la journée.C'est un coffee shop où l'on vous propose petit déjeuner, pâtisseries maison, boissons chaudes et boissons fraiches maison (thés glacés, smoothies, citronnade, jus, etc).Arrivé midi, vous trouverez notre cuisine du marché. Nous nous attachons à travailler des produits de qualité, donc de saison. C'est pourquoi nous changeons notre carte régulièrement!La cerise sur le gâteau? Le patio! Notre petit havre de paix aux allures tropicales, au calme du tumulte de la ville, qui invite au voyage.",
 # remote_picture_url: urls.fetch(images.index("Palo-alto.jpg")),
@@ -772,7 +772,7 @@ puts "--------END LABEL CATEGORIES-----------"
 # zipcode: "33000",
 # city: "Bordeaux",
 # url: "http://www.originesteaandcoffee.com/",
-# telephone: "0524617894",
+# phone: "0524617894",
 # email: "origines.sicard@gmail.com",
 # description: "Origines Tea & Coffee est une épicerie fine dans l'univers du petit déjeuner bio. Nous proposons du thé, du café, des tisanes, du sucre, du miel, du chocolat, des confitures, le tout bio et au plus proche des producteurs! Vous pouvez déguster nos produits sur place dans un cadre convivial, en terrasse ou dans le salon au coin du feu... :)",
 # remote_picture_url: urls.fetch(images.index("Origines_5.jpg")),
@@ -847,7 +847,7 @@ puts "--------END LABEL CATEGORIES-----------"
 # zipcode: "33000 ",
 # city: "Bordeaux ",
 # url: "http://www.maisonhegara.com/",
-# telephone: "0623335080",
+# phone: "0623335080",
 # email: "maisonhegara@gmail.com",
 # description: "La Maison Hegara est une épicerie générale implantée aux chartrons. L'idée est de proposer une alimentation saine et de lutter contre le gaspillage, en proposant des produits bios et/ou locaux (légumes secs, pâtes, riz, huiles et vinaigres, thé..etc..)vendus au poids et sans emballage. Les fruits et légumes varient selon les saisons et les marchés où je me déplace chaque matin pour vous proposer des produits toujours frais.",
 # remote_picture_url: urls.fetch(images.index("MaisonHegara.jpg")),
@@ -961,7 +961,7 @@ puts "--------END LABEL CATEGORIES-----------"
 # zipcode: "33800 ",
 # city: "Bordeaux ",
 # url: "http://naturome.fr",
-# telephone: "0556782509",
+# phone: "0556782509",
 # email: "bonjour@naturome.fr",
 # description: "Naturôme est le 1er centre de naturopathie à Bordeaux. Son objectif est de regrouper et proposer l'ensemble des techniques naturelles au service de l'hygiène de vie et de la prévention santé. Sauna, massages, consultations, pratiques corporelles douces, thérapies complémentaires, esthétique bio...",
 # remote_picture_url: urls.fetch(images.index("Naturome.jpg")),
@@ -1013,7 +1013,7 @@ puts "--------END LABEL CATEGORIES-----------"
 # zipcode: "33300 ",
 # city: "Bordeaux ",
 # url: "http://laruchequiditoui.fr",
-# telephone: "0644001321",
+# phone: "0644001321",
 # email: "ruchedeschartrons@gmail.com",
 # description: "Nous organisons la vente des produits d'agriculteurs locaux ( -de 250 Km) en circuit court, d'agriculture raisonnée ou bio, via le site laruchequiditoui.fr. Nous proposons 2 ventes par semaine et leurs distributions, des Ruche des Chartrons:-22Rue Marsan chaque vendredi de 18h à 19h30 -34Cours Balguerie mardi de 17h30 à 19h. ",
 # remote_picture_url: urls.fetch(images.index("ae2028d12c14-DSC_9523.jpg")),
@@ -1062,7 +1062,7 @@ puts "--------END LABEL CATEGORIES-----------"
 # street: "49 Cours de la Martinique",
 # zipcode: "33300",
 # city: "Bordeaux ",
-# telephone: "0557895032",
+# phone: "0557895032",
 # email: "epicerieomerveilleux@gmail.com",
 # description: "Epicerie Fine produits nature et bio direct producteur Ariégeois",
 # remote_picture_url: urls.fetch(images.index("30f01a45614a-10906221_10205372821190399_6728216959958062098_n.jpg")),
@@ -1110,7 +1110,7 @@ puts "--------END LABEL CATEGORIES-----------"
 # zipcode: "33000",
 # city: "BORDEAUX",
 # url: "http://www.ecoclicot.com/",
-# telephone: "0535004030",
+# phone: "0535004030",
 # email: "info@ecoclicot.com",
 # description: "Nous développons en ligne une place de marché où se retrouve l'offre de produit eco-responsable ! ",
 # remote_picture_url: urls.fetch(images.index("b1f03b5cc443-Logo_Ecoclicot_HD.jpg")),
@@ -1208,7 +1208,7 @@ puts "--------END LABEL CATEGORIES-----------"
 # zipcode: "33000",
 # city: "Bordeaux",
 # url: "http://dysfrancais.jimdo.com/",
-# telephone: "0624996412",
+# phone: "0624996412",
 # email: "bonjour@dysfrancais.fr",
 # description: "Do you speak français c'est un concept store et lieu de vie 100% Made in France où l'on trouve de la mode H/F/enfants, des cosmétiques, de la beauté, des accessoires, de la maroquinerie, des bijoux et plein d'autres choses faites par des gens près de chez vous !",
 # remote_picture_url: urls.fetch(images.index("DYSF.jpg")),
@@ -1260,7 +1260,7 @@ puts "--------END LABEL CATEGORIES-----------"
 # zipcode: "33000",
 # city: "Bordeaux",
 # url: "http://www.boutique-koken.fr",
-# telephone: "0981463968",
+# phone: "0981463968",
 # email: "boutiquekoken@gmail.com",
 # description: "C'est une marque respectueuse de l'Homme, des valeurs de l'ouvrage et de l'environnement. Elle propose des articles de mode conçus par des créateurs et stylistes.",
 # remote_picture_url: urls.fetch(images.index("entete.jpg")),
@@ -1335,7 +1335,7 @@ puts "--------END LABEL CATEGORIES-----------"
 # street: "24 rue Roullet",
 # zipcode: "33800",
 # city: "Bordeaux",
-# telephone: "0671556756",
+# phone: "0671556756",
 # email: "anthony.benoitpro@gmail.com",
 # description: "« Jouer ce n’est pas tendre vers un but précis mais s’ouvrir à l’inattendu ». Ainsi je propose qu’à travers mes ateliers, le public vive une expérience ludique originale. Cela peut donc se faire sous deux formes : un atelier « Jeux de société » ou un atelier « Improvisation théâtrale ».",
 # remote_picture_url: urls.fetch(images.index("8ab0486e8197-16081_835643099866762_3198736444419260835_n.jpg")),
@@ -1384,7 +1384,7 @@ puts "--------END LABEL CATEGORIES-----------"
 # zipcode: "33000 ",
 # city: "Bordeaux",
 # url: "http://www.decalez.fr",
-# telephone: "0643584912",
+# phone: "0643584912",
 # email: "contact@decalez.fr",
 # description: "Décalez! est une structure de formation visant au développement des savoirs-être à partir des techniques d'improvisation théâtrale. Notre objectif ? Mettre le jeu au service de l'efficience et montrer que le développement des compétences est plus efficace lorsque l'on s'adresse à l'humain. Décalez! vous accompagne ainsi dans l'amélioration de vos compétences relationnelles, de communication, de prise de parole en public et de cohésion d'équipe... avec son regard décalé !",
 # remote_picture_url: urls.fetch(images.index("d835e13254ac-Chachou__58_sur_92_.jpg")),
@@ -1432,7 +1432,7 @@ puts "--------END LABEL CATEGORIES-----------"
 # zipcode: "33110",
 # city: "LE BOUSCAT",
 # url: "http://www.coopalpha.coop/entreprise/elisabeth-francois-produits-ecocitoyens-efpe",
-# telephone: "0637433552",
+# phone: "0637433552",
 # email: "elisabethfrancois.eco@gmail.com",
 # description: 'Éco-conçu en circuit court,TOUTNET ECO est un nettoyant écologique naturel très efficace sans pétrochimie. Son usage est très économique. Il sert également de "levier" responsable et solidaire pour le territoire.',
 # remote_picture_url: urls.fetch(images.index("1ac7d2180156-facebook3.jpg")),
@@ -1483,7 +1483,7 @@ puts "--------END LABEL CATEGORIES-----------"
 # zipcode: "33000",
 # city: "Bordeaux",
 # url: "http://www.wanweb.fr",
-# telephone: "0556481541",
+# phone: "0556481541",
 # email: "contact@wanweb.fr",
 # description: "Concept store créé en 2009 proposant exclusivement des articles fabriqués en France et pas trop loin avec des matériaux verts ou recyclés. Egalement fabricant de la marque de sacs et accessoires FANTOME, 100% made in France avec des chambres à air de vélo recyclées. Egalement galerie d'art au sous-sol, magnifique cave voûtée. A côté de belles marques françaises de type Le Slip Français, Oncle Pape, Le Baigneur, Maxence, Sabe Masson, Le Coq Français etc. un choix étonnant de lampes, sculptures et de petites et grandes choses étonnantes pour soi et vos meilleures amis. ",
 # remote_picture_url: urls.fetch(images.index("d7daa4cc9277-10250083_339433649567931_5022324882448988280_n.jpg")),
@@ -1563,7 +1563,7 @@ puts "--------END LABEL CATEGORIES-----------"
 # street: "2 Cours Alsace Lorraine ",
 # zipcode: "33000",
 # city: "Bordeaux",
-# telephone: "05 56 62 25 49",
+# phone: "05 56 62 25 49",
 # email: "madeinlabel@gmail.com",
 # description: "Voilà le 1er concept Street Food locavore au coeur de Bordeaux ! Label Terre propose une cuisine de saison, rapide, savoureuse et locale avec des produits provenant de moins de 250km du restaurant. Profitez également de la salle à l'étage, du déjeuner au goûter !",
 # remote_picture_url: urls.fetch(images.index("label-terre_1.jpg")),
@@ -1599,3 +1599,39 @@ puts "--------END LABEL CATEGORIES-----------"
 #     Perk.create(params)
 # end
 # puts "--------END BUSINESS-----------"
+
+
+puts "--------CREATE ECOSYSTEMS--------------------"
+
+ecosystem_attributes = [
+  {
+    name: "Bordeaux",
+    zipcode: "33000",
+    city: "Bordeaux",
+    radius: 25
+  },
+  {
+    name: "Val de Garonne",
+    zipcode: "47200",
+    city: "MARMANDE",
+    radius: 50
+  },
+  {
+    name: "Lyon",
+    zipcode: "69000",
+    city: "LYON",
+    radius: 25
+  },
+  {
+    name: "Paris",
+    zipcode: "75000",
+    city: "PARIS",
+    radius: 35
+  },
+
+ ]
+
+ecosystem_attributes.each do |params|
+  Ecosystem.create(params)
+end
+puts "--------END ECOSYSTEMS------------------------"

@@ -18,15 +18,18 @@
 #  shared           :boolean          default(FALSE), not null
 #  supervisor_id    :integer
 #  nb_days          :integer
+#  ecosystem_id     :integer
 #
 # Indexes
 #
+#  index_partners_on_ecosystem_id   (ecosystem_id)
 #  index_partners_on_supervisor_id  (supervisor_id)
 #  index_partners_on_user_id        (user_id)
 #
 # Foreign Keys
 #
 #  fk_rails_a6be2e8a0c  (supervisor_id => businesses.id)
+#  fk_rails_fd599a250b  (ecosystem_id => ecosystems.id)
 #
 
 class Partner < ApplicationRecord

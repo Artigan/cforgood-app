@@ -8,8 +8,8 @@
 #  first_name :string
 #  last_name  :string
 #  city       :string
-#  phone  :string
-#  used       :boolean          default(FALSE), not null
+#  phone      :string
+#  sms_sent   :boolean          default(FALSE), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
