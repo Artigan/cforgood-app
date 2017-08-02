@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170720135007) do
+ActiveRecord::Schema.define(version: 20170731111627) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -188,6 +188,21 @@ ActiveRecord::Schema.define(version: 20170720135007) do
     t.index ["user_id"], name: "index_contacts_on_user_id", using: :btree
   end
 
+  create_table "ecosystems", force: :cascade do |t|
+    t.string   "name"
+    t.string   "city"
+    t.string   "zipcode"
+    t.integer  "radius"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.float    "min_longitude"
+    t.float    "min_latitude"
+    t.float    "max_longitude"
+    t.float    "max_latitude"
+  end
+
   create_table "label_categories", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -220,6 +235,8 @@ ActiveRecord::Schema.define(version: 20170720135007) do
     t.boolean  "shared",           default: false, null: false
     t.integer  "supervisor_id"
     t.integer  "nb_days"
+    t.integer  "ecosystem_id"
+    t.index ["ecosystem_id"], name: "index_partners_on_ecosystem_id", using: :btree
     t.index ["supervisor_id"], name: "index_partners_on_supervisor_id", using: :btree
     t.index ["user_id"], name: "index_partners_on_user_id", using: :btree
   end
@@ -403,6 +420,7 @@ ActiveRecord::Schema.define(version: 20170720135007) do
   add_foreign_key "labels", "businesses"
   add_foreign_key "labels", "label_categories"
   add_foreign_key "partners", "businesses", column: "supervisor_id"
+  add_foreign_key "partners", "ecosystems"
   add_foreign_key "payments", "causes"
   add_foreign_key "payments", "users"
   add_foreign_key "perks", "businesses"

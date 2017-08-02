@@ -1,0 +1,30 @@
+# == Schema Information
+#
+# Table name: ecosystems
+#
+#  id            :integer          not null, primary key
+#  name          :string
+#  city          :string
+#  zipcode       :string
+#  radius        :integer
+#  latitude      :float
+#  longitude     :float
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  min_longitude :float
+#  min_latitude  :float
+#  max_longitude :float
+#  max_latitude  :float
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  city: MyString
+  zipcode: MyString
+  radius: 1
+
+two:
+  city: MyString
+  zipcode: MyString
+  radius: 1

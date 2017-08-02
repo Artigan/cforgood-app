@@ -28,7 +28,7 @@
                     à <%= display_distance(business.main_address.distance_from(@lat_lng)) %>
                   </span>
                 </div>
-                <% business.labels.each do |label| %>
+                <% business.labels.includes(:label_category).each do |label| %>
                   <% if label.label_category.name == "Monnaie Locale" %>
                     <div class="label-category hidden"><%= label.label_category.name %></div>
                   <% end %>

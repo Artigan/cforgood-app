@@ -24,6 +24,7 @@ class Api::V1::BaseController < ActionController::Base
   end
 
   def internal_server_error(exception)
+    return if response_body
     if Rails.env.development?
       response = { type: exception.class.to_s, error: exception.message }
     else

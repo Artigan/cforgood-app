@@ -8,7 +8,7 @@
 #  zipcode                :string
 #  city                   :string
 #  url                    :string
-#  phone              :string
+#  phone                  :string
 #  email                  :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
@@ -193,8 +193,11 @@ class Business < ApplicationRecord
     if active_changed? or leader_first_name_changed? or city_changed? or picture_changed? or supervisor_changed?  or supervisor_id_changed?
       # UPDATE CUSTOM ATTRIBUTES ON INTERCOM
       intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
+      code_partner = Partner.find_by_email(self.email).try(:code_partner)
+      manager_name = self.manager.try(:name)
       begin
         user = intercom.users.find(:user_id => 'B'+id.to_s)
+        user.custom_attributes["user_type"] = 'business'
         user.custom_attributes["user_active"] = self.active
         user.custom_attributes["first_name"] = self.leader_first_name
         user.custom_attributes["city"] = self.city
@@ -206,8 +209,6 @@ class Business < ApplicationRecord
         intercom.users.save(user)
       rescue Intercom::IntercomError => e
         begin
-          code_partner = Partner.find_by_email(self.email).code_partner if Partner.find_by_email(self.email)
-          manager_name = self.manager.name if self.manager.present?
           intercom.users.create(
             :user_id => 'B'+self.id.to_s,
             :email => self.email,

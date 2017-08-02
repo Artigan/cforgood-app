@@ -101,8 +101,8 @@ class User < ApplicationRecord
   has_many :liked_uses, -> { liked }, class_name: "Use"
   has_many :payments, dependent: :destroy
   has_many :user_histories, dependent: :destroy
-  has_many :beneficiaries
-  has_many :contacts
+  has_many :beneficiaries, dependent: :destroy
+  has_many :contacts, dependent: :destroy
 
   scope :member, -> { where(member: true) }
 
@@ -190,7 +190,7 @@ class User < ApplicationRecord
           name: access_token.extra.raw_info.name || data.email,
           first_name: access_token.extra.raw_info.first_name,
           last_name: access_token.extra.raw_info.last_name,
-          city: access_token.extra.raw_info.location.name.present? ? access_token.extra.raw_info.location.name.split(",").first : nil,
+          city: access_token.extra.raw_info.location.try(:name).present? ? access_token.extra.raw_info.location.name.split(",").first : nil,
           provider: access_token.provider,
           email: data.email,
           uid: access_token.uid,
@@ -316,17 +316,22 @@ class User < ApplicationRecord
     end
   end
 
-  def create_event_last_ecosystem(new_ecosystem_seen)
+  def create_event_last_ecosystem_seen(ecosystem_now)
+    self.update(last_ecosystem_seen: ecosystem_now)
     intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
     begin
-      user = intercom.users.find(:user_id => self.id)
-      user.custom_attributes["last_ecosystem_seen"] = new_ecosystem_seen
-      intercom.users.save(user)
+      intercom.events.create(
+        event_name: "last_ecosystem_seen",
+        created_at: Time.now.to_i,
+        user_id: self.id,
+        email: self.email,
+        metadata: {
+          ecosystem: self.last_ecosystem_seen
+        }
+      )
     rescue Intercom::IntercomError => e
       puts e
     end
-    self.last_ecosystem_seen = new_ecosystem_seen
-    self.save
   end
 
   private

@@ -114,6 +114,7 @@ Rails.application.routes.draw do
       resources :cause_categories, only: [ :index ]
       resources :causes, only: [ :index, :show, :create ]
       resources :contacts, only: [ :create ]
+      resources :partners, only: [ :index ]
     end
   end
 

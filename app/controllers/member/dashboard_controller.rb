@@ -8,15 +8,15 @@ class Member::DashboardController < ApplicationController
 
     # Event intercom for last ecosystem request
     if user_signed_in? && request.location.city.present?
-      puts "request.location.city : #{request.location.city}"
-      # current_user.create_event_last_ecosystem_seen(request.location.city) if request.location.city != current_user.last_ecosystem_seen
+      ecosystem_now = Ecosystem.within([request.location.latitude, request.location.longitude]).first.try(:name)
+      current_user.create_event_last_ecosystem_seen(ecosystem_now) if ecosystem_now.present? && ecosystem_now != current_user.last_ecosystem_seen
     end
 
     # save logout access
     if !user_signed_in?
       session[:logout] = true
     end
-    @businesses = Business.not_supervisor.includes(:business_category, :perks_in_time, :uses, :main_address, :labels).active.for_map.with_perks_in_time.distinct.eager_load(:addresses_for_map).merge(Address.near(@lat_lng, 99999))
+    @businesses = Business.not_supervisor.includes(:business_category, :perks_in_time, :uses, :main_address, :labels, :label_categories).active.for_map.with_perks_in_time.distinct.eager_load(:addresses_for_map).merge(Address.near(@lat_lng, 99999))
     @geojson = {"type" => "FeatureCollection", "features" => []}
 
     @businesses_around = @businesses.merge(Address.near(@lat_lng, 50)).size
@@ -49,9 +49,9 @@ class Member::DashboardController < ApplicationController
 
       if !current_user.uses.first.present?
         if !current_user.member
-          @first_perk_offer = Business.find(ENV['BUSINESS_ID_CFORGOOD'].to_i).perks.active.first
+          @first_perk_offer = Business.includes(:main_address).find(ENV['BUSINESS_ID_CFORGOOD'].to_i).perks.active.first
         elsif current_user.business_supervisor_id
-          @first_perk_offer = Business.find(current_user.business_supervisor_id).perks.active.first
+          @first_perk_offer = Business.includes(:main_address).find(current_user.business_supervisor_id).perks.active.first
         end
       end
     end
@@ -94,7 +94,7 @@ class Member::DashboardController < ApplicationController
   end
 
   def find_businesses_for_search
-    @businesses = Business.not_supervisor.includes(:business_category, :main_address).active.with_perks_in_time.distinct
+    @businesses = Business.not_supervisor.includes(:business_category, :main_address, :perks, :labels).active.with_perks_in_time.distinct
   end
 
 end

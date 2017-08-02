@@ -31,7 +31,7 @@
         <div class="card-perk-description">
             <p class="perk-description"><%= perk.name.downcase.capitalize %></p>
         </div>
-        <% business.labels.each do |label| %>
+        <% business.labels.includes(:label_category).each do |label| %>
           <% if label.label_category.name == "Monnaie Locale" %>
             <div class="label-category hidden"><%= label.label_category.name %></div>
           <% end %>
