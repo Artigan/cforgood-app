@@ -186,7 +186,6 @@ class User < ApplicationRecord
         end
         return registred_user
       else
-        binding.pry
         user = User.create(
           name: access_token.extra.raw_info.name || data.email,
           first_name: access_token.extra.raw_info.first_name,

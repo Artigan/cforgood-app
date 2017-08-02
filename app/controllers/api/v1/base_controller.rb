@@ -1,5 +1,5 @@
 class Api::V1::BaseController < ActionController::Base
-  acts_as_token_authentication_handler_for User, except: [ :create, :index ]
+  acts_as_token_authentication_handler_for User, except: [ :create ]
   include Pundit
   include ApplicationHelper
   include Modules::ModuleSlack
@@ -20,7 +20,6 @@ class Api::V1::BaseController < ActionController::Base
   end
 
   def not_found(exception)
-    binding.pry
     render json: { error: exception.message }, status: :not_found
   end
 
