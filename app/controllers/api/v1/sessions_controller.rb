@@ -11,6 +11,7 @@ class  Api::V1::SessionsController < Devise::SessionsController
     access_token = request.headers.env["HTTP_ACCESS_TOKEN"] if request.headers.env["HTTP_ACCESS_TOKEN"].present?
 
     if ! (email.present? && ( password.present? || access_token.present? ))
+      puts "request headers : #{request.headers}"
       return render status: 400, json: { message: 'The request MUST contains the user email and password or facebook_token.' }
     end
 
@@ -25,6 +26,7 @@ class  Api::V1::SessionsController < Devise::SessionsController
       url = "https://graph.facebook.com/me?access_token="
       begin
         content = open(URI.encode(url + access_token))
+        puts "content access_token : #{content}"
       rescue OpenURI::HTTPError #with this I handle if the access token is not ok
         return render status: 401, :json => {:error => "Invalid token facebook'" }
       end
