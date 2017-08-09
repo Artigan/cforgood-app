@@ -25,7 +25,10 @@ class Api::V1::BaseController < ActionController::Base
 
   def internal_server_error(exception)
     puts "response_body : #{response_body}"
-    puts "request : #{request}"
+     puts "request headers email : #{request.headers.env["HTTP_EMAIL"]}"
+     puts "request headers password : #{request.headers.env["HTTP_PASSWORD"]}"
+     puts "request headers acces_token : #{request.headers.env["HTTP_ACCESS_TOKEN"]}"
+     puts "request body : #{params}"
     return if response_body
     if Rails.env.development?
       response = { type: exception.class.to_s, error: exception.message }

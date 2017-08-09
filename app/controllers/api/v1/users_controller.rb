@@ -14,6 +14,7 @@ class Api::V1::UsersController < Api::V1::BaseController
   end
 
   def show
+    binding.pry
     @cause = @user.cause
     @payments = @user.payments.where(done: true).order('created_at asc')
     @total_donation = @payments.sum(&:donation) if @payments.present?
