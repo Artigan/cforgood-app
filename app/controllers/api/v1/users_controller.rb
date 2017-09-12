@@ -48,8 +48,8 @@ class Api::V1::UsersController < Api::V1::BaseController
     else
       old_acct_id = @user.cause.acct_id
       params = user_params.except(:stripeToken)
+      puts "user_param : #{params}"
       if !@user.update(params)
-        puts "error update user : #{@user.errors.full_messages}"
         render status: :unprocessable_entity, json: { error: @user.errors.full_messages}
       else
         if user_params[:stripeToken].present? or user_params[:subscription].present? or user_params[:amount].present? or user_params[:code_partner].present?
