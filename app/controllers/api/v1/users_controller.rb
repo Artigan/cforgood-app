@@ -30,7 +30,6 @@ class Api::V1::UsersController < Api::V1::BaseController
   end
 
   def update
-    puts "user_params : #{user_params}"
     if user_params[:subscription] == "X"
       @user.stop_subscription!
       render status: 200, json: { status: "updated" }
@@ -50,6 +49,7 @@ class Api::V1::UsersController < Api::V1::BaseController
       old_acct_id = @user.cause.acct_id
       params = user_params.except(:stripeToken)
       if !@user.update(params)
+        puts "error update user : #{@user.errors.full_messages}"
         render status: :unprocessable_entity, json: { error: @user.errors.full_messages}
       else
         if user_params[:stripeToken].present? or user_params[:subscription].present? or user_params[:amount].present? or user_params[:code_partner].present?
