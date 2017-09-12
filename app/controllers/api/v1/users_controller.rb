@@ -3,7 +3,6 @@ class Api::V1::UsersController < Api::V1::BaseController
   before_action :set_user, only: [ :show, :update ]
 
   def create
-    puts "user_params : #{user_params}"
     @user = User.new(user_params)
     authorize @user
     if @user.save
@@ -31,6 +30,7 @@ class Api::V1::UsersController < Api::V1::BaseController
   end
 
   def update
+    puts "user_params : #{user_params}"
     if user_params[:subscription] == "X"
       @user.stop_subscription!
       render status: 200, json: { status: "updated" }
