@@ -173,14 +173,14 @@ GEM
       thor (~> 0.14)
     font-awesome-sass (4.7.0)
       sass (>= 3.2)
-    forest_liana (1.6.15)
+    forest_liana (1.7.8)
       arel-helpers
       bcrypt
       groupdate
       jsonapi-serializers (>= 0.14.0)
       jwt
       rack-cors
-      rails (>= 3.0)
+      rails (>= 4.0)
       useragent
     formtastic (3.1.4)
       actionpack (>= 3.2.13)
