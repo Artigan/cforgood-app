@@ -97,7 +97,7 @@ class MangopayServices
     # @mangopay_user = MangopayServices.new(User.first).create_mangopay_iban_bankaccount
   end
 
-def create_mangopay_mandate
+  def create_mangopay_mandate
     mandate_info = {
       BankAccountId: "16618384",
       Culture: "FR",
