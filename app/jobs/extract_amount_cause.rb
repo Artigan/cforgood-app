@@ -8,6 +8,10 @@ class ExtractAmountCause < ApplicationJob
 
     report = []
     report << "-----------------------------------------"
+    report << "Report EXTRACT AMOUNT CAUSE"
+    report << "-----------------------------------------"
+    report << "Id | Name | Mangopay | Stripe Available | Stripe Pending"
+    report << "-----------------------------------------"
 
     Cause.all.order(name: :asc).each do |cause|
 
@@ -25,16 +29,12 @@ class ExtractAmountCause < ApplicationJob
         end
       end
 
-      report << "#{cause.id} | #{cause.name} | #{result_mgp.present? ? result_mgp["Balance"]["Amount"]/100.00 : 0.0} | #{result_stripe.present? ? result_stripe["available"].first["amount"]/100.00 : 0.0} | #{result_stripe.present? ? result_stripe["pending"].first["amount"]/100.00 : 0.0}"
+      report << "#{cause.id} | #{cause.name} | #{cause.active ? "Active" : "Non active" } | #{result_mgp.present? ? result_mgp["Balance"]["Amount"]/100.00 : 0.0} | #{result_stripe.present? ? result_stripe["available"].first["amount"]/100.00 : 0.0} | #{result_stripe.present? ? result_stripe["pending"].first["amount"]/100.00 : 0.0}"
     end
 
     report << "-----------------------------------------"
 
     # Report : Edit + Send to slack
-    puts "-----------------------------------------"
-    puts "Report EXTRACT AMOUNT CAUSE"
-    puts "-----------------------------------------"
-    report << "Id | Name | Mangopay | Stripe Available | Stripe Pending"
 
     fields = []
     report.each do |line|
