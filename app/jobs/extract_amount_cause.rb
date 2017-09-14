@@ -9,7 +9,7 @@ class ExtractAmountCause < ApplicationJob
     report = []
     report << "-----------------------------------------"
 
-    Cause.all.each do |cause|
+    Cause.all.order(name: :asc).each do |cause|
 
       begin
         result_mgp = MangoPay::Wallet.fetch(cause.wallet_id)
@@ -34,7 +34,7 @@ class ExtractAmountCause < ApplicationJob
     puts "-----------------------------------------"
     puts "Report EXTRACT AMOUNT CAUSE"
     puts "-----------------------------------------"
-    puts "Id | Name | Mangopay | Stripe Available | Stripe Pending"
+    report << "Id | Name | Mangopay | Stripe Available | Stripe Pending"
 
     fields = []
     report.each do |line|
