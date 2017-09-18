@@ -83,6 +83,7 @@ class Api::V1::UsersController < Api::V1::BaseController
       :first_name,
       :last_name,
       :password,
+      :access_token,
       :birthday,
       :subscription,
       :amount,
