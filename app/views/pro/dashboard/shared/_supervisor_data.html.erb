@@ -66,8 +66,8 @@
     </li>
     <li class="list-code-partner">
       <span class="code-partner-title">Codes partenaires</span>
-    <% @business.partners.each do | partner | %>
-      <% nb_users = User.where(code_partner: partner.code_partner).count %>
+      <% @business.partners.each do | partner | %>
+        <% nb_users = User.where(code_partner: partner.code_partner).count %>
         <div class="code-partner">
           <% if partner.nb_months.present? %>
             <span class="partner-details"><%= partner.code_partner %> (<%= partner.nb_months %> mois)</span>
