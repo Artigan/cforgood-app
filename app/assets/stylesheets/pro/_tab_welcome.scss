@@ -186,6 +186,10 @@
             font-weight: 900;
           }
 
+          &.number-inactive span {
+            opacity: 0.4;
+          }
+
           .number-inactive {
             opacity: 0.4;
           }
@@ -196,6 +200,47 @@
             text-transform: uppercase;
             font-family: avenir;
             font-weight: 100;
+          }
+
+          &.data-split {
+            padding: 26px 0;
+          }
+
+          .split-details {
+            display: flex;
+            line-height: 30px;
+          }
+
+          span.sub-number {
+            font-size: 23px;
+            font-weight: 600;
+          }
+
+          span.sub-label {
+            font-family: avenir;
+            font-size: 12px;
+            font-weight: 100;
+            text-transform: uppercase;
+            padding-left: 10px;
+          }
+
+          .code-partner {
+            display: flex;
+            justify-content: center;
+            line-height: 26px;
+          }
+
+          .code-partner-title {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+          }
+
+          span.partner-details {
+            font-family: avenir;
+            font-size: 12px;
+            font-weight: 100;
+            padding-right: 10px;
           }
         }
 
