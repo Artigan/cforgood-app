@@ -69,7 +69,11 @@
     <% @business.partners.each do | partner | %>
       <% nb_users = User.where(code_partner: partner.code_partner).count %>
         <div class="code-partner">
-          <span class="partner-details"><%= partner.code_partner %> (<%= partner.nb_months %> mois) </span>
+          <% if partner.nb_months.present? %>
+            <span class="partner-details"><%= partner.code_partner %> (<%= partner.nb_months %> mois)</span>
+          <% else %>
+            <span class="partner-details"><%= partner.code_partner %> (<%= partner.nb_days %> jourss)</span>
+          <% end %>
           <span class="sub-number"> <%= nb_users %></span>
           <span class="sub-label"><%= nb_users > 1 ? "membres" : "membre" %></span>
         </div>
