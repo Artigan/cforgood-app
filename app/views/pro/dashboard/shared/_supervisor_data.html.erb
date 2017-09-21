@@ -6,58 +6,73 @@
   <!-- BLOCK METRICS -->
   <ul class="data-desktop">
     <span class="data-title data-title-gradient">Resumé de votre activité</span>
-    <li id="data-businesses">
-      <% if @business.businesses.count == 0 %>
-        <span class="number number-inactive"><%= @business.businesses.count %></span>
-        <span class="label number-inactive">Nombre de<br> commerces</span>
-      <% else %>
-        <span class="number"><%= @business.businesses.count %></span>
-        <span class="label">Nombre de<br> commerces</span>
-      <% end %>
+
+    <% nb_causes = @business.causes.count %>
+    <li class="<%= nb_causes == 0 ? 'number-inactive' : '' %>">
+      <span class="number"><%= nb_causes %></span>
+      <span class="label">Nombre<br> d'associations</span>
     </li>
-     <li id="data-create">
-      <% if @business.businesses_perks.count == 0 %>
-        <span class="number number-inactive"><%= @business.businesses_perks.count %></span>
-        <span class="label number-inactive">Bons plans<br> créés</span>
-      <% else %>
-        <span class="number"><%= @business.businesses_perks.count %></span>
-        <span class="label">Bons plans<br> créés</span>
-      <% end %>
+
+    <% amount_donation = @business.amount_donation %>
+    <li class="<%= amount_donation == 0 ? 'number-inactive' : '' %>">
+      <span class="number"><%= amount_donation %></span>
+      <span class="label">Montant<br> donation</span>
     </li>
-    <li id="data-used">
-      <% if @business.businesses_perks_uses.used.count == 0 %>
-        <span class="number number-inactive"><%= @business.businesses_perks_uses.used.count %></span>
-        <span class="label number-inactive">Bons plans<br> utilisés</span>
-      <% else %>
-        <span class="number"><%= @business.businesses_perks_uses.used.count %></span>
-        <span class="label">Bons plans<br> utilisés</span>
-      <% end %>
+
+    <% nb_businesses = @business.businesses.count %>
+    <% nb_active_businesses = @business.businesses.active.count %>
+    <li class="<%= nb_businesses == 0 ? 'number-inactive' : '' %>">
+      <span class="number"><%= nb_businesses %></span>
+      <span class="label">Nombre de<br> commerces</span>
     </li>
-    <li id="data-users">
-      <% if @business.members.count == 0 %>
-        <span class="number number-inactive"><%= @business.members.count %></span>
-        <span class="label number-inactive">Nombre de<br> membres</span>
-      <% else %>
-        <span class="number"><%= @business.members.count %></span>
-        <span class="label">Nombre de<br> membres</span>
-      <% end %>
+    <li class="data-split">
+      <div class="split-details <%= nb_active_businesses == 0 ? 'number-inactive' : '' %>">
+        <span class="sub-number"><%= nb_active_businesses %></span>
+        <span class="sub-label"><%= nb_active_businesses > 1 ? "commerces actifs" : "commerce actif" %></span>
+      </div>
+      <div class="split-details <%= nb_businesses - nb_active_businesses == 0 ? 'number-inactive' : '' %>">
+        <span class="sub-number"><%= nb_businesses - nb_active_businesses %></span>
+        <span class="sub-label"><%= nb_businesses - nb_active_businesses > 1 ? "commerces inactifs" : "commerce inactif" %></span>
+      </div>
     </li>
-    <li id="data-causes">
-      <% if @business.causes.count == 0 %>
-        <span class="number number-inactive"><%= @business.causes.count %></span>
-        <span class="label number-inactive">Nombre<br> d'associations</span>
-      <% else %>
-        <span class="number"><%= @business.causes.count %></span>
-        <span class="label">Nombre<br> d'associations</span>
-      <% end %>
+
+    <% nb_businesses_perks = @business.businesses_perks.count %>
+    <li class="<% nb_businesses_perks == 0 ? 'number-inactive' : '' %>">
+      <span class="number"><%= nb_businesses_perks %></span>
+      <span class="label">Bons plans<br> créés</span>
     </li>
-    <li id="data-donation">
-      <% if @business.amount_donation == 0 %>
-        <span class="number number-inactive"><%= @business.amount_donation %></span>
-        <span class="label number-inactive">Montant<br> donation</span>
-      <% else %>
-        <span class="number"><%= @business.amount_donation %></span>
-        <span class="label">Montant<br> donation</span>
+
+    <% nb_businesses_perks_used = @business.businesses_perks_uses.used.count %>
+    <li class="<%= nb_businesses_perks_used == 0 ? 'number-inactive' : '' %>">
+      <span class="number"><%= nb_businesses_perks_used %></span>
+      <span class="label">Bons plans<br> utilisés</span>
+    </li>
+
+    <% nb_members = @business.members.count %>
+    <% nb_active_members = @business.members.member.count %>
+    <li class="<%= nb_members == 0 ? 'number-inactive' : '' %>">
+      <span class="number"><%= nb_members %></span>
+      <span class="label">Nombre de<br> membres</span>
+    </li>
+    <li class="data-split">
+      <div class="split-details <%= nb_active_members == 0 ? 'number-inactive' : '' %>">
+        <span class="sub-number"><%= nb_active_members %></span>
+        <span class="sub-label"><%= nb_active_members > 1 ? "membres actifs" : "membre actif" %></span>
+      </div>
+      <div class="split-details <%= nb_members - nb_active_members == 0 ? 'number-inactive' : '' %>">
+        <span class="sub-number"><%= nb_members - nb_active_members %></span>
+        <span class="sub-label"><%= nb_members - nb_active_members > 1 ? "membres inactifs" : "membre inactif" %></span></span>
+      </div>
+    </li>
+    <li class="list-code-partner">
+      <span class="code-partner-title">Codes partenaires</span>
+    <% @business.partners.each do | partner | %>
+      <% nb_users = User.where(code_partner: partner.code_partner).count %>
+        <div class="code-partner">
+          <span class="partner-details"><%= partner.code_partner %> (<%= partner.nb_months %> mois) </span>
+          <span class="sub-number"> <%= nb_users %></span>
+          <span class="sub-label"><%= nb_users > 1 ? "membres" : "membre" %></span>
+        </div>
       <% end %>
     </li>
   </ul>

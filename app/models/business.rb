@@ -73,6 +73,7 @@ class Business < ApplicationRecord
   has_many :uses, through: :perks
   has_many :perks_in_time, -> { in_time }, class_name: "Perk"
   has_many :perks_flash_in_time, -> { flash_in_time }, class_name: "Perk"
+  has_many :partners, class_name: "Partner", foreign_key: 'supervisor_id'
   has_many :labels, dependent: :destroy
   has_many :label_categories, through: :labels
   accepts_nested_attributes_for :labels, :allow_destroy => true, :reject_if => :all_blank
@@ -85,6 +86,7 @@ class Business < ApplicationRecord
   has_many :businesses_perks, through: :businesses, source: :perks
   has_many :businesses_perks_uses, through: :businesses_perks, source: :uses
   has_many :members, class_name: 'User', foreign_key: 'ecosystem_id'
+  has_many :payments, through: :members
   has_many :causes, class_name: 'Cause', foreign_key: 'supervisor_id'
 
   scope :active, -> { where(active: true) }
@@ -137,7 +139,7 @@ class Business < ApplicationRecord
   end
 
   def amount_donation
-    0
+    self.payments.sum(:donation)
   end
 
   def address_changed?
