@@ -85,7 +85,7 @@ class Business < ApplicationRecord
   has_many :businesses, class_name: 'Business', foreign_key: 'supervisor_id'
   has_many :businesses_perks, through: :businesses, source: :perks
   has_many :businesses_perks_uses, through: :businesses_perks, source: :uses
-  has_many :members, class_name: 'User', foreign_key: 'ecosystem_id'
+  has_many :members, class_name: 'User', foreign_key: 'business_supervisor_id'
   has_many :payments, through: :members
   has_many :causes, class_name: 'Cause', foreign_key: 'supervisor_id'
 
