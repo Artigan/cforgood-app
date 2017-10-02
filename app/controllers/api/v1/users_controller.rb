@@ -3,7 +3,27 @@ class Api::V1::UsersController < Api::V1::BaseController
   before_action :set_user, only: [ :show, :update ]
 
   def create
-    @user = User.new(user_params)
+    render status: :unprocessable_entity, json: { error: "Zipcode or City are required"} if !user_params[:city].present? || !user_params[:zipcode].present?
+    if user_params[:access_token].present?
+      url = "https://graph.facebook.com/me?fields=email,picture&access_token="
+      begin
+        content = open(URI.encode(url + user_params[:access_token]))
+        email = JSON.parse(content.string)["email"]
+        image = JSON.parse(content.string)["picture"]
+        return render status: 401, :json => {:error => "Email and facebook token do not match" }  if email != user_params[:email]
+      rescue OpenURI::HTTPError #with this I handle if the access token is not ok
+        return render status: 401, :json => {:error => "Invalid facebool token" }
+      end
+    end
+
+    params = user_params.except(:access_token)
+    if user_params[:access_token].present?
+      params = params.merge(token: user_params[:access_token])
+      params = params.merge(password: Devise.friendly_token[0,20])
+      params = params.merge(picture: image["data"]["url"]) if image.present?
+    end
+
+    @user = User.new(params)
     authorize @user
     if @user.save
       render status: 200, json: { id: @user.id }
@@ -83,6 +103,8 @@ class Api::V1::UsersController < Api::V1::BaseController
       :first_name,
       :last_name,
       :password,
+      :access_token,
+      :token,
       :birthday,
       :subscription,
       :amount,
