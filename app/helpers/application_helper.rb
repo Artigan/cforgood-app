@@ -68,6 +68,10 @@ module ApplicationHelper
     end
   end
 
+  def is_number? string
+    true if Float(string) rescue false
+  end
+
   def display_distance distance
     if distance.round(3) > 1
       (distance).round(1).to_s + " km"
