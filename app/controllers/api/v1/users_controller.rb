@@ -66,6 +66,7 @@ class Api::V1::UsersController < Api::V1::BaseController
     elsif user_params[:amount].present? && !user_params[:subscription].present?
         render status: :unprocessable_entity, json: { error: "Subscription required if Amount present"}
     else
+      puts "stripeToken: #{stripeToken}"
       old_acct_id = @user.cause.acct_id
       params = user_params.except(:stripeToken)
       if !@user.update(params)
