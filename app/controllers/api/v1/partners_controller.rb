@@ -3,7 +3,7 @@ class Api::V1::PartnersController < Api::V1::BaseController
   acts_as_token_authentication_handler_for User, except: [ :index ]
 
   def index
-    render status: 404, json: { message: 'Invalid coordinates' } if !is_number?(params[:lat]) || !is_number?(params[:lng])
+    return render status: 404, json: { message: 'Invalid coordinates' } if !is_number?(params[:lat]) || !is_number?(params[:lng])
     @lat_lng = set_coordinates(params[:lat], params[:lng])
     @ecosystem = Ecosystem.within(@lat_lng).first
     if @ecosystem.present?
