@@ -13,7 +13,7 @@ class Api::V1::BusinessesController < Api::V1::BaseController
     # event for no business around
     current_user.create_event_no_business(@lat_lng) if @businesses.merge(Address.near(@lat_lng, 50)).size == 0
     # event for ecosystem change
-    ecosystem_now = Ecosystem.within(@lat_lng).first.try(:name)
+    ecosystem_now = Ecosystem.within(@lat_lng).first.try(:name) if is_number?(params[:lat]) && is_number?(params[:lng])
     current_user.create_event_last_ecosystem_seen(ecosystem_now) if ecosystem_now.present? && ecosystem_now != current_user.last_ecosystem_seen
   end
 
