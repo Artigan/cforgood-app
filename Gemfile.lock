@@ -434,6 +434,7 @@ GEM
     websocket-driver (0.6.4)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
+    yard (0.9.9)
 
 PLATFORMS
   ruby
@@ -507,6 +508,7 @@ DEPENDENCIES
   turnout
   uglifier
   underscore-rails
+  yard
 
 RUBY VERSION
    ruby 2.3.1p112

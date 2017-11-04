@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: MonthlyPayinJob
+  
+    &mdash; Documentation by YARD 0.9.9
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "MonthlyPayinJob";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index (M)</a> &raquo;
+    
+    
+    <span class="title">MonthlyPayinJob</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Class: MonthlyPayinJob
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName"><span class='object_link'><a href="ApplicationJob.html" title="ApplicationJob (class)">ApplicationJob</a></span></span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">ActiveJob::Base</li>
+          
+            <li class="next"><span class='object_link'><a href="ApplicationJob.html" title="ApplicationJob (class)">ApplicationJob</a></span></li>
+          
+            <li class="next">MonthlyPayinJob</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>app/jobs/monthly_payin_job.rb</dd>
+  </dl>
+  
+</div>
+
+
+
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#perform-instance_method" title="#perform (instance method)">#<strong>perform</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="perform-instance_method">
+  
+    #<strong>perform</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/jobs/monthly_payin_job.rb', line 4</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_perform'>perform</span>
+
+  <span class='id identifier rubyid_report'>report</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_report'>report</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-----------------------------------------</span><span class='tstring_end'>&quot;</span></span>
+
+  <span class='id identifier rubyid_intercom'>intercom</span> <span class='op'>=</span> <span class='const'>Intercom</span><span class='op'>::</span><span class='const'>Client</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>app_id:</span> <span class='const'>ENV</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>INTERCOM_API_ID</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='label'>api_key:</span> <span class='const'>ENV</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>INTERCOM_API_KEY</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
+
+
+  <span class='comment'># Traitment members on trial at J-7
+</span>  <span class='id identifier rubyid_report'>report</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>MEMBER ON TRIAL J-7</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_report'>report</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-----------------------------------------</span><span class='tstring_end'>&quot;</span></span>
+
+  <span class='ivar'>@user_trial_J_7</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="User.html" title="User (class)">User</a></span></span><span class='period'>.</span><span class='id identifier rubyid_member_on_trial_should_payin'>member_on_trial_should_payin</span><span class='lparen'>(</span><span class='int'>7</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_nb_events_trial_J_7'>nb_events_trial_J_7</span> <span class='op'>=</span> <span class='int'>0</span>
+
+  <span class='ivar'>@user_trial_J_7</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_user'>user</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_mangopay_card_id'>mangopay_card_id</span><span class='period'>.</span><span class='id identifier rubyid_present?'>present?</span>
+      <span class='kw'>begin</span>
+        <span class='id identifier rubyid_intercom'>intercom</span><span class='period'>.</span><span class='id identifier rubyid_events'>events</span><span class='period'>.</span><span class='id identifier rubyid_create'>create</span><span class='lparen'>(</span>
+          <span class='label'>event_name:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>TRIAL-J-7</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+          <span class='label'>created_at:</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='comma'>,</span>
+          <span class='label'>user_id:</span> <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span>
+          <span class='label'>email:</span> <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_email'>email</span>
+        <span class='rparen'>)</span>
+      <span class='kw'>rescue</span> <span class='const'>Intercom</span><span class='op'>::</span><span class='const'>IntercomError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
+        <span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_e'>e</span>
+      <span class='kw'>end</span>
+      <span class='id identifier rubyid_nb_events_trial_J_7'>nb_events_trial_J_7</span> <span class='op'>+=</span> <span class='int'>1</span>
+      <span class='id identifier rubyid_report'>report</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>MEMBER ON TRIAL J-7 | event intercom | </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_content'> | </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_email'>email</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_report'>report</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-----------------------------------------</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='ivar'>@user_trial_J_7</span><span class='period'>.</span><span class='id identifier rubyid_present?'>present?</span>
+  <span class='id identifier rubyid_report'>report</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Nb users on trial J-7 | </span><span class='embexpr_beg'>#{</span><span class='ivar'>@user_trial_J_7</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_report'>report</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Nb events for trial J-7 | </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_nb_events_trial_J_7'>nb_events_trial_J_7</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_report'>report</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-----------------------------------------</span><span class='tstring_end'>&quot;</span></span>
+
+
+  <span class='comment'># Traitment members on trial at J-3
+</span>  <span class='id identifier rubyid_report'>report</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>MEMBER ON TRIAL J-3</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_report'>report</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-----------------------------------------</span><span class='tstring_end'>&quot;</span></span>
+
+  <span class='ivar'>@user_trial_J_3</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="User.html" title="User (class)">User</a></span></span><span class='period'>.</span><span class='id identifier rubyid_member_on_trial_should_payin'>member_on_trial_should_payin</span><span class='lparen'>(</span><span class='int'>3</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_nb_events_trial_J_3'>nb_events_trial_J_3</span> <span class='op'>=</span> <span class='int'>0</span>
+
+  <span class='ivar'>@user_trial_J_3</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_user'>user</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_mangopay_card_id'>mangopay_card_id</span><span class='period'>.</span><span class='id identifier rubyid_present?'>present?</span>
+      <span class='kw'>begin</span>
+        <span class='id identifier rubyid_intercom'>intercom</span><span class='period'>.</span><span class='id identifier rubyid_events'>events</span><span class='period'>.</span><span class='id identifier rubyid_create'>create</span><span class='lparen'>(</span>
+          <span class='label'>event_name:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>TRIAL-J-3</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+          <span class='label'>created_at:</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='comma'>,</span>
+          <span class='label'>user_id:</span> <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span>
+          <span class='label'>email:</span> <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_email'>email</span>
+        <span class='rparen'>)</span>
+      <span class='kw'>rescue</span> <span class='const'>Intercom</span><span class='op'>::</span><span class='const'>IntercomError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
+        <span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_e'>e</span>
+      <span class='kw'>end</span>
+      <span class='id identifier rubyid_nb_events_trial_J_3'>nb_events_trial_J_3</span> <span class='op'>+=</span> <span class='int'>1</span>
+      <span class='id identifier rubyid_report'>report</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>MEMBER ON TRIAL J-3 | event intercom | </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_content'> | </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_email'>email</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_report'>report</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-----------------------------------------</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='ivar'>@user_trial_J_3</span><span class='period'>.</span><span class='id identifier rubyid_present?'>present?</span>
+  <span class='id identifier rubyid_report'>report</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Nb users on trial J-3 | </span><span class='embexpr_beg'>#{</span><span class='ivar'>@user_trial_J_3</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_report'>report</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Nb events for trial J-3 | </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_nb_events_trial_J_3'>nb_events_trial_J_3</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_report'>report</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-----------------------------------------</span><span class='tstring_end'>&quot;</span></span>
+
+
+  <span class='comment'># Traitment members on trial at J-0
+</span>  <span class='id identifier rubyid_report'>report</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>MEMBER ON TRIAL J-0</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_report'>report</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-----------------------------------------</span><span class='tstring_end'>&quot;</span></span>
+
+  <span class='ivar'>@user_trial_J_0</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="User.html" title="User (class)">User</a></span></span><span class='period'>.</span><span class='id identifier rubyid_member_on_trial_should_payin'>member_on_trial_should_payin</span><span class='lparen'>(</span><span class='int'>0</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_nb_payin_trial_OK'>nb_payin_trial_OK</span> <span class='op'>=</span> <span class='int'>0</span>
+  <span class='id identifier rubyid_nb_payin_trial_KO'>nb_payin_trial_KO</span> <span class='op'>=</span> <span class='int'>0</span>
+  <span class='id identifier rubyid_nb_events_trial_J_0'>nb_events_trial_J_0</span> <span class='op'>=</span> <span class='int'>0</span>
+
+  <span class='ivar'>@user_trial_J_0</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_user'>user</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_mangopay_card_id'>mangopay_card_id</span><span class='period'>.</span><span class='id identifier rubyid_present?'>present?</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_monthly_payin'>monthly_payin</span><span class='lparen'>(</span><span class='id identifier rubyid_user'>user</span><span class='rparen'>)</span>
+        <span class='comment'># Change subscription: Trial is done !
+</span>        <span class='id identifier rubyid_nb_payin_trial_OK'>nb_payin_trial_OK</span> <span class='op'>+=</span> <span class='int'>1</span>
+        <span class='id identifier rubyid_report'>report</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>MEMBER ON TRIAL J-0 | subscription OK | </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_content'> | </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_email'>email</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+      <span class='kw'>else</span>
+        <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_update'>update</span><span class='lparen'>(</span><span class='label'>member:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>code_partner:</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_nb_payin_trial_KO'>nb_payin_trial_KO</span> <span class='op'>+=</span> <span class='int'>1</span>
+        <span class='id identifier rubyid_report'>report</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>MEMBER ON TRIAL J-0 | subscription KO + member inactivate | </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_content'> | </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_email'>email</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+      <span class='kw'>end</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_update'>update</span><span class='lparen'>(</span><span class='label'>member:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>code_partner:</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+      <span class='kw'>begin</span>
+        <span class='id identifier rubyid_intercom'>intercom</span><span class='period'>.</span><span class='id identifier rubyid_events'>events</span><span class='period'>.</span><span class='id identifier rubyid_create'>create</span><span class='lparen'>(</span>
+          <span class='label'>event_name:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>TRIAL-J-0</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+          <span class='label'>created_at:</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='comma'>,</span>
+          <span class='label'>user_id:</span> <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span>
+          <span class='label'>email:</span> <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_email'>email</span>
+        <span class='rparen'>)</span>
+      <span class='kw'>rescue</span> <span class='const'>Intercom</span><span class='op'>::</span><span class='const'>IntercomError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
+        <span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_e'>e</span>
+      <span class='kw'>end</span>
+      <span class='id identifier rubyid_nb_events_trial_J_0'>nb_events_trial_J_0</span> <span class='op'>+=</span> <span class='int'>1</span>
+      <span class='id identifier rubyid_report'>report</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>MEMBER ON TRIAL J-0 | event intercom + member inactivate | </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_content'> | </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_email'>email</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_report'>report</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-----------------------------------------</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='ivar'>@user_trial_J_0</span><span class='period'>.</span><span class='id identifier rubyid_present?'>present?</span>
+  <span class='id identifier rubyid_report'>report</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Nb users on trial J-0 | </span><span class='embexpr_beg'>#{</span><span class='ivar'>@user_trial_J_0</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_report'>report</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Nb payin OK trial J-0 | </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_nb_payin_trial_OK'>nb_payin_trial_OK</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_report'>report</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Nb payin KO trial J-0 | </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_nb_payin_trial_KO'>nb_payin_trial_KO</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_report'>report</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Nb events for trial J-0 | </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_nb_events_trial_J_0'>nb_events_trial_J_0</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_report'>report</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-----------------------------------------</span><span class='tstring_end'>&quot;</span></span>
+
+
+  <span class='comment'># Traitment members should PAYIN
+</span>  <span class='id identifier rubyid_report'>report</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>MONTHLY MEMBER J-0</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_report'>report</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-----------------------------------------</span><span class='tstring_end'>&quot;</span></span>
+
+  <span class='ivar'>@user_member_should_payin</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="User.html" title="User (class)">User</a></span></span><span class='period'>.</span><span class='id identifier rubyid_member_should_payin'>member_should_payin</span><span class='lparen'>(</span><span class='int'>0</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_nb_member_payin_OK'>nb_member_payin_OK</span> <span class='op'>=</span> <span class='int'>0</span>
+  <span class='id identifier rubyid_nb_member_payin_KO'>nb_member_payin_KO</span> <span class='op'>=</span> <span class='int'>0</span>
+
+
+  <span class='comment'># if last day of month and previous month is longer
+</span>  <span class='kw'>if</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='period'>.</span><span class='id identifier rubyid_end_of_day'>end_of_day</span> <span class='op'>==</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='period'>.</span><span class='id identifier rubyid_end_of_month'>end_of_month</span> <span class='op'>&amp;&amp;</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='period'>.</span><span class='id identifier rubyid_prev_month'>prev_month</span><span class='period'>.</span><span class='id identifier rubyid_end_of_month'>end_of_month</span><span class='period'>.</span><span class='id identifier rubyid_day'>day</span> <span class='op'>&gt;</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='period'>.</span><span class='id identifier rubyid_end_of_month'>end_of_month</span><span class='period'>.</span><span class='id identifier rubyid_day'>day</span>
+    <span class='id identifier rubyid_index'>index</span> <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='period'>.</span><span class='id identifier rubyid_prev_month'>prev_month</span><span class='period'>.</span><span class='id identifier rubyid_end_of_month'>end_of_month</span><span class='period'>.</span><span class='id identifier rubyid_day'>day</span> <span class='op'>-</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='period'>.</span><span class='id identifier rubyid_end_of_month'>end_of_month</span><span class='period'>.</span><span class='id identifier rubyid_day'>day</span>
+
+    <span class='lparen'>(</span><span class='int'>1</span><span class='op'>..</span><span class='id identifier rubyid_index'>index</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_i'>i</span><span class='op'>|</span>
+      <span class='ivar'>@user_member_should_payin</span> <span class='op'>&lt;&lt;</span> <span class='const'><span class='object_link'><a href="User.html" title="User (class)">User</a></span></span><span class='period'>.</span><span class='id identifier rubyid_member_should_payin'>member_should_payin</span><span class='lparen'>(</span><span class='op'>-</span><span class='id identifier rubyid_i'>i</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="User.html" title="User (class)">User</a></span></span><span class='period'>.</span><span class='id identifier rubyid_member_should_payin'>member_should_payin</span><span class='lparen'>(</span><span class='op'>-</span><span class='id identifier rubyid_i'>i</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_exists?'>exists?</span>
+    <span class='kw'>end</span>
+
+    <span class='ivar'>@user_member_should_payin</span> <span class='op'>=</span> <span class='ivar'>@user_member_should_payin</span><span class='period'>.</span><span class='id identifier rubyid_reject'>reject</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:empty?</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='ivar'>@user_member_should_payin</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_user'>user</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_monthly_payin'>monthly_payin</span><span class='lparen'>(</span><span class='id identifier rubyid_user'>user</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_nb_member_payin_OK'>nb_member_payin_OK</span> <span class='op'>+=</span> <span class='int'>1</span>
+      <span class='id identifier rubyid_report'>report</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>MONTHLY MEMBER | payin OK | </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_content'> | </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_email'>email</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_nb_member_payin_KO'>nb_member_payin_KO</span> <span class='op'>+=</span> <span class='int'>1</span>
+      <span class='id identifier rubyid_report'>report</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>MONTHLY MEMBER | payin KO | </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_content'> | </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_email'>email</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_report'>report</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-----------------------------------------</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='ivar'>@user_member_should_payin</span><span class='period'>.</span><span class='id identifier rubyid_present?'>present?</span>
+  <span class='id identifier rubyid_report'>report</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Nb members should payin | </span><span class='embexpr_beg'>#{</span><span class='ivar'>@user_member_should_payin</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_report'>report</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Nb payin OK J-0 | </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_nb_member_payin_OK'>nb_member_payin_OK</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_report'>report</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Nb payin KO J-0 | </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_nb_member_payin_KO'>nb_member_payin_KO</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_report'>report</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-----------------------------------------</span><span class='tstring_end'>&quot;</span></span>
+
+
+  <span class='comment'># Traitment members should have PAYIN J+7
+</span>  <span class='id identifier rubyid_report'>report</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>MONTHLY MEMBER J+7</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_report'>report</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-----------------------------------------</span><span class='tstring_end'>&quot;</span></span>
+
+  <span class='ivar'>@user_member_should_payin_J_7</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="User.html" title="User (class)">User</a></span></span><span class='period'>.</span><span class='id identifier rubyid_member_should_payin'>member_should_payin</span><span class='lparen'>(</span><span class='int'>7</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_nb_events_member_J_7'>nb_events_member_J_7</span> <span class='op'>=</span> <span class='int'>0</span>
+
+  <span class='comment'># if last day of month and previous month is longer
+</span>  <span class='kw'>if</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='period'>.</span><span class='id identifier rubyid_end_of_day'>end_of_day</span> <span class='op'>==</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='period'>.</span><span class='id identifier rubyid_end_of_month'>end_of_month</span> <span class='op'>&amp;&amp;</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='period'>.</span><span class='id identifier rubyid_prev_month'>prev_month</span><span class='period'>.</span><span class='id identifier rubyid_end_of_month'>end_of_month</span><span class='period'>.</span><span class='id identifier rubyid_day'>day</span> <span class='op'>&gt;</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='period'>.</span><span class='id identifier rubyid_end_of_month'>end_of_month</span><span class='period'>.</span><span class='id identifier rubyid_day'>day</span>
+    <span class='id identifier rubyid_index'>index</span> <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='period'>.</span><span class='id identifier rubyid_prev_month'>prev_month</span><span class='period'>.</span><span class='id identifier rubyid_end_of_month'>end_of_month</span><span class='period'>.</span><span class='id identifier rubyid_day'>day</span> <span class='op'>-</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='period'>.</span><span class='id identifier rubyid_end_of_month'>end_of_month</span><span class='period'>.</span><span class='id identifier rubyid_day'>day</span>
+
+    <span class='lparen'>(</span><span class='int'>1</span><span class='op'>..</span><span class='id identifier rubyid_index'>index</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_i'>i</span><span class='op'>|</span>
+      <span class='ivar'>@user_member_should_payin_J_7</span> <span class='op'>&lt;&lt;</span> <span class='const'><span class='object_link'><a href="User.html" title="User (class)">User</a></span></span><span class='period'>.</span><span class='id identifier rubyid_member_should_payin_J_7'>member_should_payin_J_7</span><span class='lparen'>(</span><span class='int'>7</span><span class='op'>-</span><span class='id identifier rubyid_i'>i</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="User.html" title="User (class)">User</a></span></span><span class='period'>.</span><span class='id identifier rubyid_member_should_payin'>member_should_payin</span><span class='lparen'>(</span><span class='int'>7</span><span class='op'>-</span><span class='id identifier rubyid_i'>i</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_exists?'>exists?</span>
+    <span class='kw'>end</span>
+
+    <span class='ivar'>@user_member_should_payin_J_7</span> <span class='op'>=</span> <span class='ivar'>@user_member_should_payin_J_7</span><span class='period'>.</span><span class='id identifier rubyid_reject'>reject</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:empty?</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='ivar'>@user_member_should_payin_J_7</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_user'>user</span><span class='op'>|</span>
+    <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_update_attribute'>update_attribute</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>member</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='kw'>false</span><span class='rparen'>)</span>
+    <span class='kw'>begin</span>
+      <span class='id identifier rubyid_intercom'>intercom</span><span class='period'>.</span><span class='id identifier rubyid_events'>events</span><span class='period'>.</span><span class='id identifier rubyid_create'>create</span><span class='lparen'>(</span>
+        <span class='label'>event_name:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>MEMBER-J+7</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+        <span class='label'>created_at:</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='comma'>,</span>
+        <span class='label'>user_id:</span> <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span>
+        <span class='label'>email:</span> <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_email'>email</span>
+      <span class='rparen'>)</span>
+    <span class='kw'>rescue</span> <span class='const'>Intercom</span><span class='op'>::</span><span class='const'>IntercomError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
+      <span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_e'>e</span>
+    <span class='kw'>end</span>
+    <span class='id identifier rubyid_nb_events_member_J_7'>nb_events_member_J_7</span> <span class='op'>+=</span> <span class='int'>1</span>
+    <span class='id identifier rubyid_report'>report</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>MONTHLY MEMBER J+7 | event intercom + member inactivate | </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_content'> | </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_email'>email</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_report'>report</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-----------------------------------------</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='ivar'>@user_member_should_payin_J_7</span><span class='period'>.</span><span class='id identifier rubyid_present?'>present?</span>
+  <span class='id identifier rubyid_report'>report</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Nb members should payin J+7 | </span><span class='embexpr_beg'>#{</span><span class='ivar'>@user_member_should_payin_J_7</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_report'>report</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Nb events for payin J+7 | </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_nb_events_member_J_7'>nb_events_member_J_7</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_report'>report</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-----------------------------------------</span><span class='tstring_end'>&quot;</span></span>
+
+
+  <span class='comment'># Report : Edit + Send to slack
+</span>  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-----------------------------------------</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Report MONTHLY PAYIN JOB</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-----------------------------------------</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
+
+  <span class='id identifier rubyid_fields'>fields</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_report'>report</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_line'>line</span><span class='op'>|</span>
+    <span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_line'>line</span>
+    <span class='id identifier rubyid_fields'>fields</span> <span class='op'>&lt;&lt;</span> <span class='lbrace'>{</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>value</span><span class='label_end'>&quot;:</span> <span class='id identifier rubyid_line'>line</span> <span class='rbrace'>}</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>if</span> <span class='const'>Rails</span><span class='period'>.</span><span class='id identifier rubyid_env'>env</span><span class='period'>.</span><span class='id identifier rubyid_production?'>production?</span>
+    <span class='id identifier rubyid_notifier'>notifier</span> <span class='op'>=</span> <span class='const'>Slack</span><span class='op'>::</span><span class='const'>Notifier</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='const'>ENV</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>SLACK_WEBHOOK_JOB_URL</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_attachment'>attachment</span> <span class='op'>=</span> <span class='lbrace'>{</span>
+      <span class='label'>fallback:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Report MONTHLY PAYIN JOB</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+      <span class='label'>fields:</span> <span class='id identifier rubyid_fields'>fields</span><span class='comma'>,</span>
+      <span class='label'>color:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>good</span><span class='tstring_end'>&quot;</span></span>
+    <span class='rbrace'>}</span>
+    <span class='id identifier rubyid_notifier'>notifier</span><span class='period'>.</span><span class='id identifier rubyid_ping'>ping</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Report MONTHLY PAYIN JOB</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>attachments:</span> <span class='lbracket'>[</span><span class='id identifier rubyid_attachment'>attachment</span><span class='rbracket'>]</span>
+  <span class='kw'>end</span>
+
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Mon Oct 30 21:57:28 2017 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.9 (ruby-2.3.1).
+</div>
+
+    </div>
+  </body>
+</html>
