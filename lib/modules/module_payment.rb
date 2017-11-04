@@ -14,7 +14,6 @@ module Modules
       end
 
       if new_card
-
         # Create Stripe customer on platform account
         if !current_user.customer_id.present?
           customer = StripeServices.new(user: current_user).create_customer(params[:stripeToken])

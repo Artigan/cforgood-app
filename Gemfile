@@ -31,6 +31,7 @@ gem 'sidekiq-failures'
 gem 'possibly'
 gem 'turnout'
 gem 'scout_apm'
+gem 'yard'
 
 gem "aws-sdk", "< 2.0"
 gem 'carrierwave'
