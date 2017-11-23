@@ -25,7 +25,7 @@
 class Contact < ApplicationRecord
   belongs_to :users, class_name: 'User', foreign_key: 'user_id'
 
-  validates :email, presence: true, uniqueness: true
+  # validates :email, presence: true, uniqueness: true
 
   before_create :send_sms
 
