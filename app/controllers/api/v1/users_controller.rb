@@ -12,7 +12,7 @@ class Api::V1::UsersController < Api::V1::BaseController
         image = JSON.parse(content.string)["picture"]
         return render status: 401, :json => {:error => "Email and facebook token do not match" }  if email != user_params[:email]
       rescue OpenURI::HTTPError #with this I handle if the access token is not ok
-        return render status: 401, :json => {:error => "Invalid facebool token" }
+        return render status: 401, :json => {:error => "Invalid facebook token" }
       end
     end
 
@@ -53,7 +53,7 @@ class Api::V1::UsersController < Api::V1::BaseController
     if user_params[:subscription] == "X"
       @user.stop_subscription!
       render status: 200, json: { status: "updated" }
-    elsif user_params[:code_partner].present? && @user.code_partner.present?
+    elsif user_params[:code_partner].present? && @user.code_partner.present? && user_params[:code_partner] != @user.code_partner
       render status: :unprocessable_entity, json: { error: "A code_partner already filled"}
     elsif user_params.include?("cause_id") && !user_params[:cause_id].present?
       render status: :unprocessable_entity, json: { error: "Cause required"}
