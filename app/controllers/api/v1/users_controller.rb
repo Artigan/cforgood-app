@@ -54,6 +54,10 @@ class Api::V1::UsersController < Api::V1::BaseController
       @user.stop_subscription!
       render status: 200, json: { status: "updated" }
     elsif user_params[:code_partner].present? && @user.code_partner.present? && user_params[:code_partner] != @user.code_partner
+      puts "code_partner_params :"
+      puts user_params[:code_partner]
+      puts "code_partner_user :"
+      puts @user.code_partner
       render status: :unprocessable_entity, json: { error: "A code_partner already filled"}
     elsif user_params.include?("cause_id") && !user_params[:cause_id].present?
       render status: :unprocessable_entity, json: { error: "Cause required"}
