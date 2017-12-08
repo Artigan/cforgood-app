@@ -17,14 +17,10 @@ class Api::V1::UsersController < Api::V1::BaseController
     end
 
     params = user_params.except(:access_token)
-    puts "user_params : "
-    puts user_params
     if user_params[:access_token].present?
       params = params.merge(token: user_params[:access_token])
       params = params.merge(password: Devise.friendly_token[0,20])
       params = params.merge(picture: image["data"]["url"]) if image.present?
-      puts "facebook_params : "
-      puts params
     end
 
     @user = User.new(params)
