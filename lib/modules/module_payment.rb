@@ -31,7 +31,7 @@ module Modules
       end
 
       # Create Stripe customer on connected account or update if card or cause change
-      if new_card || new_cause
+      if new_card || new_cause || !current_user.shared_customer_id.present?
 
         # Create token for customer to connected account
         if !current_user.shared_customer_id.present?
