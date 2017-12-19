@@ -222,7 +222,7 @@ class User < ApplicationRecord
   def status
     return "Inscrit depuis " + I18n.l(self.created_at.to_date, format: :long) unless member
     return "A l'essai jusqu'au " + I18n.l(self.date_end_partner.to_date, format: :long) if self.code_partner.present?
-    return "Abonné depuis le " + I18n.l(self.date_subscription.to_date, format: :long)
+    return "Abonné depuis le " + I18n.l(self.date_subscription.to_date, format: :long) if self.date_subscription.present?
   end
 
   # def should_payin?
