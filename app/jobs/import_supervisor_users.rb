@@ -1,4 +1,4 @@
-class ImportUsers < ApplicationJob
+class ImportSupervisorUsers < ApplicationJob
   require 'csv'
   require 'net/ftp'
   queue_as :default
@@ -28,13 +28,20 @@ class ImportUsers < ApplicationJob
     CSV.foreach(csv_file, { headers: true, header_converters: :symbol, col_sep: ';' }) do |row|
 
       nb_read += 1
+
       begin
+        @supervisor = User.find(row[:supervisor_id].to_i)
+        if !@supervisor.supervisor
+          ko += 1
+          report << "ERROR User create | #{row[:email]} | Supervisor is not a supervisor"
+          next
+        end
         # password automatique de devise
         # TODO: s'assurer que l'utilisateur recoit un email pour changer de mdp
         # ou set choisir un mdp
         row[:password] = "cforgood"
         # row[:password] = Devise.friendly_token.first(8)
-        @user = User.create!(row.to_h)
+        @employee = User.create!(row.to_h)
         ok += 1
       rescue ActiveRecord::RecordNotFound, ActiveRecord::RecordInvalid => e
         ko += 1
