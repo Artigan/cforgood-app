@@ -232,7 +232,11 @@ class User < ApplicationRecord
   # end
 
   def find_name_or_email
-    self.first_name + " " + self.last_name || self.name || self.email
+    if self.first_name.present? && self.last_name.present?
+      self.first_name + " " + self.last_name
+    else
+      self.name || self.email
+    end
   end
 
   def member!
