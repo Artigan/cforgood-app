@@ -1,6 +1,0 @@
-supervisor_id;email;first_name;last_name;street;zipcode;city
-199;test_import@gmail.com;imported;user;Rue Ligier;33000;Bordeaux
-1;test1_import@gmail.com;wrongsupervisor;user;Ruligier;33000;Bordeaux
-127;test2_import@gmail.com;notsupervisor;user;Rue Ligier;33000;Bordeaux
-199; ;noemail;user;Rue Ligier;33000;Bordeaux
-199;test_import.gmail.com;wrong email;user;Rue Ligier;33000;Bordeaux
