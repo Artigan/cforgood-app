@@ -50,7 +50,12 @@ class Api::V1::UsersController < Api::V1::BaseController
   end
 
   def update
-    puts "params : #{user_params}"
+    puts "params-subscription :"
+    puts user_params[:subscription]
+    puts "params-subscription :"
+    puts user_params[:amount]
+    puts "params-street :"
+    puts user_params[:street]
     if user_params[:subscription] == "X"
       @user.stop_subscription!
       render status: 200, json: { status: "updated" }
