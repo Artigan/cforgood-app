@@ -33,6 +33,8 @@
 #
 
 class Partner < ApplicationRecord
+  belongs_to :supervisor, class_name: 'Business', foreign_key: 'supervisor_id'
+  
   validates :name, presence: true
   validates :email, presence: true
   validates :code_partner, presence: true, uniqueness: true
