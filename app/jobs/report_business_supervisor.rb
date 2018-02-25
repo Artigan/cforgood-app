@@ -33,7 +33,7 @@ class ReportBusinessSupervisor < ApplicationJob
 
     votes = UserHistory.where(code_partner: code_partner).group(:cause_id).distinct.count(:user_id)
     votes.each do |vote|
-      report << "#{Cause.find(vote[1]).name} : #{vote[1]}"
+      report << "#{Cause.find(vote[0]).name} : #{vote[1]}"
     end
 
     edit_report(report)
