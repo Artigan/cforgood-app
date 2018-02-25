@@ -90,7 +90,7 @@ GEM
     arbre (1.1.1)
       activesupport (>= 3.0.0)
     arel (7.1.4)
-    arel-helpers (2.4.0)
+    arel-helpers (2.6.1)
       activerecord (>= 3.1.0, < 6)
     autoprefixer-rails (6.5.1.1)
       execjs
@@ -173,7 +173,7 @@ GEM
       thor (~> 0.14)
     font-awesome-sass (4.7.0)
       sass (>= 3.2)
-    forest_liana (1.7.8)
+    forest_liana (2.3.3)
       arel-helpers
       bcrypt
       groupdate
@@ -191,8 +191,8 @@ GEM
       multi_json (>= 1.11.0)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
-    groupdate (3.2.0)
-      activesupport (>= 3)
+    groupdate (4.0.0)
+      activesupport (>= 4.2)
     has_scope (0.6.0)
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
@@ -310,7 +310,7 @@ GEM
       rack (>= 0.4)
     rack-contrib (1.2.0)
       rack (>= 0.9.1)
-    rack-cors (1.0.1)
+    rack-cors (1.0.2)
     rack-test (0.6.3)
       rack (>= 1.0)
     rack-timeout (0.4.2)
@@ -428,7 +428,7 @@ GEM
     unf_ext (0.0.7.2)
     unicode_utils (1.4.0)
     uniform_notifier (1.10.0)
-    useragent (0.16.8)
+    useragent (0.16.10)
     warden (1.2.6)
       rack (>= 1.0)
     websocket-driver (0.6.4)
@@ -514,4 +514,4 @@ RUBY VERSION
    ruby 2.3.1p112
 
 BUNDLED WITH
-   1.13.6
+   1.16.0
