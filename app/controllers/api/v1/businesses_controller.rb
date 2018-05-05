@@ -5,9 +5,9 @@ class Api::V1::BusinessesController < Api::V1::BaseController
   def index
     @lat_lng = set_coordinates(params[:lat], params[:lng])
     if params[:online].present? && params[:online] == "true"
-      @businesses = Business.not_supervisor.includes(:business_category, :main_address, :labels, :label_categories).active.with_perks_in_time.distinct.eager_load(:addresses).merge(Address.near(@lat_lng, 99999, order: "distance"))
+      @businesses = Business.not_supervisor.includes(:perks, :business_category, :labels, :label_categories, :addresses).active.with_perks_in_time.distinct.merge(Address.near(@lat_lng, 99999, order: "distance"))
     else
-      @businesses = Business.not_supervisor.includes(:business_category, :main_address, :labels, :label_categories).active.for_map.with_perks_in_time.distinct.eager_load(:addresses_for_map).merge(Address.near(@lat_lng, 99999, order: "distance"))
+      @businesses = Business.not_supervisor.includes(:perks, :business_category, :labels, :label_categories, :addresses).active.for_map.with_perks_in_time.distinct.merge(Address.near(@lat_lng, 99999, order: "distance"))
     end
     authorize @businesses
     # event for no business around
