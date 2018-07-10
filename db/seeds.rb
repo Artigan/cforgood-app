@@ -12,167 +12,168 @@
 # picture = ftp.getbinaryfile("sante.png")
 # ftp.close
 
-# require 'cloudinary'
-# result = Cloudinary::Api.resources(type: :upload, prefix: "seed", max_results: 500)
+require 'cloudinary'
+result = Cloudinary::Api.resources(type: :upload, prefix: "seed", max_results: 500)
 
-# images = []
-# urls = []
+images = []
+urls = []
 
-# result["resources"].each do |resource|
-#   image = resource["url"].split('seed/')[1]
-#   images << image
-#   urls << resource["url"]
-# end
+result["resources"].each do |resource|
+  image = resource["url"].split('seed/')[1]
+  images << image
+  urls << resource["url"]
+end
 
-#----------------------------------------------------
+# ----------------------------------------------------
 # TABLES TECHNIQUES
-#----------------------------------------------------
-
+# ----------------------------------------------------
+#
 # ----------------------------------------------------
 # Création table LABEL_CATEGORIES
 # ----------------------------------------------------
 
 # LabelCategory.destroy_all
-
+#
 # puts "--------CREATE LABEL CATEGORIES--------"
-
-#action_locale = LabelCategory.create!({
+#
+# action_locale = LabelCategory.create!({
 #  name: "Action Locale",
 #  picture: "labels/action_locale.svg",
 # })
 #
-#circuit_court = LabelCategory.create!({
+# circuit_court = LabelCategory.create!({
 #  name: "Circuit Court",
 #  picture: "labels/circuit_court.svg",
 # })
 #
-#engagement_social = LabelCategory.create!({
+# engagement_social = LabelCategory.create!({
 #  name: "Engagement social",
 #  picture: "labels/engagement_social.svg",
 # })
 #
-#modele_collaboratif_participatif = LabelCategory.create!({
+# modele_collaboratif_participatif = LabelCategory.create!({
 #  name: "Modèle collaboratif/participatif",
 #  picture: "labels/modele_collaboratif-participatif.svg",
 # })
 #
-#monnaie_locale = LabelCategory.create!({
+# monnaie_locale = LabelCategory.create!({
 #  name: "Monnaie Locale",
 #  picture: "labels/monnaie_locale.svg",
 # })
 #
-#polit#ique_anti_gaspillage = LabelCategory.create!({
+# politique_anti_gaspillage = LabelCategory.create!({
 #  name: "Politique anti-gaspillage",
 #  picture: "labels/politique_anti-gaspillage.svg",
 # })
 #
-#produits_eco_responsables = LabelCategory.create!({
+# produits_eco_responsables = LabelCategory.create!({
 #  name: "Produits éco-responsables",
 #  picture: "labels/produits_eco-responsables.svg",
 # })
 #
-#zero_dechet = LabelCategory.create!({
+# zero_dechet = LabelCategory.create!({
 #  name: "Zéro déchet",
 #  picture: "labels/zero_dechet.svg",
-#})
-
+# })
+#
 # energies_renouvelables = LabelCategory.create!({
 #  name: "Énergies renouvelables",
 #  picture: "labels/energies_renouvelables.svg",
 # })
-
+#
 # epanouissement_personnel = LabelCategory.create!({
 #  name: "Épanouissement personnel",
 #  picture: "labels/epanouissement_personnel.svg",
 # })
-
+#
 # animation_culturelle = LabelCategory.create!({
 #  name: "Animation culturelle",
 #  picture: "labels/animation_culturelle.svg",
 # })
-
-
+#
+#
 # puts "--------END LABEL CATEGORIES-----------"
 
-# #----------------------------------------------------
-# # Création table BUSINESS_CATEGORIES
-# #----------------------------------------------------
+#----------------------------------------------------
+# Création table BUSINESS_CATEGORIES
+#----------------------------------------------------
 
 # BusinessCategory.destroy_all
-
+#
 # puts "--------CREATE BUSINESS CATEGORIES--------"
-
+#
 # personel = BusinessCategory.create!({
 #   name: "Développement personnel",
-#   remote_picture_url: urls.fetch(images.index("developpement.png")),
+#   picture: urls.fetch(images.index("developpement.png")),
 #   color: "#36d3da",
 #   marker_symbol: "marker-developpement"
 #  })
-
+#
+# binding.pry
 # fitness = BusinessCategory.create!({
 #   name: "Santé & Fitness",
-#   remote_picture_url: urls.fetch(images.index("fitness.png")),
+#   picture: urls.fetch(images.index("fitness.png")),
 #   color: "#c386be",
 #   marker_symbol: "marker-forme"
 #  })
-
+#
 # epicerie = BusinessCategory.create!({
 #   name: "Marchés & Epiceries",
-#   remote_picture_url: urls.fetch(images.index("market.png")),
+#   picture: urls.fetch(images.index("market.png")),
 #   color: "#eeaa06",
 #   marker_symbol: "marker-epicerie"
 #  })
-
+#
 # shopping = BusinessCategory.create!({
 #   name: "Shopping",
-#   remote_picture_url: urls.fetch(images.index("shopping.png")),
+#   picture: urls.fetch(images.index("shopping.png")),
 #   color: "#f55b5b",
 #   marker_symbol: "marker-shopping"
 #  })
-
+#
 # maison = BusinessCategory.create!({
 #   name: "Maison & Jardin",
-#   remote_picture_url: urls.fetch(images.index("maison.png")),
+#   picture: urls.fetch(images.index("maison.png")),
 #   color: "#adcb40",
 #   marker_symbol: "marker-maison"
 #  })
-
+#
 # loisirs = BusinessCategory.create!({
 #   name: "Loisirs & Sorties",
-#   remote_picture_url: urls.fetch(images.index("loisirs.png")),
+#   picture: urls.fetch(images.index("loisirs.png")),
 #   color: "#1da1df",
 #   marker_symbol: "marker-loisirs"
 #  })
-
+#
 # coffee = BusinessCategory.create!({
 #   name: "Cafés & Lieux de vie",
-#   remote_picture_url: urls.fetch(images.index("coffee.png")),
+#   picture: urls.fetch(images.index("coffee.png")),
 #   color: "#7f5b0a",
 #   marker_symbol: "marker-coffee"
 #  })
-
+#
 # beaute = BusinessCategory.create!({
 #   name: "Beauté & Bien Être",
-#   remote_picture_url: urls.fetch(images.index("beauty.png")),
+#   picture: urls.fetch(images.index("beauty.png")),
 #   color: "#867486",
 #   marker_symbol: "marker-bienetre"
 #  })
-
+#
 # bars = BusinessCategory.create!({
 #   name: "Bars & Restaurants",
-#   remote_picture_url: urls.fetch(images.index("restaurant.png")),
+#   picture: urls.fetch(images.index("restaurant.png")),
 #   color: "#db6f3a",
 #   marker_symbol: "marker-restaurant"
 #  })
-
-
+#
+#
 # mobilite = BusinessCategory.create!({
 #   name: "Mobilité",
 #   picture: "business_categories/mobilite",
 #   color: "#867486",
 #   marker_symbol: "marker-mobilite"
 #  })
-
+#
 # artisanat = BusinessCategory.create!({
 #   name: "Artisanat",
 #   picture: "business_categories/artisanat",
@@ -182,11 +183,11 @@
 # puts "--------END BUSINESS CATEGORIES-----------"
 
 
-# #-------------------------------------------------
-# # Variables table BUSINESS_CATEGORIES
-# #-------------------------------------------------
+#-------------------------------------------------
+# Variables table BUSINESS_CATEGORIES
+#-------------------------------------------------
 
-# # puts "--------READ BUSINESS CATEGORIES-----------"
+puts "--------READ BUSINESS CATEGORIES-----------"
 
 # personel = BusinessCategory.find_by_name("Développement personnel").update(picture: "business_categories/yoga")
 # fitness = BusinessCategory.find_by_name("Santé & Fitness").update(picture: "business_categories/santeetbienetre.svg")
@@ -198,139 +199,147 @@
 # beaute = BusinessCategory.find_by_name("Beauté & Bien Être").update(picture: "business_categories/beauteetbienetre.svg")
 # bars = BusinessCategory.find_by_name("Bars & Restaurants").update(picture: "business_categories/restauration.svg")
 
+personel = BusinessCategory.find_by_name("Développement personnel")
+fitness = BusinessCategory.find_by_name("Santé & Fitness")
+epicerie = BusinessCategory.find_by_name("Marchés & Epiceries")
+shopping = BusinessCategory.find_by_name("Shopping")
+maison = BusinessCategory.find_by_name("Maison & Jardin")
+loisirs = BusinessCategory.find_by_name("Loisirs & Sorties")
+coffee = BusinessCategory.find_by_name("Cafés & Lieux de vie")
+beaute = BusinessCategory.find_by_name("Beauté & Bien Être")
+bars = BusinessCategory.find_by_name("Bars & Restaurants")
+
+puts "--------END READ BUSINESS CATEGORIES------"
 
 
-# # puts "--------END READ BUSINESS CATEGORIES------"
-
-
-# #----------------------------------------------------
-# # Création table CAUSE_CATEGORIES
-# #----------------------------------------------------
+#----------------------------------------------------
+# Création table CAUSE_CATEGORIES
+#----------------------------------------------------
 
 # CauseCategory.destroy_all
-
+#
 # puts "--------CREATE CAUSE CATEGORIES--------"
-
+#
 # humanitaire = CauseCategory.create!({
 # name: "Humanitaire",
-# remote_picture_url: urls.fetch(images.index("humanitaire.png")),
+# picture: urls.fetch(images.index("humanitaire.png")),
 # color: "#ff9e00"
 # })
-
+#
 # culturel = CauseCategory.create!({
 # name: "Culturel",
-# remote_picture_url: urls.fetch(images.index("culture.png")),
+# picture: urls.fetch(images.index("culture.png")),
 # color: "#8e513a)"
 # })
-
+#
 # entreprenariat = CauseCategory.create!({
 # name: "Entrepreneuriat Social",
-# remote_picture_url: urls.fetch(images.index("social.png")),
+# picture: urls.fetch(images.index("social.png")),
 # color: "#2cc6ea"
 # })
-
+#
 # agriculture = CauseCategory.create!({
 # name: "Agriculture",
-# remote_picture_url: urls.fetch(images.index("agriculture.png")),
+# picture: urls.fetch(images.index("agriculture.png")),
 # color: "#ce801a"
 # })
-
+#
 # insertion = CauseCategory.create!({
 # name: "Insertion/Précarité",
-# remote_picture_url: urls.fetch(images.index("insertion.png")),
+# picture: urls.fetch(images.index("insertion.png")),
 # color: "#bddb71"
 # })
-
+#
 # education = CauseCategory.create!({
 # name: "Education",
-# remote_picture_url: urls.fetch(images.index("education.png")),
+# picture: urls.fetch(images.index("education.png")),
 # color: "#facf20"
 # })
-
+#
 # environnement = CauseCategory.create!({
 # name: "Environnement",
-# remote_picture_url: urls.fetch(images.index("environment.png")),
+# picture: urls.fetch(images.index("environment.png")),
 # color: "#db3142"
 # })
-
+#
 # sante = CauseCategory.create!({
 # name: "Santé",
-# remote_picture_url: urls.fetch(images.index("sante.png")),
+# picture: urls.fetch(images.index("sante.png")),
 # color: "#594887"
 # })
 
-# puts "--------END CAUSE CATEGORIES-----------"
+puts "--------END CAUSE CATEGORIES-----------"
 
 
-# #-------------------------------------------------
-# # Variables table CAUSE_CATEGORIES
-# #-------------------------------------------------
+#-------------------------------------------------
+# Variables table CAUSE_CATEGORIES
+#-------------------------------------------------
 
-# # puts "--------READ CAUSE CATEGORIES-----------"
+puts "--------READ CAUSE CATEGORIES-----------"
 
-# # humanitaire = CauseCategory.find_by_name("Humanitaire")
-# # culturel = CauseCategory.find_by_name("Culturel")
-# # entreprenariat = CauseCategory.find_by_name("Entrepreneuriat Social")
-# # agriculture = CauseCategory.find_by_name("Agriculture")
-# # insertion = CauseCategory.find_by_name("Insertion/Précarité")
-# # education = CauseCategory.find_by_name("Education")
-# # environnement = CauseCategory.find_by_name("Environnement")
-# # sante = CauseCategory.find_by_name("Santé")
+humanitaire = CauseCategory.find_by_name("Humanitaire")
+culturel = CauseCategory.find_by_name("Culturel")
+entreprenariat = CauseCategory.find_by_name("Entrepreneuriat Social")
+agriculture = CauseCategory.find_by_name("Agriculture")
+insertion = CauseCategory.find_by_name("Insertion/Précarité")
+education = CauseCategory.find_by_name("Education")
+environnement = CauseCategory.find_by_name("Environnement")
+sante = CauseCategory.find_by_name("Santé")
 
-# # puts "--------END READ CAUSE CATEGORIES------"
+puts "--------END READ CAUSE CATEGORIES------"
 
-# # ----------------------------------------------------
-# # Création table PERK_DETAIL
-# # ----------------------------------------------------
-
+# ----------------------------------------------------
+# Création table PERK_DETAIL
+# ----------------------------------------------------
+#
 # PerkDetail.destroy_all
-
+#
 # puts "--------START PERK_DETAIL--------------"
-
+#
 # online = PerkDetail.create!({
 # name: "online",
 # description: "Entrez le code promo CforGood (online)",
 # })
-
+#
 # email = PerkDetail.create!({
 # name: "email",
 # description: "Envoyez-nous un email",
 # })
-
+#
 # carte = PerkDetail.create!({
 # name: "carte",
 # description: "Présentez votre carte en magasin",
 # })
-
+#
 # puts "--------END PERK_DETAIL----------------"
 
 
-# #-------------------------------------------------
-# # Variables table PERK_DETAIL
-# #-------------------------------------------------
-# # puts "--------READ BUSINESS CATEGORIES-----------"
+#-------------------------------------------------
+# Variables table PERK_DETAIL
+#-------------------------------------------------
+puts "--------READ BUSINESS CATEGORIES-----------"
 
-# # online = PerkDetail.find_by_name("online")
-# # email = PerkDetail.find_by_name("email")
-# # carte = PerkDetail.find_by_name("carte")
+online = PerkDetail.find_by_name("online")
+email = PerkDetail.find_by_name("email")
+carte = PerkDetail.find_by_name("carte")
 
-# # puts "--------END READ BUSINESS CATEGORIES------"
+puts "--------END READ BUSINESS CATEGORIES------"
 
 
-# # ----------------------------------------------------
-# # TABLES DONNEES
-# # ----------------------------------------------------
+# ----------------------------------------------------
+# TABLES DONNEES
+# ----------------------------------------------------
 
-# # ----------------------------------------------------
-# # Création table CAUSES
-# # ----------------------------------------------------
+# ----------------------------------------------------
+# Création table CAUSES
+# ----------------------------------------------------
 
 # Use.destroy_all
 # User.destroy_all
 # Cause.destroy_all
 
 # puts "--------CREATE CAUSES--------------------"
-
+#
 # cause_attributes = [
 #   {
 #     name: "CforGood",
@@ -341,13 +350,13 @@
 #     url: "https://www.cforgood.com",
 #     email: "hello@cforgood.com",
 #     impact: "CforGood, l’évidence d’aller dans le bon sens.",
-#     remote_picture_url: urls.fetch(images.index("cover_cforgood.jpg")),
+#     picture: urls.fetch(images.index("cover_cforgood.jpg")),
 #     cause_category_id: entreprenariat.id,
 #     facebook: "cforgood",
 #     twitter: "cforgood",
 #     representative_first_name: "Allan",
 #     representative_last_name: "Floury",
-#     remote_logo_url: urls.fetch(images.index("logo_cforgood.jpg"))
+#     logo: urls.fetch(images.index("logo_cforgood.jpg"))
 #   },
 #   {
 #     name: "Etu-Récup",
@@ -359,13 +368,13 @@
 #     email: "hello@eturecup.org",
 #     phone: "0951283415",
 #     impact: "50€ financent un atelier participatif autour du bois, du textile, des vélo ou encore des appareils électriques ou électroniques.",
-#     remote_picture_url: urls.fetch(images.index("12068966_822561957864796_8248249322430945852_o.jpg")),
+#     picture: urls.fetch(images.index("12068966_822561957864796_8248249322430945852_o.jpg")),
 #     cause_category_id: environnement.id,
 #     facebook: "eturecup",
 #     twitter: "@EtuRecup",
 #     representative_first_name: "Disco",
 #     representative_last_name: "Soupe",
-#     remote_logo_url: urls.fetch(images.index("Rectangle_1___10333370_542988195822175_8954670466005362426_o.jpg"))
+#     logo: urls.fetch(images.index("Rectangle_1___10333370_542988195822175_8954670466005362426_o.jpg"))
 #   },
 #   {
 #     name: "MakeSense",
@@ -377,14 +386,14 @@
 #     email: "contact@makesense.org",
 #     phone: "0663145359",
 #     impact: "100€ permettent de former 20 bénévoles pour aider des entrepreneurs sociaux dans le monde !",
-#     remote_picture_url: urls.fetch(images.index("00._Fulltime_team__2017-07-20.jpg")),
+#     picture: urls.fetch(images.index("00._Fulltime_team__2017-07-20.jpg")),
 #     cause_category_id: entreprenariat.id,
 #     facebook: "MakeSense",
 #     twitter: "@MakeSenseTwitts",
 #     instagram: "makesenseorg",
 #     representative_first_name: "Make",
 #     representative_last_name: "Sens",
-#     remote_logo_url: urls.fetch(images.index("Makesense.jpg"))
+#     logo: urls.fetch(images.index("Makesense.jpg"))
 #   },
 #   {
 #     name: "Osons Ici et Maintenant",
@@ -396,12 +405,12 @@
 #     email: "fabrikadeclik@gmail.com",
 #     phone: "0661512420",
 #     impact: "Révéler le potentiel des jeunes 18 - 30 ans",
-#     remote_picture_url: urls.fetch(images.index("thumbnail-osons.jpg")),
+#     picture: urls.fetch(images.index("thumbnail-osons.jpg")),
 #     cause_category_id: entreprenariat.id,
 #     facebook: "La-Fabrik-à-Déclik-645183675582256",
 #     representative_first_name: "Osons",
 #     representative_last_name: "Maintenant",
-#     remote_logo_url: urls.fetch(images.index("logo-osons.jpg"))
+#     logo: urls.fetch(images.index("logo-osons.jpg"))
 #   },
 #   {
 #     name: "Keep A Breast Europe",
@@ -412,7 +421,7 @@
 #     url: "http://www.keep-a-breast.fr",
 #     email: "europe@keep-a-breast.org",
 #     impact: "25€ permettent de financer un atelier éducatif, créatif et ludique pour sensibiliser les 5/11 ans",
-#     remote_picture_url: urls.fetch(images.index("keep_a_breast.jpg")),
+#     picture: urls.fetch(images.index("keep_a_breast.jpg")),
 #     cause_category_id: sante.id,
 #     facebook: "KeepABreastFrance",
 #     twitter: "keepabreastEU",
@@ -420,7 +429,7 @@
 #     description_impact: "Dans le cadre du programme de la Non Toxic Revolution, la fondation Keep A Breast Europe développe les ateliers éducatifs totem : cinq ateliers éducatifs, créatifs et ludiques à destination des 5/11 ans autour de 5 thèmes distincts : la maison, l’alimentation, le corps, le plastique et le bien-être. En partenariat avec l'OCCE 33, le projet a été présenté auprès de 850 écoles publiques élémentaires et maternelles à la rentrée 2015. L'objectif est : - Développer des connaissances dans le domaine de la santé. - Sensibiliser les jeunes à la toxicité potentielle de leur mode de vie et de leur environnement. - Faire acquérir des automatismes dès le plus jeune âge. - Apprendre à être respectueux des autres usagers et de son environnement. Keep A Breast a créé des kits complets comprenant tous les éléments nécessaires à la réalisation de ces 5 ateliers pour une classe de 20 enfants. Chaque kit coute 25 €. ",
 #     representative_first_name: "Keep",
 #     representative_last_name: "Breast",
-#     remote_logo_url: urls.fetch(images.index("52ee24cd4041-logo_keep_a_breast.jpg"))
+#     logo: urls.fetch(images.index("52ee24cd4041-logo_keep_a_breast.jpg"))
 #   },
 #   {
 #     name: "Ecolo Info",
@@ -429,14 +438,14 @@
 #     email: "sarah@ecoloinfo.com",
 #     phone: "0646367273",
 #     impact: "Chaque tranche de 100€ permet de couvrir nos frais techniques durant 1 mois pour continuer à communiquer et sensibiliser sur l'environnement.",
-#     remote_picture_url: urls.fetch(images.index("1c205cf0f1c9-groupe_EN.jpg")),
+#     picture: urls.fetch(images.index("1c205cf0f1c9-groupe_EN.jpg")),
 #     cause_category_id: environnement.id,
 #     facebook: "EcoloInfo",
 #     twitter: "ecoloinfo",
 #     description_impact: "Le site nous coûte 1500€ par an (hébergement et webdesign). Plus nous permettrait d'organiser davantage d'événements et d'agrandir notre équipe pour structurer une déclinaison partout en France.",
 #     representative_first_name: "Ecolo",
 #     representative_last_name: "Info",
-#     remote_logo_url: urls.fetch(images.index("logo-ecoloinfo.jpg"))
+#     logo: urls.fetch(images.index("logo-ecoloinfo.jpg"))
 #   },
 #   {
 #     name: "Disco Soupe",
@@ -448,14 +457,14 @@
 #     email: "discosoupebordeaux@gmail.com",
 #     phone: "0646367273",
 #     impact: "100€ financent une disco soupe",
-#     remote_picture_url: urls.fetch(images.index("137add8de6c3-_MG_8580.jpg")),
+#     picture: urls.fetch(images.index("137add8de6c3-_MG_8580.jpg")),
 #     cause_category_id: environnement.id,
 #     facebook: "Disco-Soupe-Bordeaux-558476744185476",
 #     twitter: "DiscoSoupeBx",
 #     description_impact: "Nous ne vivons que sur les dons, toute l'équipe est bénévole. Les sous nous permettront d'étoffer notre matériel (marmites, éco-cups, couverts, gants, gel hydro-alcoolique, condiments, plaque de cuisson, gaz, girafe...) pour proposer toujours plus d'événements dans de meilleures conditions !",
 #     representative_first_name: "Disco",
 #     representative_last_name: "Soupe",
-#     remote_logo_url: urls.fetch(images.index("logo-discosoup.jpg"))
+#     logo: urls.fetch(images.index("logo-discosoup.jpg"))
 #   },
 #   {
 #     name: "Entr-Autres",
@@ -466,13 +475,13 @@
 #     url: "http://entr-autres.eu",
 #     email: "sabra@entr-autres.eu",
 #     impact: "200€ aide un jeune À se RÉINSÉRER",
-#     remote_picture_url: urls.fetch(images.index("b5944fd5c89c-Portrait_Epihanie_Enfant_.jpg")),
+#     picture: urls.fetch(images.index("b5944fd5c89c-Portrait_Epihanie_Enfant_.jpg")),
 #     cause_category_id: insertion.id,
 #     facebook: "entrautres",
 #     description_impact: "200€ nous permettent de faire vivre cette expérience à un jeune pour le réinsérer ensuite sur le marché du travail.",
 #     representative_first_name: "Entr",
 #     representative_last_name: "Autres",
-#     remote_logo_url: urls.fetch(images.index("logo-entrautres.jpg"))
+#     logo: urls.fetch(images.index("logo-entrautres.jpg"))
 #   },
 #   {
 #     name: "Surfrider Foundation Europe",
@@ -483,29 +492,80 @@
 #     url: "http://www.surfrider.eu",
 #     email: "contact@surfriderfoundation.fr",
 #     phone: "05 59 23 54 99",
-#     remote_picture_url: urls.fetch(images.index("thumbnail-surfriderfoundation.jpg")),
+#     picture: urls.fetch(images.index("thumbnail-surfriderfoundation.jpg")),
 #     cause_category_id: environnement.id,
 #     facebook: "surfriderfoundationeurope",
 #     twitter: "surfridereurope",
 #     instagram: "surfridereurope",
 #     representative_first_name: "Surfrider",
 #     representative_last_name: "Foundation",
-#     remote_logo_url: urls.fetch(images.index("logo-surfriderfoundation.jpg"))
+#     logo: urls.fetch(images.index("logo-surfriderfoundation.jpg"))
 #   }
 #   ]
-
+#
 # cause_attributes.each do |params|
 #   Cause.create(params)
 # end
 # puts "--------END CAUSES------------------------"
 
 
-# # ----------------------------------------------------
-# # Création table BUSINESS
-# # ----------------------------------------------------
+# ----------------------------------------------------
+# Création table BUSINESS
+# ----------------------------------------------------
 
 # Business.destroy_all
 # Perk.destroy_all
+
+puts "--------NEW BUSINESS-----------"
+business_attributes = {
+ name: "CforGood",
+ password: "123nuage",
+ street: "44 Quai des Chartrons",
+ zipcode: "33000",
+ city: "Bordeaux",
+ url: "http://www.cforgood.com",
+ phone: "0670282536",
+ email: "hello@cforgood.com",
+ description: "CforGood est une carte de consommation positive, q...",
+ business_category_id: 9,
+ facebook: "cforgood",
+ twitter: "cforgood",
+ instagram: "cforgood",
+ leader_first_name: "Allan",
+ leader_last_name: "Floury",
+ leader_description: "Bonjour ! On est une équipe de 7 personnes, nos fo...",
+ active: false,
+ online: true,
+ leader_phone: "0681051538",
+ leader_email: "hello@cforgood.com",
+ shop: true,
+ itinerant: true,
+ supervisor: true,
+ admin: true,
+ hidden_email: false
+}
+
+puts "--------CREATE BUSINESS----------"
+b = Business.create(business_attributes)
+business_id = b.id
+puts b.name
+
+perks_attributes = [{
+name: "PREMIER BON PLAN OFFERT",
+business_id: business_id,
+description: "Ton premier bon plan pour t'accompagner dans la consommation positive."  ,
+active: true,
+appel: true,
+durable: false,
+flash: false,
+perk_detail_id: carte.id
+}]
+
+puts "--------CREATE PERKS-----------"
+perks_attributes.each do |params|
+   Perk.create(params)
+end
+puts "--------END BUSINESS-----------"
 
 # puts "--------NEW BUSINESS-----------"
 # business_attributes = {
@@ -518,10 +578,10 @@
 # phone: "0669353667",
 # email: "contact@bordeaux-hypnose.org",
 # description: "Je suis Sébastian Cantaut Hypnothérapeute à Darwin. Si vous avez des problèmes d'estime de soi, de confiance en soi, de stress, d'angoisse. Envie de changer certains de vos comportements. Préparation concours, coaxhing sportif. Une phobie. Envie d'apprendre à lâcher prise, à vous relaxer. L'hypnose peut être une aide efficace.",
-# remote_picture_url: urls.fetch(images.index("10452927_808594772534200_6256437646451254378_o.jpg")),
+# picture: urls.fetch(images.index("10452927_808594772534200_6256437646451254378_o.jpg")),
 # business_category_id: personel.id,
 # facebook: "https://m.facebook.com/hypnotherapeuteDarwin/",
-# remote_leader_picture_url: urls.fetch(images.index("1959366_808286015898409_6482999773873997549_n.jpg")),
+# leader_picture: urls.fetch(images.index("1959366_808286015898409_6482999773873997549_n.jpg")),
 # leader_first_name: "Sebastian ",
 # leader_last_name: "Cantaut",
 # leader_description: "Hypnothérapeute à Darwin je ferai en sorte de vous apporter mon aide afin que vous puissiez atteindre vos objectifs de la plus belle manière et avec vos propres ressources.",
@@ -532,12 +592,12 @@
 # shop: true,
 # itinerant: false
 # }
-
+#
 # puts "--------CREATE BUSINESS----------"
 # b = Business.create(business_attributes)
 # business_id = b.id
 # puts b.name
-
+#
 # perks_attributes = [{
 # name: "L'hypnose pour avancer",
 # business_id: business_id,
@@ -549,13 +609,13 @@
 # flash: false,
 # perk_detail_id: online.id
 # }]
-
+#
 # puts "--------CREATE PERKS-----------"
 # perks_attributes.each do |params|
 #     Perk.create(params)
 # end
 # puts "--------END BUSINESS-----------"
-
+#
 # puts "--------NEW BUSINESS-----------"
 # business_attributes = {
 # name: "La pArtagerie",
@@ -566,11 +626,11 @@
 # url: "http://www.partagerie.fr/",
 # email: "partagerie@gmail.com",
 # description: "La pArtagerie, ouverte depuis le 4 février 2015, est le nid de l'association pArt-âge, un lieu unique, innovant, solidaire & éco-responsable, convivial, familial se situant en plein cœur de Bordeaux. Vous y trouverez un salon de thé bio et végétalien, un coin d'éveil et de jeux, un showroom créateurs et un espace ateliers.",
-# remote_picture_url: urls.fetch(images.index("photo_couverture.jpg")),
+# picture: urls.fetch(images.index("photo_couverture.jpg")),
 # business_category_id: coffee.id,
 # facebook: "https://www.facebook.com/partagerie/?fref=ts",
 # instagram: "partagerie",
-# remote_leader_picture_url: urls.fetch(images.index("LOGO_pArtage.jpg")),
+# leader_picture: urls.fetch(images.index("LOGO_pArtage.jpg")),
 # leader_first_name: "Association pArt-âge",
 # leader_description: "pArt-âge est une association née en 2014 dont le but est de créer un lien bienveillant entre les individus, de motiver les échanges intergénérationnels, et de promouvoir l'artisanat local et éthique. Nous souhaitons aussi au travers de nos actions, sensibiliser aux bienfaits et aux possibilités de mener une vie saine et simple. ",
 # active: true,
@@ -580,12 +640,12 @@
 # shop: true,
 # itinerant: false
 # }
-
+#
 # puts "--------CREATE BUSINESS----------"
 # b = Business.create(business_attributes)
 # business_id = b.id
 # puts b.name
-
+#
 # perks_attributes = [{
 # name: "Une boisson offerte au salon de thé",
 # business_id: business_id,
@@ -595,16 +655,16 @@
 # appel: true,
 # durable: false,
 # flash: false,
-# remote_picture_url: urls.fetch(images.index("salon_de_th_.jpg")),
+# picture: urls.fetch(images.index("salon_de_th_.jpg")),
 # perk_detail_id: carte.id
 # }]
-
+#
 # puts "--------CREATE PERKS-----------"
 # perks_attributes.each do |params|
 #     Perk.create(params)
 # end
 # puts "--------END BUSINESS-----------"
-
+#
 # puts "--------NEW BUSINESS-----------"
 # business_attributes = {
 # name: "Nature et potager en ville",
@@ -616,10 +676,10 @@
 # phone: "0 609 725 765",
 # email: "contact@natureetpotagerenville.fr",
 # description: "Cultivez la biodiversité en ville en jardinant 100% éco-responsable ! Aménagements comestibles & Agriculture urbaine Mini-potagers - Semences bio - Arrosage économe&autonome - Vermicompost - Sac de culture en géotextile ",
-# remote_picture_url: urls.fetch(images.index("Marche-recadre.jpg")),
+# picture: urls.fetch(images.index("Marche-recadre.jpg")),
 # business_category_id: maison.id,
 # facebook: "https://www.facebook.com/natureetpotagerenville/?fref=ts",
-# remote_leader_picture_url: urls.fetch(images.index("Natureetpotagerenville_-_logo_-_RVB.jpg")),
+# leader_picture: urls.fetch(images.index("Natureetpotagerenville_-_logo_-_RVB.jpg")),
 # leader_first_name: "Marie-Dominique",
 # leader_last_name: "Pivetaud",
 # active: true,
@@ -629,12 +689,12 @@
 # shop: true,
 # itinerant: false
 # }
-
+#
 # puts "--------CREATE BUSINESS----------"
 # b = Business.create(business_attributes)
 # business_id = b.id
 # puts b.name
-
+#
 # perks_attributes = [{
 # name: " 1 atelier pour 1 mini-potager :-)",
 # business_id: business_id,
@@ -644,7 +704,7 @@
 # appel: true,
 # durable: false,
 # flash: false,
-# remote_picture_url: urls.fetch(images.index("IMG_3506.jpg")),
+# picture: urls.fetch(images.index("IMG_3506.jpg")),
 # perk_detail_id: email.id
 # },
 # {
@@ -659,16 +719,16 @@
 # appel: false,
 # durable: false,
 # flash: true,
-# remote_picture_url: urls.fetch(images.index("11091486_447553992063126_8599805154585597942_n.jpg")),
+# picture: urls.fetch(images.index("11091486_447553992063126_8599805154585597942_n.jpg")),
 # perk_detail_id: carte.id
 # }]
-
+#
 # puts "--------CREATE PERKS-----------"
 # perks_attributes.each do |params|
 #   Perk.create!(params)
 # end
 # puts "--------END BUSINESS-----------"
-
+#
 # puts "--------NEW BUSINESS-----------"
 # business_attributes = {
 # name: "INSPIRESELF",
@@ -679,9 +739,9 @@
 # phone: "+33663075090",
 # email: "info@inspireself.com",
 # description: "Nous offrons des produits efficaces, réduisant considérablement les effets nocifs (chaleur, maux de têtes, migraines, baisse d'énergie, perte d'équilibre, manque d'ancrage, stress ) générés par les pollutions éléctromagnétiques des téléphones portables, ordinateurs, box wifi, tablettes, montres connectées, DECT, écoutes -bébés, tv en fait tous appareils émettant des ondes éléctromagnétiques de très hautes ou très basses fréquences....",
-# remote_picture_url: urls.fetch(images.index("Inspireself.jpg")),
+# picture: urls.fetch(images.index("Inspireself.jpg")),
 # business_category_id: fitness.id,
-# remote_leader_picture_url: urls.fetch(images.index("Inspire_Vectorialise_3D.jpg")),
+# leader_picture: urls.fetch(images.index("Inspire_Vectorialise_3D.jpg")),
 # leader_first_name: "Patrice",
 # leader_last_name: "Buyle",
 # active: true,
@@ -691,12 +751,12 @@
 # shop: true,
 # itinerant: false
 # }
-
+#
 # puts "--------CREATE BUSINESS----------"
 # b = Business.create(business_attributes)
 # business_id = b.id
 # puts b.name
-
+#
 # perks_attributes = [{
 # name: "25% sur le premier produit acheté ",
 # business_id: business_id,
@@ -706,17 +766,17 @@
 # appel: true,
 # durable: false,
 # flash: false,
-# remote_picture_url: urls.fetch(images.index("Inspireself.jpg")),
+# picture: urls.fetch(images.index("Inspireself.jpg")),
 # perk_detail_id: email.id
 # }]
-
+#
 # puts "--------CREATE PERKS-----------"
 # perks_attributes.each do |params|
 #   Perk.create!(params)
 # end
 # puts "--------END BUSINESS-----------"
-
-
+#
+#
 # puts "--------NEW BUSINESS-----------"
 # business_attributes = {
 # name: "PALO ALTO ",
@@ -727,7 +787,7 @@
 # phone: "0982371550",
 # email: "paloalto.bx@gmail.com",
 # description: "Le Palo Alto a été conçu comme un lieu où il est possible de venir à n'importe quel moment de la journée.C'est un coffee shop où l'on vous propose petit déjeuner, pâtisseries maison, boissons chaudes et boissons fraiches maison (thés glacés, smoothies, citronnade, jus, etc).Arrivé midi, vous trouverez notre cuisine du marché. Nous nous attachons à travailler des produits de qualité, donc de saison. C'est pourquoi nous changeons notre carte régulièrement!La cerise sur le gâteau? Le patio! Notre petit havre de paix aux allures tropicales, au calme du tumulte de la ville, qui invite au voyage.",
-# remote_picture_url: urls.fetch(images.index("Palo-alto.jpg")),
+# picture: urls.fetch(images.index("Palo-alto.jpg")),
 # business_category_id: coffee.id,
 # facebook: "paloaltocafeteria",
 # instagram: "@paloaltocafeteria",
@@ -738,12 +798,12 @@
 # shop: true,
 # itinerant: false
 # }
-
+#
 # puts "--------CREATE BUSINESS----------"
 # b = Business.create(business_attributes)
 # business_id = b.id
 # puts b.name
-
+#
 # perks_attributes = [{
 # name: "Smile there is coffee !",
 # business_id: business_id,
@@ -753,17 +813,17 @@
 # appel: false,
 # durable: true,
 # flash: false,
-# remote_picture_url: urls.fetch(images.index("2016-02-13_10.02.20.jpg")),
+# picture: urls.fetch(images.index("2016-02-13_10.02.20.jpg")),
 # perk_detail_id: carte.id
 # }]
-
+#
 # puts "--------CREATE PERKS-----------"
 # perks_attributes.each do |params|
 #   Perk.create!(params)
 # end
 # puts "--------END BUSINESS-----------"
-
-
+#
+#
 # puts "--------NEW BUSINESS-----------"
 # business_attributes = {
 # name: "Origines Tea & Coffee",
@@ -775,12 +835,12 @@
 # phone: "0524617894",
 # email: "origines.sicard@gmail.com",
 # description: "Origines Tea & Coffee est une épicerie fine dans l'univers du petit déjeuner bio. Nous proposons du thé, du café, des tisanes, du sucre, du miel, du chocolat, des confitures, le tout bio et au plus proche des producteurs! Vous pouvez déguster nos produits sur place dans un cadre convivial, en terrasse ou dans le salon au coin du feu... :)",
-# remote_picture_url: urls.fetch(images.index("Origines_5.jpg")),
+# picture: urls.fetch(images.index("Origines_5.jpg")),
 # business_category_id: coffee.id,
 # facebook: "OriginesTeaandCoffee",
 # twitter: "@OriginesTea",
 # instagram: "originesteaandcoffee",
-# remote_leader_picture_url: urls.fetch(images.index("Origines_5.jpg")),
+# leader_picture: urls.fetch(images.index("Origines_5.jpg")),
 # leader_first_name: "Léa",
 # leader_last_name: "Lanterne",
 # active: true,
@@ -790,12 +850,12 @@
 # shop: true,
 # itinerant: false
 # }
-
+#
 # puts "--------CREATE BUSINESS----------"
 # b = Business.create(business_attributes)
 # business_id = b.id
 # puts b.name
-
+#
 # perks_attributes = [{
 # name: "Un Thé OFFERT",
 # business_id: business_id,
@@ -805,7 +865,7 @@
 # appel: true,
 # durable: false,
 # flash: false,
-# remote_picture_url: urls.fetch(images.index("10_thes_bio_pour_se_rechauffer_cet_hiver.jpg")),
+# picture: urls.fetch(images.index("10_thes_bio_pour_se_rechauffer_cet_hiver.jpg")),
 # perk_detail_id: carte.id
 # },
 # {
@@ -817,7 +877,7 @@
 # appel: true,
 # durable: false,
 # flash: false,
-# remote_picture_url: urls.fetch(images.index("teapot-516024_640.jpg")),
+# picture: urls.fetch(images.index("teapot-516024_640.jpg")),
 # perk_detail_id: email.id
 # },
 # {
@@ -829,16 +889,16 @@
 # appel: false,
 # durable: true,
 # flash: false,
-# remote_picture_url: urls.fetch(images.index("Bikini_Tea_-_Accords_Originaux_DP.jpg")),
+# picture: urls.fetch(images.index("Bikini_Tea_-_Accords_Originaux_DP.jpg")),
 # perk_detail_id: carte.id
 # }]
-
+#
 # puts "--------CREATE PERKS-----------"
 # perks_attributes.each do |params|
 #   Perk.create!(params)
 # end
 # puts "--------END BUSINESS-----------"
-
+#
 # puts "--------NEW BUSINESS-----------"
 # business_attributes = {
 # name: "Maison Hegara",
@@ -850,10 +910,10 @@
 # phone: "0623335080",
 # email: "maisonhegara@gmail.com",
 # description: "La Maison Hegara est une épicerie générale implantée aux chartrons. L'idée est de proposer une alimentation saine et de lutter contre le gaspillage, en proposant des produits bios et/ou locaux (légumes secs, pâtes, riz, huiles et vinaigres, thé..etc..)vendus au poids et sans emballage. Les fruits et légumes varient selon les saisons et les marchés où je me déplace chaque matin pour vous proposer des produits toujours frais.",
-# remote_picture_url: urls.fetch(images.index("MaisonHegara.jpg")),
+# picture: urls.fetch(images.index("MaisonHegara.jpg")),
 # business_category_id: epicerie.id,
 # facebook: "maisonhegara",
-# remote_leader_picture_url: urls.fetch(images.index("c03f92b7a206-IMG_4457_1.jpg")),
+# leader_picture: urls.fetch(images.index("c03f92b7a206-IMG_4457_1.jpg")),
 # leader_first_name: "Hélène",
 # leader_last_name: "Galy-Ramounot ",
 # leader_description: "Bordelaise de 30 ans ne voulant plus manger des tomates d'Espagne en Hiver, ni descendre sa poubelle qui se remplit trop vite !",
@@ -865,13 +925,13 @@
 # shop: true,
 # itinerant: false
 # }
-
+#
 # puts "--------CREATE BUSINESS----------"
 # b = Business.create(business_attributes)
 # business_id = b.id
 # puts b.name
-
-
+#
+#
 # perks_attributes = [{
 # name: "Deux contenants offerts ! ",
 # business_id: business_id,
@@ -883,14 +943,14 @@
 # flash: false,
 # perk_detail_id: carte.id
 # }]
-
+#
 # puts "--------CREATE PERKS-----------"
 # perks_attributes.each do |params|
 #   Perk.create!(params)
 # end
 # puts "--------END BUSINESS-----------"
-
-
+#
+#
 # puts "--------NEW BUSINESS-----------"
 # business_attributes = {
 # name: "Potager City",
@@ -900,11 +960,11 @@
 # url: "http://www.potagercity.fr",
 # email: "benjamin@potagercity.fr",
 # description: "Potager City propose chaque semaine plusieurs assortiments de fruits et légumes frais bio et/ou fermiers avec les petits producteurs régionaux. Son objectif est de faire redécouvrir la saveur et la fraicheur des produits aux clients grâce à ses compositions originales, ainsi qu'au service d'accompagnement qui va avec !",
-# remote_picture_url: urls.fetch(images.index("Piece_jointe.jpg")),
+# picture: urls.fetch(images.index("Piece_jointe.jpg")),
 # business_category_id: epicerie.id,
 # facebook: "potagercity",
 # twitter: "potagercity",
-# remote_leader_picture_url: urls.fetch(images.index("17ec4edd58a7-potager_city_equipe.jpg")),
+# leader_picture: urls.fetch(images.index("17ec4edd58a7-potager_city_equipe.jpg")),
 # leader_first_name: "Benjamin ",
 # leader_last_name: "Gillot",
 # leader_description: "Tous les jours, dès l’aube, notre équipe accueille les producteurs et réceptionne les fruits, légumes et oeufs frais cueillis et ramassés la veille. Ensuite, toute l’équipe s’active pour livrer le jour même et faire que le chemin du jardin à l’assiette soit le plus court et le plus agréable possible :)",
@@ -916,12 +976,12 @@
 # shop: true,
 # itinerant: false
 # }
-
+#
 # puts "--------CREATE BUSINESS----------"
 # b = Business.create(business_attributes)
 # business_id = b.id
 # puts b.name
-
+#
 # perks_attributes = [{
 # name: "15% toutes les semaines !!",
 # business_id: business_id,
@@ -942,17 +1002,17 @@
 # appel: true,
 # durable: false,
 # flash: false,
-# remote_picture_url: urls.fetch(images.index("framboise2-copie.png")),
+# picture: urls.fetch(images.index("framboise2-copie.png")),
 # perk_detail_id: online.id
 # }]
-
+#
 # puts "--------CREATE PERKS-----------"
 # perks_attributes.each do |params|
 #   Perk.create!(params)
 # end
 # puts "--------END BUSINESS-----------"
-
-
+#
+#
 # puts "--------NEW BUSINESS-----------"
 # business_attributes = {
 # name: "Naturôme",
@@ -964,12 +1024,12 @@
 # phone: "0556782509",
 # email: "bonjour@naturome.fr",
 # description: "Naturôme est le 1er centre de naturopathie à Bordeaux. Son objectif est de regrouper et proposer l'ensemble des techniques naturelles au service de l'hygiène de vie et de la prévention santé. Sauna, massages, consultations, pratiques corporelles douces, thérapies complémentaires, esthétique bio...",
-# remote_picture_url: urls.fetch(images.index("Naturome.jpg")),
+# picture: urls.fetch(images.index("Naturome.jpg")),
 # business_category_id: beaute.id,
 # facebook: "naturome",
 # twitter: "@CentreNaturome",
 # instagram: "Naturôme",
-# remote_leader_picture_url: urls.fetch(images.index("b5ea951e9691-20140409_092236.jpg")),
+# leader_picture: urls.fetch(images.index("b5ea951e9691-20140409_092236.jpg")),
 # leader_first_name: "Elodie ",
 # leader_last_name: "Brillaud",
 # leader_description: "Naturôme est né de la rencontre de la naturopathie avec une volonté d'entreprendre de façon responsable, au service de la santé. L'espace a été créé de façon la plus écologique possible, comme un lieu d'échanges et de rencontres.",
@@ -979,12 +1039,12 @@
 # shop: true,
 # itinerant: false
 # }
-
+#
 # puts "--------CREATE BUSINESS----------"
 # b = Business.create(business_attributes)
 # business_id = b.id
 # puts b.name
-
+#
 # perks_attributes = [{
 # name: "50% de remise ",
 # business_id: business_id,
@@ -994,17 +1054,17 @@
 # appel: true,
 # durable: false,
 # flash: false,
-# remote_picture_url: urls.fetch(images.index("Sauna_Naturome.jpg")),
+# picture: urls.fetch(images.index("Sauna_Naturome.jpg")),
 # perk_detail_id: carte.id
 # }]
-
+#
 # puts "--------CREATE PERKS-----------"
 # perks_attributes.each do |params|
 #   Perk.create!(params)
 # end
 # puts "--------END BUSINESS-----------"
-
-
+#
+#
 # puts "--------NEW BUSINESS-----------"
 # business_attributes = {
 # name: "La ruche des Chartrons",
@@ -1016,7 +1076,7 @@
 # phone: "0644001321",
 # email: "ruchedeschartrons@gmail.com",
 # description: "Nous organisons la vente des produits d'agriculteurs locaux ( -de 250 Km) en circuit court, d'agriculture raisonnée ou bio, via le site laruchequiditoui.fr. Nous proposons 2 ventes par semaine et leurs distributions, des Ruche des Chartrons:-22Rue Marsan chaque vendredi de 18h à 19h30 -34Cours Balguerie mardi de 17h30 à 19h. ",
-# remote_picture_url: urls.fetch(images.index("ae2028d12c14-DSC_9523.jpg")),
+# picture: urls.fetch(images.index("ae2028d12c14-DSC_9523.jpg")),
 # business_category_id: epicerie.id,
 # facebook: "LaRucheDesChartrons",
 # instagram: "ruchedeschartrons",
@@ -1030,12 +1090,12 @@
 # shop: true,
 # itinerant: false
 # }
-
+#
 # puts "--------CREATE BUSINESS----------"
 # b = Business.create(business_attributes)
 # business_id = b.id
 # puts b.name
-
+#
 # perks_attributes = [{
 # name: "Un cadeau de bienvenue ",
 # business_id: business_id,
@@ -1047,14 +1107,14 @@
 # flash: false,
 # perk_detail_id: carte.id
 # }]
-
+#
 # puts "--------CREATE PERKS-----------"
 # perks_attributes.each do |params|
 #   Perk.create!(params)
 # end
 # puts "--------END BUSINESS-----------"
-
-
+#
+#
 # puts "--------NEW BUSINESS-----------"
 # business_attributes = {
 # name: "Épicerie ô merveilleux ",
@@ -1065,7 +1125,7 @@
 # phone: "0557895032",
 # email: "epicerieomerveilleux@gmail.com",
 # description: "Epicerie Fine produits nature et bio direct producteur Ariégeois",
-# remote_picture_url: urls.fetch(images.index("30f01a45614a-10906221_10205372821190399_6728216959958062098_n.jpg")),
+# picture: urls.fetch(images.index("30f01a45614a-10906221_10205372821190399_6728216959958062098_n.jpg")),
 # business_category_id: epicerie.id,
 # facebook: "epicerieomerveilleuxbordeaux",
 # leader_first_name: "Julian ",
@@ -1077,13 +1137,13 @@
 # shop: true,
 # itinerant: false
 # }
-
+#
 # puts "--------CREATE BUSINESS----------"
 # b = Business.create(business_attributes)
 # business_id = b.id
 # puts b.name
-
-
+#
+#
 # perks_attributes = [{
 # name: "10% de remise ",
 # business_id: business_id,
@@ -1095,13 +1155,13 @@
 # flash: false,
 # perk_detail_id: carte.id
 # }]
-
+#
 # puts "--------CREATE PERKS-----------"
 # perks_attributes.each do |params|
 #   Perk.create!(params)
 # end
 # puts "--------END BUSINESS-----------"
-
+#
 # puts "--------NEW BUSINESS-----------"
 # business_attributes = {
 # name: "Ecoclicot",
@@ -1113,12 +1173,12 @@
 # phone: "0535004030",
 # email: "info@ecoclicot.com",
 # description: "Nous développons en ligne une place de marché où se retrouve l'offre de produit eco-responsable ! ",
-# remote_picture_url: urls.fetch(images.index("b1f03b5cc443-Logo_Ecoclicot_HD.jpg")),
+# picture: urls.fetch(images.index("b1f03b5cc443-Logo_Ecoclicot_HD.jpg")),
 # business_category_id: shopping.id,
 # facebook: "Ecoclicot",
 # twitter: "Ecoclicot",
 # instagram: "ecoclicot",
-# remote_leader_picture_url: urls.fetch(images.index("cedric_sauvy.jpg")),
+# leader_picture: urls.fetch(images.index("cedric_sauvy.jpg")),
 # leader_first_name: "Cédric",
 # leader_last_name: "Seauvy",
 # leader_description: "C'est histoire d'une rencontre de deux papas avec une vision commune, celle de promouvoir les fabricants, commerçants de produits plus respectueux de l'environnement et socialement plus responsable",
@@ -1129,12 +1189,12 @@
 # shop: true,
 # itinerant: false
 # }
-
+#
 # puts "--------CREATE BUSINESS----------"
 # b = Business.create(business_attributes)
 # business_id = b.id
 # puts b.name
-
+#
 # perks_attributes = [{
 # name: "5% offert !",
 # business_id: business_id,
@@ -1144,16 +1204,16 @@
 # appel: true,
 # durable: false,
 # flash: false,
-# remote_picture_url: urls.fetch(images.index("Promo-5-Fb2.png")),
+# picture: urls.fetch(images.index("Promo-5-Fb2.png")),
 # perk_detail_id: online.id
 # }]
-
+#
 # puts "--------CREATE PERKS-----------"
 # perks_attributes.each do |params|
 #   Perk.create!(params)
 # end
 # puts "--------END BUSINESS-----------"
-
+#
 # puts "--------NEW BUSINESS-----------"
 # business_attributes = {
 # name: "Changer le monde en 2H",
@@ -1161,10 +1221,10 @@
 # city: "Paris",
 # email: "en2heures@gmail.com",
 # description: "Changer le monde en 2 heures est un livre d'actions faciles et rapides pour avoir un impact social ou environnemental. L'objectif ? Aider 10.000 personnes à agir un peu plus pour les autres et la planète. Déjà 1500 en route. Vous nous rejoignez ?",
-# remote_picture_url: urls.fetch(images.index("logo_autocollant_en2heures_8x6_recto_-_rogne.jpg")),
+# picture: urls.fetch(images.index("logo_autocollant_en2heures_8x6_recto_-_rogne.jpg")),
 # business_category_id: personel.id,
 # facebook: "facebook.com/en2heures",
-# remote_leader_picture_url: urls.fetch(images.index("Lectrice_changer_le_monde_en_2_heures_piscine.jpg")),
+# leader_picture: urls.fetch(images.index("Lectrice_changer_le_monde_en_2_heures_piscine.jpg")),
 # leader_first_name: "Pierre",
 # leader_last_name: "Chevelle",
 # leader_description: "En 2015, Pierre Chevelle a été sélectionné par Ticket for Change parmi les 50 graines d’entrepreneurs les plus prometteurs pour monter leur projet au service de la société (avec Allan de CforGood !). À 25 ans, il a travaillé pour Sparknews et Ashoka, deux acteurs majeurs de l'innovation sociale.",
@@ -1174,12 +1234,12 @@
 # shop: true,
 # itinerant: false
 # }
-
+#
 # puts "--------CREATE BUSINESS----------"
 # b = Business.create(business_attributes)
 # business_id = b.id
 # puts b.name
-
+#
 # perks_attributes = [{
 # name: "-10% + dédicace + envoi offert",
 # business_id: business_id,
@@ -1189,17 +1249,17 @@
 # appel: true,
 # durable: false,
 # flash: false,
-# remote_picture_url: urls.fetch(images.index("Chien_en2heures_original.jpg")),
+# picture: urls.fetch(images.index("Chien_en2heures_original.jpg")),
 # perk_detail_id: email.id
 # }]
-
+#
 # puts "--------CREATE PERKS-----------"
 # perks_attributes.each do |params|
 #   Perk.create!(params)
 # end
 # puts "--------END BUSINESS-----------"
-
-
+#
+#
 # puts "--------NEW BUSINESS-----------"
 # business_attributes = {
 # name: "Do you speak français ?",
@@ -1211,11 +1271,11 @@
 # phone: "0624996412",
 # email: "bonjour@dysfrancais.fr",
 # description: "Do you speak français c'est un concept store et lieu de vie 100% Made in France où l'on trouve de la mode H/F/enfants, des cosmétiques, de la beauté, des accessoires, de la maroquinerie, des bijoux et plein d'autres choses faites par des gens près de chez vous !",
-# remote_picture_url: urls.fetch(images.index("DYSF.jpg")),
+# picture: urls.fetch(images.index("DYSF.jpg")),
 # business_category_id: shopping.id,
 # facebook: "doyouspeakfrancais",
 # instagram: "doyouspeakfrancais",
-# remote_leader_picture_url: urls.fetch(images.index("image.jpg")),
+# leader_picture: urls.fetch(images.index("image.jpg")),
 # leader_first_name: "Gaëlle",
 # leader_last_name: "Voisin",
 # active: true,
@@ -1225,13 +1285,13 @@
 # shop: true,
 # itinerant: false
 # }
-
+#
 # puts "--------CREATE BUSINESS----------"
 # b = Business.create(business_attributes)
 # business_id = b.id
 # puts b.name
-
-
+#
+#
 # perks_attributes = [{
 # name: "Un thé offert",
 # business_id: business_id,
@@ -1244,14 +1304,14 @@
 # flash: false,
 # perk_detail_id: carte.id
 # }]
-
+#
 # puts "--------CREATE PERKS-----------"
 # perks_attributes.each do |params|
 #   Perk.create!(params)
 # end
 # puts "--------END BUSINESS-----------"
-
-
+#
+#
 # puts "--------NEW BUSINESS-----------"
 # business_attributes = {
 # name: "Koken",
@@ -1263,10 +1323,10 @@
 # phone: "0981463968",
 # email: "boutiquekoken@gmail.com",
 # description: "C'est une marque respectueuse de l'Homme, des valeurs de l'ouvrage et de l'environnement. Elle propose des articles de mode conçus par des créateurs et stylistes.",
-# remote_picture_url: urls.fetch(images.index("entete.jpg")),
+# picture: urls.fetch(images.index("entete.jpg")),
 # business_category_id: shopping.id,
 # facebook: "Boutique-KOKEN-961622623877174",
-# remote_leader_picture_url: urls.fetch(images.index("9428a1fae6c6-Carole.jpg")),
+# leader_picture: urls.fetch(images.index("9428a1fae6c6-Carole.jpg")),
 # leader_first_name: "Carole",
 # leader_last_name: "Girard",
 # leader_description: "Biographie!! Elle arrive!! Bientôt...",
@@ -1276,12 +1336,12 @@
 # shop: true,
 # itinerant: false
 # }
-
+#
 # puts "--------CREATE BUSINESS----------"
 # b = Business.create(business_attributes)
 # business_id = b.id
 # puts b.name
-
+#
 # perks_attributes = [{
 # name: "Bienvenue! Un Kdo éthique offert...",
 # business_id: business_id,
@@ -1291,7 +1351,7 @@
 # appel: true,
 # durable: false,
 # flash: false,
-# remote_picture_url: urls.fetch(images.index("bonplanbienvenue.jpg")),
+# picture: urls.fetch(images.index("bonplanbienvenue.jpg")),
 # perk_detail_id: carte.id
 # },
 # {
@@ -1306,7 +1366,7 @@
 # appel: false,
 # durable: false,
 # flash: true,
-# remote_picture_url: urls.fetch(images.index("pullfrancesca2.jpg")),
+# picture: urls.fetch(images.index("pullfrancesca2.jpg")),
 # perk_detail_id: carte.id
 # },
 # {
@@ -1319,15 +1379,15 @@
 # appel: true,
 # durable: false,
 # flash: false,
-# remote_picture_url: urls.fetch(images.index("Topethnic.jpg")),
+# picture: urls.fetch(images.index("Topethnic.jpg")),
 # perk_detail_id: carte.id
 # }]
-
+#
 # puts "--------CREATE PERKS-----------"
 # perks_attributes.each do |params|
 #   Perk.create!(params)
 # end
-
+#
 # puts "--------NEW BUSINESS-----------"
 # business_attributes = {
 # name: "Animateur Culturel",
@@ -1338,10 +1398,10 @@
 # phone: "0671556756",
 # email: "anthony.benoitpro@gmail.com",
 # description: "« Jouer ce n’est pas tendre vers un but précis mais s’ouvrir à l’inattendu ». Ainsi je propose qu’à travers mes ateliers, le public vive une expérience ludique originale. Cela peut donc se faire sous deux formes : un atelier « Jeux de société » ou un atelier « Improvisation théâtrale ».",
-# remote_picture_url: urls.fetch(images.index("8ab0486e8197-16081_835643099866762_3198736444419260835_n.jpg")),
+# picture: urls.fetch(images.index("8ab0486e8197-16081_835643099866762_3198736444419260835_n.jpg")),
 # business_category_id: loisirs.id,
 # facebook: "Du-jeu-pour-tous-815636281867444",
-# remote_leader_picture_url: urls.fetch(images.index("63f6687e5218-199551_1949160535572_3889563_n.jpg")),
+# leader_picture: urls.fetch(images.index("63f6687e5218-199551_1949160535572_3889563_n.jpg")),
 # leader_first_name: "Anthony",
 # leader_last_name: "Benoît",
 # leader_description: "Ce projet d’auto-entreprise s’inscrit avant tout dans un projet personnel éducatif plus global. Mon parcours professionnel m’a permis de travailler avec de nombreux types de publics : de l’enfance à l’adolescence, des adultes, mais aussi les personnes en situation de handicap ou encore des personnes âgées.",
@@ -1351,12 +1411,12 @@
 # shop: true,
 # itinerant: false
 # }
-
+#
 # puts "--------CREATE BUSINESS----------"
 # b = Business.create(business_attributes)
 # business_id = b.id
 # puts b.name
-
+#
 # perks_attributes = [{
 # name: "- 20% sur mes prestations ",
 # business_id: business_id,
@@ -1368,14 +1428,14 @@
 # flash: false,
 # perk_detail_id: email.id
 # }]
-
+#
 # puts "--------CREATE PERKS-----------"
 # perks_attributes.each do |params|
 #   Perk.create!(params)
 # end
 # puts "--------END BUSINESS-----------"
-
-
+#
+#
 # puts "--------NEW BUSINESS-----------"
 # business_attributes = {
 # name: "Decalez!",
@@ -1387,7 +1447,7 @@
 # phone: "0643584912",
 # email: "contact@decalez.fr",
 # description: "Décalez! est une structure de formation visant au développement des savoirs-être à partir des techniques d'improvisation théâtrale. Notre objectif ? Mettre le jeu au service de l'efficience et montrer que le développement des compétences est plus efficace lorsque l'on s'adresse à l'humain. Décalez! vous accompagne ainsi dans l'amélioration de vos compétences relationnelles, de communication, de prise de parole en public et de cohésion d'équipe... avec son regard décalé !",
-# remote_picture_url: urls.fetch(images.index("d835e13254ac-Chachou__58_sur_92_.jpg")),
+# picture: urls.fetch(images.index("d835e13254ac-Chachou__58_sur_92_.jpg")),
 # business_category_id: personel.id,
 # facebook: "decalez",
 # twitter: "Decalez",
@@ -1398,12 +1458,12 @@
 # shop: true,
 # itinerant: false
 # }
-
+#
 # puts "--------CREATE BUSINESS----------"
 # b = Business.create(business_attributes)
 # business_id = b.id
 # puts b.name
-
+#
 # perks_attributes = [{
 # name: "1 formation offerte",
 # business_id: business_id,
@@ -1416,14 +1476,14 @@
 # flash: false,
 # perk_detail_id: email.id
 # }]
-
+#
 # puts "--------CREATE PERKS-----------"
 # perks_attributes.each do |params|
 #   Perk.create!(params)
 # end
 # puts "--------END BUSINESS-----------"
-
-
+#
+#
 # puts "--------NEW BUSINESS-----------"
 # business_attributes = {
 # name: "TOUTNET ECO",
@@ -1435,10 +1495,10 @@
 # phone: "0637433552",
 # email: "elisabethfrancois.eco@gmail.com",
 # description: 'Éco-conçu en circuit court,TOUTNET ECO est un nettoyant écologique naturel très efficace sans pétrochimie. Son usage est très économique. Il sert également de "levier" responsable et solidaire pour le territoire.',
-# remote_picture_url: urls.fetch(images.index("1ac7d2180156-facebook3.jpg")),
+# picture: urls.fetch(images.index("1ac7d2180156-facebook3.jpg")),
 # business_category_id: epicerie.id,
 # facebook: "efproduitsecocitoyens",
-# remote_leader_picture_url: urls.fetch(images.index("portrait_la_teste.jpg")),
+# leader_picture: urls.fetch(images.index("portrait_la_teste.jpg")),
 # leader_first_name: "Elisabeth",
 # leader_last_name: "François",
 # leader_description: "« Sans utopie, aucune activité véritablement féconde n’est possible. »",
@@ -1450,12 +1510,12 @@
 # shop: true,
 # itinerant: false
 # }
-
+#
 # puts "--------CREATE BUSINESS----------"
 # b = Business.create(business_attributes)
 # business_id = b.id
 # puts b.name
-
+#
 # perks_attributes = [{
 # name: "20% de remise",
 # business_id: business_id,
@@ -1467,14 +1527,14 @@
 # flash: false,
 # perk_detail_id: carte.id
 # }]
-
+#
 # puts "--------CREATE PERKS-----------"
 # perks_attributes.each do |params|
 #   Perk.create!(params)
 # end
 # puts "--------END BUSINESS-----------"
-
-
+#
+#
 # puts "--------NEW BUSINESS-----------"
 # business_attributes = {
 # name: "w.a.n.",
@@ -1486,12 +1546,12 @@
 # phone: "0556481541",
 # email: "contact@wanweb.fr",
 # description: "Concept store créé en 2009 proposant exclusivement des articles fabriqués en France et pas trop loin avec des matériaux verts ou recyclés. Egalement fabricant de la marque de sacs et accessoires FANTOME, 100% made in France avec des chambres à air de vélo recyclées. Egalement galerie d'art au sous-sol, magnifique cave voûtée. A côté de belles marques françaises de type Le Slip Français, Oncle Pape, Le Baigneur, Maxence, Sabe Masson, Le Coq Français etc. un choix étonnant de lampes, sculptures et de petites et grandes choses étonnantes pour soi et vos meilleures amis. ",
-# remote_picture_url: urls.fetch(images.index("d7daa4cc9277-10250083_339433649567931_5022324882448988280_n.jpg")),
+# picture: urls.fetch(images.index("d7daa4cc9277-10250083_339433649567931_5022324882448988280_n.jpg")),
 # business_category_id: shopping.id,
 # facebook: "Wan-we-are-nothing-345718002111418/?ref=hl",
 # twitter: "wanbordeaux",
 # instagram: "wan_bordeaux",
-# remote_leader_picture_url: urls.fetch(images.index("249080_478365405513343_1625941968_npetit.jpg")),
+# leader_picture: urls.fetch(images.index("249080_478365405513343_1625941968_npetit.jpg")),
 # leader_first_name: "Charles",
 # leader_last_name: "Burke",
 # leader_description: "Promis, suite à la réunion à la Ruche, je vais remplir ma bio!",
@@ -1502,12 +1562,12 @@
 # shop: true,
 # itinerant: false
 # }
-
+#
 # puts "--------CREATE BUSINESS----------"
 # b = Business.create(business_attributes)
 # business_id = b.id
 # puts b.name
-
+#
 # perks_attributes = [{
 # name: "Bienvenue!",
 # business_id: business_id,
@@ -1517,7 +1577,7 @@
 # appel: true,
 # durable: false,
 # flash: false,
-# remote_picture_url: urls.fetch(images.index("249080_478365405513343_1625941968_npetit.jpg")),
+# picture: urls.fetch(images.index("249080_478365405513343_1625941968_npetit.jpg")),
 # perk_detail_id: carte.id
 # },
 # {
@@ -1532,7 +1592,7 @@
 # appel: false,
 # durable: false,
 # flash: true,
-# remote_picture_url: urls.fetch(images.index("chausson_soft_in.jpg")),
+# picture: urls.fetch(images.index("chausson_soft_in.jpg")),
 # perk_detail_id: carte.id
 # },
 # {
@@ -1545,17 +1605,17 @@
 # appel: false,
 # durable: true,
 # flash: false,
-# remote_picture_url: urls.fetch(images.index("logo_fantome5.jpg")),
+# picture: urls.fetch(images.index("logo_fantome5.jpg")),
 # perk_detail_id: carte.id
 # }]
-
+#
 # puts "--------CREATE PERKS-----------"
 # perks_attributes.each do |params|
 #   Perk.create!(params)
 # end
 # puts "--------END BUSINESS-----------"
-
-
+#
+#
 # puts "--------NEW BUSINESS-----------"
 # business_attributes = {
 # name: "Label Terre",
@@ -1566,9 +1626,9 @@
 # phone: "05 56 62 25 49",
 # email: "madeinlabel@gmail.com",
 # description: "Voilà le 1er concept Street Food locavore au coeur de Bordeaux ! Label Terre propose une cuisine de saison, rapide, savoureuse et locale avec des produits provenant de moins de 250km du restaurant. Profitez également de la salle à l'étage, du déjeuner au goûter !",
-# remote_picture_url: urls.fetch(images.index("label-terre_1.jpg")),
+# picture: urls.fetch(images.index("label-terre_1.jpg")),
 # business_category_id: bars.id,
-# remote_leader_picture_url: urls.fetch(images.index("Label-terre-leader.jpg")),
+# leader_picture: urls.fetch(images.index("Label-terre-leader.jpg")),
 # leader_first_name: "Chris",
 # leader_last_name: "Madé",
 # active: true,
@@ -1576,12 +1636,12 @@
 # shop: true,
 # itinerant: false
 # }
-
+#
 # puts "--------CREATE BUSINESS----------"
 # b = Business.create(business_attributes)
 # business_id = b.id
 # puts b.name
-
+#
 # perks_attributes = [{
 # name: "Un cookie offert",
 # business_id: business_id,
@@ -1593,7 +1653,7 @@
 # flash: false,
 # perk_detail_id: carte.id
 # }]
-
+#
 # puts "--------CREATE PERKS-----------"
 # perks_attributes.each do |params|
 #     Perk.create(params)
@@ -1601,37 +1661,37 @@
 # puts "--------END BUSINESS-----------"
 
 
-puts "--------CREATE ECOSYSTEMS--------------------"
-
-ecosystem_attributes = [
-  {
-    name: "Bordeaux",
-    zipcode: "33000",
-    city: "Bordeaux",
-    radius: 25
-  },
-  {
-    name: "Val de Garonne",
-    zipcode: "47200",
-    city: "MARMANDE",
-    radius: 50
-  },
-  {
-    name: "Lyon",
-    zipcode: "69000",
-    city: "LYON",
-    radius: 25
-  },
-  {
-    name: "Paris",
-    zipcode: "75000",
-    city: "PARIS",
-    radius: 35
-  },
-
- ]
-
-ecosystem_attributes.each do |params|
-  Ecosystem.create(params)
-end
-puts "--------END ECOSYSTEMS------------------------"
+# puts "--------CREATE ECOSYSTEMS--------------------"
+#
+# ecosystem_attributes = [
+#   {
+#     name: "Bordeaux",
+#     zipcode: "33000",
+#     city: "Bordeaux",
+#     radius: 25
+#   },
+#   {
+#     name: "Val de Garonne",
+#     zipcode: "47200",
+#     city: "MARMANDE",
+#     radius: 50
+#   },
+#   {
+#     name: "Lyon",
+#     zipcode: "69000",
+#     city: "LYON",
+#     radius: 25
+#   },
+#   {
+#     name: "Paris",
+#     zipcode: "75000",
+#     city: "PARIS",
+#     radius: 35
+#   },
+#
+#  ]
+#
+# ecosystem_attributes.each do |params|
+#   Ecosystem.create(params)
+# end
+# puts "--------END ECOSYSTEMS------------------------"

@@ -149,7 +149,6 @@
 <!-- Mapbox GL -->
 <link href='//api.tiles.mapbox.com/mapbox-gl-js/v0.42.2/mapbox-gl.css' rel='stylesheet' />
 
-
 <!-- Jquery -->
 <link href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" >
 
@@ -162,10 +161,13 @@
 <!-- Script for google analytics necessary in HEAD section -->
 <%= render "layouts/shared/js/google_analytics" %>
 
+<!-- Script for CRISP -->
+<%= render "layouts/shared/js/crisp" %>
+
 <!-- Script for AMPLITUDE -->
 <%= render "layouts/shared/js/amplitude" %>
 
-<!-- Script for AMPLITUDE -->
+<!-- Script for BRANCH -->
 <%= render "layouts/shared/js/branch" %>
 
 <%= stylesheet_link_tag :application, media: "all" %>
