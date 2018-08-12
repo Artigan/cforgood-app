@@ -7,10 +7,10 @@ class Member::DashboardController < ApplicationController
   def dashboard
 
     # Event intercom for last ecosystem request
-    if user_signed_in? && request.location.city.present?
-      ecosystem_now = Ecosystem.within([request.location.latitude, request.location.longitude]).first.try(:name)
-      current_user.create_event_last_ecosystem_seen(ecosystem_now) if ecosystem_now.present? && ecosystem_now != current_user.last_ecosystem_seen
-    end
+    # if user_signed_in? && request.location.city.present?
+    #   ecosystem_now = Ecosystem.within([request.location.latitude, request.location.longitude]).first.try(:name)
+    #   current_user.create_event_last_ecosystem_seen(ecosystem_now) if ecosystem_now.present? && ecosystem_now != current_user.last_ecosystem_seen
+    # end
 
     # save logout access
     if !user_signed_in?
