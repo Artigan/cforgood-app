@@ -3,14 +3,7 @@ class Api::V1::UsersController < Api::V1::BaseController
   before_action :set_user, only: [ :show, :update ]
 
   def create
-    ##### for mobile : zipcode not required until mobile app not correct
-    params = user_params.except(:access_token)
-    if !user_params[:zipcode].present?
-      params[:zipcode] = "33000"
-      params[:city] = "Bordeaux"
-    end
-    # render status: :unprocessable_entity, json: { error: "Zipcode or City are required"} if !user_params[:city].present? || !user_params[:zipcode].present?
-    #####
+    render status: :unprocessable_entity, json: { error: "Zipcode or City are required"} if !user_params[:city].present? || !user_params[:zipcode].present?
     if user_params[:access_token].present?
       url = "https://graph.facebook.com/me?fields=email,picture&access_token="
       begin
@@ -23,6 +16,7 @@ class Api::V1::UsersController < Api::V1::BaseController
       end
     end
 
+    params = user_params.except(:access_token)
     if user_params[:access_token].present?
       params = params.merge(token: user_params[:access_token])
       params = params.merge(password: Devise.friendly_token[0,20])
