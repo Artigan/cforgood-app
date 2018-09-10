@@ -3,7 +3,7 @@ class Api::V1::UsersController < Api::V1::BaseController
   before_action :set_user, only: [ :show, :update ]
 
   def create
-    render status: :unprocessable_entity, json: { error: "Zipcode or City are required"} if !user_params[:city].present? || !user_params[:zipcode].present?
+    # render status: :unprocessable_entity, json: { error: "Zipcode or City are required"} if !user_params[:city].present? || !user_params[:zipcode].present?
     if user_params[:access_token].present?
       url = "https://graph.facebook.com/me?fields=email,picture&access_token="
       begin
