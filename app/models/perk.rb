@@ -69,11 +69,9 @@ class Perk < ApplicationRecord
     message: "Cette image dépasse 2 MG !", if: :picture_changed?
   mount_uploader :picture, PictureUploader
 
-  after_create :send_registration_slack, :update_data_intercom
-  after_save :update_data_intercom, if: :active_changed?
+  after_create :send_registration_slack
   after_save :send_push_notification, if: :send_notification_changed?
   after_save :send_change_to_slack
-  after_destroy :update_data_intercom
 
   def update_nb_view!
     self.increment!(:nb_views)
@@ -160,39 +158,6 @@ class Perk < ApplicationRecord
     if perk_code.present?
       perk_code.upcase!
       errors.add(:perk_code, "Ce code n'est pas disponible !") if Perk.where(perk_code: self.perk_code, deleted: false).where(business_id: self.business_id).count > 0
-    end
-  end
-
-  def update_data_intercom
-    # UPDATE CUSTOM ATTRIBUTES ON INTERCOM
-    intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
-    begin
-      user = intercom.users.find(:user_id => 'B'+self.business_id.to_s)
-      user.custom_attributes[:perks_all] = Business.find(self.business_id).perks.count
-      user.custom_attributes[:perks_active] = Business.find(self.business_id).perks.active.count
-      intercom.users.save(user)
-
-      if :after_create
-         intercom.events.create(
-          event_name: "new-perk",
-          created_at: Time.now.to_i,
-          user_id: 'B'+self.business_id.to_s,
-          email: self.business.email,
-          metadata: {
-            perk_id: self.id,
-            perk_type: perk_type(self.appel, self.durable, self.flash),
-            title: self.name,
-            description: self.description,
-            picture_url: self.picture.url,
-            start_date: self.start_date,
-            end_date: self.end_date,
-            times: self.times
-          }
-        )
-      end
-
-    rescue Intercom::IntercomError => e
-      puts e
     end
   end
 
