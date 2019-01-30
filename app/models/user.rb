@@ -137,13 +137,10 @@ class User < ApplicationRecord
 
   after_save :create_partner_for_third_use_code_partner, if: :code_partner_changed?
   after_save :send_code_partner_slack, if: :code_partner_changed?
-  after_save :update_data_intercom, :create_event_employee, if: :supervisor_id_changed?
+  after_save :create_event_employee, if: :supervisor_id_changed?
   after_save :save_history
 
-  after_commit :update_data_intercom
-
   after_create :send_registration_slack, :subscribe_to_newsletter_user, :create_event_amplitude, :save_onesignal_id
-
 
   def self.find_for_google_oauth2(access_token, signed_in_resourse=nil)
     data = access_token.info
@@ -456,64 +453,6 @@ class User < ApplicationRecord
       }
     })
     AmplitudeAPI.track(event)
-  end
-
-  def update_data_intercom
-    # UPDATE CUSTOM ATTRIBUTES ON INTERCOM
-    intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
-    @partner = Partner.find_by_code_partner(self.code_partner)
-    promo = false
-    business_supervisor = nil
-    if @partner
-      promo = @partner.promo
-      business_supervisor = Business.find(@partner.supervisor_id).name if @partner.supervisor_id
-    end
-    manager_name = self.manager.present? ? self.manager.name : nil
-
-    begin
-      user = intercom.users.find(:user_id => self.id)
-      user.custom_attributes["user_type"] = 'user'
-      user.custom_attributes["first_name"] = self.first_name
-      user.custom_attributes['city'] = self.city
-      user.custom_attributes['zipcode'] = self.zipcode
-      user.custom_attributes["user_active"] = self.active
-      user.custom_attributes["user_cause"] = self.cause.name
-      user.custom_attributes["user_member"] = self.member
-      user.custom_attributes['code_partner'] = self.code_partner
-      user.custom_attributes['code_promo'] = promo
-      user.custom_attributes['date_end_trial'] = self.date_end_partner
-      user.custom_attributes['ambassador'] = self.ambassador
-      user.custom_attributes['business_supervisor'] = business_supervisor
-      user.custom_attributes['supervisor'] = manager_name
-      intercom.users.save(user)
-    rescue Intercom::IntercomError => e
-      begin
-        intercom.users.create(
-          :user_id => self.id,
-          :email => self.email,
-          :name => self.name,
-          :created_at => created_at,
-          :custom_data => {
-            'user_type' => 'user',
-            'first_name' => self.first_name,
-            'city' => self.city,
-            'zipcode' => self.zipcode,
-            'user_active' => self.active,
-            'user_cause' => self.cause.name,
-            'user_member' => self.member,
-            'code_partner' => self.code_partner,
-            'code_promo' => promo,
-            'date_end_trial' => self.date_end_partner,
-            'ambassador' => self.ambassador,
-            'business_supervisor' => business_supervisor,
-            'supervisor' => manager_name
-          }
-        )
-        create_code_partner_for_new_user
-      rescue Intercom::IntercomError => e
-        puts e
-      end
-    end
   end
 
   def save_history

@@ -1,6 +1,5 @@
 /* MODAL - USE CODE  **********************************************************/
 
-
 //ADRIEN CSS //
 
 .member-card-update-profil-wrapper {
@@ -12,8 +11,8 @@
 .member-card-update-profil {
   width: 100px;
   height: 100px;
-  -webkit-mask: image-url('icons/id-card.svg') no-repeat 50% 50%;
-  mask: image-url('icons/id-card.svg') no-repeat 50% 50%;
+  -webkit-mask: image-url("icons/id-card.svg") no-repeat 50% 50%;
+  mask: image-url("icons/id-card.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
   mask-size: cover;
 }
@@ -21,8 +20,8 @@
 .pencil-image {
   width: 20px;
   height: 20px;
-  -webkit-mask: image-url('icons/pencil.svg') no-repeat 50% 50%;
-  mask: image-url('icons/pencil.svg') no-repeat 50% 50%;
+  -webkit-mask: image-url("icons/pencil.svg") no-repeat 50% 50%;
+  mask: image-url("icons/pencil.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
   mask-size: cover;
 }
@@ -35,16 +34,26 @@
 }
 
 .border-gradient {
-  background-image: -webkit-gradient(linear, left bottom, right top, color-stop(0.1, #00C9FF ), color-stop(0.9, #80F2A4));
-  background-image: -moz-linear-gradient(center bottom, #00C9FF 10%, #80F2A4 90%);
+  background-image: -webkit-gradient(
+    linear,
+    left bottom,
+    right top,
+    color-stop(0.1, #00c9ff),
+    color-stop(0.9, #80f2a4)
+  );
+  background-image: -moz-linear-gradient(
+    center bottom,
+    #00c9ff 10%,
+    #80f2a4 90%
+  );
   padding: 3px;
 }
 
 .hourglass {
   width: 100px;
   height: 100px;
-  -webkit-mask: image-url('icons/hourglass.svg') no-repeat 50% 50%;
-  mask: image-url('icons/hourglass.svg') no-repeat 50% 50%;
+  -webkit-mask: image-url("icons/hourglass.svg") no-repeat 50% 50%;
+  mask: image-url("icons/hourglass.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
   mask-size: cover;
 }
@@ -52,8 +61,8 @@
 .first-perk-gift {
   width: 100px;
   height: 100px;
-  -webkit-mask: image-url('icons/gift.svg') no-repeat 50% 50%;
-  mask: image-url('icons/gift.svg') no-repeat 50% 50%;
+  -webkit-mask: image-url("icons/gift.svg") no-repeat 50% 50%;
+  mask: image-url("icons/gift.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
   mask-size: cover;
 }
@@ -61,8 +70,8 @@
 .thumb-up-image {
   width: 20px;
   height: 20px;
-  -webkit-mask: image-url('icons/hand-like.svg') no-repeat 50% 50%;
-  mask: image-url('icons/hand-like.svg') no-repeat 50% 50%;
+  -webkit-mask: image-url("icons/hand-like.svg") no-repeat 50% 50%;
+  mask: image-url("icons/hand-like.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
   mask-size: cover;
 }
@@ -70,14 +79,14 @@
 .danger-stop-subscription {
   width: 80px;
   height: 80px;
-  -webkit-mask: image-url('icons/danger.svg') no-repeat 50% 50%;
-  mask: image-url('icons/danger.svg') no-repeat 50% 50%;
+  -webkit-mask: image-url("icons/danger.svg") no-repeat 50% 50%;
+  mask: image-url("icons/danger.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
   mask-size: cover;
 }
 
 .background-logo-pop-up {
-  background-image: url('logo_vertical.png');
+  background-image: url("logo_vertical.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: 200px;
@@ -94,17 +103,13 @@
 
   .front {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     position: relative;
-    min-width: 600px;
-    min-height: 350px;
-    // background-color: #fff;
-    background-color: rgba(255,255,255,1);
+    width: 600px;
+    min-height: 400px;
+    background-color: #6d6dfc;
     border-radius: 10px;
-    background-image: image-url('background-dl-app.png');
-    background-position: center;
-    background-size: cover;
     @include transition(all, 0.3s, ease-in-out);
   }
 
@@ -115,60 +120,57 @@
     justify-content: center;
     min-width: 300px;
     height: 100%;
-    padding-left: 6%;
-  }
-
-  .logo-cforgood-white {
-    width: 100px;
-    height: 100px;
-    margin-bottom: 6%;
-    margin-top: -20%;
-    background-image: image-url('logo-cforgood-white.png');
-    background-position: center;
-    background-size: cover;
   }
 
   .left-container-flex h6 {
     color: white;
-    font-size:1.2em;
+    font-size: 1.2em;
     font-weight: bold;
-    margin-top: 4%;
-    margin-bottom: 8%;
     text-align: center;
     line-height: 30px;
+    margin-bottom: 4%;
+    img {
+      height: 35px;
+      margin: -5px 5px 0;
+    }
   }
 
   .container-dl-badges {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: -20%;
-    margin-left: -8%;
+    p {
+      font-size: 0.8em;
+      line-height: 20px;
+      color: white;
+      margin: 5% 10%;
+    }
   }
 
-  .app-store-badge {
-    min-height: 40px;
-    min-width: 140px;
-    background-image: image-url('app-store-badge.png');
-    background-position: center;
+  .app-badge,
+  .network-badge {
+    height: 130px;
+    width: auto;
+    background-image: image-url("poi-app.png");
+    background-position: top;
     background-size: cover;
     border-radius: 5px;
+    margin: 2% 6%;
+    p {
+      margin-top: 1%;
+    }
   }
 
-  .play-store-badge {
-    min-height: 62px;
-    min-width: 140px;
-    background-image: image-url('google-play-badge.png');
-    background-position: center;
-    background-size: cover;
-    border-radius: 20px;
-    margin-left: 16%;
+  .app-badge {
+    background-image: image-url("poi-app.png");
+  }
+
+  .network-badge {
+    background-image: image-url("poi-network.png");
   }
 
   h6.close-tag {
     position: absolute;
     color: white;
-    font-size:1em;
+    font-size: 1em;
     bottom: 5px;
     right: 20px;
     font-weight: bold;
@@ -188,7 +190,7 @@
   right: 0;
   left: 90px;
   z-index: 200;
-  background-color: rgba(0,0,0,0.7);
+  background-color: rgba(0, 0, 0, 0.7);
   @include transition(all, 0.3s, ease-in-out);
 
   .flip-container-mobile {
@@ -225,7 +227,7 @@
         position: relative;
         padding: 35px 20px 20px;
         // background-color: #fff;
-        background-color: rgba(255,255,255,1);
+        background-color: rgba(255, 255, 255, 1);
         border-radius: 3px;
         @include transition(all, 0.3s, ease-in-out);
 
@@ -240,10 +242,10 @@
           padding-bottom: 3px;
           font-size: 30px;
           font-weight: 100;
-          color: rgba(55,55,55,0.4);
+          color: rgba(55, 55, 55, 0.4);
           line-height: 0.85;
           background: transparent;
-          border: 1px solid rgba(55,55,55,0.4);
+          border: 1px solid rgba(55, 55, 55, 0.4);
           border-radius: 50%;
           outline: none;
           cursor: pointer;
@@ -251,8 +253,8 @@
           z-index: 200;
 
           &:hover {
-            color: rgba(55,55,55,0.9);
-            border-color: rgba(55,55,55,0.9);
+            color: rgba(55, 55, 55, 0.9);
+            border-color: rgba(55, 55, 55, 0.9);
           }
         }
 
@@ -264,7 +266,7 @@
           margin: 0 auto;
           width: 85px;
           height: 85px;
-          background-color: #9FD6AE;
+          background-color: #9fd6ae;
           border-radius: 50%;
         }
 
@@ -280,7 +282,6 @@
             color: #636363;
             margin-bottom: 10px;
           }
-
         }
 
         span.info-unable {
@@ -320,7 +321,7 @@
             align-items: center;
             width: 100%;
             background-color: #f4f4f4;
-            border: 1px solid #9FD6AE;
+            border: 1px solid #9fd6ae;
             border-radius: 3px;
 
             .fa {
@@ -330,7 +331,7 @@
               padding: 15px 0;
               width: 20%;
               height: 100%;
-              background-color: #9FD6AE;
+              background-color: #9fd6ae;
               border-radius: 3px 0 0 3px;
               color: #fff;
             }
@@ -373,7 +374,8 @@
           .form-control:focus {
             outline: none;
             border: 1px solid rgba(159, 214, 174, 0.6);
-            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(159, 214, 174, 0.6);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
+              0 0 8px rgba(159, 214, 174, 0.6);
           }
 
           input[type="submit"],
@@ -387,7 +389,7 @@
             border-radius: 0 0 3px 3px;
             color: #fff;
             // text-transform: uppercase;
-            background: #9FD6AE;
+            background: #9fd6ae;
             border: none;
             font-size: 14px;
             font-weight: 600;
@@ -428,11 +430,12 @@
             color: #fff;
             font-size: 14px;
             font-weight: 600;
-            background-color: #9FD6AE;
+            background-color: #9fd6ae;
             transition: all, 0.3s, ease-in-out;
           }
 
-          .button-gradient-not-member-yet, .button-gradient-not-member-yet:active {
+          .button-gradient-not-member-yet,
+          .button-gradient-not-member-yet:active {
             position: fixed;
             display: inline-flex;
             justify-content: center;
@@ -447,17 +450,17 @@
             cursor: pointer;
             color: white;
             line-height: 9px;
-            box-shadow:  0px 2px 2px rgba(0,0,0,0.3);
-            background: linear-gradient(to right, #64B9EA, #36D7B7, #33CC66);
+            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(to right, #64b9ea, #36d7b7, #33cc66);
             z-index: 10;
             font-weight: bolder;
             margin-top: 5%;
 
-            &:hover, &:focus {
+            &:hover,
+            &:focus {
               color: white;
             }
           }
-
         }
 
         .container-legend {
@@ -474,7 +477,7 @@
         position: absolute;
         top: 0;
         z-index: 500;
-        transform: rotateX( 180deg );
+        transform: rotateX(180deg);
 
         .container-feedback {
           display: flex;
@@ -532,7 +535,7 @@
   }
 
   .flipped {
-    transform: rotateX( 180deg );
+    transform: rotateX(180deg);
 
     .front {
       visibility: hidden;
@@ -551,7 +554,7 @@
   right: 0;
   left: 0;
   z-index: 200;
-  background-color: rgba(0,0,0,0.6);
+  background-color: rgba(0, 0, 0, 0.6);
   @include transition(all, 0.3s, ease-in-out);
 
   .container-query {
@@ -597,7 +600,7 @@
   }
 }
 
-@media (max-width:767px) {
+@media (max-width: 767px) {
   .use-overlay {
     bottom: 0;
     left: 0;

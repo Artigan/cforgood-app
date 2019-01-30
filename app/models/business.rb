@@ -123,7 +123,6 @@ class Business < ApplicationRecord
   before_save :format_twitter, if: :twitter_changed?
   before_save :format_instagram, if: :instagram_changed?
 
-  after_save :update_data_intercom
   after_save :send_activation_slack, if: :active_changed?
 
   def perks_uses_count
@@ -188,51 +187,6 @@ class Business < ApplicationRecord
   def subscribe_to_newsletter_business
     if Rails.env.production?
       SubscribeToNewsletterBusiness.new(self).run
-    end
-  end
-
-  def update_data_intercom
-    if active_changed? or leader_first_name_changed? or city_changed? or picture_changed? or supervisor_changed?  or supervisor_id_changed?
-      # UPDATE CUSTOM ATTRIBUTES ON INTERCOM
-      intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
-      code_partner = Partner.find_by_email(self.email).try(:code_partner)
-      manager_name = self.manager.try(:name)
-      begin
-        user = intercom.users.find(:user_id => 'B'+id.to_s)
-        user.custom_attributes["user_type"] = 'business'
-        user.custom_attributes["user_active"] = self.active
-        user.custom_attributes["first_name"] = self.leader_first_name
-        user.custom_attributes["city"] = self.city
-        user.custom_attributes["zipcode"] = self.zipcode
-        user.custom_attributes["picture_url"] = self.picture.url
-        user.custom_attributes["manager"] = self.manager.name if self.manager.present?
-        user.custom_attributes["supervisor"] = self.supervisor
-        user.custom_attributes["business_category"] = self.business_category.name
-        intercom.users.save(user)
-      rescue Intercom::IntercomError => e
-        begin
-          intercom.users.create(
-            :user_id => 'B'+self.id.to_s,
-            :email => self.email,
-            :name => self.name,
-            :created_at => self.created_at,
-            :custom_data => {
-              'user_type' => 'business',
-              'user_active' => self.active,
-              'first_name' => self.leader_first_name,
-              'city' => self.city,
-              'zipcode' => self.zipcode,
-              'picture_url' => self.picture.url,
-              'code_partner' => code_partner,
-              'manager' => manager_name,
-              'supervisor' => self.supervisor,
-              'business_category' => self.business_category.name
-            }
-          )
-        rescue Intercom::IntercomError => e
-          puts e
-        end
-      end
     end
   end
 

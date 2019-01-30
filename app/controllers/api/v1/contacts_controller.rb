@@ -49,7 +49,6 @@ class Api::V1::ContactsController < Api::V1::BaseController
   end
 
   def render_sponsorship_ok(nb_contacts)
-    update_data_intercom(nb_contacts)
     render status: 200, json: { nb_contacts: nb_contacts,
                                 sponsoring_done: current_user.sponsorship_done,
                                 code_sponsor: current_user.sponsorship_done ? "GOODSPONSOR" + current_user.id.to_s : nil }
@@ -64,17 +63,4 @@ class Api::V1::ContactsController < Api::V1::BaseController
       return true
     end
   end
-
-  def update_data_intercom(nb_contacts)
-    intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
-    begin
-      user = intercom.users.find(:user_id => current_user.id.to_s)
-      user.custom_attributes["nb_contacts"] =  nb_contacts
-      intercom.users.save(user)
-    rescue Intercom::IntercomError => e
-      puts e
-    end
-  end
 end
-
-

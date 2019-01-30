@@ -92,7 +92,6 @@ class Cause < ApplicationRecord
   before_save :create_stripe_data!, if: :active_changed?
 
   after_create :send_registration_slack, :subscribe_to_newsletter_cause
-  after_save :update_data_intercom
   after_save :send_activation_slack, if: :active_changed?
 
   private
@@ -156,23 +155,5 @@ class Cause < ApplicationRecord
     return unless active
     message = "*#{name}* a été activé !"
     send_message_to_slack(ENV['SLACK_WEBHOOK_CAUSE_URL'], message)
-  end
-
-  def update_data_intercom
-    intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
-    begin
-      user = intercom.users.create(
-        :user_id => 'C'+id.to_s,
-        :email => email,
-        :name => name,
-        :created_at => created_at
-      )
-      user.custom_attributes["user_type"]   = "cause"
-      user.custom_attributes["user_active"] = active
-      user.custom_attributes["first_name"]  = representative_first_name
-      intercom.users.save(user)
-    rescue Intercom::IntercomError => e
-      puts e
-    end
   end
 end

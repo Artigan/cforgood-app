@@ -34,7 +34,7 @@
 
 class Partner < ApplicationRecord
   belongs_to :supervisor, class_name: 'Business', foreign_key: 'supervisor_id'
-  
+
   validates :name, presence: true
   validates :email, presence: true
   validates :code_partner, presence: true, uniqueness: true
@@ -46,9 +46,6 @@ class Partner < ApplicationRecord
     self.email = email
     code = transco_code_partner(name)
     self.code_partner = code
-    if self.save
-      update_data_intercom_business
-    end
   end
 
   def create_code_partner_user(user, code, exclusive, shared)
@@ -79,21 +76,4 @@ class Partner < ApplicationRecord
       self.code_partner = transco_code_partner(self.code_partner)
     end
   end
-
-  def update_data_intercom_business
-    if code_partner_changed? and code_partner_was.present?
-      # UPDATE CUSTOM ATTRIBUTES ON INTERCOM
-      if @business = Business.find_by_email(self.email)
-        intercom = Intercom::Client.new(app_id: ENV['INTERCOM_API_ID'], api_key: ENV['INTERCOM_API_KEY'])
-        begin
-          business = intercom.users.find(:user_id => 'B'+@business.id.to_s)
-          business.custom_attributes["code_partner"] =  self.code_partner
-          intercom.users.save(business)
-        rescue Intercom::IntercomError => e
-          puts e
-        end
-      end
-    end
-  end
-
 end
